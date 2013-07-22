@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  subject_id: 
+  code: 1
+  description: MyText
+  hours: 1
+  credit: 1
+  prerequisite_id: 
+  corequisite_id: 
+
+two:
+  name: MyString
+  subject_id: 
+  code: 1
+  description: MyText
+  hours: 1
+  credit: 1
+  prerequisite_id: 
+  corequisite_id: 

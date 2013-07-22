@@ -11,7 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722183957) do
+ActiveRecord::Schema.define(version: 20130722185816) do
+
+  create_table "course_exprs", force: true do |t|
+    t.integer  "node_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_exprs", ["node_id"], name: "index_course_exprs_on_node_id", using: :btree
+
+  create_table "course_nodes", force: true do |t|
+    t.string   "operation"
+    t.integer  "parent_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_nodes", ["course_id"], name: "index_course_nodes_on_course_id", using: :btree
+  add_index "course_nodes", ["parent_id"], name: "index_course_nodes_on_parent_id", using: :btree
+
+  create_table "course_subjects", force: true do |t|
+    t.string   "name"
+    t.string   "longname"
+    t.integer  "university_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_subjects", ["university_id"], name: "index_course_subjects_on_university_id", using: :btree
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.integer  "subject_id"
+    t.integer  "code"
+    t.text     "description"
+    t.integer  "hours"
+    t.integer  "credit"
+    t.integer  "prerequisite_id"
+    t.integer  "corequisite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "courses", ["corequisite_id"], name: "index_courses_on_corequisite_id", using: :btree
+  add_index "courses", ["prerequisite_id"], name: "index_courses_on_prerequisite_id", using: :btree
+  add_index "courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -25,6 +71,13 @@ ActiveRecord::Schema.define(version: 20130722183957) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "universities", force: true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
