@@ -67,11 +67,15 @@ class CourseNode < ActiveRecord::Base
     if operation == NodeOperation::NODE
       r = r + course.to_s
     else
-      r = r + ' (' + nodes.map! { |k| "#{k.to_s}" }.join(" " + operation + " ") + ") "
+      r = r + ' (' + nodes.map! { |k| "#{k.to_s}" }.join(' ' + operation + ' ') + ') '
     end
     return r
   end
+  def name
+    to_s
+  end
 end
+
 
 class NodeOperation
   NODE = 'NODE'

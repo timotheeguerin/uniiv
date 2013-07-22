@@ -1,8 +1,41 @@
 # RailsAdmin config file. Generated on July 22, 2013 14:39
 # See github.com/sferik/rails_admin for more informations
+require 'rails_admin/config/proxyable'
+require 'rails_admin/config/configurable'
+require 'rails_admin/config/hideable'
+require Rails.root.join('lib', 'rails_admin_parse_course_expr.rb')
 
 RailsAdmin.config do |config|
+  module RailsAdmin
+    module Config
+      module Actions
+        class ParseCourseExpr < RailsAdmin::Config::Actions::Base
+          RailsAdmin::Config::Actions.register(self)
+        end
+      end
+    end
+  end
+  config.actions do
+    # root actions
+    dashboard # mandatory
 
+    # collection actions
+    index # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    parse_course_expr
+
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+
+
+  end
 
   ################  Global configuration  ################
 
@@ -34,7 +67,7 @@ RailsAdmin.config do |config|
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
-
+  config.label_methods << to_s
 
   ################  Model configuration  ################
 

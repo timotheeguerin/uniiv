@@ -5,6 +5,10 @@ class CourseExpr < ActiveRecord::Base
     id.to_s + ': ' + node.to_s
   end
 
+  def display_name
+    to_s
+  end
+
   def self.parse(string)
     nodes = CourseNode.parse(string)
     return nil if nodes.nil?

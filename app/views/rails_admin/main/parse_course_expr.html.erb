@@ -1,0 +1,21 @@
+<% if @response -%>
+    <% if @response.has_key?(:error) -%>
+        <div class="alert-error alert">
+          <%= @response[:error] %>
+        </div>
+    <% end -%>
+    <% if @response.has_key?(:notice) -%>
+        <div class="alert-success alert">
+          <%= @response[:notice] %>
+        </div>
+    <% end -%>
+<% end -%>
+
+<h1>Import <%= @abstract_model.to_param.titleize %></h1>
+
+<%= form_tag :multipart => true do |f| -%>
+    <div>
+      <%= text_field_tag :file %>
+    </div>
+    <%= submit_tag "Parse", :disable_with => "Parsing..." %>
+<% end -%>

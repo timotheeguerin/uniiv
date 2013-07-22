@@ -18,6 +18,13 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  admin:
+    actions:
+      parse_course_expr:
+        title: "Parse Course Expression"
+        menu: "Parse Course Expression"
+        breadcrumb: "Parse Course Expression"
+        link: "Parse Course Expression"
+        bulk_link: "Parse Course Expression"
+        done: "Course Expression parsed"

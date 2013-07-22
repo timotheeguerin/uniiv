@@ -15,8 +15,19 @@ development:
   pool: 5
   username: root
   password: madremia350
-  socket: /var/run/mysqld/mysqld.sock
+  socket: mysqld
+  host: 127.0.0.1
 
+development_main:
+  adapter: mysql2
+  encoding: utf8
+  database: uniiv_development
+  pool: 5
+  username: root
+  password: madremia350
+  socket: /var/run/mysqld/mysqld.sock
+  host: bendodev.no-ip.org
+  ssh_user: tim
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
