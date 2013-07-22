@@ -5,7 +5,7 @@ class CourseExpr < ActiveRecord::Base
     id.to_s + ': ' + node.to_s
   end
 
-  def display_name
+  def name
     to_s
   end
 
