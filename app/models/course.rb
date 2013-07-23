@@ -3,6 +3,6 @@ class Course < ActiveRecord::Base
   belongs_to :prerequisite, :class_name =>  'CourseExpr'
   belongs_to :corequisite, :class_name =>  'CourseExpr'
   def to_s
-      return subject.to_s + " " + code.to_s
+      subject.to_s + ' ' + code.to_s
   end
 end
