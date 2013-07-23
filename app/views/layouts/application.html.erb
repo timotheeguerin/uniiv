@@ -17,7 +17,10 @@
         <% if user_signed_in? %>
           <strong><%= current_user.email %></strong>
           |
-          <%= link_to 'Edit profile', edit_user_registration_path %>
+          <%= link_to "Edit Profile", edit_user_registration_path %>
+          <%= link to edit_user_registration_path do %>
+            <strong><%= current_user.email %></strong>
+          <% end %>
           |
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         <% else %>
