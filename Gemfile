@@ -48,3 +48,5 @@ gem 'rails_admin'
 
 
 gem "devise"
+
+gem "cancan"

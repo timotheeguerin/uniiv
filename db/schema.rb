@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723172254) do
+ActiveRecord::Schema.define(version: 20130723200924) do
+
   create_table "course_exprs", force: true do |t|
     t.integer  "node_id"
     t.datetime "created_at"
@@ -58,6 +59,11 @@ ActiveRecord::Schema.define(version: 20130723172254) do
   add_index "courses", ["prerequisite_id"], name: "index_courses_on_prerequisite_id", using: :btree
   add_index "courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
 
+  create_table "courses_program_groups", id: false, force: true do |t|
+    t.integer "program_group_id"
+    t.integer "course_id"
+  end
+
   create_table "faculties", force: true do |t|
     t.string   "name"
     t.string   "website"
@@ -78,8 +84,6 @@ ActiveRecord::Schema.define(version: 20130723172254) do
   end
 
   add_index "program_groups", ["parent_id"], name: "index_program_groups_on_parent_id", using: :btree
-  add_index "program_groups", ["type"], name: "index_program_groups_on_type_id", using: :btree
-
 
   create_table "programs", force: true do |t|
     t.string   "name"
@@ -110,6 +114,17 @@ ActiveRecord::Schema.define(version: 20130723172254) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
 
   create_table "universities", force: true do |t|
     t.string   "name"

@@ -1,0 +1,227 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require welcome
+ */
+
+/*
+ * variables
+*/
+
+$uniiv_orange: #F7BA57;
+$uniiv_red: #F76959;
+$uniiv_blue: #204aa1;
+$uniiv_grey: #555555;
+
+$page_width: 800px;
+$page_border_radius: 5px;
+$page_background_color: #000000;
+
+$nav_height: 25px;
+$nav_gradient_top: #f9f9f9;
+$nav_gradient_bottom: #f1f1f1;
+$nav_border_color: #d5d5d5;
+
+$nav_text_size: 14px;
+$nav_text_color: $uniiv_grey;
+
+$content_background_color: #ffffff;
+
+$alert_notice_color: $uniiv_orange;
+$alert_error_color: $uniiv_red;
+
+$button_gradient_top: #fafafa;
+$button_gradient_bottom: #e3e3e3;
+$button_gradient_bottom_hover: #d3d3d3;
+$button_gradient_bottom_active: #b3b3b3;
+
+/*
+ * ids
+*/
+
+#nav_top
+{
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: $nav_height;
+  box-sizing: border-box;
+  background-color: $nav_gradient_bottom;
+  background-image: -moz-linear-gradient($nav_gradient_top, $nav_gradient_bottom);
+  background-image: -webkit-linear-gradient($nav_gradient_top, $nav_gradient_bottom);
+  background-image: linear-gradient($nav_gradient_top, $nav_gradient_bottom);
+  background-repeat: repeat-x;
+  border-bottom: 1px solid $nav_border_color;
+  line-height: $nav_height;
+  font-size: $nav_text_size;
+  color: $nav_text_color;
+}
+#nav_top_container
+{
+  width: $page_width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  box-sizing: border-box;
+}
+#nav_top_left
+{
+  float: left;
+  height: $nav_height;
+}
+#nav_top_right
+{
+  float: right;
+  height: $nav_height;
+}
+#nav_top_block
+{
+  display: block;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: $nav_height;
+}
+#nav_bottom
+{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: $nav_gradient_bottom;
+  background-image: -moz-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
+  background-image: -webkit-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
+  background-image: linear-gradient($nav_gradient_bottom, $nav_gradient_top);
+  border-top: 1px solid $nav_border_color;
+  box-sizing: border-box;
+}
+#nav_bottom_container
+{
+  width: $page_width;
+  display: block;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  font-size: $nav_text_size;
+  color: $nav_text_color;
+}
+#main_content
+{
+  width: $page_width;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: $content_background_color;
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+}
+
+/*
+ * classes
+*/
+
+.alert
+{
+  width: $page_width;
+  border: 1px solid transparent;
+  border-radius: $page_border_radius;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+.alert-notice
+{
+  border: 1px solid darken($alert_notice_color, 25%);
+  background-color: $alert_notice_color;
+}
+.alert-error
+{
+  border: 1px solid darken($alert_error_color, 25%);
+  background-color: $alert_error_color;
+}
+
+.small-text
+{
+  font-size: 12px;
+}
+/*
+ * tags
+*/
+h1
+{
+  font-size: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+h2
+{
+  font-size: 28px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+*
+{
+  text-rendering: optimizelegibility;
+  font-family: "Helvetica-Neue", Helvetica, Verdana, Sans-serif;
+  font-weight: lighter;
+}
+body
+{
+  padding: 0px;
+  margin: 0px;
+  background-color: $page_background_color;
+}
+a
+{
+  color: inherit;
+  text-decoration: none;
+}
+
+input[type="submit"], button
+{
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+  padding: 5px;
+  background-color: $button_gradient_bottom;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom);
+  border-top: 1px solid $nav_border_color;
+}
+
+input[type="submit"]:hover, button:hover
+{
+  background-color: $button_gradient_bottom_hover;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+}
+
+input[type="submit"]:active, button:active
+{
+  background-color: $button_gradient_bottom_active;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+}
