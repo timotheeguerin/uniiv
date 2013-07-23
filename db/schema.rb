@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723145056) do
+ActiveRecord::Schema.define(version: 20130723172254) do
 
   create_table "course_exprs", force: true do |t|
     t.integer  "node_id"
@@ -68,6 +68,18 @@ ActiveRecord::Schema.define(version: 20130723145056) do
   end
 
   add_index "faculties", ["university_id"], name: "index_faculties_on_university_id", using: :btree
+
+  create_table "program_groups", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.integer  "value"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "program_groups", ["parent_id"], name: "index_program_groups_on_parent_id", using: :btree
+  add_index "program_groups", ["type"], name: "index_program_groups_on_type_id", using: :btree
 
   create_table "programs", force: true do |t|
     t.string   "name"

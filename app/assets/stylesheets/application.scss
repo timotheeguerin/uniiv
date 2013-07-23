@@ -16,12 +16,27 @@
  * variables
 */
 
-$page_width: 800px;
+$uniiv_orange: #F7BA57;
+$uniiv_red: #F76959;
+$uniiv_blue: #204aa1;
+$uniiv_grey: #555555;
 
-$nav_height: 30px;
+$page_width: 800px;
+$page_border_radius: 5px;
+$page_background_color: #000000;
+
+$nav_height: 25px;
 $nav_gradient_top: #f9f9f9;
 $nav_gradient_bottom: #f1f1f1;
 $nav_border_color: #e5e5e5;
+
+$nav_text_size: 14px;
+$nav_text_color: $uniiv_grey;
+
+$content_background_color: #ffffff;
+
+$alert_notice_color: $uniiv_orange;
+$alert_error_color: $uniiv_red;
 
 /*
  * ids
@@ -42,6 +57,8 @@ $nav_border_color: #e5e5e5;
   background-repeat: repeat-x;
   border-bottom: 1px solid $nav_border_color;
   line-height: $nav_height;
+  font-size: $nav_text_size;
+  color: $nav_text_color;
 }
 #nav_top_container
 {
@@ -68,10 +85,12 @@ $nav_border_color: #e5e5e5;
   left: 0px;
   right: 0px;
   top: 0px;
-  height: $nav_height + 5px;
+  height: $nav_height;
 }
 #nav_bottom
 {
+  padding-top: 5px;
+  padding-bottom: 5px;
   position: absolute;
   bottom: 0px;
   left: 0px;
@@ -91,21 +110,49 @@ $nav_border_color: #e5e5e5;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-  padding: 5px;
+  font-size: $nav_text_size;
+  color: $nav_text_color;
 }
 #main_content
 {
   width: $page_width;
   display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
+  padding: 5px;
   box-sizing: border-box;
+  background-color: $content_background_color;
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
 }
 
 /*
  * classes
 */
 
+.alert
+{
+  width: $page_width;
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+.alert-notice
+{
+  background-color: $alert_notice_color;
+}
+.alert-error
+{
+  background-color: $alert_error_color;
+}
 
 /*
  * tags
@@ -119,4 +166,10 @@ body
 {
   padding: 0px;
   margin: 0px;
+  background-color: $page_background_color;
+}
+a
+{
+  color: inherit;
+  text-decoration: none;
 }
