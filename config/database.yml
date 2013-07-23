@@ -15,7 +15,7 @@ development:
   pool: 5
   username: root
   password: madremia350
-  socket: mysqld
+  socket: /var/run/mysqld/mysqld.sock
   host: 127.0.0.1
 
 development_main:
@@ -39,6 +39,7 @@ test:
   username: root
   password: madremia350
   socket: /var/run/mysqld/mysqld.sock
+  host: 127.0.0.1
 
 production:
   adapter: mysql2

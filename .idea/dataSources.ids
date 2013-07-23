@@ -28,4 +28,18 @@
       </library>
     </libraries>
   </data-source>
+  <data-source source="LOCAL" name="Rails uniiv: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="757b4552-f00a-495a-89cc-dba37720a3cf">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/uniiv_test</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfc7dfcbdfcedfd8dfcfdfc7dfc3dfcbdf99df9fdf9a</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar</url>
+      </library>
+    </libraries>
+  </data-source>
 </component>
