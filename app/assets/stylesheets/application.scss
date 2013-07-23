@@ -12,38 +12,55 @@
  *= require welcome
  */
 
+/*
+ * variables
+*/
+
+$page_width: 800px;
+
+$nav_height: 30px;
+$nav_gradient_top: #f9f9f9;
+$nav_gradient_bottom: #f1f1f1;
+$nav_border_color: #e5e5e5;
+
+/*
+ * ids
+*/
+
 #nav_top
 {
   position: fixed;
   left: 0px;
   right: 0px;
   top: 0px;
-  height: 30px;
+  height: $nav_height;
   box-sizing: border-box;
-  background-color: #dbdbdb;
-  line-height: 30px;
+  background-color: $nav_gradient_bottom;
+  background-image: -moz-linear-gradient($nav_gradient_top, $nav_gradient_bottom);
+  background-image: -webkit-linear-gradient($nav_gradient_top, $nav_gradient_bottom);
+  background-image: linear-gradient($nav_gradient_top, $nav_gradient_bottom);
+  background-repeat: repeat-x;
+  border-bottom: 1px solid $nav_border_color;
+  line-height: $nav_height;
 }
 #nav_top_container
 {
-  width: 800px;
+  width: $page_width;
   display: block;
   margin-left: auto;
   margin-right: auto;
   height: 100%;
   box-sizing: border-box;
-  background-color: #e5e5e5;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 #nav_top_left
 {
   float: left;
-  height: 30px;
+  height: $nav_height;
 }
 #nav_top_right
 {
   float: right;
-  height: 30px;
+  height: $nav_height;
 }
 #nav_top_block
 {
@@ -51,7 +68,7 @@
   left: 0px;
   right: 0px;
   top: 0px;
-  height: 30px;
+  height: $nav_height + 5px;
 }
 #nav_bottom
 {
@@ -59,28 +76,40 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: #dbdbdb;
+  background-color: $nav_gradient_bottom;
+  background-image: -moz-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
+  background-image: -webkit-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
+  background-image: linear-gradient($nav_gradient_bottom, $nav_gradient_top);
+  border-top: 1px solid $nav_border_color;
   box-sizing: border-box;
 }
 #nav_bottom_container
 {
-  width: 800px;
+  width: $page_width;
   display: block;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
   padding: 5px;
-  background-color: #e5e5e5;
 }
 #main_content
 {
-  width: 800px;
+  width: $page_width;
   display: block;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
 }
+
+/*
+ * classes
+*/
+
+
+/*
+ * tags
+*/
 *
 {
   font-family: "Helvetica-Neue", Helvetica, Verdana, Sans-serif;
