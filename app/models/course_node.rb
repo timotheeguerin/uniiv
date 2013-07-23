@@ -4,6 +4,7 @@ class CourseNode < ActiveRecord::Base
   belongs_to :course, :class_name => Course
   has_many :nodes, :class_name => CourseNode, :foreign_key => "parent_id"
   accepts_nested_attributes_for :nodes
+  
   def self.create_from_course_str(string)
     return if string.blank?
     node = CourseNode.new

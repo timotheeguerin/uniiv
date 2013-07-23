@@ -28,7 +28,7 @@ $page_background_color: #000000;
 $nav_height: 25px;
 $nav_gradient_top: #f9f9f9;
 $nav_gradient_bottom: #f1f1f1;
-$nav_border_color: #e5e5e5;
+$nav_border_color: #d5d5d5;
 
 $nav_text_size: 14px;
 $nav_text_color: $uniiv_grey;
@@ -37,6 +37,11 @@ $content_background_color: #ffffff;
 
 $alert_notice_color: $uniiv_orange;
 $alert_error_color: $uniiv_red;
+
+$button_gradient_top: #fafafa;
+$button_gradient_bottom: #e3e3e3;
+$button_gradient_bottom_hover: #d3d3d3;
+$button_gradient_bottom_active: #b3b3b3;
 
 /*
  * ids
@@ -135,7 +140,7 @@ $alert_error_color: $uniiv_red;
 .alert
 {
   width: $page_width;
-  border: 1px solid $nav_border_color;
+  border: 1px solid transparent;
   border-radius: $page_border_radius;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -147,18 +152,37 @@ $alert_error_color: $uniiv_red;
 }
 .alert-notice
 {
+  border: 1px solid darken($alert_notice_color, 25%);
   background-color: $alert_notice_color;
 }
 .alert-error
 {
+  border: 1px solid darken($alert_error_color, 25%);
   background-color: $alert_error_color;
 }
 
+.small-text
+{
+  font-size: 12px;
+}
 /*
  * tags
 */
+h1
+{
+  font-size: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+h2
+{
+  font-size: 28px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 *
 {
+  text-rendering: optimizelegibility;
   font-family: "Helvetica-Neue", Helvetica, Verdana, Sans-serif;
   font-weight: lighter;
 }
@@ -172,4 +196,32 @@ a
 {
   color: inherit;
   text-decoration: none;
+}
+
+input[type="submit"], button
+{
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+  padding: 5px;
+  background-color: $button_gradient_bottom;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom);
+  border-top: 1px solid $nav_border_color;
+}
+
+input[type="submit"]:hover, button:hover
+{
+  background-color: $button_gradient_bottom_hover;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+}
+
+input[type="submit"]:active, button:active
+{
+  background-color: $button_gradient_bottom_active;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_active);
 }
