@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="" />
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374601027551" ignored="false" />
@@ -42,7 +40,11 @@
         <entry file="file://$PROJECT_DIR$/app/views/rails_admin/main/parse_course_expr.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="21" column="76" selection-start="594" selection-end="594" vertical-scroll-proportion="-13.730769">
-              <folding />
+              <folding>
+                <marker date="1374589420342" expanded="true" signature="137:187" placeholder="..." />
+                <marker date="1374589420342" expanded="true" signature="286:337" placeholder="..." />
+                <marker date="1374589420342" expanded="true" signature="476:521" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,7 +61,25 @@
       <file leaf-file-name="rails_admin.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="22" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.68">
+            <state line="65" column="26" selection-start="1804" selection-end="1819" vertical-scroll-proportion="1.0584307">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="programs_type.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/programs_type.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="program.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="6" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -649,16 +669,16 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25506938" sideWeight="0.6709539" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25506938" sideWeight="0.67132115" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32867885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -734,7 +754,11 @@
     <entry file="file://$PROJECT_DIR$/app/views/rails_admin/main/parse_course_expr.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <marker date="1374589420342" expanded="true" signature="137:187" placeholder="..." />
+            <marker date="1374589420342" expanded="true" signature="286:337" placeholder="..." />
+            <marker date="1374589420342" expanded="true" signature="476:521" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -788,23 +812,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="26" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-4.0317726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rails_admin/main/parse_course_expr.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="76" selection-start="594" selection-end="594" vertical-scroll-proportion="-13.730769">
           <folding />
         </state>
       </provider>
@@ -816,9 +826,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/programs_type.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="6" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/rails_admin/main/parse_course_expr.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="76" selection-start="594" selection-end="594" vertical-scroll-proportion="-13.730769">
+          <folding>
+            <marker date="1374589420342" expanded="true" signature="137:187" placeholder="..." />
+            <marker date="1374589420342" expanded="true" signature="286:337" placeholder="..." />
+            <marker date="1374589420342" expanded="true" signature="476:521" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://RailsDependency/#uniiv">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>RailsDependency</ID>
+          <OriginalElement>#uniiv</OriginalElement>
+          <nodes>
+            <node x="" y="">NodeOperation</node>
+            <node x="" y="">User</node>
+            <node x="" y="">Course</node>
+            <node x="" y="">Faculty</node>
+            <node x="" y="">ProgramsType</node>
+            <node x="" y="">CourseNode</node>
+            <node x="" y="">CourseExpr</node>
+            <node x="" y="">Program</node>
+            <node x="" y="">CourseSubject</node>
+            <node x="" y="">University</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.761968085106383" x="388.0488656195462" y="326.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Association fields</Category>
+            <Category>Migration fields</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="22" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.68">
+        <state line="65" column="26" selection-start="1804" selection-end="1819" vertical-scroll-proportion="1.0584307">
           <folding />
         </state>
       </provider>
