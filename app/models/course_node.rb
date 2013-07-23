@@ -64,6 +64,7 @@ class CourseNode < ActiveRecord::Base
 
   def to_s
     r = ''
+    return '' if operation.nil?
     if operation == NodeOperation::NODE
       r = r + course.to_s
     else

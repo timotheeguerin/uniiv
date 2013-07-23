@@ -1,6 +1,6 @@
 <% if @response -%>
     <% if @response.has_key?(:error) -%>
-        <div class="alert-error alert">
+        <div class="alert-error alert" xmlns:c="http://www.w3.org/1999/html">
           <%= @response[:error] %>
         </div>
     <% end -%>
@@ -9,6 +9,7 @@
           <%= @response[:notice] %>
         </div>
     <% end -%>
+
 <% end -%>
 
 <h1>Import <%= @abstract_model.to_param.titleize %></h1>
