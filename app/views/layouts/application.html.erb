@@ -2,57 +2,57 @@
 <html>
 <head>
   <title>Uniiv</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <div id="nav_top">
-    <div id="nav_top_container">
-      <div id="nav_top_left">
-        <%= link_to root_url do %>
+<div id="nav_top">
+  <div id="nav_top_container">
+    <div id="nav_top_left">
+      <%= link_to root_url do %>
           logo
-        <% end %>
-      </div>
-      <div id="nav_top_right">
-        <% if user_signed_in? %>
+      <% end %>
+    </div>
+    <div id="nav_top_right">
+      <% if user_signed_in? %>
           <%= link_to edit_user_registration_path do %>
-            <strong><%= current_user.email %></strong>
+              <strong><%= current_user.email %></strong>
           <% end %>
           |
           <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-        <% else %>
+      <% else %>
           <%= link_to "Log In", new_user_session_path %>
           |
           <%= link_to "Sign Up", new_user_registration_path %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
 
-  <div id="nav_top_block"></div>
+<div id="nav_top_block"></div>
 
-  <% if notice %>
+<% if notice %>
     <div class="alert alert-notice"><%= notice %></div>
-  <% end %>
-  <% if alert %>
+<% end %>
+<% if alert %>
     <div class="alert alert-error"><%= alert %></div>
-  <% end %>
-  
-  <div id="main_content">
-    <%= yield %>
-  </div>
+<% end %>
 
-  <div id="nav_bottom">
-    <div id="nav_bottom_container">
-      footer<br>
-      footer<br>
-      footer<br>
-      footer<br>
-      footer<br>
-    </div>
+<div id="main_content">
+  <%= yield %>
+</div>
+
+<div id="nav_bottom">
+  <div id="nav_bottom_container">
+    footer<br>
+    footer<br>
+    footer<br>
+    footer<br>
+    footer<br>
   </div>
+</div>
 
 </body>
 </html>

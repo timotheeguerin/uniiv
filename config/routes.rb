@@ -1,8 +1,10 @@
 Uniiv::Application.routes.draw do
+  get "test/index"
   devise_for :users
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root to: "welcome#index"
 
+  get 'test' => 'test#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -43,7 +45,7 @@ Uniiv::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
