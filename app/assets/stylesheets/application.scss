@@ -1,12 +1,6 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
+ * Don't fucking touch my CSS
+ * WORD
  *
  *= require_self
  *= require welcome
@@ -25,7 +19,7 @@ $page_width: 800px;
 $page_border_radius: 5px;
 $page_background_color: #000000;
 
-$nav_height: 25px;
+$nav_height: 30px;
 $nav_gradient_top: #f9f9f9;
 $nav_gradient_bottom: #f1f1f1;
 $nav_border_color: #d5d5d5;
@@ -33,7 +27,7 @@ $nav_border_color: #d5d5d5;
 $nav_text_size: 14px;
 $nav_text_color: $uniiv_grey;
 
-$content_background_color: #ffffff;
+$content_background_color: #f5f5f5;
 
 $alert_notice_color: $uniiv_orange;
 $alert_error_color: $uniiv_red;
@@ -42,6 +36,8 @@ $button_gradient_top: #fafafa;
 $button_gradient_bottom: #e3e3e3;
 $button_gradient_bottom_hover: #d3d3d3;
 $button_gradient_bottom_active: #b3b3b3;
+
+$login_width: 400px;
 
 /*
  * ids
@@ -118,12 +114,24 @@ $button_gradient_bottom_active: #b3b3b3;
   font-size: $nav_text_size;
   color: $nav_text_color;
 }
-#main_content
+#home_content
 {
   width: $page_width;
+}
+#login_content
+{
+  width: $login_width;
+}
+
+/*
+ * classes
+*/
+
+.content_box
+{
   display: block;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   padding: 5px;
@@ -133,21 +141,68 @@ $button_gradient_bottom_active: #b3b3b3;
   border-radius: $page_border_radius;
 }
 
-/*
- * classes
-*/
+.greytext
+{
+  color: $uniiv_grey;
+}
+
+.middle
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center
+{
+  text-align: center;
+}
+
+.right
+{
+  width: 100%;
+  text-align: right;
+}
+
+.form_input_longer
+{
+  width: 100%;
+}
+
+.form_input_long
+{
+  width: 75%;
+}
+
+.form_input_half
+{
+  width: 50%;
+}
+
+.form_container
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.form_biginput
+{
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-size: 16px;
+  padding: 5px;
+}
 
 .alert
 {
   width: $page_width;
   border: 1px solid transparent;
   border-radius: $page_border_radius;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 5px;
   box-sizing: border-box;
 }
 .alert-notice
@@ -165,6 +220,8 @@ $button_gradient_bottom_active: #b3b3b3;
 {
   font-size: 12px;
 }
+
+
 /*
  * tags
 */
@@ -173,18 +230,23 @@ h1
   font-size: 35px;
   margin-top: 5px;
   margin-bottom: 5px;
+  text-shadow: 0 0 1px rgba(51,51,51,0.5);
+  color: $uniiv_grey;
 }
 h2
 {
   font-size: 28px;
   margin-top: 5px;
   margin-bottom: 5px;
+  text-shadow: 0 0 1px rgba(51,51,51,0.5);
+  color: $uniiv_grey;
 }
 *
 {
   text-rendering: optimizelegibility;
   font-family: "Helvetica-Neue", Helvetica, Verdana, Sans-serif;
   font-weight: lighter;
+  font-smooth: always;
 }
 body
 {
@@ -196,6 +258,28 @@ a
 {
   color: inherit;
   text-decoration: none;
+}
+
+input
+{
+  outline: none;
+}
+
+input[type="text"], input[type="email"], input[type="password"]
+{
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus
+{
+  border: 1px solid $uniiv_blue;
+  -moz-box-shadow: 0px 0px 2px #888888;
+  -webkit-box-shadow: 0px 0px 2px #888888;
+  box-shadow: 0px 0px 2px #888888;
 }
 
 input[type="submit"], button

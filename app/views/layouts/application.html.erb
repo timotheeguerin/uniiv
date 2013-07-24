@@ -17,14 +17,17 @@
       </div>
       <div id="nav_top_right">
         <% if user_signed_in? %>
+          <% if can? :access, :rails_admin %>
+            <%= link_to "Dash", rails_admin.dashboard_path %>&nbsp;&nbsp;
+          <% end %>
           <%= link_to edit_user_registration_path do %>
             <strong><%= current_user.email %></strong>
           <% end %>
-          |
+          &nbsp;
           <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to "Log In", new_user_session_path %>
-          |
+          &nbsp;
           <%= link_to "Sign Up", new_user_registration_path %>
         <% end %>
       </div>
@@ -40,9 +43,7 @@
     <div class="alert alert-error"><%= alert %></div>
   <% end %>
   
-  <div id="main_content">
-    <%= yield %>
-  </div>
+  <%= yield %>
 
   <div id="nav_bottom">
     <div id="nav_bottom_container">
