@@ -11,7 +11,7 @@ namespace :db do
   task :sync_local do
     config = Rails.application.config.database_configuration
 
-    abort "Missing Main developement db config" if config['development_main'].blank?
+    abort 'Missing Main developement db config' if config['development_main'].blank?
 
     dev = config['development']
     live = config['development_main']

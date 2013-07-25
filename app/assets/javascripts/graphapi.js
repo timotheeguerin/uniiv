@@ -9,142 +9,140 @@ $(document).ready(function () {
         y: 10,
         width: 980,
         height: 680,
-        fill: 'green',
-        stroke: 'black',
+        fill: '#DBDBDB',
+        stroke: 'blue',
         strokeWidth: 4
     });
-    var rect2 = new Kinetic.Rect({
-        x: 200,
-        y: 200,
-        width: 600,
-        height: 300,
-        fill: 'red',
-        stroke: 'black',
-        strokeWidth: 4
+
+    graph.canvas.layer.add(rect);
+
+    graph.onLoadImage(function () {
+        graph.drawCourse("Comp 202", new Point(30, 30));
+        graph.drawCourse("Comp 250", new Point(120, 30));
+
     });
 
     // add the shape to the layer
-    graph.layer.add(rect);
-    graph.layer.add(rect2);
-    graph.layer.draw();
+
+
+    graph.update();
 });
 
-function Graph(options) {
 
+function Graph(options) {
     var that = this;
-    that.stage = null;
-    that.layer = null;
-    that.layerSize = null;
-    that.offset = null;
-    that.canvasSize = null;
     that.options = null;
+    that.canvas = null;
+    that.images = Object();
+    that.ressources = Object();
 
     this.init = function (options) {
-
         var defaults = {
             container: 'canvas',
             width: 700,
             height: 400
         };
         that.options = $.extend({}, defaults, options);
-
-        this.canvasSize = new Point(that.options.width, that.options.height);
-        console.log("Size: " + this.canvasSize);
-        this.stage = new Kinetic.Stage({
+        that.canvas = new ViewPort({
             container: options.container,
-            width: this.canvasSize.x,
-            height: this.canvasSize.y
+            width: options.width,
+            height: options.height
         });
 
-        this.layerSize = new Point(1000, 700);
+        that.initImage('/assets')
+    };
 
-        //Create the mainlayer
-        this.layer = new Kinetic.Layer({
-            draggable: true,
-            dragBoundFunc: this.verifyPosition
+    this.initImage = function (url) {
+        that.ressources.url = url;
+        that.addImage("course.unavailable");
+    };
+
+    this.onLoadImage = function (callback) {
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+
+        for (var tmp in that.images) {
+            if (that.images.hasOwnProperty(tmp)) {
+                numImages++;
+            }
+        }
+        for (var src in that.images) {
+            if (that.images.hasOwnProperty(src)) {
+                that.images[src].onload = function () {
+                    if (++loadedImages >= numImages) {
+                        callback();
+                    }
+                };
+            }
+        }
+    };
+
+    that.drawCourse = function (course, pos) {
+        var group = new Kinetic.Group({
+            x: pos.x,
+            y: pos.y
         });
-
-        this.offset = $("#" + options.container).offset();
-
-        //Enable all the layer to be draggable
-        var background = new Kinetic.Rect({
+        var rect = new Kinetic.Rect({
             x: 0,
             y: 0,
-            width: this.layerSize.x,
-            height: this.layerSize.y,
-            fill: "#000000",
-            opacity: 0
+            width: 70,
+            height: 70,
+            cornerRadius: 10,
+            fill: '#DBDBDB',
+            stroke: 'blue',
+            strokeWidth: 4
         });
-        that.layer.add(background);
 
+        var image = new Kinetic.Image({
+            x: 5,
+            y: 5,
+            image: that.images['course.unavailable'],
+            width: 20,
+            height: 20
 
-        $(this.stage.content).on('mousewheel', this.zoom);
+        });
 
-        this.stage.add(this.layer);
-    };
+        var text = new Kinetic.Text({
+            x: 5,
+            y: 30,
+            text: course,
+            fontSize: 12,
+            fontFamily: 'Helvetica',
+            fill: 'black'
+        });
 
+        group.add(rect);
 
-    this.zoom = function (event) {
-
-        var minScaleX = that.canvasSize.x / that.layerSize.x;
-        var minScaleY = that.canvasSize.y / that.layerSize.y;
-        var minScale = Math.max(minScaleX, minScaleY);
-
-        event.preventDefault();
-        var oevt = event.originalEvent;
-        var mx = oevt.pageX - that.offset.left;
-        var my = oevt.pageY - that.offset.top;
-
-        var zoomAmount = oevt.wheelDelta * 0.001;
-        var oldScale = that.layer.getScale().x;
-        var newScale = oldScale + zoomAmount;
-        if (newScale < minScale) {
-            newScale = minScale;
-        } else if (newScale > 2) {
-            newScale = 2;
-        }
-        var dscale = newScale / oldScale;
-        var ox = mx - dscale * ( mx - that.layer.getPosition().x);
-        var oy = my - dscale * (my - that.layer.getPosition().y);
-        that.layer.setScale(newScale);
-        var pos = that.verifyPosition(new Point(ox, oy));
-        that.layer.setPosition(pos.x, pos.y);
-
-
-        that.layer.draw();
+        group.add(image);
+        group.add(text);
+        // add the shape to the layer
+        that.canvas.layer.add(group);
+        that.update();
 
     };
-    this.verifyPosition = function (pos) {
 
-        var newX = pos.x;
-        var newY = pos.y;
-        var currentScale = that.layer.getScale().x;
-        if (pos.x > 0) {
-            newX = 0;
-        }
-        if (pos.y > 0) {
-            newY = 0;
-        }
-        if (that.canvasSize.x - pos.x > that.layerSize.x * currentScale) {
-            newX = that.canvasSize.x - that.layerSize.x * currentScale;
-        }
-        if (that.canvasSize.y - pos.y > that.layerSize.y * currentScale) {
-            newY = that.canvasSize.y - that.layerSize.y * currentScale;
-        }
-        return {
-            x: newX,
-            y: newY
-        };
+    this.addImage = function (key) {
+        var src = key.replace(/\./g, '/');
+        var image = new Image();
+        image.src = that.ressources.url + '/' + src + '.png';
+        that.images[key] = image;
+    };
+
+    this.update = function () {
+        that.canvas.update();
     };
 
     this.init(options);
+
+
 }
 
-function Point(x, y) {
-    this.x = typeof x !== 'undefined' ? x : 0;
-    this.y = typeof y !== 'undefined' ? y : 0;
+function Course() {
+    var course = this;      //Alias for this
+    var group = null;       //Group
 
-    this.toString = function () {
-        return "(" + x + ", " + y + ")";
+    this.on = function (event, callback) {
+        group.on(event, callback);
     }
 }
