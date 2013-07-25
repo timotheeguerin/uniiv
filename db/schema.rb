@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723200924) do
+ActiveRecord::Schema.define(version: 20130725154929) do
 
   create_table "course_exprs", force: true do |t|
     t.integer  "node_id"
@@ -124,6 +124,16 @@ ActiveRecord::Schema.define(version: 20130723200924) do
   create_table "roles_users", force: true do |t|
     t.integer "user_id"
     t.integer "role_id"
+  end
+
+  create_table "translations", force: true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.text     "interpolations"
+    t.boolean  "is_proc",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "universities", force: true do |t|
