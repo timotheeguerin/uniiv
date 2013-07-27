@@ -1,0 +1,23 @@
+{
+    "style": {
+        "default": {
+            "node": {
+                "width": 100,
+                "height": 100
+            },
+            "operator": {
+                "width": 20,
+                "height": 100
+            },
+            "requirement": {
+
+            }
+        }
+    },
+    "graph": {
+        "dimension": {
+            "width": 1000,
+            "height": 1000
+        }
+    }
+}

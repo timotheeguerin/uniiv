@@ -1,3 +1,5 @@
+//=require kineticjs
+
 function ViewPort(options) {
 
     var that = this;
@@ -7,25 +9,25 @@ function ViewPort(options) {
     that.offset = null;
     that.canvasSize = null;
     that.options = null;
+    that.background = null;         //Allow all the layer to be draggable
 
     this.init = function (options) {
 
         var defaults = {
-            container: 'canvas',
+            container: 'canvas-container',
             width: 700,
             height: 400
         };
         that.options = $.extend({}, defaults, options);
 
         this.canvasSize = new Point(that.options.width, that.options.height);
-        console.log("Size: " + this.canvasSize);
         this.stage = new Kinetic.Stage({
             container: options.container,
             width: this.canvasSize.x,
             height: this.canvasSize.y
         });
 
-        this.layerSize = new Point(1000, 700);
+        this.layerSize = new Point(this.canvasSize.x, this.canvasSize.y);
 
         //Create the mainlayer
         this.layer = new Kinetic.Layer({
@@ -36,7 +38,7 @@ function ViewPort(options) {
         this.offset = $("#" + options.container).offset();
 
         //Enable all the layer to be draggable
-        var background = new Kinetic.Rect({
+        that.background = new Kinetic.Rect({
             x: 0,
             y: 0,
             width: this.layerSize.x,
@@ -44,12 +46,19 @@ function ViewPort(options) {
             fill: "#000000",
             opacity: 0
         });
-        that.layer.add(background);
+        that.layer.add(that.background);
 
 
         $(this.stage.content).on('mousewheel', this.zoom);
 
         this.stage.add(this.layer);
+    };
+
+    this.resizeLayer = function (width, height) {
+        that.background.setWidth(width);
+        that.background.setHeight(height);
+        that.layerSize.x = width;
+        that.layerSize.y = height;
     };
 
 
