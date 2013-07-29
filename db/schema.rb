@@ -76,14 +76,13 @@ ActiveRecord::Schema.define(version: 20130725154929) do
 
   create_table "program_groups", force: true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "restriction"
     t.integer  "value"
-    t.integer  "parent_id"
+    t.integer  "groupparent_id"
+    t.string   "groupparent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "program_groups", ["parent_id"], name: "index_program_groups_on_parent_id", using: :btree
 
   create_table "programs", force: true do |t|
     t.string   "name"

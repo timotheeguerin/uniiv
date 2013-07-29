@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.28, for Win64 (x86)
+-- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: uniiv_development
 -- ------------------------------------------------------
--- Server version	5.5.28
+-- Server version	5.5.31-0ubuntu0.13.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -175,7 +175,7 @@ CREATE TABLE `faculties` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_faculties_on_university_id` (`university_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,6 +184,7 @@ CREATE TABLE `faculties` (
 
 LOCK TABLES `faculties` WRITE;
 /*!40000 ALTER TABLE `faculties` DISABLE KEYS */;
+INSERT INTO `faculties` VALUES (1,'Faculty of Science','http://www.mcgill.ca/science/',1,'2013-07-29 13:28:25','2013-07-29 13:28:25');
 /*!40000 ALTER TABLE `faculties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,14 +198,14 @@ DROP TABLE IF EXISTS `program_groups`;
 CREATE TABLE `program_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `restriction` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `value` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_program_groups_on_parent_id` (`parent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,6 +214,7 @@ CREATE TABLE `program_groups` (
 
 LOCK TABLES `program_groups` WRITE;
 /*!40000 ALTER TABLE `program_groups` DISABLE KEYS */;
+INSERT INTO `program_groups` VALUES (1,'McGill Science Software Engineering Complementary Courses','min_credit',9,NULL,'2013-07-29 13:30:35','2013-07-29 13:30:35'),(2,'McGill Science Software Engineering Core','all',39,NULL,'2013-07-29 14:44:36','2013-07-29 14:44:36'),(3,'McGill Science Software Engineering Complementary Courses Group A','min_credit',3,4,'2013-07-29 14:45:10','2013-07-29 14:45:50'),(4,'McGill Science Software Engineering Complementary Courses Group B','min_credit',3,4,'2013-07-29 14:45:32','2013-07-29 14:45:50'),(5,'McGill Science Software Engineering Specializations','min_nb',15,NULL,'2013-07-29 14:46:12','2013-07-29 14:47:37'),(6,'McGill Science Software Engineering Specializations Software Engineering','min_credit',6,5,'2013-07-29 14:46:48','2013-07-29 14:47:37'),(7,'McGill Science Software Engineering Specializations Application','min_credit',6,5,'2013-07-29 14:47:09','2013-07-29 14:47:37');
 /*!40000 ALTER TABLE `program_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +235,7 @@ CREATE TABLE `programs` (
   PRIMARY KEY (`id`),
   KEY `index_programs_on_type_id` (`type_id`),
   KEY `index_programs_on_faculty_id` (`faculty_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,6 +244,7 @@ CREATE TABLE `programs` (
 
 LOCK TABLES `programs` WRITE;
 /*!40000 ALTER TABLE `programs` DISABLE KEYS */;
+INSERT INTO `programs` VALUES (1,'Software Engineering',1,1,'2013-07-29 13:28:46','2013-07-29 13:28:46');
 /*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +261,7 @@ CREATE TABLE `programs_types` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +270,7 @@ CREATE TABLE `programs_types` (
 
 LOCK TABLES `programs_types` WRITE;
 /*!40000 ALTER TABLE `programs_types` DISABLE KEYS */;
-INSERT INTO `programs_types` VALUES (1,'major','2013-07-23 14:52:52','2013-07-23 14:52:52'),(2,'minor','2013-07-23 14:52:57','2013-07-23 14:52:57');
+INSERT INTO `programs_types` VALUES (1,'major','2013-07-23 14:52:52','2013-07-23 14:52:52'),(2,'minor','2013-07-23 14:52:57','2013-07-23 14:52:57'),(3,'concentration','2013-07-24 13:38:15','2013-07-24 13:38:15'),(4,'faculty','2013-07-24 21:21:31','2013-07-24 21:21:42');
 /*!40000 ALTER TABLE `programs_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,8 +375,37 @@ CREATE TABLE `schema_migrations` (
 
 LOCK TABLES `schema_migrations` WRITE;
 /*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-INSERT INTO `schema_migrations` VALUES ('20130722183956'),('20130722183957'),('20130722185211'),('20130722185326'),('20130722185352'),('20130722185557'),('20130722185816'),('20130723142707'),('20130723144609'),('20130723145056'),('20130723171513'),('20130723172254'),('20130723184047'),('20130723190844'),('20130723192236'),('20130723200821'),('20130723200924');
+INSERT INTO `schema_migrations` VALUES ('20130722183956'),('20130722183957'),('20130722185211'),('20130722185326'),('20130722185352'),('20130722185557'),('20130722185816'),('20130723142707'),('20130723144609'),('20130723145056'),('20130723171513'),('20130723172254'),('20130723184047'),('20130723190844'),('20130723192236'),('20130723200821'),('20130723200924'),('20130725154929');
 /*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `translations`
+--
+
+DROP TABLE IF EXISTS `translations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `translations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` text COLLATE utf8_unicode_ci,
+  `interpolations` text COLLATE utf8_unicode_ci,
+  `is_proc` tinyint(1) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `translations`
+--
+
+LOCK TABLES `translations` WRITE;
+/*!40000 ALTER TABLE `translations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -436,7 +468,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'tlornewr@gmail.com','$2a$10$kUr8lDG09LDIesiGuAFAVO1qSb6aDt371wOrggKdauuZY3VNELYV.','mJjqCTaLWxRLveGmJU7s','2013-07-23 18:59:12','2013-07-23 19:40:06',10,'2013-07-23 19:40:06','2013-07-23 19:30:44','18.189.46.159','18.189.46.159','2013-07-22 18:40:24','2013-07-23 19:40:06'),(2,'timothee.guerin@outlook.com','$2a$10$mYzEBMwceGDFwNaShe42xuRo.epstzN49pd.vdN44d74FD3/HYM1G',NULL,NULL,NULL,1,'2013-07-22 19:01:21','2013-07-22 19:01:21','18.189.95.221','18.189.95.221','2013-07-22 19:01:21','2013-07-22 19:01:21');
+INSERT INTO `users` VALUES (1,'tlornewr@gmail.com','$2a$10$kUr8lDG09LDIesiGuAFAVO1qSb6aDt371wOrggKdauuZY3VNELYV.','mJjqCTaLWxRLveGmJU7s','2013-07-23 18:59:12','2013-07-29 13:26:16',21,'2013-07-29 13:26:16','2013-07-27 23:08:47','18.189.84.209','64.134.240.110','2013-07-22 18:40:24','2013-07-29 13:26:16'),(2,'timothee.guerin@outlook.com','$2a$10$mYzEBMwceGDFwNaShe42xuRo.epstzN49pd.vdN44d74FD3/HYM1G',NULL,NULL,NULL,1,'2013-07-22 19:01:21','2013-07-22 19:01:21','18.189.95.221','18.189.95.221','2013-07-22 19:01:21','2013-07-22 19:01:21');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -449,4 +481,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-23 17:41:38
+-- Dump completed on 2013-07-29 11:06:38
