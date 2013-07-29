@@ -9,7 +9,10 @@
                         "color": "red",
                         "width": 4
                     },
-                    "cornerradius": 5
+                    "cornerradius": 5,
+                    "image": {
+                        "src": "/assets/course/TEST.png"
+                    }
                 }
 
             },

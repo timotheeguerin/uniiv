@@ -19,13 +19,12 @@ $(document).ready ->
 
   graph.viewport.layer.add(rect)
 
-  graph.onLoadImage ->
-    #graph.drawCourse("Comp 202", new Point(30, 30))
-    #graph.drawCourse("Comp 250", new Point(120, 30))
-    #graph.drawArrow(120, 100, 200, 200)
+  #graph.drawCourse("Comp 202", new Point(30, 30))
+  #graph.drawCourse("Comp 250", new Point(120, 30))
+  #graph.drawArrow(120, 100, 200, 200)
 
 
-    #add the shape to the layer
+  #add the shape to the layer
   graph.update()
 
 
@@ -33,15 +32,30 @@ class Ressources
   @images: {}
 
   @loadImageFromJson: (data) ->
-    for k, v of data.style #for all the class in the style
-      if(v.background? && v.background.image?)
-        addimage(v.background.image.src);
+    for k0, v0 of data.style #for all the class in the style
+      for k, v of v0
+        if(v.background? && v.background.image?)
+          @addImage(v.background.image.src);
 
   @addImage: (src) ->
-    if(!src of @images)
+    if(!@images[src]?)
       image = new Image()
       image.src = src
-      @images[key] = image
+      @images[src] = image
+
+  #Call the given function when all images are loaded
+  @onLoadImage: (callback) ->
+    loadedImages = 0
+    numImages = 0
+    #get num of sources
+    for src, image of @images
+      numImages += 1
+    console.debug ("num: " + numImages)
+
+    for src, image of @images
+      image.onload = ()   ->
+        if (++loadedImages >= numImages)
+          callback()
 
 
 class Graph
@@ -65,25 +79,14 @@ class Graph
       @viewport.resizeLayer(data.graph.dimension.width, data.graph.dimension.height)
       Ressources.loadImageFromJson (data)
       console.log("D:" + JSON.stringify(data.style.node))
-      @addNode(50, 50, data.style.node)
+      Ressources.onLoadImage => #Wait for the images to load
+        @addNode(50, 50, data.style.node)
+        callback()
+
     , "json")
-    callback()
 
 
 
-  #Call the given function when all images are loaded
-  onLoadImage: (callback) ->
-    loadedImages = 0
-    numImages = 0
-    #get num of sources
-    for src, image of @images
-      numImages += 1
-    console.debug ("num: " + numImages)
-
-    for src, image of @images
-      image.onload = ()   ->
-        if (++loadedImages >= numImages)
-          callback()
 
   drawCourse: (course, pos) ->
     group = new Kinetic.Group({
@@ -220,7 +223,7 @@ class GraphElement
       if(style.background.cornerradius?)#if the border radius is defined
         background.setCornerRadius(style.background.cornerradius)
       if(style.background.image?)       #if the background have an image
-        src = style.background.image.scr
+        src = style.background.image.src
         background.setFillPatternImage(Ressources.images[src])
 
 
