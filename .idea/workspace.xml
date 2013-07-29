@@ -8,7 +8,7 @@
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375107909251" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375126259215" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -31,9 +31,9 @@
     <file path="/path.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374854399583" ignored="false" />
     <file path="/canviz.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374875217939" ignored="false" />
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
-    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375125566807" ignored="false" />
+    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375128023082" ignored="false" />
     <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374962249137" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375125217726" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375132454640" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,23 +61,16 @@
       <file leaf-file-name="graphapi.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="220" column="73" selection-start="5062" selection-end="5062" vertical-scroll-proportion="0.0">
+            <state line="164" column="19" selection-start="3293" selection-end="3293" vertical-scroll-proportion="0.0">
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TEST.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/images/course/TEST.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="test.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="40" selection-start="387" selection-end="387" vertical-scroll-proportion="0.3830156">
+            <state line="27" column="35" selection-start="777" selection-end="777" vertical-scroll-proportion="0.29565218">
               <folding />
             </state>
           </provider>
@@ -853,7 +846,11 @@
       <created>1375062548009</created>
       <updated>1375062548009</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="load style from json:&#10;-background image offset">
+      <created>1375126261756</created>
+      <updated>1375126261756</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -880,21 +877,21 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.67416936" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2230523" sideWeight="0.67416936" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.67346936" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2230523" sideWeight="0.67346936" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32475883" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32583067" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3265306" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -942,7 +939,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="load style from json:&#10;-background image" />
+    <option name="LAST_COMMIT_MESSAGE" value="load style from json:&#10;-background image offset" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -965,6 +962,7 @@
     <MESSAGE value="graphapi converted to coffeescript" />
     <MESSAGE value="load style from json:&#10;-border&#10;-corner" />
     <MESSAGE value="load style from json:&#10;-background image" />
+    <MESSAGE value="load style from json:&#10;-background image offset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1046,14 +1044,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="220" column="73" selection-start="5062" selection-end="5062" vertical-scroll-proportion="0.0">
+        <state line="164" column="19" selection-start="3293" selection-end="3293" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="40" selection-start="387" selection-end="387" vertical-scroll-proportion="0.3830156">
+        <state line="27" column="35" selection-start="777" selection-end="777" vertical-scroll-proportion="0.29565218">
           <folding />
         </state>
       </provider>

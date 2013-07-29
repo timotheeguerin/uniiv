@@ -11,7 +11,9 @@
                     },
                     "cornerradius": 5,
                     "gradient": {
-                        "type": "linear"
+                        "type": "linear",
+                        "angle": "top",
+                        "colors": [0, "red", 0.5, "yellow", 1, "blue"]
                     }
 
                 }
@@ -21,6 +23,9 @@
                 "background": {
                     "border": {
                         "color": "green"
+                    },
+                    "gradient": {
+                        "angle": "0"
                     }
                 }
             }

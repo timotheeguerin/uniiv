@@ -219,7 +219,68 @@ class GraphElement
         background.setFillPatternImage(Ressources.images[src])
         if(image.offset?)
           background.setFillPatternOffset(image.offset.x, image.offset.y)
+      if(style.background.gradient?)
+        gradient = style.background.gradient
+        angle = @computeAngle(gradient.angle)
+        console.log("C: " + JSON.stringify(angle))
+        background.setAttrs({
+          fillLinearGradientStartPoint: angle.start,
+          fillLinearGradientEndPoint: angle.end,
+          fillLinearGradientColorStops: gradient.colors
+        });
 
 
 
+  computeAngle: (val) ->
+    if(!val?)
+      val = "top"
+    switch val
+      when "left"
+        {
+        start: [0, 0],
+        end: [@style.width, 0]
+        }
+      when "right"
+        {
+        start: [@style.width, 0],
+        end: [0, 0]
+        }
+      when "top"
+        {
+        start: [0, 0],
+        end: [0, @style.height]
+        }
+      when "bottom"
+        {
+        start: [0, @style.height],
+        end: [0, 0]
+        }
+      else
+
+
+        tan = Math.tan(val * (Math.PI / 180))
+
+
+        x = 1 / tan
+        y = tan
+
+        if(90 < val < 270)
+          x = -x
+        if(180 < val < 360)
+          y = -y
+
+        if(x > 1)
+          x = 1
+        if(x < -1)
+          x = -1
+        if(y > 1)
+          y = 1
+        if(y < -1)
+          y = -1
+
+
+        return {
+        start: [(1 - x) * (@style.width / 2), (1 - y) * (@style.height / 2)],
+        end: [(1 + x) * (@style.height / 2), (1 + y) * (@style.height / 2)]
+        }
 
