@@ -41,7 +41,8 @@ class window.ViewPort
     @layer.add(@background)
 
     #Add the zoom event
-    $(@stage.content).on('mousewheel', @zoom);
+    $(@stage.content).on('mousewheel', (event) =>
+      @zoom(event));
 
     @stage.add(@layer)
 

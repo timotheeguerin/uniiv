@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="graphapi converted to coffeescript">
+    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/test/test.json" afterPath="$PROJECT_DIR$/app/assets/test/test.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\dev\ws\ruby\uniiv\app\assets\javascripts\graphapi.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
-      <change type="MOVED" beforePath="D:\dev\ws\ruby\uniiv\app\assets\javascripts\kineticjs-viewport.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374961228133" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375059176589" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -31,9 +32,9 @@
     <file path="/path.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374854399583" ignored="false" />
     <file path="/canviz.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374875217939" ignored="false" />
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
-    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374951914170" ignored="false" />
-    <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374961013284" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374960119168" ignored="false" />
+    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375046241281" ignored="false" />
+    <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374962249137" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375048405896" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,58 +48,17 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DatabaseView">
+    <flatten value="false" />
+    <groupTables value="false" />
+    <sortChildren value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="uniiv" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="2" selection-start="539" selection-end="539" vertical-scroll-proportion="0.7959866">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="kineticjs-viewport.js.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="2" selection-start="2417" selection-end="2417" vertical-scroll-proportion="1.6666666">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome.js.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/welcome.js.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.js.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/test.js.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="kineticjs.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1010" column="28" selection-start="61195" selection-end="61195" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -127,10 +87,10 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/canviz.js" />
         <option value="$PROJECT_DIR$/app/views/test/index.html.erb" />
         <option value="$PROJECT_DIR$/config/application.rb" />
-        <option value="$PROJECT_DIR$/app/assets/test/test.json" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/test/test.json" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
       </list>
     </option>
@@ -260,7 +220,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>CoffeeScript</id>
+            <id>JSUnresolvedVariable</id>
           </State>
         </selected-state>
       </profile-state>
@@ -292,8 +252,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -572,19 +530,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.File Status" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.File Status" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="FullScreen" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
     <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -856,7 +816,11 @@
       <created>1374956596984</created>
       <updated>1374956596985</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="graphapi converted to coffeescript">
+      <created>1374961260295</created>
+      <updated>1374961260295</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -883,21 +847,21 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21771611" sideWeight="0.670247" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19583778" sideWeight="0.6745435" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22038421" sideWeight="0.6745435" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32583067" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -990,49 +954,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/test/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="104" selection-end="104" vertical-scroll-proportion="0.09648127">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="104" selection-end="104" vertical-scroll-proportion="0.09648127" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="7" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.84563">
-          <folding />
-        </state>
+        <state line="73" column="7" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.84563" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.018743109">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.018743109" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="57" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.3936053">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="18" selection-start="320" selection-end="329" vertical-scroll-proportion="0.3280363">
-          <folding />
-        </state>
+        <state line="21" column="57" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.3936053" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/images/course/unavailable.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="18" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/welcome.js.coffee">
@@ -1049,30 +991,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1010" column="28" selection-start="61195" selection-end="61195" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="2" selection-start="2417" selection-end="2417" vertical-scroll-proportion="1.6666666">
+        <state line="76" column="22" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.26901874">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="18" selection-start="640" selection-end="640" vertical-scroll-proportion="0.26240352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="16" selection-start="128" selection-end="128" vertical-scroll-proportion="0.11577752">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1010" column="28" selection-start="61195" selection-end="61195" vertical-scroll-proportion="0.01901566">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="2" selection-start="539" selection-end="539" vertical-scroll-proportion="0.7959866">
+        <state line="169" column="15" selection-start="3363" selection-end="3365" vertical-scroll-proportion="0.018743109">
           <folding />
         </state>
       </provider>
