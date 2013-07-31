@@ -50,7 +50,6 @@ class Ressources
     #get num of sources
     for src, image of @images
       numImages += 1
-    console.debug ("num: " + numImages)
 
     for src, image of @images
       image.onload = ()   ->
@@ -80,59 +79,20 @@ class Graph
       Ressources.loadImageFromJson (data)
       @style = data.style
       Ressources.onLoadImage => #Wait for the images to load
-        @addNode(50, 50)
+        @loadGraph(data)
         callback()
 
     , "json")
 
+  loadGraph: (data)->
+    if(!data.graph?)
+      return
+    for node in data.graph.nodes
+      @addNode(node.position.x, node.position.y, node['class'])
 
-
-
-  drawCourse: (course, pos) ->
-    group = new Kinetic.Group({
-      x: pos.x,
-      y: pos.y,
-      draggable: true
-    })
-
-    rect = new Kinetic.Rect({
-      x: 0,
-      y: 0,
-      width: 70,
-      height: 70,
-      cornerRadius: 10,
-      fill: '#DBDBDB',
-      stroke: 'blue',
-      strokeWidth: 4
-    })
-
-    image = new Kinetic.Image({
-      x: 5,
-      y: 5,
-      image: @images['course.unavailable'],
-      width: 20,
-      height: 20
-
-    })
-
-    text = new Kinetic.Text({
-      x: 5,
-      y: 30,
-      text: course,
-      fontSize: 12,
-      fontFamily: 'Helvetica',
-      fill: 'black'
-    })
-
-    group.add(rect)
-    group.add(image)
-    group.add(text)
-    # add the shape to the layer
-    @viewport.layer.add(group)
-    @update()
-
-  addNode: (x, y, style) ->
-    computedStyle = $.extend({}, @style.node, style)
+  addNode: (x, y, clazz) ->
+    customStyle = @style[clazz]
+    computedStyle = $.extend({}, @style.node, customStyle)
 
     group = new Kinetic.Group({
       x: x
@@ -159,14 +119,13 @@ class GraphElement
     @ishover = false
     @ustate = State.DEFAULT
 
-    @on 'mouseover', () =>
+    @on 'mouseenter', () =>
       @ishover = true
       @ustate = State.HOVER
     @on 'mouseleave', () =>
       @ishover = false
       @ustate = State.DEFAULT
     @on 'mousedown', () =>
-      console.log("DOWN")
       @ustate = State.ACTIVE
     @on 'mousedown', () =>
       if @ishover
@@ -195,7 +154,7 @@ class GraphElement
   applyStyle: (defaultStyle, stateStyle) ->
     style = $.extend(true, {}, defaultStyle, stateStyle)
     if(style.background?) #if the background property is defined
-      background = @group.get(".background").first
+      background = @group.get(".background")[0]
       if(!background?)
         background = new Kinetic.Rect({
           x: 0
@@ -206,7 +165,6 @@ class GraphElement
 
         });
         @group.add(background)
-
       if(style.background.border?)      #If a border is defined
         border = style.background.border;
         background.setStroke(border.color)
@@ -217,19 +175,20 @@ class GraphElement
         image = style.background.image
         src = style.background.image.src
         background.setFillPatternImage(Ressources.images[src])
+
         if(image.offset?)
           background.setFillPatternOffset(image.offset.x, image.offset.y)
+        else
+          background.setFillPatternOffset(0, 0)
+
       if(style.background.gradient?)
         gradient = style.background.gradient
         angle = @computeAngle(gradient.angle)
-        console.log("C: " + JSON.stringify(angle))
         background.setAttrs({
           fillLinearGradientStartPoint: angle.start,
           fillLinearGradientEndPoint: angle.end,
           fillLinearGradientColorStops: gradient.colors
         });
-
-
 
   computeAngle: (val) ->
     if(!val?)
@@ -281,6 +240,6 @@ class GraphElement
 
         return {
         start: [(1 - x) * (@style.width / 2), (1 - y) * (@style.height / 2)],
-        end: [(1 + x) * (@style.height / 2), (1 + y) * (@style.height / 2)]
+        end: [(1 + x) * (@style.width / 2), (1 + y) * (@style.height / 2)]
         }
 

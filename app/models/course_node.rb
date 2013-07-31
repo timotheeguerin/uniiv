@@ -4,7 +4,7 @@ class CourseNode < ActiveRecord::Base
   belongs_to :course, :class_name => Course
   has_many :nodes, :class_name => CourseNode, :foreign_key => "parent_id"
   accepts_nested_attributes_for :nodes
-  
+
   def self.create_from_course_str(string)
     return if string.blank?
     node = CourseNode.new
@@ -71,11 +71,21 @@ class CourseNode < ActiveRecord::Base
     else
       r = r + ' (' + nodes.map! { |k| "#{k.to_s}" }.join(' ' + operation + ' ') + ') '
     end
-    return r
+    r
   end
+
   def name
     to_s
   end
+
+  def id_to_s
+    if operation == NodeOperation::NODE
+      course.id_to_s
+    else
+      'op_' + id.to_s
+    end
+  end
+
 end
 
 

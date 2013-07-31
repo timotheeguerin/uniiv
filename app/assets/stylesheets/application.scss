@@ -17,7 +17,7 @@ $uniiv_grey: #555555;
 
 $page_width: 800px;
 $page_border_radius: 5px;
-$page_background_color: #000000;
+$page_background_color: #DBDBDB;
 
 $nav_height: 30px;
 $nav_gradient_top: #f9f9f9;
@@ -235,8 +235,7 @@ h2 {
   font-smooth: always;
 }
 
-body
-{
+body {
   padding: 0px;
   margin: 0px;
   background-color: $page_background_color;
