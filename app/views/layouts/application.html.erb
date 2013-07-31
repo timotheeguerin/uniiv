@@ -24,7 +24,7 @@
     });</script>
 
 <body>
-
+<div id="wrapper">
 <div id="nav_top">
   <div id="nav_top_container">
     <div id="nav_top_left">
@@ -61,7 +61,10 @@
 <% end %>
 
 <%= yield %>
-<!--
+
+<div id="push"></div>
+</div><!-- end wrapper -->
+
 <div id="nav_bottom">
   <div id="nav_bottom_container">
     footer<br>
@@ -71,6 +74,5 @@
     footer<br>
   </div>
 </div>
-    -->
 </body>
 </html>

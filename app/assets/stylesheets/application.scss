@@ -15,9 +15,10 @@ $uniiv_red: #F76959;
 $uniiv_blue: #204aa1;
 $uniiv_grey: #555555;
 
-$page_width: 800px;
+$page_width: 900px;
 $page_border_radius: 5px;
 $page_background_color: #000000;
+$page_footer_height: 150px;
 
 $nav_height: 30px;
 $nav_gradient_top: #f9f9f9;
@@ -29,7 +30,7 @@ $nav_text_color: $uniiv_grey;
 
 $content_background_color: #f5f5f5;
 
-$alert_notice_color: $uniiv_orange;
+$alert_notice_color: $uniiv_blue;
 $alert_error_color: $uniiv_red;
 
 $button_gradient_top: #fafafa;
@@ -38,6 +39,26 @@ $button_gradient_bottom_hover: #d3d3d3;
 $button_gradient_bottom_active: #b3b3b3;
 
 $login_width: 400px;
+
+/*
+  * mixins
+*/
+
+@mixin lineargrad($from, $to)
+{
+  background-color: $to;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background-image: -webkit-linear-gradient($from, $to);
+  background-image: -moz-linear-gradient($from, $to);
+  background-image: -o-linear-gradient($from, $to);
+  background-image: -ms-linear-gradient($from, $to);
+  background-image: linear-gradient($from, $to);
+  background-repeat: repeat-x; 
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%; 
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
 
 /*
  * ids
@@ -89,19 +110,17 @@ $login_width: 400px;
 }
 
 #nav_bottom {
-  display: none;
+  width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  height: $page_footer_height;
   background-color: $nav_gradient_bottom;
   background-image: -moz-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
   background-image: -webkit-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
   background-image: linear-gradient($nav_gradient_bottom, $nav_gradient_top);
   border-top: 1px solid $nav_border_color;
   box-sizing: border-box;
+  margin: 0px;
 }
 
 #nav_bottom_container {
@@ -121,6 +140,16 @@ $login_width: 400px;
 
 #login_content {
   width: $login_width;
+}
+
+#push{
+  height: $page_footer_height;
+}
+
+#wrapper
+{
+  min-height: 100%;
+  margin-bottom: -$page_footer_height;
 }
 
 /*
@@ -196,13 +225,19 @@ $login_width: 400px;
 }
 
 .alert-notice {
+  color: white;
   border: 1px solid darken($alert_notice_color, 25%);
   background-color: $alert_notice_color;
+  
+  @include lineargrad($uniiv_blue, darken($uniiv_blue,20%));
 }
 
 .alert-error {
+  color: white;
   border: 1px solid darken($alert_error_color, 25%);
-  background-color: $alert_error_color;
+  background-color: $alert_notice_color;
+  
+  @include lineargrad($alert_error_color, darken($alert_error_color,20%));
 }
 
 .small-text {
@@ -235,8 +270,14 @@ h2 {
   font-smooth: always;
 }
 
+html
+{
+  height: 100%;
+}
+
 body
 {
+  height: 100%;
   padding: 0px;
   margin: 0px;
   background-color: $page_background_color;
