@@ -7,12 +7,36 @@ class GraphController < ApplicationController
     group = ProgramGroup.find(params[:id])
 
     output = generate_graph_from_group(group)
-    @result = generate_json_from_dot(output)
+    @dot = output
+    graph_json = generate_json_from_dot(output)
+    json = {}
+    style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
+
+    json[:style] = style
+    json[:graph] = graph_json
+
+    @json = json.to_json
+
+  end
+
+  def data
+    group = ProgramGroup.find(params[:id])
+
+    output = generate_graph_from_group(group)
+    @dot = output
+    graph_json = generate_json_from_dot(output)
+    json = {}
+    style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
+
+    json[:style] = style
+    json[:graph] = graph_json
+
+    render :json => json.to_json
   end
 
 
   def generate_graph_from_group(group)
-    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true)
+    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true, :rankdir => 'BT')
 
     map ={}
     #Add all course and operation nodes
@@ -59,6 +83,9 @@ class GraphController < ApplicationController
     json['nodes'] = nodes
 
     GraphViz.parse_string(dot) do |g|
+      puts "oisje: " + g[:bb].to_ruby.to_s
+      json[:dimension] = Point.new(g[:bb].to_ruby)
+
       g.each_node do |node_id, node|
         label = node[:label]
         position = node[:pos]
@@ -66,7 +93,7 @@ class GraphController < ApplicationController
       end
     end
 
-    json.to_json
+    json
   end
 
 end

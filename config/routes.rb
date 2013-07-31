@@ -8,6 +8,7 @@ Uniiv::Application.routes.draw do
   get 'test' => 'test#index'
 
   get 'graph/:id' => 'graph#index'
+  get 'graph/:id/data' => 'graph#data'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

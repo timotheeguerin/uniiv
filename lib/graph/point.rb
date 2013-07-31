@@ -8,8 +8,14 @@ class Point
   end
 
   def self.from_array(array)
-    x = array[0]
-    y = array[1]
+    if array.size == 2 #Format [x,y]
+      x = array[0]
+      y = array[1]
+    elsif array.size == 4 #Format [0,0,x,y]
+      x = array[2]
+      y = array[3]
+    end
     Point.new(x, y)
   end
+
 end

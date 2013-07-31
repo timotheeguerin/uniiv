@@ -5,7 +5,7 @@ $(document).ready ->
     container: 'canvas-container'
   })
 
-  graph.load "/assets/test.json", () ->
+  graph.load "/graph/1/data", () ->
 
   rect = new Kinetic.Rect({
     x: 10,
@@ -74,7 +74,7 @@ class Graph
     @ressources = {}
 
   load: (url, callback) ->
-    $.post(url, (data) =>
+    $.get(url, (data) =>
       @viewport.resizeLayer(data.graph.dimension.width, data.graph.dimension.height)
       Ressources.loadImageFromJson (data)
       @style = data.style

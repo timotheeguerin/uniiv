@@ -1,97 +1,68 @@
 {
-    "style": {
-        "node": {
-            "width": 100,
-            "height": 200,
-            "normal": {
-                "background": {
-                    "border": {
-                        "color": "red",
-                        "width": 4
-                    },
-                    "cornerradius": 5,
-                    "gradient": {
-                        "type": "linear",
-                        "angle": "top",
-                        "colors": [0, "red", 0.5, "yellow", 1, "blue"]
-                    }
-                }
-
-            },
-            "hover": {
-                "background": {
-                    "border": {
-                        "color": "green"
-                    },
-                    "gradient": {
-                        "angle": "45"
-                    }
+    "node": {
+        "width": 100,
+        "height": 200,
+        "normal": {
+            "background": {
+                "border": {
+                    "color": "red",
+                    "width": 4
+                },
+                "cornerradius": 5,
+                "gradient": {
+                    "type": "linear",
+                    "angle": "top",
+                    "colors": [0, "red", 0.5, "yellow", 1, "blue"]
                 }
             }
-        },
-        "nodeImage": {
-            "normal": {
-                "background": {
-                    "border": {
-                        "color": "red",
-                        "width": 4
-                    },
-                    "cornerradius": 5,
-                    "image": {
-                        "src": "/assets/course/TEST.png"
-                    }
-                }
 
-            },
-            "hover": {
-                "background": {
-                    "border": {
-                        "color": "green"
-                    },
-                    "image": {
-                        "offset": {
-                            "x": 20,
-                            "y": 20
-                        }
-                    }
+        },
+        "hover": {
+            "background": {
+                "border": {
+                    "color": "green"
+                },
+                "gradient": {
+                    "angle": "45"
                 }
             }
-        },
-        "operator": {
-            "width": 20,
-            "height": 100
-        },
-        "requirement": {
-
         }
-
     },
-    "graph": {
-        "dimension": {
-            "width": 1000,
-            "height": 1000
-        },
-        "nodes": [
-            {
-                "position": {
-                    "x": 50,
-                    "y": 50
+    "nodeImage": {
+        "normal": {
+            "background": {
+                "border": {
+                    "color": "red",
+                    "width": 4
                 },
-                "id": 1,
-                "name": "Comp 202",
-                "type": "NODE",
-                "class": "nodeImage"
-            },
-            {
-                "position": {
-                    "x": 200,
-                    "y": 200
-                },
-                "id": 2,
-                "name": "Comp 250",
-                "type": "NODE"
+                "cornerradius": 5,
+                "image": {
+                    "src": "/assets/course/TEST.png"
+                }
             }
-        ]
+
+        },
+        "hover": {
+            "background": {
+                "border": {
+                    "color": "green"
+                },
+                "image": {
+                    "offset": {
+                        "x": 20,
+                        "y": 20
+                    }
+                }
+            }
+        }
+    },
+    "operator": {
+        "width": 20,
+        "height": 100
+    },
+    "requirement": {
 
     }
+
 }
+
