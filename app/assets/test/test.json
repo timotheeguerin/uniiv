@@ -10,6 +10,34 @@
                         "width": 4
                     },
                     "cornerradius": 5,
+                    "gradient": {
+                        "type": "linear",
+                        "angle": "top",
+                        "colors": [0, "red", 0.5, "yellow", 1, "blue"]
+                    }
+
+                }
+
+            },
+            "hover": {
+                "background": {
+                    "border": {
+                        "color": "green"
+                    },
+                    "gradient": {
+                        "angle": "0"
+                    }
+                }
+            }
+        },
+        "nodeImage": {
+            "normal": {
+                "background": {
+                    "border": {
+                        "color": "red",
+                        "width": 4
+                    },
+                    "cornerradius": 5,
                     "image": {
                         "src": "/assets/course/TEST.png"
                     }
@@ -19,8 +47,13 @@
             "hover": {
                 "background": {
                     "border": {
-                        "color": "green",
-                        "width": 4
+                        "color": "green"
+                    },
+                    "image": {
+                        "offset": {
+                            "x": 20,
+                            "y": 20
+                        }
                     }
                 }
             }

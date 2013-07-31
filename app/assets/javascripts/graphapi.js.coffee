@@ -34,7 +34,7 @@ class Ressources
   @loadImageFromJson: (data) ->
     for k0, v0 of data.style #for all the class in the style
       for k, v of v0
-        if(v.background? && v.background.image?)
+        if(v.background? && v.background.image? && v.background.image.src?)
           @addImage(v.background.image.src);
 
   @addImage: (src) ->
@@ -78,9 +78,9 @@ class Graph
     $.post(url, (data) =>
       @viewport.resizeLayer(data.graph.dimension.width, data.graph.dimension.height)
       Ressources.loadImageFromJson (data)
-      console.log("D:" + JSON.stringify(data.style.node))
+      @style = data.style
       Ressources.onLoadImage => #Wait for the images to load
-        @addNode(50, 50, data.style.node)
+        @addNode(50, 50)
         callback()
 
     , "json")
@@ -132,26 +132,18 @@ class Graph
     @update()
 
   addNode: (x, y, style) ->
+    computedStyle = $.extend({}, @style.node, style)
+
     group = new Kinetic.Group({
       x: x
       y: y
-      width: style.height
-      height: style.width
+      width: computedStyle.height
+      height: computedStyle.width
     })
-    rect = new Kinetic.Rect({
-      x: 0
-      y: 0
-      width: style.height
-      height: style.width
-    })
-    group.add(rect)
 
-    rect.on('mouseenter', () =>
-      console.log("soife")
-    )
     @viewport.layer.add(group)
 
-    node = new GraphElement(group, style, @)
+    node = new GraphElement(group, computedStyle, @)
     node.update()
 
   update: ->
@@ -170,8 +162,7 @@ class GraphElement
     @on 'mouseover', () =>
       @ishover = true
       @ustate = State.HOVER
-    @on 'mouseout', () =>
-      console.log("LEAVE")
+    @on 'mouseleave', () =>
       @ishover = false
       @ustate = State.DEFAULT
     @on 'mousedown', () =>
@@ -223,8 +214,73 @@ class GraphElement
       if(style.background.cornerradius?)#if the border radius is defined
         background.setCornerRadius(style.background.cornerradius)
       if(style.background.image?)       #if the background have an image
+        image = style.background.image
         src = style.background.image.src
         background.setFillPatternImage(Ressources.images[src])
+        if(image.offset?)
+          background.setFillPatternOffset(image.offset.x, image.offset.y)
+      if(style.background.gradient?)
+        gradient = style.background.gradient
+        angle = @computeAngle(gradient.angle)
+        console.log("C: " + JSON.stringify(angle))
+        background.setAttrs({
+          fillLinearGradientStartPoint: angle.start,
+          fillLinearGradientEndPoint: angle.end,
+          fillLinearGradientColorStops: gradient.colors
+        });
 
 
+
+  computeAngle: (val) ->
+    if(!val?)
+      val = "top"
+    switch val
+      when "left"
+        {
+        start: [0, 0],
+        end: [@style.width, 0]
+        }
+      when "right"
+        {
+        start: [@style.width, 0],
+        end: [0, 0]
+        }
+      when "top"
+        {
+        start: [0, 0],
+        end: [0, @style.height]
+        }
+      when "bottom"
+        {
+        start: [0, @style.height],
+        end: [0, 0]
+        }
+      else
+
+
+        tan = Math.tan(val * (Math.PI / 180))
+
+
+        x = 1 / tan
+        y = tan
+
+        if(90 < val < 270)
+          x = -x
+        if(180 < val < 360)
+          y = -y
+
+        if(x > 1)
+          x = 1
+        if(x < -1)
+          x = -1
+        if(y > 1)
+          y = 1
+        if(y < -1)
+          y = -1
+
+
+        return {
+        start: [(1 - x) * (@style.width / 2), (1 - y) * (@style.height / 2)],
+        end: [(1 + x) * (@style.height / 2), (1 + y) * (@style.height / 2)]
+        }
 
