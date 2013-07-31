@@ -25,45 +25,46 @@
 
 <body>
 <div id="wrapper">
-<div id="nav_top">
-  <div id="nav_top_container">
-    <div id="nav_top_left">
-      <%= link_to root_url do %>
-          logo
-      <% end %>
-    </div>
-    <div id="nav_top_right">
-      <% if user_signed_in? %>
-          <% if can? :access, :rails_admin %>
-              <%= link_to "Dash", rails_admin.dashboard_path %>&nbsp;&nbsp;
-          <% end %>
-          <%= link_to edit_user_registration_path do %>
-              <strong><%= current_user.email %></strong>
-          <% end %>
-          |
-          <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-      <% else %>
-          <%= link_to "Log In", new_user_session_path %>
-          |
-          <%= link_to "Sign Up", new_user_registration_path %>
-      <% end %>
+  <div id="nav_top">
+    <div id="nav_top_container">
+      <div id="nav_top_left">
+        <%= link_to root_url do %>
+            logo
+        <% end %>
+      </div>
+      <div id="nav_top_right">
+        <% if user_signed_in? %>
+            <% if can? :access, :rails_admin %>
+                <%= link_to "Dash", rails_admin.dashboard_path %>&nbsp;&nbsp;
+            <% end %>
+            <%= link_to edit_user_registration_path do %>
+                <strong><%= current_user.email %></strong>
+            <% end %>
+            |
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+        <% else %>
+            <%= link_to "Log In", new_user_session_path %>
+            |
+            <%= link_to "Sign Up", new_user_registration_path %>
+        <% end %>
+      </div>
     </div>
   </div>
+
+  <div id="nav_top_block"></div>
+
+  <% if notice %>
+      <div class="alert alert-notice"><%= notice %></div>
+  <% end %>
+  <% if alert %>
+      <div class="alert alert-error"><%= alert %></div>
+  <% end %>
+
+  <%= yield %>
+
+  <div id="push"></div>
 </div>
-
-<div id="nav_top_block"></div>
-
-<% if notice %>
-    <div class="alert alert-notice"><%= notice %></div>
-<% end %>
-<% if alert %>
-    <div class="alert alert-error"><%= alert %></div>
-<% end %>
-
-<%= yield %>
-
-<div id="push"></div>
-</div><!-- end wrapper -->
+<!-- end wrapper -->
 
 <div id="nav_bottom">
   <div id="nav_bottom_container">
