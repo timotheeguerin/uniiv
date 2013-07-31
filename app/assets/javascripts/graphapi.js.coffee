@@ -7,24 +7,13 @@ $(document).ready ->
 
   graph.load "/graph/1/data", () ->
 
-  rect = new Kinetic.Rect({
-    x: 10,
-    y: 10,
-    width: 980,
-    height: 980,
-    fill: '#DBDBDB',
-    stroke: 'blue',
-    strokeWidth: 4
-  })
 
-  graph.viewport.layer.add(rect)
-
-  #graph.drawCourse("Comp 202", new Point(30, 30))
-  #graph.drawCourse("Comp 250", new Point(120, 30))
-  #graph.drawArrow(120, 100, 200, 200)
+    #graph.drawCourse("Comp 202", new Point(30, 30))
+    #graph.drawCourse("Comp 250", new Point(120, 30))
+    #graph.drawArrow(120, 100, 200, 200)
 
 
-  #add the shape to the layer
+    #add the shape to the layer
   graph.update()
 
 
@@ -75,7 +64,11 @@ class Graph
 
   load: (url, callback) ->
     $.get(url, (data) =>
-      @viewport.resizeLayer(data.graph.dimension.width, data.graph.dimension.height)
+      width = data.graph.dimension.x
+      height = data.graph.dimension.y
+      width = @viewport.canvasSize.x if width < @viewport.canvasSize.x
+      height = @viewport.canvasSize.y if height < @viewport.canvasSize.y
+      @viewport.resizeLayer(width, height)
       Ressources.loadImageFromJson (data)
       @style = data.style
       Ressources.onLoadImage => #Wait for the images to load
@@ -87,23 +80,25 @@ class Graph
   loadGraph: (data)->
     if(!data.graph?)
       return
-    for node in data.graph.nodes
-      @addNode(node.position.x, node.position.y, node['class'])
+    for node in data.graph.nodes                         #Load all nodes
+      x = node.position.x - node.dimension.x / 2 + 10
+      y = node.position.y - node.dimension.y / 2 + 10
+      @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
 
-  addNode: (x, y, clazz) ->
+  addNode: (text, x, y, width, height, type, clazz) ->
+    typeStyle = @style[type.toLowerCase()]
     customStyle = @style[clazz]
-    computedStyle = $.extend({}, @style.node, customStyle)
+    computedStyle = $.extend({}, typeStyle, customStyle)
 
     group = new Kinetic.Group({
       x: x
       y: y
-      width: computedStyle.height
-      height: computedStyle.width
+      width: width
+      height: height
     })
 
     @viewport.layer.add(group)
-
-    node = new GraphElement(group, computedStyle, @)
+    node = new GraphElement(group, text, computedStyle, @)
     node.update()
 
   update: ->
@@ -115,7 +110,7 @@ State =
   ACTIVE: 2
 
 class GraphElement
-  constructor: (@group, @style, @graph) ->
+  constructor: (@group, @label, @style, @graph) ->
     @ishover = false
     @ustate = State.DEFAULT
 
@@ -153,6 +148,25 @@ class GraphElement
 
   applyStyle: (defaultStyle, stateStyle) ->
     style = $.extend(true, {}, defaultStyle, stateStyle)
+    label = @group.get(".label")[0]
+    if(!label?)
+      label = new Kinetic.Text({
+        x: 0,
+        y: 0,
+        text: @label,
+        fontSize: 20,
+        fontFamily: 'Calibri',
+        fill: 'black'
+        name: 'label'
+        width: @group.getWidth()
+        height: @group.getHeight()
+        align: 'center'
+        padding: 5
+      });
+
+      @group.add(label)
+
+
     if(style.background?) #if the background property is defined
       background = @group.get(".background")[0]
       if(!background?)
@@ -165,6 +179,7 @@ class GraphElement
 
         });
         @group.add(background)
+
       if(style.background.border?)      #If a border is defined
         border = style.background.border;
         background.setStroke(border.color)
@@ -189,6 +204,9 @@ class GraphElement
           fillLinearGradientEndPoint: angle.end,
           fillLinearGradientColorStops: gradient.colors
         });
+
+    background.setZIndex(10) if background?
+    label.setZIndex(20) if label?
 
   computeAngle: (val) ->
     if(!val?)
@@ -239,7 +257,7 @@ class GraphElement
 
 
         return {
-        start: [(1 - x) * (@style.width / 2), (1 - y) * (@style.height / 2)],
-        end: [(1 + x) * (@style.width / 2), (1 + y) * (@style.height / 2)]
+        start: [(1 - x) * (@group.getWidth() / 2), (1 - y) * (@group.getHeight() / 2)],
+        end: [(1 + x) * (@group.getWidth() / 2), (1 + y) * (@group.getHeight() / 2)]
         }
 

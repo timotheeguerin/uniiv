@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\dev\ws\ruby\uniiv\app\assets\javascripts\path.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course.rb" afterPath="$PROJECT_DIR$/app/models/course.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/graph_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/graph/index.html.erb" afterPath="$PROJECT_DIR$/app/views/graph/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/node.rb" afterPath="$PROJECT_DIR$/lib/graph/node.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/point.rb" afterPath="$PROJECT_DIR$/lib/graph/point.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/test/test.json" afterPath="$PROJECT_DIR$/app/assets/test/test.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375289811873" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375302584713" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -36,20 +36,19 @@
     <file path="/path.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374854399583" ignored="false" />
     <file path="/canviz.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374875217939" ignored="false" />
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
-    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375207923146" ignored="false" />
+    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375309643947" ignored="false" />
     <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374962249137" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375293725678" ignored="false" />
-    <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375294423735" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375309872666" ignored="false" />
+    <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375306657698" ignored="false" />
     <file path="/application.scss" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375212242692" ignored="false" />
     <file path="/graph_helper.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375213276139" ignored="false" />
     <file path="/Gemfile" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375279468469" ignored="false" />
     <file path="/environment.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375214352990" ignored="false" />
-    <file path="/course.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375220830834" ignored="false" />
+    <file path="/course.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375306639547" ignored="false" />
     <file path="/temp.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375237786007" ignored="false" />
-    <file path="C:/Ruby193/lib/ruby/gems/1.9.1/gems/ruby-graphviz-1.0.9/lib/graphviz.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375282250381" ignored="false" />
     <file path="/Point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375284671685" ignored="false" />
-    <file path="/node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375291786611" ignored="false" />
-    <file path="/point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375294189104" ignored="false" />
+    <file path="/node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375304674522" ignored="false" />
+    <file path="/point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375305297746" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,46 +73,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="graph_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="graph_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="24" selection-start="2002" selection-end="2002" vertical-scroll-proportion="0.6610429">
+            <state line="9" column="4" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/graph/node.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="3" selection-start="278" selection-end="351" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="point.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/graph/point.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="20" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="graph.js.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph.js.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="9" selection-start="1600" selection-end="1600" vertical-scroll-proportion="0.0">
+            <state line="160" column="41" selection-start="3925" selection-end="3925" vertical-scroll-proportion="0.7131902">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="60" column="35" selection-start="1401" selection-end="1437" vertical-scroll-proportion="-22.76923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kineticjs-viewport.js.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="15" selection-start="220" selection-end="231" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -139,20 +129,20 @@
       <list>
         <option value="$PROJECT_DIR$/app/helpers/graph_helper.rb" />
         <option value="$PROJECT_DIR$/config/environment.rb" />
-        <option value="$PROJECT_DIR$/app/models/course.rb" />
         <option value="$PROJECT_DIR$/app/models/course_node.rb" />
         <option value="$PROJECT_DIR$/app/models/course_expr.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/utils/graph/Point.rb" />
         <option value="$PROJECT_DIR$/app/utils/graph/node.rb" />
         <option value="$PROJECT_DIR$/lib/utils/graph/node.rb" />
-        <option value="$PROJECT_DIR$/lib/graph/node.rb" />
         <option value="$PROJECT_DIR$/app/views/graph/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/test/test.json" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+        <option value="$PROJECT_DIR$/lib/graph/node.rb" />
         <option value="$PROJECT_DIR$/lib/graph/point.rb" />
+        <option value="$PROJECT_DIR$/app/models/course.rb" />
         <option value="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/test/test.json" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
       </list>
     </option>
   </component>
@@ -801,7 +791,15 @@
       <created>1375289823864</created>
       <updated>1375289823864</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="graph&#10;">
+      <created>1375302516132</created>
+      <updated>1375302516132</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Merge branch 'master' of https://github.com/timcolonel/uniiv&#10;&#10;Conflicts:&#10;&#9;app/views/graph/index.html.erb&#10;">
+      <created>1375302587211</created>
+      <updated>1375302587211</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -890,7 +888,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="graph&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/timcolonel/uniiv&#10;&#10;Conflicts:&#10;&#9;app/views/graph/index.html.erb&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -918,25 +916,12 @@
     <MESSAGE value="ruby graphviz:&#10;course -&gt; dot&#10;" />
     <MESSAGE value="Merge branch 'master' of https://github.com/timcolonel/uniiv&#10;&#10;Conflicts:&#10;&#9;app/assets/stylesheets/application.scss&#10;" />
     <MESSAGE value="graph&#10;" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/timcolonel/uniiv&#10;&#10;Conflicts:&#10;&#9;app/views/graph/index.html.erb&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/course_node.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="4" selection-start="1962" selection-end="1962" vertical-scroll-proportion="0.04304636">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/graph_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.08443709">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="9" selection-start="1366" selection-end="1366" vertical-scroll-proportion="1.3890729">
@@ -972,13 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="1482" selection-end="1482" vertical-scroll-proportion="1.8194888">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/graph/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="14" selection-start="136" selection-end="136" vertical-scroll-proportion="0.19009584">
@@ -1000,13 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="9" selection-start="1600" selection-end="1600" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1018,21 +989,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/point.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="20" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
+        <state line="12" column="15" selection-start="155" selection-end="155" vertical-scroll-proportion="0.31288344">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/node.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="3" selection-start="278" selection-end="351" vertical-scroll-proportion="0.0">
+        <state line="21" column="37" selection-start="480" selection-end="480" vertical-scroll-proportion="0.547546">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="18" selection-start="229" selection-end="229" vertical-scroll-proportion="0.15644172">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="35" selection-start="1401" selection-end="1437" vertical-scroll-proportion="-22.76923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="24" selection-start="2002" selection-end="2002" vertical-scroll-proportion="0.6610429">
+        <state line="9" column="4" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="15" selection-start="220" selection-end="231" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="41" selection-start="3925" selection-end="3925" vertical-scroll-proportion="0.7131902">
           <folding />
         </state>
       </provider>

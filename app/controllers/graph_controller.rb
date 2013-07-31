@@ -36,19 +36,23 @@ class GraphController < ApplicationController
 
 
   def generate_graph_from_group(group)
-    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true, :rankdir => 'BT')
+    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true)
 
     map ={}
     #Add all course and operation nodes
     group.courses.each do |course|
       course_id = 'c_' + course.id.to_s
-      map[course_id] = g.add_node(course_id)
+      course_node = g.add_node(course_id)
+      course_node[:label] = course.get_short_name
+      map[course_id]= course_node
       prerequisite = course.prerequisite
       unless prerequisite.nil?
         operations = prerequisite.get_all_operations
         operations.each do |op|
           op_id = 'op_' + op.id.to_s
-          map[op_id] = g.add_node(op_id)
+          op_node = g.add_node(op_id)
+          op_node[:label] = op.operation
+          map[op_id] = op_node
         end
       end
     end
@@ -83,13 +87,14 @@ class GraphController < ApplicationController
     json['nodes'] = nodes
 
     GraphViz.parse_string(dot) do |g|
-      puts "oisje: " + g[:bb].to_ruby.to_s
-      json[:dimension] = Point.new(g[:bb].to_ruby)
+      puts 'oisje: ' + g[:bb].to_ruby.to_s
+      json[:dimension] = Point.from_array(g[:bb].to_ruby)
 
       g.each_node do |node_id, node|
         label = node[:label]
         position = node[:pos]
         nodes << Node::from_graphviz_node(node_id, node)
+
       end
     end
 

@@ -8,6 +8,8 @@ class Point
   end
 
   def self.from_array(array)
+    x = 0
+    y = 0
     if array.size == 2 #Format [x,y]
       x = array[0]
       y = array[1]
