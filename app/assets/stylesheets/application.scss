@@ -12,11 +12,6 @@
  * variables
 */
 
-$uniiv_orange: #F7BA57;
-$uniiv_red: #F76959;
-$uniiv_blue: #279d9b;
-$uniiv_grey: #555555;
-
 $palette_blue_lightest: #7994CD;
 $palette_blue_lighter: #5A7FCD;
 $palette_blue_medium: #274C9B;
@@ -55,9 +50,6 @@ $nav_text_size: 14px;
 $nav_text_color: white;
 
 $content_background_color: #f5f5f5;
-
-$alert_notice_color: $uniiv_blue;
-$alert_error_color: $uniiv_red;
 
 $button_gradient_top: #fafafa;
 $button_gradient_bottom: #e3e3e3;
@@ -100,11 +92,15 @@ $login_width: 400px;
   top: 0px;
   height: $nav_height;
   box-sizing: border-box;
-  @include lineargrad($palette_orange_lightest, $palette_orange_lighter);
-  border-bottom: 1px solid $nav_border_color;
+  //@include lineargrad($palette_orange_lightest, $palette_orange_lighter);
+  //@include lineargrad($palette_yellow_lightest, darken($palette_yellow_lighter,5%));
+  @include lineargrad($palette_green_lightest, $palette_green_lighter);
+  //@include lineargrad($palette_blue_lightest, $palette_blue_lighter);
+  border-bottom: 1px solid $palette_green_lighter;
   line-height: $nav_height;
   font-size: $nav_text_size;
   color: $nav_text_color;
+  z-index: 10000;
 }
 
 #nav_top_container {
@@ -139,7 +135,8 @@ $login_width: 400px;
   padding-top: 5px;
   padding-bottom: 5px;
   height: $page_footer_height;
-  @include lineargrad($palette_green_medium, darken($palette_green_medium, 0%));
+  //@include lineargrad($palette_green_medium, darken($palette_green_medium, 0%));
+  @include lineargrad($palette_orange_lighter, $palette_orange_lighter);
   border-top: none;
   box-sizing: border-box;
   margin: 0px;
@@ -191,7 +188,7 @@ $login_width: 400px;
 }
 
 .greytext {
-  color: $uniiv_grey;
+  color:  #555555;
 }
 
 .middle {
@@ -235,30 +232,23 @@ $login_width: 400px;
 
 .alert {
   width: $page_width;
-  border: 1px solid transparent;
-  border-radius: $page_border_radius;
+  border: 0px solid transparent;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   padding: 5px;
   box-sizing: border-box;
+  font-weight: bold;
+  text-align: center;
 }
 
 .alert-notice {
-  color: white;
-  border: 1px solid darken($alert_notice_color, 25%);
-  background-color: $alert_notice_color;
-
-  @include lineargrad($uniiv_blue, darken($uniiv_blue, 20%));
+  color: $palette_green_darkest;
 }
 
 .alert-error {
-  color: white;
-  border: 1px solid darken($alert_error_color, 25%);
-  background-color: $alert_notice_color;
-
-  @include lineargrad($alert_error_color, darken($alert_error_color, 20%));
+  color: $palette_orange_darkest;
 }
 
 .small-text {
@@ -273,7 +263,7 @@ h1 {
   margin-top: 5px;
   margin-bottom: 5px;
   text-shadow: 0 0 1px rgba(51, 51, 51, 0.5);
-  color: $uniiv_grey;
+  color: #555555;
 }
 
 h2 {
@@ -281,7 +271,7 @@ h2 {
   margin-top: 5px;
   margin-bottom: 5px;
   text-shadow: 0 0 1px rgba(51, 51, 51, 0.5);
-  color: $uniiv_grey;
+  color: #555555;
 }
 
 * {
@@ -320,7 +310,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-  border: 1px solid $uniiv_blue;
+  border: 1px solid $palette_blue_medium;
   -moz-box-shadow: 0px 0px 2px #888888;
   -webkit-box-shadow: 0px 0px 2px #888888;
   box-shadow: 0px 0px 2px #888888;
@@ -349,4 +339,9 @@ input[type="submit"]:active, button:active {
   background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
   background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
   background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+}
+
+canvas
+{
+  z-index: 0;
 }

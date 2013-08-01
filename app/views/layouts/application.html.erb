@@ -29,7 +29,7 @@
     <div id="nav_top_container">
       <div id="nav_top_left">
         <%= link_to root_url do %>
-            <img src="assets/logo.png" style="height:20px;padding-top:10px"/>
+            <img src="/assets/logo.png" style="height:20px;padding-top:10px"/>
         <% end %>
       </div>
       <div id="nav_top_right">
@@ -50,15 +50,14 @@
       </div>
     </div>
   </div>
-
-
-  <% if notice %>
-      <div class="alert alert-notice"><%= notice %></div>
-  <% end %>
-  <% if alert %>
-      <div class="alert alert-error"><%= alert %></div>
-  <% end %>
+  
   <div id="content">
+    <% if notice %>
+        <div class="alert alert-notice"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+        <div class="alert alert-error"><%= alert .sub("|","<br>").html_safe %></div>
+    <% end %>
     <%= yield %>
   </div>
 </div>
