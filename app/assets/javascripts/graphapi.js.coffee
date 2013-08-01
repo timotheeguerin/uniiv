@@ -81,9 +81,14 @@ class Graph
     if(!data.graph?)
       return
     for node in data.graph.nodes                         #Load all nodes
-      x = node.position.x - node.dimension.x / 2 + 10
-      y = node.position.y - node.dimension.y / 2 + 10
+      x = node.position.x - node.dimension.x / 2
+      y = node.position.y - node.dimension.y / 2
       @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
+    for edge in data.graph.edges
+      @addEdge(edge)
+
+    @update();
+
 
   addNode: (text, x, y, width, height, type, clazz) ->
     typeStyle = @style[type.toLowerCase()]
@@ -100,9 +105,59 @@ class Graph
     @viewport.layer.add(group)
     node = new GraphElement(group, text, computedStyle, @)
     node.update()
+  addEdge: (edge)   ->
+    points = edge.positions
+    spline = new Kinetic.Spline({
+      points: points,
+      stroke: 'blue',
+      strokeWidth: 1,
+      lineCap: 'round',
+      tension: 1
+    })
+    @viewport.layer.add(spline)
+    console.log("oijoij" + edge.arrow)
+    if(edge.arrow == 0)
+      console.log("oijoij")
+      a = points[0]
+      b = points[1]
+      poly = @getTriangle(a, b)
+      @viewport.layer.add(poly)
+
+  getTriangle: (a, b)    ->
+    angle = @angle(b, a)
+    delta = 30 * Math.PI / 180
+    l = 14
+    c = {
+      x: parseInt(parseFloat(a.x) + l * Math.cos(angle + delta / 2))
+      y: parseInt(parseFloat(a.y) + l * Math.sin(angle + delta / 2))
+    }
+    d = {
+      x: parseInt(parseFloat(a.x) + l * Math.cos(angle - delta / 2))
+      y: parseInt(parseFloat(a.y) + l * Math.sin(angle - delta / 2))
+    }
+    poly = new Kinetic.Shape({
+      drawFunc: (canvas) ->
+        context = canvas.getContext();
+        context.beginPath();
+        context.moveTo(a.x, a.y);
+        context.lineTo(c.x, c.y);
+        #context.quadraticCurveTo(a.x, a.y, d.x, d.y);
+        context.lineTo(d.x, d.y)
+        context.closePath();
+        canvas.fillStroke(this);
+      fill: 'blue'
+    });
+    return poly
+
 
   update: ->
     @viewport.update()
+  angle: (a, b) ->
+    v = {
+      x: a.x - b.x
+      y: a.y - b.y
+    }
+    return Math.acos((v.x) / Math.sqrt(Math.pow(v.x, 2) + Math.pow(v.y, 2)))
 
 State =
   DEFAULT: 0
@@ -260,4 +315,5 @@ class GraphElement
         start: [(1 - x) * (@group.getWidth() / 2), (1 - y) * (@group.getHeight() / 2)],
         end: [(1 + x) * (@group.getWidth() / 2), (1 + y) * (@group.getHeight() / 2)]
         }
+
 

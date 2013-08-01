@@ -1,4 +1,5 @@
 require 'graph/node'
+require 'graph/spline'
 
 class GraphController < ApplicationController
   include GraphHelper
@@ -84,7 +85,9 @@ class GraphController < ApplicationController
   def generate_json_from_dot(dot)
     json = {}
     nodes = []
+    edges = []
     json['nodes'] = nodes
+    json['edges'] = edges
 
     GraphViz.parse_string(dot) do |g|
       puts 'oisje: ' + g[:bb].to_ruby.to_s
@@ -95,6 +98,13 @@ class GraphController < ApplicationController
         position = node[:pos]
         nodes << Node::from_graphviz_node(node_id, node)
 
+      end
+
+      g.each_edge do |edge|
+
+        position = edge[:pos].to_s
+        spline = Spline::from_dot position
+        edges << spline
       end
     end
 

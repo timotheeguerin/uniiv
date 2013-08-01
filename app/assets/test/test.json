@@ -6,7 +6,7 @@
             "background": {
                 "border": {
                     "color": "red",
-                    "width": 4
+                    "width": 1
                 },
                 "cornerradius": 5,
                 "gradient": {
