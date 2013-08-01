@@ -1,8 +1,13 @@
 #=require kineticjs-viewport
+resizeCanvasContainer = () ->
+  newheight = $(window).height() - 40;
+  $("#canvas-container").css("height", newheight)
+
+$(window).resize (resizeCanvasContainer)
+
 
 $(document).ready ->
-  con = $('#canvas-container')
-  console.log("H: " + con.parent().height())
+  resizeCanvasContainer()
   graph = new CanGraph({
     container: 'canvas-container'
   })
@@ -48,10 +53,11 @@ class Ressources
 class CanGraph
   constructor: (options) ->
     defaults = {
-      container: 'canvas',
+      container: 'canvas'
     }
     @options = $.extend({}, defaults, options)
     html_container = $('#' + @options.container)
+    console.log('ae@' + html_container.height())
     @viewport = new ViewPort({
       container: options.container,
       width: html_container.width()
