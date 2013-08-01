@@ -70,8 +70,7 @@ $login_width: 400px;
   * mixins
 */
 
-@mixin lineargrad($from, $to)
-{
+@mixin lineargrad($from, $to) {
   background-color: $to;
   background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
   background-image: -webkit-linear-gradient($from, $to);
@@ -79,9 +78,9 @@ $login_width: 400px;
   background-image: -o-linear-gradient($from, $to);
   background-image: -ms-linear-gradient($from, $to);
   background-image: linear-gradient($from, $to);
-  background-repeat: repeat-x; 
+  background-repeat: repeat-x;
   -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%; 
+  -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
   background-size: 100% 100%;
 }
@@ -89,6 +88,10 @@ $login_width: 400px;
 /*
  * ids
 */
+#content {
+  padding-top: $nav_height;
+  padding-bottom: $page_footer_height;
+}
 
 #nav_top {
   position: fixed;
@@ -97,7 +100,7 @@ $login_width: 400px;
   top: 0px;
   height: $nav_height;
   box-sizing: border-box;
-  @include lineargrad($palette_orange_lightest,$palette_orange_lighter);
+  @include lineargrad($palette_orange_lightest, $palette_orange_lighter);
   border-bottom: 1px solid $nav_border_color;
   line-height: $nav_height;
   font-size: $nav_text_size;
@@ -120,14 +123,6 @@ $login_width: 400px;
 
 #nav_top_right {
   float: right;
-  height: $nav_height;
-}
-
-#nav_top_block {
-  display: block;
-  left: 0px;
-  right: 0px;
-  top: 0px;
   height: $nav_height;
 }
 
@@ -161,12 +156,7 @@ $login_width: 400px;
   width: $login_width;
 }
 
-#push{
-  height: $page_footer_height;
-}
-
-#wrapper
-{
+#wrapper {
   min-height: 100%;
   margin-bottom: -$page_footer_height;
 }
@@ -219,8 +209,7 @@ $login_width: 400px;
   width: 50%;
 }
 
-.foldheight
-{
+.foldheight {
   height: 425px;
 }
 
@@ -252,16 +241,16 @@ $login_width: 400px;
   color: white;
   border: 1px solid darken($alert_notice_color, 25%);
   background-color: $alert_notice_color;
-  
-  @include lineargrad($uniiv_blue, darken($uniiv_blue,20%));
+
+  @include lineargrad($uniiv_blue, darken($uniiv_blue, 20%));
 }
 
 .alert-error {
   color: white;
   border: 1px solid darken($alert_error_color, 25%);
   background-color: $alert_notice_color;
-  
-  @include lineargrad($alert_error_color, darken($alert_error_color,20%));
+
+  @include lineargrad($alert_error_color, darken($alert_error_color, 20%));
 }
 
 .small-text {

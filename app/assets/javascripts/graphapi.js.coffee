@@ -1,6 +1,8 @@
 #=require kineticjs-viewport
 
 $(document).ready ->
+  con = $('#canvas-container')
+  console.log("H: " + con.parent().height())
   graph = new CanGraph({
     container: 'canvas-container'
   })

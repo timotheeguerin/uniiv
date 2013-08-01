@@ -51,7 +51,6 @@
     </div>
   </div>
 
-  <div id="nav_top_block"></div>
 
   <% if notice %>
       <div class="alert alert-notice"><%= notice %></div>
@@ -59,8 +58,9 @@
   <% if alert %>
       <div class="alert alert-error"><%= alert %></div>
   <% end %>
+  <div id="content">
     <%= yield %>
-  <div id="push"></div>
+  </div>
 </div>
 <!-- end wrapper -->
 
