@@ -30,7 +30,7 @@ class GraphController < ApplicationController
     style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
 
     json[:style] = style
-    json[:graph] = graph_json
+    json[:graphs] = [graph_json]
 
     render :json => json.to_json
   end
