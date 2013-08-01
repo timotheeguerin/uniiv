@@ -1,3 +1,14 @@
 // Place all the styles related to the Test controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$graph_width: 90%;
+
+#canvas-container
+{
+  margin-left: auto;
+  margin-right: auto;
+  width: $graph_width;
+  height: auto;
+  border: 1px solid black;
+}

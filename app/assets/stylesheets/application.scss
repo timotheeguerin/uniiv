@@ -4,6 +4,8 @@
  *
  *= require_self
  *= require welcome
+ *= require graph
+ *= require test
  */
 
 /*
@@ -15,9 +17,33 @@ $uniiv_red: #F76959;
 $uniiv_blue: #279d9b;
 $uniiv_grey: #555555;
 
+$palette_blue_lightest: #7994CD;
+$palette_blue_lighter: #5A7FCD;
+$palette_blue_medium: #274C9B;
+$palette_blue_darker: #334874;
+$palette_blue_darkest: #0D2965;
+
+$palette_green_lighter: #4DCE9A;
+$palette_green_lightest: #70CEA8;
+$palette_green_medium: #1A9E69;
+$palette_green_darker: #2C7659;
+$palette_green_darkest: #096741;
+
+$palette_orange_lightest: #97360D;
+$palette_orange_lighter: #AE6241;
+$palette_orange_medium: #E86027;
+$palette_orange_darker: #F4895B;
+$palette_orange_darkest: #F4A584;
+
+$palette_yellow_lightest: #F4CE84;
+$palette_yellow_lighter: #F4C05B;
+$palette_yellow_medium: #E8A627;
+$palette_yellow_darker: #AE8941;
+$palette_yellow_darkest: #97680D;
+
 $page_width: 900px;
 $page_border_radius: 5px;
-$page_background_color: #dbdbdb;
+$page_background_color: white;
 $page_footer_height: 150px;
 
 $nav_height: 30px;
@@ -71,11 +97,7 @@ $login_width: 400px;
   top: 0px;
   height: $nav_height;
   box-sizing: border-box;
-  background-color: $nav_gradient_bottom;
-  background-image: -moz-linear-gradient($nav_gradient_top, $nav_gradient_bottom);
-  background-image: -webkit-linear-gradient($nav_gradient_top, $nav_gradient_bottom);
-  background-image: linear-gradient($nav_gradient_top, $nav_gradient_bottom);
-  background-repeat: repeat-x;
+  @include lineargrad($palette_orange_lightest,$palette_orange_lighter);
   border-bottom: 1px solid $nav_border_color;
   line-height: $nav_height;
   font-size: $nav_text_size;
@@ -114,11 +136,8 @@ $login_width: 400px;
   padding-top: 5px;
   padding-bottom: 5px;
   height: $page_footer_height;
-  background-color: $nav_gradient_bottom;
-  background-image: -moz-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
-  background-image: -webkit-linear-gradient($nav_gradient_bottom, $nav_gradient_top);
-  background-image: linear-gradient($nav_gradient_bottom, $nav_gradient_top);
-  border-top: 1px solid $nav_border_color;
+  @include lineargrad($palette_green_medium, darken($palette_green_medium, 0%));
+  border-top: none;
   box-sizing: border-box;
   margin: 0px;
 }
@@ -131,7 +150,7 @@ $login_width: 400px;
   margin-right: auto;
   box-sizing: border-box;
   font-size: $nav_text_size;
-  color: $nav_text_color;
+  color: white;
 }
 
 #home_content {
