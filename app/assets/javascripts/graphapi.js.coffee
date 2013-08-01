@@ -1,9 +1,8 @@
 #=require kineticjs-viewport
 resizeCanvasContainer = () ->
   newheight = $(window).height() - 40;
-  $("#canvas-container").css("height", newheight)
-
-$(window).resize (resizeCanvasContainer)
+  console.log("WIn: " + newheight)
+  $("#canvas-container").height(newheight)
 
 
 $(document).ready ->
@@ -18,6 +17,10 @@ $(document).ready ->
     #graph.drawArrow(120, 100, 200, 200)
     #add the shape to the layer
   graph.update()
+
+  $(window).resize () ->
+    resizeCanvasContainer()
+    graph.resize()
 
 
 class Ressources
@@ -57,7 +60,6 @@ class CanGraph
     }
     @options = $.extend({}, defaults, options)
     html_container = $('#' + @options.container)
-    console.log('ae@' + html_container.height())
     @viewport = new ViewPort({
       container: options.container,
       width: html_container.width()
@@ -124,6 +126,12 @@ class CanGraph
 
   update: ->
     @viewport.update()
+
+  resize: ()    ->
+    html_container = $('#' + @options.container)
+    x = html_container.width()
+    y = html_container.height()
+    @viewport.resize(x, y)
 
 State =
   DEFAULT: 0

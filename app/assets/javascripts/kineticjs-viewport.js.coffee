@@ -104,6 +104,9 @@ class window.ViewPort
   update: ->
     @layer.draw();
 
+  resize: (x, y) ->
+    @stage.setSize(x, y)
+
 class Point
   constructor: (@x, @y) ->
   toString: ->
