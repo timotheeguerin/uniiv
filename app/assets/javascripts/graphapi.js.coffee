@@ -1,24 +1,21 @@
 #=require kineticjs-viewport
 
 $(document).ready ->
-  graph = new Graph({
+  graph = new CanGraph({
     container: 'canvas-container'
   })
 
   graph.load "/graph/1/data", () ->
-
-
     #graph.drawCourse("Comp 202", new Point(30, 30))
     #graph.drawCourse("Comp 250", new Point(120, 30))
     #graph.drawArrow(120, 100, 200, 200)
-
-
     #add the shape to the layer
   graph.update()
 
 
 class Ressources
   @images: {}
+  @style: {}
 
   @loadImageFromJson: (data) ->
     for k0, v0 of data.style #for all the class in the style
@@ -46,7 +43,7 @@ class Ressources
           callback()
 
 
-class Graph
+class CanGraph
   constructor: (options) ->
     defaults = {
       container: 'canvas',
@@ -61,103 +58,66 @@ class Graph
     })
 
     @ressources = {}
+    @graphs = []
+
+    @container = new Kinetic.Group(
+      x: 0
+      y: 0
+    )
+    @viewport.layer.add(@container)
 
   load: (url, callback) ->
     $.get(url, (data) =>
-      width = data.graph.dimension.x
-      height = data.graph.dimension.y
-      width = @viewport.canvasSize.x if width < @viewport.canvasSize.x
-      height = @viewport.canvasSize.y if height < @viewport.canvasSize.y
-      @viewport.resizeLayer(width, height)
       Ressources.loadImageFromJson (data)
-      @style = data.style
+      Ressources.style = data.style
       Ressources.onLoadImage => #Wait for the images to load
-        @loadGraph(data)
+        @loadGraphs(data)
         callback()
 
     , "json")
 
-  loadGraph: (data)->
-    if(!data.graph?)
+  loadGraphs: (data)->
+    if(!data.graphs?)
       return
-    for node in data.graph.nodes                         #Load all nodes
-      x = node.position.x - node.dimension.x / 2
-      y = node.position.y - node.dimension.y / 2
-      @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
-    for edge in data.graph.edges
-      @addEdge(edge)
+    margin = 30 #TODO load from style
+    maxHeight = 0
+    maxWidth = 0
+    totalWidth = margin;
+
+    for graph in data.graphs
+      maxWidth = graph.dimension.x if graph.dimension.x > maxWidth
+      maxHeight = graph.dimension.y if  graph.dimension.y > maxHeight
+      totalWidth += graph.dimension.x + margin
+
+      group = new Kinetic.Group(
+        x: 0
+        y: 0
+        width: graph.dimension.x
+        height: graph.dimension.y
+      )
+      g = new Graph(group, @, graph)
+      @graphs.push(g)
+      @container.add(group)
+
+
+    maxWidth = @viewport.canvasSize.x if maxWidth < @viewport.canvasSize.x
+    maxHeight = @viewport.canvasSize.y if maxHeight < @viewport.canvasSize.y
+    @container.setSize(maxWidth, maxHeight)
+    @viewport.resizeLayer(@container.getWidth(), @container.getHeight())
+
+    graphX = (@container.getWidth() - totalWidth) / 2 + margin
+    for graph in @graphs
+
+      x = graphX
+      y = (@container.getHeight() - graph.getHeight()) / 2
+      console.log("F: " + @container.getHeight() + " - " + graph.getHeight() + " - " + y)
+      graph.setPosition(x, y)
+      graphX += graph.getWidth() + margin
 
     @update();
 
-
-  addNode: (text, x, y, width, height, type, clazz) ->
-    typeStyle = @style[type.toLowerCase()]
-    customStyle = @style[clazz]
-    computedStyle = $.extend({}, typeStyle, customStyle)
-
-    group = new Kinetic.Group({
-      x: x
-      y: y
-      width: width
-      height: height
-    })
-
-    @viewport.layer.add(group)
-    node = new GraphElement(group, text, computedStyle, @)
-    node.update()
-  addEdge: (edge)   ->
-    points = edge.positions
-    spline = new Kinetic.Spline({
-      points: points,
-      stroke: 'blue',
-      strokeWidth: 1,
-      lineCap: 'round',
-      tension: 1
-    })
-    @viewport.layer.add(spline)
-    console.log("oijoij" + edge.arrow)
-    if(edge.arrow == 0)
-      console.log("oijoij")
-      a = points[0]
-      b = points[1]
-      poly = @getTriangle(a, b)
-      @viewport.layer.add(poly)
-
-  getTriangle: (a, b)    ->
-    angle = @angle(b, a)
-    delta = 30 * Math.PI / 180
-    l = 14
-    c = {
-      x: parseInt(parseFloat(a.x) + l * Math.cos(angle + delta / 2))
-      y: parseInt(parseFloat(a.y) + l * Math.sin(angle + delta / 2))
-    }
-    d = {
-      x: parseInt(parseFloat(a.x) + l * Math.cos(angle - delta / 2))
-      y: parseInt(parseFloat(a.y) + l * Math.sin(angle - delta / 2))
-    }
-    poly = new Kinetic.Shape({
-      drawFunc: (canvas) ->
-        context = canvas.getContext();
-        context.beginPath();
-        context.moveTo(a.x, a.y);
-        context.lineTo(c.x, c.y);
-        #context.quadraticCurveTo(a.x, a.y, d.x, d.y);
-        context.lineTo(d.x, d.y)
-        context.closePath();
-        canvas.fillStroke(this);
-      fill: 'blue'
-    });
-    return poly
-
-
   update: ->
     @viewport.update()
-  angle: (a, b) ->
-    v = {
-      x: a.x - b.x
-      y: a.y - b.y
-    }
-    return Math.acos((v.x) / Math.sqrt(Math.pow(v.x, 2) + Math.pow(v.y, 2)))
 
 State =
   DEFAULT: 0
@@ -288,10 +248,7 @@ class GraphElement
         end: [0, 0]
         }
       else
-
-
         tan = Math.tan(val * (Math.PI / 180))
-
 
         x = 1 / tan
         y = tan
@@ -316,4 +273,91 @@ class GraphElement
         end: [(1 + x) * (@group.getWidth() / 2), (1 + y) * (@group.getHeight() / 2)]
         }
 
+class Graph
+  constructor: (@group, @can_graph, data) ->
+    @load(data)
 
+  load: (data) ->
+    for node in data.nodes                         #Load all nodes
+      x = node.position.x - node.dimension.x / 2
+      y = node.position.y - node.dimension.y / 2
+      @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
+    for edge in data.edges
+      @addEdge(edge)
+
+  addNode: (text, x, y, width, height, type, clazz) ->
+    typeStyle = Ressources.style[type.toLowerCase()]
+    customStyle = Ressources.style[clazz]
+    computedStyle = $.extend({}, typeStyle, customStyle)
+
+    group = new Kinetic.Group({
+      x: x
+      y: y
+      width: width
+      height: height
+    })
+
+    @group.add(group)
+    node = new GraphElement(group, text, computedStyle, @can_graph)
+    node.update()
+
+  addEdge: (edge)   ->
+    points = edge.positions
+    spline = new Kinetic.Spline({
+      points: points,
+      stroke: 'blue',
+      strokeWidth: 1,
+      lineCap: 'round',
+      tension: 1
+    })
+    @group.add(spline)
+    console.log("oijoij" + edge.arrow)
+    if(edge.arrow == 0)
+      console.log("oijoij")
+      a = points[0]
+      b = points[1]
+      poly = @getTriangle(a, b)
+      @group.add(poly)
+
+  getTriangle: (a, b)    ->
+    angle = @angle(b, a)
+    delta = 30 * Math.PI / 180
+    l = 14
+    c = {
+      x: parseFloat(a.x) + l * Math.cos(angle + delta / 2)
+      y: parseFloat(a.y) + l * Math.sin(angle + delta / 2)
+    }
+    d = {
+      x: parseFloat(a.x) + l * Math.cos(angle - delta / 2)
+      y: parseFloat(a.y) + l * Math.sin(angle - delta / 2)
+    }
+    poly = new Kinetic.Shape({
+      drawFunc: (canvas) ->
+        context = canvas.getContext();
+        context.beginPath();
+        context.moveTo(a.x, a.y);
+        context.lineTo(c.x, c.y);
+        #context.quadraticCurveTo(a.x, a.y, d.x, d.y);
+        context.lineTo(d.x, d.y)
+        context.closePath();
+        canvas.fillStroke(this);
+      fill: 'blue'
+    });
+    return poly
+
+
+  angle: (a, b) ->
+    v = {
+      x: a.x - b.x
+      y: a.y - b.y
+    }
+    return Math.acos((v.x) / Math.sqrt(Math.pow(v.x, 2) + Math.pow(v.y, 2)))
+
+  getWidth: () ->
+    return @group.getWidth()
+
+  getHeight: () ->
+    return @group.getHeight()
+
+  setPosition: (x, y) ->
+    return @group.setPosition(x, y)
