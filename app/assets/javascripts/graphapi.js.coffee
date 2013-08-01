@@ -47,14 +47,13 @@ class CanGraph
   constructor: (options) ->
     defaults = {
       container: 'canvas',
-      width: 700,
-      height: 400
     }
     @options = $.extend({}, defaults, options)
+    html_container = $('#' + @options.container)
     @viewport = new ViewPort({
       container: options.container,
-      width: options.width,
-      height: options.height
+      width: html_container.width()
+      height: html_container.height()
     })
 
     @ressources = {}
@@ -110,7 +109,6 @@ class CanGraph
 
       x = graphX
       y = (@container.getHeight() - graph.getHeight()) / 2
-      console.log("F: " + @container.getHeight() + " - " + graph.getHeight() + " - " + y)
       graph.setPosition(x, y)
       graphX += graph.getWidth() + margin
 
@@ -311,9 +309,7 @@ class Graph
       tension: 1
     })
     @group.add(spline)
-    console.log("oijoij" + edge.arrow)
     if(edge.arrow == 0)
-      console.log("oijoij")
       a = points[0]
       b = points[1]
       poly = @getTriangle(a, b)
