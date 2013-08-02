@@ -7,7 +7,7 @@
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375474741636" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375476189507" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -32,7 +32,7 @@
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
     <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375473425077" ignored="false" />
     <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375391513864" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375476171167" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375476313818" ignored="false" />
     <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375469851751" ignored="false" />
     <file path="/application.scss" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375390154836" ignored="false" />
     <file path="/graph_helper.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375213276139" ignored="false" />
@@ -139,7 +139,7 @@
       <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="12" selection-start="3552" selection-end="3552" vertical-scroll-proportion="0.33333334">
+            <state line="188" column="0" selection-start="4479" selection-end="4479" vertical-scroll-proportion="0.2825112">
               <folding />
             </state>
           </provider>
@@ -896,7 +896,11 @@
       <created>1375474743586</created>
       <updated>1375474743586</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="subgraph dot -&gt; json -&gt; display">
+      <created>1375476192085</created>
+      <updated>1375476192085</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1138,7 +1142,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="12" selection-start="3552" selection-end="3552" vertical-scroll-proportion="0.33333334">
+        <state line="188" column="0" selection-start="4479" selection-end="4479" vertical-scroll-proportion="0.2825112">
           <folding />
         </state>
       </provider>

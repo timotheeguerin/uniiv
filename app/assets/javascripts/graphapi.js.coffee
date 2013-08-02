@@ -186,7 +186,6 @@ class GraphElement
         name: 'label'
         width: @group.getWidth()
         align: 'center'
-        padding: 5
       });
 
       @group.add(label)
@@ -204,6 +203,8 @@ class GraphElement
           else
             newY = (@group.getHeight() - label.getHeight()) / 2
         label.setY(newY);
+      if(style.label.color?)
+        label.setFill(style.label.color)
 
 
     if(style.background?) #if the background property is defined
