@@ -5,8 +5,16 @@
         "height": 200,
         "normal": {
             "background": {
+                "border": {
+                    "color": "red",
+                    "width": 1
+                },
                 "cornerradius": 5,
-                "color": "#1a9e69"
+                "gradient": {
+                    "type": "linear",
+                    "angle": "top",
+                    "colors": [0, "red", 0.5, "yellow", 1, "blue"]
+                }
             },
             "label": {
                 "halign": "center",
@@ -16,12 +24,12 @@
         },
         "hover": {
             "background": {
-                "color": "#2c7659"
-            }
-        },
-        "active": {
-            "background": {
-                "color": "#096741"
+                "border": {
+                    "color": "green"
+                },
+                "gradient": {
+                    "angle": "45"
+                }
             }
         }
     },
