@@ -386,9 +386,9 @@ class Graph
         poly.setFill(style.color)
       if(style.width?)
         spline.setStrokeWidth(style.width)
-        poly.setStroke(style.width)
+        poly.setStrokeWidth(style.width)
 
-  getTriangle: (a, b)    ->
+  getTriangle: (a, b) ->
     angle = @angle(b, a)
     delta = 30 * Math.PI / 180
     l = 14
