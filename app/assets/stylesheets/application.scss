@@ -170,9 +170,29 @@ $login_width: 400px;
   margin-bottom: -$page_footer_height;
 }
 
+#footer_table
+{
+  width: 100%;
+  border: none;
+  text-align: left;
+}
+
 /*
  * classes
 */
+
+.footer_table_heading
+{
+  font-size: 18px;
+}
+
+.footer_list
+{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  list-style-type: none;
+  padding: 0px;
+}
 
 .content_box {
   display: block;
