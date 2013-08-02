@@ -138,7 +138,7 @@ class GraphElement
   constructor: (@group, label, @style, @graph) ->
     @ishover = false
     @ustate = State.DEFAULT
-    @label = label.replace("\\n", " ");
+    @label = label.replace("\\n", "\n");
     @on 'mouseenter', () =>
       @ishover = true
       @ustate = State.HOVER
@@ -362,20 +362,31 @@ class Graph
     node.update()
 
   addEdge: (edge)   ->
+    style = Ressources.style['arrow']
     points = edge.positions
     spline = new Kinetic.Spline({
       points: points,
-      stroke: 'blue',
+      stroke: 'black',
       strokeWidth: 1,
       lineCap: 'round',
       tension: 1
     })
     @group.add(spline)
+
     if(edge.arrow == 0)
       a = points[0]
       b = points[1]
       poly = @getTriangle(a, b)
       @group.add(poly)
+
+    if(style?)
+      if(style.color?)
+        spline.setStroke(style.color)
+        poly.setStroke(style.color)
+        poly.setFill(style.color)
+      if(style.width?)
+        spline.setStrokeWidth(style.width)
+        poly.setStroke(style.width)
 
   getTriangle: (a, b)    ->
     angle = @angle(b, a)
