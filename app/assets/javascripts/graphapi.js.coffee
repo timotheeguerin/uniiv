@@ -232,6 +232,8 @@ class GraphElement
         background.setStrokeWidth(border.width)
       if(style.background.cornerradius? && @style.shape == 'rect')#if the border radius is defined
         background.setCornerRadius(style.background.cornerradius)
+      if(style.background.color?)
+        background.setFill(style.background.color)
       if(style.background.image?)       #if the background have an image
         image = style.background.image
         src = style.background.image.src
