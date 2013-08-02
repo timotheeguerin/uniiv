@@ -373,10 +373,15 @@ class Graph
     })
     @group.add(spline)
 
+    angle = 30
+    lenght = 14
+    angle = style.angle if style.angle?
+    lenght = style.lenght if style.lenght?
+
     if(edge.arrow == 0)
       a = points[0]
       b = points[1]
-      poly = @getTriangle(a, b)
+      poly = @getTriangle(a, b, angle, lenght)
       @group.add(poly)
 
     if(style?)
@@ -388,17 +393,16 @@ class Graph
         spline.setStrokeWidth(style.width)
         poly.setStrokeWidth(style.width)
 
-  getTriangle: (a, b) ->
+  getTriangle: (a, b, alpha, l) ->
     angle = @angle(b, a)
-    delta = 30 * Math.PI / 180
-    l = 14
+    beta = alpha * Math.PI / 180
     c = {
-      x: parseFloat(a.x) + l * Math.cos(angle + delta / 2)
-      y: parseFloat(a.y) + l * Math.sin(angle + delta / 2)
+      x: parseFloat(a.x) + l * Math.cos(angle + beta / 2)
+      y: parseFloat(a.y) + l * Math.sin(angle + beta / 2)
     }
     d = {
-      x: parseFloat(a.x) + l * Math.cos(angle - delta / 2)
-      y: parseFloat(a.y) + l * Math.sin(angle - delta / 2)
+      x: parseFloat(a.x) + l * Math.cos(angle - beta / 2)
+      y: parseFloat(a.y) + l * Math.sin(angle - beta / 2)
     }
     poly = new Kinetic.Shape({
       drawFunc: (canvas) ->
