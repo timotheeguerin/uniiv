@@ -10,7 +10,104 @@
             },
             "label": {
                 "halign": "center",
-                "valign": "center"
+                "valign": "center",
+                "color": "#f5f5f5"
+            }
+
+        },
+        "hover": {
+            "background": {
+                "color": "#2c7659"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#096741"
+            }
+        }
+    },
+    "node_available": {
+        "normal": {
+            "background": {
+                "cornerradius": 5,
+                "color": "#274c9b"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
+            }
+        },
+        "hover": {
+            "background": {
+                "color": "#334874"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#0d2965ff"
+            }
+        }
+    },
+    "node_unavailable": {
+        "normal": {
+            "background": {
+                "cornerradius": 5,
+                "color": "#e86027"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
+            }
+        },
+        "hover": {
+            "background": {
+                "color": "#ae6241"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#97360d"
+            }
+        }
+    },
+    "node_taking": {
+        "normal": {
+            "background": {
+                "cornerradius": 5,
+                "color": "#e8a627"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
+            }
+        },
+        "hover": {
+            "background": {
+                "color": "#ae8941"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#97680d"
+            }
+        }
+      },
+      "node_taken": {
+        "shape": "circle",
+        "width": 100,
+        "height": 200,
+        "normal": {
+            "background": {
+                "cornerradius": 5,
+                "color": "#1a9e69"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
             }
 
         },
@@ -55,7 +152,14 @@
     },
     "op": {
         "width": 20,
-        "height": 100
+        "height": 100,
+        "normal": {
+          "label": {
+                  "halign": "center",
+                  "valign": "center",
+                  "color": "black"
+            }
+        }
     },
     "requirement": {
 
