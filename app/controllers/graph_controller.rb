@@ -38,26 +38,62 @@ class GraphController < ApplicationController
 
   def generate_graph_from_group(group)
     g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true)
-
     map ={}
+    calulate_graph_from_group(g, g, group, map, {}, {})
+    # Create two nodes
+
+
+    result = ''
+    # Create an edge between the two nodes
+    g.output(:dot => String)
+
+  end
+
+  def calulate_graph_from_group(main_graph, g, group, map, in_graph, out)
+
     #Add all course and operation nodes
     group.courses.each do |course|
-      course_id = 'c_' + course.id.to_s
-      course_node = g.add_node(course_id)
-      course_node[:label] = course.get_short_name
-      map[course_id]= course_node
+      course_id = course.id_to_s
+      unless map.has_key?(course_id)
+        course_node = g.add_node(course_id)
+        course_node[:label] = course.get_short_name
+        map[course_id] = course_node
+        in_graph[course_id] = true
+        puts 'Course: ' + course.get_short_name
+      end
       prerequisite = course.prerequisite
       unless prerequisite.nil?
         operations = prerequisite.get_all_operations
         operations.each do |op|
-          op_id = 'op_' + op.id.to_s
-          op_node = g.add_node(op_id)
-          op_node[:label] = op.operation
-          map[op_id] = op_node
+          op_id = op.id_to_s
+          unless   map.has_key?(op_id)
+            op_node = nil
+            if op.is_linking_one_course?(in_graph)
+              op_node = g.add_node(op_id)
+              in_graph[op_id] = true
+            else
+              op_node = main_graph.add_node(op_id)
+              out[op_id] = true
+            end
+
+            op_node[:label] = op.operation
+            map[op_id] = op_node
+          end
+        end
+        subcourses = prerequisite.get_all_courses
+        subcourses.each do |subcourse|
+          subcourse_id = subcourse.id_to_s
+          puts subcourse_id + ' - ' +subcourse.get_short_name + ' - '+ map[subcourse_id].to_s
+          unless map.has_key?(subcourse_id)
+            subcourse_node = main_graph.add_node(subcourse_id)
+            subcourse_node[:label] = subcourse.get_short_name
+            map[subcourse_id] = subcourse_node
+            out[subcourse_id] = true
+            puts 'Sub Course: ' + subcourse.get_short_name
+          end
         end
       end
     end
-
 
     group.courses.each do |course|
       prerequisite = course.prerequisite
@@ -67,20 +103,23 @@ class GraphController < ApplicationController
           hash.each do |k, v|
             node1 = map[k]
             node2 = map[v]
-            g.add_edge(node1, node2)
+            if out[k] or out[v]
+              main_graph.add_edge(node1, node2)
+            else
+              g.add_edge(node1, node2)
+            end
           end
         end
       end
     end
 
-
-    # Create two nodes
-
-    result = ''
-    # Create an edge between the two nodes
-    g.output(:dot => String)
-
+    group.subgroups.each do |subgroup|
+      subgraph_name = 'cluster_'+subgroup.id.to_s
+      subgraph = g.add_graph(subgraph_name)
+      calulate_graph_from_group(main_graph, subgraph, subgroup, map, in_graph, out)
+    end
   end
+
 
   def generate_json_from_dot(dot)
     json = {}

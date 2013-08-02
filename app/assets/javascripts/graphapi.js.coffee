@@ -11,7 +11,7 @@ $(document).ready ->
     container: 'canvas-container'
   })
 
-  graph.load "/graph/1/data", () ->
+  graph.load "/graph/2/data", () ->
     #graph.drawCourse("Comp 202", new Point(30, 30))
     #graph.drawCourse("Comp 250", new Point(120, 30))
     #graph.drawArrow(120, 100, 200, 200)
