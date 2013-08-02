@@ -7,7 +7,7 @@
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375474212485" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375474741636" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -32,7 +32,7 @@
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
     <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375473425077" ignored="false" />
     <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375391513864" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375474721467" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375476171167" ignored="false" />
     <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375469851751" ignored="false" />
     <file path="/application.scss" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375390154836" ignored="false" />
     <file path="/graph_helper.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375213276139" ignored="false" />
@@ -126,8 +126,12 @@
       <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="17" selection-start="472" selection-end="473" vertical-scroll-proportion="-10.461538">
-              <folding />
+            <state line="8" column="17" selection-start="188" selection-end="188" vertical-scroll-proportion="-5.230769">
+              <folding>
+                <marker date="1375476066464" expanded="true" signature="93:188" placeholder="{&quot;type&quot;: &quot;linear&quot;...}" />
+                <marker date="1375476066464" expanded="true" signature="414:454" placeholder="{&quot;color&quot;: &quot;green&quot;...}" />
+                <marker date="1375476066464" expanded="true" signature="476:513" placeholder="{&quot;angle&quot;: &quot;45&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,7 +139,7 @@
       <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="235" column="50" selection-start="5984" selection-end="5984" vertical-scroll-proportion="0.4486111">
+            <state line="148" column="12" selection-start="3552" selection-end="3552" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
@@ -888,7 +892,11 @@
       <created>1375474214162</created>
       <updated>1375474214162</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="subgraph dot -&gt; json -&gt; display">
+      <created>1375474743586</created>
+      <updated>1375474743586</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1119,14 +1127,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="17" selection-start="472" selection-end="473" vertical-scroll-proportion="-10.461538">
-          <folding />
+        <state line="8" column="17" selection-start="188" selection-end="188" vertical-scroll-proportion="-5.230769">
+          <folding>
+            <marker date="1375476066464" expanded="true" signature="93:188" placeholder="{&quot;type&quot;: &quot;linear&quot;...}" />
+            <marker date="1375476066464" expanded="true" signature="414:454" placeholder="{&quot;color&quot;: &quot;green&quot;...}" />
+            <marker date="1375476066464" expanded="true" signature="476:513" placeholder="{&quot;angle&quot;: &quot;45&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="235" column="50" selection-start="5984" selection-end="5984" vertical-scroll-proportion="0.4486111">
+        <state line="148" column="12" selection-start="3552" selection-end="3552" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>

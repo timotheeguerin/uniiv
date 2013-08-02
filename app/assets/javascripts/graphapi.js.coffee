@@ -147,7 +147,7 @@ class GraphElement
       @ustate = State.DEFAULT
     @on 'mousedown', () =>
       @ustate = State.ACTIVE
-    @on 'mousedown', () =>
+    @on 'mouseup', () =>
       if @ishover
         @ustate = State.HOVER
       else
@@ -166,7 +166,7 @@ class GraphElement
       when State.HOVER
         @applyStyle(@style.normal, @style.hover)
       when State.ACTIVE
-        @applyStyle(@style.normal, @style.active)
+        @applyStyle(@style.normal, @style['active'])
       else
         @applyStyle(@style.normal)
     @graph.update()
@@ -201,6 +201,8 @@ class GraphElement
             newY = (@group.getHeight() - label.getHeight()) / 2
           when 'bottom'
             newY = (@group.getHeight() - label.getHeight())
+          else
+            newY = (@group.getHeight() - label.getHeight()) / 2
         label.setY(newY);
 
 
@@ -360,7 +362,6 @@ class Graph
 
   addEdge: (edge)   ->
     points = edge.positions
-    console.log('EDG: ' + JSON.stringify(points))
     spline = new Kinetic.Spline({
       points: points,
       stroke: 'blue',
