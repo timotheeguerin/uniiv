@@ -14,4 +14,8 @@ class Course < ActiveRecord::Base
   def get_short_name
     subject.to_s + ' ' + code.to_s
   end
+
+  def get_dot_name
+    subject.to_s + '\n' + code.to_s
+  end
 end

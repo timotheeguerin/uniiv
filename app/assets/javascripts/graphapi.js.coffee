@@ -1,7 +1,6 @@
 #=require kineticjs-viewport
 resizeCanvasContainer = () ->
   newheight = $(window).height() - 40;
-  console.log("WIn: " + newheight)
   $("#canvas-container").height(newheight)
 
 
@@ -12,10 +11,7 @@ $(document).ready ->
   })
 
   graph.load "/graph/2/data", () ->
-    #graph.drawCourse("Comp 202", new Point(30, 30))
-    #graph.drawCourse("Comp 250", new Point(120, 30))
-    #graph.drawArrow(120, 100, 200, 200)
-    #add the shape to the layer
+
   graph.update()
 
   $(window).resize () ->
@@ -139,10 +135,10 @@ State =
   ACTIVE: 2
 
 class GraphElement
-  constructor: (@group, @label, @style, @graph) ->
+  constructor: (@group, label, @style, @graph) ->
     @ishover = false
     @ustate = State.DEFAULT
-
+    @label = label.replace("\\n", " ");
     @on 'mouseenter', () =>
       @ishover = true
       @ustate = State.HOVER
@@ -177,6 +173,7 @@ class GraphElement
 
   applyStyle: (defaultStyle, stateStyle) ->
     style = $.extend(true, {}, defaultStyle, stateStyle)
+
     label = @group.get(".label")[0]
     if(!label?)
       label = new Kinetic.Text({
@@ -188,32 +185,52 @@ class GraphElement
         fill: 'black'
         name: 'label'
         width: @group.getWidth()
-        height: @group.getHeight()
         align: 'center'
         padding: 5
       });
 
       @group.add(label)
 
+    if(style.label?)
+      if(style.label.halign?)
+        label.setAlign(style.label.halign)
+      if(style.label.valign?)
+        valign = style.label.valign
+        switch valign
+          when 'center'
+            newY = (@group.getHeight() - label.getHeight()) / 2
+          when 'bottom'
+            newY = (@group.getHeight() - label.getHeight())
+        label.setY(newY);
+
 
     if(style.background?) #if the background property is defined
       background = @group.get(".background")[0]
       if(!background?)
-        background = new Kinetic.Rect({
-          x: 0
-          y: 0
-          width: @group.getWidth()
-          height: @group.getHeight()
-          name: 'background'
+        if(@style.shape == 'circle')
+          background = new Kinetic.Circle({
+            x: @group.getWidth() / 2
+            y: @group.getHeight() / 2
+            radius: @group.getWidth() / 2
+            name: 'background'
 
-        });
+          });
+        else
+          background = new Kinetic.Rect({
+            x: 0
+            y: 0
+            width: @group.getWidth()
+            height: @group.getHeight()
+            name: 'background'
+
+          });
         @group.add(background)
 
       if(style.background.border?)      #If a border is defined
         border = style.background.border;
         background.setStroke(border.color)
         background.setStrokeWidth(border.width)
-      if(style.background.cornerradius?)#if the border radius is defined
+      if(style.background.cornerradius? && @style.shape == 'rect')#if the border radius is defined
         background.setCornerRadius(style.background.cornerradius)
       if(style.background.image?)       #if the background have an image
         image = style.background.image
@@ -289,7 +306,9 @@ class GraphElement
 
 class Graph
   constructor: (@group, @can_graph, data) ->
+    @subgraphs = []
     @load(data)
+
 
   load: (data) ->
     for node in data.nodes                         #Load all nodes
@@ -298,6 +317,28 @@ class Graph
       @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
     for edge in data.edges
       @addEdge(edge)
+
+    for subgraph in data.subgraphs
+      group = new Kinetic.Group(
+        x: subgraph.position.x
+        y: subgraph.position.y
+        width: subgraph.dimension.x
+        height: subgraph.dimension.y
+      )
+      @group.add(group)
+      rect = new Kinetic.Rect({
+        x: 0
+        y: 0
+        width: subgraph.dimension.x
+        height: subgraph.dimension.y
+        stroke: 'blue',
+        strokeWidth: 1
+      })
+      group.add(rect)
+      sub_g = new Graph(group, @can_graph, subgraph)
+      @subgraphs.push(sub_g)
+
+
 
   addNode: (text, x, y, width, height, type, clazz) ->
     typeStyle = Ressources.style[type.toLowerCase()]
@@ -317,6 +358,7 @@ class Graph
 
   addEdge: (edge)   ->
     points = edge.positions
+    console.log('EDG: ' + JSON.stringify(points))
     spline = new Kinetic.Spline({
       points: points,
       stroke: 'blue',

@@ -1,5 +1,6 @@
 require 'graph/node'
 require 'graph/spline'
+require 'graph/graph'
 
 class GraphController < ApplicationController
   include GraphHelper
@@ -56,10 +57,10 @@ class GraphController < ApplicationController
       course_id = course.id_to_s
       unless map.has_key?(course_id)
         course_node = g.add_node(course_id)
-        course_node[:label] = course.get_short_name
+        course_node[:label] = course.get_dot_name
+        course_node[:shape] = 'circle'
         map[course_id] = course_node
         in_graph[course_id] = true
-        puts 'Course: ' + course.get_short_name
       end
       prerequisite = course.prerequisite
       unless prerequisite.nil?
@@ -77,19 +78,19 @@ class GraphController < ApplicationController
             end
 
             op_node[:label] = op.operation
+            op_node[:shape] = 'circle'
             map[op_id] = op_node
           end
         end
         subcourses = prerequisite.get_all_courses
         subcourses.each do |subcourse|
           subcourse_id = subcourse.id_to_s
-          puts subcourse_id + ' - ' +subcourse.get_short_name + ' - '+ map[subcourse_id].to_s
           unless map.has_key?(subcourse_id)
             subcourse_node = main_graph.add_node(subcourse_id)
-            subcourse_node[:label] = subcourse.get_short_name
+            subcourse_node[:label] = subcourse.get_dot_name
+            subcourse_node[:shape] = 'circle'
             map[subcourse_id] = subcourse_node
             out[subcourse_id] = true
-            puts 'Sub Course: ' + subcourse.get_short_name
           end
         end
       end
@@ -129,22 +130,7 @@ class GraphController < ApplicationController
     json['edges'] = edges
 
     GraphViz.parse_string(dot) do |g|
-      puts 'oisje: ' + g[:bb].to_ruby.to_s
-      json[:dimension] = Point.from_array(g[:bb].to_ruby)
-
-      g.each_node do |node_id, node|
-        label = node[:label]
-        position = node[:pos]
-        nodes << Node::from_graphviz_node(node_id, node)
-
-      end
-
-      g.each_edge do |edge|
-
-        position = edge[:pos].to_s
-        spline = Spline::from_dot position
-        edges << spline
-      end
+      json = Graph::from_dot(g)
     end
 
     json

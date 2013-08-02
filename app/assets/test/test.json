@@ -1,5 +1,6 @@
 {
     "node": {
+        "shape": "circle",
         "width": 100,
         "height": 200,
         "normal": {
@@ -14,6 +15,10 @@
                     "angle": "top",
                     "colors": [0, "red", 0.5, "yellow", 1, "blue"]
                 }
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center"
             }
 
         },
