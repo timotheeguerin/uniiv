@@ -122,6 +122,10 @@
             }
         }
     },
+    "arrow": {
+      "color": "#dfdfdf",
+      "width": "2"
+    },
     "nodeImage": {
         "normal": {
             "background": {
