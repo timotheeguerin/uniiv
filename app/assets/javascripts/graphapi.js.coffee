@@ -374,14 +374,14 @@ class Graph
     @group.add(spline)
 
     angle = 30
-    lenght = 14
+    length = 14
     angle = style.angle if style.angle?
-    lenght = style.lenght if style.lenght?
+    length = style.length if style['length']?
 
     if(edge.arrow == 0)
       a = points[0]
       b = points[1]
-      poly = @getTriangle(a, b, angle, lenght)
+      poly = @getTriangle(a, b, angle, length)
       @group.add(poly)
 
     if(style?)
