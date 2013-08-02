@@ -37,6 +37,23 @@ class CourseExpr < ActiveRecord::Base
     list
   end
 
+  def get_all_courses
+    list = []
+    queue = Queue.new
+    queue << node
+    until queue.empty?
+      n = queue.pop
+      if n.operation == NodeOperation::NODE
+        list.push(n.course)
+      else
+        n.nodes.each do |sub_node|
+          queue << sub_node
+        end
+      end
+    end
+    list
+  end
+
   #Return all the operations node in this expression
   def get_all_edges(course)
     edges = []
