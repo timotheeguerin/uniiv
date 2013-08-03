@@ -1,5 +1,6 @@
 #=require kineticjs-viewport
 #=require graph/element/GraphElement
+#=require graph/element/ContainerElement
 
 resizeCanvasContainer = () ->
   newheight = $(window).height() - 40;
@@ -147,15 +148,11 @@ class Graph
         height: subgraph.dimension.y
       )
       @group.add(group)
-      rect = new Kinetic.Rect({
-        x: 0
-        y: 0
-        width: subgraph.dimension.x
-        height: subgraph.dimension.y
-        stroke: 'blue',
-        strokeWidth: 1
-      })
-      group.add(rect)
+
+      typeStyle = Ressources.style['cluster']
+      customStyle = Ressources.style['']
+      style = $.extend({}, typeStyle, customStyle)
+      container = new ContainerElement(group, style, @can_graph)
       sub_g = new Graph(group, @can_graph, subgraph)
       @subgraphs.push(sub_g)
 
