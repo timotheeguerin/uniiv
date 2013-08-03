@@ -1,7 +1,11 @@
 class NodeElement extends GraphElement
-  applyStyle: (defaultStyle, stateStyle) ->
-    style = $.extend(true, {}, defaultStyle, stateStyle)
+  @label = ''
 
+  constructor: (group, label, style, graph) ->
+    super group, style, graph
+    @label = label.replace("\\n", "\n")
+
+  computeStyle: (style) ->
     label = @group.get(".label")[0]
     if(!label?)
       label = new Kinetic.Text({

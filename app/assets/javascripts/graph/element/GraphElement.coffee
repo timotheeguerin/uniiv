@@ -4,10 +4,10 @@ State =
   ACTIVE: 2
 
 class GraphElement
-  constructor: (@group, label, @style, @graph) ->
+  constructor: (@group, @style, @graph) ->
     @ishover = false
     @ustate = State.DEFAULT
-    @label = label.replace("\\n", "\n");
+
     @on 'mouseenter', () =>
       @ishover = true
       @ustate = State.HOVER
@@ -41,6 +41,10 @@ class GraphElement
     @graph.update()
 
   applyStyle: (defaultStyle, stateStyle) ->
+    style = $.extend(true, {}, defaultStyle, stateStyle)
+    @computeStyle(style)
+
+  computeStyle: (style) ->
 
 #Get class accessible to other file
 window.GraphElement = GraphElement

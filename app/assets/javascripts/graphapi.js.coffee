@@ -168,10 +168,6 @@ class Graph
       @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
 
 
-
-
-
-
   addNode: (text, x, y, width, height, type, clazz) ->
     typeStyle = Ressources.style[type.toLowerCase()]
     customStyle = Ressources.style[clazz]
@@ -189,69 +185,18 @@ class Graph
     node.update()
 
   addEdge: (edge)   ->
-    style = Ressources.style['arrow']
-    points = edge.positions
-    spline = new Kinetic.Spline({
-      points: points,
-      stroke: 'black',
-      strokeWidth: 1,
-      lineCap: 'round',
-      tension: 1
+    typeStyle = Ressources.style['arrow']
+    customStyle = Ressources.style['']
+    style = $.extend({}, typeStyle, customStyle)
+
+    group = new Kinetic.Group({
+      x: 0
+      y: 0
     })
-    @group.add(spline)
+    @group.add(group)
+    edge = new EdgeElement(group, style, @can_graph, edge.positions, edge.arrow)
+    edge.update()
 
-    angle = 30
-    length = 14
-    angle = style.angle if style.angle?
-    length = style.length if style['length']?
-
-    if(edge.arrow == 0)
-      a = points[0]
-      b = points[1]
-      poly = @getTriangle(a, b, angle, length)
-      @group.add(poly)
-
-    if(style?)
-      if(style.color?)
-        spline.setStroke(style.color)
-        poly.setStroke(style.color)
-        poly.setFill(style.color)
-      if(style.width?)
-        spline.setStrokeWidth(style.width)
-        poly.setStrokeWidth(style.width)
-
-  getTriangle: (a, b, alpha, l) ->
-    angle = @angle(b, a)
-    beta = alpha * Math.PI / 180
-    c = {
-      x: parseFloat(a.x) + l * Math.cos(angle + beta / 2)
-      y: parseFloat(a.y) + l * Math.sin(angle + beta / 2)
-    }
-    d = {
-      x: parseFloat(a.x) + l * Math.cos(angle - beta / 2)
-      y: parseFloat(a.y) + l * Math.sin(angle - beta / 2)
-    }
-    poly = new Kinetic.Shape({
-      drawFunc: (canvas) ->
-        context = canvas.getContext();
-        context.beginPath();
-        context.moveTo(a.x, a.y);
-        context.lineTo(c.x, c.y);
-        #context.quadraticCurveTo(a.x, a.y, d.x, d.y);
-        context.lineTo(d.x, d.y)
-        context.closePath();
-        canvas.fillStroke(this);
-      fill: 'blue'
-    });
-    return poly
-
-
-  angle: (a, b) ->
-    v = {
-      x: a.x - b.x
-      y: a.y - b.y
-    }
-    return Math.acos((v.x) / Math.sqrt(Math.pow(v.x, 2) + Math.pow(v.y, 2)))
 
   getWidth: () ->
     return @group.getWidth()
