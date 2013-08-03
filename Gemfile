@@ -56,3 +56,5 @@ gem 'i18n-active_record', :github => 'timcolonel/i18n-active_record', :require =
 gem 'ruby-graphviz'
 
 gem 'json'
+
+gem 'thin'

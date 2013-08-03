@@ -13,32 +13,26 @@ entities:
   op_available - the colors for available operators
   
 node:
-  shape
-
-node_type:
-  normal
-  hover
-  active
-  type subproperties:
+  shape = circle/rect
+  state
     background
       color
+      cornerradius
+      border
+        width
+        color
+      image
+        src
+        offset {x y}
+      gradient
+        angle
+        colors []
     label
-      valign
       halign
+      valign
       color
-arrow:
+arrow
   color
-  width - the width of the line
-  length - the length of the arrow
-  angle - the angle of the arrow point
-op_unavailable:
-  normal
-  hover
-  active
-  type subproperties:
-    background
-      color
-    label
-      valign
-      halign
-      color
+  width
+  length
+  angle

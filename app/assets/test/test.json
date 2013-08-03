@@ -114,15 +114,13 @@
     },
     "arrow": {
         "normal": {
-            "color": "#bfbfbf",
+            "color": "#274d9b",
             "width": "3",
             "length": 15,
             "angle": "30"
         },
         "hover": {
-            "color": "green",
-            "length": 15,
-            "angle": "30"
+          "width": "5"
         }
     },
     "nodeImage": {
@@ -166,12 +164,11 @@
 
     },
     "cluster": {
+        "shape": "rect",
         "normal": {
             "background": {
-                "border": {
-                    "width": "3",
-                    "color": "black"
-                }
+               "color": "#70CEA8",
+               "cornerradius": "15"
             }
         }
     }
