@@ -1,6 +1,7 @@
 require 'graph/node'
 require 'graph/spline'
 require 'graph/graph'
+require 'graph/dot_graph'
 
 class GraphController < ApplicationController
   include GraphHelper
@@ -40,20 +41,23 @@ class GraphController < ApplicationController
   def generate_graph_from_group(group)
     g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true)
     map ={}
-    calulate_graph_from_group(g, g, group, map, {}, {})
+    dot_graph = DotGraph.new(g)
+    dot_graph.load_from_group(group)
+    puts 'NODE: ' + dot_graph.nodes_to_s
+    #calulate_graph_from_group(g, g, group, map, {}, {})
     # Create two nodes
 
 
     result = ''
     # Create an edge between the two nodes
-    g.output(:dot => String)
+    dot_graph.graph.output(:dot => String)
 
   end
 
   def calulate_graph_from_group(main_graph, g, group, map, in_graph, out)
-
     #Add all course and operation nodes
     group.courses.each do |course|
+
       course_id = course.id_to_s
       unless map.has_key?(course_id)
         course_node = g.add_node(course_id)
@@ -96,6 +100,8 @@ class GraphController < ApplicationController
       end
     end
 
+
+    #Get edges
     group.courses.each do |course|
       prerequisite = course.prerequisite
       unless prerequisite.nil?

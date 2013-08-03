@@ -65,10 +65,10 @@ class CourseNode < ActiveRecord::Base
 
   def is_linking_one_course? (courses)
     if operation == NodeOperation::NODE
-      courses.has_key?(course.id_to_s)
+      return courses.include?(course.id_to_s)
     else
       nodes.each do |node|
-        true if node.is_linking_one_course? (courses)
+        return true if node.is_linking_one_course?(courses)
       end
     end
     false
