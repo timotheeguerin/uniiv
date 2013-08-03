@@ -25,7 +25,6 @@
     "node_available": {
         "normal": {
             "background": {
-                "cornerradius": 5,
                 "color": "#274c9b"
             },
             "label": {
@@ -114,10 +113,17 @@
         }
     },
     "arrow": {
-      "color": "#bfbfbf",
-      "width": "2",
-      "length": 15,
-      "angle": "30"
+      "normal": {
+        "color": "#bfbfbf",
+        "width": "3",
+        "length": 15,
+        "angle": "30"
+      },
+      "hover":{
+         "color": "green",
+        "length": 15,
+        "angle": "30"
+      }
     },
     "nodeImage": {
         "normal": {
@@ -158,7 +164,14 @@
     },
     "requirement": {
 
+    },
+    "cluster":{
+      "normal":{
+        "border":{
+          "width": "3",
+          "color": "black"
+        }
+      }
     }
-
 }
 
