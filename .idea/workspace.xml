@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/ContainerElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/ContainerElement.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375561514762" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375562200278" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -49,7 +46,7 @@
     <file path="/ContainerElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375560402139" ignored="false" />
     <file path="/user.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375561922557" ignored="false" />
     <file path="/user_email.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375561624113" ignored="false" />
-    <file path="/20130803202529_create_user_emails.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375561643479" ignored="false" />
+    <file path="/20130803202529_create_user_emails.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375562241363" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,10 +98,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spline.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="spline.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/graph/spline.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="17" selection-start="352" selection-end="352" vertical-scroll-proportion="0.37423313">
+            <state line="16" column="17" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20130803202529_create_user_emails.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20130803202529_create_user_emails.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="33" selection-start="172" selection-end="172" vertical-scroll-proportion="0.13470681">
               <folding />
             </state>
           </provider>
@@ -190,8 +196,8 @@
         <option value="$PROJECT_DIR$/app/assets/test/test.json" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/ContainerElement.coffee" />
         <option value="$PROJECT_DIR$/app/models/user_email.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20130803202529_create_user_emails.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20130803202529_create_user_emails.rb" />
       </list>
     </option>
   </component>
@@ -983,7 +989,11 @@
       <created>1375559775715</created>
       <updated>1375559775715</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="graph&#10;graph size of container">
+      <created>1375562203019</created>
+      <updated>1375562203019</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1015,7 +1025,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13820705" sideWeight="0.7282492" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23906083" sideWeight="0.7282492" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23906083" sideWeight="0.7282492" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2717508" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -1173,13 +1183,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130803202529_create_user_emails.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="56" selection-start="267" selection-end="267" vertical-scroll-proportion="0.2868098">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user_email.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="2" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0">
@@ -1210,7 +1213,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/spline.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="17" selection-start="352" selection-end="352" vertical-scroll-proportion="0.37423313">
+        <state line="16" column="17" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130803202529_create_user_emails.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="33" selection-start="172" selection-end="172" vertical-scroll-proportion="0.13470681">
           <folding />
         </state>
       </provider>
