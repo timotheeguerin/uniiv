@@ -87,8 +87,8 @@
                 "color": "#97680d"
             }
         }
-      },
-      "node_taken": {
+    },
+    "node_taken": {
         "shape": "circle",
         "normal": {
             "background": {
@@ -113,17 +113,17 @@
         }
     },
     "arrow": {
-      "normal": {
-        "color": "#bfbfbf",
-        "width": "3",
-        "length": 15,
-        "angle": "30"
-      },
-      "hover":{
-         "color": "green",
-        "length": 15,
-        "angle": "30"
-      }
+        "normal": {
+            "color": "#bfbfbf",
+            "width": "3",
+            "length": 15,
+            "angle": "30"
+        },
+        "hover": {
+            "color": "green",
+            "length": 15,
+            "angle": "30"
+        }
     },
     "nodeImage": {
         "normal": {
@@ -155,23 +155,25 @@
     },
     "op": {
         "normal": {
-          "label": {
-                  "halign": "center",
-                  "valign": "center",
-                  "color": "black"
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "black"
             }
         }
     },
     "requirement": {
 
     },
-    "cluster":{
-      "normal":{
-        "border":{
-          "width": "3",
-          "color": "black"
+    "cluster": {
+        "normal": {
+            "background": {
+                "border": {
+                    "width": "3",
+                    "color": "black"
+                }
+            }
         }
-      }
     }
 }
 
