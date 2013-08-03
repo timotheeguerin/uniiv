@@ -24,7 +24,6 @@ class Spline
         end
         p = Point.new(x, y)
         position_array << p
-        puts 'POINT: ' + p.to_s
       end
     end
     Spline.new(position_array, arrow)
@@ -32,7 +31,6 @@ class Spline
 
   def -(point)
     @positions.each do |p|
-      puts 'Pi: ' + p.to_s
       p -= point
     end
     self

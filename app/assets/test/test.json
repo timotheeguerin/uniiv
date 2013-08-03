@@ -94,8 +94,8 @@
                 "color": "#97680d"
             }
         }
-      },
-      "node_taken": {
+    },
+    "node_taken": {
         "shape": "circle",
         "width": 100,
         "height": 200,
@@ -123,8 +123,14 @@
         }
     },
     "arrow": {
-      "color": "#dfdfdf",
-      "width": "2"
+        "normal": {
+            "color": "#dfdfdf",
+            "width": "2"
+        },
+        "hover": {
+            "color": "blue",
+            "width": "2"
+        }
     },
     "nodeImage": {
         "normal": {
@@ -158,10 +164,10 @@
         "width": 20,
         "height": 100,
         "normal": {
-          "label": {
-                  "halign": "center",
-                  "valign": "center",
-                  "color": "black"
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "black"
             }
         }
     },

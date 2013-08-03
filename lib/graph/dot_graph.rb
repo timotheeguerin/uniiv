@@ -19,7 +19,6 @@ class DotGraph
 
         subcourses = prerequisite.get_all_courses
         subcourses.each do |subcourse|
-          puts 'Cour: ' + subcourse.id_to_s
           add_course(subcourse, graph, false) #Add all dependency ouside of the subgraph if applicable
         end
       end
@@ -68,7 +67,6 @@ class DotGraph
     course_id = course.id_to_s
 
     unless @nodes.has_key?(course_id)
-      puts 'Add: ' + course_id
       course_node = graph.add_node(course_id)
       course_node[:label] = course.get_dot_name
       course_node[:shape] = 'circle'
