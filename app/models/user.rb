@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :emails, :class_name => UserEmail
+
   has_and_belongs_to_many :roles
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -12,11 +13,16 @@ class User < ActiveRecord::Base
     if (email = conditions.delete(:email))
       User.includes(:emails).where('user_emails.email = ?', email).first
     else
-      super(warden_conditions)
+      where(conditions).first
     end
   end
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
+  end
+
+
+  def permitted_params
+    params.permit!
   end
 end

@@ -1,4 +1,4 @@
-#=require graph/element/GraphElement
+#=require graph/element/NodeElement
 class ContainerElement extends NodeElement
 
 

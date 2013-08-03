@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130803203342) do
+ActiveRecord::Schema.define(version: 20130803202529) do
 
   create_table "course_exprs", force: true do |t|
     t.integer "node_id"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20130803203342) do
   create_table "user_emails", force: true do |t|
     t.string "email"
     t.boolean "validated"
+    t.boolean "primary"
     t.integer "university_id"
     t.integer "user_id"
     t.datetime "created_at"
@@ -155,6 +156,7 @@ ActiveRecord::Schema.define(version: 20130803203342) do
   add_index "user_emails", ["user_id"], name: "index_user_emails_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -168,6 +170,7 @@ ActiveRecord::Schema.define(version: 20130803203342) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

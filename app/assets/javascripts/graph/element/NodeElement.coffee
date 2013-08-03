@@ -1,3 +1,5 @@
+#=require graph/element/GraphElement
+
 class NodeElement extends GraphElement
   @label = ''
 
