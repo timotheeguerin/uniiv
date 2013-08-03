@@ -124,12 +124,11 @@
     },
     "arrow": {
         "normal": {
-            "color": "#dfdfdf",
+            "color": "blue",
             "width": "2"
         },
         "hover": {
-            "color": "blue",
-            "width": "2"
+            "color": "red"
         }
     },
     "nodeImage": {

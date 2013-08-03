@@ -26,9 +26,9 @@ class EdgeElement extends  GraphElement
       if(@side == 0)   #0 Begining, 1: End, 2: Both
         a = @points[0]
         b = @points[1]
-        triangle = @getTriangle(a, b, angle, length)
+        triangle = @createTriangle(a, b, angle, length)
         @group.add(triangle)
-    console.log('Styl: ' + JSON.stringify style)
+
     if(style?)
       if(style.color?)
         spline.setStroke(style.color)
@@ -38,7 +38,7 @@ class EdgeElement extends  GraphElement
         spline.setStrokeWidth(style.width)
         triangle.setStrokeWidth(style.width)
 
-  getTriangle: (a, b, alpha, l) ->
+  createTriangle: (a, b, alpha, l) ->
     angle = @angle(b, a)
     beta = alpha * Math.PI / 180
     c = {
@@ -59,7 +59,8 @@ class EdgeElement extends  GraphElement
         context.lineTo(d.x, d.y)
         context.closePath();
         canvas.fillStroke(this);
-      fill: 'blue'
+      fill: 'black'
+      name: 'triangle'
     });
     return poly
 
