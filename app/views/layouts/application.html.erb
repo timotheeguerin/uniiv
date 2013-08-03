@@ -3,7 +3,7 @@
 <head>
   <title>Uniiv</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <script>
@@ -51,13 +51,14 @@
     </div>
   </div>
 
+
+  <% if notice %>
+      <div class="alert alert-notice"><%= notice %></div>
+  <% end %>
+  <% if alert %>
+      <div class="alert alert-error"><%= alert %></div>
+  <% end %>
   <div id="content">
-    <% if notice %>
-        <div class="alert alert-notice"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-        <div class="alert alert-error"><%= alert.sub("|", "<br>").html_safe %></div>
-    <% end %>
     <%= yield %>
   </div>
 </div>
@@ -65,57 +66,11 @@
 
 <div id="nav_bottom">
   <div id="nav_bottom_container">
-    <table id="footer_table">
-      <tr class="footer_table_heading">
-        <th>heading one</th>
-        <th>heading two</th>
-        <th>heading three</th>
-        <th> heading four</th>
-        <th>heading five</th>
-      </tr>
-      <tr>
-        <td>
-          <ul class="footer_list">
-            <li>item one</li>
-            <li>item two</li>
-            <li>item three</li>
-            <li>item four</li>
-          </ul>
-        </td>
-        <td>
-          <ul class="footer_list">
-            <li>item one</li>
-            <li>item two</li>
-            <li>item three</li>
-            <li>item four</li>
-          </ul>
-        </td>
-        <td>
-          <ul class="footer_list">
-            <li>item one</li>
-            <li>item two</li>
-            <li>item three</li>
-            <li>item four</li>
-          </ul>
-        </td>
-        <td>
-          <ul class="footer_list">
-            <li>item one</li>
-            <li>item two</li>
-            <li>item three</li>
-            <li>item four</li>
-          </ul>
-        </td>
-        <td>
-          <ul class="footer_list">
-            <li>item one</li>
-            <li>item two</li>
-            <li>item three</li>
-            <li>item four</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
+    footer<br>
+    footer<br>
+    footer<br>
+    footer<br>
+    footer<br>
   </div>
 </div>
 </body>
