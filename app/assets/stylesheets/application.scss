@@ -81,7 +81,7 @@ $login_width: 400px;
  * ids
 */
 #content {
-  padding-top: $nav_height;
+  padding-top: $nav_height ;
   padding-bottom: $page_footer_height;
 }
 
@@ -364,4 +364,9 @@ input[type="submit"]:active, button:active {
 canvas
 {
   z-index: 0;
+}
+
+div:empty
+{
+  display:none;
 }
