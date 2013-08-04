@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :emails, :class_name => UserEmail
 
   has_and_belongs_to_many :roles
+
+  has_and_belongs_to_many :programs
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
