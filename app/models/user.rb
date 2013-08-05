@@ -5,11 +5,13 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :programs
 
+  has_many :courses_completed, :class_name=> Course, through: :user_completed_courses
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
