@@ -52,13 +52,14 @@
   </div>
 
 
-  <% if notice %>
-      <div class="alert alert-notice"><%= notice %></div>
-  <% end %>
-  <% if alert %>
-      <div class="alert alert-error"><%= alert %></div>
-  <% end %>
+  
   <div id="content">
+    <% if notice %>
+        <div class="alert alert-notice"><%= raw(notice) %></div>
+    <% end %>
+    <% if alert %>
+        <div class="alert alert-error"><%= raw(alert) %></div>
+    <% end %>
     <%= yield %>
   </div>
 </div>
