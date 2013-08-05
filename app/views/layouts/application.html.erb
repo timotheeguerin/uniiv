@@ -21,7 +21,7 @@
             <% if can? :access, :rails_admin %>
                 <%= link_to "Dash", rails_admin.dashboard_path %>&nbsp;&nbsp;
             <% end %>
-            <%= link_to edit_user_registration_path do %>
+            <%= link_to user_dashboard_index_path do %>
                 <strong><%= current_user.email %></strong>
             <% end %>
             |

@@ -1,0 +1,14 @@
+<div class="content_box login_content">
+  <h2>Choose your program</h2>
+  <%= form_tag do %>
+    <% if @faculty.nil? %>
+      You must select a faculty first.
+    <% else %>
+      <%= select_tag 'fac', options_for_select(@faculty.programs), { :class => "form_input_long middle form_biginput" } %>
+      <div class="right">
+        <%= submit_tag("Next") %>
+      </div>
+    <% end %>
+<% end %>
+</div>
+

@@ -11,8 +11,13 @@ class GraphController < ApplicationController
     nodes = {}
     current_user.programs.each do |program|
       program.groups.each do |group|
+        
+
         dot_graph = generate_graph_from_group(group)
         nodes = nodes.merge(dot_graph.nodes)
+        puts '==============================================='
+        puts dot_graph.output
+        puts 'GROUP: ' + group.name
         graph = generate_graph_from_dot(dot_graph.output, nodes)
 
         graphs_json << graph

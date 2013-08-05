@@ -1,4 +1,5 @@
 Uniiv::Application.routes.draw do
+  get "user_dashboard/index"
   get "user_programs/show"
   get "user_programs/new"
   get "user_programs/create"

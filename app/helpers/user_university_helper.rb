@@ -1,0 +1,2 @@
+module UserUniversityHelper
+end
