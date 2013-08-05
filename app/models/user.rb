@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  belongs_to :university, :class_name => University
+  belongs_to :faculty, :class_name => Faculty
+
   has_many :emails, :class_name => UserEmail
 
   has_and_belongs_to_many :roles
