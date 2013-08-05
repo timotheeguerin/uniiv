@@ -1,6 +1,25 @@
 Uniiv::Application.routes.draw do
+  get "user_programs/show"
+  get "user_programs/new"
+  get "user_programs/create"
+  get "user_programs/edit"
+  get "user_programs/update"
+  get "user_programs/delete"
+  get "user_faculty/show"
+  get "user_faculty/new"
+  get "user_faculty/create"
+  get "user_faculty/edit"
+  get "user_faculty/update"
+  get "user_faculty/delete"
+  get "user_university/show"
+  get "user_university/new"
+  get "user_university/create"
+  get "user_university/edit"
+  get "user_university/update"
+  get "user_university/delete"
   get "graph/index"
   get "test/index"
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root to: "welcome#index"
@@ -9,6 +28,7 @@ Uniiv::Application.routes.draw do
 
   get 'graph/:id' => 'graph#index'
   get 'graph/:id/data' => 'graph#data'
+  get 'mygraph/data' => 'graph#user_data'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
