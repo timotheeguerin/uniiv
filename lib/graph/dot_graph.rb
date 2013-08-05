@@ -1,9 +1,10 @@
 class DotGraph
-  attr_accessor :graph
+  attr_accessor :graph, :nodes
 
-  def initialize(graph)
+  def initialize(graph, current_user)
     @nodes = {}
     @graph = graph
+    @current_user = current_user
   end
 
   def load_from_group(group, graph = @graph)
@@ -67,10 +68,11 @@ class DotGraph
     course_id = course.id_to_s
 
     unless @nodes.has_key?(course_id)
+      state = course.get_course_state(@current_user)
       course_node = graph.add_node(course_id)
       course_node[:label] = course.get_dot_name
       course_node[:shape] = 'circle'
-      @nodes[course_id] = {:node => course_node, :in => in_graph}
+      @nodes[course_id] = {:node => course_node, :in => in_graph, :state => state}
     end
   end
 
@@ -107,5 +109,9 @@ class DotGraph
       result = result + k + ' => ' + node[:in].to_s + ', '
     end
     result
+  end
+
+  def output
+    @graph.output(:dot => String)
   end
 end

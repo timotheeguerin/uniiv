@@ -13,7 +13,7 @@ $(document).ready ->
     container: 'canvas-container'
   })
 
-  graph.load "/graph/mygraph/data", () ->
+  graph.load "/mygraph/data", () ->
 
   graph.update()
 
@@ -171,12 +171,12 @@ class Graph
     for node in data.nodes                         #Load all nodes
       x = node.position.x - node.dimension.x / 2
       y = node.position.y - node.dimension.y / 2
-      @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node['class'])
+      @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node.clazz)
 
 
-  addNode: (text, x, y, width, height, type, clazz) ->
+  addNode: (text, x, y, width, height, type, clazz = '') ->
     typeStyle = Ressources.style[type.toLowerCase()]
-    customStyle = Ressources.style[clazz]
+    customStyle = Ressources.style[clazz.toLowerCase()]
     computedStyle = $.extend({}, typeStyle, customStyle)
 
     group = new Kinetic.Group({

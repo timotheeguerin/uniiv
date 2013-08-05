@@ -98,6 +98,28 @@ class CourseNode < ActiveRecord::Base
     end
   end
 
+
+  def requirements_completed?(user)
+    case operation
+      when NodeOperation::OR
+        nodes.each do |n|
+          if n.requirements_completed?(user)
+            return true
+          end
+        end
+        return false
+      when NodeOperation::AND
+        nodes.each do |n|
+          unless n.requirements_completed?(user)
+            return false
+          end
+        end
+        return true
+      else
+        return user.has_completed_course?(course)
+    end
+  end
+
 end
 
 

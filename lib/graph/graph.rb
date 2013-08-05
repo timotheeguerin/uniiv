@@ -18,7 +18,7 @@ class Graph
     g
   end
 
-  def self.from_dot(dot_graph)
+  def self.from_dot(dot_graph, nodes)
     rect = dot_graph[:bb].to_ruby
 
     g_pos = Point::pos_from_array(rect)
@@ -27,8 +27,8 @@ class Graph
     g = Graph.new('', g_pos, dimension)
 
     dot_graph.each_node do |node_id, node|
-      n = Node::from_graphviz_node(node_id, node, g)
-
+      state = nodes[node_id][:state]
+      n = Node::from_graphviz_node(node_id, node, g, state)
       g.nodes << n
     end
 
@@ -40,7 +40,7 @@ class Graph
     end
 
     dot_graph.each_graph do |dot_subgraph_id, dot_subgraph|
-      g.add_graph(Graph::from_dot(dot_subgraph))
+      g.add_graph(Graph::from_dot(dot_subgraph, nodes))
     end
     g
   end

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -34,4 +34,19 @@ class User < ActiveRecord::Base
   def permitted_params
     params.permit!
   end
+
+
+  def has_completed_course?(course)
+    completed_courses.include?(course)
+  end
+
+  def is_taking_course?(course)
+    completed_courses.include?(course)
+  end
+
+  def requirements_completed?(course)
+    course.requirements_completed?(self)
+  end
+
+  alias :can_take_course? :requirements_completed?
 end

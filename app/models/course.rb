@@ -18,4 +18,35 @@ class Course < ActiveRecord::Base
   def get_dot_name
     subject.to_s + '\n' + code.to_s
   end
+
+  def requirements_completed?(user)
+    unless prerequisite.nil? or prerequisite.requirements_completed?(user)
+      return false
+    end
+    unless  corequisite.nil? or corequisite.requirements_completed?(user)
+      return false
+    end
+    true
+  end
+
+  alias :can_take? :requirements_completed?
+
+  def get_course_state(user)
+    if user.has_completed_course?(self)
+      CourseState::COMPLETED
+    elsif user.is_taking_course?(self)
+      CourseState::TAKING
+    elsif user.can_take_course?(self)
+      CourseState::AVAILABLE
+    else
+      CourseState::UNAVAILABLE
+    end
+  end
+end
+
+class CourseState
+  COMPLETED = 'completed'
+  TAKING = 'taking'
+  AVAILABLE = 'available'
+  UNAVAILABLE = 'unavailable'
 end

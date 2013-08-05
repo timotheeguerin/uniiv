@@ -75,4 +75,8 @@ class CourseExpr < ActiveRecord::Base
     end
     edges
   end
+
+  def requirements_completed?(user)
+    node.requirements_completed?(user)
+  end
 end
