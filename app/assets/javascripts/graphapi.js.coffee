@@ -13,7 +13,7 @@ $(document).ready ->
     container: 'canvas-container'
   })
 
-  graph.load "/graph/2/data", () ->
+  graph.load "/graph/mygraph/data", () ->
 
   graph.update()
 
