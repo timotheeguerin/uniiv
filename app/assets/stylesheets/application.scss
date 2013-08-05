@@ -157,10 +157,6 @@ $login_width: 400px;
   width: $page_width;
 }
 
-#login_content {
-  width: $login_width;
-}
-
 #push {
   height: $page_footer_height;
 }
@@ -273,6 +269,10 @@ $login_width: 400px;
 
 .small-text {
   font-size: 12px;
+}
+
+.login_content {
+  width: $login_width;
 }
 
 /*

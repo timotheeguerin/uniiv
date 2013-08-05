@@ -37,6 +37,20 @@ class GraphController < ApplicationController
     render :json => json.to_json
   end
 
+  def user_data
+    group = ProgramGroup.find(2)
+
+    output = generate_graph_from_group(group)
+    @dot = output
+    graph_json = generate_json_from_dot(output)
+    json = {}
+    style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
+
+    json[:style] = style
+    json[:graphs] = [graph_json]
+
+    render :json => json.to_json
+  end
 
   def generate_graph_from_group(group)
     g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true)
