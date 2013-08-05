@@ -6,21 +6,21 @@ State =
 class GraphElement
   constructor: (@group, @style, @graph) ->
     @ishover = false
-    @ustate = State.DEFAULT
+    @state = State.DEFAULT
 
     @on 'mouseenter', () =>
       @ishover = true
-      @ustate = State.HOVER
+      @state = State.HOVER
     @on 'mouseleave', () =>
       @ishover = false
-      @ustate = State.DEFAULT
+      @state = State.DEFAULT
     @on 'mousedown', () =>
-      @ustate = State.ACTIVE
+      @state = State.ACTIVE
     @on 'mouseup', () =>
       if @ishover
-        @ustate = State.HOVER
+        @state = State.HOVER
       else
-        @ustate = State.DEFAULT
+        @state = State.DEFAULT
 
   on: (event, callback) ->
     @group.on(event, () =>
@@ -29,7 +29,7 @@ class GraphElement
     )
 
   update: ->
-    switch @ustate
+    switch @state
       when State.DEFAULT
         @applyStyle(@style.normal)
       when State.HOVER
@@ -45,6 +45,16 @@ class GraphElement
     @computeStyle(style)
 
   computeStyle: (style) ->
+
+  onStateChange: (callback) ->
+    @on 'mouseenter', () ->
+      callback()
+    @on 'mouseleave', () ->
+      callback()
+    @on 'mousedown', () ->
+      callback()
+    @on 'mouseup', () ->
+      callback()
 
 #Get class accessible to other file
 window.GraphElement = GraphElement

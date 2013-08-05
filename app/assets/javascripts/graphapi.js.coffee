@@ -67,7 +67,8 @@ class CanGraph
 
     @ressources = {}
     @graphs = []
-
+    @nodes = []
+    @edges = []
     @container = new Kinetic.Group(
       x: 0
       y: 0
@@ -105,8 +106,12 @@ class CanGraph
       )
       g = new Graph(group, @, graph)
       @graphs.push(g)
+      @nodes = @nodes.concat g.nodes #Add the list of nodes
+      @edges = @edges.concat g.edges #Add the list of edges
+
       @container.add(group)
 
+    @setupNodesListener()
 
     maxWidth = @viewport.canvasSize.x if maxWidth < @viewport.canvasSize.x
     maxHeight = @viewport.canvasSize.y if maxHeight < @viewport.canvasSize.y
@@ -132,11 +137,25 @@ class CanGraph
     y = html_container.height()
     @viewport.resize(x, y)
 
+  setupNodesListener: () ->
+    for node in @nodes
+      @setupNodeListener(node)
+
+  setupNodeListener: (node) ->
+    node.onStateChange () =>
+      for n in @nodes
+        if n != node and n.id == node.id
+          n.state = node.state
+          n.update()
+
 
 class Graph
   constructor: (@group, @can_graph, data) ->
     @subgraphs = []
+    @nodes = []
+    @edges = []
     @load(data)
+
 
 
   load: (data) ->
@@ -162,7 +181,10 @@ class Graph
       container = new NodeElement(container_group, '', style, @can_graph)
       container.update()
 
+
       sub_g = new Graph(group, @can_graph, subgraph)
+      @nodes = @nodes.concat sub_g.nodes #Add the list of nodes
+      @edges = @edges.concat sub_g.edges #Add the list of edges
       @subgraphs.push(sub_g)
 
     for edge in data.edges
@@ -171,10 +193,10 @@ class Graph
     for node in data.nodes                         #Load all nodes
       x = node.position.x - node.dimension.x / 2
       y = node.position.y - node.dimension.y / 2
-      @addNode(node.label, x, y, node.dimension.x, node.dimension.y, node.type, node.clazz)
+      @addNode(node.id, node.label, x, y, node.dimension.x, node.dimension.y, node.type, node.clazz)
 
 
-  addNode: (text, x, y, width, height, type, clazz = '') ->
+  addNode: (id, text, x, y, width, height, type, clazz = '') ->
     typeStyle = Ressources.style[type.toLowerCase()]
     customStyle = Ressources.style[clazz.toLowerCase()]
     computedStyle = $.extend({}, typeStyle, customStyle)
@@ -187,8 +209,10 @@ class Graph
     })
 
     @group.add(group)
-    node = new NodeElement(group, text, computedStyle, @can_graph)
+    node = new NodeElement(group, text, computedStyle, @can_graph, id)
     node.update()
+
+    @nodes.push(node)
 
   addEdge: (edge)   ->
     typeStyle = Ressources.style['arrow']
@@ -202,6 +226,9 @@ class Graph
     @group.add(group)
     edge = new EdgeElement(group, style, @can_graph, edge.positions, edge.arrow)
     edge.update()
+
+    @edges.push(edge)
+
 
 
   getWidth: () ->

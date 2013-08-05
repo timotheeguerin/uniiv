@@ -3,7 +3,7 @@
 class NodeElement extends GraphElement
   @label = ''
 
-  constructor: (group, label, style, graph) ->
+  constructor: (group, label, style, graph, @id) ->
     super group, style, graph
     @label = label.replace("\\n", "\n")
 
