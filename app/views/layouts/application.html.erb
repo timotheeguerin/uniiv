@@ -6,22 +6,6 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<script>
-    $(window).bind("load", function () {
-        var footerHeight = 0, footerTop = 0, $footer = $("#nav_bottom");
-        positionFooter();
-        function positionFooter() {
-            footerHeight = $footer.height();
-            ooterTop = ($(window).scrollTop() + $(window).height() - footerHeight) + "px";
-            if (($(document.body).height() + footerHeight) < $(window).height()) {
-                $footer.css({position: "absolute"}).css("top", "footerTop")
-            } else {
-                $footer.css({position: "static" })
-            }
-        }
-
-        $(window).scroll(positionFooter).resize(positionFooter)
-    });</script>
 
 <body>
 <div id="wrapper">

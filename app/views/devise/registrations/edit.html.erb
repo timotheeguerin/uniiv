@@ -1,24 +1,26 @@
 <div id="login_content" class="content_box">
   <h2>Add Emails</h2>
 
-  <%= form_tag do |f| %>
+  <%= form_for :emails do |f| %>
       <div class="form_container"><input name="email" type="text" class="form_input_long middle form_biginput" placeholder="Enter the email you want to add!" s/></div>
-      
-
+      <div class="form_container"><%= f.select(:university, University.all, {} ,{ :class => "form_input_long middle form_biginput", :style => "border-radius: 5px;border:1px solid #d5d5d5;"}) %></div>
+      <% userarg = current_user %>
       <div class="right"><%= submit_tag("Add") %></div>
   <% end %>
 </div>
 
-<div id="login_content" class="content_box">
-  <h2>Delete Emails</h2>
-  
-  <%= form_for :emails do |f| %>
+<% if current_user.emails.size > 1 %>
+  <div id="login_content" class="content_box">
+    <h2>Delete Emails</h2>
+    
+    <%= form_for :emails do |f| %>
 
-      <div class="form_container"><%= f.select :emails, UserEmail.all.where('user_id' => current_user), :class => "form_input_long middle form_biginput" %></div>
-
-      <div class="right"><%= f.submit "Delete" %></div>
-  <% end %>
-</div>
+        <div class="form_container"><%= f.select(:emails, UserEmail.all.where('user_id' => current_user), {} ,{ :class => "form_input_long middle form_biginput", :style => "border-radius: 5px;border:1px solid #d5d5d5;"}) %></div>
+       
+        <div class="right"><%= f.submit "Delete" %></div>
+    <% end %>
+  </div>
+<% end %>
 
 <div id="login_content" class="content_box">
   <h2>Edit Password</h2>
