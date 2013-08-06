@@ -95,11 +95,10 @@ class Packer
     sorted_graphs.each do |subgraph|
       subgraph.position.x += margin
       subgraph.position.y = @root.height - subgraph.dimension.y - subgraph.position.y + margin
-
     end
 
-    graph.dimension.x = @root.width
-    graph.dimension.y = @root.height
+    graph.dimension.x = @root.width + 2 * margin
+    graph.dimension.y = @root.height + 2 * margin
 
   end
 end
