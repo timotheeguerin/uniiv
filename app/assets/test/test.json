@@ -178,6 +178,7 @@
             "background": {
                "cornerradius": "15",
                "border":{
+                "color": "#000000"
               }
             }
         }
