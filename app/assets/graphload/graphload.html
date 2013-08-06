@@ -1,0 +1,159 @@
+<style>
+
+.graph-loading {
+	font-size: 150px;
+    padding: 50px;
+    margin: 0px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border-radius: 100%;
+    list-style: none;
+    }
+
+.graph-loading li {
+    position: absolute;
+    width: .2em;
+    height: .2em;
+    border-radius: 50%;
+}
+
+.graph-loading li:nth-child(1) {
+    left: 50%;
+    top: 0;
+    margin: 0;
+    background: #274C9B;
+    -webkit-transform-origin: 50% 225%;
+    -moz-transform-origin: 50% 225%;
+    -ms-transform-origin: 50% 225%;
+    -o-transform-origin: 50% 225%;
+    transform-origin: 50% 225%;
+    -webkit-animation: 
+        rota 1.13s linear infinite,
+        opa 3.67s ease-in-out infinite alternate;
+    -moz-animation: 
+        rota 1.13s linear infinite,
+        opa 3.67s ease-in-out infinite alternate;
+    -ms-animation: 
+        rota 1.13s linear infinite,
+        opa 3.67s ease-in-out infinite alternate;
+    -o-animation: 
+        rota 1.13s linear infinite,
+        opa 3.67s ease-in-out infinite alternate;
+    animation: 
+        rota 1.13s linear infinite,
+        opa 3.67s ease-in-out infinite alternate;
+}
+
+.graph-loading li:nth-child(2) {
+    top: 50%; 
+    right: 0;
+    margin: 0;
+    background: #1A9E69;
+    -webkit-transform-origin: -150% 50%;
+    -moz-transform-origin: -150% 50%;
+    -ms-transform-origin: -150% 50%;
+    -o-transform-origin: -150% 50%;
+    transform-origin: -150% 50%;
+    -webkit-animation: 
+        rota 1.86s linear infinite,
+        opa 4.29s ease-in-out infinite alternate;
+    -moz-animation: 
+        rota 1.86s linear infinite,
+        opa 4.29s ease-in-out infinite alternate;
+    -ms-animation: 
+        rota 1.86s linear infinite,
+        opa 4.29s ease-in-out infinite alternate;
+    -o-animation: 
+        rota 1.86s linear infinite,
+        opa 4.29s ease-in-out infinite alternate;
+    animation: 
+        rota 1.86s linear infinite,
+        opa 4.29s ease-in-out infinite alternate;
+}
+
+.graph-loading li:nth-child(3) {
+    left: 50%; 
+    bottom: 0;
+    margin: 0;
+    background: #E86027;
+    -webkit-transform-origin: 50% -150%;
+    -moz-transform-origin: 50% -150%;
+    -ms-transform-origin: 50% -150%;
+    -o-transform-origin: 50% -150%;
+    transform-origin: 50% -150%;
+    -webkit-animation: 
+        rota 1.45s linear infinite,
+        opa 5.12s ease-in-out infinite alternate;
+    -moz-animation: 
+        rota 1.45s linear infinite,
+        opa 5.12s ease-in-out infinite alternate;
+    -ms-animation: 
+        rota 1.45s linear infinite,
+        opa 5.12s ease-in-out infinite alternate;
+    -o-animation: 
+        rota 1.45s linear infinite,
+        opa 5.12s ease-in-out infinite alternate;
+    animation: 
+        rota 1.45s linear infinite,
+        opa 5.12s ease-in-out infinite alternate;
+}
+
+.graph-loading li:nth-child(4) {
+    top: 50%; 
+    left: 0%;
+    margin: 0;
+    background: #E8A627;
+    -webkit-transform-origin: 250% 50%;
+    -moz-transform-origin: 250% 50%;
+    -ms-transform-origin: 250% 50%;
+    -o-transform-origin: 250% 50%;
+    transform-origin: 250% 50%;
+    -webkit-animation: 
+        rota 1.72s linear infinite,
+        opa 5.25s ease-in-out infinite alternate;
+    -moz-animation: 
+        rota 1.72s linear infinite,
+        opa 5.25s ease-in-out infinite alternate;
+    -ms-animation: 
+        rota 1.72s linear infinite,
+        opa 5.25s ease-in-out infinite alternate;
+    -o-animation: 
+        rota 1.72s linear infinite,
+        opa 5.25s ease-in-out infinite alternate;
+    animation: 
+        rota 1.72s linear infinite,
+        opa 5.25s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes rota {
+    to { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes rota {
+    to { -moz-transform: rotate(360deg); }
+}
+
+@-ms-keyframes rota {
+    to { -ms-transform: rotate(360deg); }
+}
+
+@-o-keyframes rota {
+    to { -o-transform: rotate(360deg); }
+}
+
+@keyframes rota {
+    to { transform: rotate(360deg); }
+}
+
+
+</style>
+
+<span style="display:inline-block;">
+    <ul class="graph-loading">
+	    <li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</span>
