@@ -178,6 +178,16 @@
             "background": {
                "cornerradius": "15",
                "border":{
+              }
+            }
+        }
+    },
+    "program": {
+        "shape": "rect",
+        "normal": {
+            "background": {
+               "cornerradius": "15",
+               "border":{
                 "color": "#000000"
               }
             }
