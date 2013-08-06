@@ -92,12 +92,12 @@ class Packer
       end
     end
 
-    graph.dimension.x = @root.width + margin #+ 2 * margin
-    graph.dimension.y = @root.height + margin #+ 2 * margin
+    graph.dimension.x = @root.width - margin #+ 2 * margin
+    graph.dimension.y = @root.height - margin #+ 2 * margin
 
     sorted_graphs.each do |subgraph|
-      subgraph.position.x += margin
-      subgraph.position.y = graph.dimension.y - subgraph.dimension.y - subgraph.position.y - margin
+      #subgraph.position.x += margin
+      subgraph.position.y = graph.dimension.y - subgraph.dimension.y - subgraph.position.y #- margin
     end
 
   end

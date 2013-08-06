@@ -32,8 +32,8 @@ class GraphController < ApplicationController
       end
       p = Packer.new
       prg_graph.type = 'program'
-      graph.add_padding(padding)
       p.pack_graph(prg_graph, margin)
+      prg_graph.add_padding(padding)
       graphs_json << prg_graph
     end
 
