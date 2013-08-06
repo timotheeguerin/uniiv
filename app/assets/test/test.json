@@ -171,5 +171,16 @@
                "cornerradius": "15"
             }
         }
+    },
+    "group": {
+        "shape": "rect",
+        "normal": {
+            "background": {
+               "cornerradius": "15",
+               "border":{
+                "color": "#000000"
+              }
+            }
+        }
     }
 }

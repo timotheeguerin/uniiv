@@ -34,17 +34,16 @@ $graph_box_border: #dfdfdf;
 {
   box-sizing: border-box;
   position: absolute;
-  bottom: 0px;
+  bottom: 5px;
 }
 
 hr{
-    border: 0;
-    height: 1px;
-    background: $graph_box_border;
-    background-image: -webkit-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
-    background-image:    -moz-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
-    background-image:     -ms-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
-    background-image:      -o-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
+  width:  $graph_right_box_width - 2px;
+  position: relative;
+  left: -10px;
+  border: 0;
+  height: 1px;
+  background-color: $graph_box_border;
 }
 
 canvas
