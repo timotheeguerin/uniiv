@@ -7,7 +7,7 @@
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375804307869" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375808043027" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -54,7 +54,7 @@
     <file path="/GraphElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375737243801" ignored="false" />
     <file path="/NodeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375737634096" ignored="false" />
     <file path="/Packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375803610584" ignored="false" />
-    <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375805079399" ignored="false" />
+    <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375810496125" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,19 +97,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sfe.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sfe.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="8" selection-start="29" selection-end="29" vertical-scroll-proportion="2.3076923">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="packer.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="85" selection-start="2501" selection-end="2501" vertical-scroll-proportion="0.5746951">
+            <state line="74" column="58" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.20731707">
               <folding />
             </state>
           </provider>
@@ -954,7 +945,11 @@
       <created>1375804310211</created>
       <updated>1375804310211</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="graph: program packing">
+      <created>1375808046202</created>
+      <updated>1375808046202</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1084,11 +1079,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/test/jsondoc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="20" selection-start="586" selection-end="586" vertical-scroll-proportion="0.3398058" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="41" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0">
@@ -1179,9 +1169,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="23" selection-start="2835" selection-end="2841" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="85" selection-start="2501" selection-end="2501" vertical-scroll-proportion="0.5746951">
+        <state line="74" column="58" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.20731707">
           <folding />
         </state>
       </provider>

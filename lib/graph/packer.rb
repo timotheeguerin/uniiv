@@ -78,20 +78,24 @@ class Packer
     end
 
     sorted_graphs.each do |subgraph|
-      node = find_node(@root, subgraph.dimension.x, subgraph.dimension.y)
+      width = subgraph.dimension.x + margin
+      height = subgraph.dimension.y + margin
+      node = find_node(@root, width, height)
       if node.nil?
-        node = grow_node(subgraph.dimension.x, subgraph.dimension.y)
+        node = grow_node(width, height)
         subgraph.position.x = node.x
         subgraph.position.y = node.y
       else
-        node = split_node(node, subgraph.dimension.x, subgraph.dimension.y)
+        node = split_node(node, width, height)
         subgraph.position.x = node.x
         subgraph.position.y = node.y
       end
     end
 
     sorted_graphs.each do |subgraph|
-      subgraph.position.y = @root.height - subgraph.dimension.y - subgraph.position.y
+      subgraph.position.x += margin
+      subgraph.position.y = @root.height - subgraph.dimension.y - subgraph.position.y + margin
+
     end
 
     graph.dimension.x = @root.width
