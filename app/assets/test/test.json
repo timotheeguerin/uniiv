@@ -178,7 +178,6 @@
             "background": {
                "cornerradius": "15",
                "border":{
-                "color": "#000000"
               }
             }
         }
@@ -189,7 +188,6 @@
             "background": {
                "cornerradius": "15",
                "border":{
-                "color": "#000000"
               }
             }
         }
