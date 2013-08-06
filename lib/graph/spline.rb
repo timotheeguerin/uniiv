@@ -29,6 +29,13 @@ class Spline
     Spline.new(position_array, arrow)
   end
 
+  def +(point)
+    @positions.each do |p|
+      p += point
+    end
+    self
+  end
+
   def -(point)
     @positions.each do |p|
       p -= point

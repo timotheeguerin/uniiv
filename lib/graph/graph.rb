@@ -47,5 +47,25 @@ class Graph
     g
   end
 
+  def add_padding(padding)
+    point = Point.new(padding, padding)
+    move_nodes(point)
+    move_edges(point)
+    @subgraphs.each do |subgraph|
+      subgraph.position += point
+    end
+    @dimension += point * 2
+  end
 
+  def move_nodes(point)
+    @nodes.each do |node|
+      node.position += point
+    end
+  end
+
+  def move_edges(point)
+    @edges.each do |edge|
+      edge += point
+    end
+  end
 end

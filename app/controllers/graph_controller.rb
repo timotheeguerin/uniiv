@@ -13,8 +13,10 @@ class GraphController < ApplicationController
     nodes = {}
 
     style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
-
-    margin = 30
+    margin = style[:margin]
+    padding = style[:padding]
+    margin = 30 if margin.nil?
+    padding = 15 if padding.nil?
 
     current_user.programs.each do |program|
       prg_graph = Graph.new(program.name)
@@ -24,11 +26,13 @@ class GraphController < ApplicationController
         graph = generate_graph_from_dot(dot_graph.output, nodes)
         unless graph.dimension.x == 0 and graph.dimension.y == 0
           graph.type = 'group'
+          graph.add_padding(padding)
           prg_graph.subgraphs << graph
         end
       end
       p = Packer.new
       prg_graph.type = 'program'
+      graph.add_padding(padding)
       p.pack_graph(prg_graph, margin)
       graphs_json << prg_graph
     end

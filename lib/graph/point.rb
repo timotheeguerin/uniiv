@@ -34,9 +34,21 @@ class Point
   end
 
 
+  def + (point)
+    @x += point.x
+    @y += point.y
+    self
+  end
+
   def - (point)
     @x -= point.x
     @y -= point.y
+    self
+  end
+
+  def * (k)
+    @x *= k
+    @y *= k
     self
   end
 
