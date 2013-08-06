@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -37,11 +37,21 @@ class User < ActiveRecord::Base
 
 
   def has_completed_course?(course)
-    completed_courses.include?(course)
+    completed_courses.each do |c|
+      if c.course == course
+        return true
+      end
+    end
+    return false
   end
 
   def is_taking_course?(course)
-    completed_courses.include?(course)
+    taking_courses.each do |c|
+      if c.course == course
+        return true
+      end
+    end
+    return false
   end
 
   def requirements_completed?(course)

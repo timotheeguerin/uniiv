@@ -310,6 +310,13 @@ h4{
   color: #555555;
 }
 
+h5{
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: #555555;
+}
 
 * {
   text-rendering: optimizelegibility;
@@ -381,9 +388,4 @@ input[type="submit"]:active, button:active {
 canvas
 {
   z-index: 0;
-}
-
-div:empty
-{
-  display:none;
 }

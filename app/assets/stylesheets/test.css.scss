@@ -2,12 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$graph_width: 900px;
+$box_bg: #ffffff;
+$graph_right_box_width: 285px;
+$graph_box_border: #dfdfdf;
 
 #canvas-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: $graph_width;
-  border-left: 1px solid #dbdbdb;
-  border-right: 1px solid #dbdbdb;
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0px;
+  border: none;
+  width: 900px;
+  width: calc(100% - #{$graph_right_box_width});
+  width: -webkit-calc(100% - #{$graph_right_box_width});
+}
+
+#graph_right_box
+{
+  height: 100%;
+  box-sizing: border-box;
+  float: right;
+  padding: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: $box_bg;
+  width: $graph_right_box_width - 1px;
+  border-left: 1px solid $graph_box_border;
+}
+
+#graph_right_help
+{
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background: $graph_box_border;
+    background-image: -webkit-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
+    background-image:    -moz-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
+    background-image:     -ms-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
+    background-image:      -o-linear-gradient(left, #cccccc, $graph_box_border, #cccccc); 
+}
+
+canvas
+{
+  margin: 0px;
+  padding: 0px;
 }

@@ -25,7 +25,7 @@
     "node_available": {
         "normal": {
             "background": {
-                "color": "#274c9b"
+                "color": "#1a9e69"
             },
             "label": {
                 "halign": "center",
@@ -35,12 +35,12 @@
         },
         "hover": {
             "background": {
-                "color": "#334874"
+                "color": "#2c7659"
             }
         },
         "active": {
             "background": {
-                "color": "#0d2965ff"
+                "color": "#096741"
             }
         }
     },
@@ -88,11 +88,11 @@
             }
         }
     },
-    "node_taken": {
+    "node_completed": {
         "shape": "circle",
         "normal": {
             "background": {
-                "color": "#1a9e69"
+                "color": "#274c9b"
             },
             "label": {
                 "halign": "center",
@@ -103,12 +103,12 @@
         },
         "hover": {
             "background": {
-                "color": "#2c7659"
+                "color": "#334874"
             }
         },
         "active": {
             "background": {
-                "color": "#096741"
+                "color": "#0d2965"
             }
         }
     },
