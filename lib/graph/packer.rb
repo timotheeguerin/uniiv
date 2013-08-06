@@ -74,7 +74,7 @@ class Packer
 
   def pack_graph(graph, margin)
     sorted_graphs = graph.subgraphs.sort do |x, y|
-      x.dimension.x + x.dimension.y <=> y.dimension.x + y.dimension.y
+      y.dimension.x + y.dimension.y <=> x.dimension.x + x.dimension.y
     end
 
     sorted_graphs.each do |subgraph|
@@ -88,6 +88,10 @@ class Packer
         subgraph.position.x = node.x
         subgraph.position.y = node.y
       end
+    end
+
+    sorted_graphs.each do |subgraph|
+      subgraph.position.y = @root.height - subgraph.dimension.y - subgraph.position.y
     end
 
     graph.dimension.x = @root.width
