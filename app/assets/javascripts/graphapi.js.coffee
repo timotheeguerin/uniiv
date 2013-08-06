@@ -175,8 +175,8 @@ class Graph
         height: subgraph.dimension.y
       )
       group.add(container_group)
-      typeStyle = Ressources.style['cluster']
-      customStyle = Ressources.style['']
+      typeStyle = Ressources.style[subgraph.type]
+      customStyle = Ressources.style[subgraph.clazz]
       style = $.extend({}, typeStyle, customStyle)
       container = new NodeElement(container_group, '', style, @can_graph)
       container.update()
