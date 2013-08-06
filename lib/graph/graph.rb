@@ -2,15 +2,17 @@ require 'graph/point'
 require 'graph/node'
 
 class Graph
-  attr_accessor :nodes, :edges, :position, :dimension
+  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz
 
-  def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [])
+  def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [], relative = false)
     @position = position
     @dimension = dimension
     @name = name
     @subgraphs = []
     @edges = edges
     @nodes = nodes
+    @type = 'cluster'
+    @clazz = ''
   end
 
   def add_graph(g)

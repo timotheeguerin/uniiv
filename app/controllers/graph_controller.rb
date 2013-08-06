@@ -2,6 +2,8 @@ require 'graph/node'
 require 'graph/spline'
 require 'graph/graph'
 require 'graph/dot_graph'
+require 'graph/packer'
+
 
 class GraphController < ApplicationController
   include GraphHelper
@@ -9,26 +11,31 @@ class GraphController < ApplicationController
   def user_data
     graphs_json = []
     nodes = {}
-    current_user.programs.each do |program|
-      program.groups.each do |group|
-        
 
+    style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
+
+    margin = 30
+
+    current_user.programs.each do |program|
+      prg_graph = Graph.new(program.name)
+      program.groups.each do |group|
         dot_graph = generate_graph_from_group(group)
         nodes = nodes.merge(dot_graph.nodes)
-        puts '==============================================='
-        puts dot_graph.output
-        puts 'GROUP: ' + group.name
         graph = generate_graph_from_dot(dot_graph.output, nodes)
-
-        graphs_json << graph
-
-
+        unless graph.dimension.x == 0 and graph.dimension.y == 0
+          graph.type = 'group'
+          prg_graph.subgraphs << graph
+        end
       end
+      p = Packer.new
+      prg_graph.type = 'program'
+      p.pack_graph(prg_graph, margin)
+      graphs_json << prg_graph
     end
 
 
     json = {}
-    style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
+
 
     json[:style] = style
     json[:graphs] = graphs_json
