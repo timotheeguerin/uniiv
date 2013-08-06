@@ -116,8 +116,4 @@ class PackerNode
     @down = down
     @used = false
   end
-
-  def to_s
-    'p: (' + @x.to_s + ',' + @y.to_s + ') - d: (' + @width.to_s + ',' + @height.to_s + ')'
-  end
 end

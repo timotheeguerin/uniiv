@@ -159,6 +159,19 @@ class Graph
 
 
   load: (data) ->
+    container_group = new Kinetic.Group(
+      x: 0
+      y: 0
+      width: data.dimension.x
+      height: data.dimension.y
+    )
+    @group.add(container_group)
+    typeStyle = Ressources.style[data.type]
+    customStyle = Ressources.style[data.clazz]
+    style = $.extend({}, typeStyle, customStyle)
+    container = new NodeElement(container_group, '', style, @can_graph)
+    container.update()
+
     for subgraph in data.subgraphs
       group = new Kinetic.Group(
         x: subgraph.position.x
@@ -167,19 +180,6 @@ class Graph
         height: subgraph.dimension.y
       )
       @group.add(group)
-
-      container_group = new Kinetic.Group(
-        x: 0
-        y: 0
-        width: subgraph.dimension.x
-        height: subgraph.dimension.y
-      )
-      group.add(container_group)
-      typeStyle = Ressources.style[subgraph.type]
-      customStyle = Ressources.style[subgraph.clazz]
-      style = $.extend({}, typeStyle, customStyle)
-      container = new NodeElement(container_group, '', style, @can_graph)
-      container.update()
 
 
       sub_g = new Graph(group, @can_graph, subgraph)
