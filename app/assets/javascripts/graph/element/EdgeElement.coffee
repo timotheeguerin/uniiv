@@ -26,7 +26,7 @@ class EdgeElement extends  GraphElement
     if not triangle?
       if(@side == 0)   #0 Begining, 1: End, 2: Both
         a = @points[0]
-        b = @points[1]
+        b = @points[@points.length - 1]
         triangle = @createTriangle(a, b, angle, length)
         @group.add(triangle)
 

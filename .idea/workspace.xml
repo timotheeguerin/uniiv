@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375912901489" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375913162131" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -54,7 +54,7 @@
     <file path="/NodeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375890249250" ignored="false" />
     <file path="/Packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375803610584" ignored="false" />
     <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375816176610" ignored="false" />
-    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375910397078" ignored="false" />
+    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375913578487" ignored="false" />
     <file path="$PROJECT_DIR$/config/routes.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375886935255" ignored="false" />
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889863468" ignored="false" />
     <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889467768" ignored="false" />
@@ -93,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kineticjs-viewport.js.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="kineticjs-viewport.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="42" selection-start="1416" selection-end="1416" vertical-scroll-proportion="0.45297804">
+            <state line="53" column="55" selection-start="1189" selection-end="1189" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -156,10 +156,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EdgeElement.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EdgeElement.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="37" selection-start="1470" selection-end="1470" vertical-scroll-proportion="1.6666666">
+            <state line="27" column="21" selection-start="778" selection-end="778" vertical-scroll-proportion="0.30494037">
               <folding />
             </state>
           </provider>
@@ -197,8 +197,8 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
         <option value="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
       </list>
     </option>
   </component>
@@ -1149,7 +1149,11 @@
       <created>1375912902506</created>
       <updated>1375912902506</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="graph hover edges from node on hover">
+      <created>1375913163381</created>
+      <updated>1375913163381</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1364,13 +1368,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="37" selection-start="1470" selection-end="1470" vertical-scroll-proportion="1.6666666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="21" selection-start="430" selection-end="430" vertical-scroll-proportion="-5.6666665">
@@ -1387,7 +1384,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/kineticjs-viewport.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="42" selection-start="1416" selection-end="1416" vertical-scroll-proportion="0.45297804">
+        <state line="53" column="55" selection-start="1189" selection-end="1189" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="21" selection-start="778" selection-end="778" vertical-scroll-proportion="0.30494037">
           <folding />
         </state>
       </provider>
