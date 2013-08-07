@@ -1,9 +1,11 @@
 class UserFacultyController < ApplicationController
   def show
-
+    @university = current_user.university
+    @faculty = current_user.faculty
   end
 
   def new
+    @university = current_user.university
   end
 
   def create
@@ -14,13 +16,20 @@ class UserFacultyController < ApplicationController
 
   def edit
     @university = current_user.university
+    if @university.nil?
+      redirect_to user_university_edit_path, :alert => t('error.university.notselected')
+    end
     @current_faculty = current_user.faculty
   end
 
   def update
-    faculty = Faculty.find(params[:id])
+    faculty = Faculty.find_by_name(params[:fac])
+     if faculty.nil?
+      redirect_to user_faculty_new_path, :alert => t('error.faculty.nil')
+    end
     current_user.faculty = faculty
     current_user.save
+    redirect_to user_dashboard_index_path
   end
 
   def delete

@@ -15,6 +15,9 @@
         <%= link_to root_url do %>
             <img src="/assets/logo.png" style="height:20px;padding-top:10px"/>
         <% end %>
+        <% if user_signed_in? %>
+          <%= link_to "Path", test_path %>
+        <% end %>
       </div>
       <div id="nav_top_right">
         <% if user_signed_in? %>

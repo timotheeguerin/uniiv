@@ -1,11 +1,7 @@
 <div class="content_box login_content">
   <h2>Choose your faculty</h2>
-  <%= form_tag do %>
-    <% if @university.nil? %>
-      You must select a university first.
-    <% else %>
-      <%= select_tag 'fac', options_for_select(@university.faculties), { :class => "form_input_long middle form_biginput" } %>
-    <% end %>
+  <%= form_tag(user_faculty_update_path) do %>
+    <%= select_tag 'fac', options_for_select(@university.faculties), { :class => "form_input_long middle form_biginput" } %>
     <div class="right">
       <%= submit_tag("Next") %>
     </div>

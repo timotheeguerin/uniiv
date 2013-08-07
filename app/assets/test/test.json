@@ -1,5 +1,6 @@
 {
     "node": {
+        "cursor":"hover",
         "shape": "circle",
         "normal": {
             "background": {
@@ -178,6 +179,7 @@
             "background": {
                "cornerradius": "15",
                "border":{
+                "color": "#000000"
               }
             }
         }
@@ -188,8 +190,11 @@
             "background": {
                "cornerradius": "15",
                "border":{
+                "color": "#000000"
               }
             }
         }
-    }
+    },
+    "margin": "5",
+    "padding": "5"
 }

@@ -1,6 +1,6 @@
 <div class="content_box login_content">
   <h2>Choose your university</h2>
-  <%= form_tag do %>
+  <%= form_tag(user_university_update_path) do %>
     <%= select_tag 'uni', options_for_select(University.all), { :class => "form_input_long middle form_biginput" }  %>
   <div class="right">
     <%= submit_tag("Next") %>

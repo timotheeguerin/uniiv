@@ -66,6 +66,7 @@ RailsAdmin.config do |config|
 
   # Include specific models (exclude the others):
   #config.included_models = []
+  #config.included_models = ['Translation']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]

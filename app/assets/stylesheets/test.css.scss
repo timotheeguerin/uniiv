@@ -38,9 +38,9 @@ $graph_box_border: #dfdfdf;
 }
 
 hr{
-  width:  $graph_right_box_width - 2px;
-  position: relative;
-  left: -10px;
+  width: 260px;
+  margin-left: 0px;
+  margin-right: 0px;
   border: 0;
   height: 1px;
   background-color: $graph_box_border;
