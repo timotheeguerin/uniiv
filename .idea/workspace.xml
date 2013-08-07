@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb" afterPath="$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375891225605" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375891730240" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374522285560" ignored="false" />
@@ -59,6 +59,7 @@
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889863468" ignored="false" />
     <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889467768" ignored="false" />
     <file path="/ContainerElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889392340" ignored="false" />
+    <file path="/20130722185557_create_courses.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375896144494" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,10 +84,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="38" selection-start="437" selection-end="437" vertical-scroll-proportion="0.425">
+            <state line="15" column="38" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20130722185557_create_courses.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="71" selection-start="338" selection-end="338" vertical-scroll-proportion="0.31166667">
               <folding />
             </state>
           </provider>
@@ -155,7 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lib/graph/node.rb" />
         <option value="$PROJECT_DIR$/sfe.json" />
         <option value="$PROJECT_DIR$/lib/graph/Packer.rb" />
         <option value="$PROJECT_DIR$/lib/graph/point.rb" />
@@ -171,6 +180,7 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/NodeElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+        <option value="$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb" />
       </list>
     </option>
   </component>
@@ -1015,7 +1025,11 @@
       <created>1375891227060</created>
       <updated>1375891227060</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="graph hover edges from node on hover">
+      <created>1375891732343</created>
+      <updated>1375891732343</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1146,13 +1160,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="104" selection-start="45" selection-end="45" vertical-scroll-proportion="0.028192371">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sfe.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="8" selection-start="29" selection-end="29" vertical-scroll-proportion="2.3076923" />
@@ -1251,7 +1258,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="38" selection-start="437" selection-end="437" vertical-scroll-proportion="0.425">
+        <state line="15" column="38" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="71" selection-start="338" selection-end="338" vertical-scroll-proportion="0.31166667">
           <folding />
         </state>
       </provider>

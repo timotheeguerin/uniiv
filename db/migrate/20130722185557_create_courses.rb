@@ -6,7 +6,7 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :code
       t.text :description
       t.integer :hours
-      t.integer :credit
+      t.float :credit
       t.references :prerequisite, index: true
       t.references :corequisite, index: true
 
