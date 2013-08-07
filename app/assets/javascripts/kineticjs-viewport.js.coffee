@@ -59,7 +59,7 @@ class window.ViewPort
   zoom: (event) ->
     minScaleX = @canvasSize.x / @layerSize.x
     minScaleY = @canvasSize.y / @layerSize.y
-    minScale = Math.min(minScaleX, minScaleY)
+    minScale = Math.max(minScaleX, minScaleY)
 
     event.preventDefault()
     oevt = event.originalEvent
