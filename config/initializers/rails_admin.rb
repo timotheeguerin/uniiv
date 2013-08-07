@@ -69,22 +69,22 @@ RailsAdmin.config do |config|
   #config.included_models = ['Translation']
 
   # Label methods for model instances:
-  # config.label_methods << :description # Default is [:name, :title]
-  config.label_methods << to_s
+  config.label_methods = [:to_s, :name, :title] # Default is [:name, :title]
+                                                #config.label_methods << to_s
 
-  ################  Model configuration  ################
+                                                ################  Model configuration  ################
 
-  # Each model configuration can alternatively:
-  #   - stay here in a `config.model 'ModelName' do ... end` block
-  #   - go in the model definition file in a `rails_admin do ... end` block
+                                                # Each model configuration can alternatively:
+                                                #   - stay here in a `config.model 'ModelName' do ... end` block
+                                                #   - go in the model definition file in a `rails_admin do ... end` block
 
-  # This is your choice to make:
-  #   - This initializer is loaded once at startup (modifications will show up when restarting the application) but all RailsAdmin configuration would stay in one place.
-  #   - Models are reloaded at each request in development mode (when modified), which may smooth your RailsAdmin development workflow.
+                                                # This is your choice to make:
+                                                #   - This initializer is loaded once at startup (modifications will show up when restarting the application) but all RailsAdmin configuration would stay in one place.
+                                                #   - Models are reloaded at each request in development mode (when modified), which may smooth your RailsAdmin development workflow.
 
 
-  # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
-  # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
+                                                # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
+                                                # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 
 end

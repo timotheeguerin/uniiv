@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/rails_admin.rb" afterPath="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375900766183" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375911201380" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374520330231" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
-    <file path="/rails_admin.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374523348514" ignored="false" />
+    <file path="/rails_admin.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375912129591" ignored="false" />
     <file path="/en.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374521099722" ignored="false" />
     <file path="/course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898066670" ignored="false" />
     <file path="/course_node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898246326" ignored="false" />
@@ -86,10 +84,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="11" selection-start="4162" selection-end="4162" vertical-scroll-proportion="0.38391504">
+            <state line="164" column="3" selection-start="4154" selection-end="4154" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,7 +96,25 @@
       <file leaf-file-name="GraphElement.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="21" selection-start="673" selection-end="673" vertical-scroll-proportion="-5.9215684">
+            <state line="17" column="21" selection-start="430" selection-end="430" vertical-scroll-proportion="-5.6666665">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rails_admin.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="33" selection-start="1974" selection-end="1974" vertical-scroll-proportion="0.728">
               <folding />
             </state>
           </provider>
@@ -143,7 +159,7 @@
       <file leaf-file-name="EdgeElement.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="17" selection-start="218" selection-end="221" vertical-scroll-proportion="-2.3333333">
+            <state line="7" column="17" selection-start="218" selection-end="221" vertical-scroll-proportion="1.6666666">
               <folding />
             </state>
           </provider>
@@ -167,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/ContainerElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/NodeElement.coffee" />
@@ -183,6 +198,7 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+        <option value="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
       </list>
     </option>
   </component>
@@ -1109,7 +1125,11 @@
       <created>1375900767199</created>
       <updated>1375900767199</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="graph hover edges from node on hover">
+      <created>1375911202969</created>
+      <updated>1375911202970</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1240,20 +1260,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="5" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.5799373">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="35" selection-start="376" selection-end="376" vertical-scroll-proportion="0.41274658">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/merit.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="7" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0">
@@ -1326,7 +1332,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="218" selection-end="221" vertical-scroll-proportion="-2.3333333">
+        <state line="7" column="17" selection-start="218" selection-end="221" vertical-scroll-proportion="1.6666666">
           <folding />
         </state>
       </provider>
@@ -1338,16 +1344,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="21" selection-start="673" selection-end="673" vertical-scroll-proportion="-5.9215684">
+        <state line="164" column="3" selection-start="4154" selection-end="4154" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="11" selection-start="4162" selection-end="4162" vertical-scroll-proportion="0.38391504">
+        <state line="17" column="21" selection-start="430" selection-end="430" vertical-scroll-proportion="-5.6666665">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="33" selection-start="1974" selection-end="1974" vertical-scroll-proportion="0.728">
           <folding />
         </state>
       </provider>
