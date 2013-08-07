@@ -48,10 +48,11 @@ class window.ViewPort
 
 
   resizeLayer: (width, height) ->
-    @background.setWidth(width)
-    @background.setHeight(height)
-    @layerSize.x = width
-    @layerSize.y = height
+    side = Math.max(width, height)
+    @background.setWidth(side)
+    @background.setHeight(side)
+    @layerSize.x = side
+    @layerSize.y = side
 
 
   zoom: (event) ->
