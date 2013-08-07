@@ -10,7 +10,7 @@ resizeCanvasContainer = () ->
 $(document).ready ->
   resizeCanvasContainer()
   canvas_container = $('#canvas-container')
-  loading_screen = $('#graph_loaded')
+  loading_screen = $('#graph_loader')
   if canvas_container?
     canvas_container.hide()
     loading_screen.show()
