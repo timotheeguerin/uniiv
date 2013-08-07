@@ -53,7 +53,6 @@ class EdgeElement extends  GraphElement
         context.stroke()
         canvas.fillStroke(this)
       name: 'bezier'
-      fill: '#00D2FF',
       stroke: 'black'
     })
     return bezier
