@@ -74,6 +74,7 @@ class DotGraph
       course_node = graph.add_node(course_id)
       course_node[:label] = course.get_dot_name
       course_node[:shape] = 'circle'
+      course_node[:fontname] = 'Monospace'
       @nodes[course_id] = {:node => course_node, :in => in_graph, :state => state}
     end
   end
