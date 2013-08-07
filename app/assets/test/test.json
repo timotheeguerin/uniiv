@@ -1,6 +1,6 @@
 {
     "node": {
-        "cursor":"hover",
+        "cursor": "pointer",
         "shape": "circle",
         "normal": {
             "background": {
@@ -121,7 +121,7 @@
             "angle": "30"
         },
         "hover": {
-          "width": "5"
+            "width": "5"
         }
     },
     "nodeImage": {
@@ -168,8 +168,8 @@
         "shape": "rect",
         "normal": {
             "background": {
-               "color": "#70CEA8",
-               "cornerradius": "15"
+                "color": "#70CEA8",
+                "cornerradius": "15"
             }
         }
     },
@@ -177,10 +177,10 @@
         "shape": "rect",
         "normal": {
             "background": {
-               "cornerradius": "15",
-               "border":{
-                "color": "#000000"
-              }
+                "cornerradius": "15",
+                "border": {
+                    "color": "#000000"
+                }
             }
         }
     },
@@ -188,10 +188,10 @@
         "shape": "rect",
         "normal": {
             "background": {
-               "cornerradius": "15",
-               "border":{
-                "color": "#000000"
-              }
+                "cornerradius": "15",
+                "border": {
+                    "color": "#000000"
+                }
             }
         }
     },

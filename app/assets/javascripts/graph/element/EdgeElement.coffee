@@ -55,7 +55,6 @@ class EdgeElement extends  GraphElement
         context.beginPath();
         context.moveTo(a.x, a.y);
         context.lineTo(c.x, c.y);
-        #context.quadraticCurveTo(a.x, a.y, d.x, d.y);
         context.lineTo(d.x, d.y)
         context.closePath();
         canvas.fillStroke(this);

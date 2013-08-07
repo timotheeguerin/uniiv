@@ -189,7 +189,7 @@ class Graph
     typeStyle = Ressources.style[data.type]
     customStyle = Ressources.style[data.clazz]
     style = $.extend({}, typeStyle, customStyle)
-    container = new NodeElement(container_group, '', style, @can_graph)
+    container = new ContainerElement(container_group, style, @can_graph, '')
     container.update()
 
     for subgraph in data.subgraphs
@@ -229,7 +229,7 @@ class Graph
     })
 
     @group.add(group)
-    node = new NodeElement(group, text, computedStyle, @can_graph, id)
+    node = new NodeElement(group, computedStyle, @can_graph, text, id)
     node.update()
 
     @nodes.push(node)

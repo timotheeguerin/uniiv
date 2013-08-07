@@ -31,10 +31,13 @@ class GraphElement
   update: ->
     switch @state
       when State.DEFAULT
+        @changeCursor('default')
         @applyStyle(@style.normal)
       when State.HOVER
+        @changeCursor(@style.cursor)
         @applyStyle(@style.normal, @style.hover)
       when State.ACTIVE
+        @changeCursor(@style.cursor)
         @applyStyle(@style.normal, @style['active'])
       else
         @applyStyle(@style.normal)
@@ -42,7 +45,13 @@ class GraphElement
 
   applyStyle: (defaultStyle, stateStyle) ->
     style = $.extend(true, {}, defaultStyle, stateStyle)
+
     @computeStyle(style)
+  changeCursor: (cursor)->
+    if cursor?
+      document.body.style.cursor = cursor
+    else
+      document.body.style.cursor = 'default'
 
   computeStyle: (style) ->
 

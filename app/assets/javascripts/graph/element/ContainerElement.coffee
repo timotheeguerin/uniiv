@@ -1,5 +1,5 @@
 #=require graph/element/NodeElement
-class ContainerElement extends NodeElement
+class ContainerElement extends LabelElement
 
 
 window.ContainerElement = ContainerElement
