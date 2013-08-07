@@ -35,9 +35,7 @@ class Graph
     end
 
     dot_graph.each_edge do |edge|
-
-      position = edge[:pos].to_s
-      spline = Spline::from_dot(position) - g.position
+      spline = Spline::from_dot(edge) - g.position
       g.edges << spline
     end
 

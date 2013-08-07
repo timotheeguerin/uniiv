@@ -14,8 +14,10 @@ $(document).ready ->
   })
 
   graph.load "/mygraph/data", () ->
+    graph.update()
+    graph.onNodeClick (node) ->
+      name = node.name
 
-  graph.update()
 
   $(window).resize () ->
     resizeCanvasContainer()
@@ -109,6 +111,7 @@ class CanGraph
       @nodes = @nodes.concat g.nodes #Add the list of nodes
       @edges = @edges.concat g.edges #Add the list of edges
 
+
       @container.add(group)
 
     @setupNodesListener()
@@ -144,9 +147,26 @@ class CanGraph
   setupNodeListener: (node) ->
     node.onStateChange () =>
       for n in @nodes
-        if n != node and n.id == node.id
+        if n.id == node.id
           n.state = node.state
+          @hightlightEdgesFromNode(node)
           n.update()
+
+
+  #Call callback when any node is clicked
+  onNodeClick: (callback) ->
+    for node in @nodes
+      @_onNodeClick(node, callback)
+
+  _onNodeClick: (node, callback) ->
+    node.on 'mousedown', () ->
+      callback(node)
+
+  hightlightEdgesFromNode: (node) ->
+    for edge in @edges
+      if edge.from == node.id
+        edge.state = node.state
+        edge.update()
 
 
 class Graph
@@ -224,7 +244,7 @@ class Graph
       y: 0
     })
     @group.add(group)
-    edge = new EdgeElement(group, style, @can_graph, edge.positions, edge.arrow)
+    edge = new EdgeElement(group, style, @can_graph, edge.positions, edge.arrow, edge.from, edge.to)
     edge.update()
 
     @edges.push(edge)

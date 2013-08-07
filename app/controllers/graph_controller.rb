@@ -22,6 +22,8 @@ class GraphController < ApplicationController
       prg_graph = Graph.new(program.name)
       program.groups.each do |group|
         dot_graph = generate_graph_from_group(group)
+        puts '------------------------------------'
+        puts dot_graph.output
         nodes = nodes.merge(dot_graph.nodes)
         graph = generate_graph_from_dot(dot_graph.output, nodes)
         unless graph.dimension.x == 0 and graph.dimension.y == 0

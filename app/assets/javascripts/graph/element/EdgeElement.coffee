@@ -1,7 +1,7 @@
 #=require graph/element/GraphElement
 
 class EdgeElement extends  GraphElement
-  constructor: (group, style, graph, @points, @side) ->
+  constructor: (group, style, graph, @points, @side, @from, @to) ->
     super group, style, graph
 
   computeStyle: (style) ->

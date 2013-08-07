@@ -1,13 +1,19 @@
 require 'graph/point'
 
 class Spline
-  def initialize(array = [], arrow)
+  def initialize(from, to, array = [], arrow)
     @positions = array
     @arrow = arrow
+    @from = from
+    @to = to
   end
 
 
-  def self.from_dot positions
+  def self.from_dot edge
+    positions = edge[:pos].to_s
+    from = edge.tail_node
+    to = edge.head_node
+
     position_array = []
     array = positions.split(' ') #Split points
     arrow = Point.new
@@ -26,7 +32,7 @@ class Spline
         position_array << p
       end
     end
-    Spline.new(position_array, arrow)
+    Spline.new(from, to, position_array, arrow)
   end
 
   def +(point)
