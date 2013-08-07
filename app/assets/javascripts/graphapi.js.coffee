@@ -161,8 +161,9 @@ class CanGraph
       for n in @nodes
         if n.id == node.id
           n.state = node.state
-          @hightlightEdgesFromNode(node)
           n.update()
+  #@hightlightEdgesFromNode(node)
+
 
 
   #Call callback when any node is clicked
@@ -187,8 +188,6 @@ class Graph
     @nodes = []
     @edges = []
     @load(data)
-
-
 
   load: (data) ->
     container_group = new Kinetic.Group(

@@ -7,25 +7,27 @@ class GraphElement
   constructor: (@group, @style, @graph) ->
     @ishover = false
     @state = State.DEFAULT
-
-    @on 'mouseenter', () =>
-      @ishover = true
-      @state = State.HOVER
-    @on 'mouseleave', () =>
-      @ishover = false
-      @state = State.DEFAULT
-    @on 'mousedown', () =>
-      @state = State.ACTIVE
-    @on 'mouseup', () =>
-      if @ishover
+    unless (@style.onlydefault? and @style.onlydefault)
+      @on 'mouseenter', () =>
+        @ishover = true
         @state = State.HOVER
-      else
+      @on 'mouseleave', () =>
+        @ishover = false
         @state = State.DEFAULT
+      @on 'mousedown', () =>
+        @state = State.ACTIVE
+      @on 'mouseup', () =>
+        if @ishover
+          @state = State.HOVER
+        else
+          @state = State.DEFAULT
+
 
   on: (event, callback) ->
     @group.on(event, () =>
       callback()
       @update()
+      @graph.update()
     )
 
   update: ->
@@ -41,12 +43,12 @@ class GraphElement
         @applyStyle(@style.normal, @style['active'])
       else
         @applyStyle(@style.normal)
-    @graph.update()
+
 
   applyStyle: (defaultStyle, stateStyle) ->
     style = $.extend(true, {}, defaultStyle, stateStyle)
-
     @computeStyle(style)
+
   changeCursor: (cursor)->
     if cursor?
       document.body.style.cursor = cursor

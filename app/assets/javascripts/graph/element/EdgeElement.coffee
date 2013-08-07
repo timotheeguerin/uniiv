@@ -5,18 +5,19 @@ class EdgeElement extends  GraphElement
     super group, style, graph
 
   computeStyle: (style) ->
-    spline = @group.get(".spline")[0]
+    beziers = @group.get(".bezier")
     triangle = @group.get(".triangle")[0]
-    if(!spline?)
-      spline = new Kinetic.Spline({
-        points: @points,
-        stroke: 'black',
-        strokeWidth: 1,
-        lineCap: 'round',
-        tension: 1
-        name: 'spline'
-      })
-      @group.add(spline)
+    points = []
+    if(@side == 0)
+      points = @points.slice(1, @points.length)
+
+    if(not beziers? or beziers.length == 0)
+      beziers = []
+      for i in [1...points.length] by 3
+        bezier = @drawBezier(i, points)
+        beziers.push(bezier)
+        @group.add(bezier)
+
 
     angle = 30
     length = 14
@@ -31,12 +32,31 @@ class EdgeElement extends  GraphElement
 
     if(style?)
       if(style.color?)
-        spline.setStroke(style.color)
-        triangle.setStroke(style.color)
         triangle.setFill(style.color)
+        for bezier in beziers
+          bezier.setStroke(style.color)
+        triangle.setStroke(style.color)
       if(style.width?)
-        spline.setStrokeWidth(style.width)
         triangle.setStrokeWidth(style.width)
+        for bezier in beziers
+          bezier.setStrokeWidth(style.width)
+
+
+  drawBezier: (i, points) ->
+    bezier = new Kinetic.Shape({
+      drawFunc: (canvas) ->
+        context = canvas.getContext()
+        context.beginPath()
+        context.moveTo(points[i - 1].x, points[i - 1].y)
+        context.bezierCurveTo(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y, points[i + 2].x,
+          points[i + 2].y);
+        context.stroke()
+        canvas.fillStroke(this)
+      name: 'bezier'
+      fill: '#00D2FF',
+      stroke: 'black'
+    })
+    return bezier
 
   createTriangle: (a, b, alpha, l) ->
     angle = @angle(b, a)
@@ -59,10 +79,9 @@ class EdgeElement extends  GraphElement
         context.closePath();
         canvas.fillStroke(this);
       fill: 'black'
-      name: 'triangle'
+      name: 'bezier'
     });
     return poly
-
 
   angle: (a, b) ->
     v = {
