@@ -50,7 +50,7 @@ class GraphController < ApplicationController
   end
 
   def generate_graph_from_group(group)
-    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true, :fontname => 'Courier')
+    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true, :fontname => 'DejaVuSansMono')
     dot_graph = DotGraph.new(g, current_user)
     dot_graph.load_from_group(group)
 
