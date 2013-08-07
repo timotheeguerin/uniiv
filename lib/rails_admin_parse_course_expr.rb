@@ -35,11 +35,14 @@ module RailsAdmin
             if request.post?
               input = params['file']
               expr = CourseExpr.parse(input)
-              render :action => @action.template_name if expr.nil?
-              expr.save()
-              #results = @abstract_model.model.run_import(params)
-              redirect_to back_or_index
-
+              if expr.nil?
+                flash[:error] = "Error parsing the expression '#{input}', one of the course inputed might not exist!"
+                render :action => @action.template_name
+              else
+                expr.save()
+                #results = @abstract_model.model.run_import(params)
+                redirect_to back_or_index
+              end
             else
               render :action => @action.template_name
             end
