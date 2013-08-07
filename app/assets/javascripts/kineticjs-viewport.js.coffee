@@ -52,8 +52,8 @@ class window.ViewPort
     h = height * 1.5
     @background.setWidth(w)
     @background.setHeight(h)
-    @layerSize.x = width
-    @layerSize.y = height
+    @layerSize.x = w
+    @layerSize.y = h
 
 
   zoom: (event) ->
