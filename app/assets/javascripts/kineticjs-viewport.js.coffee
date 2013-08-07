@@ -48,17 +48,18 @@ class window.ViewPort
 
 
   resizeLayer: (width, height) ->
-    side = Math.max(width, height)
-    @background.setWidth(side)
-    @background.setHeight(side)
-    @layerSize.x = side
-    @layerSize.y = side
+    w = width * 1.5
+    h = height * 1.5
+    @background.setWidth(w)
+    @background.setHeight(h)
+    @layerSize.x = width
+    @layerSize.y = height
 
 
   zoom: (event) ->
     minScaleX = @canvasSize.x / @layerSize.x
     minScaleY = @canvasSize.y / @layerSize.y
-    minScale = Math.max(minScaleX, minScaleY)
+    minScale = Math.min(minScaleX, minScaleY)
 
     event.preventDefault()
     oevt = event.originalEvent
