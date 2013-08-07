@@ -9,18 +9,12 @@ resizeCanvasContainer = () ->
 
 $(document).ready ->
   resizeCanvasContainer()
-  canvas_container = $('#canvas-container')
-  loading_screen = $('#graph_loader')
   if canvas_container?
-    canvas_container.hide()
-    loading_screen.show()
     graph = new CanGraph({
       container: 'canvas-container'
     })
 
     graph.load "/mygraph/data", () ->
-      canvas_container.show()
-      loading_screen.hide()
       graph.update()
       graph.onNodeClick (node) ->
         name = node.name
@@ -65,6 +59,7 @@ class CanGraph
   constructor: (options) ->
     defaults = {
       container: 'canvas'
+      loading_container: 'canvas-loading'
     }
     @options = $.extend({}, defaults, options)
     html_container = $('#' + @options.container)
@@ -84,12 +79,20 @@ class CanGraph
     )
     @viewport.layer.add(@container)
 
+    @canvas_container = $(@options.container)
+    @loading_screen = $(@options.loading_container)
+
+    @canvas_container.hide()
+    @loading_screen.show() if @loading_screen?
+
   load: (url, callback) ->
     $.get(url, (data) =>
       Ressources.loadImageFromJson (data)
       Ressources.style = data.style
       Ressources.onLoadImage => #Wait for the images to load
         @loadGraphs(data)
+        @canvas_container.show()
+        @loading_screen.hide() if @loading_screen?
         callback()
 
     , "json")
