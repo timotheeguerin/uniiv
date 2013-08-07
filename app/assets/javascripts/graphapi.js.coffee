@@ -9,6 +9,7 @@ resizeCanvasContainer = () ->
 
 $(document).ready ->
   resizeCanvasContainer()
+  canvas_container = $('#canvas-container')
   if canvas_container?
     graph = new CanGraph({
       container: 'canvas-container'
@@ -79,8 +80,8 @@ class CanGraph
     )
     @viewport.layer.add(@container)
 
-    @canvas_container = $(@options.container)
-    @loading_screen = $(@options.loading_container)
+    @canvas_container = $('#' + @options.container)
+    @loading_screen = $('#' + @options.loading_container)
 
     @canvas_container.hide()
     @loading_screen.show() if @loading_screen?
