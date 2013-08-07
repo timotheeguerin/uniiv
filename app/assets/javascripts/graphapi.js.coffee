@@ -13,6 +13,7 @@ $(document).ready ->
   if canvas_container?
     graph = new CanGraph({
       container: 'canvas-container'
+      loading_container: 'graph_loader'
     })
 
     graph.load "/mygraph/data", () ->
