@@ -57,7 +57,7 @@ $button_gradient_bottom: #e3e3e3;
 $button_gradient_bottom_hover: #d3d3d3;
 $button_gradient_bottom_active: #b3b3b3;
 
-$login_width: 400px;
+$login_width: 500px;
 
 /*
   * mixins
@@ -116,6 +116,15 @@ $login_width: 400px;
 #nav_top_left {
   float: left;
   height: $nav_height;
+}
+
+#nav_top_left_links{
+  margin-left: 10px;
+  position: relative;
+  top: -5px;
+  display: inline-block;
+  height: $nav_height;
+  line-height: $nav_height;
 }
 
 #nav_top_right {
