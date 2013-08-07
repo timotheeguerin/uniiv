@@ -9,19 +9,26 @@ resizeCanvasContainer = () ->
 
 $(document).ready ->
   resizeCanvasContainer()
-  graph = new CanGraph({
-    container: 'canvas-container'
-  })
+  canvas_container = $('#canvas-container')
+  loading_screen = $('#graph_loaded')
+  if canvas_container?
+    canvas_container.hide()
+    loading_screen.show()
+    graph = new CanGraph({
+      container: 'canvas-container'
+    })
 
-  graph.load "/mygraph/data", () ->
-    graph.update()
-    graph.onNodeClick (node) ->
-      name = node.name
+    graph.load "/mygraph/data", () ->
+      canvas_container.show()
+      loading_screen.hide()
+      graph.update()
+      graph.onNodeClick (node) ->
+        name = node.name
 
 
-  $(window).resize () ->
-    resizeCanvasContainer()
-    graph.resize()
+    $(window).resize () ->
+      resizeCanvasContainer()
+      graph.resize()
 
 
 class Ressources
