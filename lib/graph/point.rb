@@ -5,8 +5,8 @@ class Point
   attr_accessor :x, :y
 
   def initialize(x = 0, y = 0)
-    @x = x.to_f
-    @y = y.to_f
+    @x = x.to_f.round
+    @y = y.to_f.round
   end
 
   def self.pos_from_array(array)
