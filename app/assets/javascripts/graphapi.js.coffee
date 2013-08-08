@@ -147,7 +147,6 @@ class CanGraph
     @update();
 
   update: ->
-    console.log('update')
     @viewport.update()
 
   resize: ()    ->

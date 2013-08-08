@@ -58,13 +58,7 @@ class GraphElement
   computeStyle: (style) ->
 
   onStateChange: (callback) ->
-    @on 'mouseenter', () ->
-      callback()
-    @on 'mouseleave', () ->
-      callback()
-    @on 'mousedown', () ->
-      callback()
-    @on 'mouseup', () ->
+    @on 'mouseenter mouseleave mousedown mouseup', () ->
       callback()
 
   remapRedrawEvent: () ->
