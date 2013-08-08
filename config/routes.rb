@@ -1,4 +1,6 @@
 Uniiv::Application.routes.draw do
+
+ 
   get "user_dashboard/index"
   get "user_programs/show"
   get "user_programs/new"
@@ -30,6 +32,11 @@ Uniiv::Application.routes.draw do
   get 'graph/:id' => 'graph#index'
   get 'graph/:id/data' => 'graph#data'
   get 'mygraph/data' => 'graph#user_data'
+
+  #Course controller
+  get "course/:id/show" => 'course#show'
+  get "course/:id/graph/embed" => 'course#graph_embed'
+  get "course/:id/json" => 'course#json'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

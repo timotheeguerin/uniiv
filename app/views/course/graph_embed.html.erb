@@ -1,0 +1,18 @@
+<div><h2><%= @course.subject.to_s + " " + @course.code.to_s %></h2></div>
+<div><h3><%= @course.name %></h3></div>
+<div><h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4></div>
+<div><h5><%= @course.description %></h5></div>
+<div><h4>Prerequisites:
+  <% if @course.prerequisite.nil? %>
+    None.
+  <% else %>
+    <%= @course.prerequisite %>
+  <% end %>
+</h4></div>
+<div><h4>Corequisites:
+  <% if @course.corequisite.nil? %>
+    None.
+  <% else %>
+    <%= @course.corequisite %>
+  <% end %>
+</h4></div>

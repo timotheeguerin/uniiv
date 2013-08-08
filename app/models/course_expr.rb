@@ -79,4 +79,10 @@ class CourseExpr < ActiveRecord::Base
   def requirements_completed?(user)
     node.requirements_completed?(user)
   end
+
+  def as_json(options={})
+   hash = super(:except =>[:created_at, :updated_at])
+   hash[:node] = node.as_json
+   hash     
+ end
 end
