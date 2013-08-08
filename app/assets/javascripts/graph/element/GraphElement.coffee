@@ -9,6 +9,14 @@ class GraphElement
     @ishover = false
     @ishighlighted = false
     @state = State.DEFAULT
+    @computed_style = {}
+
+    @computed_style.default = @style['normal']
+    @computed_style.hover = $.extend({}, @style['normal'], @style['hover'])
+    @computed_style.active = $.extend({}, @computed_style.hover, @style['active'])
+    @computed_style.highlighted = $.extend({}, @computed_style.active, @style['highlighted'])
+    @computed_style.highlighted_hover = $.extend({}, @computed_style.hover, @style['highlighted'])
+
     unless (@style.onlydefault? and @style.onlydefault)
       @on 'mouseenter', () =>
         @ishover = true
@@ -39,21 +47,23 @@ class GraphElement
     switch @state
       when State.DEFAULT
         @changeCursor('default')
-        @applyStyle(@style.normal)
+        @applyStyle(@computed_style.normal)
       when State.HOVER
         @changeCursor(@style.cursor)
-        @applyStyle(@style.normal, @style.hover)
+        if @ishighlighted
+          @applyStyle(@computed_style.highlighted_hover)
+        else
+          @applyStyle(@computed_style.hover)
       when State.ACTIVE
         @changeCursor(@style.cursor)
-        @applyStyle(@style.normal, @style['active'])
+        @applyStyle(@computed_style.active)
       when State.HIGHLIGHTED
-        @applyStyle(@style.normal, @style['highlighted'])
+        @applyStyle(@computed_style.highlighted)
       else
-        @applyStyle(@style.normal)
+        @applyStyle(@computed_style.normal)
 
 
-  applyStyle: (defaultStyle, stateStyle) ->
-    style = $.extend(true, {}, defaultStyle, stateStyle)
+  applyStyle: (style) ->
     @computeStyle(style)
 
   changeCursor: (cursor)->
