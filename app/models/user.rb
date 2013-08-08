@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_merit
 
   belongs_to :university, :class_name => University
   belongs_to :faculty, :class_name => Faculty
@@ -44,7 +43,7 @@ class User < ActiveRecord::Base
         return true
       end
     end
-    return false
+    false
   end
 
   def is_taking_course?(course)
@@ -53,7 +52,7 @@ class User < ActiveRecord::Base
         return true
       end
     end
-    return false
+    false
   end
 
   def requirements_completed?(course)

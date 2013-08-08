@@ -120,8 +120,11 @@ class CanGraph
       )
       g = new Graph(group, @, graph)
       @graphs.push(g)
-      @nodes = @nodes.concat g.nodes #Add the list of nodes
+      nodes = @nodes.concat g.nodes #Add the list of nodes
       @edges = @edges.concat g.edges #Add the list of edges
+      for node in nodes
+        @nodes[node.id] ||= []
+        @nodes[ndoe.id].push(node)
 
 
       @container.add(group)
@@ -158,10 +161,9 @@ class CanGraph
 
   setupNodeListener: (node) ->
     node.onStateChange () =>
-      for n in @nodes
-        if n.id == node.id
-          n.state = node.state
-          n.update()
+      for n in @nodes[node.id]
+        n.state = node.state
+        n.update()
   #@hightlightEdgesFromNode(node)
 
 
