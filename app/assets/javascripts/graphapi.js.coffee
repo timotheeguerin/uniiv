@@ -131,9 +131,9 @@ class CanGraph
 
     @setupNodesListener()
 
-    maxWidth = @viewport.canvasSize.x if maxWidth < @viewport.canvasSize.x
+    totalWidth = @viewport.canvasSize.x if totalWidth < @viewport.canvasSize.x
     maxHeight = @viewport.canvasSize.y if maxHeight < @viewport.canvasSize.y
-    @container.setSize(maxWidth, maxHeight)
+    @container.setSize(totalWidth, maxHeight)
     @viewport.resizeLayer(@container.getWidth(), @container.getHeight())
     @viewport.autoResizeBackground()
     @container.setSize(@viewport.layerSize.x, @viewport.layerSize.y)
