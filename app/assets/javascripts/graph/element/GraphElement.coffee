@@ -11,11 +11,11 @@ class GraphElement
     @state = State.DEFAULT
     @computed_style = {}
 
-    @computed_style.default = @style['normal']
-    @computed_style.hover = $.extend({}, @style['normal'], @style['hover'])
-    @computed_style.active = $.extend({}, @computed_style.hover, @style['active'])
-    @computed_style.highlighted = $.extend({}, @computed_style.active, @style['highlighted'])
-    @computed_style.highlighted_hover = $.extend({}, @computed_style.hover, @style['highlighted'])
+    @computed_style.normal = @style['normal']
+    @computed_style.hover = $.extend(true, {}, @style['normal'], @style['hover'])
+    @computed_style.active = $.extend(true, {}, @computed_style.hover, @style['active'])
+    @computed_style.highlighted = $.extend(true, {}, @computed_style.active, @style['highlighted'])
+    @computed_style.highlighted_hover = $.extend(true, {}, @computed_style.hover, @style['highlighted'])
 
     unless (@style.onlydefault? and @style.onlydefault)
       @on 'mouseenter', () =>
