@@ -27,8 +27,8 @@ class GraphElement
     @group.on(event, () =>
       callback()
       @update()
-      @graph.update()
     )
+    @remapRedrawEvent()
 
   update: ->
     switch @state
@@ -66,6 +66,11 @@ class GraphElement
       callback()
     @on 'mouseup', () ->
       callback()
+
+  remapRedrawEvent: () ->
+    @group.off 'mouseenter.redraw mouseleave.redraw mousedown.redraw mouseup.redraw'
+    @group.on 'mouseenter.redraw mouseleave.redraw mousedown.redraw mouseup.redraw', () =>
+      @graph.update()
 
 #Get class accessible to other file
 window.GraphElement = GraphElement
