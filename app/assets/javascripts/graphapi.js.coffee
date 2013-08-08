@@ -23,13 +23,15 @@ $(document).ready ->
       graph.onNodeClick (node) ->     #When we click on a node it load information on the side
         name = node.id
         id = name.substring(2)
-        sidebar_loader.show()
-        #sidebar_info.hide()
+        type = name.split('_', 2)[0]
+        if type == 'c'
+          sidebar_loader.show()
+          #sidebar_info.hide()
 
-        $.get('/course/' + id + '/graph/embed').success (data) ->
-          sidebar_info.html(data)
-          sidebar_loader.hide()
-          sidebar_info.show()
+          $.get('/course/' + id + '/graph/embed').success (data) ->
+            sidebar_info.html(data)
+            sidebar_loader.hide()
+            sidebar_info.show()
 
 
     $(window).resize () ->
