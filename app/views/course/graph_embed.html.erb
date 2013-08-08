@@ -6,13 +6,13 @@
   <% if @course.prerequisite.nil? %>
     None.
   <% else %>
-    <%= @course.prerequisite %>
+    <%= raw(@course.prerequisite.to_html) %>
   <% end %>
 </h4></div>
 <div><h4>Corequisites:
   <% if @course.corequisite.nil? %>
     None.
   <% else %>
-    <%= @course.corequisite %>
+    <%= raw(@course.corequisite.to_html) %>
   <% end %>
 </h4></div>

@@ -86,6 +86,17 @@ def to_s
   r
 end
 
+def to_html
+  r = ''
+  return '' if operation.nil?
+  if operation == NodeOperation::NODE
+    r = r + course.to_link
+  else
+    r = r + ' (' + nodes.map! { |k| "#{k.to_html}" }.join(' ' + operation + ' ') + ') '
+  end
+  r
+end
+
 def name
   to_s
 end

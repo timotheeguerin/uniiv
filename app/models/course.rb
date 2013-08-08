@@ -1,10 +1,15 @@
 class Course < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   belongs_to :subject, :class_name => 'CourseSubject'
   belongs_to :prerequisite, :class_name => 'CourseExpr'
   belongs_to :corequisite, :class_name => 'CourseExpr'
 
   def to_s
     get_short_name
+  end
+  
+  def to_link
+    "<a href='#{course_path(:id => id)}'>#{to_s}</a>"
   end
 
   def id_to_s

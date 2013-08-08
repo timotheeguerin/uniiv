@@ -34,6 +34,7 @@ Uniiv::Application.routes.draw do
   get 'mygraph/data' => 'graph#user_data'
 
   #Course controller
+  get "course/:id", to: 'course#show', as: 'course'
   get "course/:id/show" => 'course#show'
   get "course/:id/graph/embed" => 'course#graph_embed'
   get "course/:id/json" => 'course#json'

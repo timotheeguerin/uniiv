@@ -9,6 +9,10 @@ class CourseExpr < ActiveRecord::Base
     to_s
   end
 
+  def to_html
+    node.to_html
+  end
+  
   def self.parse(string)
     nodes = CourseNode.parse(string)
     return nil if nodes.nil?
