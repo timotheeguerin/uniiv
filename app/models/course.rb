@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
   end
   
   def to_link
-    "<a href='#{course_path(:id => id)}'>#{to_s}</a>"
+    "<a href='#{course_path(:id => id)}' data-id='#{id}'>#{to_s}</a>"
   end
 
   def id_to_s

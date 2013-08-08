@@ -21,6 +21,14 @@
             "background": {
                 "color": "#096741"
             }
+        },
+        "highlighted":{
+          "background":{
+              "border":
+              {
+                "color":"#274d9b"
+              }
+          }
         }
     },
     "node_available": {
