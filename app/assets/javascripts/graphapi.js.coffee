@@ -160,8 +160,9 @@ class CanGraph
 
   setupNodesListener: () ->
     for node_id, nodes of @nodes
-      for node in nodes
-        @setupNodeListener(node)
+      if(nodes.length > 1)  #Register the listener only of there are multiple course with the same id
+        for node in nodes
+          @setupNodeListener(node)
 
   setupNodeListener: (node) ->
     node.onStateChange () =>
