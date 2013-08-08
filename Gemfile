@@ -57,5 +57,3 @@ gem 'ruby-graphviz'
 gem 'json'
 
 gem 'thin'
-
-gem 'merit'
