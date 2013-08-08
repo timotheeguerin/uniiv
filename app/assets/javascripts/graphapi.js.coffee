@@ -10,6 +10,8 @@ resizeCanvasContainer = () ->
 $(document).ready ->
   resizeCanvasContainer()
   canvas_container = $('#canvas-container')
+  sidebar_loader = $("#sidebar_loader")
+  sidebar_info = $("#graph_sidebar_info")
   if canvas_container?
     graph = new CanGraph({
       container: 'canvas-container'
@@ -19,8 +21,15 @@ $(document).ready ->
     graph.load "/mygraph/data", () ->
       graph.update()
       graph.onNodeClick (node) ->     #When we click on a node it load information on the side
-        name = node.name
-        $()
+        name = node.id
+        id = name.substring(2)
+        sidebar_loader.show()
+        #sidebar_info.hide()
+
+        $.get('/course/' + id + '/graph/embed').success (data) ->
+          sidebar_info.html(data)
+          sidebar_loader.hide()
+          sidebar_info.show()
 
 
     $(window).resize () ->
@@ -176,8 +185,9 @@ class CanGraph
 
   #Call callback when any node is clicked
   onNodeClick: (callback) ->
-    for node in @nodes
-      @_onNodeClick(node, callback)
+    for k, nodes of @nodes
+      for node in nodes
+        @_onNodeClick(node, callback)
 
   _onNodeClick: (node, callback) ->
     node.on 'mousedown', () ->

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130805163731) do
+ActiveRecord::Schema.define(version: 20130808145117) do
+
+  create_table "badges", force: true do |t|
+    t.string "name"
+    t.string "desciption"
+    t.integer "point"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "course_exprs", force: true do |t|
     t.integer "node_id"
@@ -25,10 +33,10 @@ ActiveRecord::Schema.define(version: 20130805163731) do
     t.string "name"
     t.float "value"
     t.boolean "pass"
+    t.boolean "pass_core"
     t.integer "system_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean "pass_core"
   end
 
   add_index "course_grading_system_entities", ["system_id"], name: "index_course_grading_system_entities_on_system_id", using: :btree
