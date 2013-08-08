@@ -21,10 +21,10 @@ class Spline
       coor = pos.split(',')
       if coor.size == 3 #Arrow side
         arrow = 0
-        position_array << Point.new(coor[1], coor[2])
+        position_array << Point.new(coor[1].to_f.round, coor[2].to_f.round)
       elsif coor.size == 2
-        x = coor[0]
-        y = coor[1]
+        x = coor[0].to_f.round
+        y = coor[1].to_f.round
         if y[-1] == '"'
           y = y[0..-2]
         end
