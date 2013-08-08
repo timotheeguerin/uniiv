@@ -18,8 +18,9 @@ $(document).ready ->
 
     graph.load "/mygraph/data", () ->
       graph.update()
-      graph.onNodeClick (node) ->
+      graph.onNodeClick (node) ->     #When we click on a node it load information on the side
         name = node.name
+        $()
 
 
     $(window).resize () ->

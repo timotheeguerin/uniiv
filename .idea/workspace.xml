@@ -7,7 +7,7 @@
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375983570697" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375986190659" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -32,7 +32,7 @@
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
     <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375978497598" ignored="false" />
     <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375982774026" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375985550845" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375991308092" ignored="false" />
     <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375900543311" ignored="false" />
     <file path="/application.scss" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375390154836" ignored="false" />
     <file path="/graph_helper.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375213276139" ignored="false" />
@@ -90,7 +90,7 @@
       <file leaf-file-name="graphapi.js.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="32" selection-start="4357" selection-end="4357" vertical-scroll-proportion="0.6615905">
+            <state line="22" column="10" selection-start="636" selection-end="636" vertical-scroll-proportion="0.5465313">
               <folding />
             </state>
           </provider>
@@ -135,7 +135,7 @@
       <file leaf-file-name="GraphElement.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="65" selection-start="1774" selection-end="1774" vertical-scroll-proportion="0.0">
+            <state line="66" column="39" selection-start="1680" selection-end="1702" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1104,7 +1104,11 @@
       <created>1375983571789</created>
       <updated>1375983571789</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="graph hover edges from node on hover">
+      <created>1375986192164</created>
+      <updated>1375986192165</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1312,13 +1316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="65" selection-start="1774" selection-end="1774" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/spline.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="24" selection-start="629" selection-end="629" vertical-scroll-proportion="0.0">
@@ -1340,9 +1337,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/GraphElement.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="39" selection-start="1680" selection-end="1702" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="32" selection-start="4357" selection-end="4357" vertical-scroll-proportion="0.6615905">
+        <state line="22" column="10" selection-start="636" selection-end="636" vertical-scroll-proportion="0.5465313">
           <folding />
         </state>
       </provider>
