@@ -42,6 +42,13 @@ class Course < ActiveRecord::Base
       CourseState::UNAVAILABLE
     end
   end
+
+  def as_json(options={})
+   hash = super(:except =>[:created_at, :updated_at])
+   hash[:prerequisite] = prerequisite.as_json
+   hash[:corequisite] = corequisite.as_json
+   hash   
+ end
 end
 
 class CourseState
