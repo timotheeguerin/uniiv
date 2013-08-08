@@ -124,7 +124,7 @@ class CanGraph
       @edges = @edges.concat g.edges #Add the list of edges
       for node in nodes
         @nodes[node.id] ||= []
-        @nodes[ndoe.id].push(node)
+        @nodes[node.id].push(node)
 
 
       @container.add(group)
