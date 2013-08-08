@@ -13,9 +13,10 @@ $(document).ready ->
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info")
   sidebar_info.on 'click', 'a', (e) ->
-    console.log($(this).attr('href'))
     url = $(this).attr('href')
-    loadCourse(url + '/graph/embed')
+    node_id = 'c_' + $(this).attr('data-id')
+    loadCourse(node_id, url + '/graph/embed')
+    graph.update()
     e.preventDefault();
 
   if canvas_container?
@@ -32,14 +33,16 @@ $(document).ready ->
         type = name.split('_', 2)[0]
         if type == 'c'
           sidebar_loader.show()
-          loadCourse('/course/' + id + '/graph/embed')
+          loadCourse(name, '/course/' + id + '/graph/embed')
 
 
     $(window).resize () ->
       resizeCanvasContainer()
       graph.resize()
-  loadCourse = (url) ->
+  loadCourse = (node_id, url) ->
     sidebar_loader.show()
+    graph.clear_nodes_hightlited()
+    graph.highlight_node(node_id)
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
@@ -94,6 +97,8 @@ class CanGraph
     @graphs = []
     @nodes = []
     @edges = []
+    @highlited_nodes = []
+
     @container = new Kinetic.Group(
       x: 0
       y: 0
@@ -188,8 +193,6 @@ class CanGraph
       for n in @nodes[node.id]
         n.state = node.state
         n.update()
-  #@hightlightEdgesFromNode(node)
-
 
 
   #Call callback when any node is clicked
@@ -208,6 +211,15 @@ class CanGraph
         edge.state = node.state
         edge.update()
 
+  clear_nodes_hightlited: () ->
+    for node in @highlited_nodes
+      node.highlight(false)
+    @highlited_nodes = []
+
+  highlight_node: (node_id) ->
+    for node in @nodes[node_id]
+      node.highlight(true)
+      @highlited_nodes.push(node)
 
 class Graph
   constructor: (@group, @can_graph, data) ->

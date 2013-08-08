@@ -28,7 +28,7 @@ class BoxElement extends GraphElement
 
           });
         @group.add(background)
-
+      background.setStroke(0)
       if(style.background.border?)      #If a border is defined
         border = style.background.border;
         background.setStroke(border.color)

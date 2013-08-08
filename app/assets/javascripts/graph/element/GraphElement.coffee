@@ -2,10 +2,12 @@ State =
   DEFAULT: 0
   HOVER: 1
   ACTIVE: 2
+  HIGHLIGHTED: 3
 
 class GraphElement
   constructor: (@group, @style, @graph) ->
     @ishover = false
+    @ishighlighted = false
     @state = State.DEFAULT
     unless (@style.onlydefault? and @style.onlydefault)
       @on 'mouseenter', () =>
@@ -13,7 +15,10 @@ class GraphElement
         @state = State.HOVER
       @on 'mouseleave', () =>
         @ishover = false
-        @state = State.DEFAULT
+        if @ishighlighted
+          @state = State.HIGHLIGHTED
+        else
+          @state = State.DEFAULT
       @on 'mousedown', () =>
         @state = State.ACTIVE
       @on 'mouseup', () =>
@@ -41,6 +46,8 @@ class GraphElement
       when State.ACTIVE
         @changeCursor(@style.cursor)
         @applyStyle(@style.normal, @style['active'])
+      when State.HIGHLIGHTED
+        @applyStyle(@style.normal, @style['highlighted'])
       else
         @applyStyle(@style.normal)
 
@@ -66,5 +73,12 @@ class GraphElement
     @group.on 'mouseenter.redraw mouseleave.redraw mousedown.redraw mouseup.redraw', () =>
       @graph.update()
 
+  highlight: (val) ->
+    @ishighlighted = val
+    if val
+      @state = State.HIGHLIGHTED
+    else
+      @state = State.DEFAULT
+    @update()
 #Get class accessible to other file
 window.GraphElement = GraphElement
