@@ -156,8 +156,9 @@ class CanGraph
     @viewport.resize(x, y)
 
   setupNodesListener: () ->
-    for node in @nodes
-      @setupNodeListener(node)
+    for node_id, nodes of @nodes
+      for node in nodes
+        @setupNodeListener(node)
 
   setupNodeListener: (node) ->
     node.onStateChange () =>
