@@ -135,10 +135,12 @@ class CanGraph
     maxHeight = @viewport.canvasSize.y if maxHeight < @viewport.canvasSize.y
     @container.setSize(maxWidth, maxHeight)
     @viewport.resizeLayer(@container.getWidth(), @container.getHeight())
+    @viewport.autoResizeBackground()
+    @container.setSize(@viewport.layerSize.x, @viewport.layerSize.y)
+
 
     graphX = (@container.getWidth() - totalWidth) / 2 + margin
     for graph in @graphs
-
       x = graphX
       y = (@container.getHeight() - graph.getHeight()) / 2
       graph.setPosition(x, y)

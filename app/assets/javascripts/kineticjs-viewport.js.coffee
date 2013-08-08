@@ -48,18 +48,23 @@ class window.ViewPort
 
 
   resizeLayer: (width, height) ->
-    w = width * 1.5
-    h = height * 1.5
-    @background.setWidth(w)
-    @background.setHeight(h)
-    @layerSize.x = w
-    @layerSize.y = h
+    w = height
+    h = height
+    @background.setWidth(width)
+    @background.setHeight(height)
+    @layerSize.x = width
+    @layerSize.y = height
 
+  autoResizeBackground: () ->
+    min_scale = @get_min_scale()
+    w = @layer.getWidth() * min_scale
+    h = @layer.getWidth() * min_scale
+    w = @canvasSize.x if @canvasSize.x > w
+    h = @canvasSize.y if @canvasSize.y > h
+    @resizeLayer(w / min_scale, h / min_scale)
 
   zoom: (event) ->
-    minScaleX = @canvasSize.x / @layerSize.x
-    minScaleY = @canvasSize.y / @layerSize.y
-    minScale = Math.max(minScaleX, minScaleY)
+    minScale = @get_min_scale()
 
     event.preventDefault()
     oevt = event.originalEvent
@@ -73,30 +78,37 @@ class window.ViewPort
       newScale = minScale
     else if (newScale > 2)
       newScale = 2
-
+    console.log('NEW scale: ' + newScale)
     dscale = newScale / oldScale;
     ox = mx - dscale * ( mx - @layer.getPosition().x)
     oy = my - dscale * (my - @layer.getPosition().y)
+    console.log('Pos: ' + ox + ' - ' + oy)
     @layer.setScale(newScale)
     pos = @verifyPosition(new Point(ox, oy))
+    console.log('Pos c: ' + pos.x + ' - ' + pos.y)
     @layer.setPosition(pos.x, pos.y)
 
 
     @layer.draw();
 
+  get_min_scale: ()->
+    minScaleX = @canvasSize.x / @layerSize.x
+    minScaleY = @canvasSize.y / @layerSize.y
+    minScale = Math.min(minScaleX, minScaleY)
+    return minScale
 
   verifyPosition: (pos) ->
     newX = pos.x;
     newY = pos.y;
 
     currentScale = @layer.getScale().x;
-    if (pos.x > 0)
+    if (pos.x >= 0)
       newX = 0
-    if (pos.y > 0)
+    if (pos.y >= 0)
       newY = 0
-    if (@canvasSize.x - pos.x > @layerSize.x * currentScale)
+    if (@canvasSize.x - pos.x >= @layerSize.x * currentScale)
       newX = @canvasSize.x - @layerSize.x * currentScale
-    if (@canvasSize.y - pos.y > @layerSize.y * currentScale)
+    if (@canvasSize.y - pos.y >= @layerSize.y * currentScale)
       newY = @canvasSize.y - @layerSize.y * currentScale
     return {
     x: newX,
