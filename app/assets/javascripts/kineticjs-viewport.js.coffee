@@ -63,9 +63,29 @@ class window.ViewPort
     h = @canvasSize.y if @canvasSize.y > h
     @resizeLayer(w / min_scale, h / min_scale)
 
-  zoom: (event) ->
+  zoom_to: (scale, mx = 0, my = 0) ->
     minScale = @get_min_scale()
+    oldScale = @layer.getScale().x
+    newScale = scale
+    if (newScale < minScale)
+      newScale = minScale
+    else if (newScale > 2)
+      newScale = 2
+    dscale = newScale / oldScale;
+    ox = mx - dscale * ( mx - @layer.getPosition().x)
+    oy = my - dscale * (my - @layer.getPosition().y)
+    @layer.setScale(newScale)
+    pos = @verifyPosition(new Point(ox, oy))
+    @layer.setPosition(pos.x, pos.y)
 
+
+    @layer.draw();
+
+  zoom_to_min: () ->
+    scale = @get_min_scale()
+    @zoom_to(scale)
+
+  zoom: (event) ->
     event.preventDefault()
     oevt = event.originalEvent
     mx = oevt.pageX - @offset.left
@@ -74,22 +94,8 @@ class window.ViewPort
     zoomAmount = oevt.wheelDelta * 0.001
     oldScale = @layer.getScale().x
     newScale = oldScale + zoomAmount
-    if (newScale < minScale)
-      newScale = minScale
-    else if (newScale > 2)
-      newScale = 2
-    console.log('NEW scale: ' + newScale)
-    dscale = newScale / oldScale;
-    ox = mx - dscale * ( mx - @layer.getPosition().x)
-    oy = my - dscale * (my - @layer.getPosition().y)
-    console.log('Pos: ' + ox + ' - ' + oy)
-    @layer.setScale(newScale)
-    pos = @verifyPosition(new Point(ox, oy))
-    console.log('Pos c: ' + pos.x + ' - ' + pos.y)
-    @layer.setPosition(pos.x, pos.y)
+    @zoom_to(newScale, mx, my)
 
-
-    @layer.draw();
 
   get_min_scale: ()->
     minScaleX = @canvasSize.x / @layerSize.x

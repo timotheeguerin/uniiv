@@ -146,6 +146,7 @@ class CanGraph
       graph.setPosition(x, y)
       graphX += graph.getWidth() + margin
 
+    @viewport.zoom_to_min()
     @update();
 
   update: ->
