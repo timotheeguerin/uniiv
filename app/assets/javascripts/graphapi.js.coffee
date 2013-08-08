@@ -12,6 +12,12 @@ $(document).ready ->
   canvas_container = $('#canvas-container')
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info")
+  sidebar_info.on 'click', 'a', (e) ->
+    console.log($(this).attr('href'))
+    url = $(this).attr('href')
+    loadCourse(url + '/graph/embed')
+    e.preventDefault();
+
   if canvas_container?
     graph = new CanGraph({
       container: 'canvas-container'
@@ -26,17 +32,18 @@ $(document).ready ->
         type = name.split('_', 2)[0]
         if type == 'c'
           sidebar_loader.show()
-          #sidebar_info.hide()
-
-          $.get('/course/' + id + '/graph/embed').success (data) ->
-            sidebar_info.html(data)
-            sidebar_loader.hide()
-            sidebar_info.show()
+          loadCourse('/course/' + id + '/graph/embed')
 
 
     $(window).resize () ->
       resizeCanvasContainer()
       graph.resize()
+  loadCourse = (url) ->
+    sidebar_loader.show()
+    $.get(url).success (data) ->
+      sidebar_info.html(data)
+      sidebar_loader.hide()
+      sidebar_info.show()
 
 
 class Ressources
