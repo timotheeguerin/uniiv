@@ -15,11 +15,13 @@
         <%= link_to root_url do %>
             <img src="/assets/logo.png" style="height:20px;padding-top:10px"/>
         <% end %>
-        <span id="nav_top_left_links">
-          <% if user_signed_in? %>
+        
+        <% if user_signed_in? %>
+          <span id="nav_top_left_links">
             <%= link_to "Path", test_path %>
-          <% end %>
-        </span>
+          </span>
+        <% end %>
+        
       </div>
       <div id="nav_top_right">
         <% if user_signed_in? %>

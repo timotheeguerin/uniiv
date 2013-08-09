@@ -286,6 +286,40 @@ $login_width: 500px;
   width: $login_width;
 }
 
+.pagewidth{
+  width: $page_width;
+}
+
+.pagewidth_half
+{
+  width: $page_width / 2;
+}
+
+.pagewidth_twothirds
+{
+  width: 2 * $page_width / 3;
+}
+
+.course_completed
+{
+  color: $palette_blue_medium;
+}
+
+.course_taking
+{
+  color: $palette_yellow_medium;
+}
+
+.course_available
+{
+  color: $palette_green_medium;
+}
+
+.course_unavailable
+{
+  color: $palette_orange_medium;
+}
+
 /*
  * tags
 */

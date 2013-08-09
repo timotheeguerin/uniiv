@@ -187,8 +187,9 @@
         "normal": {
             "background": {
                 "cornerradius": "15",
-                "commentborder": {
-                    "color": "#000000"
+                "color":"#f1f1f1",
+                "border": {
+                    "color": "#dfdfdf"
                 }
             }
         }
@@ -200,7 +201,7 @@
             "background": {
                 "cornerradius": "15",
                 "commentborder": {
-                    "color": "#000000"
+                    "color": "#dfdfdf"
                 }
             }
         }
