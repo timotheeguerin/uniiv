@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/dot_graph.rb" afterPath="$PROJECT_DIR$/lib/graph/dot_graph.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376073251107" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376073831457" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -109,7 +109,7 @@
       <file leaf-file-name="dot_graph.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="48" selection-start="1821" selection-end="1821" vertical-scroll-proportion="0.85">
+            <state line="63" column="49" selection-start="1822" selection-end="1822" vertical-scroll-proportion="1.8121828">
               <folding />
             </state>
           </provider>
@@ -1119,7 +1119,11 @@
       <created>1376073252694</created>
       <updated>1376073252694</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="graph hover edges from node on hover">
+      <created>1376073832813</created>
+      <updated>1376073832813</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1364,7 +1368,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="48" selection-start="1821" selection-end="1821" vertical-scroll-proportion="0.85">
+        <state line="63" column="49" selection-start="1822" selection-end="1822" vertical-scroll-proportion="1.8121828">
           <folding />
         </state>
       </provider>
