@@ -7,12 +7,15 @@ class DotGraph
     @current_user = current_user
   end
 
-  def load_from_group(group, graph = @graph)
+  def load_from_group(group, graph = @graph, include_label = true)
     #Load all the group courses
     group.courses.each do |course|
       add_course(course, graph)
     end
 
+    unless include_label
+      graph[:label] = ''
+    end
     #Load all the dependency course not in any groups/subgroups
     group.courses.each do |course|
       prerequisite = course.prerequisite
@@ -58,7 +61,7 @@ class DotGraph
       unless subgroup.courses.size == 0
         subgraph_name = 'cluster_'+subgroup.id.to_s
         subgraph = graph.add_graph(subgraph_name)
-        load_from_group(subgroup, subgraph)
+        load_from_group(subgroup, subgraph, false)
       end
     end
 
@@ -75,6 +78,7 @@ class DotGraph
       course_node[:label] = course.get_dot_name
       course_node[:shape] = 'circle'
       course_node[:fontname] = 'Monospace'
+      course_node[:fontsize] = 20
       @nodes[course_id] = {:node => course_node, :in => in_graph, :state => state}
     end
   end
