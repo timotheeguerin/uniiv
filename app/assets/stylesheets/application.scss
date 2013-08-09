@@ -320,6 +320,36 @@ $login_width: 500px;
   color: $palette_orange_medium;
 }
 
+.legend-icon
+{
+    display: inline-block;
+    border-radius: 100%;
+    background-color: #000;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.taking
+{
+  background-color: $palette_yellow_medium;
+}
+
+.completed
+{
+  background-color: $palette_blue_medium;
+}
+
+.available
+{
+  background-color: $palette_green_medium;
+}
+
+.unavailable
+{
+  background-color: $palette_orange_medium;
+}
+
 /*
  * tags
 */
