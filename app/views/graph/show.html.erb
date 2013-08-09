@@ -12,7 +12,7 @@
     <div class="right"><h3><%= current_user.university %></h3></div>
     <div class="right"><h3>C/T Credits(CC%)</h3></div>
     <% current_user.programs.each do |p| %>
-      <div class="right"><h4><%= p %></h4></div>
+        <div class="right"><h4><%= p %></h4></div>
     <% end %>
     <hr>
     <div id="graph_sidebar_info"></div>
@@ -41,5 +41,5 @@
       
     </div>
   </div>
-  <div id="canvas-container" data-url=''></div>
+  <div id="canvas-container" data-url='<%= user_graph_data_path %>'></div>
 </div>

@@ -1,73 +1,74 @@
 <div class="content_box login_content">
   <h2>User Dashboard</h2>
-  
-  <% if @university.nil? %>
-    <div>
-      You have not selected a university!
-      <button style="visibility: hidden;">l</button>
-      <%= link_to user_university_edit_path do %>
-          <button style="float:right;">Change</button>
-      <% end %>
-    </div>
-  <% else %>
-    <div>
-      <h3><%= @university %></h3>
-      <button style="visibility: hidden;">l</button>
-      <%= link_to user_university_edit_path do %>
-        <button style="float:right;">Change</button>
-      <% end %>
-    </div>
-  <% end %>
-  
-  <% if @faculty.nil? %>
-    <div>
-      You have not selected a faculty!
-      <button style="visibility: hidden;">l</button>
-      <%= link_to user_faculty_edit_path do %>
-          <button style="float:right;">Change</button>
-      <% end %>
-    </div>
-  <% else %>
-    <div>
-      <h3><%= @faculty %></h3>
-      <button style="visibility: hidden;">l</button>
-      <button style="visibility: hidden;">l</button>
-      <%= link_to user_faculty_edit_path do %>
-        <button style="float:right;">Change</button>
-      <% end %>
-    </div>
-  <% end %>
-  
-  <% if @programs.size < 1 %>
-    <div>
-      You have not selected any programs!
-      <button style="visibility: hidden;">l</button>
-      <%= link_to user_programs_new_path do %>
+
+  <% if current_user.university.nil? %>
+      <div>
+        You have not selected a university!
+        <button style="visibility: hidden;">l</button>
+        <%= link_to user_university_edit_path do %>
             <button style="float:right;">Change</button>
-      <% end %>
-    </div>
-    <% else %>
+        <% end %>
+      </div>
+  <% else %>
+      <div>
+        <h3><%= current_user.university %></h3>
+        <button style="visibility: hidden;">l</button>
+        <%= link_to user_university_edit_path do %>
+            <button style="float:right;">Change</button>
+        <% end %>
+      </div>
+  <% end %>
+
+  <% if current_user.faculty.nil? %>
+      <div>
+        You have not selected a faculty!
+        <button style="visibility: hidden;">l</button>
+        <%= link_to user_faculty_edit_path do %>
+            <button style="float:right;">Change</button>
+        <% end %>
+      </div>
+  <% else %>
+      <div>
+        <h3><%= @faculty %></h3>
+        <button style="visibility: hidden;">l</button>
+        <button style="visibility: hidden;">l</button>
+        <%= link_to user_faculty_edit_path do %>
+            <button style="float:right;">Change</button>
+        <% end %>
+      </div>
+  <% end %>
+
+  <% if current_user.programs.size < 1 %>
+      <div>
+        You have not selected any programs!
+        <button style="visibility: hidden;">l</button>
+        <%= link_to user_programs_new_path do %>
+            <button style="float:right;">Change</button>
+        <% end %>
+      </div>
+  <% else %>
       <div>
         <h3>Programs</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_programs_new_path do %>
-          <button style="float:right;">Change</button>
+            <button style="float:right;">Change</button>
         <% end %>
       </div>
-    <% @programs.each do |p| %>
-      <div><h4 style="text-indent:15px;"><%= p %></h4></div>
-    <% end %>
+      <% @programs.each do |p| %>
+          <div><h4 style="text-indent:15px;"><%= p %></h4></div>
+      <% end %>
   <% end %>
 </div>
 
 <div class="content_box login_content">
   <h2>User Management</h2>
+
   <div class="center">
     <%= link_to edit_user_registration_path do %>
-      <button>Manage Emails</button>
+        <button>Manage Emails</button>
     <% end %>
     <%= link_to edit_user_registration_path do %>
-      <button>Manage Password</button>
+        <button>Manage Password</button>
     <% end %>
   </div>
 </div>
