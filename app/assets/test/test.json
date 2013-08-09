@@ -125,7 +125,7 @@
         "normal": {
             "color": "#274d9b",
             "width": "3",
-            "length": 15,
+            "length": 12,
             "angle": "30"
         },
         "hover": {
@@ -178,6 +178,10 @@
             "background": {
                 "color": "#70CEA8",
                 "cornerradius": "15"
+            },
+            "label":
+            {
+              "hidden": "true"
             }
         }
     },
@@ -191,6 +195,10 @@
                 "border": {
                     "color": "#dfdfdf"
                 }
+            },
+            "label":
+            {
+              "color": "#274d9b"
             }
         }
     },
@@ -203,6 +211,10 @@
                 "commentborder": {
                     "color": "#dfdfdf"
                 }
+            },
+            "label":
+            {
+              "color": "#274d9b"
             }
         }
     },
