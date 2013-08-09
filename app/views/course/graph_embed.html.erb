@@ -1,4 +1,4 @@
-<div><h2><%= @course.subject.to_s + " " + @course.code.to_s %></h2></div>
+<div><h2 class="<%= get_course_css_class(current_user, @course) %>"><%= link_to (@course.subject.to_s + " " + @course.code.to_s), course_path(@course) %></h2></div>
 <div><h3><%= @course.name %></h3></div>
 <div><h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4></div>
 <div><h5><%= @course.description %></h5></div>

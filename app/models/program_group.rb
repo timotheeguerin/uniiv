@@ -6,4 +6,9 @@ class ProgramGroup < ActiveRecord::Base
   def restriction_enum
     ['all', 'min_nb', 'min_credit']
   end
+  
+  def to_s
+    name
+  end
+  
 end

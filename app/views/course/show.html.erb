@@ -1,2 +1,20 @@
-<h1>Course#show</h1>
-<p>Find me in app/views/course/show.html.erb</p>
+<div class="content_box pagewidth_twothirds">
+  <h1><%= (@course.subject.to_s + " " + @course.code.to_s) %></h1>
+  <h3><%= @course.name %></h3>
+  <h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4>
+  <h5><%= @course.description %></h5>
+  <h4>Prerequisites:
+    <% if @course.prerequisite.nil? %>
+      None.
+    <% else %>
+      <%= raw(@course.prerequisite.to_html) %>
+    <% end %>
+  </h4>
+  <h4>Corequisites:
+    <% if @course.corequisite.nil? %>
+      None.
+    <% else %>
+      <%= raw(@course.corequisite.to_html) %>
+    <% end %>
+  </h4>
+</div>
