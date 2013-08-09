@@ -16,6 +16,7 @@ class LabelElement extends BoxElement
         fontFamily: 'Calibri',
         fill: 'black'
         name: 'label'
+
         width: @group.getWidth()
         align: 'center'
       });
@@ -40,7 +41,7 @@ class LabelElement extends BoxElement
         if(style.label.color?)
           label.setFill(style.label.color)
         if(style.label.fontStyle)
-          label.setFontStyle(style.label.fontStyle);
+          label.setFontStyle('bold');
         else
           label.setFontStyle('normal');
       else
