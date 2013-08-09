@@ -32,8 +32,8 @@ Uniiv::Application.routes.draw do
 
   #Graph controller
   get 'mygraph' => 'graph#show', as: 'user_graph'
-  get 'mygraph/data' => 'graph#user_data'
-  get 'graph/:id/data' => 'graph#data', as: 'user_graph_data'
+  get 'mygraph/data' => 'graph#user_data', as: 'user_graph_data'
+  get 'graph/:id/data' => 'graph#data'
 
   #Course controller
   get 'course/:id', to: 'course#show', as: 'course'

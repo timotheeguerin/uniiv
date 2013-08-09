@@ -25,7 +25,8 @@ $(document).ready ->
       loading_container: 'graph_loader'
     })
 
-    graph.load "/mygraph/data", () ->
+    graph_data_url = canvas_container.attr('data-url')
+    graph.load graph_data_url, () ->
       graph.update()
       graph.onNodeClick (node) ->     #When we click on a node it load information on the side
         name = node.id
