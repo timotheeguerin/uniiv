@@ -1,48 +1,50 @@
 Uniiv::Application.routes.draw do
 
- 
-  get "user_dashboard/index"
-  get "user_programs/show"
-  get "user_programs/new"
-  post "user_programs/create"
-  get "user_programs/edit"
-  get "user_programs/update"
-  get "user_programs/delete"
-  get "user_faculty/show"
-  get "user_faculty/new"
-  get "user_faculty/create"
-  get "user_faculty/edit"
-  post "user_faculty/update"
-  get "user_faculty/delete"
-  get "user_university/show"
-  get "user_university/new"
-  get "user_university/create"
-  get "user_university/edit"
-  post "user_university/update"
-  get "user_university/delete"
-  get "graph/index"
-  get "test/index"
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  get 'user_dashboard/index'
+  get 'user_programs/show'
+  get 'user_programs/new'
+  post 'user_programs/create'
+  get 'user_programs/edit'
+  get 'user_programs/update'
+  get 'user_programs/delete'
+  get 'user_faculty/show'
+  get 'user_faculty/new'
+  get 'user_faculty/create'
+  get 'user_faculty/edit'
+  post 'user_faculty/update'
+  get 'user_faculty/delete'
+  get 'user_university/show'
+  get 'user_university/new'
+  get 'user_university/create'
+  get 'user_university/edit'
+  post 'user_university/update'
+  get 'user_university/delete'
+  get 'graph/index'
+  get 'test/index'
+
+  devise_for :users, :controllers => {:registrations => 'registrations'}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  root to: "welcome#index"
+  root to: 'welcome#index'
 
   get 'test' => 'test#index'
 
-  get 'graph/:id' => 'graph#index'
-  get 'graph/:id/data' => 'graph#data'
+
+  #Graph controller
+  get 'mygraph' => 'graph#show', as: 'user_graph'
   get 'mygraph/data' => 'graph#user_data'
+  get 'graph/:id/data' => 'graph#data', as: 'user_graph_data'
 
   #Course controller
-  get "course/:id", to: 'course#show', as: 'course'
-  get "course/:id/show" => 'course#show'
-  get "course/:id/graph/embed" => 'course#graph_embed'
-  get "course/:id/json" => 'course#json'
+  get 'course/:id', to: 'course#show', as: 'course'
+  get 'course/:id/show' => 'course#show'
+  get 'course/:id/graph/embed' => 'course#graph_embed'
+  get 'course/:id/json' => 'course#json'
 
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # See how all your routes lay out with 'rake routes'.
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # root 'welcome#index'
 
   # Example of regular route:

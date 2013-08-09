@@ -8,6 +8,10 @@ require 'graph/packer'
 class GraphController < ApplicationController
   include GraphHelper
 
+  def show
+
+  end
+
   def user_data
     graphs_json = []
     nodes = {}
