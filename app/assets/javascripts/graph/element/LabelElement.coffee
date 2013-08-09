@@ -41,7 +41,7 @@ class LabelElement extends BoxElement
         if(style.label.color?)
           label.setFill(style.label.color)
         if(style.label.fontStyle?)
-          label.setFontStyle('bold');
+          label.setFontStyle(style.label.fontStyle);
         else
           label.setFontStyle('normal');
       else
