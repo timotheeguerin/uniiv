@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/timcolonel/Ruby-Graphviz.git
+  revision: d272ae46d166efd137e7504aa3006f5fa2f94878
+  specs:
+    ruby-graphviz (1.0.9)
+
+GIT
   remote: git://github.com/timcolonel/i18n-active_record.git
   revision: 5ab58bdab1e53399476551fbf2a75e4454aaa2e6
   specs:
@@ -131,7 +137,6 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     remotipart (1.2.1)
-    ruby-graphviz (1.0.9)
     safe_yaml (0.9.4)
     sass (3.2.9)
     sass-rails (4.0.0)
@@ -185,7 +190,7 @@ DEPENDENCIES
   mysql2 (= 0.3.11)
   rails (= 4.0.0)
   rails_admin
-  ruby-graphviz
+  ruby-graphviz!
   sass-rails (~> 4.0.0)
   sdoc
   thin

@@ -20,6 +20,7 @@ class Point
     end
   end
 
+
   def self.dim_from_array(array)
     x = 0
     y = 0
@@ -33,6 +34,13 @@ class Point
     Point.new(x, y)
   end
 
+  def self.pos_from_string(string)
+    Point::pos_from_array(string.split(','))
+  end
+
+  def self.dim_from_string(string)
+    Point::dim_from_array(string.split(','))
+  end
 
   def + (point)
     @x += point.x

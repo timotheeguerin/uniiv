@@ -2,7 +2,7 @@ require 'graph/point'
 require 'graph/node'
 
 class Graph
-  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz
+  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz, :label, :labelpos
 
   def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [], relative = false)
     @position = position
@@ -13,6 +13,8 @@ class Graph
     @nodes = nodes
     @type = 'cluster'
     @clazz = ''
+    @label = ''
+    @labelpos= Point.new
   end
 
   def add_graph(g)
@@ -41,6 +43,12 @@ class Graph
 
     dot_graph.each_graph do |dot_subgraph_id, dot_subgraph|
       g.add_graph(Graph::from_dot(dot_subgraph, nodes))
+    end
+
+    #Load the label
+    unless dot_graph[:label].nil?
+      g.label = dot_graph[:label].source
+      g.labelpos = Point.pos_from_string(dot_graph[:lp].source)
     end
     g
   end

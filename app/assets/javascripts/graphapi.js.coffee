@@ -237,12 +237,17 @@ class Graph
       height: data.dimension.y
     )
     @group.add(container_group)
+
+    #Style
     typeStyle = Ressources.style[data.type]
     customStyle = Ressources.style[data.clazz]
     style = $.extend({}, typeStyle, customStyle)
-    container = new ContainerElement(container_group, style, @can_graph, '')
+
+    #Style of the group
+    container = new ContainerElement(container_group, style, @can_graph, data.label)
     container.update()
 
+    #Load subgraphs
     for subgraph in data.subgraphs
       group = new Kinetic.Group(
         x: subgraph.position.x

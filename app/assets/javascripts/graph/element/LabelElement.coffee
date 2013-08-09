@@ -22,7 +22,7 @@ class LabelElement extends BoxElement
 
       @group.add(label)
 
-    if(style.label?)
+    if(style.label? && not style.label.hidden)
       if(style.label.halign?)
         label.setAlign(style.label.halign)
       if(style.label.valign?)
