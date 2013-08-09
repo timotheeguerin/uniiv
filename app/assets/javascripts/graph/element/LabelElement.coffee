@@ -39,6 +39,10 @@ class LabelElement extends BoxElement
           label.setY(newY);
         if(style.label.color?)
           label.setFill(style.label.color)
+        if(style.label.fontStyle)
+          setFontStyle(style.label.fontStyle);
+        else
+          setFontStyle('normal');
       else
         label.setOpacity(0)
 
