@@ -26,7 +26,7 @@
           "background":{
               "border":
               {
-                "color":"#274d9b"
+                "commentcolor":"#274d9b"
               }
           }
         }
