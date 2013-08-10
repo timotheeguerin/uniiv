@@ -18,7 +18,8 @@
         
         <% if user_signed_in? %>
           <span id="nav_top_left_links">
-            <%= link_to "Path", user_graph_path %>
+            <%= link_to "Path", user_graph_path %>&nbsp;
+            <%= link_to "Log", user_courses_index_path %>&nbsp;
           </span>
         <% end %>
         
@@ -28,6 +29,7 @@
             <% if can? :access, :rails_admin %>
                 <%= link_to "Dash", rails_admin.dashboard_path %>&nbsp;&nbsp;
             <% end %>
+            
             <%= link_to user_dashboard_index_path do %>
                 <strong><%= current_user.email %></strong>
             <% end %>

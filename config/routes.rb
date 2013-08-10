@@ -1,6 +1,6 @@
 Uniiv::Application.routes.draw do
-
-
+  post "user_courses/removeCourseCompleted"
+  post "user_courses/removeCourseTaking"
   get "user_courses/index"
   get 'user_dashboard/index'
   get 'user_programs/show'
