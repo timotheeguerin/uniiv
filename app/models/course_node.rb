@@ -22,7 +22,7 @@ class CourseNode < ActiveRecord::Base
       return []
     end
     string = string.strip
-    if string.start_with?('OR') or string.start_with?('AND')
+    if string.start_with?('OR(') or string.start_with?('AND(')
       node = CourseNode.new
       if string.start_with?('OR')
         node.operation = NodeOperation::OR
@@ -30,111 +30,112 @@ class CourseNode < ActiveRecord::Base
         node.operation = NodeOperation::AND
       end
       start_index = string.index('(') + 1
-        open_delta = 1
-        end_index = 0
+      open_delta = 1
+      end_index = 0
 
-        (start_index...string.length).each do |i|
-          end_index = i
-          if string[i] == '('
-            open_delta += 1
-          elsif string[i] == ')'
-  open_delta -= 1
-end
-if open_delta == 0
-  children = parse(string[start_index...i])
-  return nil if children.nil?
-  node.nodes = children
-  break
-end
-end
-end_index += 1
-list = [node]
-newl = parse(string[end_index...string.length])
-list += newl
-return list
-else
-  array = string.split(',', 2)
-  n = CourseNode.create_from_course_str(array[0])
-  return nil if n.nil?
-  list = [n]
-  list += parse(array[1])
-  return list
-end
-
-end
-
-def is_linking_one_course? (courses)
-  if operation == NodeOperation::NODE
-    return courses.include?(course.id_to_s)
-  else
-    nodes.each do |node|
-      return true if node.is_linking_one_course?(courses)
+      (start_index...string.length).each do |i|
+        end_index = i
+        if string[i] == '('
+          open_delta += 1
+        elsif string[i] == ')'
+          open_delta -= 1
+        end
+        if open_delta == 0
+          children = parse(string[start_index...i])
+          return nil if children.nil?
+          node.nodes = children
+          break
+        end
+      end
+      end_index += 1
+      list = [node]
+      newl = parse(string[end_index...string.length])
+      list += newl
+      return list
+    else
+      array = string.split(',', 2)
+      n = CourseNode.create_from_course_str(array[0])
+      return nil if n.nil?
+      list = [n]
+      list += parse(array[1])
+      return list
     end
+
   end
-  false
-end
 
-
-def to_s
-  r = ''
-  return '' if operation.nil?
-  if operation == NodeOperation::NODE
-    r = r + course.to_s
-  else
-    r = r + ' (' + nodes.map! { |k| "#{k.to_s}" }.join(' ' + operation + ' ') + ') '
-  end
-  r
-end
-
-def to_html
-  r = ''
-  return '' if operation.nil?
-  if operation == NodeOperation::NODE
-    r = r + course.to_link
-  else
-    r = r + ' (' + nodes.map! { |k| "#{k.to_html}" }.join(' ' + operation + ' ') + ') '
-  end
-  r
-end
-
-def name
-  to_s
-end
-
-def id_to_s
-  if operation == NodeOperation::NODE
-    course.id_to_s
-  else
-    'op_' + id.to_s
-  end
-end
-
-
-def requirements_completed?(user)
-  case operation
-  when NodeOperation::OR
-    nodes.each do |n|
-      if n.requirements_completed?(user)
-        return true
+  def is_linking_one_course? (courses)
+    if operation == NodeOperation::NODE
+      return courses.include?(course.id_to_s)
+    else
+      nodes.each do |node|
+        return true if node.is_linking_one_course?(courses)
       end
     end
-    return false
-  when NodeOperation::AND
-    nodes.each do |n|
-      unless n.requirements_completed?(user)
+    false
+  end
+
+
+  def to_s
+    r = ''
+    return '' if operation.nil?
+    if operation == NodeOperation::NODE
+      r = r + course.to_s
+    else
+      r = r + ' (' + nodes.map! { |k| "#{k.to_s}" }.join(' ' + operation + ' ') + ') '
+    end
+    r
+  end
+
+  def to_html
+    r = ''
+    return '' if operation.nil?
+    if operation == NodeOperation::NODE
+      r = r + course.to_link
+    else
+      r = r + ' (' + nodes.map! { |k| "#{k.to_html}" }.join(' ' + operation + ' ') + ') '
+    end
+    r
+  end
+
+  def name
+    to_s
+  end
+
+  def id_to_s
+    if operation == NodeOperation::NODE
+      course.id_to_s
+    else
+      'op_' + id.to_s
+    end
+  end
+
+
+  def requirements_completed?(user)
+    case operation
+      when NodeOperation::OR
+        nodes.each do |n|
+          if n.requirements_completed?(user)
+            return true
+          end
+        end
         return false
-      end
+      when NodeOperation::AND
+        nodes.each do |n|
+          unless n.requirements_completed?(user)
+            return false
+          end
+        end
+        return true
+      else
+        return user.has_completed_course?(course)
     end
-    return true
-  else
-    return user.has_completed_course?(course)
   end
-end
-def as_json(options={})
- hash = super(:except =>[:created_at, :updated_at])
- hash[:nodes] = nodes.as_json
- hash     
-end
+
+  def as_json(options={})
+    hash = super(:except => [:created_at, :updated_at])
+    hash[:nodes] = nodes.as_json
+    hash
+  end
 
 end
 
