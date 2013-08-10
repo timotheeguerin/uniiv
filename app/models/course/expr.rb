@@ -1,5 +1,5 @@
-class CourseExpr < ActiveRecord::Base
-  belongs_to :node, :class_name => CourseNode
+class Course::Expr < ActiveRecord::Base
+  belongs_to :node, :class_name => Course::Node
 
   def to_s
     id.to_s + ': ' + node.to_s
@@ -12,7 +12,7 @@ class CourseExpr < ActiveRecord::Base
   def to_html
     node.to_html
   end
-  
+
   def self.parse(string)
     nodes = CourseNode.parse(string)
     return nil if nodes.nil?
@@ -85,8 +85,8 @@ class CourseExpr < ActiveRecord::Base
   end
 
   def as_json(options={})
-   hash = super(:except =>[:created_at, :updated_at])
-   hash[:node] = node.as_json
-   hash     
- end
+    hash = super(:except => [:created_at, :updated_at])
+    hash[:node] = node.as_json
+    hash
+  end
 end

@@ -1,6 +1,6 @@
 class CreateCourses < ActiveRecord::Migration
   def change
-    create_table :courses do |t|
+    create_table :course_courses do |t|
       t.string :name
       t.references :subject, index: true
       t.integer :code

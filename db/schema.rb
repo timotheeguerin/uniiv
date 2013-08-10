@@ -11,12 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808145117) do
+ActiveRecord::Schema.define(version: 20130810191223) do
 
   create_table "badges", force: true do |t|
     t.string "name"
     t.string "desciption"
     t.integer "point"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "course_course_rating_types", force: true do |t|
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

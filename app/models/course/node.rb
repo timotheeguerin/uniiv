@@ -1,8 +1,8 @@
-class CourseNode < ActiveRecord::Base
+class Course::Node < ActiveRecord::Base
 
-  belongs_to :parent, :class_name => CourseNode
+  belongs_to :parent, :class_name => Course::Node
   belongs_to :course, :class_name => Course
-  has_many :nodes, :class_name => CourseNode, :foreign_key => "parent_id"
+  has_many :nodes, :class_name => Course::Node, :foreign_key => "parent_id"
   accepts_nested_attributes_for :nodes
 
   def self.create_from_course_str(string)
