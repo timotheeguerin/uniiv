@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_types.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/course/course_rating_type_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/course/course_rating_types.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/course/rating_type.rb" />
+    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="graph hover edges from node on hover">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_criterias.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/course/rating_criteria.rb" />
+      <change type="DELETED" beforePath="D:\dev\ws\ruby\uniiv\app\models\course\rating_type.rb" afterPath="" />
+      <change type="DELETED" beforePath="D:\dev\ws\ruby\uniiv\db\migrate\20130810191223_create_course_course_rating_types.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course.rb" afterPath="$PROJECT_DIR$/app/models/course.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376163284668" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376163625958" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -72,6 +72,7 @@
     <file path="$PROJECT_DIR$/tmp/metric_fu/_data/20130809.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
     <file path="$PROJECT_DIR$/tmp/metric_fu/report.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
     <file path="$PROJECT_DIR$/tmp/268165fb6aba98d3e80e615e5c8dd54721a61b89.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
+    <file path="/20130810191223_create_course_course_rating_criterias.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376163573626" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,19 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rating_type.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course/rating_type.rb">
+      <file leaf-file-name="20130810194030_rename_rating_type_to_rating_criteria.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20130810194030_rename_rating_type_to_rating_criteria.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20130810191223_create_course_course_rating_types.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_types.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="24" selection-start="99" selection-end="99" vertical-scroll-proportion="0.05964912">
+            <state line="1" column="12" selection-start="77" selection-end="77" vertical-scroll-proportion="0.028764805">
               <folding />
             </state>
           </provider>
@@ -136,24 +128,6 @@
         <entry file="file://$PROJECT_DIR$/app/models/course/course.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="4" column="42" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="university.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/university.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_completed_course.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/user_completed_course.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="57" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -204,8 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
-        <option value="$PROJECT_DIR$/lib/graph/dot_graph.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" />
         <option value="$PROJECT_DIR$/app/models/course_node.rb" />
         <option value="$PROJECT_DIR$/app/models/course.rb" />
@@ -220,6 +192,8 @@
         <option value="$PROJECT_DIR$/app/models/course/course.rb" />
         <option value="$PROJECT_DIR$/app/models/user_completed_course.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_types.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_criterias.rb" />
+        <option value="$PROJECT_DIR$/app/models/course/rating_criteria.rb" />
       </list>
     </option>
   </component>
@@ -1254,7 +1228,11 @@
       <created>1376163286867</created>
       <updated>1376163286867</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="graph hover edges from node on hover">
+      <created>1376163308339</created>
+      <updated>1376163308339</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1387,13 +1365,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="7" selection-start="2270" selection-end="2270" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="225" column="2" selection-start="6012" selection-end="6012" vertical-scroll-proportion="0.0">
@@ -1436,13 +1407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/subject.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/course/grading_system_entity.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
@@ -1473,7 +1437,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user_completed_course.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="57" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1485,16 +1449,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/rating_type.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_criterias.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="33" selection-start="6" selection-end="33" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course/rating_criteria.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="29" selection-start="54" selection-end="54" vertical-scroll-proportion="0.05752961">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course/subject.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130810191223_create_course_course_rating_types.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130810194030_rename_rating_type_to_rating_criteria.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="24" selection-start="99" selection-end="99" vertical-scroll-proportion="0.05964912">
+        <state line="1" column="12" selection-start="77" selection-end="77" vertical-scroll-proportion="0.028764805">
           <folding />
         </state>
       </provider>
