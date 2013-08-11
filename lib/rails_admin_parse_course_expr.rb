@@ -11,7 +11,7 @@ module RailsAdmin
         RailsAdmin::Config::Actions.register(self)
 
         register_instance_option :visible? do
-          bindings[:abstract_model].model.to_s == 'CourseExpr'
+          bindings[:abstract_model].model.to_s == 'Course::Expr'
         end
         register_instance_option :collection do
           true
@@ -34,7 +34,7 @@ module RailsAdmin
 
             if request.post?
               input = params['file']
-              expr = CourseExpr.parse(input)
+              expr = Course::Expr.parse(input)
               if expr.nil?
                 flash[:error] = "Error parsing the expression '#{input}', one of the course inputed might not exist!"
                 render :action => @action.template_name

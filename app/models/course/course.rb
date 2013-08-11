@@ -54,6 +54,8 @@ class Course::Course < ActiveRecord::Base
     hash[:corequisite] = corequisite.as_json
     hash
   end
+
+  delegate :university, :to => :subject
 end
 
 class CourseState

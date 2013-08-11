@@ -4,4 +4,5 @@ class Course::Subject < ActiveRecord::Base
   def to_s
     name
   end
+
 end

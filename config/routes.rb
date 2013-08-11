@@ -1,4 +1,10 @@
 Uniiv::Application.routes.draw do
+
+  post "user_programs/removeProgram"
+  post "user_emails/removeEmail"
+  post "user_emails/makeDefault"
+  get "user_emails/index"
+  post "user_courses/addCourse"
   post "user_courses/removeCourseCompleted"
   post "user_courses/removeCourseTaking"
   get "user_courses/index"

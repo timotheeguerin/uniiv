@@ -6,7 +6,7 @@
         You have not selected a university!
         <button style="visibility: hidden;">l</button>
         <%= link_to user_university_edit_path do %>
-            <button style="float:right;">Change</button>
+            <button style="float:right;width:70px;">Add</button>
         <% end %>
       </div>
   <% else %>
@@ -14,7 +14,7 @@
         <h3><%= current_user.university %></h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_university_edit_path do %>
-            <button style="float:right;">Change</button>
+            <button style="float:right;width:70px;">Change</button>
         <% end %>
       </div>
   <% end %>
@@ -24,7 +24,7 @@
         You have not selected a faculty!
         <button style="visibility: hidden;">l</button>
         <%= link_to user_faculty_edit_path do %>
-            <button style="float:right;">Change</button>
+            <button style="float:right;width:70px;">Add</button>
         <% end %>
       </div>
   <% else %>
@@ -33,7 +33,7 @@
         <button style="visibility: hidden;">l</button>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_faculty_edit_path do %>
-            <button style="float:right;">Change</button>
+            <button style="float:right;width:70px;">Change</button>
         <% end %>
       </div>
   <% end %>
@@ -43,7 +43,7 @@
         You have not selected any programs!
         <button style="visibility: hidden;">l</button>
         <%= link_to user_programs_new_path do %>
-            <button style="float:right;">Change</button>
+            <button style="float:right;width:70px;">Add</button>
         <% end %>
       </div>
   <% else %>
@@ -51,11 +51,18 @@
         <h3>Programs</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_programs_new_path do %>
-            <button style="float:right;">Change</button>
+            <button style="float:right;width:70px;">Add</button>
         <% end %>
       </div>
       <% @programs.each do |p| %>
-          <div><h4 style="text-indent:15px;"><%= p %></h4></div>
+          <div>
+            <h4 style="text-indent:15px;"><%= p %></h4>
+            <button style="visibility: hidden;">l</button>
+            
+            <div style="float:right;"><%= form_tag(:controller=>"user_programs", :action=>"removeProgram", :method=>"post","data-service"=>p) do %>
+              <%= submit_tag("Remove", :style=>"width:70px;") %>
+            <% end %></div>
+          </div>
       <% end %>
   <% end %>
 </div>
@@ -64,7 +71,7 @@
   <h2>User Management</h2>
 
   <div class="center">
-    <%= link_to edit_user_registration_path do %>
+    <%= link_to user_emails_index_path do %>
         <button>Manage Emails</button>
     <% end %>
     <%= link_to edit_user_registration_path do %>

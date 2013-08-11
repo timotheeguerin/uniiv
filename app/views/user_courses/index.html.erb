@@ -3,7 +3,21 @@
   
   <hr style="width:100%">
   
-  <%= text_field_tag "coursesearch", nil, :class => "form_biginput form_input_longer" %>
+  <% courses = Course::Course.all.to_a %>
+  <% current_user.taking_courses.each do |tc| %>
+    <% courses.delete(tc.course) %>
+  <% end %>
+  <% current_user.completed_courses.each do |cc| %>
+    <% courses.delete(cc.course) %>
+  <% end %>
+  <% courses.sort_by!{ |m| m.to_s } %>
+  <% courses = courses.map{|x| [x, x.id]} %>
+  
+  <%= form_tag(:action => "addCourse", :method => "post") do %>
+    <%= select_tag 'course', options_for_select(courses)  , { :class => "form_input_long middle form_biginput" } %>
+    <div class="center"><%= submit_tag 'In Progress', :style => "width:80px;" %>
+    <%= submit_tag 'Completed', :name => 'completed', :style => "width:80px;" %></div>
+  <% end %>
   
   <hr style="width:100%">
   

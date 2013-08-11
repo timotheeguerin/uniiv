@@ -1,23 +1,4 @@
 <div class="content_box login_content">
-  <h2>Manage Emails</h2>
-  <% UserEmail.all.where('user_id' => current_user).each do |email| %>
-    <div>
-      <%= email.email %>
-      <button style="visibility:hidden;">I</button>
-      <% if email.primary %>
-      <% else %>
-        <div style="float:right;"><%= form_tag do %>
-          <%= submit_tag("Remove") %>
-        <% end %></div>
-        <div style="float:right;"><%= form_tag do %>
-          <%= submit_tag("Make Default") %>
-        <% end %></div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-<div class="content_box login_content">
   <h2>Edit Password</h2>
   
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}) do |f| %>

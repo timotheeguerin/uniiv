@@ -1,0 +1,18 @@
+<div class="content_box login_content">
+  <h2>Manage Emails</h2>
+  <% UserEmail.all.where('user_id' => current_user).each do |email| %>
+    <div>
+      <%= email.email %>
+      <button style="visibility:hidden;">I</button>
+      <% if email.primary %>
+      <% else %>
+        <div style="float:right;"><%= form_tag(:action => "removeEmail", "data-service" => email, :method => "post") do %>
+          <%= submit_tag("Remove") %>
+        <% end %></div>
+        <div style="float:right;"><%= form_tag(:action => "makeDefault", "data-service" => email, :method => "post") do %>
+          <%= submit_tag("Make Default") %>
+        <% end %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

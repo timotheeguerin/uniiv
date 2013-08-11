@@ -11,13 +11,15 @@ class UserProgramsController < ApplicationController
   end
 
   def create
-    program = Program.find_by_name(params[:prog])
+    program = params[:prog]
+    program = Program.find(params["prog"])
+    puts program.nil?
     if program.nil?
       redirect_to user_programs_new_path, :alert => t('error.program.nil')
-    end
-    if current_user.programs.include? program
+    elsif current_user.programs.include? program
       redirect_to user_programs_new_path, :alert => t('error.program.taking')
     else
+    
       current_user.programs << program
       current_user.save
       redirect_to user_dashboard_index_path
@@ -25,6 +27,11 @@ class UserProgramsController < ApplicationController
     
   end
 
-  def delete
+  def removeProgram
+    program = params["data-service"]
+    program = Program.find(program)
+    current_user.programs.delete(program)
+    
+    redirect_to user_dashboard_index_path
   end
 end

@@ -19,5 +19,23 @@ class UserCoursesController < ApplicationController
     redirect_to user_courses_index_path
   end
   
+  def addCourse
+  course = Course::Course.find(params["course"])
+    if params[:completed]
+    completedcourse = UserCompletedCourse.new
+    completedcourse.course = course
+    completedcourse.user = current_user
+    completedcourse.save
+    flash[:notice] = t("add.course.completed")
+    redirect_to user_courses_index_path
+  else
+    takingcourse = UserTakingCourse.new
+    takingcourse.course = course
+    takingcourse.user = current_user
+    takingcourse.save
+    flash[:notice] = t("add.course.inprogress")
+   redirect_to user_courses_index_path
+  end
+  end
   
 end

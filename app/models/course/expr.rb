@@ -14,9 +14,9 @@ class Course::Expr < ActiveRecord::Base
   end
 
   def self.parse(string)
-    nodes = CourseNode.parse(string)
+    nodes = Course::Node.parse(string)
     return nil if nodes.nil?
-    expr = CourseExpr.new
+    expr = Course::Expr.new
     if nodes != nil
       expr.node = nodes[0]
     end
@@ -79,6 +79,8 @@ class Course::Expr < ActiveRecord::Base
     end
     edges
   end
+
+
 
   def requirements_completed?(user)
     node.requirements_completed?(user)

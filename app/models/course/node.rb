@@ -7,11 +7,11 @@ class Course::Node < ActiveRecord::Base
 
   def self.create_from_course_str(string)
     return if string.blank?
-    node = CourseNode.new
+    node = Course::Node.new
 
     array = string.split(' ', 2)
-    subject = CourseSubject.find_by_name(array[0])
-    node.course = Course.where(:subject_id => subject, :code => array[1]).first
+    subject = Course::Subject.find_by_name(array[0])
+    node.course = Course::Course.where(:subject_id => subject, :code => array[1]).first
     return nil if node.course.nil?
     node.operation = NodeOperation::NODE
     return node
@@ -23,7 +23,7 @@ class Course::Node < ActiveRecord::Base
     end
     string = string.strip
     if string.start_with?('OR(') or string.start_with?('AND(')
-      node = CourseNode.new
+      node = Course::Node.new
       if string.start_with?('OR')
         node.operation = NodeOperation::OR
       else
@@ -54,7 +54,7 @@ class Course::Node < ActiveRecord::Base
       return list
     else
       array = string.split(',', 2)
-      n = CourseNode.create_from_course_str(array[0])
+      n = Course::Node.create_from_course_str(array[0])
       return nil if n.nil?
       list = [n]
       list += parse(array[1])
