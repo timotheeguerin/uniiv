@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130811142159) do
+ActiveRecord::Schema.define(version: 20130811144004) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -148,6 +148,12 @@ ActiveRecord::Schema.define(version: 20130811142159) do
   end
 
   add_index "faculties", ["university_id"], name: "index_faculties_on_university_id", using: :btree
+
+  create_table "program_group_restrictions", force: true do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "program_groups", force: true do |t|
     t.string "name"

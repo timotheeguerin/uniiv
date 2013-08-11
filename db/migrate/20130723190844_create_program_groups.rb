@@ -2,7 +2,7 @@ class CreateProgramGroups < ActiveRecord::Migration
   def change
     create_table :program_groups do |t|
       t.string :name
-      t.string :restriction
+      t.references :restriction
       t.integer :value
       t.references :groupparent, :polymorphic => true
 
