@@ -7,7 +7,7 @@ class ProgramGroup < ActiveRecord::Base
   has_and_belongs_to_many :programs, :class_name => Program
 
   def restriction_enum
-    ['all', 'min_nb', 'min_credit', 'min_prg']
+    ['all', 'min_nb', 'min_credit', 'min_prg', 'min_grp']
   end
 
   def to_s
