@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130811002043) do
+ActiveRecord::Schema.define(version: 20130811142159) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -81,10 +81,7 @@ ActiveRecord::Schema.define(version: 20130811002043) do
   add_index "course_nodes", ["course_id"], name: "index_course_nodes_on_course_id", using: :btree
   add_index "course_nodes", ["parent_id"], name: "index_course_nodes_on_parent_id", using: :btree
 
-  create_table "course_rating_criteria", primary_key: "idcourse_rating_criteria", force: true do |t|
-  end
-
-  create_table "course_rating_criterias", force: true do |t|
+  create_table "course_rating_criteria", force: true do |t|
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -160,6 +157,11 @@ ActiveRecord::Schema.define(version: 20130811002043) do
     t.string "groupparent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "program_groups_programs", id: false, force: true do |t|
+    t.integer "program_id", null: false
+    t.integer "program_group_id", null: false
   end
 
   create_table "programs", force: true do |t|

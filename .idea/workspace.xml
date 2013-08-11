@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
+    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="graph hover edges from node on hover">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb" afterPath="$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program_group.rb" afterPath="$PROJECT_DIR$/app/models/program_group.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376229275273" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376231560909" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -18,7 +22,7 @@
     <file path="/parse_course_expr.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374589367327" ignored="false" />
     <file path="/program.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374779118696" ignored="false" />
     <file path="/20130723145653_create_program_groups.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374591745279" ignored="false" />
-    <file path="/program_group.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376229324490" ignored="false" />
+    <file path="/program_group.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376231503283" ignored="false" />
     <file path="/20130723151559_create_programs_courses_join.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374593511858" ignored="false" />
     <file path="/routes.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376060159585" ignored="false" />
     <file path="/application.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375389787700" ignored="false" />
@@ -72,6 +76,8 @@
     <file path="/review.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376180496317" ignored="false" />
     <file path="/rating.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376184626306" ignored="false" />
     <file path="$PROJECT_DIR$/log/development.log" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376180579556" ignored="false" />
+    <file path="/20130723192236_create_courses_program_groups_join_table.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376229447825" ignored="false" />
+    <file path="/20130811142159_create_program_groups_programs_join_table.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376230974696" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +114,34 @@
       <file leaf-file-name="program_group.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="22" selection-start="420" selection-end="420" vertical-scroll-proportion="0.31863284">
+            <state line="2" column="12" selection-start="100" selection-end="100" vertical-scroll-proportion="0.05743243">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="expr.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="17" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20130723192236_create_courses_program_groups_join_table.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="15" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20130811142159_create_program_groups_programs_join_table.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="27" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -132,8 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb" />
-        <option value="$PROJECT_DIR$/app/models/course/course_subject.rb" />
         <option value="$PROJECT_DIR$/app/models/course/course_rating_type.rb" />
         <option value="$PROJECT_DIR$/app/models/university.rb" />
         <option value="$PROJECT_DIR$/app/models/course/course_grading_system_entity.rb" />
@@ -147,6 +178,8 @@
         <option value="$PROJECT_DIR$/app/models/course/rating_criteria.rb" />
         <option value="$PROJECT_DIR$/app/models/course/review.rb" />
         <option value="$PROJECT_DIR$/app/models/course/rating.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb" />
         <option value="$PROJECT_DIR$/app/models/program_group.rb" />
       </list>
     </option>
@@ -172,12 +205,15 @@
             <id />
           </State>
           <State>
+            <id>Naming ConventionsRuby</id>
+          </State>
+          <State>
             <id>Ruby</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>RubyTooManyInstanceVariablesInspection</id>
+            <id>RubyClassModuleNamingConvention</id>
           </State>
         </selected-state>
       </profile-state>
@@ -1256,7 +1292,11 @@
       <created>1376180815039</created>
       <updated>1376180815039</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="graph hover edges from node on hover">
+      <created>1376229342912</created>
+      <updated>1376229342912</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1283,21 +1323,21 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13767342" sideWeight="0.67309755" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1905016" sideWeight="0.67309755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13767342" sideWeight="0.6638024" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2678762" sideWeight="0.6638024" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33654878" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33619764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16505896" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690248" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1389,16 +1429,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/course/grading_system_entity.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/course.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="42" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/university.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" />
@@ -1433,13 +1463,6 @@
     <entry file="file://$PROJECT_DIR$/db/migrate/20130722185557_create_courses.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="25" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="28" selection-start="396" selection-end="396" vertical-scroll-proportion="0.018743109">
           <folding />
         </state>
       </provider>
@@ -1486,9 +1509,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="17" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="15" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="27" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="22" selection-start="420" selection-end="420" vertical-scroll-proportion="0.31863284">
+        <state line="2" column="12" selection-start="100" selection-end="100" vertical-scroll-proportion="0.05743243">
           <folding />
         </state>
       </provider>
