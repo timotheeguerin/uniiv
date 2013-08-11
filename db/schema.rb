@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130810191223) do
+ActiveRecord::Schema.define(version: 20130811002043) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -26,6 +26,23 @@ ActiveRecord::Schema.define(version: 20130810191223) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "course_courses", force: true do |t|
+    t.string "name"
+    t.integer "subject_id"
+    t.integer "code"
+    t.text "description"
+    t.integer "hours"
+    t.float "credit"
+    t.integer "prerequisite_id"
+    t.integer "corequisite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_courses", ["corequisite_id"], name: "index_courses_on_corequisite_id", using: :btree
+  add_index "course_courses", ["prerequisite_id"], name: "index_courses_on_prerequisite_id", using: :btree
+  add_index "course_courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
 
   create_table "course_exprs", force: true do |t|
     t.integer "node_id"
@@ -63,6 +80,35 @@ ActiveRecord::Schema.define(version: 20130810191223) do
 
   add_index "course_nodes", ["course_id"], name: "index_course_nodes_on_course_id", using: :btree
   add_index "course_nodes", ["parent_id"], name: "index_course_nodes_on_parent_id", using: :btree
+
+  create_table "course_rating_criteria", primary_key: "idcourse_rating_criteria", force: true do |t|
+  end
+
+  create_table "course_rating_criterias", force: true do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "course_ratings", force: true do |t|
+    t.integer "criteria_id"
+    t.integer "review_id"
+    t.float "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_ratings", ["criteria_id"], name: "index_course_ratings_on_criteria_id", using: :btree
+  add_index "course_ratings", ["review_id"], name: "index_course_ratings_on_review_id", using: :btree
+
+  create_table "course_reviews", force: true do |t|
+    t.integer "user_id"
+    t.text "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_reviews", ["user_id"], name: "index_course_reviews_on_user_id", using: :btree
 
   create_table "course_subjects", force: true do |t|
     t.string "name"
