@@ -214,7 +214,8 @@
             },
             "label":
             {
-              "color": "#274d9b"
+              "color": "#274d9b",
+              "fontStyle":"bold"
             }
         }
     },
