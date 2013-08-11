@@ -46,7 +46,6 @@ class DotGraph
           hash.each do |k, v|
             node1 = @nodes[k]
             node2 = @nodes[v]
-            puts k + ' ->' + v
             if node1[:in] && node2[:in]
               graph.add_edge(node1[:node], node2[:node])
             else
