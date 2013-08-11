@@ -68,7 +68,7 @@ class Course::Expr < ActiveRecord::Base
     until queue.empty?
       n = queue.pop
       n.nodes.each do |sub_node|
-        node_id = node.id_to_s
+        node_id = n.id_to_s
         subnode_id = sub_node.id_to_s
         edges.push({subnode_id => node_id})
 
@@ -79,7 +79,6 @@ class Course::Expr < ActiveRecord::Base
     end
     edges
   end
-
 
 
   def requirements_completed?(user)
