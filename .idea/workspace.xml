@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130723190844_create_program_groups.rb" afterPath="$PROJECT_DIR$/db/migrate/20130723190844_create_program_groups.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program.rb" afterPath="$PROJECT_DIR$/app/models/program.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program_group_restriction.rb" afterPath="$PROJECT_DIR$/app/models/program_group_restriction.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program_group.rb" afterPath="$PROJECT_DIR$/app/models/program_group.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376232067185" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376232657978" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -101,7 +99,26 @@
     <favorites_list name="uniiv" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="program_group.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.25844595">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="program.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -131,10 +148,10 @@
         <option value="$PROJECT_DIR$/app/models/course/rating.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb" />
-        <option value="$PROJECT_DIR$/app/models/program_group.rb" />
         <option value="$PROJECT_DIR$/app/models/program_group_restriction.rb" />
-        <option value="$PROJECT_DIR$/app/models/program.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130723190844_create_program_groups.rb" />
+        <option value="$PROJECT_DIR$/app/models/program.rb" />
+        <option value="$PROJECT_DIR$/app/models/program_group.rb" />
       </list>
     </option>
   </component>
@@ -1258,7 +1275,11 @@
       <created>1376232069192</created>
       <updated>1376232069192</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="graph hover edges from node on hover">
+      <created>1376232660886</created>
+      <updated>1376232660886</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1290,7 +1311,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13767342" sideWeight="0.6638024" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2678762" sideWeight="0.6638024" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2678762" sideWeight="0.6638024" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -1475,20 +1496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="55" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="61" selection-start="148" selection-end="148" vertical-scroll-proportion="0.05743243">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/program_group_restriction.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="8" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
@@ -1499,6 +1506,20 @@
     <entry file="file://$PROJECT_DIR$/db/migrate/20130723190844_create_program_groups.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="18" selection-start="144" selection-end="144" vertical-scroll-proportion="0.11908932">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.25844595">
           <folding />
         </state>
       </provider>
