@@ -5,13 +5,14 @@ class BoxElement extends GraphElement
 
   constructor: (group, style, graph, @id) ->
     super group, style, graph
+    @background = null
 
   computeStyle: (style) ->
     if(style.background?) #if the background property is defined
-      background = @group.get(".background")[0]
-      if(!background?)
+      #background = @group.get(".background")[0]
+      if(!@background?)
         if(@style.shape == 'circle')
-          background = new Kinetic.Circle({
+          @background = new Kinetic.Circle({
             x: @group.getWidth() / 2
             y: @group.getHeight() / 2
             radius: @group.getWidth() / 2
@@ -19,7 +20,7 @@ class BoxElement extends GraphElement
 
           });
         else
-          background = new Kinetic.Rect({
+          @background = new Kinetic.Rect({
             x: 0
             y: 0
             width: @group.getWidth()
@@ -27,36 +28,36 @@ class BoxElement extends GraphElement
             name: 'background'
 
           });
-        @group.add(background)
-      background.setStroke(0)
+        @group.add(@background)
+      @background.setStroke(0)
       if(style.background.border?)      #If a border is defined
         border = style.background.border;
-        background.setStroke(border.color)
-        background.setStrokeWidth(border.width)
+        @background.setStroke(border.color)
+        @background.setStrokeWidth(border.width)
       if(style.background.cornerradius? && @style.shape == 'rect')#if the border radius is defined
-        background.setCornerRadius(style.background.cornerradius)
+        @background.setCornerRadius(style.background.cornerradius)
       if(style.background.color?)
-        background.setFill(style.background.color)
+        @background.setFill(style.background.color)
       if(style.background.image?)       #if the background have an image
         image = style.background.image
         src = style.background.image.src
-        background.setFillPatternImage(Ressources.images[src])
+        @background.setFillPatternImage(Ressources.images[src])
 
         if(image.offset?)
-          background.setFillPatternOffset(image.offset.x, image.offset.y)
+          @background.setFillPatternOffset(image.offset.x, image.offset.y)
         else
-          background.setFillPatternOffset(0, 0)
+          @background.setFillPatternOffset(0, 0)
 
       if(style.background.gradient?)
         gradient = style.background.gradient
         angle = @computeAngle(gradient.angle)
-        background.setAttrs({
+        @background.setAttrs({
           fillLinearGradientStartPoint: angle.start,
           fillLinearGradientEndPoint: angle.end,
           fillLinearGradientColorStops: gradient.colors
         });
 
-    background.setZIndex(10) if background?
+    @background.setZIndex(10) if @background?
 
   computeAngle: (val) ->
     if(!val?)
