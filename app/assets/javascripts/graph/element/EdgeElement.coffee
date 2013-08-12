@@ -3,19 +3,21 @@
 class EdgeElement extends  GraphElement
   constructor: (group, style, graph, @points, @side, @from, @to) ->
     super group, style, graph
+    @beziers = []
+    @triangle = null
 
   computeStyle: (style) ->
-    beziers = @group.get(".bezier")
-    triangle = @group.get(".triangle")[0]
+    #beziers = @group.get(".bezier")
+    #triangle = @group.get(".triangle")[0]
     points = []
     if(@side == 0)
       points = @points.slice(1, @points.length)
 
-    if(not beziers? or beziers.length == 0)
+    if(not @beziers? or @beziers.length == 0)
       beziers = []
       for i in [1...points.length] by 3
         bezier = @drawBezier(i, points)
-        beziers.push(bezier)
+        @beziers.push(bezier)
         @group.add(bezier)
 
 
@@ -23,22 +25,22 @@ class EdgeElement extends  GraphElement
     length = 14
     angle = style.angle if style.angle?
     length = style.length if style['length']?
-    if not triangle?
+    if not @triangle?
       if(@side == 0)   #0 Begining, 1: End, 2: Both
         a = @points[0]
         b = @points[@points.length - 1]
-        triangle = @createTriangle(a, b, angle, length)
-        @group.add(triangle)
+        @triangle = @createTriangle(a, b, angle, length)
+        @group.add(@triangle)
 
     if(style?)
       if(style.color?)
-        triangle.setFill(style.color)
-        for bezier in beziers
+        @triangle.setFill(style.color)
+        for bezier in @beziers
           bezier.setStroke(style.color)
-        triangle.setStroke(style.color)
+        @triangle.setStroke(style.color)
       if(style.width?)
-        triangle.setStrokeWidth(style.width)
-        for bezier in beziers
+        @triangle.setStrokeWidth(style.width)
+        for bezier in @beziers
           bezier.setStrokeWidth(style.width)
 
 

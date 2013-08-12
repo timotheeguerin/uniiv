@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320290862" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320675794" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -54,7 +54,7 @@
     <file path="/NodeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375977908480" ignored="false" />
     <file path="/Packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375803610584" ignored="false" />
     <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319269680" ignored="false" />
-    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375913578487" ignored="false" />
+    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320879353" ignored="false" />
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320597124" ignored="false" />
     <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320250524" ignored="false" />
     <file path="/ContainerElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889392340" ignored="false" />
@@ -154,10 +154,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LabelElement.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LabelElement.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="50" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.7702703">
+            <state line="51" column="50" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EdgeElement.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="32" selection-start="432" selection-end="439" vertical-scroll-proportion="0.47134936">
               <folding />
             </state>
           </provider>
@@ -181,15 +190,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="course.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course/course.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="24" selection-start="1329" selection-end="1347" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -208,7 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb" />
         <option value="$PROJECT_DIR$/app/models/program_group_restriction.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130723190844_create_program_groups.rb" />
         <option value="$PROJECT_DIR$/app/models/program.rb" />
@@ -224,6 +223,7 @@
         <option value="$PROJECT_DIR$/lib/graph/packer.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
       </list>
     </option>
   </component>
@@ -1409,7 +1409,11 @@
       <created>1376320291992</created>
       <updated>1376320291992</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="hguku">
+      <created>1376320677298</created>
+      <updated>1376320677298</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1543,13 +1547,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130812132558_add_course_to_course_review.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="90" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/program.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="72" selection-start="253" selection-end="253" vertical-scroll-proportion="0.16906077">
@@ -1650,7 +1647,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="50" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.7702703">
+        <state line="51" column="50" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="32" selection-start="432" selection-end="439" vertical-scroll-proportion="0.47134936">
           <folding />
         </state>
       </provider>
