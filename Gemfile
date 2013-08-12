@@ -56,5 +56,5 @@ gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
 
 gem 'json'
 
-#gem 'thin'
-gem 'puma'
+gem 'thin'
+#gem 'puma'
