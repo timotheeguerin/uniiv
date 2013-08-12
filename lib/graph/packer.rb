@@ -74,10 +74,11 @@ class Packer
 
   def pack_graph(graph, margin)
     sorted_graphs = graph.subgraphs.sort do |x, y|
-      y.level <=> x.level
+      x.level <=> y.level
     end
 
     sorted_graphs.each do |subgraph|
+
       width = subgraph.dimension.x + margin
       height = subgraph.dimension.y + margin
       node = find_node(@root, width, height)

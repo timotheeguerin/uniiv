@@ -61,10 +61,12 @@ class GraphController < ApplicationController
     dot_graph
   end
 
-  def generate_graph_from_dot(dot, nodes)
+  def generate_graph_from_dot(dot, nodes, level = 0)
+
     json = {}
     GraphViz.parse_string(dot) do |g|
-      json = Graph::from_dot(g, nodes)
+      puts 'LEVEL: ' + g[:label].to_s + ' -  ' + level.to_s
+      json = Graph::from_dot(g, nodes, level)
     end
     json
   end

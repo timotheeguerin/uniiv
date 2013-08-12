@@ -80,8 +80,8 @@ class Course::Expr < ActiveRecord::Base
     edges
   end
 
-  def count_requirement
-    node.count_requirement
+  def count_requirements
+    node.count_requirements
   end
 
   def requirements_completed?(user)

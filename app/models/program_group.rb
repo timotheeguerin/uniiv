@@ -23,10 +23,11 @@ class ProgramGroup < ActiveRecord::Base
   def get_requirement_level
     complexity = 0
     courses.each do |course|
-      complexity += course.get_nb_requirements
+      complexity += course.count_requirements
     end
     subgroups.each do |subgroup|
       complexity += subgroup.get_requirement_level
     end
+    complexity
   end
 end
