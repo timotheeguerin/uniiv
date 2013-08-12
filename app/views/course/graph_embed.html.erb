@@ -35,9 +35,16 @@
         <% variable = cid %>
       <% end %>
     <% end %>
-    <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseCompleted", 'data-service' => variable) do %>
-      <%= submit_tag("Remove") %></div>
+    <% if current_user.is_taking_course?(@course) %>
+      <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseTaking", 'data-service' => variable) do %>
+        <%= submit_tag("Remove") %></div>
+      <% end %>
+    <% else %>
+      <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseCompleted", 'data-service' => variable) do %>
+        <%= submit_tag("Remove") %></div>
+      <% end %>
     <% end %>
+    
   <% end %>
   
   

@@ -1,5 +1,9 @@
 <div class="content_box pagewidth_twothirds">
-  <h2>User Dashboard</h2>
+  <div><h1>Dashboard</h1></div>
+  
+  <hr style="width:100%;">
+  
+  <div><h2>Academic</h2></div>
 
   <% if current_user.university.nil? %>
       <div>
@@ -14,7 +18,7 @@
         <h3><%= current_user.university %></h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_university_edit_path do %>
-            <button style="float:right;width:70px;">Change</button>
+            <button style="float:right;width:70px;">Choose</button>
         <% end %>
       </div>
   <% end %>
@@ -24,7 +28,7 @@
         You have not selected a faculty!
         <button style="visibility: hidden;">l</button>
         <%= link_to user_faculty_edit_path do %>
-            <button style="float:right;width:70px;">Add</button>
+            <button style="float:right;width:70px;">Choose</button>
         <% end %>
       </div>
   <% else %>
@@ -33,7 +37,7 @@
         <button style="visibility: hidden;">l</button>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_faculty_edit_path do %>
-            <button style="float:right;width:70px;">Change</button>
+            <button style="float:right;width:70px;">Choose</button>
         <% end %>
       </div>
   <% end %>
@@ -64,10 +68,10 @@
           </div>
       <% end %>
   <% end %>
-</div>
 
-<div class="content_box pagewidth_twothirds">
-  <h2>User Management</h2>
+  <hr style="width:100%;">
+  
+  <h2>Personal</h2>
 
   <div class="center">
     <%= link_to user_emails_index_path do %>
