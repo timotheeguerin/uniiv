@@ -88,8 +88,8 @@ class DotGraph
     op_id = operation.id_to_s
 
     if in_graph
-      nodes = get_course_out
-      in_graph = false if operation.is_linking_one_course?(nodes)
+      nodes = get_nodes_in_graph
+      in_graph = true if operation.is_linking_one_course?(nodes)
     end
     graph = @graph unless in_graph
     unless  @nodes.has_key?(op_id)
@@ -101,10 +101,10 @@ class DotGraph
     end
   end
 
-  def get_course_out
+  def get_nodes_in_graph
     nodes = []
     @nodes.each do |k, node|
-      unless node[:in]
+      if node[:in]
         nodes << k
       end
     end

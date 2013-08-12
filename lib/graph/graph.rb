@@ -4,7 +4,7 @@ require 'graph/node'
 class Graph
   attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz, :label, :labelpos, :level
 
-  def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [], relative = false)
+  def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [])
     @position = position
     @dimension = dimension
     @name = name
