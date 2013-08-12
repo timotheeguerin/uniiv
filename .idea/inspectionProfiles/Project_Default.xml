@@ -8,6 +8,9 @@
     <inspection_tool class="RubyClassVariableNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="m_minLength" value="1" />
     </inspection_tool>
+    <inspection_tool class="RubyConstantNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_minLength" value="2" />
+    </inspection_tool>
     <inspection_tool class="RubyInstanceVariableNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="m_minLength" value="1" />
     </inspection_tool>

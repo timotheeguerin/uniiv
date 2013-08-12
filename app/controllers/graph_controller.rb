@@ -29,7 +29,7 @@ class GraphController < ApplicationController
         puts '------------------------------------'
         puts dot_graph.output
         nodes = nodes.merge(dot_graph.nodes)
-        graph = generate_graph_from_dot(dot_graph.output, nodes)
+        graph = generate_graph_from_dot(dot_graph.output, nodes, group.get_requirement_level)
         unless graph.dimension.x == 0 and graph.dimension.y == 0
           graph.type = 'group'
           graph.add_padding(padding)

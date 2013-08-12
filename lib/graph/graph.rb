@@ -2,7 +2,7 @@ require 'graph/point'
 require 'graph/node'
 
 class Graph
-  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz, :label, :labelpos
+  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz, :label, :labelpos, :level
 
   def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [], relative = false)
     @position = position
@@ -15,6 +15,7 @@ class Graph
     @clazz = ''
     @label = ''
     @labelpos= Point.new
+    @level = 0
   end
 
   def add_graph(g)
@@ -22,13 +23,14 @@ class Graph
     g
   end
 
-  def self.from_dot(dot_graph, nodes)
+  def self.from_dot(dot_graph, nodes, level = 0)
     rect = dot_graph[:bb].to_ruby
 
     g_pos = Point::pos_from_array(rect)
     dimension = Point::dim_from_array(rect)
 
     g = Graph.new('', g_pos, dimension)
+    g.level = level
 
     dot_graph.each_node do |node_id, node|
       state = nodes[node_id][:state]

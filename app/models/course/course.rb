@@ -55,6 +55,13 @@ class Course::Course < ActiveRecord::Base
     hash
   end
 
+  def count_requirements
+    count = 0
+    count += prerequisite.count_requirements unless prerequisite.nil?
+    count += corequisite.count_requirements unless corequisite.nil?
+    count
+  end
+
   delegate :university, :to => :subject
 end
 
