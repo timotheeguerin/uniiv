@@ -8,6 +8,7 @@ class BoxElement extends GraphElement
     @background = null
 
   computeStyle: (style) ->
+    console.log('STYL: ' + JSON.stringify(@style))
     if(style.background?) #if the background property is defined
       #background = @group.get(".background")[0]
       if(!@background?)

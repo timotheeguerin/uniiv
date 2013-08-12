@@ -23,7 +23,7 @@ class Graph
     g
   end
 
-  def self.from_dot(dot_graph, nodes, level = 0)
+  def self.from_dot(dot_graph, nodes, level = 0, next_content = false)
     rect = dot_graph[:bb].to_ruby
 
     g_pos = Point::pos_from_array(rect)
@@ -31,6 +31,7 @@ class Graph
 
     g = Graph.new('', g_pos, dimension)
     g.level = level
+
 
     dot_graph.each_node do |node_id, node|
       state = nodes[node_id][:state]
@@ -44,7 +45,10 @@ class Graph
     end
 
     dot_graph.each_graph do |dot_subgraph_id, dot_subgraph|
-      g.add_graph(Graph::from_dot(dot_subgraph, nodes))
+      sub_g = Graph::from_dot(dot_subgraph, nodes)
+      g.add_graph(sub_g)
+      sub_g.type = 'group_content'
+      sub_g.label = ''
     end
 
     #Load the label

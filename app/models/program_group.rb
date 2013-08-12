@@ -20,6 +20,7 @@ class ProgramGroup < ActiveRecord::Base
     end
   end
 
+
   def get_requirement_level
     complexity = 0
     courses.each do |course|
@@ -29,5 +30,42 @@ class ProgramGroup < ActiveRecord::Base
       complexity += subgroup.get_requirement_level
     end
     complexity
+  end
+
+  def count_completed_courses(user)
+    count = 0
+    courses.each do |course|
+      count += 1 if user.has_completed_course?(course)
+    end
+    count
+  end
+
+  def count_credit_completed_courses(user)
+    count = 0
+    courses.each do |course|
+      count += course.credit if user.has_completed_course?(course)
+    end
+    count
+  end
+
+  def get_completition_ratio(user)
+    puts 'RESTRIC: ' + restriction.name
+    case restriction.name
+      when 'min_credit'
+        completed_credit = count_credit_completed_courses(user)
+        if completed_credit < value
+          return completed_credit / value
+        else
+          return 1
+        end
+      when 'min_grp'
+        return 1
+      else
+        if courses.size != 0
+          return (count_completed_courses(user) / courses.size.to_f)
+        else
+          return 1
+        end
+    end
   end
 end

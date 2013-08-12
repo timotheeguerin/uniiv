@@ -5,7 +5,7 @@
 resizeCanvasContainer = () ->
   newheight = $(window).height() - 40;
   $("#canvas-container").height(newheight)
-  $("#graph_sidebar_info").css("max-height",newheight-(240+$("#programsfromuser").height()))
+  $("#graph_sidebar_info").css("max-height", newheight - (240 + $("#programsfromuser").height()))
 
 
 $(document).ready ->
@@ -242,7 +242,8 @@ class Graph
     #Style
     typeStyle = Ressources.style[data.type]
     customStyle = Ressources.style[data.clazz]
-    style = $.extend({}, typeStyle, customStyle)
+    console.log('sdfs: ' + data.clazz + ' ' + JSON.stringify(customStyle))
+    style = $.extend(true, {}, typeStyle, customStyle)
 
     #Style of the group
     container = new ContainerElement(container_group, style, @can_graph, data.label)
@@ -276,7 +277,7 @@ class Graph
   addNode: (id, text, x, y, width, height, type, clazz = '') ->
     typeStyle = Ressources.style[type.toLowerCase()]
     customStyle = Ressources.style[clazz.toLowerCase()]
-    computedStyle = $.extend({}, typeStyle, customStyle)
+    computedStyle = $.extend(true, {}, typeStyle, customStyle)
 
     group = new Kinetic.Group({
       x: x

@@ -8,14 +8,15 @@ class DotGraph
   end
 
   def load_from_group(group, graph = @graph, include_label = true)
+    unless include_label
+      graph[:label] = ''
+    end
+
     #Load all the group courses
     group.courses.each do |course|
       add_course(course, graph)
     end
 
-    unless include_label
-      graph[:label] = ''
-    end
     #Load all the dependency course not in any groups/subgroups
     group.courses.each do |course|
       prerequisite = course.prerequisite

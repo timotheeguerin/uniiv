@@ -6,4 +6,13 @@ class Program < ActiveRecord::Base
   def to_s
     name.to_s+ " (#{type.to_s.capitalize})"
   end
+
+  def get_completition_ratio(user)
+    ratio = 0
+    groups.each do |group|
+      ratio += group.get_completition_ratio(user)
+      count += 1
+    end
+    ratio / count
+  end
 end

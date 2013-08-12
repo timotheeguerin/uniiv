@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
+    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="hguku">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/dot_graph.rb" afterPath="$PROJECT_DIR$/lib/graph/dot_graph.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/graph.rb" afterPath="$PROJECT_DIR$/lib/graph/graph.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/graph_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program.rb" afterPath="$PROJECT_DIR$/app/models/program.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program_group.rb" afterPath="$PROJECT_DIR$/app/models/program_group.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/spline.rb" afterPath="$PROJECT_DIR$/lib/graph/spline.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/test/test.json" afterPath="$PROJECT_DIR$/app/assets/test/test.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376321057656" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376340459735" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -16,9 +26,9 @@
     <file path="/course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898066670" ignored="false" />
     <file path="/course_node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898246326" ignored="false" />
     <file path="/parse_course_expr.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374589367327" ignored="false" />
-    <file path="/program.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376232297042" ignored="false" />
+    <file path="/program.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376331007757" ignored="false" />
     <file path="/20130723145653_create_program_groups.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374591745279" ignored="false" />
-    <file path="/program_group.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376318258971" ignored="false" />
+    <file path="/program_group.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376332466463" ignored="false" />
     <file path="/20130723151559_create_programs_courses_join.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374593511858" ignored="false" />
     <file path="/routes.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376060159585" ignored="false" />
     <file path="/application.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375389787700" ignored="false" />
@@ -30,33 +40,33 @@
     <file path="/path.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374854399583" ignored="false" />
     <file path="/canviz.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374875217939" ignored="false" />
     <file path="/kineticjs.js" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374870415303" ignored="false" />
-    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375978497598" ignored="false" />
+    <file path="/test.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376343605775" ignored="false" />
     <file path="/kineticjs-viewport.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375982774026" ignored="false" />
-    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376068453562" ignored="false" />
-    <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376318512754" ignored="false" />
+    <file path="/graphapi.js.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376343308411" ignored="false" />
+    <file path="/graph_controller.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376342512002" ignored="false" />
     <file path="/application.scss" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375390154836" ignored="false" />
     <file path="/graph_helper.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375213276139" ignored="false" />
-    <file path="/Gemfile" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376071070119" ignored="false" />
+    <file path="/Gemfile" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376329401764" ignored="false" />
     <file path="/environment.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375214352990" ignored="false" />
     <file path="/course.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376315156104" ignored="false" />
     <file path="/temp.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375804278287" ignored="false" />
     <file path="/Point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375284671685" ignored="false" />
     <file path="/node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376315321861" ignored="false" />
     <file path="/point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376072120259" ignored="false" />
-    <file path="/spline.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375980330048" ignored="false" />
+    <file path="/spline.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376340365637" ignored="false" />
     <file path="/user.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375730429304" ignored="false" />
     <file path="/20130804183421_create_programs_users_table.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375641295714" ignored="false" />
     <file path="/course_grading_system_entity.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375711859543" ignored="false" />
     <file path="/course_grading_system.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375710406125" ignored="false" />
-    <file path="/dot_graph.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376074822314" ignored="false" />
-    <file path="/graph.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376317849661" ignored="false" />
+    <file path="/dot_graph.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376341446925" ignored="false" />
+    <file path="/graph.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376343707807" ignored="false" />
     <file path="/GraphElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375998727205" ignored="false" />
     <file path="/NodeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375977908480" ignored="false" />
     <file path="/Packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375803610584" ignored="false" />
     <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319269680" ignored="false" />
-    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376321903986" ignored="false" />
+    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376337796433" ignored="false" />
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320597124" ignored="false" />
-    <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320250524" ignored="false" />
+    <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376342937521" ignored="false" />
     <file path="/ContainerElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889392340" ignored="false" />
     <file path="/20130722185557_create_courses.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162434246" ignored="false" />
     <file path="/controller_extensions.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375974103765" ignored="false" />
@@ -100,37 +110,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="program_group.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
+      <file leaf-file-name="graph_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="40" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
+            <state line="70" column="27" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expr.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
+      <file leaf-file-name="graph.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/graph/graph.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="44" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0">
+            <state line="40" column="38" selection-start="980" selection-end="980" vertical-scroll-proportion="0.20101352">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dot_graph.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
+      <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="39" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="packer.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="14" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0">
+            <state line="206" column="13" selection-start="4604" selection-end="4604" vertical-scroll-proportion="-5.142857">
               <folding />
             </state>
           </provider>
@@ -139,7 +140,7 @@
       <file leaf-file-name="graphapi.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="30" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+            <state line="244" column="72" selection-start="6561" selection-end="6572" vertical-scroll-proportion="-5.2352943">
               <folding />
             </state>
           </provider>
@@ -148,34 +149,18 @@
       <file leaf-file-name="BoxElement.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="103" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="10" column="50" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1376342941302" expanded="true" signature="2138:2165" placeholder="computeAngle: (val) -&gt;&#10;    ..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LabelElement.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee">
+      <file leaf-file-name="dot_graph.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="50" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EdgeElement.coffee" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="20" selection-start="520" selection-end="520" vertical-scroll-proportion="0.3158784">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="graph_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="90" selection-start="1233" selection-end="1233" vertical-scroll-proportion="0.0">
+            <state line="82" column="30" selection-start="2329" selection-end="2329" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -199,22 +184,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/program_group_restriction.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20130723190844_create_program_groups.rb" />
-        <option value="$PROJECT_DIR$/app/models/program.rb" />
-        <option value="$PROJECT_DIR$/lib/graph/dot_graph.rb" />
-        <option value="$PROJECT_DIR$/app/models/course/rating.rb" />
-        <option value="$PROJECT_DIR$/app/models/course/review.rb" />
         <option value="$PROJECT_DIR$/app/models/course/course.rb" />
-        <option value="$PROJECT_DIR$/lib/graph/graph.rb" />
         <option value="$PROJECT_DIR$/app/models/course/expr.rb" />
         <option value="$PROJECT_DIR$/app/models/course/node.rb" />
-        <option value="$PROJECT_DIR$/app/models/program_group.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
         <option value="$PROJECT_DIR$/lib/graph/packer.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/models/program.rb" />
+        <option value="$PROJECT_DIR$/lib/graph/spline.rb" />
+        <option value="$PROJECT_DIR$/app/models/program_group.rb" />
+        <option value="$PROJECT_DIR$/lib/graph/dot_graph.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/test/test.json" />
+        <option value="$PROJECT_DIR$/lib/graph/graph.rb" />
       </list>
     </option>
   </component>
@@ -1408,7 +1393,11 @@
       <created>1376321058726</created>
       <updated>1376321058726</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="hguku">
+      <created>1376321973668</created>
+      <updated>1376321973668</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1438,18 +1427,18 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265306" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13767342" sideWeight="0.6638024" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27427962" sideWeight="0.6638024" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33619764" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33619764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16505896" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16433942" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690248" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1542,150 +1531,116 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/course/rating.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="60" selection-start="217" selection-end="217" vertical-scroll-proportion="0.07513812">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.255">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/review.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="19" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
+        <state line="10" column="24" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/graph/graph.rb">
+    <entry file="file://$PROJECT_DIR$/lib/graph/spline.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="33" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
+        <state line="59" column="68" selection-start="1358" selection-end="1358" vertical-scroll-proportion="0.23844732">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+    <entry file="file://$PROJECT_DIR$/lib/graph/point.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="43" selection-start="66" selection-end="66" vertical-scroll-proportion="0.0">
+        <state line="32" column="53" selection-start="543" selection-end="543" vertical-scroll-proportion="0.27533785">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/course.rb">
+    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs193/hash.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="24" selection-start="1329" selection-end="1347" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/node.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="32" selection-start="3123" selection-end="3123" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="90" selection-start="1233" selection-end="1233" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="40" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="44" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="39" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+        <state line="625" column="8" selection-start="23586" selection-end="23586" vertical-scroll-proportion="0.33277026">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="14" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0">
+        <state line="74" column="6" selection-start="1769" selection-end="1769" vertical-scroll-proportion="-0.011824325">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
+    <entry file="file://$PROJECT_DIR$/lib/graph/node.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="30" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="-0.14864865">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="6" selection-start="538" selection-end="538" vertical-scroll-proportion="0.028716216">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="27" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="19" selection-start="638" selection-end="638" vertical-scroll-proportion="0.5608108">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="103" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
+        <state line="10" column="50" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1376342941302" expanded="true" signature="2138:2165" placeholder="computeAngle: (val) -&gt;&#10;    ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="30" selection-start="2329" selection-end="2329" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/LabelElement.coffee">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="50" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0">
+        <state line="244" column="72" selection-start="6561" selection-end="6572" vertical-scroll-proportion="-5.2352943">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="uml://RailsDependency/#uniiv">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>RailsDependency</ID>
-          <OriginalElement>#uniiv</OriginalElement>
-          <nodes>
-            <node x="" y="">NodeOperation</node>
-            <node x="" y="">User</node>
-            <node x="" y="">Translation</node>
-            <node x="" y="">Course::Course</node>
-            <node x="" y="">Faculty</node>
-            <node x="" y="">CourseState</node>
-            <node x="" y="">Course::Expr</node>
-            <node x="" y="">ProgramGroup</node>
-            <node x="" y="">Course::Rating</node>
-            <node x="" y="">Course::Subject</node>
-            <node x="" y="">UserEmail</node>
-            <node x="" y="">UserTakingCourse</node>
-            <node x="" y="">University</node>
-            <node x="" y="">ProgramGroupRestriction</node>
-            <node x="" y="">UserCompletedCourse</node>
-            <node x="" y="">ProgramsType</node>
-            <node x="" y="">Course::Node</node>
-            <node x="" y="">Course::RatingCriteria</node>
-            <node x="" y="">Course::GradingSystemEntity</node>
-            <node x="" y="">Course::Review</node>
-            <node x="" y="">Role</node>
-            <node x="" y="">Ability</node>
-            <node x="" y="">Program</node>
-            <node x="" y="">Course::GradingSystem</node>
-            <node x="" y="">Badge</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.5396536007292616" x="890.0675675675675" y="413.4839527027027" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Association fields</Category>
-            <Category>Migration fields</Category>
-          </Categories>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/test.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
+    <entry file="file://$PROJECT_DIR$/app/assets/test/test.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="520" selection-end="520" vertical-scroll-proportion="0.3158784">
+        <state line="206" column="13" selection-start="4604" selection-end="4604" vertical-scroll-proportion="-5.142857">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/graph/graph.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="38" selection-start="980" selection-end="980" vertical-scroll-proportion="0.20101352">
           <folding />
         </state>
       </provider>

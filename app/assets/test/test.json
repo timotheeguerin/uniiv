@@ -22,13 +22,12 @@
                 "color": "#096741"
             }
         },
-        "highlighted":{
-          "background":{
-              "border":
-              {
-                "commentcolor":"#274d9b"
-              }
-          }
+        "highlighted": {
+            "background": {
+                "border": {
+                    "commentcolor": "#274d9b"
+                }
+            }
         }
     },
     "node_available": {
@@ -173,15 +172,16 @@
 
     },
     "cluster": {
-        "shape": "rect",
+        "shape": "rect"
+    },
+    "in_cluster": {
         "normal": {
             "background": {
                 "color": "#70CEA8",
                 "cornerradius": "15"
             },
-            "label":
-            {
-              "hidden": "true"
+            "label": {
+                "hidden": "true"
             }
         }
     },
@@ -189,16 +189,21 @@
         "onlydefault": true,
         "shape": "rect",
         "normal": {
+            "label": {
+                "color": "#274d9b"
+            }
+        }
+    },
+    "group_content": {
+        "onlydefault": true,
+        "shape": "rect",
+        "normal": {
             "background": {
                 "cornerradius": "15",
-                "color":"#f1f1f1",
+                "color": "#f1f1f1",
                 "border": {
                     "color": "#dfdfdf"
                 }
-            },
-            "label":
-            {
-              "color": "#274d9b"
             }
         }
     },
@@ -212,11 +217,15 @@
                     "color": "#dfdfdf"
                 }
             },
-            "label":
-            {
-              "color": "#274d9b",
-              "fontStyle":"bold"
+            "label": {
+                "color": "#274d9b",
+                "fontStyle": "bold"
             }
+        }
+    },
+    "content": {
+        "normal": {
+
         }
     },
     "margin": "5",

@@ -1,7 +1,7 @@
 #=require graph/element/GraphElement
 
 class EdgeElement extends  GraphElement
-  constructor: (group, style, graph, @points, @side, @from, @to) ->
+  constructor: (group, style, graph, @points, @sides, @from, @to) ->
     super group, style, graph
     @beziers = []
     @triangle = null
@@ -9,35 +9,40 @@ class EdgeElement extends  GraphElement
   computeStyle: (style) ->
     #beziers = @group.get(".bezier")
     #triangle = @group.get(".triangle")[0]
-    points = []
-    if(@side == 0)
-      points = @points.slice(1, @points.length)
-
     if(not @beziers? or @beziers.length == 0)
       beziers = []
-      if points.length == 4
-        a = points[0]
-        b = points[3]
-        line = @createLine(a, b)
-        @beziers.push(line)
-        @group.add(line)
-      else
-        for i in [1...points.length] by 3
-          bezier = @drawBezier(i, points)
-          @beziers.push(bezier)
-          @group.add(bezier)
+      i = 0
+      for positions in @points
+        points = positions
+        if @sides[i] == 1
+          points = positions.slice(1, positions.length)
+        if points.length == 4
+          a = points[0]
+          b = points[3]
+          line = @createLine(a, b)
+          @beziers.push(line)
+          @group.add(line)
+        else
+          for i in [1...points.length] by 3
+            bezier = @drawBezier(i, points)
+            @beziers.push(bezier)
+            @group.add(bezier)
+        i++
 
 
-    angle = 30
+        angle = 30
     length = 14
     angle = style.angle if style.angle?
     length = style.length if style['length']?
     if not @triangle?
-      if(@side == 0)   #0 Begining, 1: End, 2: Both
-        a = @points[0]
-        b = @points[@points.length - 1]
-        @triangle = @createTriangle(a, b, angle, length)
-        @group.add(@triangle)
+      i = 0
+      for positions in @points
+        if(@sides[i] == 1)   #0 Begining, 1: End, 2: Both
+          a = positions[0]
+          b = positions[positions.length - 1]
+          @triangle = @createTriangle(a, b, angle, length)
+          @group.add(@triangle)
+        i++
 
     if(style?)
       if(style.color?)
@@ -51,15 +56,17 @@ class EdgeElement extends  GraphElement
           bezier.setStrokeWidth(style.width)
 
   createLine: (a, b) ->
-    console.log(line)
     line = new Kinetic.Line({
       points: [a, b]
     })
     line
 
   drawBezier: (i, points) ->
+    #console.log JSON.stringify(points)
     bezier = new Kinetic.Shape({
       drawFunc: (canvas) ->
+        #console.log('DRAW: ' + points.length + ' - ' + i)
+        #console.log(JSON.stringify(points))
         context = canvas.getContext()
         context.beginPath()
         context.moveTo(points[i - 1].x, points[i - 1].y)
