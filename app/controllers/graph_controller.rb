@@ -56,7 +56,7 @@ class GraphController < ApplicationController
   def generate_graph_from_group(group)
     completed_percent = (group.get_completition_ratio(current_user) * 100).round
     label = "#{group.name} (#{completed_percent}%)"
-    g = GraphViz.new(:G, :type => :digraph, :concentrate => true, :strict => true, :label => label, :fontsize => 20)
+    g = GraphViz.new(:G, :type => :digraph, :strict => true, :label => label, :fontsize => 20)
     dot_graph = DotGraph.new(g, current_user)
     content_graph = g.add_graph('cluster_' + group.name)
     dot_graph.load_from_group(group, content_graph)

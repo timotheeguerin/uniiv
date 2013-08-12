@@ -6,7 +6,7 @@ class Spline
     @arrow = arrow
     @from = from
     @to = to
-    check_spline_touch()
+    #check_spline_touch()
   end
 
   def check_spline_touch
@@ -24,7 +24,7 @@ class Spline
   end
 
   def self.from_dot edge
-    positions = edge[:pos].to_s
+    positions = edge[:pos].to_s.gsub("\\\\r\\n", '')
     from = edge.tail_node
     to = edge.head_node
 

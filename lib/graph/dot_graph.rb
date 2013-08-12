@@ -89,7 +89,8 @@ class DotGraph
 
     if in_graph
       nodes = get_nodes_in_graph
-      in_graph = true if operation.is_linking_one_course?(nodes)
+      in_graph = false unless operation.is_linking_one_course?(nodes)
+      puts 'IN G: ' + in_graph.to_s
     end
     graph = @graph unless in_graph
     unless  @nodes.has_key?(op_id)

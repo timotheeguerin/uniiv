@@ -65,12 +65,14 @@ class Course::Node < ActiveRecord::Base
 
   def is_linking_one_course? (courses)
     if operation == NodeOperation::NODE
+      puts 'INCLUDE: ' + course.id_to_s + ' - ' + courses.include?(course.id_to_s).to_s
       return courses.include?(course.id_to_s)
     else
       nodes.each do |node|
         return true if node.is_linking_one_course?(courses)
       end
     end
+    puts 'FALSE'
     false
   end
 

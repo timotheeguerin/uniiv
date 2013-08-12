@@ -12,10 +12,13 @@ class EdgeElement extends  GraphElement
     if(not @beziers? or @beziers.length == 0)
       beziers = []
       i = 0
+      console.log('--------------------------------------')
+      console.log(@from + ' - ' + @to)
       for positions in @points
         points = positions
         if @sides[i] == 1
           points = positions.slice(1, positions.length)
+        console.log(JSON.stringify(points))
         if points.length == 4
           a = points[0]
           b = points[3]
