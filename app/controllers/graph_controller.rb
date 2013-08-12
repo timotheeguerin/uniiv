@@ -59,6 +59,7 @@ class GraphController < ApplicationController
     g = GraphViz.new(:G, :type => :digraph, :strict => true, :label => label, :fontsize => 20)
     dot_graph = DotGraph.new(g, current_user)
     content_graph = g.add_graph('cluster_' + group.name)
+    content_graph[:label] = ''
     dot_graph.load_from_group(group, content_graph)
 
     dot_graph
