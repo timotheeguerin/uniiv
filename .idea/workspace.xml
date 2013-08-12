@@ -7,7 +7,7 @@
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320675794" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376321057656" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -54,7 +54,7 @@
     <file path="/NodeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375977908480" ignored="false" />
     <file path="/Packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375803610584" ignored="false" />
     <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319269680" ignored="false" />
-    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320879353" ignored="false" />
+    <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376321903986" ignored="false" />
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320597124" ignored="false" />
     <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320250524" ignored="false" />
     <file path="/ContainerElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889392340" ignored="false" />
@@ -166,7 +166,7 @@
       <file leaf-file-name="EdgeElement.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="32" selection-start="432" selection-end="439" vertical-scroll-proportion="0.47134936">
+            <state line="18" column="20" selection-start="520" selection-end="520" vertical-scroll-proportion="0.3158784">
               <folding />
             </state>
           </provider>
@@ -176,15 +176,6 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="47" column="90" selection-start="1233" selection-end="1233" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="node.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course/node.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="32" selection-start="3123" selection-end="3123" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1413,7 +1404,11 @@
       <created>1376320677298</created>
       <updated>1376320677298</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="hguku">
+      <created>1376321058726</created>
+      <updated>1376321058726</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1547,13 +1542,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="72" selection-start="253" selection-end="253" vertical-scroll-proportion="0.16906077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/course/rating.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="60" selection-start="217" selection-end="217" vertical-scroll-proportion="0.07513812">
@@ -1652,9 +1640,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://RailsDependency/#uniiv">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>RailsDependency</ID>
+          <OriginalElement>#uniiv</OriginalElement>
+          <nodes>
+            <node x="" y="">NodeOperation</node>
+            <node x="" y="">User</node>
+            <node x="" y="">Translation</node>
+            <node x="" y="">Course::Course</node>
+            <node x="" y="">Faculty</node>
+            <node x="" y="">CourseState</node>
+            <node x="" y="">Course::Expr</node>
+            <node x="" y="">ProgramGroup</node>
+            <node x="" y="">Course::Rating</node>
+            <node x="" y="">Course::Subject</node>
+            <node x="" y="">UserEmail</node>
+            <node x="" y="">UserTakingCourse</node>
+            <node x="" y="">University</node>
+            <node x="" y="">ProgramGroupRestriction</node>
+            <node x="" y="">UserCompletedCourse</node>
+            <node x="" y="">ProgramsType</node>
+            <node x="" y="">Course::Node</node>
+            <node x="" y="">Course::RatingCriteria</node>
+            <node x="" y="">Course::GradingSystemEntity</node>
+            <node x="" y="">Course::Review</node>
+            <node x="" y="">Role</node>
+            <node x="" y="">Ability</node>
+            <node x="" y="">Program</node>
+            <node x="" y="">Course::GradingSystem</node>
+            <node x="" y="">Badge</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.5396536007292616" x="890.0675675675675" y="413.4839527027027" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Association fields</Category>
+            <Category>Migration fields</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/EdgeElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="32" selection-start="432" selection-end="439" vertical-scroll-proportion="0.47134936">
+        <state line="18" column="20" selection-start="520" selection-end="520" vertical-scroll-proportion="0.3158784">
           <folding />
         </state>
       </provider>
