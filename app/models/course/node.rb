@@ -137,6 +137,17 @@ class Course::Node < ActiveRecord::Base
     hash
   end
 
+  def count_requirements
+    if operation == NodeOperation::NODE
+      1
+    else
+      count = 0
+      nodes.each do |n|
+        count += n.count_requirements
+      end
+      count
+    end
+  end
 end
 
 

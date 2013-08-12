@@ -19,4 +19,15 @@ class ProgramGroup < ActiveRecord::Base
       groupparent.type
     end
   end
+
+  def get_requirement_level
+    complexity = 0
+    courses.each do |course|
+      complexity += course.count_requirements
+    end
+    subgroups.each do |subgroup|
+      complexity += subgroup.get_requirement_level
+    end
+    complexity
+  end
 end

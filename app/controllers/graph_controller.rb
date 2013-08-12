@@ -29,7 +29,7 @@ class GraphController < ApplicationController
         puts '------------------------------------'
         puts dot_graph.output
         nodes = nodes.merge(dot_graph.nodes)
-        graph = generate_graph_from_dot(dot_graph.output, nodes)
+        graph = generate_graph_from_dot(dot_graph.output, nodes, group.get_requirement_level)
         unless graph.dimension.x == 0 and graph.dimension.y == 0
           graph.type = 'group'
           graph.add_padding(padding)
@@ -61,10 +61,12 @@ class GraphController < ApplicationController
     dot_graph
   end
 
-  def generate_graph_from_dot(dot, nodes)
+  def generate_graph_from_dot(dot, nodes, level = 0)
+
     json = {}
     GraphViz.parse_string(dot) do |g|
-      json = Graph::from_dot(g, nodes)
+      puts 'LEVEL: ' + g[:label].to_s + ' -  ' + level.to_s
+      json = Graph::from_dot(g, nodes, level)
     end
     json
   end

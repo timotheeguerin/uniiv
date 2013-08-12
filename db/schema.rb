@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130811144004) do
+ActiveRecord::Schema.define(version: 20130812132558) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -103,8 +103,10 @@ ActiveRecord::Schema.define(version: 20130811144004) do
     t.text "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "course_id"
   end
 
+  add_index "course_reviews", ["course_id"], name: "index_course_reviews_on_course_id", using: :btree
   add_index "course_reviews", ["user_id"], name: "index_course_reviews_on_user_id", using: :btree
 
   create_table "course_subjects", force: true do |t|
