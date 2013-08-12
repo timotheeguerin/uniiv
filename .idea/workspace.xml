@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course/expr.rb" afterPath="$PROJECT_DIR$/app/models/course/expr.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/graph_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course/node.rb" afterPath="$PROJECT_DIR$/app/models/course/node.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/packer.rb" afterPath="$PROJECT_DIR$/lib/graph/packer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program_group.rb" afterPath="$PROJECT_DIR$/app/models/program_group.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376317978775" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319197668" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -57,7 +53,7 @@
     <file path="/GraphElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375998727205" ignored="false" />
     <file path="/NodeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375977908480" ignored="false" />
     <file path="/Packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375803610584" ignored="false" />
-    <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376318726513" ignored="false" />
+    <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319269680" ignored="false" />
     <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375913578487" ignored="false" />
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376075748569" ignored="false" />
     <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375997190565" ignored="false" />
@@ -125,7 +121,7 @@
       <file leaf-file-name="dot_graph.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="39" selection-start="158" selection-end="158" vertical-scroll-proportion="-2.3333333">
+            <state line="7" column="39" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -134,7 +130,7 @@
       <file leaf-file-name="packer.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="55" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.33277026">
+            <state line="37" column="47" selection-start="907" selection-end="907" vertical-scroll-proportion="0.3108108">
               <folding />
             </state>
           </provider>
@@ -1397,7 +1393,15 @@
       <created>1376317982066</created>
       <updated>1376317982066</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="hguku">
+      <created>1376318741970</created>
+      <updated>1376318741970</updated>
+    </task>
+    <task id="LOCAL-00113" summary="hguku">
+      <created>1376319198652</created>
+      <updated>1376319198652</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1580,13 +1584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="39" selection-start="158" selection-end="158" vertical-scroll-proportion="-2.3333333">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/graph.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="33" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
@@ -1608,23 +1605,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="44" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/course/node.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="32" selection-start="3123" selection-end="3123" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="40" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1636,9 +1619,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="40" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="44" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="39" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="55" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.33277026">
+        <state line="37" column="47" selection-start="907" selection-end="907" vertical-scroll-proportion="0.3108108">
           <folding />
         </state>
       </provider>

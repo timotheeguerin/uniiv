@@ -36,7 +36,7 @@ class Packer
     elsif should_grow_down
       grow_down(width, height)
     else
-      grow_right(width, height)
+      grow_down(width, height)
     end
   end
 
