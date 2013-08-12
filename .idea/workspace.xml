@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20130812132558_add_course_to_course_review.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course/review.rb" afterPath="$PROJECT_DIR$/app/models/course/review.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376313723039" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376314007965" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -68,7 +69,7 @@
     <file path="$PROJECT_DIR$/tmp/metric_fu/_data/20130809.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
     <file path="$PROJECT_DIR$/tmp/268165fb6aba98d3e80e615e5c8dd54721a61b89.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
     <file path="/20130810191223_create_course_course_rating_criterias.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376163573626" ignored="false" />
-    <file path="/review.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376313880386" ignored="false" />
+    <file path="/review.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376314101057" ignored="false" />
     <file path="/rating.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376184626306" ignored="false" />
     <file path="$PROJECT_DIR$/log/development.log" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376180579556" ignored="false" />
     <file path="/20130723192236_create_courses_program_groups_join_table.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376229447825" ignored="false" />
@@ -100,82 +101,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="program_group.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/program_group.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="40" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="expr.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course/expr.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="37" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dot_graph.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/graph/dot_graph.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="27" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="review.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/course/review.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="50" selection-start="131" selection-end="131" vertical-scroll-proportion="0.03837472">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20130811144004_create_program_group_restrictions.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20130811144004_create_program_group_restrictions.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20130811002043_create_course_reviews.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20130811002043_create_course_reviews.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="32" selection-start="83" selection-end="97" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20130805162059_add_university_to_users.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20130805162059_add_university_to_users.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/program.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="72" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="graph_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="39" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
+            <state line="6" column="33" selection-start="237" selection-end="237" vertical-scroll-proportion="0.11270718">
               <folding />
             </state>
           </provider>
@@ -1354,7 +1283,11 @@
       <created>1376259153395</created>
       <updated>1376259153395</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="hguku">
+      <created>1376314009895</created>
+      <updated>1376314009895</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1381,6 +1314,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
@@ -1395,7 +1329,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690248" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1443,7 +1376,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="graph hover edges from node on hover" />
+    <option name="LAST_COMMIT_MESSAGE" value="hguku" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1480,6 +1413,7 @@
     <MESSAGE value="graph: course state" />
     <MESSAGE value="graph: program packing" />
     <MESSAGE value="graph hover edges from node on hover" />
+    <MESSAGE value="hguku" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1522,13 +1456,6 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="39" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="72" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1618,9 +1545,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="72" selection-start="253" selection-end="253" vertical-scroll-proportion="0.16906077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/course/review.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="50" selection-start="131" selection-end="131" vertical-scroll-proportion="0.03837472">
+        <state line="6" column="33" selection-start="237" selection-end="237" vertical-scroll-proportion="0.11270718">
           <folding />
         </state>
       </provider>
