@@ -11,7 +11,7 @@
   <div id="graph_right_box">
     <div class="right"><h3><%= current_user.university %></h3></div>
     <div class="right"><h3>C/T Credits(CC%)</h3></div>
-    <div id="programsfromuser"><% current_user.programs.each do |p| %>
+    <div id="programsfromuser"><% current_user.programs.order("type_id ASC, name ASC").each do |p| %>
         <div class="right"><h4><%= p %></h4></div>
     <% end %></div>
     <hr>

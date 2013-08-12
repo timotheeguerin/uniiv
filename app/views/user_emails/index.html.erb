@@ -1,5 +1,15 @@
-<div class="content_box login_content">
-  <h2>Manage Emails</h2>
+<div class="content_box pagewidth_twothirds">
+
+  <div><h2>Add an Email</h2></div>
+
+    <%= form_tag(:action => "addEmail", :method => "post")  do %>
+    <div><%= text_field_tag 'email' , nil, { :class => "form_input_long middle form_biginput" } %>
+    <div class="right"><%= submit_tag 'Add' %></div></div>
+  <% end %>
+  
+  <hr style="width:100%">
+  
+  <div><h2>Manage Emails</h2></div>
   <% UserEmail.all.where('user_id' => current_user).each do |email| %>
     <div>
       <%= email.email %>
