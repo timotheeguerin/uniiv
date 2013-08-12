@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/graph/packer.rb" afterPath="$PROJECT_DIR$/lib/graph/packer.rb" />
+    <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="hguku">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319197668" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320276261" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -56,7 +56,7 @@
     <file path="/packer.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376319269680" ignored="false" />
     <file path="/EdgeElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375913578487" ignored="false" />
     <file path="/LabelElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376075748569" ignored="false" />
-    <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375997190565" ignored="false" />
+    <file path="/BoxElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376320250524" ignored="false" />
     <file path="/ContainerElement.coffee" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375889392340" ignored="false" />
     <file path="/20130722185557_create_courses.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162434246" ignored="false" />
     <file path="/controller_extensions.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375974103765" ignored="false" />
@@ -127,10 +127,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="packer.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="packer.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="47" selection-start="907" selection-end="907" vertical-scroll-proportion="0.3108108">
+            <state line="43" column="14" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphapi.js.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="30" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoxElement.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="22" selection-start="188" selection-end="188" vertical-scroll-proportion="0.20101352">
               <folding />
             </state>
           </provider>
@@ -140,15 +158,6 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/graph_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="47" column="90" selection-start="1233" selection-end="1233" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="graph.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/graph/graph.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="33" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -181,15 +190,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="review.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course/review.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="19" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -208,7 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/course/rating_criteria.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130723192236_create_courses_program_groups_join_table.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130811142159_create_program_groups_programs_join_table.rb" />
         <option value="$PROJECT_DIR$/app/models/program_group_restriction.rb" />
@@ -224,6 +223,7 @@
         <option value="$PROJECT_DIR$/app/models/program_group.rb" />
         <option value="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
         <option value="$PROJECT_DIR$/lib/graph/packer.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee" />
       </list>
     </option>
   </component>
@@ -1401,7 +1401,11 @@
       <created>1376319198652</created>
       <updated>1376319198652</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="hguku">
+      <created>1376319309475</created>
+      <updated>1376319309475</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1535,20 +1539,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130805162059_add_university_to_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130811144004_create_program_group_restrictions.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20130811002043_create_course_reviews.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="32" selection-start="83" selection-end="97" vertical-scroll-proportion="0.0">
@@ -1642,7 +1632,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/graph/packer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="47" selection-start="907" selection-end="907" vertical-scroll-proportion="0.3108108">
+        <state line="43" column="14" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graphapi.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="30" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/graph/element/BoxElement.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="188" selection-end="188" vertical-scroll-proportion="0.20101352">
           <folding />
         </state>
       </provider>
