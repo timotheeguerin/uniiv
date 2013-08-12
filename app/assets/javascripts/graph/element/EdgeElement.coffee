@@ -15,10 +15,17 @@ class EdgeElement extends  GraphElement
 
     if(not @beziers? or @beziers.length == 0)
       beziers = []
-      for i in [1...points.length] by 3
-        bezier = @drawBezier(i, points)
-        @beziers.push(bezier)
-        @group.add(bezier)
+      if points.length == 4
+        a = points[0]
+        b = points[3]
+        line = @createLine(a, b)
+        @beziers.push(line)
+        @group.add(line)
+      else
+        for i in [1...points.length] by 3
+          bezier = @drawBezier(i, points)
+          @beziers.push(bezier)
+          @group.add(bezier)
 
 
     angle = 30
@@ -43,6 +50,12 @@ class EdgeElement extends  GraphElement
         for bezier in @beziers
           bezier.setStrokeWidth(style.width)
 
+  createLine: (a, b) ->
+    console.log(line)
+    line = new Kinetic.Line({
+      points: [a, b]
+    })
+    line
 
   drawBezier: (i, points) ->
     bezier = new Kinetic.Shape({
