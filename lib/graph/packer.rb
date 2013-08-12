@@ -36,7 +36,7 @@ class Packer
     elsif should_grow_down
       grow_down(width, height)
     else
-      grow_right(width, height)
+      grow_down(width, height)
     end
   end
 
@@ -74,7 +74,7 @@ class Packer
 
   def pack_graph(graph, margin)
     sorted_graphs = graph.subgraphs.sort do |x, y|
-      y.level <=> x.level
+      x.level <=> y.level
     end
 
     sorted_graphs.each do |subgraph|
@@ -98,8 +98,7 @@ class Packer
 
     sorted_graphs.each do |subgraph|
       #subgraph.position.x += margin
-      #subgraph.position.y = graph.dimension.y - subgraph.dimension.y - subgraph.position.y #- margin
-      subgraph.position.y = subgraph.position.y
+      subgraph.position.y = graph.dimension.y - subgraph.dimension.y - subgraph.position.y #- margin
     end
 
   end
