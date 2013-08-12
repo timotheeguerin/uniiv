@@ -184,6 +184,12 @@ $login_width: 500px;
   text-align: left;
 }
 
+#graph_sidebar_info
+{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 /*
  * classes
 */

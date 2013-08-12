@@ -4,6 +4,8 @@ class Course::Course < ActiveRecord::Base
   belongs_to :prerequisite, :class_name => Course::Expr
   belongs_to :corequisite, :class_name => Course::Expr
 
+  validates_uniqueness_of :code, scope: :subject
+
   def to_s
     get_short_name
   end

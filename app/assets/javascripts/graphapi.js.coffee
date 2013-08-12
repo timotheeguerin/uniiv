@@ -5,6 +5,7 @@
 resizeCanvasContainer = () ->
   newheight = $(window).height() - 40;
   $("#canvas-container").height(newheight)
+  $("#graph_sidebar_info").css("max-height",newheight-(240+$("#programsfromuser").height()))
 
 
 $(document).ready ->

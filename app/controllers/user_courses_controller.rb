@@ -8,14 +8,14 @@ class UserCoursesController < ApplicationController
   def removeCourseTaking
     course = params["data-service"]
     UserTakingCourse.find(course).destroy
-    
+    flash[:notice] = t("remove.course.taking")
     redirect_to user_courses_index_path
   end
   
     def removeCourseCompleted
     course = params["data-service"]
     UserCompletedCourse.find(course).destroy
-    
+    flash[:notice] = t("remove.course.completed")
     redirect_to user_courses_index_path
   end
   

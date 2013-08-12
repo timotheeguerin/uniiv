@@ -16,3 +16,29 @@
     <%= raw(get_expr_html(@course.corequisite)) %>
   <% end %>
 </h4></div>
+
+<% unless current_user.nil? %>
+  <% unless current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
+  <div class="center">
+    <%= form_tag(:controller => "user_courses", :action => "addCourse", :method => "post") do %>
+      <%= hidden_field_tag 'course', @course.id %>
+      <div class="center"><%= submit_tag 'In Progress?', :style => "width:80px;" %>
+      <%= submit_tag 'Completed?', :name => 'completed', :style => "width:80px;" %></div>
+    <% end %>
+  </div>
+  <% else %>
+    <% coursesindb = current_user.taking_courses.to_a %>
+    <% coursesindb.concat(current_user.completed_courses.to_a) %>
+    <% variable = -1 %>
+    <% coursesindb.each do |cid| %>
+      <% if cid.course == @course %>
+        <% variable = cid %>
+      <% end %>
+    <% end %>
+    <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseCompleted", 'data-service' => variable) do %>
+      <%= submit_tag("Remove?") %></div>
+    <% end %>
+  <% end %>
+  
+  
+<% end %>
