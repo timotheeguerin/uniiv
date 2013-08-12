@@ -22,8 +22,8 @@
   <div class="center">
     <%= form_tag(:controller => "user_courses", :action => "addCourse", :method => "post") do %>
       <%= hidden_field_tag 'course', @course.id %>
-      <div class="center"><%= submit_tag 'In Progress?', :style => "width:80px;" %>
-      <%= submit_tag 'Completed?', :name => 'completed', :style => "width:80px;" %></div>
+      <div class="center"><%= submit_tag 'In Progress', :style => "width:80px;" %>
+      <%= submit_tag 'Completed', :name => 'completed', :style => "width:80px;" %></div>
     <% end %>
   </div>
   <% else %>
@@ -36,7 +36,7 @@
       <% end %>
     <% end %>
     <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseCompleted", 'data-service' => variable) do %>
-      <%= submit_tag("Remove?") %></div>
+      <%= submit_tag("Remove") %></div>
     <% end %>
   <% end %>
   

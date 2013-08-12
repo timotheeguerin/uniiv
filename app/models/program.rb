@@ -4,6 +4,6 @@ class Program < ActiveRecord::Base
   has_many :groups, :class_name => ProgramGroup, :as => :groupparent
 
   def to_s
-    name.to_s+ " (#{type.to_s})"
+    name.to_s+ " (#{type.to_s.capitalize})"
   end
 end

@@ -1,23 +1,5 @@
 <div class="content_box pagewidth_twothirds">
-  <div><h1>Course Log</h1></div>
-  
-  <hr style="width:100%">
-  
-  <% courses = Course::Course.all.to_a %>
-  <% current_user.taking_courses.each do |tc| %>
-    <% courses.delete(tc.course) %>
-  <% end %>
-  <% current_user.completed_courses.each do |cc| %>
-    <% courses.delete(cc.course) %>
-  <% end %>
-  <% courses.sort_by!{ |m| m.to_s } %>
-  <% courses = courses.map{|x| [x, x.id]} %>
-  
-  <%= form_tag(:action => "addCourse", :method => "post") do %>
-    <%= select_tag 'course', options_for_select(courses)  , { :class => "form_input_long middle form_biginput" } %>
-    <div class="center"><%= submit_tag 'In Progress', :style => "width:80px;" %>
-    <%= submit_tag 'Completed', :name => 'completed', :style => "width:80px;" %></div>
-  <% end %>
+  <div><h1>Course Log<div style="float:right;"><%= link_to user_courses_add_path do %><button>Add a Course</button><% end %></div></h1></div>
   
   <hr style="width:100%">
   

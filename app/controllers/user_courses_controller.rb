@@ -38,4 +38,16 @@ class UserCoursesController < ApplicationController
   end
   end
   
+  def add
+    @courses = Course::Course.all.to_a
+    current_user.taking_courses.each do |tc|
+      @courses.delete(tc.course)
+    end
+    current_user.completed_courses.each do |tc|
+      @courses.delete(tc.course)
+    end
+    @courses.sort_by!{|c| c.to_s}
+    @courses = @courses.map{|x| [x.to_s + " - " + x.name, x.id]}
+  end
+  
 end
