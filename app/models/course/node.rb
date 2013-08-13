@@ -22,8 +22,12 @@ class Course::Node < ActiveRecord::Base
 
     array = string.split(' ', 2)
     subject = Course::Subject.find_by_name(array[0])
-    node.course = Course::Course.where(:subject_id => subject, :code => array[1]).first
+    code = array[1]
+    node.course = Course::Course.where(:subject_id => subject, :code => code).first
     return nil if node.course.nil?
+
+    existing_node = Course::Node.find_by_course_id(node.course.id)
+    return existing_node unless existing_node.nil?
     node.operation = NodeOperation::NODE
     return node
   end
@@ -52,18 +56,22 @@ class Course::Node < ActiveRecord::Base
           open_delta -= 1
         end
         if open_delta == 0
-          children = parse(string[start_index...i])
-          return nil if children.nil?
-          node.nodes = children
+          childrens = parse(string[start_index...i])
+          return nil if childrens.nil?
+          node.nodes = childrens
           break
         end
       end
+      #Check if the node is already exising somewhere
+      existing_node = get_similar_node(node)
+      node= existing_node unless existing_node.nil?
+
       end_index += 1
       list = [node]
       newl = parse(string[end_index...string.length])
       list += newl
       return list
-    else
+    else #Course
       array = string.split(',', 2)
       n = Course::Node.create_from_course_str(array[0])
       return nil if n.nil?
@@ -74,16 +82,32 @@ class Course::Node < ActiveRecord::Base
 
   end
 
+  def self.get_similar_node(node)
+
+    Course::Node.all.each do |n|
+      if node.operation == NodeOperation::NODE
+        return nil
+      else
+        same=true
+        node.nodes.each do |c|
+          same = false unless n.nodes.include?(c)
+        end
+        if same
+          return n
+        end
+      end
+    end
+    return nil
+  end
+
   def is_linking_one_course? (courses)
     if operation == NodeOperation::NODE
-      puts 'INCLUDE: ' + course.id_to_s + ' - ' + courses.include?(course.id_to_s).to_s
       return courses.include?(course.id_to_s)
     else
       nodes.each do |node|
         return true if node.is_linking_one_course?(courses)
       end
     end
-    puts 'FALSE'
     false
   end
 
@@ -161,6 +185,7 @@ class Course::Node < ActiveRecord::Base
       count
     end
   end
+
 end
 
 

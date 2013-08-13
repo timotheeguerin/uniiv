@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/test_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/test_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course/node.rb" afterPath="$PROJECT_DIR$/app/models/course/node.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376409680565" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376417582852" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -41,7 +41,7 @@
     <file path="/course.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376315156104" ignored="false" />
     <file path="/temp.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376345351655" ignored="false" />
     <file path="/Point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375284671685" ignored="false" />
-    <file path="/node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376405351561" ignored="false" />
+    <file path="/node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376419804303" ignored="false" />
     <file path="/point.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376072120259" ignored="false" />
     <file path="/spline.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376347482907" ignored="false" />
     <file path="/user.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375730429304" ignored="false" />
@@ -148,19 +148,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="node.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/course/node.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="29" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0">
+            <state line="122" column="47" selection-start="3376" selection-end="3376" vertical-scroll-proportion="3.4974704">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="test_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/test_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="30" selection-start="355" selection-end="355" vertical-scroll-proportion="0.3153457">
+            <state line="27" column="96" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -215,9 +215,9 @@
         <option value="$PROJECT_DIR$/app/controllers/graph_controller.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130813141817_create_course_node_children.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130813143109_remove_parent_from_course_node.rb" />
-        <option value="$PROJECT_DIR$/app/models/course/node.rb" />
         <option value="$PROJECT_DIR$/app/models/course/expr.rb" />
         <option value="$PROJECT_DIR$/app/controllers/test_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/course/node.rb" />
       </list>
     </option>
   </component>
@@ -1447,7 +1447,11 @@
       <created>1376409682431</created>
       <updated>1376409682431</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="hguku">
+      <created>1376417585809</created>
+      <updated>1376417585809</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1480,7 +1484,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32583067" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13767342" sideWeight="0.6638024" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27748132" sideWeight="0.66487646" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27748132" sideWeight="0.66487646" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33619764" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -1666,9 +1670,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course/node.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/test_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="29" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0">
+        <state line="27" column="96" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1680,9 +1684,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/test_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/course/node.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="30" selection-start="355" selection-end="355" vertical-scroll-proportion="0.3153457">
+        <state line="122" column="47" selection-start="3376" selection-end="3376" vertical-scroll-proportion="3.4974704">
           <folding />
         </state>
       </provider>
