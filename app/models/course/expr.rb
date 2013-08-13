@@ -1,6 +1,9 @@
 class Course::Expr < ActiveRecord::Base
   belongs_to :node, :class_name => Course::Node
 
+  has_many :courses_pre, :class_name => Course::Course, :foreign_key => 'prerequisite_id'
+  has_many :courses_co, :class_name => Course::Course, :foreign_key => 'corequisite_id'
+
   def to_s
     id.to_s + ': ' + node.to_s
   end
@@ -85,6 +88,7 @@ class Course::Expr < ActiveRecord::Base
   end
 
   def requirements_completed?(user)
+    return true if node.nil?
     node.requirements_completed?(user)
   end
 
