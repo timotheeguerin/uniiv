@@ -8,11 +8,17 @@ class TestController < ApplicationController
     end
   end
 
+  def remove_dup
+    nodes = Course::Node.all
+
+  end
+
   def check
     nodes = Course::Node.all
     nodes.each do |node|
+
       nodes.each do |n|
-        if n.to_s == node.to_s and node.operation == NodeOperation::NODE and n.id != node.id
+        if node_same?(n, node) and n.id != node.id
           puts 'TWO node same: ' + n.to_s + ' - '+ node.to_s
           n.exprs.each do |expr|
             puts 'Change expr'
@@ -32,6 +38,21 @@ class TestController < ApplicationController
       end
     end
     false
+  end
+
+  def node_same?(n1, n2)
+    if n1.operation == NodeOperation::NODE || n2.operation == NodeOperation::NODE
+      n1.to_s == n2.to_s
+    else
+      if (n1.id == 143 or n2.id == 143) and (n1.id ==125 or n2.id==125)
+        puts '=======================NODE========================='
+      end
+      n1.nodes.each do |n|
+        puts 'INCLU: ' + n2.nodes.include?(n).to_s if (n1.id == 143 or n2.id == 143) and (n1.id ==125 or n2.id==125)
+        return false unless n2.nodes.include?(n)
+      end
+      true
+    end
   end
 
   def check_null_parent
