@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813141817) do
+ActiveRecord::Schema.define(version: 20130813143109) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -75,21 +75,19 @@ ActiveRecord::Schema.define(version: 20130813141817) do
     t.datetime "updated_at"
   end
 
-  create_table "course_node_children", force: true do |t|
+  create_table "course_node_childrens", force: true do |t|
     t.integer "course_node_id"
     t.integer "children_id"
   end
 
   create_table "course_nodes", force: true do |t|
     t.string "operation"
-    t.integer "parent_id"
     t.integer "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "course_nodes", ["course_id"], name: "index_course_nodes_on_course_id", using: :btree
-  add_index "course_nodes", ["parent_id"], name: "index_course_nodes_on_parent_id", using: :btree
 
   create_table "course_rating_criteria", force: true do |t|
     t.string "name"

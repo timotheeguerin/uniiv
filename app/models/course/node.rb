@@ -1,10 +1,11 @@
 class Course::Node < ActiveRecord::Base
 
-  belongs_to :parent, :class_name => Course::Node
+  #belongs_to :parent, :class_name => Course::Node
   belongs_to :course, :class_name => Course
-  has_many :nodes, :class_name => Course::Node, :foreign_key => "parent_id"
+  #has_many :nodes, :class_name => Course::Node, :foreign_key => "parent_id"
 
-  has_and_belongs_to_many :childs,
+  has_and_belongs_to_many :nodes,
+                          :foreign_key => 'course_node_id',
                           :association_foreign_key => 'children_id',
                           :class_name => Course::Node,
                           :join_table => 'course_node_childrens'
