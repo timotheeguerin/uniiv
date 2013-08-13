@@ -41,7 +41,10 @@ $(document).ready ->
         type = array[0]
         id = array[1]
         if type == 'p'
-          loadProgram(name, id)
+          console.log('loadprogram')
+          loadProgram(id)
+        else if type == 'g'
+          loadGroup(id)
 
 
     $(window).resize () ->
@@ -148,6 +151,7 @@ class CanGraph
     if(!data.graphs?)
       return
     margin = 30 #TODO load from style
+    padding = 30
     maxHeight = 0
     maxWidth = 0
     totalWidth = margin;
@@ -179,7 +183,7 @@ class CanGraph
     totalWidth = @viewport.canvasSize.x if totalWidth < @viewport.canvasSize.x
     maxHeight = @viewport.canvasSize.y if maxHeight < @viewport.canvasSize.y
     @container.setSize(totalWidth, maxHeight)
-    @viewport.resizeLayer(@container.getWidth(), @container.getHeight())
+    @viewport.resizeLayer(@container.getWidth() + 2 * padding, @container.getHeight() + 2 * padding)
     @viewport.autoResizeBackground()
     @container.setSize(@viewport.layerSize.x, @viewport.layerSize.y)
 
