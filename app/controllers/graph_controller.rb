@@ -25,7 +25,7 @@ class GraphController < ApplicationController
     current_user.programs.each do |program|
       prg_graph = Graph.new(program.name)
       program.groups.each do |group|
-        dot_graph = generate_graph_from_group(group)
+        dot_graph = generate_graph_from_group(group, style)
         puts '------------------------------------'
         puts dot_graph.output
         nodes = nodes.merge(dot_graph.nodes)
@@ -53,20 +53,22 @@ class GraphController < ApplicationController
     render :json => json.to_json
   end
 
-  def generate_graph_from_group(group)
+  def generate_graph_from_group(group, style)
+    margin = 20
+    margin = style[:padding] unless style[:padding].nil?
     completed_percent = (group.get_completition_ratio(current_user) * 100).round
     label = "#{group.name} (#{completed_percent}%)"
     g = GraphViz.new(:G, :type => :digraph, :strict => true, :label => label, :fontsize => 20)
     dot_graph = DotGraph.new(g, current_user)
     content_graph = g.add_graph('cluster_' + group.name)
     content_graph[:label] = ''
+    content_graph[:margin] = margin
     dot_graph.load_from_group(group, content_graph)
 
     dot_graph
   end
 
   def generate_graph_from_dot(dot, nodes, level = 0)
-
     json = {}
     GraphViz.parse_string(dot) do |g|
       json = Graph::from_dot(g, nodes, level, true)

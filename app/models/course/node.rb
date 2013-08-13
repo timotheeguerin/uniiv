@@ -3,6 +3,18 @@ class Course::Node < ActiveRecord::Base
   belongs_to :parent, :class_name => Course::Node
   belongs_to :course, :class_name => Course
   has_many :nodes, :class_name => Course::Node, :foreign_key => "parent_id"
+
+  has_and_belongs_to_many :childs,
+                          :association_foreign_key => 'children_id',
+                          :class_name => Course::Node,
+                          :join_table => 'course_node_childrens'
+
+  has_and_belongs_to_many :parents,
+                          :foreign_key => 'children_id',
+                          :association_foreign_key => 'course_node_id',
+                          :class_name => Course::Node,
+                          :join_table => 'course_node_childrens'
+
   accepts_nested_attributes_for :nodes
 
   def self.create_from_course_str(string)

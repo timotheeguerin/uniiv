@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130812132558) do
+ActiveRecord::Schema.define(version: 20130813141817) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(version: 20130812132558) do
   add_index "course_courses", ["prerequisite_id"], name: "index_courses_on_prerequisite_id", using: :btree
   add_index "course_courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
 
+  create_table "course_courses_program_groups", id: false, force: true do |t|
+    t.integer "program_group_id"
+    t.integer "course_id"
+  end
+
   create_table "course_exprs", force: true do |t|
     t.integer "node_id"
     t.datetime "created_at"
@@ -68,6 +73,11 @@ ActiveRecord::Schema.define(version: 20130812132558) do
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "course_node_children", force: true do |t|
+    t.integer "course_node_id"
+    t.integer "children_id"
   end
 
   create_table "course_nodes", force: true do |t|
@@ -159,7 +169,7 @@ ActiveRecord::Schema.define(version: 20130812132558) do
 
   create_table "program_groups", force: true do |t|
     t.string "name"
-    t.string "restriction"
+    t.integer "restriction_id"
     t.integer "value"
     t.integer "groupparent_id"
     t.string "groupparent_type"
