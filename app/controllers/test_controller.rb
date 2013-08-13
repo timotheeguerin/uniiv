@@ -44,11 +44,8 @@ class TestController < ApplicationController
     if n1.operation == NodeOperation::NODE || n2.operation == NodeOperation::NODE
       n1.to_s == n2.to_s
     else
-      if (n1.id == 143 or n2.id == 143) and (n1.id ==125 or n2.id==125)
-        puts '=======================NODE========================='
-      end
+      return false if n1.nodes.size != n2.nodes.size
       n1.nodes.each do |n|
-        puts 'INCLU: ' + n2.nodes.include?(n).to_s if (n1.id == 143 or n2.id == 143) and (n1.id ==125 or n2.id==125)
         return false unless n2.nodes.include?(n)
       end
       true

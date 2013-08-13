@@ -88,6 +88,9 @@ class Course::Node < ActiveRecord::Base
       if node.operation == NodeOperation::NODE
         return nil
       else
+        if n.nodes.size== node.nodes.size
+          next
+        end
         same=true
         node.nodes.each do |c|
           same = false unless n.nodes.include?(c)
