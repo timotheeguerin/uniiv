@@ -3,7 +3,13 @@
 class LabelElement extends BoxElement
   constructor: (group, style, graph, label) ->
     super group, style, graph
-    @label = label.replace("\\n", "\n")
+    if label.text?
+      @label = label.text.replace("\\n", "\n")
+      @labelpos = label.pos
+    else
+      @label = label.replace("\\n", "\n")
+
+
     @label_element = null
 
   computeStyle: (style) ->
@@ -18,11 +24,16 @@ class LabelElement extends BoxElement
         fontFamily: 'Calibri',
         fill: 'black'
         name: 'label'
-
         width: @group.getWidth()
         align: 'center'
       });
-
+      if @labelpos?
+        if @labelpos.x == -1
+          @label_element.setAlign('center')
+          @label_element.setPosition(0, @labelpos.y)
+        else
+          @label_element.setAlign('left')
+          @label_element.setPosition(@labelpos.x, @labelpos.y)
       @group.add(@label_element)
 
     if(style.label?)

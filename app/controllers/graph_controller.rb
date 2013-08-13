@@ -40,6 +40,9 @@ class GraphController < ApplicationController
       prg_graph.type = 'program'
       p.pack_graph(prg_graph, margin)
       prg_graph.add_padding(padding)
+      prg_graph.move(Point.new(0, padding))
+      prg_graph.dimension.y += padding
+      prg_graph.label = program.name
       graphs_json << prg_graph
     end
 

@@ -43,6 +43,7 @@ class window.ViewPort
     #Add the zoom event
     $(@stage.content).on('mousewheel', (event) =>
       @zoom(event));
+    #@stage.canvas.on
 
     @stage.add(@layer)
 
