@@ -15,4 +15,8 @@ class Program < ActiveRecord::Base
     end
     ratio / count
   end
+
+  def id_to_s
+    'p_' + id.to_s
+  end
 end

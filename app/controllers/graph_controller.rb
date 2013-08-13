@@ -33,6 +33,7 @@ class GraphController < ApplicationController
         unless graph.dimension.x == 0 and graph.dimension.y == 0
           graph.type = 'group'
           graph.add_padding(padding)
+          graph.id = group.id_to_s
           prg_graph.subgraphs << graph
         end
       end
@@ -42,6 +43,7 @@ class GraphController < ApplicationController
       prg_graph.add_padding(padding)
       prg_graph.move(Point.new(0, padding))
       prg_graph.dimension.y += padding
+      prg_graph.id = program.id_to_s
       prg_graph.label = program.name
       graphs_json << prg_graph
     end

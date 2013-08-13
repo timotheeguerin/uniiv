@@ -36,6 +36,12 @@ $(document).ready ->
         if type == 'c'
           sidebar_loader.show()
           loadCourse(name, '/course/' + id + '/graph/embed')
+      graph.onGraphClick (graph) ->     #When we click on a node it load information on the side
+        array = graph.id.split('_', 2)[0]
+        type = array[0]
+        id = array[1]
+        if type == 'p'
+          loadProgram(name, id)
 
 
     $(window).resize () ->
@@ -45,6 +51,19 @@ $(document).ready ->
     sidebar_loader.show()
     graph.clear_nodes_hightlited()
     graph.highlight_node(node_id)
+    $.get(url).success (data) ->
+      sidebar_info.html(data)
+      sidebar_loader.hide()
+      sidebar_info.show()
+  loadProgram = (program_id) ->
+    url = '/program/' + program_id + '/embed'
+    $.get(url).success (data) ->
+      sidebar_info.html(data)
+      sidebar_loader.hide()
+      sidebar_info.show()
+
+  loadProgram = (program_id) ->
+    url = '/group/' + program_id + '/embed'
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
@@ -207,6 +226,15 @@ class CanGraph
     node.on 'mousedown', () ->
       callback(node)
 
+  onGraphClick: (callback) ->
+    for graph in @graphs
+      graph.onGraphClick(callback)
+  #@_onGraphClick(graph, callback)
+
+  _onGraphClick: (graph, callback) ->
+    graph.onClickInfo () ->
+      callback(graph)
+
   hightlightEdgesFromNode: (node) ->
     for edge in @edges
       if edge.from == node.id
@@ -228,6 +256,7 @@ class Graph
     @subgraphs = []
     @nodes = []
     @edges = []
+    @container_element = null
     @load(data)
 
   load: (data) ->
@@ -242,12 +271,11 @@ class Graph
     #Style
     typeStyle = Ressources.style[data.type]
     customStyle = Ressources.style[data.clazz]
-    console.log('sdfs: ' + data.clazz + ' ' + JSON.stringify(customStyle))
     style = $.extend(true, {}, typeStyle, customStyle)
 
     #Style of the group
-    container = new ContainerElement(container_group, style, @can_graph, data.label)
-    container.update()
+    @container_element = new ContainerElement(container_group, style, @can_graph, data.label)
+    @container_element.update()
 
     #Load subgraphs
     for subgraph in data.subgraphs
@@ -273,6 +301,15 @@ class Graph
       y = node.position.y - node.dimension.y / 2
       @addNode(node.id, node.label, x, y, node.dimension.x, node.dimension.y, node.type, node.clazz)
 
+  onGraphClick: (callback) ->
+    @onClickInfo(callback)
+    for subgraph  in @subgraphs
+      subgraph.onGraphClick(callback)
+
+  onClickInfo: (callback) ->
+    @container_element.onLabelClick
+    () =>
+      callback(@)
 
   addNode: (id, text, x, y, width, height, type, clazz = '') ->
     typeStyle = Ressources.style[type.toLowerCase()]

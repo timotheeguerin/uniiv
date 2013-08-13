@@ -2,7 +2,7 @@ require 'graph/point'
 require 'graph/node'
 
 class Graph
-  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz, :label, :level
+  attr_accessor :nodes, :edges, :position, :dimension, :subgraphs, :type, :clazz, :label, :level, :id
 
   def initialize (name ='', position = Point.new, dimension = Point.new, nodes = [], edges = [])
     @position = position
@@ -15,6 +15,8 @@ class Graph
     @clazz = ''
     @label = {:text => ''}
     @level = 0
+    @id = '
+    '
   end
 
   def add_graph(g)

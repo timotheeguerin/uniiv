@@ -62,4 +62,8 @@ class LabelElement extends BoxElement
 
     @label_element.setZIndex(20) if @label_element?
 
+  onLabelClick: (callback) ->
+    @label_element.on 'mousedown', () ->
+      callback()
+
 window.LabelElement = LabelElement

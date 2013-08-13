@@ -68,4 +68,9 @@ class ProgramGroup < ActiveRecord::Base
         end
     end
   end
+
+
+  def id_to_s
+    'g_' + id.to_s
+  end
 end

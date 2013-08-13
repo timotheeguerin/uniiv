@@ -12,13 +12,10 @@ class EdgeElement extends  GraphElement
     if(not @beziers? or @beziers.length == 0)
       beziers = []
       i = 0
-      console.log('--------------------------------------')
-      console.log(@from + ' - ' + @to)
       for positions in @points
         points = positions
         if @sides[i] == 1
           points = positions.slice(1, positions.length)
-        console.log(JSON.stringify(points))
         if points.length == 4
           a = points[0]
           b = points[3]
@@ -65,11 +62,8 @@ class EdgeElement extends  GraphElement
     line
 
   drawBezier: (i, points) ->
-    #console.log JSON.stringify(points)
     bezier = new Kinetic.Shape({
       drawFunc: (canvas) ->
-        #console.log('DRAW: ' + points.length + ' - ' + i)
-        #console.log(JSON.stringify(points))
         context = canvas.getContext()
         context.beginPath()
         context.moveTo(points[i - 1].x, points[i - 1].y)
