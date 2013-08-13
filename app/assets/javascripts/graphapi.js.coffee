@@ -56,14 +56,14 @@ $(document).ready ->
       sidebar_loader.hide()
       sidebar_info.show()
   loadProgram = (program_id) ->
-    url = '/program/' + program_id + '/embed'
+    url = '/program/' + program_id + '/program/embed'
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
 
   loadProgram = (program_id) ->
-    url = '/group/' + program_id + '/embed'
+    url = '/group/' + program_id + '/program/embed'
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
@@ -78,7 +78,7 @@ class Ressources
     for k0, v0 of data.style #for all the class in the style
       for k, v of v0
         if(v.background? && v.background.image? && v.background.image.src?)
-          @addImage(v.background.image.src);
+          @addImage(v.background.image.src)
 
   @addImage: (src) ->
     if(!@images[src]?)
