@@ -121,14 +121,12 @@
         }
     },
     "arrow": {
+        "onlydefault": true,
         "normal": {
             "color": "#274d9b",
             "width": "3",
             "length": 12,
             "angle": "30"
-        },
-        "hover": {
-            "width": "5"
         }
     },
     "nodeImage": {
