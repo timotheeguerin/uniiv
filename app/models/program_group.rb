@@ -48,7 +48,7 @@ class ProgramGroup < ActiveRecord::Base
     count
   end
 
-  def get_completition_ratio(user)
+  def get_completion_ratio(user)
     puts 'RESTRIC: ' + restriction.name
     case restriction.name
       when 'min_credit'

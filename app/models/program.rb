@@ -7,12 +7,16 @@ class Program < ActiveRecord::Base
     name.to_s+ " (#{type.to_s.capitalize})"
   end
 
-  def get_completition_ratio(user)
+  def get_completion_ratio(user)
+    puts "HELLO--------------------------------------------"
     ratio = 0
     groups.each do |group|
-      ratio += group.get_completition_ratio(user)
+      ratio += group.get_completion_ratio(user)
       count += 1
     end
+    puts "------------------------------------------"
+    puts ratio
+    puts count
     ratio / count
   end
 

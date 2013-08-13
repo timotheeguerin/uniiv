@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/timcolonel/Ruby-Graphviz.git
-  revision: d272ae46d166efd137e7504aa3006f5fa2f94878
+  revision: cdce9015a7e6e16a14f05b4ce2b7992401add232
   specs:
     ruby-graphviz (1.0.9)
 
@@ -69,7 +69,7 @@ GEM
     haml (4.0.3)
       tilt
     hike (1.2.3)
-    i18n (0.6.4)
+    i18n (0.6.5)
     jbuilder (1.5.0)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
