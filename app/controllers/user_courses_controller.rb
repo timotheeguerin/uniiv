@@ -12,6 +12,17 @@ class UserCoursesController < ApplicationController
     redirect_to user_courses_index_path
   end
   
+  def completeCourseTaking
+    course = params["data-service"]
+    newcourse = UserCompletedCourse.new
+    newcourse.course = UserTakingCourse.find(course).course
+    newcourse.user = current_user
+    UserTakingCourse.find(course).destroy
+    newcourse.save
+    flash[:notice] = t("complete.course.taking")
+    redirect_to user_courses_index_path
+  end
+  
     def removeCourseCompleted
     course = params["data-service"]
     UserCompletedCourse.find(course).destroy

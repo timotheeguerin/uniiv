@@ -1,5 +1,5 @@
-<div><h2 class="<%= get_course_css_class(@course) %>"><%= link_to (@course.subject.to_s + " " + @course.code.to_s), course_path(@course) %></h2></div>
-<div><h3><%= @course.name %></h3></div>
+<div><h3 class="<%= get_course_css_class(@course) %>"><%= link_to (@course.subject.to_s + " " + @course.code.to_s), course_path(@course) %></h3></div>
+<div><h4><%= @course.name %></h4></div>
 <div><h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4></div>
 <div><h5><%= @course.description %></h5></div>
 <div><h4>Prerequisites:
@@ -36,9 +36,18 @@
       <% end %>
     <% end %>
     <% if current_user.is_taking_course?(@course) %>
-      <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseTaking", 'data-service' => variable) do %>
-        <%= submit_tag("Remove") %></div>
-      <% end %>
+      <style>form{display:inline;}</style>
+      <div class="center">
+      <%= form_tag(:controller => "user_courses", :action => "completeCourseTaking", 'data-service' => variable) do %>
+          <%= submit_tag("Complete") %>
+        <% end %>
+        <%= form_tag(:controller => "user_courses", :action => "removeCourseTaking", 'data-service' => variable) do %>
+          <%= submit_tag("Remove") %>
+        <% end %>
+      </div>
+      
+      
+      
     <% else %>
       <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseCompleted", 'data-service' => variable) do %>
         <%= submit_tag("Remove") %></div>

@@ -13,6 +13,11 @@
           <%= submit_tag("Remove") %>
         <% end %>
       </div>
+      <div style="float:right;">
+        <%= form_tag(:action => "completeCourseTaking", 'data-service' => c) do %>
+          <%= submit_tag("Complete") %>
+        <% end %>
+        </div>
     </div>
   <% end %>
   <% if current_user.taking_courses.empty? %>
