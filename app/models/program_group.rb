@@ -8,6 +8,7 @@ class ProgramGroup < ActiveRecord::Base
   #Complete a number of programs
   has_and_belongs_to_many :programs, :class_name => Program
 
+
   def to_s
     name.to_s + " (#{type.to_s})"
   end
