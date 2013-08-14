@@ -69,30 +69,27 @@
       <tr>
         <td>
           <ul class="footer_list">
-            <li>Uniiv</li>
-            <li>Story</li>
-            <li>Team</li>
-            <li>Blog</li>
+            <li><%= link_to "Uniiv", static_page_uniiv_path %></li>
+            <li><%= link_to "Story", static_page_story_path %></li>
+            <li><%= link_to raw("&nbsp;"), static_page_team_path %></li>
           </ul>
         </td>
         <td>
         </td>
         <td>
           <ul class="footer_list">
-            <li>Get Involved</li>
-            <li>Suggestions</li>
-            <li>Bug Reports</li>
-            <li>&nbsp;</li>
+            <li><%= link_to "Get Involved", static_page_getinvolved_path %></li>
+            <li><%= link_to "Suggestions", static_page_suggestions_path %></li>
+            <li><%= link_to "Bug Reports", static_page_bugreports_path %></li>
           </ul>
         </td>
         <td>
         </td>
         <td>
           <ul class="footer_list">
-            <li>Cookies</li>
-            <li>Privacy</li>
-            <li>Terms of Use</li>
-            <li>&nbsp;</li>
+            <li><%= link_to "Cookies", static_page_cookies_path %></li>
+            <li><%= link_to "Privacy", static_page_privacy_path %></li>
+            <li><%= link_to raw("&nbsp;"), static_page_termsofuse_path %></li>
           </ul>
         </td>
       </tr>
