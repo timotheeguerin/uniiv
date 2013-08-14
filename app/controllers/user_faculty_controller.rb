@@ -24,10 +24,12 @@ class UserFacultyController < ApplicationController
 
   def update
     faculty = Faculty.find_by_name(params[:fac])
-     if faculty.nil?
+    if faculty.nil?
       redirect_to user_faculty_new_path, :alert => t('error.faculty.nil')
     end
     current_user.faculty = faculty
+    current_user.programs.destroy_all
+    current_user.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
     current_user.save
     redirect_to user_dashboard_index_path
   end
