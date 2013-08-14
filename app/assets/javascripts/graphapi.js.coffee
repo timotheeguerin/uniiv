@@ -37,11 +37,10 @@ $(document).ready ->
           sidebar_loader.show()
           loadCourse(name, '/course/' + id + '/graph/embed')
       graph.onGraphClick (graph) ->     #When we click on a node it load information on the side
-        array = graph.id.split('_', 2)[0]
+        array = graph.id.split('_', 2)
         type = array[0]
         id = array[1]
         if type == 'p'
-          console.log('loadprogram')
           loadProgram(id)
         else if type == 'g'
           loadGroup(id)
@@ -59,14 +58,14 @@ $(document).ready ->
       sidebar_loader.hide()
       sidebar_info.show()
   loadProgram = (program_id) ->
-    url = '/program/' + program_id + '/program/embed'
+    url = '/program/' + program_id + '/graph/embed'
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
 
-  loadProgram = (program_id) ->
-    url = '/group/' + program_id + '/program/embed'
+  loadGroup = (program_id) ->
+    url = '/group/' + program_id + '/graph/embed'
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
@@ -261,6 +260,8 @@ class Graph
     @nodes = []
     @edges = []
     @container_element = null
+    @data = data
+    @id = data.id
     @load(data)
 
   load: (data) ->
@@ -311,8 +312,7 @@ class Graph
       subgraph.onGraphClick(callback)
 
   onClickInfo: (callback) ->
-    @container_element.onLabelClick
-    () =>
+    @container_element.onLabelClick () =>
       callback(@)
 
   addNode: (id, text, x, y, width, height, type, clazz = '') ->

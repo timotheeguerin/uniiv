@@ -59,8 +59,8 @@ Uniiv::Application.routes.draw do
   get 'program/:id/graph/embed' => 'program#graph_embed'
 
   #Group controller
-  get 'group/:id', to: 'group#show', as: 'group'
-  get 'group/:id/graph/embed' => 'group#graph_embed'
+  get 'group/:id', to: 'program_group#show', as: 'group'
+  get 'group/:id/graph/embed' => 'program_group#graph_embed'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

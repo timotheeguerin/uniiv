@@ -12,6 +12,7 @@ class Program < ActiveRecord::Base
 
   def get_completion_ratio(user)
     ratio = 0
+    count = 0
     groups.each do |group|
       ratio += group.get_completion_ratio(user)
       count += 1

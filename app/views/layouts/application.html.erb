@@ -19,7 +19,8 @@
         <% if user_signed_in? %>
           <span id="nav_top_left_links">
             <%= link_to "Path", user_graph_path %>&nbsp;
-            <%= link_to "Log", user_courses_index_path %>&nbsp;
+            <%= link_to "Courses", user_courses_index_path %>&nbsp;
+            <%= link_to "University", user_dashboard_index_path %>
           </span>
         <% end %>
         
@@ -30,9 +31,7 @@
                 <%= link_to "Admin", rails_admin.dashboard_path %>&nbsp;&nbsp;
             <% end %>
             
-            <%= link_to user_dashboard_index_path do %>
-                <strong><%= current_user.email %></strong>
-            <% end %>
+            <%= link_to "Account", user_dashboard_index_path %>
             &nbsp;
             <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
         <% else %>
