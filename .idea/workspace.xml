@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/faculty.rb" afterPath="$PROJECT_DIR$/app/models/faculty.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program.rb" afterPath="$PROJECT_DIR$/app/models/program.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program_group.rb" afterPath="$PROJECT_DIR$/app/models/program_group.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uniiv.iml" afterPath="$PROJECT_DIR$/.idea/uniiv.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376485420304" ignored="false" />
+    <file path="/Dummy.txt" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376487096436" ignored="false" />
     <file path="/sync_local.rake" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374616271755" ignored="false" />
     <file path="/database.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375971766386" ignored="false" />
     <file path="/rails_admin_parse_course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898649237" ignored="false" />
@@ -19,7 +15,7 @@
     <file path="/course_expr.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898066670" ignored="false" />
     <file path="/course_node.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375898246326" ignored="false" />
     <file path="/parse_course_expr.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374589367327" ignored="false" />
-    <file path="/program.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376487019964" ignored="false" />
+    <file path="/program.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376487112567" ignored="false" />
     <file path="/20130723145653_create_program_groups.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374591745279" ignored="false" />
     <file path="/program_group.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376485537490" ignored="false" />
     <file path="/20130723151559_create_programs_courses_join.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1374593511858" ignored="false" />
@@ -128,7 +124,7 @@
       <file leaf-file-name="program.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="39" selection-start="585" selection-end="585" vertical-scroll-proportion="0.51428574">
+            <state line="5" column="37" selection-start="236" selection-end="236" vertical-scroll-proportion="0.14333895">
               <folding />
             </state>
           </provider>
@@ -1438,7 +1434,11 @@
       <created>1376433234146</created>
       <updated>1376433234146</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="hguku">
+      <created>1376487099918</created>
+      <updated>1376487099918</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1463,23 +1463,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690248" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6745435" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13767342" sideWeight="0.6638024" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28068304" sideWeight="0.6655949" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28068304" sideWeight="0.66487646" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33619764" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33440515" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3351235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16433942" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32583067" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1657,7 +1657,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="39" selection-start="585" selection-end="585" vertical-scroll-proportion="0.51428574">
+        <state line="5" column="37" selection-start="236" selection-end="236" vertical-scroll-proportion="0.14333895">
           <folding />
         </state>
       </provider>
