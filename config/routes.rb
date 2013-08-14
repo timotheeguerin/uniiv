@@ -1,4 +1,5 @@
 Uniiv::Application.routes.draw do
+  get "user_settings/index"
   get "program_group/index"
   get "program_group/graph_embed"
   get "program/index"
@@ -61,7 +62,7 @@ Uniiv::Application.routes.draw do
   #Group controller
   get 'group/:id', to: 'program_group#show', as: 'group'
   get 'group/:id/graph/embed' => 'program_group#graph_embed'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 
