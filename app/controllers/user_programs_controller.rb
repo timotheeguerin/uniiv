@@ -35,7 +35,7 @@ class UserProgramsController < ApplicationController
       
         current_user.programs << program
         current_user.save
-        redirect_to user_dashboard_index_path
+        redirect_to user_dashboard_index_path, :notice => t("program.add.success")
       end
     end
   end
@@ -45,6 +45,6 @@ class UserProgramsController < ApplicationController
     program = Program.find(program)
     current_user.programs.delete(program)
     
-    redirect_to user_dashboard_index_path
+    redirect_to user_dashboard_index_path, :notice => t("program.remove.success")
   end
 end

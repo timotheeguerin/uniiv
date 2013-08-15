@@ -1,4 +1,14 @@
 Uniiv::Application.routes.draw do
+  get "static_page/uniiv"
+  get "static_page/story"
+  get "static_page/team"
+  get "static_page/getinvolved"
+  get "static_page/suggestions"
+  get "static_page/bugreports"
+  get "static_page/cookies"
+  get "static_page/privacy"
+  get "static_page/termsofuse"
+  get "user_settings/index"
   get "program_group/index"
   get "program_group/graph_embed"
   get "program/index"
@@ -59,9 +69,9 @@ Uniiv::Application.routes.draw do
   get 'program/:id/graph/embed' => 'program#graph_embed'
 
   #Group controller
-  get 'group/:id', to: 'group#show', as: 'group'
-  get 'group/:id/graph/embed' => 'group#graph_embed'
-  
+  get 'group/:id', to: 'program_group#show', as: 'group'
+  get 'group/:id/graph/embed' => 'program_group#graph_embed'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 

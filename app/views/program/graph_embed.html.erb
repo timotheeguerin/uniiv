@@ -1,7 +1,15 @@
-<canvas id="program_canvas" width="150px" height="150px"></canvas>
+<div><h3><%= @program.name %></h3></div>
+<div class="center">
+  <canvas id="program_canvas" width="150px" height="150px"></canvas>
+</div>
+<div>
+  <% @program.groups.each do |g| %>
+    <div><h5><%= g.name.sub!(@program.name,"") + " (" + (g.get_completion_ratio(current_user)*100).to_i.to_s + "%)" %></h5></div>
+  <% end %>
+</div>
 <script type="text/javascript">
   var canvas = document.getElementById('program_canvas');
-  graph(75, 75, 75, 10, [<%= "[" + @program.get_completion_ratio(current_user) + "]" %>], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
+  graph(75, 75, 75, 10, [[<%= @program.get_completion_ratio(current_user).to_s %>,"#274d9b"]], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
 
   function graph(x, y, radius, thickness, percentages, offset, canvas, color1, color2) {
       drawDonut(x, y, radius, thickness, 1, offset, canvas, color1);
