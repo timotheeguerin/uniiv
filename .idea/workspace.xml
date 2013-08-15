@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6be8732-0349-4e8e-9269-977e19a5ff2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_settings/index.html.erb" afterPath="$PROJECT_DIR$/app/views/user_settings/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/welcome/index.html.erb" afterPath="$PROJECT_DIR$/app/views/welcome/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/course/graph_embed.html.erb" afterPath="$PROJECT_DIR$/app/views/course/graph_embed.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="uniiv.iws" />
@@ -70,7 +66,7 @@
     <file path="/BadgeRulesMethods.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375974929747" ignored="false" />
     <file path="/Rule.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375975105247" ignored="false" />
     <file path="/Trophy.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1375976157830" ignored="false" />
-    <file path="/show.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376062570109" ignored="false" />
+    <file path="/show.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376582523254" ignored="false" />
     <file path="/university.rb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162665900" ignored="false" />
     <file path="$PROJECT_DIR$/tmp/metric_fu/_data/20130809.yml" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
     <file path="$PROJECT_DIR$/tmp/268165fb6aba98d3e80e615e5c8dd54721a61b89.json" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376162970286" ignored="false" />
@@ -96,6 +92,7 @@
     <file path="/bugreports.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376522134935" ignored="false" />
     <file path="/privacy.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376521456732" ignored="false" />
     <file path="/cookies.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376521237049" ignored="false" />
+    <file path="/graph_embed.html.erb" changelist="d6be8732-0349-4e8e-9269-977e19a5ff2f" time="1376583803500" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +116,17 @@
     <favorites_list name="uniiv" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="graph_embed.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/course/graph_embed.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="50" selection-start="988" selection-end="988" vertical-scroll-proportion="0.12274368">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -140,8 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/program.rb" />
-        <option value="$PROJECT_DIR$/app/models/faculty.rb" />
         <option value="$PROJECT_DIR$/app/controllers/user_faculty_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/user_dashboard/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
@@ -156,6 +161,8 @@
         <option value="$PROJECT_DIR$/app/views/static_page/bugreports.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/static_page/suggestions.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/graph/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/course/graph_embed.html.erb" />
       </list>
     </option>
   </component>
@@ -689,7 +696,7 @@
       <recent name="D:\dev\ws\ruby\uniiv\app\views\layouts\rails_admin\main" />
     </key>
   </component>
-  <component name="RunManager" selected="IRB console.Rails console: uniiv">
+  <component name="RunManager" selected="Rails.Development: uniiv">
     <configuration default="false" name="Rails console: uniiv" type="IrbRunConfigurationType" factoryName="IRB console" temporary="true">
       <module name="uniiv" />
       <IRB_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -1549,7 +1556,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241491" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690248" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1557,7 +1564,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32583067" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.66487646" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13712122" sideWeight="0.6638024" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20681818" sideWeight="0.6688207" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20681818" sideWeight="0.6688207" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20681818" sideWeight="0.38933763" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32576984" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -1659,20 +1666,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="33" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_emails_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user_dashboard/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="0" selection-start="84" selection-end="110" vertical-scroll-proportion="0.08994709">
@@ -1777,6 +1770,20 @@
     <entry file="file://$PROJECT_DIR$/app/views/static_page/suggestions.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="37" selection-start="156" selection-end="156" vertical-scroll-proportion="0.12274368">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/graph/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="68" selection-start="284" selection-end="284" vertical-scroll-proportion="0.329806">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/course/graph_embed.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="50" selection-start="988" selection-end="988" vertical-scroll-proportion="0.12274368">
           <folding />
         </state>
       </provider>
