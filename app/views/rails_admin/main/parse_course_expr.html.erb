@@ -1,6 +1,6 @@
 <% if @response -%>
     <% if @response.has_key?(:error) -%>
-        <div class="alert-error alert" xmlns:c="http://www.w3.org/1999/html">
+        <div class="alert-error alert">
           <%= @response[:error] %>
         </div>
     <% end -%>

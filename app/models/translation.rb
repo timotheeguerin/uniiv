@@ -1,2 +1,2 @@
-class Translation < ActiveRecord::Base 
+class Translation < ActiveRecord::Base
 end

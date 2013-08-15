@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   def requirements_completed?(course)
     course.requirements_completed?(self)
   end
-  
+
   def to_s
     email
   end
