@@ -28,12 +28,13 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-    #user ||= User.new # guest user (not logged in)
-    can :read, :all                   # allow everyone to read everything
-    if user and user.role? :admin
-        can :access, :rails_admin       # only allow admin users to access Rails Admin
-        can :dashboard                  # allow access to dashboard
-        can :manage, :all
-    end 
+
+    user ||= User.new # guest user (not logged in)
+    can :read, :all # allow everyone to read everything
+    if user.role? :admin
+      can :access, :rails_admin # only allow admin users to access Rails Admin
+      can :dashboard # allow access to dashboard
+      can :manage, :all
+    end
   end
 end
