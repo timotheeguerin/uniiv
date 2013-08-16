@@ -5,7 +5,7 @@
 
   <% if current_user.university.nil? %>
       <div>
-        You have not selected a university!
+       <h3>You have not selected a university!</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_university_edit_path do %>
             <button style="float:right;width:70px;">Add</button>
@@ -23,7 +23,7 @@
 
   <% if current_user.faculty.nil? %>
       <div>
-        You have not selected a faculty!
+<h3>You have not selected a faculty!</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_faculty_edit_path do %>
             <button style="float:right;width:70px;">Choose</button>
@@ -42,7 +42,7 @@
 
   <% if current_user.programs.size < 1 %>
       <div>
-        You have not selected any programs!
+        <h3>You have not selected any programs!</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_programs_new_path do %>
             <button style="float:right;width:70px;">Add</button>

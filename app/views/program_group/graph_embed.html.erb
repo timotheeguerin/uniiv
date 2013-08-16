@@ -4,7 +4,7 @@
 </div>
 <% restriction = @group.restriction.to_s %>
 <% if restriction == "min_credit" %>
-  <div><h5>You have completed <%= @group.count_credit_completed_courses(current_user) %> out <%= @group.value %> of credits.</h5></div>
+  <div><h5>You have completed <%= @group.count_credit_completed_courses(current_user).to_i.to_s %> out of <%= @group.value %> credits.</h5></div>
 <% elsif restriction == "min_grp" %>
   
 <% elsif restriction == "min_prg" %>
