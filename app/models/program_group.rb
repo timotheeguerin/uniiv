@@ -46,6 +46,9 @@ class ProgramGroup < ActiveRecord::Base
     courses.each do |course|
       count += course.credit if user.has_completed_course?(course)
     end
+    subgroups.each do |subgroup|
+      count += subgroup.count_credit_completed_courses(user)
+    end
     count
   end
 
@@ -54,6 +57,7 @@ class ProgramGroup < ActiveRecord::Base
     case restriction.name
       when 'min_credit'
         completed_credit = count_credit_completed_courses(user)
+        puts 'count: ' + completed_credit.to_s
         if completed_credit < value
           return completed_credit / value
         else
