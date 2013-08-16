@@ -33,6 +33,26 @@ class ProgramGroup < ActiveRecord::Base
     complexity
   end
 
+  def get_subgroups_completed_ratio(user)
+    ratio = 0
+    coefficient = 0
+    subgroups.each do |subgroup|
+      coef = subgroup.get_coefficient
+      ratio += subgroup.get_completion_ratio(user) * coef
+      coefficient += coef
+    end
+    return 0 if coefficient == 0
+    ratio/coefficient.to_f
+  end
+
+  def get_subgroups_coef
+    coefficient = 0
+    subgroups.each do |subgroup|
+      coefficient += subgroup.get_coefficient
+    end
+    coefficient
+  end
+
   def count_completed_courses(user)
     count = 0
     courses.each do |course|
@@ -52,14 +72,24 @@ class ProgramGroup < ActiveRecord::Base
     count
   end
 
+  def count_total_credit
+    count = 0
+    courses.each do |course|
+      count += course.credit
+    end
+    count
+  end
+
   def get_completion_ratio(user)
-    puts 'RESTRIC: ' + restriction.name
     case restriction.name
       when 'min_credit'
         completed_credit = count_credit_completed_courses(user)
-        puts 'count: ' + completed_credit.to_s
-        if completed_credit < value
-          return completed_credit / value
+        subgroup_completed = get_subgroups_completed_ratio(user)
+        subgroup_coef = get_subgroups_coef
+
+        ratio = (completed_credit + subgroup_completed*subgroup_coef)/ (value + subgroup_coef)
+        if ratio < 1
+          return ratio
         else
           return 1
         end
@@ -74,6 +104,16 @@ class ProgramGroup < ActiveRecord::Base
     end
   end
 
+  def get_coefficient()
+    case restriction.name
+      when 'min_credit'
+        value
+      when 'min_grp'
+        return 1
+      else
+        count_total_credit
+    end
+  end
 
   def id_to_s
     'g_' + id.to_s
