@@ -8,6 +8,8 @@ class DotGraph
   end
 
   def load_from_group(group, graph = @graph, include_label = true)
+    graph[:id] = group.id_to_s
+
     unless include_label
       graph[:label] = ''
     end
@@ -62,7 +64,9 @@ class DotGraph
       unless subgroup.courses.size == 0
         subgraph_name = 'cluster_'+subgroup.id.to_s
         subgraph = graph.add_graph(subgraph_name)
-        load_from_group(subgroup, subgraph, false)
+        subgraph[:label] = subgroup.short_name
+        subgraph[:labelloc] = 'b'
+        load_from_group(subgroup, subgraph)
       end
     end
 

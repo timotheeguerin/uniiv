@@ -15,8 +15,7 @@ class Graph
     @clazz = ''
     @label = {:text => ''}
     @level = 0
-    @id = '
-    '
+    @id = ''
   end
 
   def add_graph(g)
@@ -30,9 +29,13 @@ class Graph
     g_pos = Point::pos_from_array(rect)
     dimension = Point::dim_from_array(rect)
 
-    g = Graph.new('', g_pos, dimension)
-    g.level = level
 
+    g = Graph.new('', g_pos, dimension)
+
+    id = dot_graph[:id]
+    g.id = id.source unless id.nil?
+
+    g.level = level
 
     dot_graph.each_node do |node_id, node|
       state = nodes[node_id][:state]
@@ -47,9 +50,10 @@ class Graph
 
     dot_graph.each_graph do |dot_subgraph_id, dot_subgraph|
       sub_g = Graph::from_dot(dot_subgraph, nodes)
+      sub_g.position -= g.position
       g.add_graph(sub_g)
-      sub_g.type = 'group_content'
-      sub_g.label = ''
+      sub_g.type = 'group_content' if next_content
+      #sub_g.label = ''
     end
 
     #Load the label

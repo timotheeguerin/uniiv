@@ -170,7 +170,13 @@
 
     },
     "cluster": {
-        "shape": "rect"
+        "shape": "rect",
+        "normal": {
+            "background": {
+                "color": "#70CEA8",
+                "cornerradius": "15"
+            }
+        }
     },
     "in_cluster": {
         "normal": {
@@ -211,7 +217,7 @@
         "normal": {
             "background": {
                 "cornerradius": "15",
-                "color":"#f1f1f1",
+                "color": "#f1f1f1",
                 "border": {
                     "color": "#dfdfdf"
                 }
