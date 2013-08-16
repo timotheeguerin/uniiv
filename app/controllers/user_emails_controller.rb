@@ -5,7 +5,7 @@ class UserEmailsController < ApplicationController
   
   def addEmail
   em = params["email"]
-  current_user.emails.each do |e|
+  UserEmail.all.each do |e|
     if e.email == em
       flash[:alert] = t("useremail.duplicate")
     redirect_to user_emails_index_path
