@@ -175,8 +175,11 @@
     "in_cluster": {
         "normal": {
             "background": {
-                "color": "#70CEA8",
-                "cornerradius": "15"
+                "color": "#f5f5f5",
+                "cornerradius": "15",
+                "border": {
+                    "color": "#dfdfdf"
+                }
             },
             "label": {
                 "hidden": "true"

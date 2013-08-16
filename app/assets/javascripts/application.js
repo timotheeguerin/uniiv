@@ -13,3 +13,35 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree . 
+
+$(window).resize(function () {
+    if($("#fold").length == 0)
+    {
+      var newheight = $(window).height() - 72;
+      if($("#content").height() < newheight)
+      {
+        $("#content").css("height", newheight);
+      }
+    }
+    else
+    {
+      var newheight = $(window).height() - 40;
+      $("#content").css("height", newheight);
+    }
+});
+
+$(window).load(function () {
+    if($("#fold").length == 0)
+    {
+      var newheight = $(window).height() - 72;
+      if($("#content").height() < newheight)
+      {
+        $("#content").css("height", newheight);
+      }
+    }
+    else
+    {
+      var newheight = $(window).height() - 40;
+      $("#content").css("height", newheight);
+    }
+});

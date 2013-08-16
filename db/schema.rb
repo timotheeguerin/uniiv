@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813143109) do
+ActiveRecord::Schema.define(version: 20130816154747) do
 
   create_table "badges", force: true do |t|
     t.string   "name"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20130813143109) do
     t.string   "groupparent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "short_name"
   end
 
   create_table "program_groups_programs", id: false, force: true do |t|
