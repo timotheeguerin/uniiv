@@ -35,7 +35,7 @@
         <% variable = cid %>
       <% end %>
     <% end %>
-    <% if current_user.is_taking_course?(@course) %>
+    <% if current_user.is_taking_course?(@course) %>ma
       <style>form{display:inline;}</style>
       <div class="center">
       <%= form_tag(:controller => "user_courses", :action => "completeCourseTaking", 'data-service' => variable) do %>
