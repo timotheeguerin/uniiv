@@ -86,7 +86,7 @@ class ProgramGroup < ActiveRecord::Base
         completed_credit = count_credit_completed_courses(user)
         subgroup_completed = get_subgroups_completed_ratio(user)
         subgroup_coef = get_subgroups_coef
-
+        return 1 if value == 0 and subgroup_coef == 0
         ratio = (completed_credit + subgroup_completed*subgroup_coef)/ (value + subgroup_coef)
         if ratio < 1
           return ratio
