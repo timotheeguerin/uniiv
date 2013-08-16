@@ -37,7 +37,6 @@ $(document).ready ->
           sidebar_loader.show()
           loadCourse(name, '/course/' + id + '/graph/embed')
       graph.onGraphClick (graph) ->     #When we click on a node it load information on the side
-        console.log('click: ' + graph.id)
         array = graph.id.split('_', 2)
         type = array[0]
         id = array[1]
