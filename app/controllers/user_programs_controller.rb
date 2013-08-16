@@ -7,16 +7,16 @@ class UserProgramsController < ApplicationController
     @faculty = current_user.faculty
      if @faculty.nil?
       redirect_to user_faculty_edit_path, :alert => t('error.faculty.notselected')
-    end
-    
-    @options = @faculty.programs.order("type_id ASC, name ASC").to_a
-    @options.each do |o|
-      if o.type.id == 4
-        @options.delete(o)
+    else
+      @options = @faculty.programs.order("type_id ASC, name ASC").to_a
+      @options.each do |o|
+        if o.type.id == 4
+          @options.delete(o)
+        end
       end
-    end
-    current_user.programs.each do |p|
-      @options.delete(p)
+      current_user.programs.each do |p|
+        @options.delete(p)
+      end
     end
   end
 

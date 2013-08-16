@@ -60,11 +60,11 @@
   <div id="nav_bottom_container">
     <table id="footer_table">
       <tr class="footer_table_heading">
-        <th style="width:20%;">About</th>
+        <th style="width:20%;"><a href="#bottom">About</a></th>
         <th style="width:20%;"></th>
-        <th style="width:20%;">Contact Us</th>
+        <th style="width:20%;"><a href="#bottom">Contact Us</a></th>
         <th style="width:20%;"></th>
-        <th style="width:20%;">Legal</th>
+        <th style="width:20%;"><a href="#bottom">Legal</a></th>
       </tr>
       <tr>
         <td>
@@ -89,7 +89,7 @@
           <ul class="footer_list">
             <li><%= link_to "Cookies", static_page_cookies_path %></li>
             <li><%= link_to "Privacy", static_page_privacy_path %></li>
-            <li><%= link_to raw("&nbsp;"), static_page_termsofuse_path %></li>
+            <li><%= link_to raw("&nbsp;"), static_page_termsofuse_path %><a name="bottom"></a></li>
           </ul>
         </td>
       </tr>
