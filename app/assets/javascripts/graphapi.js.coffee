@@ -13,7 +13,7 @@ $(document).ready ->
   canvas_container = $('#canvas-container')
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info")
-  graph_reload = $('#graph_reload')
+  graph_reload = $('#graphreload')
   sidebar_info.on 'click', 'a', (e) ->
     url = $(this).attr('href')
     node_id = 'c_' + $(this).attr('data-id')
