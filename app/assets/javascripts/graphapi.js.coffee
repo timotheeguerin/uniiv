@@ -49,28 +49,35 @@ $(document).ready ->
     $(window).resize () ->
       resizeCanvasContainer()
       graph.resize()
+    $(document).on 'formAjaxComplete', '#graph_sidebar_info', ->
+      console.log('lol form ajax complete')
+      reload_graph_info()
+
+  reload_graph_info = () ->
+    url = sidebar_info.attr('data-url')
+    if url? and url != ''
+      load_sidebar(url)
+
   loadCourse = (node_id, url) ->
     sidebar_loader.show()
     graph.clear_nodes_hightlited()
     graph.highlight_node(node_id)
-    $.get(url).success (data) ->
-      sidebar_info.html(data)
-      sidebar_loader.hide()
-      sidebar_info.show()
+    load_sidebar(url)
+
   loadProgram = (program_id) ->
     url = '/program/' + program_id + '/graph/embed'
-    $.get(url).success (data) ->
-      sidebar_info.html(data)
-      sidebar_loader.hide()
-      sidebar_info.show()
+    load_sidebar(url)
 
   loadGroup = (program_id) ->
     url = '/group/' + program_id + '/graph/embed'
+    load_sidebar(url)
+
+  load_sidebar = (url) ->
+    sidebar_info.attr('data-url', url)
     $.get(url).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
-
 
 class Ressources
   @images: {}

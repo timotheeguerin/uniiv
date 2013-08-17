@@ -19,10 +19,7 @@ Uniiv::Application.routes.draw do
   post "user_emails/addEmail"
   get "user_emails/index"
   get "user_courses/add"
-  post "user_courses/addCourse"
-  post "user_courses/removeCourseCompleted"
-  post "user_courses/removeCourseTaking"
-  post "user_courses/completeCourseTaking"
+
   get "user_courses/index"
   get 'user_dashboard/index'
   get 'user_programs/show'
@@ -73,6 +70,12 @@ Uniiv::Application.routes.draw do
   #Group controller
   get 'group/:id', to: 'program_group#show', as: 'group'
   get 'group/:id/graph/embed' => 'program_group#graph_embed'
+
+  #User course controller
+  post 'user_courses/add_course'
+  post 'user_courses/remove_course_completed'
+  post 'user_courses/remove_course_taking'
+  post 'user_courses/complete_course_taking'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

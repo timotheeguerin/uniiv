@@ -1,44 +1,50 @@
-<div class="content_box pagewidth_twothirds">
-  <div><h1>Your Courses<div style="float:right;"><%= link_to user_courses_add_path do %><button>Add a Course</button><% end %></div></h1></div>
-  
-  <hr style="width:100%">
-  
-  <div><h3>Courses in progress</h3></div>  
+<div class='content_box pagewidth_twothirds'>
+  <div>
+    <h1>Your Courses
+      <div style='float:right;'><%= link_to user_courses_add_path do %>
+            <button>Add a Course</button>
+        <% end %></div>
+    </h1>
+  </div>
+
+  <hr style='width:100%'>
+
+  <div><h3>Courses in progress</h3></div>
   <% current_user.taking_courses.each do |c| %>
-    <div>
-      <h4><%= c.course.subject.name + " " + c.course.code.to_s %></h4>
-      <button style="visibility:hidden;">I</button>
-      <div style="float:right;">
-        <%= form_tag(:action => "removeCourseTaking", 'data-service' => c) do %>
-          <%= submit_tag("Remove") %>
-        <% end %>
-      </div>
-      <div style="float:right;">
-        <%= form_tag(:action => "completeCourseTaking", 'data-service' => c) do %>
-          <%= submit_tag("Complete") %>
-        <% end %>
+      <div>
+        <h4><%= c.course.subject.name + ' ' + c.course.code.to_s %></h4>
+        <button style='visibility:hidden;'>I</button>
+        <div style='float:right;'>
+          <%= form_tag(:action => 'remove_course_taking', 'data-service' => c) do %>
+              <%= submit_tag('Remove') %>
+          <% end %>
         </div>
-    </div>
+        <div style='float:right;'>
+          <%= form_tag(:action => 'complete_course_taking', 'data-service' => c) do %>
+              <%= submit_tag('Complete') %>
+          <% end %>
+        </div>
+      </div>
   <% end %>
   <% if current_user.taking_courses.empty? %>
-    <div><h4>You are not taking any courses.</h4></div>
+      <div><h4>You are not taking any courses.</h4></div>
   <% end %>
-  
-  <hr style="width:100%">
-  
+
+  <hr style='width:100%'>
+
   <div><h3>Courses completed</h3></div>
   <% current_user.completed_courses.each do |c| %>
-    <div>
-      <h4><%= c.course.subject.name + " " + c.course.code.to_s %></h4>
-      <button style="visibility:hidden;">I</button>
-      <div style="float:right;">
-        <%= form_tag(:action => "removeCourseCompleted", 'data-service' => c) do %>
-          <%= submit_tag("Remove") %>
-        <% end %>
+      <div>
+        <h4><%= c.course.subject.name + ' ' + c.course.code.to_s %></h4>
+        <button style='visibility:hidden;'>I</button>
+        <div style='float:right;'>
+          <%= form_tag(:action => 'remove_course_completed', 'data-service' => c) do %>
+              <%= submit_tag('Remove') %>
+          <% end %>
+        </div>
       </div>
-    </div>
   <% end %>
   <% if current_user.completed_courses.empty? %>
-    <div><h4>You have not completed any courses.</h4></div>
+      <div><h4>You have not completed any courses.</h4></div>
   <% end %>
 </div>  
