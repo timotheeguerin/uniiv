@@ -172,9 +172,15 @@
     "cluster": {
         "shape": "rect",
         "normal": {
+          "label": {
+                "color": "#274d9b"
+            },
             "background": {
-                "color": "#70CEA8",
-                "cornerradius": "15"
+                "color": "#fcfcfc",
+                "cornerradius": "15",
+                "border": {
+                    "color": "#dfdfdf"
+                }
             }
         }
     },

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/timcolonel/Ruby-Graphviz.git
-  revision: cdce9015a7e6e16a14f05b4ce2b7992401add232
+  revision: 1ad3a5e9d9e3a80b85b7f4ed4044ad5f0296cb08
   specs:
     ruby-graphviz (1.0.9)
 
@@ -39,7 +39,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.12)
+    atomic (1.1.13)
     bcrypt-ruby (3.1.1)
     bcrypt-ruby (3.1.1-x86-mingw32)
     bootstrap-sass (2.3.2.1)
@@ -86,7 +86,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.23)
+    mime-types (1.24)
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.9)

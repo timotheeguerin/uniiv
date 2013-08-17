@@ -3,10 +3,8 @@
   <canvas id="program_canvas" width="150px" height="150px"></canvas>
 </div>
 <div>
-  <% if @program.groups.size > 1 %>
-    <% @program.groups.each do |g| %>
-      <div><h5><%= g.name.sub!(@program.name,"") + " (" + (g.get_completion_ratio(current_user)*100).to_i.to_s + "%)" %></h5></div>
-    <% end %>
+  <% @program.groups.each do |g| %>
+    <div><h5><%= g.short_name + " (" + (g.get_completion_ratio(current_user)*100).to_i.to_s + "%)" %></h5></div>
   <% end %>
 </div>
 <script type="text/javascript">
