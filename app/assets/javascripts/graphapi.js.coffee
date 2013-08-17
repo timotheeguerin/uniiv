@@ -13,6 +13,7 @@ $(document).ready ->
   canvas_container = $('#canvas-container')
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info")
+  graph_reload = $('#graph_reload')
   sidebar_info.on 'click', 'a', (e) ->
     url = $(this).attr('href')
     node_id = 'c_' + $(this).attr('data-id')
@@ -52,6 +53,7 @@ $(document).ready ->
     $(document).on 'formAjaxComplete', '#graph_sidebar_info', ->
       console.log('lol form ajax complete')
       reload_graph_info()
+      graph_reload.show()
 
   reload_graph_info = () ->
     url = sidebar_info.attr('data-url')
