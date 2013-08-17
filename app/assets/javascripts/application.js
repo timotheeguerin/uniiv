@@ -31,6 +31,11 @@ $(window).resize(function () {
 });
 
 $(window).load(function () {
+  $("#graphreload").click(function() {
+    location.reload();
+  });
+
+
     if($("#fold").length == 0)
     {
       var newheight = $(window).height() - 72;
