@@ -36,7 +36,15 @@ class User < ActiveRecord::Base
     params.permit!
   end
 
-
+  def total_completed_ratio
+    ratio = 0
+    self.programs.each do |p|
+      ratio += p.get_completion_ratio(self)
+    end
+    ratio
+    #TODO
+  end
+  
   def has_completed_course?(course)
     completed_courses.each do |c|
       if c.course == course

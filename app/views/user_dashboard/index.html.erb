@@ -84,13 +84,13 @@
     <% @programs.order("type_id ASC, name ASC").each do |p| %>
           <div><h4>
             <%= link_to program_graph_path(p.id) do %>
-              <%= p.name %> (<%= p.get_completion_ratio(current_user).to_i.to_s %>%)
+              <%= p.name %> (<%= (p.get_completion_ratio(current_user)*100).to_i.to_s %>%)
             <% end %>
           </h4></div>
           
           <% p.groups.each do |s| %>
             <div style="text-indent:15px"><h5>
-              <%= s.short_name %> (<%= s.get_completion_ratio(current_user).to_i.to_s %>%)
+              <%= s.short_name %> (<%= (s.get_completion_ratio(current_user)*100).to_i.to_s %>%)
             </h5></div>
           <% end %>
       
@@ -102,7 +102,7 @@
 
 <script type="text/javascript">
   var canvas = document.getElementById('total_canvas');
-  graph(75, 75, 75, 10, [[<%= current_user.count_completed_credit %>,"#274d9b"]], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
+  graph(75, 75, 75, 10, [[<%= current_user.total_completed_ratio %>,"#274d9b"]], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
 
   function graph(x, y, radius, thickness, percentages, offset, canvas, color1, color2) {
       drawDonut(x, y, radius, thickness, 1, offset, canvas, color1);
