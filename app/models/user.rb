@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   def count_completed_credit
     count = 0
     completed_courses.each do |c|
-      count += c.credit
+      count += c.course.credit
     end
     count
   end
