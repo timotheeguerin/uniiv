@@ -1,64 +1,68 @@
 <div class="content_box pagewidth_twothirds">
   <h1><%= (@course.subject.to_s + " " + @course.code.to_s) %></h1>
+
   <h3><%= @course.name %></h3>
   <h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4>
   <h5><%= @course.description %></h5>
   <h4>Prerequisites:
     <% if @course.prerequisite.nil? %>
-      None.
+        None.
     <% else %>
-      <%= raw(@course.prerequisite.to_html) %>
+        <%= raw(@course.prerequisite.to_html) %>
     <% end %>
   </h4>
   <h4>Corequisites:
     <% if @course.corequisite.nil? %>
-      None.
+        None.
     <% else %>
-      <%= raw(@course.corequisite.to_html) %>
+        <%= raw(@course.corequisite.to_html) %>
     <% end %>
   </h4>
-  
+
   <% unless current_user.nil? %>
-  <% unless current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
-  <div class="center">
-    <%= form_tag(:controller => "user_courses", :action => "addCourse", :method => "post") do %>
-      <%= hidden_field_tag 'course', @course.id %>
-      <div class="center"><%= submit_tag 'Mark as In Progress' %>
-      <%= submit_tag 'Mark as Completed', :name => 'completed' %></div>
-    <% end %>
-  </div>
-  <% else %>
-    <% coursesindb = current_user.taking_courses.to_a %>
-    <% coursesindb.concat(current_user.completed_courses.to_a) %>
-    <% variable = -1 %>
-    <% coursesindb.each do |cid| %>
-      <% if cid.course == @course %>
-        <% variable = cid %>
+      <% if current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
+          <% coursesindb = current_user.taking_courses.to_a %>
+          <% coursesindb.concat(current_user.completed_courses.to_a) %>
+          <% variable = -1 %>
+          <% coursesindb.each do |cid| %>
+              <% if cid.course == @course %>
+                  <% variable = cid %>
+              <% end %>
+          <% end %>
+          <% if current_user.is_taking_course?(@course) %>
+              <style>form {
+                  display: inline;
+              }</style>
+              <div class='center'>
+                <%= form_tag({:controller => 'user_courses', :action => 'complete_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
+                    <%= submit_tag t('course.mark_completed') %>
+                <% end %>
+                <%= form_tag({:controller => 'user_courses', :action => 'remove_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
+                    <%= submit_tag t('course.remove') %>
+                <% end %>
+              </div>
+
+          <% else %>
+              <div class='center'>
+                <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
+                    <%= submit_tag t('course.remove') %></div>
+                <% end %>
+          <% end %>
+      <% else %>
+          <div class='center'>
+            <%= form_tag({:controller => 'user_courses', :action => 'add_course', :method => 'post'}, {:class => 'useajax'}) do %>
+                <%= hidden_field_tag 'course', @course.id %>
+                <%= submit_tag t('course.mark_taking') %>
+            <% end %>
+            <%= form_tag({:controller => 'user_courses', :action => 'add_course_completed', :method => 'post'}, {:class => 'useajax'}) do %>
+                <%= hidden_field_tag 'course', @course.id %>
+                <%= submit_tag t('course.mark_completed'), :name => 'completed' %>
+            <% end %>
+          </div>
+
       <% end %>
-    <% end %>
-    <% if current_user.is_taking_course?(@course) %>ma
-      <style>form{display:inline;}</style>
-      <div class="center">
-      <%= form_tag(:controller => "user_courses", :action => "completeCourseTaking", 'data-service' => variable) do %>
-          <%= submit_tag("Mark as Completed") %>
-        <% end %>
-        <%= form_tag(:controller => "user_courses", :action => "removeCourseTaking", 'data-service' => variable) do %>
-          <%= submit_tag("Remove") %>
-        <% end %>
-      </div>
-      
-      
-      
-    <% else %>
-      <div class="center"><%= form_tag(:controller => "user_courses", :action => "removeCourseCompleted", 'data-service' => variable) do %>
-        <%= submit_tag("Remove") %></div>
-      <% end %>
-    <% end %>
-    
+
   <% end %>
-  
-  
-<% end %>
-  
+
 </div>
 

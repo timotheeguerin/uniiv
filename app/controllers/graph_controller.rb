@@ -9,7 +9,10 @@ class GraphController < ApplicationController
   include GraphHelper
 
   def show
-    if current_user.programs.size == 0
+    #current_user ||= User.new
+    if current_user.university.nil?
+      redirect_to user_dashboard_index_path, :alert => t("university.notselected")
+    elsif current_user.programs.size == 0
       redirect_to user_dashboard_index_path, :alert => t("programs.zero.selected")
     end
   end

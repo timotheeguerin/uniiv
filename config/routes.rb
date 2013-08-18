@@ -73,6 +73,7 @@ Uniiv::Application.routes.draw do
 
   #User course controller
   post 'user_courses/add_course'
+  post 'user_courses/add_course_completed'
   post 'user_courses/remove_course_completed'
   post 'user_courses/remove_course_taking'
   post 'user_courses/complete_course_taking'

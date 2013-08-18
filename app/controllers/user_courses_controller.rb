@@ -47,6 +47,15 @@ class UserCoursesController < ApplicationController
     end
   end
 
+  def add_course_completed
+    course = Course::Course.find(params['course'])
+    completedcourse = UserCompletedCourse.new
+    completedcourse.course = course
+    completedcourse.user = current_user
+    completedcourse.save
+    return_success('add.course.completed')
+  end
+
   def return_success(message)
     if request.xhr? #if the request was with ajax return json
       json = {}

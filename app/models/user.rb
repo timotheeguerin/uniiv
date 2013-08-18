@@ -55,6 +55,26 @@ class User < ActiveRecord::Base
     false
   end
 
+  def count_completed_credit
+    count = 0
+    completed_courses.each do |c|
+      count += c.credit
+    end
+    count
+  end
+
+  def count_taking_credit
+    count = 0
+    taking_courses.each do |c|
+      count += c.credit
+    end
+    count
+  end
+
+  def count_completed_credit_after_taking
+    count_completed_credit + count_taking_credit
+  end
+
   def requirements_completed?(course)
     course.requirements_completed?(self)
   end

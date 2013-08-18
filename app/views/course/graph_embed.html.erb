@@ -52,8 +52,11 @@
         <div class='center'>
           <%= form_tag({:controller => 'user_courses', :action => 'add_course', :method => 'post'}, {:class => 'useajax'}) do %>
               <%= hidden_field_tag 'course', @course.id %>
-              <div class='center'><%= submit_tag t('course.mark_taking') %>
-                <%= submit_tag t('course.mark_completed'), :name => 'completed' %></div>
+              <%= submit_tag t('course.mark_taking') %>
+          <% end %>
+          <%= form_tag({:controller => 'user_courses', :action => 'add_course_completed', :method => 'post'}, {:class => 'useajax'}) do %>
+              <%= hidden_field_tag 'course', @course.id %>
+              <%= submit_tag t('course.mark_completed'), :name => 'completed' %>
           <% end %>
         </div>
 
