@@ -52,7 +52,7 @@ gem 'cancan'
 
 gem 'i18n-active_record', :github => 'timcolonel/i18n-active_record', :require => 'i18n/active_record'
 
-gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
+gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz', :ref => "9aa85b5adb"
 
 gem 'json'
 

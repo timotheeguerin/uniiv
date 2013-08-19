@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/timcolonel/Ruby-Graphviz.git
   revision: 9aa85b5adb3cc6aa14a05e038d80070fa9f77503
+  ref: 9aa85b5adb
   specs:
     ruby-graphviz (1.0.9)
 
