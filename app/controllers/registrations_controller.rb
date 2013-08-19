@@ -21,8 +21,10 @@ class RegistrationsController < Devise::RegistrationsController
     else
       render :action => 'new'
     end
+  end
 
-
+  def after_sign_up_path_for(ressource)
+    user_dashboard_index_path
   end
 
   def update
