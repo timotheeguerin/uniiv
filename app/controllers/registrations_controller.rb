@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     user_email.primary = true
     user_email.validated = false
 
-    alpha_tester_role = Role.find_by_name('alpha_tester')
+    alpha_tester_role = Role.find_by_name('AlphaTester')
 
     resource.emails << user_email
     resource.roles << alpha_tester_role
