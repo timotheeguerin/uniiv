@@ -4,14 +4,14 @@
   <h3><%= @course.name %></h3>
   <h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4>
   <h5><%= @course.description %></h5>
-  <h4>Prerequisites:
+  <h4><%= t('prerequisites') %>:
     <% if @course.prerequisite.nil? %>
         None.
     <% else %>
         <%= raw(@course.prerequisite.to_html) %>
     <% end %>
   </h4>
-  <h4>Corequisites:
+  <h4><%= t('corequisites') %>s:
     <% if @course.corequisite.nil? %>
         None.
     <% else %>
