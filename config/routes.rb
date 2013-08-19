@@ -1,26 +1,26 @@
 Uniiv::Application.routes.draw do
-  get "static_page/uniiv"
-  get "static_page/story"
-  get "static_page/team"
-  get "static_page/getinvolved"
-  get "static_page/suggestions"
-  get "static_page/bugreports"
-  get "static_page/cookies"
-  get "static_page/privacy"
-  get "static_page/termsofuse"
-  get "user_settings/index"
-  get "program_group/index"
-  get "program_group/graph_embed"
-  get "program/index"
-  get "program/graph_embed"
-  post "user_programs/removeProgram"
-  post "user_emails/removeEmail"
-  post "user_emails/makeDefault"
-  post "user_emails/addEmail"
-  get "user_emails/index"
-  get "user_courses/add"
+  get 'static_page/uniiv'
+  get 'static_page/story'
+  get 'static_page/team'
+  get 'static_page/getinvolved'
+  get 'static_page/suggestions'
+  get 'static_page/bugreports'
+  get 'static_page/cookies'
+  get 'static_page/privacy'
+  get 'static_page/termsofuse'
+  get 'user_settings/index'
+  get 'program_group/index'
+  get 'program_group/graph_embed'
+  get 'program/index'
+  get 'program/graph_embed'
+  post 'user_programs/removeProgram'
+  post 'user_emails/removeEmail'
+  post 'user_emails/makeDefault'
+  post 'user_emails/addEmail'
+  get 'user_emails/index'
+  get 'user_courses/add'
 
-  get "user_courses/index"
+  get 'user_courses/index'
   get 'user_dashboard/index'
   get 'user_programs/show'
   get 'user_programs/new'

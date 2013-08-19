@@ -1,5 +1,7 @@
 class UserCoursesController < ApplicationController
   def index
+    authorize! :read, current_user
+
     if current_user.nil?
       redirect_to :status => 404
     end

@@ -1,0 +1,15 @@
+strict digraph G {
+	graph [];
+	node [label="\N"];
+	subgraph "subgraph(A)" {
+		subgraph "subgraph(B1)" {
+			node1
+			node2	
+		}
+		subgraph "subgraph(B2)" {
+			nodeB3
+			nodeB4	
+		}
+	}
+	
+}
