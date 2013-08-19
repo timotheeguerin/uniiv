@@ -8,8 +8,12 @@
       </h4><br><br>
 
       <div style="width:100%;text-align:center;">
-        <h5><%= link_to "Please give us feedback here.", static_page_getinvolved_path %></div>
-      </h5></div>
+        <%= link_to static_page_getinvolved_path do %>
+            <h5 class="underline_link">Please give us feedback here.</h5>
+        <% end %>
+      </div>
+    </div>
+
   </div>
   <div style='float:right;display:inline-block;box-sizing:border-box;'>
     <a href='/assets/graph-example.png'><img src='/assets/graph-example.png' width='480px' height='360px'/></a>
