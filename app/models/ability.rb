@@ -32,11 +32,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
                       #can :manage, :all
     if user.role? :alpha_tester
-      puts 'is alpha tester'
       can :read, :all # allow alpha tester to read everything
     end
     if user.role? :admin
-      puts 'is admin'
       can :manage, :all
     end
   end
