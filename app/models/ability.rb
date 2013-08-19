@@ -30,13 +30,13 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new # guest user (not logged in)
-
+                      #can :manage, :all
     if user.role? :alpha_tester
-      #can :read, :all # allow everyone to read everything
+      puts 'is alpha tester'
+      can :read, :all # allow alpha tester to read everything
     end
     if user.role? :admin
-      #can :access, :rails_admin # only allow admin users to access Rails Admin
-      #can :dashboard # allow access to dashboard
+      puts 'is admin'
       can :manage, :all
     end
   end

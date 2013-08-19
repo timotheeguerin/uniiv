@@ -9,6 +9,8 @@ class GraphController < ApplicationController
   include GraphHelper
 
   def show
+    authorize! :read, :graph
+
     #current_user ||= User.new
     if current_user.university.nil?
       redirect_to user_dashboard_index_path, :alert => t("university.notselected")
