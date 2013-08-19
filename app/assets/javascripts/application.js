@@ -17,7 +17,7 @@
 $(window).resize(function () {
     if($("#fold").length == 0)
     {
-      var newheight = $(window).height() - 72;
+      var newheight = $(window).height() - 75;
       if($("#content").height() < newheight)
       {
         $("#content").css("height", newheight);
@@ -38,7 +38,7 @@ $(window).load(function () {
 
     if($("#fold").length == 0)
     {
-      var newheight = $(window).height() - 72;
+      var newheight = $(window).height() - 75;
       if($("#content").height() < newheight)
       {
         $("#content").css("height", newheight);

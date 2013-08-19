@@ -84,7 +84,7 @@
       <hr style="width:100%;">
       
     <% @programs.order("type_id ASC, name ASC").each do |p| %>
-          <div><h4>
+          <div><h4 class="underline_link">
             <%= link_to program_graph_path(p.id) do %>
               <%= p.name %> (<%= (p.get_completion_ratio(current_user)*100).to_i.to_s %>%)
             <% end %>

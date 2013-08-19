@@ -1,23 +1,23 @@
 <div>
-  <h3 class='<%= get_course_css_class(@course) %>'><%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course) %></h3>
+  <h3 class='<%= get_course_css_class(@course) %> underline_link'><%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course) %></h3>
 </div>
 <div><h4><%= @course.name %></h4></div>
-<div><h4><%= @course.hours %> Hours, <%= @course.credit %> Credits</h4></div>
+<div><h5><%= @course.hours %> Hours, <%= @course.credit %> Credits</h5></div>
 <div><h5><%= @course.description %></h5></div>
-<div><h4>Prerequisites:
+<div><h5>Prerequisites:
   <% if @course.prerequisite.nil? %>
       None.
   <% else %>
       <%= raw(get_expr_html(@course.prerequisite)) %>
   <% end %>
-</h4></div>
-<div><h4>Corequisites:
+</h5></div>
+<div><h5>Corequisites:
   <% if @course.corequisite.nil? %>
       None.
   <% else %>
       <%= raw(get_expr_html(@course.corequisite)) %>
   <% end %>
-</h4></div>
+</h5></div>
 
 <% unless current_user.nil? %>
     <% if current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
@@ -50,6 +50,9 @@
         <% end %>
     <% else %>
         <div class='center'>
+        <style>form {
+                display: inline;
+            }</style>
           <%= form_tag({:controller => 'user_courses', :action => 'add_course', :method => 'post'}, {:class => 'useajax'}) do %>
               <%= hidden_field_tag 'course', @course.id %>
               <%= submit_tag t('course.mark_taking') %>
@@ -61,6 +64,4 @@
         </div>
 
     <% end %>
-
-
 <% end %>
