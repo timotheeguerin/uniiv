@@ -12,23 +12,7 @@
 
 /*
  * fonts
-*/
-
-@font-face {
-  font-family: 'OpenSans-Light';
-  src: url("OpenSans-Light.ttf");
-}
-
-@font-face {
-  font-family: 'GRAPH';
-  src: url("OpenSans-Light.ttf");
-}
-
-@font-face {
-  font-family: 'OpenSans-Regular';
-  src: url("OpenSans-Regular.ttf");
-}
- 
+*/ 
  
 /*
  * variables
@@ -380,7 +364,7 @@ $login_width: 500px;
  * tags
 */
 h1 {
-  font-family: "OpenSans-Light";
+  font-family: "Open Sans";
   font-size: 40px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -388,7 +372,7 @@ h1 {
 }
 
 h2 {
-  font-family: "OpenSans-Light";
+  font-family: "Open Sans";
   font-size: 32px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -421,7 +405,7 @@ h5 {
 
 * {
   text-rendering: optimizelegibility;
-  font-family: "OpenSans-Light", Helvetica, Verdana, Sans-serif;
+  font-family: "Open Sans", Helvetica, Verdana, Sans-serif;
   font-weight: lighter;
   font-smooth: always;
 }

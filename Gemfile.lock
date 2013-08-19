@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/timcolonel/Ruby-Graphviz.git
-  revision: 1ad3a5e9d9e3a80b85b7f4ed4044ad5f0296cb08
+  revision: 9aa85b5adb3cc6aa14a05e038d80070fa9f77503
   specs:
     ruby-graphviz (1.0.9)
 
 GIT
   remote: git://github.com/timcolonel/i18n-active_record.git
-  revision: 2fd8fcdd36e66621ffe8d0d74d1099b1fe0f4f02
+  revision: ad9be273f250bc33ab1b3d78e119b90c39f9b089
   specs:
     i18n-active_record (0.0.3)
       i18n (>= 0.5.0)
@@ -54,7 +54,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     daemons (1.1.9)
-    devise (3.0.2)
+    devise (3.0.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -163,7 +163,7 @@ GEM
     thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (1.3.0)
