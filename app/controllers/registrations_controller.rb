@@ -9,10 +9,13 @@ class RegistrationsController < Devise::RegistrationsController
     user_email.email = resource.email
     user_email.primary = true
     user_email.validated = false
+
+    alpha_tester_role = Role.find_by_name('alpha_tester')
+
     resource.emails << user_email
+    resource.roles << alpha_tester_role
 
     if resource.save
-      puts 'save user'
       sign_in(resource_name, resource)
       respond_with resource, :location => after_sign_up_path_for(resource)
     else
