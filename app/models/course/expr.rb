@@ -87,9 +87,9 @@ class Course::Expr < ActiveRecord::Base
     node.count_requirements
   end
 
-  def requirements_completed?(user)
+  def requirements_completed?(user, after_taking = false)
     return true if node.nil?
-    node.requirements_completed?(user)
+    node.requirements_completed?(user, after_taking)
   end
 
   def as_json(options={})

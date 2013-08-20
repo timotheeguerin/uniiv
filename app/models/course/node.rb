@@ -150,7 +150,7 @@ class Course::Node < ActiveRecord::Base
   end
 
 
-  def requirements_completed?(user)
+  def requirements_completed?(user, after_taking = false)
     case operation
       when NodeOperation::OR
         nodes.each do |n|
@@ -167,7 +167,11 @@ class Course::Node < ActiveRecord::Base
         end
         return true
       else
-        return user.has_completed_course?(course)
+        if after_taking
+          return user.has_completed_or_taking_course(course)
+        else
+          return user.has_completed_course?(course)
+        end
     end
   end
 

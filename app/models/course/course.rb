@@ -26,15 +26,16 @@ class Course::Course < ActiveRecord::Base
     subject.to_s + '\n' + code.to_s
   end
 
-  def requirements_completed?(user)
-    unless prerequisite.nil? or prerequisite.requirements_completed?(user)
+  def requirements_completed?(user, after_taking = false)
+    unless prerequisite.nil? or prerequisite.requirements_completed?(user, after_taking)
       return false
     end
-    unless  corequisite.nil? or corequisite.requirements_completed?(user)
+    unless  corequisite.nil? or corequisite.requirements_completed?(user, after_taking)
       return false
     end
     true
   end
+
 
   alias :can_take? :requirements_completed?
 

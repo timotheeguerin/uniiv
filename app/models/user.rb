@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
     ratio
     #TODO
   end
-  
+
   def has_completed_course?(course)
     completed_courses.each do |c|
       if c.course == course
@@ -62,6 +62,11 @@ class User < ActiveRecord::Base
     end
     false
   end
+
+  def has_completed_or_taking_course?(course)
+    has_completed_course?(course) or is_taking_course?(course)
+  end
+
 
   def count_completed_credit
     count = 0
@@ -85,6 +90,10 @@ class User < ActiveRecord::Base
 
   def requirements_completed?(course)
     course.requirements_completed?(self)
+  end
+
+  def requirements_completed_after_taking?(course)
+    course.requirements_completed_after_taking?(self, true)
   end
 
   def to_s

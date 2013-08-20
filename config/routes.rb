@@ -1,4 +1,6 @@
 Uniiv::Application.routes.draw do
+  get "course_review/show"
+  get "course_review/new"
   get 'static_page/uniiv'
   get 'static_page/story'
   get 'static_page/team'
