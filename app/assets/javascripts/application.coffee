@@ -23,19 +23,18 @@ $(window).resize ()->
   newheight = $(window).height() - 40;
   $("#content").css("height", newheight);
 
-
-$(document).ready () ->
-  $("#graphreload").click ()->
-    location.reload();
-
-
-  if ($("#fold").length == 0)
+$(window).load () ->
+   if ($("#fold").length == 0)
     newheight = $(window).height() - 75;
     if ($("#content").height() < newheight)
       $("#content").css("height", newheight)
-  else
+   else
     newheight = $(window).height() - 40;
     $("#content").css("height", newheight)
+  
+$(document).ready () ->
+  $("#graphreload").click ()->
+    location.reload();
 
   $('.nano').each ->
     console.log('lol')

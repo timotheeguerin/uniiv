@@ -62,13 +62,13 @@
               <%= link_to program_graph_path(p.id) do %>
                   <h4><%= p %></h4>
               <% end %>
+              <% if p.type.id != 4 %>
+                  <button style="visibility: hidden;">l</button>
+                  <div style="float:right;"><%= form_tag(:controller => "user_programs", :action => "removeProgram", :method => "post", "data-service" => p) do %>
+                        <%= submit_tag("Remove", :style => "width:70px;") %>
+                    <% end %></div>
+              <% end %>
             </div>
-            <% if p.type.id != 4 %>
-                <button style="visibility: hidden;">l</button>
-                <div style="float:right;"><%= form_tag(:controller => "user_programs", :action => "removeProgram", :method => "post", "data-service" => p) do %>
-                      <%= submit_tag("Remove", :style => "width:70px;") %>
-                  <% end %></div>
-            <% end %>
           </div>
       <% end %>
   <% end %>
