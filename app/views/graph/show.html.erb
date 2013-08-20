@@ -12,7 +12,7 @@
 
   <div id="graph_right_box">
     <div class="right"><h3><%= current_user.university %></h3></div>
-    <div class="right"><h3>C/T Credits(CC%)</h3></div>
+    <div class="right"><h4><%= current_user.count_completed_credit.to_i.to_s %>/120 Credits (<%= (current_user.total_completed_ratio*100).to_i.to_s %>%)</h4></div>
     <div id="programsfromuser"><% current_user.programs.order("type_id ASC, name ASC").each do |p| %>
         <div class="right"><h4><%= p %></h4></div>
     <% end %></div>
