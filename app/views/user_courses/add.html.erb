@@ -1,7 +1,7 @@
 <div class="content_box pagewidth_twothirds">
   <div><h1>Add a Course</h1></div>
   
-  <%= form_tag(:action => "addCourse", :method => "post") do %>
+  <%= form_tag(:action => "add_course", :method => "post") do %>
     <%= select_tag 'course', options_for_select(@courses)  , { :class => "form_input_long middle form_biginput" } %>
     <div class="center"><%= submit_tag 'In Progress', :style => "width:80px;" %>
     <%= submit_tag 'Completed', :name => 'completed', :style => "width:80px;" %></div>
