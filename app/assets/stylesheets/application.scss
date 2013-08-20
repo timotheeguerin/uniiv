@@ -8,12 +8,13 @@
  *= require test
  *= require graphload
  *= require graphsideloader
+ *= require nano.jquery
  */
 
 /*
  * fonts
-*/ 
- 
+*/
+
 /*
  * variables
 */
@@ -196,13 +197,11 @@ $login_width: 500px;
  * classes
 */
 
-.underline_link
-{
+.underline_link {
   border-bottom: 1px currentColor dotted;
 }
 
-.underline_link:hover
-{
+.underline_link:hover {
   border-bottom: 1px transparent dotted;
 }
 
@@ -314,9 +313,8 @@ $login_width: 500px;
   width: 2 * $page_width / 3;
 }
 
-.thinfont
-{
-  font-family: HelveticaThin,"Helvetica-Neue", Helvetica, Verdana, Sans-serif;
+.thinfont {
+  font-family: HelveticaThin, "Helvetica-Neue", Helvetica, Verdana, Sans-serif;
 }
 
 .course_completed {

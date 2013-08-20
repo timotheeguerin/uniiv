@@ -12,7 +12,7 @@ $(document).ready ->
   resizeCanvasContainer()
   canvas_container = $('#canvas-container')
   sidebar_loader = $("#sidebar_loader")
-  sidebar_info = $("#graph_sidebar_info")
+  sidebar_info = $("#graph_sidebar_info .content")
   graph_reload = $('#graphreload')
   sidebar_info.on 'click', 'a', (e) ->
     url = $(this).attr('href')
@@ -80,6 +80,7 @@ $(document).ready ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
+      sidebar_info.parent().nanoScroller()
 
 class Ressources
   @images: {}
