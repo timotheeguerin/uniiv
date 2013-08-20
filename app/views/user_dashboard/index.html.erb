@@ -58,7 +58,11 @@
       </div>
       <% @programs.order("type_id ASC, name ASC").each do |p| %>
           <div>
-            <h4 style="text-indent:15px;"><%= p %></h4>
+            <div style="text-indent:15px;">
+              <%= link_to program_graph_path(p.id) do %>
+                  <h4><%= p %></h4>
+              <% end %>
+            </div>
             <% if p.type.id != 4 %>
                 <button style="visibility: hidden;">l</button>
                 <div style="float:right;"><%= form_tag(:controller => "user_programs", :action => "removeProgram", :method => "post", "data-service" => p) do %>

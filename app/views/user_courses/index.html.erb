@@ -35,7 +35,7 @@
   <div><h3>Courses completed</h3></div>
   <% current_user.completed_courses.each do |c| %>
       <div>
-        <h4><%= c.course.subject.name + ' ' + c.course.code.to_s %></h4>
+        <h4 class="underline_link"><%= link_to course_path(c.course.id) do %><%= c.course.subject.name + ' ' + c.course.code.to_s %><% end %></h4>
         <button style='visibility:hidden;'>I</button>
         <div style='float:right;'>
           <%= form_tag(:action => 'remove_course_completed', 'data-service' => c) do %>
