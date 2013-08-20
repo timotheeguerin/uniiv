@@ -1,4 +1,11 @@
-<style>#nav_bottom{display:none;}#content{padding-bottom:0px;margin-bottom:0px;}</style>
+<style>#nav_bottom {
+    display: none;
+}
+
+#content {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}</style>
 <button id="graphreload" style="position:absolute;top:50px;right:0%;margin-right:300px;display:none;z-index:10">Reload</button>
 <div id="fold">
   <div style="display:inline-block;" id="graph_loader">
@@ -14,7 +21,9 @@
     <div class="right"><h3><%= current_user.university %></h3></div>
     <div class="right" id="programsfromuser"><h4><%= @program.name %></h4></div>
     <hr>
-    <div id="graph_sidebar_info"></div>
+    <div id="graph_sidebar_info" class='nano'>
+      <div class='content'></div>
+    </div>
 
     <div id="graph_right_help">
       <div style="display:none;" id="sidebar_loader">
@@ -26,18 +35,30 @@
         </ul>
       </div>
       <hr>
-      <div><h5>Scroll to zoom.<button style="visibility:hidden;">l</button></h5></div>
+      <div>
+        <h5>Scroll to zoom.
+          <button style="visibility:hidden;">l</button>
+        </h5>
+      </div>
       <div><h5>Click a course to find out more.</h5></div>
-      
+
       <div>
-          <div class="legend-icon taking"></div><h5>Taking</h5>
-          <div style="width:125px;text-align:left;display:inline-block;float:right;"><div class="legend-icon available"></div><h5>Available</h5></div>
+        <div class="legend-icon taking"></div>
+        <h5>Taking</h5>
+
+        <div style="width:125px;text-align:left;display:inline-block;float:right;">
+          <div class="legend-icon available"></div>
+          <h5>Available</h5></div>
       </div>
       <div>
-          <div class="legend-icon completed"></div><h5>Completed</h5>
-          <div style="width:125px;text-align:left;display:inline-block;float:right;"><div class="legend-icon unavailable"></div><h5>Unavailable</h5></div>
+        <div class="legend-icon completed"></div>
+        <h5>Completed</h5>
+
+        <div style="width:125px;text-align:left;display:inline-block;float:right;">
+          <div class="legend-icon unavailable"></div>
+          <h5>Unavailable</h5></div>
       </div>
-      
+
     </div>
   </div>
   <div id="canvas-container" data-url='<%= program_graph_data_path(@program) %>'></div>
