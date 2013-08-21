@@ -1,6 +1,5 @@
 Uniiv::Application.routes.draw do
-  get "course_review/show"
-  get "course_review/new"
+
   get 'static_page/uniiv'
   get 'static_page/story'
   get 'static_page/team'
@@ -64,6 +63,14 @@ Uniiv::Application.routes.draw do
   get 'course/:id/show' => 'course#show'
   get 'course/:id/graph/embed' => 'course#graph_embed'
   get 'course/:id/json' => 'course#json'
+
+  #Course review controller
+  get 'course/:course_id/review/' => 'course_review#index', :as => 'course_reviews'
+  get 'course/:course_id/review/:id/show' => 'course_review#show', :as => 'course_review'
+  get 'course/:course_id/review/new' => 'course_review#new', :as => 'course_review_new'
+  post 'course/:course_id/review/new' => 'course_review#create', :as => 'course_review_create'
+  get 'course/:course_id/review/new/graph/embed' => 'course_review#new_graph_embed', :as => 'course_review_new_graph_embed'
+  post 'course/:course_id/review/new/graph/embed' => 'course_review#create_graph_embed', :as => 'course_review_create_graph_embed'
 
   #Program controller
   get 'program/:id', to: 'program#show', as: 'program'

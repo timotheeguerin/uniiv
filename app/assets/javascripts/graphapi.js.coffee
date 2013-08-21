@@ -10,18 +10,13 @@ resizeCanvasContainer = () ->
 
 $(document).ready ->
   resizeCanvasContainer()
-  canvas_container = $('#canvas-container')
+  canvas_container = $("#canvas-container")
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info .content")
   graph_reload = $('#graphreload')
-  sidebar_info.on 'click', 'a', (e) ->
-    url = $(this).attr('href')
-    node_id = 'c_' + $(this).attr('data-id')
-    loadCourse(node_id, url + '/graph/embed')
-    graph.update()
-    e.preventDefault();
 
-  if canvas_container?
+  if canvas_container.length > 0
+
     graph = new CanGraph({
       container: 'canvas-container'
       loading_container: 'graph_loader'
@@ -46,6 +41,12 @@ $(document).ready ->
         else if type == 'g'
           loadGroup(id)
 
+    sidebar_info.on 'click', 'a', (e) ->
+      url = $(this).attr('href')
+      node_id = 'c_' + $(this).attr('data-id')
+      loadCourse(node_id, url + '/graph/embed')
+      graph.update()
+      e.preventDefault();
 
     $(window).resize () ->
       resizeCanvasContainer()

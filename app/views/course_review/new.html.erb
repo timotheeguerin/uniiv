@@ -1,2 +1,3 @@
-<h1>CourseReview#new</h1>
-<p>Find me in app/views/course_review/new.html.erb</p>
+<div class='new_review_form'>
+  <%= render :partial => 'review_form', :locals => {:path => course_review_create(@course)} %>
+</div>

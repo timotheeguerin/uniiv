@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  semester: 
+  year: 1
+  course_id: 
+  content_id: 
+
+two:
+  semester: 
+  year: 1
+  course_id: 
+  content_id: 

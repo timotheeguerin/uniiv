@@ -12,7 +12,8 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require_tree . 
+#= require_tree .
+#= require jquery.raty
 
 $(window).resize ()->
   if ($("#fold").length == 0)
@@ -24,14 +25,14 @@ $(window).resize ()->
   $("#content").css("height", newheight);
 
 $(window).load () ->
-   if ($("#fold").length == 0)
+  if ($("#fold").length == 0)
     newheight = $(window).height() - 75;
     if ($("#content").height() < newheight)
       $("#content").css("height", newheight)
-   else
+  else
     newheight = $(window).height() - 40;
     $("#content").css("height", newheight)
-  
+
 $(document).ready () ->
   $("#graphreload").click ()->
     location.reload();
@@ -39,3 +40,20 @@ $(document).ready () ->
   $('.nano').each ->
     console.log('lol')
     $(this).nanoScroller()
+  setupStarRatings()
+
+setupStarRatings = () ->
+  $('input.star-rating').each () ->
+    input = $(this)
+    unless input.hasClass('starloaded')
+      input.addClass('starloaded')
+      input.after("<div class='raty-star-div'></div>")
+      id = input.attr('id')
+      element = input.next()
+      value = input.attr('value')
+      element.raty({
+        target: '#' + id
+        targetType: 'number'
+        targetKeep: true
+        score: value
+      })

@@ -1,0 +1,31 @@
+<%= form_for @review, :url => path do |f| %>
+    <% if @review.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@review.errors.count, 'error') %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @review.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% @review.ratings.each do |rating| %>
+        <%= f.fields_for :ratings, rating do |r| %>
+            <div>
+              <%= rating.score %>
+              <%= r.label rating.criteria.name %>
+              <%= r.hidden_field :score, :class => 'star-rating' %>
+              <%= r.hidden_field :criteria_id %>
+            </div>
+        <% end %>
+    <% end %>
+    <div>
+      <%= f.label :comment %>
+      <%= f.text_area :comment %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>
