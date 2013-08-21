@@ -22,7 +22,7 @@ module CourseHelper
     return '' if node.operation.nil?
     if node.operation == NodeOperation::NODE
       course = node.course
-      r = r + "<a href='#{course_path(:id => course.id)}' data-id='#{course.id}' class='#{get_course_css_class(course)} underline_link'>#{course.to_s}</a>"
+      r = r + "<a href='#{course_path(:id => course.id)}' data-id='#{course.id}' data-type='course' class='#{get_course_css_class(course)} underline_link'>#{course.to_s}</a>"
     else
       r = r + ' (' + node.nodes.map! { |k| "#{get_node_html(k)}" }.join(' ' + node.operation + ' ') + ') '
     end
