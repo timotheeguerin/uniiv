@@ -12,7 +12,7 @@
   <div><h3>Courses in progress</h3></div>
   <% current_user.taking_courses.sort_by!{|a| [a.course.subject, a.course.code]}.each do |c| %>
       <div>
-        <h4 class="underline_link"><%= link_to course_path(c.course.id) do %><%= c.course.subject.name + ' ' + c.course.code.to_s %><% end %></h4>
+        <h4 title="<%= c.course.name %>" class="underline_link"><%= link_to course_path(c.course.id) do %><%= c.course.subject.name + ' ' + c.course.code.to_s %><% end %></h4>
         <button style='visibility:hidden;'>I</button>
         <div style='float:right;'>
           <%= form_tag(:action => 'remove_course_taking', 'data-service' => c) do %>
@@ -35,7 +35,7 @@
   <div><h3>Courses completed</h3></div>
   <% current_user.completed_courses.sort_by!{|a| [a.course.subject, a.course.code]}.each do |c| %>
       <div>
-        <h4 class="underline_link"><%= link_to course_path(c.course.id) do %><%= c.course.subject.name + ' ' + c.course.code.to_s %><% end %></h4>
+        <h4 title="<%= c.course.name %>" class="underline_link"><%= link_to course_path(c.course.id) do %><%= c.course.subject.name + ' ' + c.course.code.to_s %><% end %></h4>
         <button style='visibility:hidden;'>I</button>
         <div style='float:right;'>
           <%= form_tag(:action => 'remove_course_completed', 'data-service' => c) do %>
