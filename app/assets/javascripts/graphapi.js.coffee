@@ -43,10 +43,16 @@ $(document).ready ->
 
     sidebar_info.on 'click', 'a', (e) ->
       url = $(this).attr('href')
-      node_id = 'c_' + $(this).attr('data-id')
-      loadCourse(node_id, url + '/graph/embed')
+      type = $(this).attr('data-type')
+      switch type
+        when "course"
+          node_id = 'c_' + $(this).attr('data-id')
+          loadCourse(node_id, url + '/graph/embed')
+        else
+          load_sidebar(url + '/graph/embed')
+
       graph.update()
-      e.preventDefault();
+      e.preventDefault()
 
     $(window).resize () ->
       resizeCanvasContainer()

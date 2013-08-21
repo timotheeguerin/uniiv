@@ -14,9 +14,9 @@ module CourseHelper
   end
 
   def get_expr_html(expr)
-    return get_node_html(expr.node)
-  end 
-  
+    get_node_html(expr.node)
+  end
+
   def get_node_html(node)
     r = ''
     return '' if node.operation.nil?
@@ -27,8 +27,7 @@ module CourseHelper
       r = r + ' (' + node.nodes.map! { |k| "#{get_node_html(k)}" }.join(' ' + node.operation + ' ') + ') '
     end
     r
-  end 
-
+  end
 
 
 end
