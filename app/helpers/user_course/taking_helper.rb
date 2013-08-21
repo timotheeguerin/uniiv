@@ -1,0 +1,2 @@
+module UserCourse::TakingHelper
+end
