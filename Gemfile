@@ -60,3 +60,7 @@ gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
 
 gem 'thin'
 #gem 'puma'
+
+group :development do
+  gem "rails-erd"
+end
