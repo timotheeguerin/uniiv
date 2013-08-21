@@ -42,6 +42,7 @@ class CourseReviewController < ApplicationController
   def create_review
     @review = Course::Review.new(params[:course_review].permit!)
     @review.course = @course
+    @review.user = current_user
     @review.save
   end
 

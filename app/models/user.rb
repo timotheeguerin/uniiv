@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :taking_courses, :class_name => UserTakingCourse
   has_many :completed_courses, :class_name => UserCompletedCourse
 
+  has_many :course_reviews, :class_name => Course::Review
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -82,6 +84,10 @@ class User < ActiveRecord::Base
       count += c.credit
     end
     count
+  end
+
+  def reviewed_course?(course)
+    course_reviews.where(:course => course).any?
   end
 
   def count_completed_credit_after_taking
