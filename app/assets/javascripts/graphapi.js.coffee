@@ -44,11 +44,15 @@ $(document).ready ->
     sidebar_info.on 'click', 'a', (e) ->
       url = $(this).attr('href')
       type = $(this).attr('data-type')
+      console.log('type:' + type)
       switch type
+        when  "ext" #load the link normaly
+          return true
         when "course"
           node_id = 'c_' + $(this).attr('data-id')
           loadCourse(node_id, url + '/graph/embed')
         else
+          console.log('load link')
           load_sidebar(url + '/graph/embed')
 
       graph.update()
@@ -58,7 +62,6 @@ $(document).ready ->
       resizeCanvasContainer()
       graph.resize()
     $(document).on 'formAjaxComplete', '#graph_sidebar_info', ->
-      console.log('lol form ajax complete')
       reload_graph_info()
       graph_reload.show()
 

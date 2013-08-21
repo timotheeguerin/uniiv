@@ -5,9 +5,9 @@
 <div><h5><%= @course.hours %> Hours, <%= @course.credit %> Credits</h5></div>
 
 <% if @course.reviews.size > 0 %>
-  <div class="center"><%= link_to course_path(@course), "data-type" => "ext" do %>
-    <button>Reviews (<%= @course.reviews.size %>)</button>
-  <% end %></div>
+    <div class="center"><%= link_to course_path(@course), "data-type" => "ext" do %>
+          <button>Reviews (<%= @course.reviews.size %>)</button>
+      <% end %></div>
 <% end %>
 
 <div><h5><%= @course.description %></h5></div>
@@ -25,7 +25,7 @@
       <%= raw(get_expr_html(@course.corequisite)) %>
   <% end %>
 </h5></div>
-  
+
 <% unless current_user.nil? %>
     <% if current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
         <% coursesindb = current_user.taking_courses.to_a %>
@@ -51,7 +51,11 @@
 
         <% else %>
             <div class='center'>
-              <% unless current_user.reviewed_course?(@course) %><a href='<%= course_review_new_path(@course) %>'><button><%= t("course.addreview") %></button></a><% end %>
+              <% unless current_user.reviewed_course?(@course) %>
+                  <a href='<%= course_review_new_path(@course) %>'>
+                    <button><%= t("course.addreview") %></button>
+                  </a>
+              <% end %>
               <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.remove') %>
               <% end %>
@@ -62,10 +66,13 @@
           <style>form {
               display: inline;
           }</style>
-          <%= form_tag({:controller => 'user_courses', :action => 'add_course', :method => 'post'}, {:class => 'useajax'}) do %>
-              <%= hidden_field_tag 'course', @course.id %>
-              <%= submit_tag t('course.mark_taking') %>
-          <% end %>
+
+          <a href='<%= user_take_course_path(@course) %>'>
+            <button>
+              <%= t('course.mark_taking') %>
+            </button>
+          </a>
+
           <%= form_tag({:controller => 'user_courses', :action => 'add_course_completed', :method => 'post'}, {:class => 'useajax'}) do %>
               <%= hidden_field_tag 'course', @course.id %>
               <%= submit_tag t('course.mark_completed'), :name => 'completed' %>

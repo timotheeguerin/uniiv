@@ -1,0 +1,28 @@
+<%= form_for @user_taking_course, :url => user_take_course_create_path(@course) do |f| %>
+    <% if @user_taking_course.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@user_taking_course.errors.count, 'error') %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @user_taking_course.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+          <script type="text/javascript">$("img").attr("title", "");</script>
+        </div>
+
+    <% end %>
+    <div>
+      <% @semesters.each do |semester| %>
+          <%= f.label :semester, semester.name, :value => semester.id %>
+          <%= f.radio_button :semester, semester.id %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :year %>
+      <%= f.text_field :year %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>

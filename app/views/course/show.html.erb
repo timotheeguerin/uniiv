@@ -45,8 +45,13 @@
 
           <% else %>
               <div class='center'>
-                <style>form{display:inline-block;}</style>
-                <% unless current_user.reviewed_course?(@course) %><%= link_to course_review_new_path(@course) do %><button><%= t('course.addreview') %></button><% end %><% end %>
+                <style>form {
+                    display: inline-block;
+                }</style>
+                <% unless current_user.reviewed_course?(@course) %><%= link_to course_review_new_path(@course) do %>
+                        <button><%= t('course.addreview') %></button>
+                    <% end %>
+                <% end %>
                 <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
                     <%= submit_tag t('course.remove') %></div>
                 <% end %>
@@ -56,10 +61,11 @@
             <style>form {
                 display: inline;
             }</style>
-            <%= form_tag({:controller => 'user_courses', :action => 'add_course', :method => 'post'}, {:class => 'useajax'}) do %>
-                <%= hidden_field_tag 'course', @course.id %>
-                <%= submit_tag t('course.mark_taking') %>
-            <% end %>
+            <a href='<%= user_take_course_path(@course) %>'>
+              <button>
+                <%= t('course.mark_taking') %>
+              </button>
+            </a>
             <%= form_tag({:controller => 'user_courses', :action => 'add_course_completed', :method => 'post'}, {:class => 'useajax'}) do %>
                 <%= hidden_field_tag 'course', @course.id %>
                 <%= submit_tag t('course.mark_completed'), :name => 'completed' %>
@@ -70,19 +76,19 @@
   <% end %>
 
   <hr style="width:100%;">
-  
+
   <% reviews = @course.reviews %>
   <% if reviews.size > 0 %>
-    <div><h2>Reviews (<%= reviews.size %>)</h2></div>
-    <% reviews.each do |r| %>
-    <div>
-      <div><h3><%= "name" %></h3></div>
-      <div>
-        <h5><%= r.comment %></h5>
-      </div>
-    </div>
-    <% end %>
+      <div><h2>Reviews (<%= reviews.size %>)</h2></div>
+      <% reviews.each do |r| %>
+          <div>
+            <div><h3><%= "name" %></h3></div>
+            <div>
+              <h5><%= r.comment %></h5>
+            </div>
+          </div>
+      <% end %>
   <% end %>
-  
+
 </div>
 
