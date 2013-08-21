@@ -5,7 +5,7 @@
 
   <% if current_user.university.nil? %>
       <div>
-       <h3>You have not selected a university!</h3>
+       <h3>t("select.university")</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_university_edit_path do %>
             <button style="float:right;width:70px;">Add</button>
@@ -23,7 +23,7 @@
 
   <% if current_user.faculty.nil? %>
       <div>
-<h3>You have not selected a faculty!</h3>
+<h3>t("select.faculty")</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_faculty_edit_path do %>
             <button style="float:right;width:70px;">Choose</button>
@@ -42,7 +42,7 @@
 
   <% if current_user.programs.size < 1 %>
       <div>
-        <h3>You have not selected any programs!</h3>
+        <h3>t("select.programs")</h3>
         <button style="visibility: hidden;">l</button>
         <%= link_to user_programs_new_path do %>
             <button style="float:right;width:70px;">Add</button>
@@ -108,7 +108,7 @@
 
 <script type="text/javascript">
   var canvas = document.getElementById('percentage_canvas');
-  graph(75, 75, 75, 10, [[<%= current_user.total_completed_ratio %>,"#274d9b"]], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
+  graph(75, 75, 75, 10, [[<%= current_user.total_completed_ratio / current_user.programs.size %>,"#274d9b"]], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
 
   function graph(x, y, radius, thickness, percentages, offset, canvas, color1, color2) {
       drawDonut(x, y, radius, thickness, 1, offset, canvas, color1);
