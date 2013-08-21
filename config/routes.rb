@@ -87,6 +87,7 @@ Uniiv::Application.routes.draw do
   post 'user_courses/remove_course_taking'
   post 'user_courses/complete_course_taking'
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 
