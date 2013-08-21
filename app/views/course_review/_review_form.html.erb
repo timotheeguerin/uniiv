@@ -24,10 +24,10 @@
     <% end %>
     <div>
       <%= f.label :comment %><br>
-      <%= f.text_area :comment, :style => "width:100%;" %>
+      <%= f.text_area :comment, :style => "display:block;margin-left:auto;margin-right:auto;width:97%;resize:none;", :rows => "5", :maxlength => "300" %>
     </div>
     <div>
-      <%= f.submit %>
+      <div><button style="visibility:hidden;">l</button><%= f.submit t("review.submit"), :style => "float:right;" %></div>
     </div>
 <% end %>
 </div>

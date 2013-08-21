@@ -1,3 +1,4 @@
+<div><h2><%= @course.subject.name + " " + @course.code.to_s %></div>
 <div class='new_review_form_graph_embed'>
   <%= render :partial => 'review_form', :locals => {:path => course_review_create_graph_embed_path(@course)} %>
 </div>

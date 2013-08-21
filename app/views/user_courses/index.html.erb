@@ -42,6 +42,9 @@
               <%= submit_tag('Remove') %>
           <% end %>
         </div>
+        <div style='float:right;'>
+          <% unless current_user.reviewed_course?(c) %><%= link_to course_review_new_path(c) do %><button><%= t('course.addreview') %></button><% end %><% end %>
+        </div>
       </div>
   <% end %>
   <% if current_user.completed_courses.empty? %>
