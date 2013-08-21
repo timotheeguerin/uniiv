@@ -19,6 +19,7 @@ class CourseReviewController < ApplicationController
     @review = Course::Review.new
     @review.ratings.build
     @review.init_ratings
+    render :layout => false
   end
 
   def create
