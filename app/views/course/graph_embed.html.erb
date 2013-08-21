@@ -29,10 +29,10 @@
                 <% variable = cid %>
             <% end %>
         <% end %>
-        <% if current_user.is_taking_course?(@course) %>
-            <style>form {
+        <style>form {
                 display: inline;
             }</style>
+        <% if current_user.is_taking_course?(@course) %>
             <div class='center'>
               <%= form_tag({:controller => 'user_courses', :action => 'complete_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.mark_completed') %>
@@ -44,9 +44,11 @@
 
         <% else %>
             <div class='center'>
+              <button class="useajax"><%= t("course.addreview") %></button>
               <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
-                  <%= submit_tag t('course.remove') %></div>
+                  <%= submit_tag t('course.remove') %>
               <% end %>
+            </div>
         <% end %>
     <% else %>
         <div class='center'>
