@@ -1,3 +1,4 @@
+<div>
 <%= form_for @review, :url => path do |f| %>
     <% if @review.errors.any? %>
         <div id="errorExplanation">
@@ -7,7 +8,7 @@
             <% @review.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
-          </ul>
+          </ul><script type="text/javascript">$("img").attr("title","");</script>
         </div>
     <% end %>
 
@@ -22,10 +23,13 @@
         <% end %>
     <% end %>
     <div>
-      <%= f.label :comment %>
-      <%= f.text_area :comment %>
+      <%= f.label :comment %><br>
+      <%= f.text_area :comment, :style => "width:100%;" %>
     </div>
     <div>
       <%= f.submit %>
     </div>
 <% end %>
+</div>
+
+<script type="text/javascript">$("img").attr("title","");</script>
