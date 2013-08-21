@@ -42,6 +42,9 @@ $(document).ready () ->
     $(this).nanoScroller()
   setupStarRatings()
 
+  $(document).on 'ajaxloadhtml', () ->
+    setupStarRatings()
+
 setupStarRatings = () ->
   $('input.star-rating').each () ->
     input = $(this)

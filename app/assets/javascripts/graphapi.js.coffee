@@ -88,6 +88,7 @@ $(document).ready ->
       sidebar_loader.hide()
       sidebar_info.show()
       sidebar_info.parent().nanoScroller()
+      $(document).trigger('ajaxloadhtml')
 
 class Ressources
   @images: {}

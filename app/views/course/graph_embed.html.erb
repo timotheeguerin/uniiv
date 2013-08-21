@@ -30,8 +30,8 @@
             <% end %>
         <% end %>
         <style>form {
-                display: inline;
-            }</style>
+            display: inline;
+        }</style>
         <% if current_user.is_taking_course?(@course) %>
             <div class='center'>
               <%= form_tag({:controller => 'user_courses', :action => 'complete_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
@@ -44,7 +44,7 @@
 
         <% else %>
             <div class='center'>
-              <button class="useajax"><%= t("course.addreview") %></button>
+              <a href='<%= course_review_new_path(@course) %>'><%= t("course.addreview") %></a>
               <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.remove') %>
               <% end %>
@@ -52,9 +52,9 @@
         <% end %>
     <% else %>
         <div class='center'>
-        <style>form {
-                display: inline;
-            }</style>
+          <style>form {
+              display: inline;
+          }</style>
           <%= form_tag({:controller => 'user_courses', :action => 'add_course', :method => 'post'}, {:class => 'useajax'}) do %>
               <%= hidden_field_tag 'course', @course.id %>
               <%= submit_tag t('course.mark_taking') %>
