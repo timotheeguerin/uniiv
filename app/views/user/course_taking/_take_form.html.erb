@@ -1,3 +1,4 @@
+<% clazz ||= '' %>
 <%= form_for @user_taking_course, :url => path, html: {class: clazz} do |f| %>
     <% if @user_taking_course.errors.any? %>
         <div id="errorExplanation">
