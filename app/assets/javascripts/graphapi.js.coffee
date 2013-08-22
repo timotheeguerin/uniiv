@@ -91,14 +91,11 @@ $(document).ready ->
   load_sidebar = (url) ->
     sidebar_info.attr('data-url', url)
     $.get(url).success (data) ->
-      if data.redirect?
-        load_sidebar(data.redirect)
-      else
-        sidebar_info.html(data)
-        sidebar_loader.hide()
-        sidebar_info.show()
-        sidebar_info.parent().nanoScroller()
-        $(document).trigger('ajaxloadhtml')
+      sidebar_info.html(data)
+      sidebar_loader.hide()
+      sidebar_info.show()
+      sidebar_info.parent().nanoScroller()
+      $(document).trigger('ajaxloadhtml')
 
 
 class Ressources

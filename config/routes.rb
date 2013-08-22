@@ -95,6 +95,9 @@ Uniiv::Application.routes.draw do
   post 'course/:id/take/graph/embed' => 'user_course/taking#create_graph_embed', :as => 'user_take_course_create_graph_embed'
   post 'course/:id/take/now' => 'user_course/taking#create_now', :as => 'user_take_course_now'
   post 'course/:id/take/next' => 'user_course/taking#create_next', :as => 'user_take_course_next'
+  post 'course/:id/untake' => 'user_course/taking#remove', :as => 'user_take_course_remove'
+  post 'course/:id/untake/graph/embed' => 'user_course/taking#remove_graph_embed', :as => 'user_take_course_remove_graph_embed'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
