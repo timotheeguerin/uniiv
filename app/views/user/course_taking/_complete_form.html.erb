@@ -1,0 +1,27 @@
+<% clazz ||= ''
+   taking_course ||= false
+%>
+<%= form_for @user_complete_course, :url => path, html: {class: clazz} do |f| %>
+    <% if @user_complete_course.errors.any? %>
+        <div>
+          Errors:
+        </div>
+        <div>
+          <ul>
+            <% @user_complete_course.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <% unless taking_course %>
+        <%= render :partial => 'take_fields', :locals => {:f => f} %>
+    <% end %>
+    <div>
+      <%= f.label :grade %>
+      <%= f.select :grade_id, options_from_collection_for_select(@grades, 'id', 'name') %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>

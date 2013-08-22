@@ -1,26 +1,6 @@
 <% clazz ||= '' %>
 <%= form_for @user_taking_course, :url => path, html: {class: clazz} do |f| %>
-    <% if @user_taking_course.errors.any? %>
-        <div id="errorExplanation">
-          <h2><%= pluralize(@user_taking_course.errors.count, 'error') %> prohibited
-            this post from being saved:</h2>
-          <ul>
-            <% @user_taking_course.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <div>
-      <div><h4><%= t('label.semester') %>:</h4></div>
-      <% @semesters.each do |semester| %>
-          <div><h5><%= f.radio_button :semester, semester.id %><%= f.label :semester, semester.name.capitalize, :value => semester.id %></h5></div>
-      <% end %>
-    </div>
-    <div>
-      <div><h4><%= f.label :year %>:</h4></div>
-      <div><%= f.text_field :year , :class => "form_input_longer" %></div>
-    </div>
+    <%= render :partial => 'take_fields', :locals => {:f => f} %>
     <div class="center" style="text-indent:15px;">
       <%= f.submit(t('course.mark_taking')) %>
     </div>

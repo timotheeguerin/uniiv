@@ -35,10 +35,10 @@
                   display: inline;
               }</style>
               <div class='center'>
-                <%= form_tag({:controller => 'user_courses', :action => 'complete_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
-                    <%= submit_tag t('course.mark_completed') %>
-                <% end %>
-                <%= form_tag({:controller => 'user_courses', :action => 'remove_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
+                <a href='<%= user_complete_course_path(@course) %>'>
+                  <button><%= t('course.mark_completed') %></button>
+                </a>
+                <%= form_tag(user_take_course_remove_path(@course), {:class => 'useajax'}) do %>
                     <%= submit_tag t('course.remove') %>
                 <% end %>
               </div>
@@ -52,9 +52,10 @@
                         <button><%= t('course.addreview') %></button>
                     <% end %>
                 <% end %>
-                <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
-                    <%= submit_tag t('course.remove') %></div>
+                <%= form_tag(user_take_course_remove_path(@course), {:class => 'useajax'}) do %>
+                    <%= submit_tag t('course.remove') %>
                 <% end %>
+              </div>
           <% end %>
       <% else %>
           <div class='center'>
@@ -62,14 +63,11 @@
                 display: inline;
             }</style>
             <a href='<%= user_take_course_path(@course) %>'>
-              <button>
-                <%= t('course.mark_taking') %>
-              </button>
+              <button><%= t('course.mark_taking') %></button>
             </a>
-            <%= form_tag({:controller => 'user_courses', :action => 'add_course_completed', :method => 'post'}, {:class => 'useajax'}) do %>
-                <%= hidden_field_tag 'course', @course.id %>
-                <%= submit_tag t('course.mark_completed'), :name => 'completed' %>
-            <% end %>
+            <a href='<%= user_complete_course_path(@course) %>'>
+              <button><%= t('course.mark_completed') %></button>
+            </a>
           </div>
 
       <% end %>

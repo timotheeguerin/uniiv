@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :programs
 
   has_many :taking_courses, :class_name => UserTakingCourse
-  has_many :completed_courses, :class_name => UserCompletedCourse
+  has_many :completed_courses, -> { where :completed => true }, :class_name => UserTakingCourse
 
   has_many :course_reviews, :class_name => Course::Review
 
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   def is_taking_course?(course)
     taking_courses.each do |c|
-      if c.course == course
+      if c.course == course and not c.completed
         return true
       end
     end

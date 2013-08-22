@@ -19,6 +19,7 @@ class User::CourseTakingController < ApplicationController
     @user_taking_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year))
     @user_taking_course.course = @course
     @user_taking_course.user = current_user
+    @user_taking_course.completed = false
 
     if @user_taking_course.save
       if params[:graph_embed]
@@ -27,17 +28,16 @@ class User::CourseTakingController < ApplicationController
         redirect_to course_path(@course)
       end
     else
-      if params[:graph_embed]
-        render 'new_graph_embed'
-      else
-        render 'new'
-      end
+      _render 'new'
     end
   end
 
   def complete
-    current_user.taking_courses.where(:course => @course).first
-    if @user_taking_course.nil? #Check if the course was already mark as taking
+    @user_complete_course = UserTakingCourse.new
+    @grades = current_user.university.grading_system.entities
+    user_taking_course = current_user.taking_courses.where(:course => @course).first
+
+    if user_taking_course.nil? #Check if the course was already mark as taking
       _render 'complete'
     else
       _render 'complete_taking'
@@ -45,7 +45,21 @@ class User::CourseTakingController < ApplicationController
   end
 
   def create_complete
-
+    @user_complete_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year, :grade_id))
+    @user_complete_course.course = @course
+    @user_complete_course.user = current_user
+    @user_complete_course.completed = true
+    if @user_complete_course.save
+      puts 'saved'
+      if params[:graph_embed]
+        return_json('course.completed', course_graph_embed_path(@course))
+      else
+        redirect_to course_path(@course)
+      end
+    else
+      puts 'fail to save'
+      _render 'new'
+    end
   end
 
   def remove
@@ -69,7 +83,8 @@ class User::CourseTakingController < ApplicationController
 
   def _render(view)
     if params[:graph_embed]
-      render :view => view + '_graph_embed', :layout => false
+      view += '_graph_embed'
+      render view, :layout => false
     else
       render view
     end

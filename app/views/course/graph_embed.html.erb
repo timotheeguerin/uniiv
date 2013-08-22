@@ -41,9 +41,9 @@
         }</style>
         <% if current_user.is_taking_course?(@course) %>
             <div class='center'>
-              <%= form_tag({:controller => 'user_courses', :action => 'complete_course_taking', 'data-service' => variable}, {:class => 'useajax'}) do %>
-                  <%= submit_tag t('course.mark_completed') %>
-              <% end %>
+              <a href='<%= user_complete_course_ge_path(@course) %>'>
+                <button><%= t('course.mark_completed') %></button>
+              </a>
               <%= form_tag(user_take_course_remove_graph_embed_path(@course), {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.remove') %>
               <% end %>
@@ -57,7 +57,7 @@
                     <button><%= t("course.addreview") %></button>
                   </a>
               <% end %>
-              <%= form_tag({:controller => 'user_courses', :action => 'remove_course_completed', 'data-service' => variable}, {:class => 'useajax'}) do %>
+              <%= form_tag(user_take_course_remove_graph_embed_path(@course), {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.remove') %>
               <% end %>
             </div>
@@ -69,15 +69,11 @@
           }</style>
 
           <a href='<%= user_take_course_graph_embed_path(@course) %>'>
-            <button>
-              <%= t('course.mark_taking') %>
-            </button>
+            <button><%= t('course.mark_taking') %></button>
           </a>
-
-          <%= form_tag({:controller => 'user_courses', :action => 'add_course_completed', :method => 'post'}, {:class => 'useajax'}) do %>
-              <%= hidden_field_tag 'course', @course.id %>
-              <%= submit_tag t('course.mark_completed'), :name => 'completed' %>
-          <% end %>
+          <a href='<%= user_complete_course_ge_path(@course) %>'>
+            <button><%= t('course.mark_completed') %></button>
+          </a>
         </div>
 
     <% end %>

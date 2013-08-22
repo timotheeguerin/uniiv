@@ -99,7 +99,7 @@ Uniiv::Application.routes.draw do
   get 'course/:id/complete' => 'user/course_taking#complete', :as => 'user_complete_course'
   get 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
   post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
-  post 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+  post 'course/:id/complete/graph/embed' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

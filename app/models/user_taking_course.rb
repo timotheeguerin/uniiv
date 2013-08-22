@@ -5,6 +5,9 @@ class UserTakingCourse < ActiveRecord::Base
   belongs_to :grade, :class_name => Course::GradingSystemEntity
 
   accepts_nested_attributes_for :semester
+  accepts_nested_attributes_for :grade
+
+  validates_uniqueness_of :course, :scope => [:user, :completed]
 
   def to_s
     user.to_s + ' - ' + course.to_s + ' ' + semester.to_s
