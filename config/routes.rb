@@ -1,7 +1,7 @@
 Uniiv::Application.routes.draw do
 
-  get "taking/new"
-  get "taking/new_graph_embed"
+  get "course_taking/new"
+  get "course_taking/new_graph_embed"
   get 'static_page/uniiv'
   get 'static_page/story'
   get 'static_page/team'
@@ -89,15 +89,17 @@ Uniiv::Application.routes.draw do
   post 'user_courses/remove_course_taking'
   post 'user_courses/complete_course_taking'
 
-  get 'course/:id/take' => 'user_course/taking#new', :as => 'user_take_course'
-  post 'course/:id/take' => 'user_course/taking#create', :as => 'user_take_course_create'
-  get 'course/:id/take/graph/embed' => 'user_course/taking#new_graph_embed', :as => 'user_take_course_graph_embed'
-  post 'course/:id/take/graph/embed' => 'user_course/taking#create_graph_embed', :as => 'user_take_course_create_graph_embed'
-  post 'course/:id/take/now' => 'user_course/taking#create_now', :as => 'user_take_course_now'
-  post 'course/:id/take/next' => 'user_course/taking#create_next', :as => 'user_take_course_next'
-  post 'course/:id/untake' => 'user_course/taking#remove', :as => 'user_take_course_remove'
-  post 'course/:id/untake/graph/embed' => 'user_course/taking#remove_graph_embed', :as => 'user_take_course_remove_graph_embed'
 
+  get 'course/:id/take' => 'user/course_taking#new', :as => 'user_take_course'
+  post 'course/:id/take' => 'user/course_taking#create', :as => 'user_take_course_create'
+  get 'course/:id/take/graph/embed' => 'user/course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
+  post 'course/:id/take/graph/embed' => 'user/course_taking#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
+  post 'course/:id/untake' => 'user/course_taking#remove', :as => 'user_take_course_remove'
+  post 'course/:id/untake/graph/embed' => 'user/course_taking#remove', :as => 'user_take_course_remove_graph_embed', :defaults => {:graph_embed => true}
+  get 'course/:id/complete' => 'user/course_taking#complete', :as => 'user_complete_course'
+  get 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
+  post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
+  post 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

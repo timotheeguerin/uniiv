@@ -13,7 +13,7 @@ class UserCoursesController < ApplicationController
   def remove_course_taking
     course = params['data-service']
     UserTakingCourse.find(course).destroy
-    return_success('remove.course.taking')
+    return_success('remove.course.course_taking')
   end
 
   def complete_course_taking
@@ -23,7 +23,7 @@ class UserCoursesController < ApplicationController
     newcourse.user = current_user
     UserTakingCourse.find(course).destroy
     newcourse.save
-    return_success('complete.course.taking')
+    return_success('complete.course.course_taking')
   end
 
   def remove_course_completed

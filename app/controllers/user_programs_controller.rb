@@ -5,7 +5,7 @@ class UserProgramsController < ApplicationController
 
   def new
     @faculty = current_user.faculty
-     if @faculty.nil?
+    if @faculty.nil?
       redirect_to user_faculty_edit_path, :alert => t('error.faculty.notselected')
     else
       @options = @faculty.programs.order("type_id ASC, name ASC").to_a
@@ -23,16 +23,16 @@ class UserProgramsController < ApplicationController
   def create
     if current_user.programs.size > 6
       redirect_to user_dashboard_index_path, :alert => t('error.program.maximum')
-    else 
+    else
       program = params[:prog]
       program = Program.find(params["prog"])
       puts program.nil?
       if program.nil?
         redirect_to user_programs_new_path, :alert => t('error.program.nil')
       elsif current_user.programs.include? program
-        redirect_to user_programs_new_path, :alert => t('error.program.taking')
+        redirect_to user_programs_new_path, :alert => t('error.program.course_taking')
       else
-      
+
         current_user.programs << program
         current_user.save
         redirect_to user_dashboard_index_path, :notice => t("program.add.success")
@@ -44,7 +44,7 @@ class UserProgramsController < ApplicationController
     program = params["data-service"]
     program = Program.find(program)
     current_user.programs.delete(program)
-    
+
     redirect_to user_dashboard_index_path, :notice => t("program.remove.success")
   end
 end
