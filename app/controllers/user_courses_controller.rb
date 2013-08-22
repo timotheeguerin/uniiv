@@ -68,7 +68,6 @@ class UserCoursesController < ApplicationController
       flash[:notice] = t(message)
       redirect_to user_courses_index_path
     end
-
   end
 
   def add

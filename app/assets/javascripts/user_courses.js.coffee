@@ -12,7 +12,6 @@ $(document).ready ->
       dataType: 'json',
       data: $(this).serialize(),
     }).success((data) ->
-      console.log(data.message)
-      $(form).trigger('formAjaxComplete', ['Custom', 'Event'])
+      $(form).trigger('formAjaxComplete', data)
     )
     return false

@@ -1,4 +1,4 @@
-<%= form_for @user_taking_course, :url => user_take_course_create_path(@course) do |f| %>
+<%= form_for @user_taking_course, :url => path, html: {class: clazz} do |f| %>
     <% if @user_taking_course.errors.any? %>
         <div id="errorExplanation">
           <h2><%= pluralize(@user_taking_course.errors.count, 'error') %> prohibited
@@ -14,8 +14,8 @@
     <% end %>
     <div>
       <% @semesters.each do |semester| %>
-          <%= f.label :semester, semester.name, :value => semester.id %>
-          <%= f.radio_button :semester, semester.id %>
+          <%= f.label :semester_id, semester.name, :value => semester.id %>
+          <%= f.radio_button :semester_id, semester.id %>
       <% end %>
     </div>
     <div>

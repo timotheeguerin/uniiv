@@ -53,7 +53,7 @@ $(document).ready ->
           loadCourse(node_id, url + '/graph/embed')
         else
           console.log('load link')
-          load_sidebar(url + '/graph/embed')
+          load_sidebar(url)
 
       graph.update()
       e.preventDefault()
@@ -61,8 +61,12 @@ $(document).ready ->
     $(window).resize () ->
       resizeCanvasContainer()
       graph.resize()
-    $(document).on 'formAjaxComplete', '#graph_sidebar_info', ->
-      reload_graph_info()
+    $(document).on 'formAjaxComplete', '#graph_sidebar_info', (evt, data) ->
+      console.log('reiuhroehs: ' + JSON.stringify(data))
+      if data.url?
+        load_sidebar(data.url)
+      else
+        reload_graph_info()
       graph_reload.show()
 
   reload_graph_info = () ->
@@ -87,11 +91,15 @@ $(document).ready ->
   load_sidebar = (url) ->
     sidebar_info.attr('data-url', url)
     $.get(url).success (data) ->
-      sidebar_info.html(data)
-      sidebar_loader.hide()
-      sidebar_info.show()
-      sidebar_info.parent().nanoScroller()
-      $(document).trigger('ajaxloadhtml')
+      if data.redirect?
+        load_sidebar(data.redirect)
+      else
+        sidebar_info.html(data)
+        sidebar_loader.hide()
+        sidebar_info.show()
+        sidebar_info.parent().nanoScroller()
+        $(document).trigger('ajaxloadhtml')
+
 
 class Ressources
   @images: {}

@@ -25,7 +25,7 @@ class UserCourse::TakingController < ApplicationController
 
   def create_graph_embed
     if create_take
-      redirect_to course_graph_embed_path(@course)
+      return_json('course.take', course_graph_embed_path(@course))
     else
       render 'new_graph_embed'
     end
@@ -38,4 +38,25 @@ class UserCourse::TakingController < ApplicationController
     @user_taking_course.save
   end
 
+  def remove
+    user_taking_course = current_user.taking_courses.where(:course => @course)
+    if user_taking_course.nil?
+      #alert
+    else
+      user_taking_course.destroy
+    end
+    if params[:graph_embed]
+      redirect_to course_graph_path(@course)
+    else
+      redirect_to course_path(@course)
+    end
+  end
+
+  def return_json(message, url)
+    json = {}
+    json[:success] = true
+    json[:message] = t(message) #
+    json[:url] = url
+    render :json => json.to_json
+  end
 end

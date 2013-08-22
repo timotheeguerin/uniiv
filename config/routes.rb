@@ -63,7 +63,7 @@ Uniiv::Application.routes.draw do
   #Course controller
   get 'course/:id', to: 'course#show', as: 'course'
   get 'course/:id/show' => 'course#show'
-  get 'course/:id/graph/embed' => 'course#graph_embed'
+  get 'course/:id/graph/embed' => 'course#graph_embed', :as => 'course_graph_embed'
   get 'course/:id/json' => 'course#json'
 
   #Course review controller
