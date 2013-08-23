@@ -57,7 +57,7 @@
               <a href='<%= user_complete_course_ge_path(@course) %>'>
                 <button><%= t('course.mark_completed') %></button>
               </a>
-              <%= form_tag(user_take_course_remove_graph_embed_path(@course), {:class => 'useajax'}) do %>
+              <%= form_tag(user_remove_course_ge_path(@course), {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.remove') %>
               <% end %>
 
@@ -67,10 +67,10 @@
             <div class='center'>
               <% unless current_user.reviewed_course?(@course) %>
                   <a href='<%= course_review_new_graph_embed_path(@course) %>'>
-                    <button><%= t("course.addreview") %></button>
+                    <button><%= t('course.addreview') %></button>
                   </a>
               <% end %>
-              <%= form_tag(user_take_course_remove_graph_embed_path(@course), {:class => 'useajax'}) do %>
+              <%= form_tag(user_remove_course_ge_path(@course), {:class => 'useajax'}) do %>
                   <%= submit_tag t('course.remove') %>
               <% end %>
             </div>

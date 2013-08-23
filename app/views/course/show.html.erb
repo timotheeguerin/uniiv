@@ -46,7 +46,7 @@
                 <a href='<%= user_complete_course_path(@course) %>'>
                   <button><%= t('course.mark_completed') %></button>
                 </a>
-                <%= form_tag(user_take_course_remove_path(@course), {:class => 'useajax'}) do %>
+                <%= form_tag(user_remove_course_path(@course), {:class => 'useajax'}) do %>
                     <%= submit_tag t('course.remove') %>
                 <% end %>
               </div>
@@ -60,7 +60,7 @@
                         <button><%= t('course.addreview') %></button>
                     <% end %>
                 <% end %>
-                <%= form_tag(user_take_course_remove_path(@course), {:class => 'useajax'}) do %>
+                <%= form_tag(user_remove_course_path(@course), {:class => 'useajax'}) do %>
                     <%= submit_tag t('course.remove') %>
                 <% end %>
               </div>

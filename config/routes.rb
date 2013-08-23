@@ -85,8 +85,8 @@ Uniiv::Application.routes.draw do
   post 'course/:id/take' => 'user/course_taking#create', :as => 'user_take_course_create'
   get 'course/:id/take/graph/embed' => 'user/course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
   post 'course/:id/take/graph/embed' => 'user/course_taking#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
-  post 'course/:id/untake' => 'user/course_taking#remove', :as => 'user_take_course_remove'
-  post 'course/:id/untake/graph/embed' => 'user/course_taking#remove', :as => 'user_take_course_remove_graph_embed', :defaults => {:graph_embed => true}
+  post 'course/:id/untake' => 'user/course_taking#remove', :as => 'user_remove_course'
+  post 'course/:id/untake/graph/embed' => 'user/course_taking#remove', :as => 'user_remove_course_ge', :defaults => {:graph_embed => true}
   get 'course/:id/complete' => 'user/course_taking#complete', :as => 'user_complete_course'
   get 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
   post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
