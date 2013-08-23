@@ -66,7 +66,7 @@
         <% else %>
             <div class='center'>
               <% unless current_user.reviewed_course?(@course) %>
-                  <a href='<%= course_review_new_path(@course) %>'>
+                  <a href='<%= course_review_new_graph_embed_path(@course) %>'>
                     <button><%= t("course.addreview") %></button>
                   </a>
               <% end %>
