@@ -20,7 +20,7 @@
         <% if user_signed_in? %>
           <span id="nav_top_left_links">
             <%= link_to "Path", user_graph_path %>&nbsp;
-            <%= link_to "Education", user_dashboard_index_path %>
+            <%= link_to "Education", user_education_path %>
           </span>
         <% end %>
 
@@ -89,7 +89,8 @@
           <ul class="footer_list">
             <li><%= link_to "Cookies", static_page_cookies_path %></li>
             <li><%= link_to "Privacy", static_page_privacy_path %></li>
-            <li><%= link_to raw("&nbsp;"), static_page_termsofuse_path %><a name="bottom"></a></li>
+            <li><%= link_to raw("&nbsp;"), static_page_termsofuse_path %>
+              <a name="bottom"></a></li>
           </ul>
         </td>
       </tr>

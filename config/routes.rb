@@ -1,5 +1,6 @@
 Uniiv::Application.routes.draw do
 
+  get "scenario/new"
   get "course_taking/new"
   get "course_taking/new_graph_embed"
   get 'static_page/uniiv'
@@ -21,7 +22,7 @@ Uniiv::Application.routes.draw do
   post 'user_emails/makeDefault'
   post 'user_emails/addEmail'
   get 'user_emails/index'
-  get 'user_dashboard/index'
+
   get 'user_programs/show'
   get 'user_programs/new'
   post 'user_programs/create'
@@ -71,6 +72,9 @@ Uniiv::Application.routes.draw do
   get 'course/:course_id/review/new/graph/embed' => 'course_review#new_graph_embed', :as => 'course_review_new_graph_embed'
   post 'course/:course_id/review/new/graph/embed' => 'course_review#create_graph_embed', :as => 'course_review_create_graph_embed'
 
+  #User
+  get 'user_dashboard/index' => 'user_dashboard#index', :as => :user_education
+
   #Program controller
   get 'program/:id', to: 'program#show', as: 'program'
   get 'program/:id/graph/embed' => 'program#graph_embed'
@@ -91,6 +95,12 @@ Uniiv::Application.routes.draw do
   get 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
   post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
   post 'course/:id/complete/graph/embed' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+
+  #Scenario controller
+  get 'scenario/new' => 'user/scenario#new', :as => :user_new_scenario
+  post 'scenario/remove' => 'user/scenario#remove', :as => :user_remove_scenario
+  post 'scenario/setmain' => 'user/scenario#set_main', :as => :user_setmain_scenario
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_scenario
+  helper_method :current_scenario, :current_scenario=
 
   private
   def current_scenario
@@ -16,10 +16,17 @@ class ApplicationController < ActionController::Base
     @current_scenario
   end
 
+  def current_scenario=(scenario)
+    @current_scenario = scenario
+    session[:scenario_id] = scenario.id
+    scenario
+  end
+
   def ge_path(path, ge = false)
     if ge
       path += '/graph/embed'
     end
     path
   end
+
 end
