@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :programs
 
-  has_many :taking_courses, :class_name => UserTakingCourse
+  #has_many :taking_courses, :class_name => UserTakingCourse
   has_many :completed_courses, :class_name => UserCompletedCourse
 
   has_many :course_reviews, :class_name => Course::Review
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def is_taking_course?(course)
-    taking_courses.each do |c|
+    main_course_scenario.taking_courses.each do |c|
       if c.course == course
         return true
       end
@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
 
   def count_taking_credit
     count = 0
-    taking_courses.each do |c|
+    main_course_scenario.taking_courses.each do |c|
       count += c.credit
     end
     count

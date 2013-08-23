@@ -2,14 +2,14 @@
   <div>
     <h3 class='<%= get_course_css_class(@course) %> underline_link'><%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course) %></h3>
   </div>
-  
+
   <% if current_user.is_taking_course?(@course) %>
-    <% c = UserTakingCourse.all.where( :user => current_user).where(:course => @course).first %>
-    <% unless c.semester.nil? or c.year.nil?%>
-    <div><h4><%= t('course.inprogress.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></h4></div>
-    <% end %>
+      <% c = current_scenario.find_by_course(@course) %>
+      <% unless c.semester.nil? or c.year.nil? %>
+          <div><h4><%= t('course.inprogress.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></h4></div>
+      <% end %>
   <% end %>
-  
+
   <div><h4><%= @course.name %></h4></div>
   <div><h5><%= @course.hours %> Hours, <%= @course.credit %> Credits</h5></div>
   <div><h5><%= @course.description %></h5></div>
@@ -30,7 +30,7 @@
 
   <% unless current_user.nil? %>
       <% if current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
-          <% coursesindb = current_user.taking_courses.to_a %>
+          <% coursesindb = current_scenario.taking_courses.to_a %>
           <% coursesindb.concat(current_user.completed_courses.to_a) %>
           <% variable = -1 %>
           <% coursesindb.each do |cid| %>

@@ -1,10 +1,16 @@
 class TestController < ApplicationController
   def index
-    while check
-      puts 'Checking'
-    end
-    while check_null_parent
-      puts 'Checking null parent'
+    check_user_has_main_scenario
+  end
+
+
+  def check_user_has_main_scenario
+    User.all.each do |user|
+      if user.main_course_scenario.nil?
+        scenario = Course::Scenario.new
+        scenario.main = true
+        user.main_course_scenario = scenario
+      end
     end
   end
 

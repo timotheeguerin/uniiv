@@ -18,7 +18,7 @@ class User::CourseTakingController < ApplicationController
   def create
     @user_taking_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year))
     @user_taking_course.course = @course
-    @user_taking_course.user = current_user
+    @user_taking_course.course_scenario = current_scenario
 
     if @user_taking_course.save
       if params[:graph_embed]
@@ -34,7 +34,7 @@ class User::CourseTakingController < ApplicationController
   def complete
     @user_completed_course = UserCompletedCourse.new
     @grades = current_user.university.grading_system.entities
-    user_taking_course = current_user.taking_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
 
     unless user_taking_course.nil? #Check if the course was already mark as taking
       @user_completed_course.semester = user_taking_course.semester
@@ -45,7 +45,7 @@ class User::CourseTakingController < ApplicationController
 
   def create_complete
     @user_completed_course = UserCompletedCourse.new(params[:user_completed_course].permit(:semester_id, :year, :grade_id))
-    user_taking_course = current_user.taking_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
     unless user_taking_course.nil? #If the course was taken before
       user_taking_course.destroy
     end
