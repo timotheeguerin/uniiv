@@ -9,12 +9,12 @@
 
   <hr style='width:100%'>
 
-  <div><h3>Courses in progress</h3></div>
+  <div><h3>Courses in-progress</h3></div>
   <% current_user.taking_courses.sort_by!{|a| [a.course.subject, a.course.code]}.each do |c| %>
       <div>
         <h4 title="<%= c.course.name %>" class="underline_link">
           <%= link_to course_path(c.course.id) do %>
-            <%= c.course.subject.name + ' ' + c.course.code.to_s %><% unless c.semester.nil? %> (<%= c.semester %> <%= c.year %>)<% end %>
+            <%= c.course.subject.name + ' ' + c.course.code.to_s %><% unless c.semester.nil? %> (<%= c.semester.to_s.capitalize %> <%= c.year %>)<% end %>
           <% end %>
         </h4>
         <button style='visibility:hidden;'>I</button>
