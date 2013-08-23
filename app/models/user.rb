@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 
   has_many :course_reviews, :class_name => Course::Review
 
-  has_many :course_senarios, :class_name => Course::Scenario
-  has_one :main_course_senario, -> { where :main => true }, :class_name => Course::Senario
+  has_many :course_scenarios, :class_name => Course::Scenario
+  has_one :main_course_scenario, -> { where :main => true }, :class_name => Course::Scenario
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
