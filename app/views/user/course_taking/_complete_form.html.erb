@@ -1,14 +1,14 @@
 <% clazz ||= ''
    taking_course ||= false
 %>
-<%= form_for @user_complete_course, :url => path, html: {class: clazz} do |f| %>
-    <% if @user_complete_course.errors.any? %>
+<%= form_for @user_completed_course, :url => path, html: {class: clazz} do |f| %>
+    <% if @user_completed_course.errors.any? %>
         <div>
           Errors:
         </div>
         <div>
           <ul>
-            <% @user_complete_course.errors.full_messages.each do |msg| %>
+            <% @user_completed_course.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>

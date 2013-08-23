@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822191806) do
+ActiveRecord::Schema.define(version: 20130823161830) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -231,10 +231,13 @@ ActiveRecord::Schema.define(version: 20130822191806) do
     t.integer "grade_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "semester_id"
+    t.integer "year"
   end
 
   add_index "user_completed_courses", ["course_id"], name: "index_user_completed_courses_on_course_id", using: :btree
   add_index "user_completed_courses", ["grade_id"], name: "index_user_completed_courses_on_grade_id", using: :btree
+  add_index "user_completed_courses", ["semester_id"], name: "index_user_completed_courses_on_semester_id", using: :btree
   add_index "user_completed_courses", ["user_id"], name: "index_user_completed_courses_on_user_id", using: :btree
 
   create_table "user_emails", force: true do |t|
@@ -257,12 +260,9 @@ ActiveRecord::Schema.define(version: 20130822191806) do
     t.datetime "updated_at"
     t.integer "semester_id"
     t.integer "year"
-    t.boolean "completed"
-    t.integer "grade_id"
   end
 
   add_index "user_taking_courses", ["course_id"], name: "index_user_taking_courses_on_course_id", using: :btree
-  add_index "user_taking_courses", ["grade_id"], name: "index_user_taking_courses_on_grade_id", using: :btree
   add_index "user_taking_courses", ["semester_id"], name: "index_user_taking_courses_on_semester_id", using: :btree
   add_index "user_taking_courses", ["user_id"], name: "index_user_taking_courses_on_user_id", using: :btree
 

@@ -3,7 +3,7 @@ module CourseHelper
   def get_course_css_class(course)
     state = course.get_course_state(current_user)
     if state == "completed"
-      return "course_completed"
+      "course_completed"
     elsif state == "course_taking"
       return "course_taking"
     elsif state == "available"

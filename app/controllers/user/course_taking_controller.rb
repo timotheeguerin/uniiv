@@ -19,7 +19,6 @@ class User::CourseTakingController < ApplicationController
     @user_taking_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year))
     @user_taking_course.course = @course
     @user_taking_course.user = current_user
-    @user_taking_course.completed = false
 
     if @user_taking_course.save
       if params[:graph_embed]
@@ -33,23 +32,27 @@ class User::CourseTakingController < ApplicationController
   end
 
   def complete
-    @user_complete_course = UserTakingCourse.new
+    @user_completed_course = UserCompletedCourse.new
     @grades = current_user.university.grading_system.entities
     user_taking_course = current_user.taking_courses.where(:course => @course).first
 
-    if user_taking_course.nil? #Check if the course was already mark as taking
-      _render 'complete'
-    else
-      _render 'complete_taking'
+    unless user_taking_course.nil? #Check if the course was already mark as taking
+      @user_completed_course.semester = user_taking_course.semester
+      @user_completed_course.year = user_taking_course.year
     end
+    _render 'complete'
   end
 
   def create_complete
-    @user_complete_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year, :grade_id))
-    @user_complete_course.course = @course
-    @user_complete_course.user = current_user
-    @user_complete_course.completed = true
-    if @user_complete_course.save
+    @user_completed_course = UserCompletedCourse.new(params[:user_completed_course].permit(:semester_id, :year, :grade_id))
+    user_taking_course = current_user.taking_courses.where(:course => @course).first
+    unless user_taking_course.nil? #If the course was taken before
+      user_taking_course.destroy
+    end
+    @user_completed_course.course = @course
+    @user_completed_course.user = current_user
+
+    if @user_completed_course.save
       puts 'saved'
       if params[:graph_embed]
         return_json('course.completed', course_graph_embed_path(@course))

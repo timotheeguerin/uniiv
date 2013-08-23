@@ -72,7 +72,7 @@ end
 
 class CourseState
   COMPLETED = 'completed'
-  TAKING = 'course_taking'
+  TAKING = 'taking'
   AVAILABLE = 'available'
   UNAVAILABLE = 'unavailable'
 end
