@@ -117,7 +117,7 @@
   <hr style='width:100%'>
 
   <div><h3>Courses in progress</h3></div>
-  <% current_user.main_current_scenario.taking_courses.sort_by!{|a| [a.course.subject, a.course.code]}.each do |c| %>
+  <% current_user.main_course_scenario.taking_courses.sort_by!{|a| [a.course.subject, a.course.code]}.each do |c| %>
       <div>
           <%= link_to course_path(c.course.id) do %>
             <h4 title="<%= c.course.name %>" class="underline_link"><%= c.course.subject.name + ' ' + c.course.code.to_s %><% unless c.semester.nil? %> (<%= c.semester.to_s.capitalize %> <%= c.year %>)<% end %></h4>
