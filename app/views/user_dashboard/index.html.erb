@@ -125,12 +125,12 @@
           <% end %>
         <button style='visibility:hidden;'>I</button>
         <div style='float:right;'>
-          <%= form_tag(:action => 'remove_course_taking', 'data-service' => c) do %>
+          <%= form_tag(:controller => "user_courses", :action => 'remove_course_taking', 'data-service' => c) do %>
               <%= submit_tag('Remove') %>
           <% end %>
         </div>
         <div style='float:right;'>
-          <%= form_tag(:action => 'complete_course_taking', 'data-service' => c) do %>
+          <%= form_tag(:controller => "user_courses", :action => 'complete_course_taking', 'data-service' => c) do %>
               <%= submit_tag('Complete') %>
           <% end %>
         </div>
@@ -152,8 +152,7 @@
           <% end %>
           <button style='visibility:hidden;'>I</button>
           <div style='float:right;'>
-            <%= form_tag do %>
-                <% #(:action => 'remove_course_completed', 'data-service' => c) %>
+            <%= form_tag(:controller => "user_courses", :action => 'remove_course_completed', 'data-service' => c) do %> %>
                 <%= submit_tag('Remove') %>
             <% end %>
           </div>
