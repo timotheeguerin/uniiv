@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823161830) do
+ActiveRecord::Schema.define(version: 20130823172422) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 20130823161830) do
 
   add_index "course_reviews", ["course_id"], name: "index_course_reviews_on_course_id", using: :btree
   add_index "course_reviews", ["user_id"], name: "index_course_reviews_on_user_id", using: :btree
+
+  create_table "course_scenarios", force: true do |t|
+    t.boolean "main"
+    t.integer "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_scenarios", ["user_id"], name: "index_course_scenarios_on_user_id", using: :btree
 
   create_table "course_semesters", force: true do |t|
     t.string "name"
@@ -254,7 +263,7 @@ ActiveRecord::Schema.define(version: 20130823161830) do
   add_index "user_emails", ["user_id"], name: "index_user_emails_on_user_id", using: :btree
 
   create_table "user_taking_courses", force: true do |t|
-    t.integer "user_id"
+    t.integer "course_scenario_id"
     t.integer "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -263,8 +272,8 @@ ActiveRecord::Schema.define(version: 20130823161830) do
   end
 
   add_index "user_taking_courses", ["course_id"], name: "index_user_taking_courses_on_course_id", using: :btree
+  add_index "user_taking_courses", ["course_scenario_id"], name: "index_user_taking_courses_on_course_scenario_id", using: :btree
   add_index "user_taking_courses", ["semester_id"], name: "index_user_taking_courses_on_semester_id", using: :btree
-  add_index "user_taking_courses", ["user_id"], name: "index_user_taking_courses_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string "email", default: "", null: false

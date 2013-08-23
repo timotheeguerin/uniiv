@@ -4,20 +4,22 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    resource = build_resource(params[:user].permit(:email, :password, :password_confirmation))
+    user = build_resource(params[:user].permit(:email, :password, :password_confirmation))
     user_email = UserEmail.new
     user_email.email = resource.email
     user_email.primary = true
     user_email.validated = false
-
-    scenario = Course::Scenario.new
-    user.main_course_scenario = scenario
+    user.emails << user_email
 
     #Alpa
     alpha_tester_role = Role.find_by_name('AlphaTester')
 
-    resource.emails << user_email
-    resource.roles << alpha_tester_role
+    user.roles << alpha_tester_role
+
+    scenario = Course::Scenario.new
+    scenario.main = true
+    user.main_course_scenario = scenario
+
 
     if resource.save
       sign_in(resource_name, resource)
