@@ -1,14 +1,4 @@
 class UserCoursesController < ApplicationController
-  def index
-    authorize! :read, current_user
-
-    if current_user.nil?
-      redirect_to :status => 404
-    end
-    if current_user.university.nil?
-      redirect_to user_dashboard_index_path, :alert => t('university.unselected')
-    end
-  end
 
   def remove_course_taking
     course = params['data-service']
