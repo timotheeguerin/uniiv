@@ -6,10 +6,20 @@ class ApplicationController < ActionController::Base
 
   private
   def current_scenario
-    @current_scenario ||= current_user.course_scenarios.find(session[:senario_id])
+    unless session[:scenario_id].nil?
+      @current_scenario ||= current_user.course_scenarios.find(session[:scenario_id])
+    end
     if @current_scenario.nil?
       @current_scenario = current_user.main_course_scenario
-      session[:senario_id] = @current_scenario.id
+      session[:scenario_id] = @current_scenario.id
     end
+    @current_scenario
+  end
+
+  def ge_path(path, ge = false)
+    if ge
+      path += '/graph/embed'
+    end
+    path
   end
 end
