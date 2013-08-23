@@ -1,9 +1,14 @@
 class User::CourseTakingController < ApplicationController
-  before_action :setup
+  before_action :setup, :except => :add_course
 
   def setup
     @course = Course::Course.find(params[:id])
     @semesters = Course::Semester.all
+  end
+
+  #Display a list of course to be taken or completed
+  def add_course
+
   end
 
   def new

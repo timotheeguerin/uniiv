@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   private
   def current_scenario
-    @current_scenario ||= current_user.main_course_scenario
+    @current_scenario ||= current_user.course_scenarios.find(session[:senario_id])
+    if @current_scenario.nil?
+      @current_scenario = current_user.main_course_scenario
+      session[:senario_id] = @current_scenario.id
+    end
   end
 end

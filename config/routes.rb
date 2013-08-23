@@ -80,6 +80,7 @@ Uniiv::Application.routes.draw do
   get 'group/:id/graph/embed' => 'program_group#graph_embed'
 
   #User course controller
+  get 'course/user/add' => 'user/course_taking#add_course', :as => 'user_add_course'
   get 'course/:id/take' => 'user/course_taking#new', :as => 'user_take_course'
   post 'course/:id/take' => 'user/course_taking#create', :as => 'user_take_course_create'
   get 'course/:id/take/graph/embed' => 'user/course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
