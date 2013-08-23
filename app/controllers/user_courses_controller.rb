@@ -56,7 +56,7 @@ class UserCoursesController < ApplicationController
       render :json => json.to_json
     else
       flash[:notice] = t(message)
-      redirect_to user_courses_index_path
+      redirect_to user_dashboard_index_path
     end
   end
 
