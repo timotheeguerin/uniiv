@@ -66,10 +66,14 @@ class User::CourseTakingController < ApplicationController
   end
 
   def remove
-    user_taking_course = current_user.taking_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
+    user_completed_course = current_user.completed_courses.where(:course => @course).first
+
     user_taking_course.destroy unless user_taking_course.nil?
+    user_completed_course.destroy unless user_completed_course.nil?
+
     if params[:graph_embed]
-      return_json('course.course_taking.removed', course_graph_embed_path(@course))
+      return_json('course.untake', course_graph_embed_path(@course))
     else
       redirect_to course_path(@course)
     end
