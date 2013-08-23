@@ -21,9 +21,6 @@ Uniiv::Application.routes.draw do
   post 'user_emails/makeDefault'
   post 'user_emails/addEmail'
   get 'user_emails/index'
-  post 'user_courses/add_course'
-  get 'user_courses/add'
-
   get 'user_dashboard/index'
   get 'user_programs/show'
   get 'user_programs/new'
