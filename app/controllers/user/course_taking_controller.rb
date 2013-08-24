@@ -1,9 +1,26 @@
 class User::CourseTakingController < ApplicationController
-  before_action :setup, :except => :add_course
+  before_action :setup
 
   def setup
-    @course = Course::Course.find(params[:id])
+    @course = Course::Course.find(params[:id]) unless params[:id].nil?
     @semesters = Course::Semester.all
+  end
+
+  #Sort the course
+  def sort_course
+    @terms = {}
+    term = current_term
+    @previous_courses = current_scenario.get_course_before_than(term.semester, term.year)
+    (1..12).each do
+      courses = current_scenario.get_course_in_semester(term.semester, term.year)
+      @terms[term] = courses
+      term = term.next
+    end
+    current_scenario.taking_courses.each do |course|
+    end
+  end
+
+  def edit_course_taking
   end
 
   #Display a list of course to be taken or completed

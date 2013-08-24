@@ -1,0 +1,48 @@
+<style>
+    body.dragging, body.dragging * {
+        cursor: move !important;
+    }
+
+    .dragged {
+        position: absolute;
+        opacity: 0.5;
+        z-index: 2000;
+    }
+
+    ul.sortable li {
+        display: block;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #CCC;
+        background: #DBDBDB;
+        cursor: pointer;
+    }
+
+    ul.sortable li.placeholder {
+        position: relative;
+        border-style: dashed;
+        background: transparent;
+        /** More li styles **/
+    }
+
+    ul.sortable li.placeholder:before {
+        position: absolute;
+        /** Define arrowhead **/
+    }
+</style>
+
+<ul class='sortable no-drop'>
+  <h4> <%= t('course.before_current_term') %></h4>
+  <% @previous_courses.each do |course| %>
+      <li><%= course.course.to_s %></li>
+  <% end %>
+</ul>
+
+<% @terms.each do |term, courses| %>
+    <h4><%= term.semester %> lol <%= term.year %></h4>
+    <ul data-semester='<%= term.semester %>' data-year='<%= term.year %>' class='sortable connected'>
+      <% courses.each do |course| %>
+          <li><%= course.course.to_s %></li>
+      <% end %>
+    </ul>
+<% end %>

@@ -1,8 +1,10 @@
+require 'utils/term'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_scenario, :current_scenario=
+  helper_method :current_scenario, :current_scenario=, :current_term
 
   private
   def current_scenario
@@ -28,5 +30,22 @@ class ApplicationController < ActionController::Base
     end
     path
   end
+
+  def current_term
+    if @current_semester.nil?
+      time = Time.now
+      @current_semester = Term.new
+      if time.month <= 4
+        @current_semester.semester = Course::Semester.find_by_name(:winter)
+      elsif time.month <= 8
+        @current_semester.semester = Course::Semester.find_by_name(:summer)
+      else
+        @current_semester.semester = Course::Semester.find_by_name(:fall)
+      end
+      @current_semester.year = time.year
+    end
+    @current_semester
+  end
+
 
 end
