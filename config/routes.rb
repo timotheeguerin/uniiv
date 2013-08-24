@@ -96,6 +96,7 @@ Uniiv::Application.routes.draw do
   get 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
   post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
   post 'course/:id/complete/graph/embed' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+  post 'user/course/take/update' => 'user/course_taking#update_course_taking', :as => :update_course_taking
 
   #Scenario controller
   get 'scenario/new' => 'user/scenario#new', :as => :user_new_scenario

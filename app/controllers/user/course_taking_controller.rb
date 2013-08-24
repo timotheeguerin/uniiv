@@ -20,7 +20,13 @@ class User::CourseTakingController < ApplicationController
     end
   end
 
-  def edit_course_taking
+  def update_course_taking
+    course = Course::Course.find(params[:course_id])
+    user_taking_course = current_scenario.taking_courses.where(:course => course).first
+    user_taking_course.semester = Course::Semester.find(params[:semester_id])
+    user_taking_course.year = params[:year]
+    user_taking_course.save
+    return_json('course.take.update.success')
   end
 
   #Display a list of course to be taken or completed
@@ -102,11 +108,11 @@ class User::CourseTakingController < ApplicationController
 
   end
 
-  def return_json(message, url)
+  def return_json(message, url = nil)
     json = {}
     json[:success] = true
     json[:message] = t(message)
-    json[:url] = url
+    json[:url] = url unless url.nil?
     render :json => json.to_json
   end
 

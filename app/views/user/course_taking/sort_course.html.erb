@@ -31,18 +31,25 @@
     }
 </style>
 
-<ul class='sortable no-drop'>
-  <h4> <%= t('course.before_current_term') %></h4>
-  <% @previous_courses.each do |course| %>
-      <li><%= course.course.to_s %></li>
-  <% end %>
-</ul>
+<div id='course_sorter' data-update-url='<%= update_course_taking_path %>'>
+  <div id='message_container'></div>
+  <ul class='sortable no-drop'>
+    <h4> <%= t('course.before_current_term') %></h4>
+    <% @previous_courses.each do |course| %>
+        <li>
+          <div data-course-id='<%= course.id %>'><%= course.course.to_s %></div>
+        </li>
+    <% end %>
+  </ul>
 
-<% @terms.each do |term, courses| %>
-    <h4><%= term.semester %> lol <%= term.year %></h4>
-    <ul data-semester='<%= term.semester %>' data-year='<%= term.year %>' class='sortable connected'>
-      <% courses.each do |course| %>
-          <li><%= course.course.to_s %></li>
-      <% end %>
-    </ul>
-<% end %>
+  <% @terms.each do |term, courses| %>
+      <h4><%= term.semester %>  <%= term.year %></h4>
+      <ul data-semester='<%= term.semester.id %>' data-year='<%= term.year %>' class='sortable connected'>
+        <% courses.each do |course| %>
+            <li>
+              <div data-course-id='<%= course.course.id %>'><%= course.course.to_s %></div>
+            </li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
