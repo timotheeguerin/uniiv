@@ -6,6 +6,7 @@ class Course::Course < ActiveRecord::Base
 
   has_many :reviews, :class_name => Course::Review
 
+  has_and_belongs_to_many :restricted_years, :class_name => UniversityYear
   validates_uniqueness_of :code, scope: :subject
 
   def to_s

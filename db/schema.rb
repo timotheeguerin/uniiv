@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824172507) do
+ActiveRecord::Schema.define(version: 20130824222030) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20130824172507) do
     t.integer "program_group_id"
     t.integer "course_id"
   end
+
+  create_table "course_courses_university_years", force: true do |t|
+    t.integer "course_course_id"
+    t.integer "university_year_id"
+  end
+
+  add_index "course_courses_university_years", ["course_course_id"], name: "index_course_courses_university_years_on_course_course_id", using: :btree
+  add_index "course_courses_university_years", ["university_year_id"], name: "index_course_courses_university_years_on_university_year_id", using: :btree
 
   create_table "course_exprs", force: true do |t|
     t.integer "node_id"
@@ -231,9 +239,25 @@ ActiveRecord::Schema.define(version: 20130824172507) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "grading_system_id"
+    t.integer "grade_system_id"
   end
 
+  add_index "universities", ["grade_system_id"], name: "index_universities_on_grade_system_id", using: :btree
   add_index "universities", ["grading_system_id"], name: "index_universities_on_grading_system_id", using: :btree
+
+  create_table "university_year_systems", force: true do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "university_years", force: true do |t|
+    t.string "name"
+    t.integer "order"
+    t.integer "year_system_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_completed_courses", force: true do |t|
     t.integer "user_id"
