@@ -4,6 +4,12 @@ $(document).ready ()->
 
     $(this).sticky({topSpacing: parseInt(top)})
 
+  $(document).on('searchAjaxComplete', '#search_new_course', () ->
+    $('#search-output-container').sortable({
+      group: 'course-sort'
+      drop: false
+    })
+  )
   $('#course_sorter').each ()->
     course_sorter = $(this)
     message_container = $(this).children('#message_container')

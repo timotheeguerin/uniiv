@@ -21,12 +21,20 @@ class User::CourseTakingController < ApplicationController
   end
 
   def update_course_taking
+    authorize! :edit, current_user
     course = Course::Course.find(params[:course_id])
-    user_taking_course = current_scenario.taking_courses.where(:course => course).first
+    user_taking_course = current_scenario.taking_courses.where(:course_id => course.id).first
+    if user_taking_course.nil?
+      user_taking_course = UserTakingCourse.new
+      user_taking_course.course_scenario = current_scenario
+      user_taking_course.course = course
+    end
+
     user_taking_course.semester = Course::Semester.find(params[:semester_id])
     user_taking_course.year = params[:year]
     user_taking_course.save
     return_json('course.take.update.success')
+
   end
 
   #Display a list of course to be taken or completed

@@ -2,12 +2,15 @@ class UserTakingCourse < ActiveRecord::Base
   belongs_to :course_scenario, :class_name => Course::Scenario
   belongs_to :course, :class_name => Course::Course
   belongs_to :semester, :class_name => Course::Semester
-  belongs_to :grade, :class_name => Course::GradingSystemEntity
 
   accepts_nested_attributes_for :semester
-  accepts_nested_attributes_for :grade
 
   validates_uniqueness_of :course_id, :scope => [:course_scenario]
+  validates :course_id, :presence => true
+  validates :course_scenario_id, :presence => true
+  validates :semester, :presence => true
+  validates :year, :presence => true
+
 
   def user
     course_scenario.user
