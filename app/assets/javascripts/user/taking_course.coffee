@@ -1,4 +1,5 @@
 $(document).ready ()->
+  $('#moveableboxsortcourse').sticky({topSpacing: 40});
   $('#course_sorter').each ()->
     course_sorter = $(this)
     message_container = $(this).children('#message_container')
