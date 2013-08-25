@@ -2,6 +2,7 @@ class User::CourseTakingController < ApplicationController
   before_action :setup
 
   def setup
+    authorize! :edit, current_user
     @course = Course::Course.find(params[:id]) unless params[:id].nil?
     @semesters = Course::Semester.all
   end
@@ -21,7 +22,6 @@ class User::CourseTakingController < ApplicationController
   end
 
   def update_course_taking
-    authorize! :edit, current_user
     course = Course::Course.find(params[:course_id])
     user_taking_course = current_scenario.taking_courses.where(:course_id => course.id).first
     if user_taking_course.nil?
