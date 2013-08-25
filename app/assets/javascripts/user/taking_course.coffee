@@ -1,5 +1,8 @@
 $(document).ready ()->
-  $('#moveableboxsortcourse').sticky({topSpacing: 40});
+  $('#moveableboxsortcourse').each ()->
+    top = $(this).attr('data-topspacing')
+    $(this).sticky({topSpacing: top})
+
   $('#course_sorter').each ()->
     course_sorter = $(this)
     message_container = $(this).children('#message_container')
