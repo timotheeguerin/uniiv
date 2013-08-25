@@ -7,7 +7,7 @@ class UserTakingCourse < ActiveRecord::Base
   accepts_nested_attributes_for :semester
   accepts_nested_attributes_for :grade
 
-  validates_uniqueness_of :course, :scope => [:course_scenario]
+  validates_uniqueness_of :course_id, :scope => [:course_scenario]
 
   def user
     course_scenario.user
