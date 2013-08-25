@@ -203,6 +203,7 @@
         "shape": "rect",
         "normal": {
             "label": {
+                "cursor": "pointer",
                 "color": "#274d9b"
             }
         }
@@ -232,6 +233,7 @@
                 }
             },
             "label": {
+                "cursor": "pointer",
                 "color": "#274d9b",
                 "fontStyle": "bold"
             }

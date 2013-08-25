@@ -31,7 +31,26 @@ class User::CourseTakingController < ApplicationController
 
   #Display a list of course to be taken or completed
   def add_course
-
+    @courses = Course::Course.all.sort_by!{|x| [x.subject.name, x.code]}.to_a
+    current_user.completed_courses.each do |c|
+      @courses.delete(c.course)
+    end
+    current_user.main_course_scenario.taking_courses.each do |c|
+      @courses.delete(c)
+    end
+    @courses = @courses.map{|x| [x.subject.name + " " + x.code.to_s + " - " + x.name, x.id]}
+  end
+  
+  #decide which type of course to take
+  def add_course_two
+    @course = params["course"];
+    if params["take"]
+      redirect_to user_take_course_path(@course)
+    elsif params["complete"]
+      redirect_to user_complete_course_path(@course)
+    else
+      puts "shiiiiet controller add_course_two doesnt work"
+    end
   end
 
   def new

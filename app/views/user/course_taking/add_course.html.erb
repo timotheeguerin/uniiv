@@ -1,10 +1,10 @@
 <div class="content_box pagewidth_twothirds">
   <div><h1><%= t('course.add') %></h1></div>
   <div>
-    <%= form_tag do %>
-      <%= select_tag("course",options_for_select(Course::Course.all.sort_by!{|x| [x.subject.name, x.code]}.to_a.map{|x| [x.subject.name + " " + x.code.to_s + " - " + x.name,x.id]}), {:class => "form_biginput form_input_longer"}) %>
+    <%= form_tag(:action => "add_course_two") do %>
+      <%= select_tag("course",options_for_select(@courses), {:class => "form_biginput form_input_longer"}) %>
       
-      <div class="right"><%= submit_tag(t('course.mark_taking')) %><%= submit_tag(t('course.mark_completed')) %></div>
+      <div class="right"><%= submit_tag(t('course.mark_taking'), :name=> "take") %><%= submit_tag(t('course.mark_completed'), :name => "complete") %></div>
     <% end %>
   </div>
 </div>

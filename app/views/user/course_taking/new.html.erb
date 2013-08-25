@@ -1,3 +1,9 @@
-<div class='user_take_course_form'>
-  <%= render :partial => 'take_form', :locals => {:path => user_take_course_create_path(@course)} %>
+<div class="content_box pagewidth_twothirds">
+  <div><h2>Taking course <%= @course %></h2></div>
+  <div><h3><%= @course.name %></div>
+  <hr style="width:100%">
+  <div class='user_complete_course_form'>
+  <div class='user_take_course_form'>
+    <%= render :partial => 'take_form', :locals => {:path => user_take_course_create_path(@course), :normal => true} %>
+  </div>
 </div>

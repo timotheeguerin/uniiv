@@ -144,7 +144,7 @@
       </div>
   <% end %>
   <% if current_user.main_course_scenario.taking_courses.empty? %>
-      <div><h5>t('courses.inprogress.empty')</h5></div>
+      <div><h5><%= t('courses.inprogress.empty') %></h5></div>
   <% end %>
 
   <hr style='width:100%'>

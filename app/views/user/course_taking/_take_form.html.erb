@@ -1,7 +1,13 @@
 <% clazz ||= '' %>
 <%= form_for @user_taking_course, :url => path, html: {class: clazz} do |f| %>
     <%= render :partial => 'take_fields', :locals => {:f => f} %>
-    <div class="center" style="text-indent:15px;">
-      <%= f.submit(t('course.mark_taking')) %>
-    </div>
+    <% if normal %>
+      <div class="right">
+        <%= f.submit(t('course.mark_taking')) %>
+      </div>
+    <% else %>
+      <div class="center">
+        <%= f.submit(t('course.mark_taking')) %>
+      </div>
+    <% end %>
 <% end %>
