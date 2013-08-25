@@ -35,12 +35,13 @@ class ApplicationController < ActionController::Base
     if @current_semester.nil?
       time = Time.now
       @current_semester = Term.new
+      @course = Course::Course.find_by_name('kil')
       if time.month <= 4
-        @current_semester.semester = Course::Semester.find_by_name(:winter)
+        @current_semester.semester = Course::Semester.find_by_name('winter')
       elsif time.month <= 8
-        @current_semester.semester = Course::Semester.find_by_name(:summer)
+        @current_semester.semester = Course::Semester.find_by_name('summer')
       else
-        @current_semester.semester = Course::Semester.find_by_name(:fall)
+        @current_semester.semester = Course::Semester.find_by_name('fall')
       end
       @current_semester.year = time.year
     end

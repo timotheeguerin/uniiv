@@ -52,15 +52,24 @@ gem 'cancan'
 
 gem 'i18n-active_record', :github => 'timcolonel/i18n-active_record', :require => 'i18n/active_record'
 
-
 gem 'json'
 
 gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
 
 
 gem 'thin'
-#gem 'puma'
+#gem 'puundma'
+
 
 group :development do
-  gem "rails-erd"
+  gem 'rails-erd'
 end
+
+gem 'squeel'
+
+
+gem 'sunspot_rails'
+
+gem 'sunspot_solr', :group => :development
+
+gem 'progress_bar'

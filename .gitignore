@@ -17,3 +17,5 @@
 
 #ignore rubymine
 .idea/
+
+solr/data
