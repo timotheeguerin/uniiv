@@ -14,9 +14,13 @@ class CourseController < ApplicationController
     render :json => course.as_json
   end
 
+  def search_list
+    @courses = search_course(params[:q])
+    render :layout => false
+  end
 
   def search_json
-    courses = search_course
+    courses = search_course(params[:q])
     json =[]
     courses.each do |course|
       json << course
@@ -24,9 +28,9 @@ class CourseController < ApplicationController
     render :json => json.to_json
   end
 
-  def search_course
+  def search_course(query)
     search = Course::Course.search do
-      fulltext 'math 2013'
+      fulltext query
     end
     search.results
   end
