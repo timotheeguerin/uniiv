@@ -1,7 +1,8 @@
 $(document).ready ()->
   $('#moveableboxsortcourse').each ()->
     top = $(this).attr('data-topspacing')
-    $(this).sticky({topSpacing: top})
+
+    $(this).sticky({topSpacing: parseInt(top)})
 
   $('#course_sorter').each ()->
     course_sorter = $(this)
