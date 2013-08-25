@@ -1,15 +1,14 @@
 <script type="text/javascript">
-    /*window.setInterval(function(){
-     if($("#moveableboxsortcourse").is(':animated'))
-     {
-
-     }
-     else
-     {
-     $("#moveableboxsortcourse").animate({"margin-top":$(document).scrollTop()},100);
-     }
-     },100);
-     */
+window.setInterval(function(){
+  if($("#moveableboxsortcourse").is(':animated'))
+  {
+  
+  }
+  else
+  {
+    $("#moveableboxsortcourse").animate({"margin-top":$(document).scrollTop()},100);
+  }
+},100);
 </script>
 
 <style>
@@ -41,45 +40,51 @@
     ul.sortable li.placeholder:before {
         position: absolute;
     }
-
-    .drag_box {
-        min-height: 25px;
-        border-radius: 5px;
+    
+    .drag_box
+    {
+      min-height: 25px;
+      border-radius: 5px;
     }
-
-    .draggable_box {
-        border: 1px dashed #dfdfdf;
-        background-color: #f5f5f5;
+    
+    .draggable_box
+    {
+      border: 1px dashed #dfdfdf;
+      background-color: #f5f5f5;
     }
-
-    .undraggable_box {
-        border: 1px solid #dfdfdf;
-        background-color: #f5f5f5;
+    
+    .undraggable_box
+    {
+      border: 1px solid #dfdfdf;
+      background-color: #f5f5f5;
     }
-
-    .sortable_noindent {
-        padding: 0px;
-        text-indent: 0px;
+    
+    .sortable_noindent
+    {
+      padding: 0px;
+      text-indent: 0px;
     }
-
-    .left_box_sortcourse {
-        display: inline-block;
-        width: 535px;
+    
+    .left_box_sortcourse
+    {
+      display: inline-block;
+      width: 535px;
     }
-
-    .right_box_sortcourse {
-        /*display: inline-block;*/
-        width: 300px;
-        margin-left: 10px;
-        #height: 100%;
-        border: 1px solid #dfdfdf;
-        float: right;
-        padding: 5px;
-        box-sizing: border-box;
-        border-radius: 5px;
-        background-color: #fafafa;
+    
+    .right_box_sortcourse
+    {
+      display: inline-block;
+      width: 300px;
+      margin-left: 10px;
+      height: 100%;
+      border: 1px solid #dfdfdf;
+      float: right;
+      padding: 5px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      background-color: #fafafa;
     }
-
+    
 </style>
 
 <div class="content_box pagewidth">
@@ -87,12 +92,27 @@
   <div><h5>Rearrange your courses by clicking and dragging.</h5></div>
   <hr style="width:100%;">
   <div class="right_box_sortcourse" id="moveableboxsortcourse">
-    <div><input type="text" placeholder="Search for a class." class="form_input_longer form_biginput"/></div>
+    <div><input type="text" placeholder="Search for a class." class="form_input_longer form_biginput" /></div>
     <div style="margin-left:auto;margin-right:auto;width:30px;height:30px;line-height:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
       bin
     </div>
     <div>
       <ul class='sortable draggable_box drag_box sortable_noindent'>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
+        <li><h5>test</h5></li>
         <li><h5>test</h5></li>
         <li><h5>test</h5></li>
         <li><h5>test</h5></li>
@@ -103,16 +123,16 @@
     <div id='course_sorter' data-update-url='<%= update_course_taking_path %>'>
       <div id='message_container'></div>
       <% unless @previous_courses.size == 0 %>
-          <div><h4> <%= t('course.before_current_term') %></h4></div>
-          <div>
-            <ul class='sortable no-drop undraggable_box drag_box sortable_noindent'>
-              <% @previous_courses.each do |course| %>
-                  <li>
-                    <div data-course-id='<%= course.id %>'><h5><%= course.course.to_s %></h5></div>
-                  </li>
-              <% end %>
-            </ul>
-          </div>
+        <div><h4> <%= t('course.before_current_term') %></h4></div>
+        <div>
+          <ul class='sortable no-drop undraggable_box drag_box sortable_noindent'>
+            <% @previous_courses.each do |course| %>
+                <li>
+                  <div data-course-id='<%= course.id %>'><h5><%= course.course.to_s %><h5></div>
+                </li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
 
       <% @terms.each do |term, courses| %>
@@ -128,5 +148,5 @@
           </div>
       <% end %>
     </div>
-  </div>
+  </div>  
 </div>
