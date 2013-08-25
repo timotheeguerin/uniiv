@@ -38,7 +38,6 @@ $(document).ready () ->
     location.reload();
 
   $('.nano').each ->
-    console.log('lol')
     $(this).nanoScroller()
   setupStarRatings()
 

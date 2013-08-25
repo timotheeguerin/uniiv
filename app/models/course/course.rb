@@ -8,6 +8,12 @@ class Course::Course < ActiveRecord::Base
 
   has_and_belongs_to_many :restricted_years, :class_name => UniversityYear
   validates_uniqueness_of :code, scope: :subject
+  validates :subject_id, :presence => true
+  validates :name, :presence => true
+  validates :code, :presence => true
+  validates :description, :presence => true
+  validates :credit, :presence => true
+  validates :hours, :presence => true
 
   def to_s
     get_short_name
@@ -69,6 +75,14 @@ class Course::Course < ActiveRecord::Base
   end
 
   delegate :university, :to => :subject
+
+  searchable do
+    text :subject do
+      subject.name
+    end
+    text :description
+    text :code
+  end
 end
 
 class CourseState
