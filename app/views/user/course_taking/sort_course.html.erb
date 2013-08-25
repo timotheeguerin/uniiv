@@ -85,6 +85,7 @@
 <div class="content_box pagewidth">
   <div><h1>Course Manager</h1></div>
   <div><h5>Rearrange your courses by clicking and dragging.</h5></div>
+  <hr style="width:100%;">
   <div class="right_box_sortcourse" id="moveableboxsortcourse">
     <div><input type="text" placeholder="Search for a class." class="form_input_longer form_biginput"/></div>
     <div style="margin-left:auto;margin-right:auto;width:30px;height:30px;line-height:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
@@ -99,7 +100,6 @@
     </div>
   </div>
   <div class="left_box_sortcourse">
-    <hr style="width:100%;">
     <div id='course_sorter' data-update-url='<%= update_course_taking_path %>'>
       <div id='message_container'></div>
       <% unless @previous_courses.size == 0 %>
