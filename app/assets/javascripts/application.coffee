@@ -78,6 +78,7 @@ $(document).ready () ->
     input.autocomplete({
       serviceUrl: url
       paramName: 'q'
+      params: {limit: 5}
       onSelect: (suggestion, query, queryLowerCase) ->
         input_data.val(suggestion.data) if input_data?
     })

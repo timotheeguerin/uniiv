@@ -1,5 +1,7 @@
 Uniiv::Application.routes.draw do
 
+  get "advanced_standing/index"
+  get "advanced_standing/new_course"
   get "scenario/new"
   get "course_taking/new"
   get "course_taking/new_graph_embed"
