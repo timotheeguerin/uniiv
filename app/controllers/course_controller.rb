@@ -30,14 +30,15 @@ class CourseController < ApplicationController
     courses = search_course
     json = {}
     json[:query] = params[:q]
-    suggestions = {}
+    suggestions = []
     json[:suggestions] = suggestions
     courses.each do |course|
       suggestion = {}
       suggestion[:value] = course.to_s
       suggestion[:data] = course.id
+      suggestions << suggestion
     end
-    render :json => course.to_json
+    render :json => json.to_json
   end
 
   def search_course
