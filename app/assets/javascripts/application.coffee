@@ -73,14 +73,15 @@ $(document).ready () ->
   $('input.autocomplete').each () ->
     input = $(this)
     url = input.attr('data-url')
-    input_data = $($(input.attr('data-data-url')))
+    input_data = $($(input.attr('data-input-data')))
     console.log(url)
     input.autocomplete({
       serviceUrl: url
       paramName: 'q'
       params: {limit: 5}
       onSelect: (suggestion, query, queryLowerCase) ->
-        input_data.val(suggestion.data) if input_data?
+        id = suggestion.data
+        input_data.val(id) if input_data.length > 0
     })
 
 

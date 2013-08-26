@@ -34,7 +34,7 @@ class CourseController < ApplicationController
     json[:suggestions] = suggestions
     courses.each do |course|
       suggestion = {}
-      suggestion[:value] = course.to_s
+      suggestion[:value] = course.to_s + ' ' + course.name
       suggestion[:data] = course.id
       suggestions << suggestion
     end
