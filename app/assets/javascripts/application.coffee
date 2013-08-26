@@ -70,6 +70,13 @@ $(document).ready () ->
     input.keydown () ->
       clearTimeout(typingTimer);
 
+  $('input.autocomplete').each () ->
+    input = $(this)
+    url = input.attr('data-url')
+    input.autocomplete({
+      serviceUrl: url
+    })
+
 
 setupStarRatings = () ->
   $('input.star-rating').each () ->
