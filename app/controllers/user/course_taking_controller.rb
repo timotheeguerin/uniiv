@@ -36,22 +36,11 @@ class User::CourseTakingController < ApplicationController
     return_json('course.take.update.success')
 
   end
-
-  #Display a list of course to be taken or completed
-  def add_course
-    @courses = Course::Course.all.sort_by!{|x| [x.subject.name, x.code]}.to_a
-    current_user.completed_courses.each do |c|
-      @courses.delete(c.course)
-    end
-    current_user.main_course_scenario.taking_courses.each do |c|
-      @courses.delete(c)
-    end
-    @courses = @courses.map{|x| [x.subject.name + " " + x.code.to_s + " - " + x.name, x.id]}
-  end
   
   #decide which type of course to take
-  def add_course_two
+  def handle_add_course
     @course = params["course"];
+    if Course::Course.find_by_id(@course)
     if params["take"]
       redirect_to user_take_course_path(@course)
     elsif params["complete"]
@@ -89,7 +78,7 @@ class User::CourseTakingController < ApplicationController
   def complete
     @user_completed_course = UserCompletedCourse.new
     @grades = current_user.university.grading_system.entities
-    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
 
     unless user_taking_course.nil? #Check if the course was already mark as taking
       @user_completed_course.semester = user_taking_course.semester
@@ -100,7 +89,7 @@ class User::CourseTakingController < ApplicationController
 
   def create_complete
     @user_completed_course = UserCompletedCourse.new(params[:user_completed_course].permit(:semester_id, :year, :grade_id))
-    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
     unless user_taking_course.nil? #If the course was taken before
       user_taking_course.destroy
     end
@@ -151,4 +140,6 @@ class User::CourseTakingController < ApplicationController
       render view
     end
   end
+end
+
 end

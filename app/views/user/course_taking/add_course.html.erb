@@ -1,9 +1,39 @@
+<style>
+.autocomplete-suggestions
+{
+  border-radius: 5px;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.autocomplete-suggestion
+{
+  color: #555555;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.autocomplete-selected
+{
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 5px;
+}
+.autocomplete-suggestion strong
+{
+  font-weight: bold;
+  color: #274d9b;
+}
+</style>
+
 <div class="content_box pagewidth_twothirds">
   <div><h1><%= t('course.add') %></h1></div>
   <div>
-    <%= form_tag(:action => "add_course_two") do %>
-      <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => search_course_autocomplete_path, "data-input-data" => "#course"}) %>
-      <%= hidden_field_tag("course", :value => nil, "id" => "course") %>
+    <%= form_tag(handle_user_add_course_path) do %>
+      <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => search_course_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#course"}) %>
+      <%= hidden_field_tag("course", nil, "id" => "course") %>
 
       
       <div class="right">
