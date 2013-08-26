@@ -48,6 +48,8 @@ class CourseController < ApplicationController
       paginate(:page => 1, :per_page => limit) unless limit.nil?
       without(:course_scenario_ids, current_scenario.id) if params[:only_not_taking]
       with(:course_scenario_ids, current_scenario.id) if params[:only_taking]
+      without(:user_ids, current_user.id) if params[:only_not_completed]
+      with(:user_uds, current_user.id) if params[:only_completed]
     end
     search.results
   end

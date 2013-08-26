@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   end
 
   def reviewed_course?(course)
-    course_reviews.where(:course => course).any?
+    course_reviews.where(:course_id => course).any?
   end
 
   def count_completed_credit_after_taking

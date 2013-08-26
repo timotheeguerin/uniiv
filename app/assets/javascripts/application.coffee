@@ -52,11 +52,11 @@ $(document).ready () ->
     send_url = ''
     input.keyup () ->
       typingTimer = setTimeout(()->
-        q = input.val().toString()
+        query = input.val().toString()
         $.ajax({
           url: url,
           type: 'GET',
-          data: {query: query.toUpperCase()}
+          data: {q: query.toUpperCase()}
           beforeSend: (jqXHR, settings) ->
             send_url = settings.url;
         }).success (data) ->

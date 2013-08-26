@@ -40,14 +40,20 @@ $(document).ready ()->
         onDrop: ($item, container, _super) ->
           _super($item, container)
           ul = $item.closest('ul')
+          type = ul.attr('data-type')
           course_id = $item.children().attr('data-course-id')
           semester = ul.attr('data-semester')
           year = ul.attr('data-year')
+          remove = false
+          remove = true if type == 'delete'
 
+          if remove
+            $item.remove()
           $.post(update_url, {
             course_id: course_id
             semester_id: semester
             year: year
+            remove: remove
           }).success((data) ->
             message_container.text(data.message)
             setTimeout(() ->
