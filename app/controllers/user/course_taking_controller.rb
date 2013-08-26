@@ -24,31 +24,37 @@ class User::CourseTakingController < ApplicationController
   def update_course_taking
     course = Course::Course.find(params[:course_id])
     user_taking_course = current_scenario.taking_courses.where(:course_id => course.id).first
-    if user_taking_course.nil?
-      user_taking_course = UserTakingCourse.new
-      user_taking_course.course_scenario = current_scenario
-      user_taking_course.course = course
-    end
+    puts 'parL: ' + params[:remove]
+    if params[:remove] == 'true'
+      user_taking_course.destroy unless user_taking_course.nil?
+      return_json('course.take.remove.success')
+    else
+      if user_taking_course.nil?
+        user_taking_course = UserTakingCourse.new
+        user_taking_course.course_scenario = current_scenario
+        user_taking_course.course = course
+      end
 
-    user_taking_course.semester = Course::Semester.find(params[:semester_id])
-    user_taking_course.year = params[:year]
-    user_taking_course.save
-    return_json('course.take.update.success')
+      user_taking_course.semester = Course::Semester.find(params[:semester_id])
+      user_taking_course.year = params[:year]
+      user_taking_course.save
+      return_json('course.take.update.success')
+    end
 
   end
 
   #Display a list of course to be taken or completed
   def add_course
-    @courses = Course::Course.all.sort_by!{|x| [x.subject.name, x.code]}.to_a
+    @courses = Course::Course.all.sort_by! { |x| [x.subject.name, x.code] }.to_a
     current_user.completed_courses.each do |c|
       @courses.delete(c.course)
     end
     current_user.main_course_scenario.taking_courses.each do |c|
       @courses.delete(c)
     end
-    @courses = @courses.map{|x| [x.subject.name + " " + x.code.to_s + " - " + x.name, x.id]}
+    @courses = @courses.map { |x| [x.subject.name + " " + x.code.to_s + " - " + x.name, x.id] }
   end
-  
+
   #decide which type of course to take
   def add_course_two
     @course = params["course"];

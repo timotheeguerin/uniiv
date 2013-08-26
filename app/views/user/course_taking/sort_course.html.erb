@@ -71,15 +71,18 @@
   <div><h5>Rearrange your courses by clicking and dragging.</h5></div>
   <hr style="width:100%;">
   <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
-    <div><input type="text" placeholder="Search for a class."
+    <div>
+      <ul class='sortable no-drag draggable_box drag_box sortable_noindent' data-type='delete'>
+
+      </ul>
+    </div>
+    <div><input type="text" placeholder="<%= t('search.course') %>"
                 id='search_new_course'
                 class="form_input_longer form_biginput search-ajax"
                 data-search-output='#search-output-container'
-                data-search-url='<%= search_course_list_path %>?only_not_taking=true'/>
+                data-search-url='<%= search_course_list_path %>?only_not_taking=true&only_not_completed=true'/>
     </div>
-    <div style="margin-left:auto;margin-right:auto;width:30px;height:30px;line-height:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
-      bin
-    </div>
+
     <div>
       <ul id='search-output-container' class='sortable no-drop draggable_box drag_box sortable_noindent'>
 
