@@ -7,7 +7,6 @@ $(document).ready ()->
   $(document).on('searchAjaxComplete', '#search_new_course', () ->
     $('#search-output-container').sortable({
       group: 'course-sort'
-      drop: false
     })
   )
   $('#course_sorter').each ()->
