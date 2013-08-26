@@ -6,7 +6,24 @@
     padding-bottom: 0px;
     margin-bottom: 0px;
 }</style>
-<button id="graphreload" style="position:absolute;top:50px;right:0%;margin-right:300px;display:none;z-index:10">Reload</button>
+<!-- zoom buttons -->
+<div style="position:absolute;top:45px;right:0px;margin-right:290px;z-index:20;">
+  <div><button id="zoomin_graph"><img style="width:15px;position:relative;top:3px;" src="/assets/graph/plusicon.png"/></button></div>
+  <div><button id="zoomout_graph"><img style="width:15px;position:relative;top:3px;" src="/assets/graph/minusicon.png"/></button></div>
+</div>
+
+<!-- move buttons
+<div style="position:absolute;top:45px;right:0px;margin-right:330px;z-index:20;">
+  <div class="center"><button id="moveup_graph"><img style="width:15px;" src="/assets/graph/arrow.png"/></button></div>
+  <div>
+    <div style="display:inline-block;"><button id="moveleft_graph"><img style="width:15px;transform:rotate(-90deg);-ms-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);" src="/assets/graph/arrow.png"/></button></div>
+    <div style="display:inline-block;visibility:hidden;"><button id="movespacer_graph"><img style="width:15px;transform:rotate(90deg);-ms-transform:rotate(90deg);-webkit-transform:rotate(90deg);" src="/assets/graph/arrow.png"/></button></div>
+    <div style="display:inline-block;"><button id="moveright_graph"><img style="width:15px;transform:rotate(90deg);-ms-transform:rotate(90deg);-webkit-transform:rotate(90deg);" src="/assets/graph/arrow.png"/></button></div>
+  </div>
+  <div class="center"><button id="movedown_graph" style=""><img style="width:15px;transform:rotate(180deg);-ms-transform:rotate(180deg);-webkit-transform:rotate(180deg);" src="/assets/graph/arrow.png"/></button></div>
+</div>
+-->
+
 <div id="fold">
   <div style="display:inline-block;" id="graph_loader">
     <ul class="graph-loading">

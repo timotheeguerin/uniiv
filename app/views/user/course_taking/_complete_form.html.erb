@@ -21,7 +21,13 @@
       <%= f.label :grade %>
       <%= f.select :grade_id, options_from_collection_for_select(@grades, 'id', 'name') %>
     </div>
-    <div>
-      <%= f.submit %>
-    </div>
+    <% if normal %>
+      <div class="right">
+        <%= f.submit(t('course.mark_completed')) %>
+      </div>
+    <% else %>
+      <div class="center">
+        <%= f.submit(t('course.mark_completed')) %>
+      </div>
+    <% end %>
 <% end %>

@@ -81,10 +81,11 @@
       <% end %>
   <% end %>
 
-  <hr style="width:100%;">
+ 
 
   <% reviews = @course.reviews %>
   <% if reviews.size > 0 %>
+       <hr style="width:100%;">
       <div><h2>Reviews (<%= reviews.size %>)</h2></div>
       <% reviews.each do |r| %>
           <div>

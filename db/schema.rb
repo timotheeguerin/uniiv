@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20130824222030) do
   end
 
   create_table "course_courses_university_years", force: true do |t|
-    t.integer "course_course_id"
+    t.integer "course_id"
     t.integer "university_year_id"
   end
 
-  add_index "course_courses_university_years", ["course_course_id"], name: "index_course_courses_university_years_on_course_course_id", using: :btree
+  add_index "course_courses_university_years", ["course_id"], name: "index_course_courses_university_years_on_course_course_id", using: :btree
   add_index "course_courses_university_years", ["university_year_id"], name: "index_course_courses_university_years_on_university_year_id", using: :btree
 
   create_table "course_exprs", force: true do |t|
