@@ -52,7 +52,7 @@ $(document).ready () ->
     send_url = ''
     input.keyup () ->
       typingTimer = setTimeout(()->
-        query = input.val().toString()
+        q = input.val().toString()
         $.ajax({
           url: url,
           type: 'GET',
