@@ -59,12 +59,13 @@ class User::CourseTakingController < ApplicationController
   def handle_add_course
     @course = params["course"];
     if Course::Course.find_by_id(@course)
-    if params["take"]
-      redirect_to user_take_course_path(@course)
-    elsif params["complete"]
-      redirect_to user_complete_course_path(@course)
-    else
-      puts "shiiiiet controller add_course_two doesnt work"
+      if params["take"]
+        redirect_to user_take_course_path(@course)
+      elsif params["complete"]
+        redirect_to user_complete_course_path(@course)
+      else
+        puts "shiiiiet controller add_course_two doesnt work"
+      end
     end
   end
 
@@ -158,6 +159,4 @@ class User::CourseTakingController < ApplicationController
       render view
     end
   end
-end
-
 end
