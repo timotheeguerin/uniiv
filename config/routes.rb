@@ -64,6 +64,7 @@ Uniiv::Application.routes.draw do
   get 'course/:id/graph/embed' => 'course#graph_embed', :as => :course_graph_embed
   get 'course/:id/json' => 'course#json'
   get 'course/search/data' => 'course#search_json', :as => :search_course_json
+  get 'course/search/autocomplete' => 'course#search_json', :as => search_course_autocomplete
   get 'course/search/list' => 'course#search_list', :as => :search_course_list
 
   #Course review controller
