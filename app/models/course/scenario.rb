@@ -4,7 +4,7 @@ class Course::Scenario < ActiveRecord::Base
   has_many :courses, :through => :taking_courses
 
   def find_by_course(course)
-    taking_courses.where(:course => course).first
+    taking_courses.where(:course_id => course).first
   end
 
 
