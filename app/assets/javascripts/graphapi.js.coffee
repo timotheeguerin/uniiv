@@ -20,6 +20,8 @@ $(document).ready ->
     graph = new CanGraph({
       container: 'canvas-container'
       loading_container: 'graph_loader'
+      zoomin_button: '#zoomin_graph'
+      zoomout_button: '#zoomout_graph'
     })
 
     graph_data_url = canvas_container.attr('data-url')
@@ -133,6 +135,8 @@ class CanGraph
     defaults = {
       container: 'canvas'
       loading_container: 'canvas-loading'
+      zoomin_button: ''
+      zoomout_button: ''
     }
     @options = $.extend({}, defaults, options)
     html_container = $('#' + @options.container)
@@ -140,6 +144,8 @@ class CanGraph
       container: options.container,
       width: html_container.width()
       height: html_container.height()
+      zoomin_button: @options.zoomin_button
+      zoomout_button: @options.zoomout_button
     })
 
     @ressources = {}

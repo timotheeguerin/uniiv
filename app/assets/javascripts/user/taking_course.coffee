@@ -50,7 +50,6 @@ $(document).ready ()->
             year: year
           }).success((data) ->
             message_container.text(data.message)
-
             setTimeout(() ->
               message_container.text('')
             , 3000)
