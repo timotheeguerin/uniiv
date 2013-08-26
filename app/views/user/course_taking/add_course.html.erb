@@ -2,7 +2,7 @@
   <div><h1><%= t('course.add') %></h1></div>
   <div>
     <%= form_tag(:action => "add_course_two") do %>
-      <%= text_field_tag("course", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-input" => search_course_autocomplete_path}) %>
+      <%= text_field_tag("course", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => search_course_autocomplete_path}) %>
       
       <div class="right"><%= submit_tag(t('course.mark_taking'), :name=> "take") %><%= submit_tag(t('course.mark_completed'), :name => "complete") %></div>
     <% end %>
