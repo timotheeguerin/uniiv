@@ -73,8 +73,13 @@ $(document).ready () ->
   $('input.autocomplete').each () ->
     input = $(this)
     url = input.attr('data-url')
+    console.log(url)
     input.autocomplete({
       serviceUrl: url
+      paramName: 'q'
+      transformResult: (response) ->
+        console.log('re: ' + response)
+        return response
     })
 
 
