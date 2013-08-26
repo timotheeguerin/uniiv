@@ -4,6 +4,11 @@ $(document).ready ()->
 
     $(this).sticky({topSpacing: parseInt(top)})
 
+  $(document).on('searchAjaxComplete', '#search_new_course', () ->
+    $('#search-output-container').sortable({
+      group: 'course-sort'
+    })
+  )
   $('#course_sorter').each ()->
     course_sorter = $(this)
     message_container = $(this).children('#message_container')
@@ -45,7 +50,6 @@ $(document).ready ()->
             year: year
           }).success((data) ->
             message_container.text(data.message)
-
             setTimeout(() ->
               message_container.text('')
             , 3000)

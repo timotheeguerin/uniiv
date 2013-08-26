@@ -6,7 +6,9 @@ class window.ViewPort
     defaults = {
       container: 'canvas-container',
       width: 700,
-      height: 400
+      height: 400,
+      zoomin_button: ''
+      zoomout_button: ''
     }
 
     @options = $.extend({}, defaults, options)
@@ -26,7 +28,6 @@ class window.ViewPort
       dragBoundFunc: (pos) =>
         @verifyPosition(pos)
     })
-    #TODO change to canvas offset
     @offset = $("#" + options.container).offset()
 
     #Enable all the layer to be draggable
@@ -43,8 +44,10 @@ class window.ViewPort
     #Add the zoom event
     $(@stage.content).on('mousewheel', (event) =>
       @zoom(event));
-    #@stage.canvas.on
-
+    $(document).on 'click', zoomin_button, ()->
+      @zoom()
+    $(document).on 'click', zoomout_button, ()->
+      @zoom()
     @stage.add(@layer)
 
 
@@ -64,7 +67,10 @@ class window.ViewPort
     h = @canvasSize.y if @canvasSize.y > h
     @resizeLayer(w / min_scale, h / min_scale)
 
-  zoom_to: (scale, mx = 0, my = 0) ->
+  zoom_to: (scale, mx = undefined, my = undefined) ->
+    mx = @canvasSize.x / 2 unless mx?
+    my = @canvasSize.y / 2 unless my?
+
     minScale = @get_min_scale()
     oldScale = @layer.getScale().x
     newScale = scale
@@ -79,12 +85,16 @@ class window.ViewPort
     pos = @verifyPosition(new Point(ox, oy))
     @layer.setPosition(pos.x, pos.y)
 
-
     @layer.draw();
 
   zoom_to_min: () ->
     scale = @get_min_scale()
     @zoom_to(scale)
+
+  zoom_delta(zoomAmount) ->
+    oldScale = @layer.getScale().x
+    newScale = oldScale + zoomAmount
+    @zoom_to(newScale)
 
   zoom: (event) ->
     event.preventDefault()

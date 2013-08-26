@@ -44,6 +44,33 @@ $(document).ready () ->
   $(document).on 'ajaxloadhtml', () ->
     setupStarRatings()
 
+  $('.search-ajax').each () ->
+    input = $(this)
+    output = $($(this).attr('data-search-output'))
+    url = $(this).attr('data-search-url')
+    typingTimer = undefined
+    send_url = ''
+    input.keyup () ->
+      typingTimer = setTimeout(()->
+        query = input.val().toString()
+        $.ajax({
+          url: url,
+          type: 'GET',
+          data: {query: query.toUpperCase()}
+          beforeSend: (jqXHR, settings) ->
+            send_url = settings.url;
+        }).success (data) ->
+          output.html(data)
+          $(input).trigger('searchAjaxComplete', data)
+        .error (xhr) ->
+            console.log('ER: ' + xhr.readyState + ", \tstatus: " + xhr.status + ', \turl: ' + send_url)
+            console.log('ER: ' + xhr.responseText)
+      , 500)
+
+    input.keydown () ->
+      clearTimeout(typingTimer);
+
+
 setupStarRatings = () ->
   $('input.star-rating').each () ->
     input = $(this)
