@@ -44,10 +44,10 @@ class window.ViewPort
     #Add the zoom event
     $(@stage.content).on('mousewheel', (event) =>
       @zoom(event));
-    $(document).on 'click', zoomin_button, ()->
-      @zoom()
-    $(document).on 'click', zoomout_button, ()->
-      @zoom()
+    $(document).on 'click', @options.zoomin_button, ()->
+      @zoom_delta(0.1)
+    $(document).on 'click', @options.zoomout_button, ()->
+      @zoom_delta(0.1)
     @stage.add(@layer)
 
 
@@ -91,7 +91,7 @@ class window.ViewPort
     scale = @get_min_scale()
     @zoom_to(scale)
 
-  zoom_delta(zoomAmount) ->
+  zoom_delta: (zoomAmount) ->
     oldScale = @layer.getScale().x
     newScale = oldScale + zoomAmount
     @zoom_to(newScale)
