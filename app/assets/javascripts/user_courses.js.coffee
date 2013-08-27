@@ -4,14 +4,28 @@
 
 
 $(document).ready ->
-  $(document).on 'submit', 'form.useajax', () ->
-    form = $(this)
-    $.ajax({
-      url: $(this).attr('action'),
-      type: $(this).attr('method'),
-      dataType: 'json',
-      data: $(this).serialize(),
-    }).success((data) ->
-      $(form).trigger('formAjaxComplete', data)
-    )
-    return false
+  $(document).on 'submit', 'form.useajax', submitFormAjax
+
+  typingTimer = null
+  $(document).on 'change', 'form input.submitonedit', () ->
+    input = $(this)
+    if typingTimer?
+      clearTimeout(typingTimer)
+    else
+      typingTimer = setTimeout(()->
+        typingTimer = null
+        input.closest('form').submit()
+      , 1000)
+
+
+submitFormAjax = () ->
+  form = $(this)
+  $.ajax({
+    url: $(this).attr('action'),
+    type: $(this).attr('method'),
+    dataType: 'json',
+    data: $(this).serialize(),
+  }).success((data) ->
+    $(form).trigger('formAjaxComplete', data)
+  )
+  return false

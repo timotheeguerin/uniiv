@@ -1,9 +1,14 @@
 class User::AdvancedStandingController < ApplicationController
 
-
   def index
     @courses = current_user.completed_courses.where(:advanced_standing => true)
     @given_credit = current_user.advanced_standing_credits
+  end
+
+  def set_credit
+    params[:credit] ||= 0
+    current_user.advanced_standing_credits = params[:credit]
+    return_json('advancedstanding.setcredit')
   end
 
   def create
