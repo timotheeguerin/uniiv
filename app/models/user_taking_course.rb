@@ -11,6 +11,7 @@ class UserTakingCourse < ActiveRecord::Base
   validates :semester, :presence => true
   validates :year, :presence => true
 
+  after_save :reindex
 
   def user
     course_scenario.user
@@ -18,6 +19,10 @@ class UserTakingCourse < ActiveRecord::Base
 
   def to_s
     user.to_s + ' - ' + course.to_s + ' ' + semester.to_s
+  end
+
+  def reindex
+    course.index
   end
 
   searchable do

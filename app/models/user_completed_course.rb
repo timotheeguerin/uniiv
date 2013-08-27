@@ -10,8 +10,14 @@ class UserCompletedCourse < ActiveRecord::Base
 
   after_validation :remove_course_taking, on: [:create, :update]
 
+  after_save :reindex
+
   def to_s
     user.to_s + ' - ' + course.to_s
+  end
+
+  def reindex
+    course.index
   end
 
   #Remove this course if the user is taking it in any scenarios
