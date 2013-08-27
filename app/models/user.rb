@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :course_scenarios, :class_name => Course::Scenario
   has_one :main_course_scenario, -> { where :main => true }, :class_name => Course::Scenario
 
+  validates :advanced_standing_credits, :presence => true
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -50,9 +52,12 @@ class User < ActiveRecord::Base
     #TODO
   end
 
-  def has_completed_course?(course)
+  def has_completed_course?(course, inc_advanced_standing = true)
     completed_courses.each do |c|
       if c.course == course
+        if inc_advanced_standing && c.advanced_standing
+          return false
+        end
         return true
       end
     end
@@ -76,9 +81,9 @@ class User < ActiveRecord::Base
   def count_completed_credit
     count = 0
     completed_courses.each do |c|
-      count += c.course.credit
+      count += c.course.credit unless c.advanced_standing
     end
-    count
+    count += advanced_standing_credits
   end
 
   def count_taking_credit

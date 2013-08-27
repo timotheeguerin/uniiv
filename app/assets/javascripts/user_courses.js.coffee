@@ -26,6 +26,8 @@ submitFormAjax = () ->
     dataType: 'json',
     data: $(this).serialize(),
   }).success((data) ->
+    if data.message
+      ajaxPopupPush(data.message)
     $(form).trigger('formAjaxComplete', data)
   )
   return false
