@@ -67,17 +67,22 @@
 </style>
 
 <div class="content_box pagewidth">
-  <div><h1>Course Manager</h1></div>
-  <div><h5>Rearrange your courses by clicking and dragging.</h5></div>
+  <div><h1>Advanced Standing</h1><button disabled>disabled</button><input type="submit" disabled value="button"/></div>
+  <div><h5>Advanced Standing is the extra credit you get from a university from your high school education.<br>
+                      Rearrange your courses by clicking and dragging.
+  </h5></div>
   <hr style="width:100%;">
   <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
     <div>
-      <ul class='sortable no-drag draggable_box drag_box sortable_noindent'
+      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
           data-type='delete'
           data-group='course'
-          data-update-url='<%= user_advanced_standings_remove_path %>'>
-
+          data-update-url='<%= user_advanced_standings_remove_path %>'
+          style="line-height:30px;padding:2px;text-align:center;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
+        <h4>Drag a course here to remove</h4>
+        <img src="/assets/bin.png" style="width:30px;" alt="bin" />
       </ul>
+      
     </div>
     <div><input type="text" placeholder="<%= t('search.course') %>"
                 id='search_new_course'
@@ -96,6 +101,12 @@
     </div>
   </div>
   <div class="left_box_sortcourse">
+    <div>
+      <%= form_tag(user_advanced_standings_setcredit_path, :class => "useajax") do %>
+      <div><h4>Total Credits:</h4></div><div><%= text_field_tag("advancedstanding", current_user.advanced_standing_credits, :class => "form_biginput form_input_longer submitonedit") %></div>
+      <% end %>
+    </div>
+  
     <div id='course_sorter'>
       <div id='message_container'></div>
 

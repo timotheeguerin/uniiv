@@ -111,9 +111,14 @@
 
   <div>
     <h1>Your Courses
-      <div style='float:right;'><%= link_to user_add_course_path do %>
+      <div style='float:right;'>
+      <%= link_to user_advanced_standings_path do %>
+          <button>Advanced Standing</button>
+        <% end %>
+        <%= link_to user_add_course_path do %>
             <button>Add a Course</button>
-        <% end %></div>
+        <% end %>
+      </div>
     </h1>
   </div>
 
@@ -157,8 +162,7 @@
                 <h4 title="<%= c.course.name %>" class="underline_link">
                   <%= c.course.subject.name + ' ' + c.course.code.to_s %>
                 </h4>
-                <h5> -
-                  <% unless c.semester.nil? %> (<%= c.semester.to_s.capitalize %> <%= c.year %>)
+                  <% unless c.semester.nil? %> <h5> -(<%= c.semester.to_s.capitalize %> <%= c.year %>)
                   <% end %> - <%= c.course.name %></h5>
             <% end %>
             <button style='visibility:hidden;'>I</button>
