@@ -18,7 +18,8 @@ class Course::Scenario < ActiveRecord::Base
   end
 
   def get_course_before_than(s, y)
-    taking_courses.joins(:semester).where { (semester.order < s.order & (year == y)) | (year < y) }
+    order = s.order
+    taking_courses.joins(:semester).where { ((semester.order < order) & (year == y)) | (year < y) }
   end
 
   #Check if the scenario is taking the course

@@ -20,6 +20,7 @@ class Course::Course < ActiveRecord::Base
   validates :credit, :presence => true
   validates :hours, :presence => true
 
+
   def to_s
     get_short_name
   end
@@ -88,7 +89,7 @@ class Course::Course < ActiveRecord::Base
     text :description
     text :code
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
-    integer :user_ids, :references => User, :multiple => true
+    #integer :user_ids, :references => User, :multiple => true
   end
 end
 
