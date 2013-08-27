@@ -7,7 +7,7 @@ class AdvancedStandingControllerTest < ActionController::TestCase
   end
 
   test "should get new_course" do
-    get :new_course
+    get :add_course
     assert_response :success
   end
 

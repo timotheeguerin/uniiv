@@ -4,8 +4,20 @@ class UserCompletedCourse < ActiveRecord::Base
   belongs_to :grade, :class_name => Course::GradingSystemEntity
   belongs_to :semester, :class_name => Course::Semester
 
+  validates :course_id, :presence => true
+  validates :user_id, :presence => true
+  validates_uniqueness_of :course_id, :scope => :user_id
+
+  after_validation :remove_course_taking, on: [:create, :update]
+
   def to_s
     user.to_s + ' - ' + course.to_s
+  end
+
+  #Remove this course if the user is taking it in any scenarios
+  def remove_course_taking
+    c_id = course_id
+    UserTakingCourse.joins(:course_scenario).where { course_scenario.user.id == user_id && course_id==c_id }.readonly(false).destroy_all
   end
 
 end

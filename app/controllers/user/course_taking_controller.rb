@@ -143,20 +143,4 @@ class User::CourseTakingController < ApplicationController
 
   end
 
-  def return_json(message, url = nil)
-    json = {}
-    json[:success] = true
-    json[:message] = t(message)
-    json[:url] = url unless url.nil?
-    render :json => json.to_json
-  end
-
-  def _render(view)
-    if params[:graph_embed]
-      view += '_graph_embed'
-      render view, :layout => false
-    else
-      render view
-    end
-  end
 end

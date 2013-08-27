@@ -98,37 +98,21 @@
   <div class="left_box_sortcourse">
     <div id='course_sorter'>
       <div id='message_container'></div>
-      <% unless @previous_courses.size == 0 %>
-          <div><h4> <%= t('course.before_current_term') %></h4></div>
-          <div>
-            <ul class='sortable no-drop undraggable_box drag_box sortable_noindent' data-group='course' data-update-url='<%= update_course_taking_path %>'>
-              <% @previous_courses.each do |course| %>
-                  <li>
-                    <div data-course-id='<%= course.course.id %>'>
-                      <h5><%= course.course.to_s %>
-                      </h5>
-                    </div>
-                  </li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
 
-      <% @terms.each do |term, courses| %>
-          <div><h4><%= term.semester.to_s.capitalize %>  <%= term.year %></h4></div>
-          <div>
-            <ul class='sortable connected draggable_box drag_box sortable_noindent'
-                data-group='course'
-                data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
-                data-update-url='<%= update_course_taking_path %>'>
-              <% courses.each do |course| %>
-                  <li>
-                    <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s %></h5></div>
-                  </li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
+      <div><h4><%= t('advancedstanding.courses') %></h4></div>
+      <div>
+        <ul class='sortable connected draggable_box drag_box sortable_noindent'
+            data-group='course'
+            data-params=''
+            data-update-url='<%= user_advanced_standings_create_path %>'>
+          <% @courses.each do |course| %>
+              <li>
+                <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s %></h5></div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>

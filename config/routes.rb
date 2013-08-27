@@ -1,7 +1,4 @@
 Uniiv::Application.routes.draw do
-
-  get "advanced_standing/index"
-  get "advanced_standing/new_course"
   get "scenario/new"
   get "course_taking/new"
   get "course_taking/new_graph_embed"
@@ -103,6 +100,11 @@ Uniiv::Application.routes.draw do
   post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
   post 'course/:id/complete/graph/embed' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
   post 'user/course/take/update' => 'user/course_taking#update_course_taking', :as => :update_course_taking
+
+  #User advanced standing controller
+  get 'user/advanced-standings' => 'user/advanced_standing#index', :as => :user_advanced_standings
+  post 'user/advanced-standings/create' => 'user/advanced_standing#create', :as => :user_advanced_standings_create
+  post 'user/advanced-standings/remove' => 'user/advanced_standing#remove', :as => :user_advanced_standings_remove
 
   #Scenario controller
   get 'scenario/new' => 'user/scenario#new', :as => :user_new_scenario
