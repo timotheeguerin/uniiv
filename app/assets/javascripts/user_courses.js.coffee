@@ -7,18 +7,18 @@ $(document).ready ->
   $(document).on 'submit', 'form.useajax', submitFormAjax
 
   typingTimer = null
-  $(document).on 'change', 'form input.submitonedit', () ->
+  $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
-    if typingTimer?
+    if typingTimer != null
       clearTimeout(typingTimer)
-    else
-      typingTimer = setTimeout(()->
-        typingTimer = null
-        input.closest('form').submit()
-      , 1000)
+    typingTimer = setTimeout(()->
+      typingTimer = null
+      input.closest('form').submit()
+    , 500)
 
 
 submitFormAjax = () ->
+  console.log('submitinh')
   form = $(this)
   $.ajax({
     url: $(this).attr('action'),

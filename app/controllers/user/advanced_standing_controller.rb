@@ -7,7 +7,8 @@ class User::AdvancedStandingController < ApplicationController
 
   def set_credit
     params[:credit] ||= 0
-    current_user.advanced_standing_credits = params[:credit]
+    current_user.advanced_standing_credits = params[:advanced_standing_credit]
+    current_user.save
     return_json('advancedstanding.setcredit')
   end
 
