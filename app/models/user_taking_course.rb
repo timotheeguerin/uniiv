@@ -11,14 +11,9 @@ class UserTakingCourse < ActiveRecord::Base
 
   validate :couse_not_completed
 
-  def couse_not_completed
-    uid = user.id
-    c_id = course_id
-    UserCompletedCourse.where { (user_id = uid) & (course_id == c_id) }
-    errors.add(:course_completed, t('course.already.completed'))
-  end
 
   after_save :reindex
+  after_destroy :reindex
 
   def user
     course_scenario.user unless course_scenario.nil?
@@ -34,6 +29,16 @@ class UserTakingCourse < ActiveRecord::Base
 
   searchable do
 
+  end
+
+  private
+  def couse_not_completed
+    uid = user.id
+    c_id = course_id
+    completed_course = UserCompletedCourse.where { (user_id == uid) & (course_id == c_id) }.first
+    unless completed_course.nil?
+      errors.add(:course, 'completed')
+    end
   end
 
 end
