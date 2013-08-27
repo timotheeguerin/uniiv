@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :course_scenarios, :class_name => Course::Scenario
   has_one :main_course_scenario, -> { where :main => true }, :class_name => Course::Scenario
 
+  validates :advanced_standing_credits, :presence => true
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
