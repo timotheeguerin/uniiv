@@ -22,6 +22,7 @@
         position: relative;
         border: 1px dashed #dfdfdf;
         background: transparent;
+        padding:0px;
     }
 
     ul.sortable li.placeholder:before {
@@ -58,7 +59,9 @@
         margin-left: 10px;
         border: 1px solid #dfdfdf;
         float: right;
-        padding: 5px;
+        padding: 10px;
+        padding-top:0px;
+        padding-bottom:0px;
         box-sizing: border-box;
         border-radius: 5px;
         background-color: #fafafa;
@@ -72,11 +75,14 @@
   <hr style="width:100%;">
   <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
     <div>
-      <ul class='sortable no-drag draggable_box drag_box sortable_noindent'
+      <!--<ul class='sortable no-drag draggable_box drag_box sortable_noindent' data-type='delete' style="padding:5px;margin-left:auto;margin-right:auto;width:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">-->
+      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin' 
           data-type='delete'
           data-group='course'
-          data-update-url='<%= update_course_taking_path %>'>
-
+          data-update-url='<%= update_course_taking_path %>'
+          style="line-height:30px;padding:2px;text-align:center;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
+        <h4>Drag a course here to remove</h4>
+        <img src="/assets/bin.png" style="width:30px;" alt="bin" />
       </ul>
     </div>
     <div><input type="text" placeholder="<%= t('search.course') %>"
@@ -87,11 +93,7 @@
     </div>
 
     <div>
-      <ul id='search-output-container'
-          class='sortable no-drop draggable_box drag_box sortable_noindent'
-          data-group='course'
-      >
-
+      <ul id='search-output-container' class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
       </ul>
     </div>
   </div>
