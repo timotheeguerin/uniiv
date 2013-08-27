@@ -198,6 +198,19 @@ $login_width: 500px;
  * classes
 */
 
+.popup_ajax
+{
+    position: fixed;
+    padding: 10px;
+    top:50px;
+    right: 10px;
+    border: 1px solid $palette_green_darker;
+    border-radius: 5px;
+    max-width: 300px;
+    max-height: 300px;
+    background-color:  $palette_green_lighter;
+}
+
 .underline_link {
   border-bottom: 1px currentColor dotted;
 }

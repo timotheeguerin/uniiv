@@ -103,7 +103,7 @@
   <div class="left_box_sortcourse">
     <div>
       <%= form_tag(user_advanced_standings_setcredit_path, :class => "useajax") do %>
-      <div><h4>Total Credits:</h4></div><div><%= text_field_tag("advancedstanding", current_user.advanced_standing_credits, :class => "form_biginput form_input_longer submitonedit") %></div>
+      <div><h4>Total Credits:</h4></div><div><%= text_field_tag("advanced_standing_credit", current_user.advanced_standing_credits, :class => "form_biginput form_input_longer submitonedit") %></div>
       <% end %>
     </div>
   
