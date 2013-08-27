@@ -9,7 +9,6 @@ $(document).ready ()->
       group: 'course-sort'
     })
   )
-  message_container = $(this).children('#message_container')
 
   $('.sortable').each ()->
     adjustment = {}
@@ -54,10 +53,7 @@ $(document).ready ()->
         if remove
           $item.remove()
         $.post(update_url, parameters).success((data) ->
-          message_container.text(data.message)
-          setTimeout(() ->
-            message_container.text('')
-          , 3000)
+          ajaxPopupPush(data.message)
         ).error (error) ->
           console.log(error)
     })
