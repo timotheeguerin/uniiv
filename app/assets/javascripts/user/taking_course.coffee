@@ -63,6 +63,7 @@ $(document).ready ()->
     })
 
 getURLParameters = (params) ->
+  return {} unless params?
   result = {}
   sURLVariables = params.split('&')
   for variable in sURLVariables
