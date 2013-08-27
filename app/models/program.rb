@@ -10,6 +10,10 @@ class Program < ActiveRecord::Base
     name.to_s+ " (#{type.to_s.capitalize})"
   end
 
+  def to_long_s
+    "#{type.to_s.capitalize}, #{name} (#{faculty.name})"
+  end
+
   def get_completion_ratio(user)
     ratio = 0
     count = 0
@@ -22,5 +26,22 @@ class Program < ActiveRecord::Base
 
   def id_to_s
     'p_' + id.to_s
+  end
+
+  searchable do
+    integer :university_id do
+      faculty.university_id
+    end
+    text :university do
+      faculty.university.name
+    end
+    integer :faculty_id
+    text :faculty do
+      faculty.name
+    end
+    text :name
+    text :type do
+      type.name
+    end
   end
 end

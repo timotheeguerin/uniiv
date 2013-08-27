@@ -49,6 +49,15 @@ Uniiv::Application.routes.draw do
 
   get 'test' => 'test#index'
 
+  #University controller
+  get 'university/search/autocomplete' => 'university#search_autocomplete', :as => :university_search_autocomplete
+
+  #Faculty controller
+  get 'faculty/search/autocomplete' => 'faculty#search_autocomplete', :as => :faculty_search_autocomplete
+
+  #Program controller
+  get 'program/search/autocomplete' => 'program#search_autocomplete', :as => :program_search_autocomplete
+
 
   #Graph controller
   get 'mygraph' => 'graph#show', as: 'user_graph'

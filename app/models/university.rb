@@ -4,7 +4,12 @@ class University < ActiveRecord::Base
 
   has_many :faculties, :class_name => Faculty
 
+
   def to_s
-    name
+    name.to_s
+  end
+
+  searchable do
+    text :name
   end
 end

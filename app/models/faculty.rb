@@ -6,4 +6,12 @@ class Faculty < ActiveRecord::Base
   def to_s
     name
   end
+
+  searchable do
+    integer :university_id
+    text :university do
+      university.name
+    end
+    text :name
+  end
 end
