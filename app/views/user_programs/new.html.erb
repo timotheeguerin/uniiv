@@ -1,7 +1,7 @@
 <div class="content_box pagewidth_twothirds">
   <h2>Add a program</h2>
   <%= form_tag(user_programs_create_path) do %>
-    <%= select_tag 'prog', options_for_select(@options.map{  |x| [x.to_s, x.id]}  )  , { :class => "form_input_long middle form_biginput" } %>
+    <%= select_tag 'prog', options_for_select(@options.map{  |x| [x.to_s + " (" + x.faculty.to_s + ")", x.id]}  )  , { :class => "form_input_long middle form_biginput" } %>
     <div class="right">
       <%= submit_tag("Add") %>
     </div>
