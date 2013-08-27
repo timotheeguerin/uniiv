@@ -23,7 +23,7 @@ class UserTakingCourse < ActiveRecord::Base
   after_save :reindex
 
   def user
-    course_scenario.user
+    course_scenario.user unless course_scenario.nil?
   end
 
   def to_s
