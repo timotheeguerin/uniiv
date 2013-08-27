@@ -1,7 +1,7 @@
 Uniiv::Application.routes.draw do
-  get "scenario/new"
-  get "course_taking/new"
-  get "course_taking/new_graph_embed"
+  get 'scenario/new'
+  get 'course_taking/new'
+  get 'course_taking/new_graph_embed'
   get 'static_page/uniiv'
   get 'static_page/story'
   get 'static_page/team'
@@ -86,31 +86,33 @@ Uniiv::Application.routes.draw do
   get 'group/:id/graph/embed' => 'program_group#graph_embed'
 
   #User course controller
-  get 'user/course/add' => 'user/course_taking#add_course', :as => :user_add_course
-  post 'user/course/add' => 'user/course_taking#handle_add_course', :as => :handle_user_add_course
-  get 'user/course/sort' => 'user/course_taking#sort_course', :as => :user_sort_course
-  get 'course/:id/take' => 'user/course_taking#new', :as => :user_take_course
-  post 'course/:id/take' => 'user/course_taking#create', :as => 'user_take_course_create'
-  get 'course/:id/take/graph/embed' => 'user/course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
-  post 'course/:id/take/graph/embed' => 'user/course_taking#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
-  post 'course/:id/untake' => 'user/course_taking#remove', :as => :user_remove_course
-  post 'course/:id/untake/graph/embed' => 'user/course_taking#remove', :as => 'user_remove_course_ge', :defaults => {:graph_embed => true}
-  get 'course/:id/complete' => 'user/course_taking#complete', :as => 'user_complete_course'
-  get 'course/:id/complete/graph/embed' => 'user/course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
-  post 'course/:id/complete' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course'
-  post 'course/:id/complete/graph/embed' => 'user/course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
-  post 'user/course/take/update' => 'user/course_taking#update_course_taking', :as => :update_course_taking
+  scope :module => 'user' do
+    get 'user/course/add' => 'course_taking#add_course', :as => :user_add_course
+    post 'user/course/add' => 'course_taking#handle_add_course', :as => :handle_user_add_course
+    get 'user/course/sort' => 'course_taking#sort_course', :as => :user_sort_course
+    get 'course/:id/take' => 'course_taking#new', :as => :user_take_course
+    post 'course/:id/take' => 'course_taking#create', :as => 'user_take_course_create'
+    get 'course/:id/take/graph/embed' => 'course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
+    post 'course/:id/take/graph/embed' => 'course_taking#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
+    post 'course/:id/untake' => 'course_taking#remove', :as => :user_remove_course
+    post 'course/:id/untake/graph/embed' => 'course_taking#remove', :as => 'user_remove_course_ge', :defaults => {:graph_embed => true}
+    get 'course/:id/complete' => 'course_taking#complete', :as => 'user_complete_course'
+    get 'course/:id/complete/graph/embed' => 'course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
+    post 'course/:id/complete' => 'course_taking#create_complete', :as => 'user_mark_complete_course'
+    post 'course/:id/complete/graph/embed' => 'course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+    post 'user/course/take/update' => 'course_taking#update_course_taking', :as => :update_course_taking
 
-  #User advanced standing controller
-  get 'user/advanced-standings' => 'user/advanced_standing#index', :as => :user_advanced_standings
-  post 'user/advanced-standings/create' => 'user/advanced_standing#create', :as => :user_advanced_standings_create
-  post 'user/advanced-standings/remove' => 'user/advanced_standing#remove', :as => :user_advanced_standings_remove
+    #User advanced standing controller
+    get 'user/advanced-standings' => 'advanced_standing#index', :as => :user_advanced_standings
+    post 'user/advanced-standings/create' => 'advanced_standing#create', :as => :user_advanced_standings_create
+    post 'user/advanced-standings/remove' => 'advanced_standing#remove', :as => :user_advanced_standings_remove
+    post 'user/advanced-standings/setcredit' => 'advanced_standing#set_credit', :as => :user_advanced_standings_setcredit
 
-  #Scenario controller
-  get 'scenario/new' => 'user/scenario#new', :as => :user_new_scenario
-  post 'scenario/remove' => 'user/scenario#remove', :as => :user_remove_scenario
-  post 'scenario/setmain' => 'user/scenario#set_main', :as => :user_setmain_scenario
-
+    #Scenario controller
+    get 'scenario/new' => 'scenario#new', :as => :user_new_scenario
+    post 'scenario/remove' => 'scenario#remove', :as => :user_remove_scenario
+    post 'scenario/setmain' => 'scenario#set_main', :as => :user_setmain_scenario
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
