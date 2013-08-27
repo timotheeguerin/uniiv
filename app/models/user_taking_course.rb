@@ -3,8 +3,6 @@ class UserTakingCourse < ActiveRecord::Base
   belongs_to :course, :class_name => Course::Course
   belongs_to :semester, :class_name => Course::Semester
 
-  accepts_nested_attributes_for :semester
-
   validates_uniqueness_of :course_id, :scope => [:course_scenario]
   validates :course_id, :presence => true
   validates :course_scenario_id, :presence => true
@@ -23,7 +21,7 @@ class UserTakingCourse < ActiveRecord::Base
   after_save :reindex
 
   def user
-    course_scenario.user
+    course_scenario.user unless course_scenario.nil?
   end
 
   def to_s
