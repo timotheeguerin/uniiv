@@ -20,4 +20,8 @@ class UserTakingCourse < ActiveRecord::Base
     user.to_s + ' - ' + course.to_s + ' ' + semester.to_s
   end
 
+  searchable do
+
+  end
+
 end
