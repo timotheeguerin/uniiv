@@ -11,6 +11,15 @@ class UserTakingCourse < ActiveRecord::Base
   validates :semester, :presence => true
   validates :year, :presence => true
 
+  validate :couse_not_completed
+
+  def couse_not_completed
+    uid = user.id
+    c_id = course_id
+    UserCompletedCourse.where { (user_id = uid) & (course_id == c_id) }
+    errors.add(:course_completed, t('course.already.completed'))
+  end
+
   after_save :reindex
 
   def user
