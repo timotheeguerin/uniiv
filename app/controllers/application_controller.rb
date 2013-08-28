@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   def current_term
     if @current_semester.nil?
-      Term::now
+      @current_semester = Term::now
     end
     @current_semester
   end
