@@ -100,8 +100,9 @@ class User < ActiveRecord::Base
     count_completed_credit + count_taking_credit
   end
 
-  def requirements_completed?(course)
-    course.requirements_completed?(self)
+  def requirements_completed?(course, scenario = nil)
+    scenario ||= main_course_scenario
+    scenario.requirements_completed?(course)
   end
 
   def requirements_completed_after_taking?(course)

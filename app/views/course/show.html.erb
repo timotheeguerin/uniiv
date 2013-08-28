@@ -4,7 +4,7 @@
   </div>
 
   <% if current_user.is_taking_course?(@course) %>
-      <% c = current_scenario.find_by_course(@course) %>
+      <% c = current_scenario.get_by_course(@course) %>
       <% unless c.semester.nil? or c.year.nil? %>
           <div><h4><%= t('course.inprogress.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></h4></div>
       <% end %>
@@ -81,11 +81,11 @@
       <% end %>
   <% end %>
 
- 
+
 
   <% reviews = @course.reviews %>
   <% if reviews.size > 0 %>
-       <hr style="width:100%;">
+      <hr style="width:100%;">
       <div><h2>Reviews (<%= reviews.size %>)</h2></div>
       <% reviews.each do |r| %>
           <div>

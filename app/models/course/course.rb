@@ -41,11 +41,11 @@ class Course::Course < ActiveRecord::Base
     subject.to_s + '\n' + code.to_s
   end
 
-  def requirements_completed?(user, after_taking = false)
-    unless prerequisite.nil? or prerequisite.requirements_completed?(user, after_taking)
+  def requirements_completed?(scenario, term = nil)
+    unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
     end
-    unless  corequisite.nil? or corequisite.requirements_completed?(user, after_taking)
+    unless  corequisite.nil? or corequisite.requirements_completed?(scenario, term)
       return false
     end
     true
@@ -54,12 +54,13 @@ class Course::Course < ActiveRecord::Base
 
   alias :can_take? :requirements_completed?
 
-  def get_course_state(user)
-    if user.has_completed_course?(self)
+  def get_course_state(scenario)
+    user = scenario.user
+    if scenario.has_completed_course?(self)
       CourseState::COMPLETED
-    elsif user.is_taking_course?(self)
+    elsif scenario.is_taking_course?(self)
       CourseState::TAKING
-    elsif user.can_take_course?(self)
+    elsif scenario.can_take_course?(self)
       CourseState::AVAILABLE
     else
       CourseState::UNAVAILABLE

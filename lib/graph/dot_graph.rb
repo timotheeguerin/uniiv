@@ -1,10 +1,11 @@
 class DotGraph
   attr_accessor :graph, :nodes
 
-  def initialize(graph, current_user)
+  def initialize(graph, current_scenario)
     @nodes = {}
     @graph = graph
-    @current_user = current_user
+    @current_user = current_scenario.user
+    @current_scenario = current_scenario
   end
 
   def load_from_group(group, graph = @graph, include_label = true)
@@ -78,7 +79,7 @@ class DotGraph
     course_id = course.id_to_s
 
     unless @nodes.has_key?(course_id)
-      state = course.get_course_state(@current_user)
+      state = course.get_course_state(@current_scenario)
       course_node = graph.add_node(course_id)
       course_node[:label] = course.get_dot_name
       course_node[:shape] = 'circle'

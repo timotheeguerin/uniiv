@@ -16,4 +16,18 @@ class Term
         Term.new(Course::Semester.find_by_name('winter'), @year + 1)
     end
   end
+
+  def self.now
+    time = Time.now
+    current_term = Term.new
+    if time.month <= 4
+      current_term.semester = Course::Semester.find_by_name('winter')
+    elsif time.month <= 8
+      current_term.semester = Course::Semester.find_by_name('summer')
+    else
+      current_term.semester = Course::Semester.find_by_name('fall')
+    end
+    current_term.year = time.year
+    current_term
+  end
 end

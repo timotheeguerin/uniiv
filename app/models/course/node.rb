@@ -150,27 +150,28 @@ class Course::Node < ActiveRecord::Base
   end
 
 
-  def requirements_completed?(user, after_taking = false)
+  def requirements_completed?(scenario, term = nil)
+    user = scenario.user
     case operation
       when NodeOperation::OR
         nodes.each do |n|
-          if n.requirements_completed?(user)
+          if n.requirements_completed?(scenario)
             return true
           end
         end
         return false
       when NodeOperation::AND
         nodes.each do |n|
-          unless n.requirements_completed?(user)
+          unless n.requirements_completed?(scenario)
             return false
           end
         end
         return true
       else
-        if after_taking
-          return user.has_completed_or_taking_course(course)
-        else
+        if term.nil?
           return user.has_completed_course?(course)
+        else #Check if the requirements will be complted at the given term
+          return (user.has_completed_course?(course) or scenario.will_course_be_completed(course, term))
         end
     end
   end

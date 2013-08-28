@@ -1,7 +1,7 @@
 module CourseHelper
 
   def get_course_css_class(course)
-    state = course.get_course_state(current_user)
+    state = course.get_course_state(current_scenario)
     case state
       when 'completed'
         'course_completed'

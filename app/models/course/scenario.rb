@@ -5,7 +5,36 @@ class Course::Scenario < ActiveRecord::Base
 
   has_and_belongs_to_many :programs
 
-  def find_by_course(course)
+
+  def has_completed_course?(course, inc_advanced_standing = true)
+    user.has_completed_course?(course, inc_advanced_standing)
+  end
+
+  def is_taking_course?(course, term = nil?)
+    term ||= Term::now
+    taking_courses.each do |c|
+      if c.course == course and c.year == term.year and c.semester == term.semester
+        return true
+      end
+    end
+    false
+  end
+
+  def requirements_completed?(course)
+    course.requirements_completed?(self)
+  end
+
+  #Check if a course is going to be completed in the given term
+  def will_course_be_completed(course, term)
+    taking_course = taking_courses.where(:course_id => course).first
+    if taking_course.nil?
+      true
+    else
+      taking_course.year < term.year or (taking_course.year <= term.year and taking_course.semester.order < term.order)
+    end
+  end
+
+  def get_by_course(course)
     taking_courses.where(:course_id => course).first
   end
 
@@ -28,4 +57,6 @@ class Course::Scenario < ActiveRecord::Base
   def is_taking?(course)
     courses.include?(course)
   end
+
+  alias :can_take_course? :requirements_completed?
 end
