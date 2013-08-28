@@ -14,5 +14,10 @@ ajaxPopupPush = (text) ->
     popup.remove()
   , 3000)
 
-
+$(document).on 'click', '.popup_ajax', () ->
+  popup = $(this)
+  if timer != null
+    clearTimeout(timer)
+  popup.fadeOut()
+  popup.remove()
 window.ajaxPopupPush = ajaxPopupPush
