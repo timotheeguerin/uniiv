@@ -1,7 +1,8 @@
 <div class="content_box pagewidth_twothirds">
   <h2>Add a program</h2>
   <%= form_tag(user_programs_create_path) do %>
-    
+
+    <div><h5>Search for a program by name type or faculty.</h5></div>
     <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => program_search_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#prog"}) %>
     <%= hidden_field_tag("prog", nil, "id" => "prog") %>
     
