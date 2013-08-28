@@ -1,7 +1,10 @@
 <div class="content_box pagewidth_twothirds">
   <h2>Add a program</h2>
   <%= form_tag(user_programs_create_path) do %>
-    <%= select_tag 'prog', options_for_select(@options.map{  |x| [x.type.name.capitalize + " in " + x.name + " (" + x.faculty.short_name + ")", x.id]}  )  , { :class => "form_input_long middle form_biginput" } %>
+    
+    <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => program_search_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#prog"}) %>
+    <%= hidden_field_tag("prog", nil, "id" => "prog") %>
+    
     <div class="right">
       <%= submit_tag("Add") %>
     </div>

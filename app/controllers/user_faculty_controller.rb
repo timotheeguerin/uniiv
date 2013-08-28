@@ -31,7 +31,7 @@ class UserFacultyController < ApplicationController
     current_user.programs.destroy_all
     current_user.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
     current_user.save
-    redirect_to user_dashboard_index_path
+    redirect_to user_education_path
   end
 
   def delete

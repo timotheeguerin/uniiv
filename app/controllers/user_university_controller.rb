@@ -23,7 +23,7 @@ class UserUniversityController < ApplicationController
     end
     current_user.university = university
     current_user.save
-    redirect_to user_dashboard_index_path
+    redirect_to user_education_path
   end
 
   def delete

@@ -33,6 +33,6 @@ class ProgramController < ApplicationController
       with :university_id, university_id unless university_id.nil?
       with :faculty_id, faculty_id unless faculty_id.nil?
     end
-    search.result
+    search.results
   end
 end

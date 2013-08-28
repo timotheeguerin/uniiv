@@ -11,7 +11,7 @@ class Program < ActiveRecord::Base
   end
 
   def to_long_s
-    "#{type.to_s.capitalize}, #{name} (#{faculty.name})"
+    type.name.capitalize + " in " + name + " (" + faculty.short_name + ")"
   end
 
   def get_completion_ratio(user)

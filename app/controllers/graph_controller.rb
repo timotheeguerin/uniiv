@@ -13,9 +13,9 @@ class GraphController < ApplicationController
 
     #current_user ||= User.new
     if current_user.university.nil?
-      redirect_to user_dashboard_index_path, :alert => t("university.notselected")
+      redirect_to user_education_path, :alert => t("university.notselected")
     elsif current_user.programs.size == 0
-      redirect_to user_dashboard_index_path, :alert => t("programs.zero.selected")
+      redirect_to user_education_path, :alert => t("programs.zero.selected")
     end
   end
 
