@@ -163,16 +163,18 @@
                   <%= c.course.subject.name + ' ' + c.course.code.to_s %>
                 </h4>
                   <% unless c.semester.nil? %> <h5> -(<%= c.semester.to_s.capitalize %> <%= c.year %>)
-                  <% end %> - <%= c.course.name %></h5>
+                  <% end %> - <%= c.course.name %> <% if c.advanced_standing %> - Advanced Standing<% end %></h5>
             <% end %>
             <button style='visibility:hidden;'>I</button>
             <div style='float:right;'>
-              <%= form_tag(user_remove_course_path(c.course)) do %>
-                  <%= submit_tag(t('label.remove')) %>
+              <% unless c.advanced_standing %>
+                <%= form_tag(user_remove_course_path(c.course)) do %>
+                    <%= submit_tag(t('label.remove')) %>
+                <% end %>
               <% end %>
             </div>
             <div style='float:right;'>
-              <% unless current_user.reviewed_course?(c.course) %>
+              <% unless current_user.reviewed_course?(c.course) or c.advanced_standing %>
                   <%= link_to course_review_new_path(c.course.id) do %>
                       <button><%= t('course.addreview') %></button>
                   <% end %>
