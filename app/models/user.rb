@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   def total_completed_ratio
     ratio = 0
-    self.programs.each do |p|
+    self.main_course_scenario.programs.each do |p|
       ratio += p.get_completion_ratio(self)
     end
     ratio
