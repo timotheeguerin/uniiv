@@ -28,11 +28,13 @@ class User::AdvancedStandingController < ApplicationController
 
   def remove
     course = Course::Course.find(params[:course_id])
-    if current_user.has_completed_course?(course)
-      completed_course = current_user.completed_courses.where { :course_id == course.id && :advanced_standing == true }
-      completed_course.destroy unless completed_course.nil?
-    else
+    completed_course = current_user.completed_courses.where { (:course_id == course.id) & (:advanced_standing == true) }.first
+    if completed_course.nil?
       return_json('advancedstanding.noexist')
+    else
+      puts 'remove'
+      completed_course.destroy
+      return_json('advancedstanding.removed')
     end
   end
 end
