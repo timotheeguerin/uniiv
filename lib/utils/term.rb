@@ -3,7 +3,7 @@ class Term
 
   def initialize(semester = nil, year = nil)
     @semester = semester
-    @year = year
+    @year = year.to_i
   end
 
   def next
