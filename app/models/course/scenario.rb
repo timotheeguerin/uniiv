@@ -32,7 +32,7 @@ class Course::Scenario < ActiveRecord::Base
   def will_course_be_completed(course, term)
     taking_course = taking_courses.where(:course_id => course).first
     if taking_course.nil?
-      true
+      false
     else
       taking_course.year < term.year or (taking_course.year <= term.year and taking_course.semester.order < term.semester.order)
     end
