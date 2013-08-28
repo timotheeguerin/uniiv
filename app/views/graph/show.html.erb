@@ -18,6 +18,22 @@
   </div>
 </div>
 
+<div style="position:absolute;top:50px;right:0px;margin-right:295px;z-index:20;background-color:white;border: 1px solid #d5d5d5;border-radius:5px;padding:5px;">
+  <div class="center"><h5><%= @term.semester.name.capitalize + " " + @term.year.to_s %></h5></div>
+  <% @next = @term.next %>
+  <% @prev = @term.prev %>
+  <div class="center">
+    <%= link_to user_graph_path + "?year=" + @next.year.to_s + "&semester=" + @next.semester.id.to_s do %>
+      <button>Next Semester</button>
+    <% end %>
+  </div>
+  <div class="center">
+    <%= link_to (user_graph_path + "?year=" + @prev.year.to_s + "&semester=" + @prev.semester.id.to_s) do %>
+      <button>Prev Semester</button>
+    <% end %>
+  </div>
+</div>
+
 <!-- move buttons
 <div style="position:absolute;top:45px;right:0px;margin-right:330px;z-index:20;">
   <div class="center"><button id="moveup_graph"><img style="width:15px;" src="/assets/graph/arrow.png"/></button></div>
@@ -89,5 +105,5 @@
 
     </div>
   </div>
-  <div id="canvas-container" data-url='<%= user_graph_data_path %>'></div>
+  <div id="canvas-container" data-url='<%= user_graph_data_path %>?semester=<%= @term.semester.id %>&year=<%= @term.year.to_s %>'></div>
 </div>

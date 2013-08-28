@@ -162,14 +162,20 @@
                 <h4 title="<%= c.course.name %>" class="underline_link">
                   <%= c.course.subject.name + ' ' + c.course.code.to_s %>
                 </h4>
-                  <% unless c.semester.nil? %> <h5> -(<%= c.semester.to_s.capitalize %> <%= c.year %>)
-                  <% end %> - <%= c.course.name %> <% if c.advanced_standing %> - Advanced Standing<% end %></h5>
+                 <h5>
+                  <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
+                  <% end %> - <%= c.course.name %> <% if c.advanced_standing %> - Advanced Standing<% end %>
+                </h5>
             <% end %>
             <button style='visibility:hidden;'>I</button>
             <div style='float:right;'>
               <% unless c.advanced_standing %>
                 <%= form_tag(user_remove_course_path(c.course)) do %>
-                    <%= submit_tag(t('label.remove')) %>
+                  <%= submit_tag(t('label.remove')) %>
+                <% end %>
+              <% else %>
+                <%= link_to user_advanced_standings_path do %>
+                  <button><%= t("label.remove") %></button>
                 <% end %>
               <% end %>
             </div>
