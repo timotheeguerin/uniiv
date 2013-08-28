@@ -72,7 +72,7 @@
       <% end %>
   <% end %>
 
-  <% if current_user.programs.size > 0 %>
+  <% if current_user.main_course_scenario.programs.size > 0 %>
 
       <hr style="width:100%;">
 
@@ -189,7 +189,7 @@
 <script type="text/javascript">
     var canvas = document.getElementById('percentage_canvas');
     graph(75, 75, 75, 10, [
-        [<%= current_user.total_completed_ratio / current_user.programs.size %>, "#274d9b"]
+        [<%= current_user.total_completed_ratio / current_user.main_course_scenario.programs.size %>, "#274d9b"]
     ], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
 
     function graph(x, y, radius, thickness, percentages, offset, canvas, color1, color2) {
