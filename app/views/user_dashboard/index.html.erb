@@ -39,7 +39,7 @@
       </div>
   <% end %>
 
-  <% if current_user.programs.size < 1 %>
+  <% if current_user.main_course_scenario.programs.size < 1 %>
       <div>
         <h3>t("select.programs")</h3>
         <button style="visibility: hidden;">l</button>
@@ -172,8 +172,8 @@
               <% end %>
             </div>
             <div style='float:right;'>
-              <% unless current_user.reviewed_course?(c) %>
-                  <%= link_to course_review_new_path(c) do %>
+              <% unless current_user.reviewed_course?(c.course) %>
+                  <%= link_to course_review_new_path(c.course.id) do %>
                       <button><%= t('course.addreview') %></button>
                   <% end %>
               <% end %>

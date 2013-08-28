@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  has_and_belongs_to_many :programs
-
   #has_many :taking_courses, :class_name => UserTakingCourse
   has_many :completed_courses, :class_name => UserCompletedCourse
 
@@ -45,7 +43,7 @@ class User < ActiveRecord::Base
 
   def total_completed_ratio
     ratio = 0
-    self.programs.each do |p|
+    self.main_course_scenario.programs.each do |p|
       ratio += p.get_completion_ratio(self)
     end
     ratio

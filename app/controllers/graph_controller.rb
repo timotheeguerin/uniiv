@@ -14,7 +14,7 @@ class GraphController < ApplicationController
     #current_user ||= User.new
     if current_user.university.nil?
       redirect_to user_education_path, :alert => t("university.notselected")
-    elsif current_user.programs.size == 0
+    elsif current_scenario.programs.size == 0
       redirect_to user_education_path, :alert => t("programs.zero.selected")
     end
   end
@@ -25,13 +25,12 @@ class GraphController < ApplicationController
 
     style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
 
-    current_user.programs.each do |program|
+    current_scenario.programs.each do |program|
       prg_graph = get_program_graph(program, style)
       graphs_json << prg_graph
     end
 
     json = {}
-
 
     json[:style] = style
     json[:graphs] = graphs_json

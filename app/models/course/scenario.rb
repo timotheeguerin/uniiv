@@ -3,6 +3,8 @@ class Course::Scenario < ActiveRecord::Base
   has_many :taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_scenario_id'
   has_many :courses, :through => :taking_courses
 
+  has_and_belongs_to_many :programs
+
   def find_by_course(course)
     taking_courses.where(:course_id => course).first
   end

@@ -24,7 +24,6 @@ class User::CourseTakingController < ApplicationController
   def update_course_taking
     course = Course::Course.find(params[:course_id])
     user_taking_course = current_scenario.taking_courses.where(:course_id => course.id).first
-    puts 'parL: ' + params[:remove]
     if params[:remove] == 'true'
       user_taking_course.destroy unless user_taking_course.nil?
       return_json('course.take.remove.success')
