@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  has_and_belongs_to_many :programs
-
   #has_many :taking_courses, :class_name => UserTakingCourse
   has_many :completed_courses, :class_name => UserCompletedCourse
 

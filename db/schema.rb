@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827174610) do
+ActiveRecord::Schema.define(version: 20130828150646) do
 
   create_table "badges", force: true do |t|
     t.string "name"
@@ -128,6 +128,11 @@ ActiveRecord::Schema.define(version: 20130827174610) do
 
   add_index "course_scenarios", ["user_id"], name: "index_course_scenarios_on_user_id", using: :btree
 
+  create_table "course_scenarios_programs", force: true do |t|
+    t.integer "program_id"
+    t.integer "scenario_id"
+  end
+
   create_table "course_semesters", force: true do |t|
     t.string "name"
     t.datetime "created_at"
@@ -193,11 +198,6 @@ ActiveRecord::Schema.define(version: 20130827174610) do
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "programs_users", force: true do |t|
-    t.integer "program_id"
-    t.integer "user_id"
   end
 
   create_table "rails_admin_histories", force: true do |t|
@@ -317,7 +317,7 @@ ActiveRecord::Schema.define(version: 20130827174610) do
     t.datetime "updated_at"
     t.integer "university_id"
     t.integer "faculty_id"
-    t.integer "advanced_standing_credits"
+    t.integer "advanced_standing_credits", default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

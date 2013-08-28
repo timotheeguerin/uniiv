@@ -176,7 +176,6 @@ class CanGraph
         @canvas_container.show()
         @loading_screen.hide() if @loading_screen?
         callback()
-
     , "json")
 
   loadGraphs: (data)->
