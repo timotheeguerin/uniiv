@@ -17,6 +17,18 @@ class Term
     end
   end
 
+
+  def prev
+    case @semester.name
+      when 'winter'
+        Term.new(Course::Semester.find_by_name('fall'), @year -1)
+      when 'summer'
+        Term.new(Course::Semester.find_by_name('winter'), @year)
+      else
+        Term.new(Course::Semester.find_by_name('summer'), @year)
+    end
+  end
+
   def self.now
     time = Time.now
     current_term = Term.new
