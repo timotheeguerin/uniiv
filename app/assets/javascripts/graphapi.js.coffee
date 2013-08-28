@@ -69,7 +69,8 @@ $(document).ready ->
         load_sidebar(data.url)
       else
         reload_graph_info()
-      graph_reload.show()
+      #graph_reload.show()
+      location.reload()
 
   reload_graph_info = () ->
     url = sidebar_info.attr('data-url')
