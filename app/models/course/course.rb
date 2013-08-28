@@ -54,13 +54,13 @@ class Course::Course < ActiveRecord::Base
 
   alias :can_take? :requirements_completed?
 
-  def get_course_state(scenario)
+  def get_course_state(scenario, term = nil)
     user = scenario.user
-    if scenario.has_completed_course?(self)
+    if scenario.has_completed_course?(self, true, term)
       CourseState::COMPLETED
-    elsif scenario.is_taking_course?(self)
+    elsif scenario.is_taking_course?(self, term)
       CourseState::TAKING
-    elsif scenario.can_take_course?(self)
+    elsif scenario.can_take_course?(self, term)
       CourseState::AVAILABLE
     else
       CourseState::UNAVAILABLE

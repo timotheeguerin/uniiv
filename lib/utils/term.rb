@@ -30,4 +30,5 @@ class Term
     current_term.year = time.year
     current_term
   end
+
 end

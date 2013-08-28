@@ -6,8 +6,12 @@ class Course::Scenario < ActiveRecord::Base
   has_and_belongs_to_many :programs
 
 
-  def has_completed_course?(course, inc_advanced_standing = true)
-    user.has_completed_course?(course, inc_advanced_standing)
+  def has_completed_course?(course, inc_advanced_standing = true, term = nil)
+    if term.nil?
+      user.has_completed_course?(course, inc_advanced_standing)
+    else
+      user.has_completed_course?(course, inc_advanced_standing) or will_course_be_completed(course, term)
+    end
   end
 
   def is_taking_course?(course, term = nil?)
@@ -20,8 +24,8 @@ class Course::Scenario < ActiveRecord::Base
     false
   end
 
-  def requirements_completed?(course)
-    course.requirements_completed?(self)
+  def requirements_completed?(course, term = nil)
+    course.requirements_completed?(self, term)
   end
 
   #Check if a course is going to be completed in the given term
@@ -30,7 +34,7 @@ class Course::Scenario < ActiveRecord::Base
     if taking_course.nil?
       true
     else
-      taking_course.year < term.year or (taking_course.year <= term.year and taking_course.semester.order < term.order)
+      taking_course.year < term.year or (taking_course.year <= term.year and taking_course.semester.order < term.semester.order)
     end
   end
 
