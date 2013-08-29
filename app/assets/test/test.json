@@ -107,6 +107,36 @@
                 "valign": "center",
                 "color": "#f5f5f5"
             }
+        },
+        "hover": {
+            "background": {
+                "color": "#334874"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#0d2965"
+            }
+        }
+    },
+    "node_taking_completed": {
+        "shape": "circle",
+        "normal": {
+            "background": {
+                "color": "#274c9b"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
+            },
+            "corner_status": {
+                "shape": "circle",
+                "color": "#e8a627",
+                "radius": "10",
+                "angle": -45,
+                "delta": 3
+            }
 
         },
         "hover": {
@@ -172,7 +202,7 @@
     "cluster": {
         "shape": "rect",
         "normal": {
-          "label": {
+            "label": {
                 "color": "#274d9b"
             },
             "background": {
