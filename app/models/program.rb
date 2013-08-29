@@ -11,17 +11,23 @@ class Program < ActiveRecord::Base
   end
 
   def to_long_s
-    type.name.capitalize + " in " + name + " (" + faculty.short_name + ")"
+    type.name.capitalize + ' in ' + name + ' (' + faculty.short_name + ')'
   end
 
-  def get_completion_ratio(user)
+  def get_completion_ratio(scenario, term=nil)
     ratio = 0
-    count = 0
+    coef = 0
+
+    puts '---------------------------'
+    puts name
     groups.each do |group|
-      ratio += group.get_completion_ratio(user)
-      count += 1
+      hash = group.get_completion_ratio(scenario, term)
+      ratio += hash[:value]
+      coef += hash[:coefficient]
     end
-    ratio / count
+    puts 'ra: ' + ratio.to_s
+    puts 'coef: ' + coef.to_s
+    {:ratio => ratio / coef.to_f, :coefficient => coef, :value => ratio}
   end
 
   def id_to_s

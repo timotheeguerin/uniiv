@@ -43,10 +43,13 @@ class User < ActiveRecord::Base
 
   def total_completed_ratio
     ratio = 0
+    coef = 0
     self.main_course_scenario.programs.each do |p|
-      ratio += p.get_completion_ratio(self)
+      hash = p.get_completion_ratio(main_course_scenario)
+      ratio += hash[:value]
+      coef += hash[:coefficient]
     end
-    ratio
+    ratio / coef
     #TODO
   end
 
