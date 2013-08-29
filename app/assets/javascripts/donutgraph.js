@@ -6,11 +6,11 @@ function loadDonuts(){
     $(this).html("<canvas id='" + canvasid + "' width='150px' height='150px'></canvas");
     var percentage1 = $(this).attr("data-pc-1");
     var percentage2 = $(this).attr("data-pc-2");
-    if(percentage1 === undefined)
+    if(percentage1 === undefined || percentage1 == " ")
     {
       percentage1 = 0;
     }
-    if(percentage2 === undefined)
+    if(percentage2 === undefined || percentage2 == " ")
     {
       percentage2 = 0;
     }
