@@ -14,7 +14,6 @@ class LabelElement extends BoxElement
 
   computeStyle: (style) ->
     super(style)
-    # label = @group.get(".label")[0]
     if not @label_element?
       @label_element = new Kinetic.Text({
         x: 0,

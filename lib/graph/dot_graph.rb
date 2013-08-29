@@ -80,7 +80,14 @@ class DotGraph
     course_id = course.id_to_s
 
     unless @nodes.has_key?(course_id)
+
       state = course.get_course_state(@current_scenario, @term)
+      if state == CourseState::COMPLETED
+        realstate = course.get_course_state(@current_scenario)
+        if realstate != CourseState::COMPLETED
+          state = CourseState::TAKI NG_COMPLETED
+        end
+      end
       course_node = graph.add_node(course_id)
       course_node[:label] = course.get_dot_name
       course_node[:shape] = 'circle'

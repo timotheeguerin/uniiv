@@ -96,6 +96,7 @@ end
 
 class CourseState
   COMPLETED = 'completed'
+  TAKING_COMPLETED = 'taking_completed'
   TAKING = 'taking'
   AVAILABLE = 'available'
   UNAVAILABLE = 'unavailable'
