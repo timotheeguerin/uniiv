@@ -1,19 +1,22 @@
-<div>
-  <h3 class='<%= get_course_css_class(@course) %> underline_link'><%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course), "data-type" => "ext" %></h3>
-</div>
-<div><h4><%= @course.name %></h4></div>
+<% @course_status = "" %>
 
 <% if current_user.is_taking_course?(@course) %>
-    <% c = current_scenario.get_by_course(@course) %>
-    <% unless c.semester.nil? or c.year.nil? %>
-        <div><h4><%= t('course.inprogress.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></h4></div>
-    <% end %>
+  <% c = current_scenario.get_by_course(@course) %>
+  <% unless c.semester.nil? or c.year.nil? %>
+      <% @course_status = c.semester.to_s.capitalize + " " + c.year.to_s %>
+  <% end %>
 <% elsif current_user.has_completed_course?(@course) %>
-    <% c = UserCompletedCourse.all.where(:user => current_user).where(:course => @course).first %>
-    <% unless c.semester.nil? or c.year.nil? %>
-        <div><h4><%= t('course.completed.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></h4></div>
-    <% end %>
+  <% c = UserCompletedCourse.all.where(:user_id => current_user.id).where(:course_id => @course.id).first %>
+  <% unless c.semester.nil? or c.year.nil? %>
+      <% @course_status = c.semester.to_s.capitalize + " " + c.year.to_s %>
+  <% end %>
 <% end %>
+
+
+<div>
+  <h3 class='<%= get_course_css_class(@course) %> underline_link'><%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course), "data-type" => "ext" %></h3> <h5 class='<%= get_course_css_class(@course) %>'><%= @course_status %></h5>
+</div>
+<div><h4><%= @course.name %></h4></div>
 
 <div><h5><%= @course.hours %> Hours, <%= @course.credit %> Credits</h5></div>
 
