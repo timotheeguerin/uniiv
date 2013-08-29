@@ -1,6 +1,5 @@
-<div><h3><%= @group.name %></h3></div>
-<div class="center" id="program_graph">
-  <canvas id="program_canvas" width="150px" height="150px"></canvas>
+<div><h3><%= @group.short_name %></h3></div>
+<div class="center donut" id="program_group" data-pc-1="<%= (@group.get_completion_ratio(current_scenario)[:ratio].*100).to_i.to_s %>">
 </div>
 <% restriction = @group.restriction.to_s %>
 <% if restriction == "min_credit" %>
@@ -23,4 +22,4 @@
         courses.</h5></div>
 <% end %>
 
-<script type="text/javascript">graphDonut(<%= (@group.get_completion_ratio(current_scenario)[:ratio].*100).to_i.to_s %>,0,"program_graph");</script>
+<script type="text/javascript">loadDonuts();</script>
