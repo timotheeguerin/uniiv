@@ -33,16 +33,16 @@ class ProgramGroup < ActiveRecord::Base
     complexity
   end
 
-  def get_subgroups_completed_ratio(user)
+  def get_subgroups_completed_ratio(scenario, term = nil)
     ratio = 0
     coefficient = 0
     subgroups.each do |subgroup|
       coef = subgroup.get_coefficient
-      ratio += subgroup.get_completion_ratio(user) * coef
+      ratio += subgroup.get_completion_ratio(scenario, term) * coef
       coefficient += coef
     end
-    return 0 if coefficient == 0
-    ratio/coefficient.to_f
+    return {:ratio => 0, :coefficient => 0, :value => 0} if coefficient == 0
+    {:ratio => ratio/coefficient.to_f, :coefficient => coefficient, :value => ratio}
   end
 
   def get_subgroups_coef
@@ -53,21 +53,21 @@ class ProgramGroup < ActiveRecord::Base
     coefficient
   end
 
-  def count_completed_courses(user)
+  def count_completed_courses(scenario, term= nil)
     count = 0
     courses.each do |course|
-      count += 1 if user.has_completed_course?(course)
+      count += 1 if scenario.has_completed_course?(course, term)
     end
     count
   end
 
-  def count_credit_completed_courses(user)
+  def count_credit_completed_courses(scenario, term = nil)
     count = 0
     courses.each do |course|
-      count += course.credit if user.has_completed_course?(course)
+      count += course.credit if scenario.has_completed_course?(course, true, term)
     end
     subgroups.each do |subgroup|
-      count += subgroup.count_credit_completed_courses(user)
+      count += subgroup.count_credit_completed_courses(scenario, term)
     end
     count
   end
@@ -80,26 +80,29 @@ class ProgramGroup < ActiveRecord::Base
     count
   end
 
-  def get_completion_ratio(user)
+  def get_completion_ratio(scenario, term = nil)
     case restriction.name
       when 'min_credit'
-        completed_credit = count_credit_completed_courses(user)
-        subgroup_completed = get_subgroups_completed_ratio(user)
-        subgroup_coef = get_subgroups_coef
-        return 1 if value == 0 and subgroup_coef == 0
-        ratio = (completed_credit + subgroup_completed*subgroup_coef)/ (value + subgroup_coef)
-        if ratio < 1
-          return ratio
-        else
-          return 1
-        end
+        completed_credit = count_credit_completed_courses(scenario, term)
+        subgroup_completed = get_subgroups_completed_ratio(scenario)
+        return 1 if value == 0 and subgroup_completed[:coefficient] == 0
+
+
+        ratio = (completed_credit + subgroup_completed[:value])/ (value + subgroup_completed[:coefficient])
+        ratio = 1 if ratio > 1
+        puts 'Com: ' + completed_credit.to_s
+        puts 'ratio: ' + ratio.to_s
+        puts 'coef: ' + value.to_s
+        {:ratio => ratio, :coefficient => value, :value => value*ratio}
       when 'min_grp'
-        return 1
+        return {:ratio => 1, :coefficient => 1, :value => 1}
       else
         if courses.size != 0
-          return (count_completed_courses(user) / courses.size.to_f)
+          coef = courses.size.to_f
+          value = count_completed_courses(scenario, term)
+          return {:ratio => value/ coef, :coefficient => coef, :value => value}
         else
-          return 1
+          return {:ratio => 1, :coefficient => 0, :value => 1}
         end
     end
   end

@@ -4,54 +4,57 @@
 </div>
 <div>
   <% @program.groups.each do |g| %>
-    <div><h5><%= g.short_name + " (" + (g.get_completion_ratio(current_user)*100).to_i.to_s + "%)" %></h5></div>
+      <div><h5><%= g.short_name + " (" + (g.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s + "%)" %></h5>
+      </div>
   <% end %>
 </div>
 <script type="text/javascript">
-  var canvas = document.getElementById('program_canvas');
-  graph(75, 75, 75, 10, [[<%= @program.get_completion_ratio(current_user).to_s %>,"#274d9b"]], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
+    var canvas = document.getElementById('program_canvas');
+    graph(75, 75, 75, 10, [
+        [<%= @program.get_completion_ratio(current_scenario)[:ratio].to_s %>, "#274d9b"]
+    ], -0.25, canvas, "#f5f5f5", "#274d9b", "#000000");
 
-  function graph(x, y, radius, thickness, percentages, offset, canvas, color1, color2) {
-      drawDonut(x, y, radius, thickness, 1, offset, canvas, color1);
-      drawDonut(x, y, radius, thickness, percentages[0][0], offset, canvas, percentages[0][1]);
-      if (percentages.length == 0) return;
-      if (percentages.length != 1) drawText(x + 10, y-5, Math.round(percentages[0][0] * 100) + "%", canvas);
-      if (percentages.length == 1) drawText(x + 10, y + 10, Math.round(percentages[0][0] * 100) + "%", canvas);
-      for (i = 1; i < percentages.length; i++) {
-          drawDonut(x, y, radius, thickness, percentages[i][0], offset + percentages[i - 1][0], canvas, percentages[i][1]);
-          drawText(x + 10, y + 30, Math.round(percentages[i][0] * 100) + "%", canvas);
-      }
+    function graph(x, y, radius, thickness, percentages, offset, canvas, color1, color2) {
+        drawDonut(x, y, radius, thickness, 1, offset, canvas, color1);
+        drawDonut(x, y, radius, thickness, percentages[0][0], offset, canvas, percentages[0][1]);
+        if (percentages.length == 0) return;
+        if (percentages.length != 1) drawText(x + 10, y - 5, Math.round(percentages[0][0] * 100) + "%", canvas);
+        if (percentages.length == 1) drawText(x + 10, y + 10, Math.round(percentages[0][0] * 100) + "%", canvas);
+        for (i = 1; i < percentages.length; i++) {
+            drawDonut(x, y, radius, thickness, percentages[i][0], offset + percentages[i - 1][0], canvas, percentages[i][1]);
+            drawText(x + 10, y + 30, Math.round(percentages[i][0] * 100) + "%", canvas);
+        }
 
-  }
+    }
 
-  function drawDonut(x, y, radius, thickness, percentage, offset, canvas, color) {
-      var context = canvas.getContext('2d');
-      var startAngle = 0 + (2 * offset * Math.PI);
-      var endAngle = 2 * Math.PI * percentage + (offset * Math.PI * 2);
+    function drawDonut(x, y, radius, thickness, percentage, offset, canvas, color) {
+        var context = canvas.getContext('2d');
+        var startAngle = 0 + (2 * offset * Math.PI);
+        var endAngle = 2 * Math.PI * percentage + (offset * Math.PI * 2);
 
-      context.beginPath();
-      var point = getPoint(x, y, radius, startAngle);
-      var ipoint = getPoint(x, y, radius - thickness, startAngle);
-      context.moveTo(ipoint[0], ipoint[1]);
-      context.lineTo(point[0], point[1]);
-      context.arc(x, y, radius, startAngle, endAngle, 0);
-      var point = getPoint(x, y, radius, endAngle);
-      var ipoint = getPoint(x, y, radius - thickness, endAngle);
-      context.moveTo(point[0], point[1]);
-      context.lineTo(ipoint[0], ipoint[1]);
-      context.arc(x, y, radius - thickness, endAngle, startAngle, 1);
-      context.fillStyle = color;
-      context.fill();
-  }
+        context.beginPath();
+        var point = getPoint(x, y, radius, startAngle);
+        var ipoint = getPoint(x, y, radius - thickness, startAngle);
+        context.moveTo(ipoint[0], ipoint[1]);
+        context.lineTo(point[0], point[1]);
+        context.arc(x, y, radius, startAngle, endAngle, 0);
+        var point = getPoint(x, y, radius, endAngle);
+        var ipoint = getPoint(x, y, radius - thickness, endAngle);
+        context.moveTo(point[0], point[1]);
+        context.lineTo(ipoint[0], ipoint[1]);
+        context.arc(x, y, radius - thickness, endAngle, startAngle, 1);
+        context.fillStyle = color;
+        context.fill();
+    }
 
-  function getPoint(x, y, radius, angle) {
-      return [x + radius * Math.cos(angle), y + radius * Math.sin(angle)];
-  }
+    function getPoint(x, y, radius, angle) {
+        return [x + radius * Math.cos(angle), y + radius * Math.sin(angle)];
+    }
 
-  function drawText(x, y, text, canvas) {
-      var context = canvas.getContext('2d');
-      context.font = "lighter 30px sans-serif";
-      context.textAlign = 'center';
-      context.fillText(text, x, y);
-  }
+    function drawText(x, y, text, canvas) {
+        var context = canvas.getContext('2d');
+        context.font = "lighter 30px sans-serif";
+        context.textAlign = 'center';
+        context.fillText(text, x, y);
+    }
 </script>

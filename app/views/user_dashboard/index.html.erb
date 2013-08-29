@@ -93,13 +93,13 @@
       <% @programs.order("type_id ASC, name ASC").each do |p| %>
           <div><h4 class="underline_link">
             <%= link_to program_graph_path(p.id) do %>
-                <%= p.name %> (<%= (p.get_completion_ratio(current_user)*100).to_i.to_s %>%)
+                <%= p.name %> (<%= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s %>%)
             <% end %>
           </h4></div>
 
           <% p.groups.each do |s| %>
               <div style="text-indent:15px"><h5>
-                <%= s.short_name %> (<%= (s.get_completion_ratio(current_user)*100).to_i.to_s %>%)
+                <%= s.short_name %> (<%= (s.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s %>%)
               </h5></div>
           <% end %>
 
@@ -112,8 +112,8 @@
   <div>
     <h1>Your Courses
       <div style='float:right;'>
-      <%= link_to user_advanced_standings_path do %>
-          <button>Advanced Standing</button>
+        <%= link_to user_advanced_standings_path do %>
+            <button>Advanced Standing</button>
         <% end %>
         <%= link_to user_sort_course_path do %>
             <button>Add Courses</button>
@@ -162,21 +162,23 @@
                 <h4 title="<%= c.course.name %>" class="underline_link">
                   <%= c.course.subject.name + ' ' + c.course.code.to_s %>
                 </h4>
-                 <h5>
+                <h5>
                   <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
-                  <% end %> - <%= c.course.name %> <% if c.advanced_standing %> - Advanced Standing<% end %>
+                  <% end %> - <%= c.course.name %>
+                  <% if c.advanced_standing %> - Advanced Standing
+                  <% end %>
                 </h5>
             <% end %>
             <button style='visibility:hidden;'>I</button>
             <div style='float:right;'>
               <% unless c.advanced_standing %>
-                <%= form_tag(user_remove_course_path(c.course)) do %>
-                  <%= submit_tag(t('label.remove')) %>
-                <% end %>
+                  <%= form_tag(user_remove_course_path(c.course)) do %>
+                      <%= submit_tag(t('label.remove')) %>
+                  <% end %>
               <% else %>
-                <%= link_to user_advanced_standings_path do %>
-                  <button><%= t("label.remove") %></button>
-                <% end %>
+                  <%= link_to user_advanced_standings_path do %>
+                      <button><%= t("label.remove") %></button>
+                  <% end %>
               <% end %>
             </div>
             <div style='float:right;'>
