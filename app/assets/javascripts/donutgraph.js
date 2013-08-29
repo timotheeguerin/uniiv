@@ -1,3 +1,23 @@
+function loadDonuts(){
+  $(".donut").each(function(i, obj)
+  {
+    var id = $(this).attr("id");
+    var canvasid = id + "_canvas";
+    $(this).html("<canvas id='" + canvasid + "' width='150px' height='150px'></canvas");
+    var percentage1 = $(this).attr("data-pc-1");
+    var percentage2 = $(this).attr("data-pc-2");
+    if(percentage1 === undefined)
+    {
+      percentage1 = 0;
+    }
+    if(percentage2 === undefined)
+    {
+      percentage2 = 0;
+    }
+    graphDonut(percentage1,percentage2,canvasid);
+  });
+}
+
 function graphDonut(percentage1,percentage2,id)
 {
   if(percentage2 == 0)
@@ -10,16 +30,12 @@ function graphDonut(percentage1,percentage2,id)
 
 function graphDonutOne(percentage,id)
 {
-    var canvasid = id + "_canvas";
-    document.getElementById(id).innerHTML = "<canvas id='" + canvasid + "' width='150px' height='150px'></canvas>";
-    donutone(75,75,75,15,percentage,0,canvasid);
+    donutone(75,75,75,12,percentage,0,id);
 }
 
 function graphDonutTwo(percentage1,percentage2,id)
 {
-    var canvasid = id + "_canvas";
-    document.getElementById(id).innerHTML = "<canvas id='" + canvasid + "' width='150px' height='150px'></canvas>";
-    donuttwo(75,75,75,15,percentage1,percentage2,0,canvasid);
+    donuttwo(75,75,75,12,percentage1,percentage2,0,id);
 }
 
 function donutone(x, y, radius, thickness, percentage, offset, id) {

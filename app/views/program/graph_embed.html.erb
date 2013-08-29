@@ -1,5 +1,5 @@
 <div><h3><%= @program.name %></h3></div>
-<div class="center" id="program_graph">
+<div class="center donut" id="program" data-pc-1="<%= (@program.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s %>">
 </div>
 <div>
   <% @program.groups.each do |g| %>
@@ -7,5 +7,4 @@
       </div>
   <% end %>
 </div>
-
-<script type="text/javascript">graphDonut(<%= (@program.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s %>,0,"program_graph");</script>
+<script type="text/javascript">loadDonuts();</script>
