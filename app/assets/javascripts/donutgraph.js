@@ -20,7 +20,10 @@ function loadDonuts(){
 
 function graphDonut(percentage1,percentage2,id)
 {
-  if(percentage2 == 0)
+  if(percentage1 == 0 && percentage2 == 0)
+  {
+    graphDonutTwo(percentage1,percentage2,id);
+  }else if(percentage2 == 0)
   {
     graphDonutOne(percentage1,id);
   }else if(percentage1 == 0)
