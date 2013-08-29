@@ -1,70 +1,70 @@
-<div class="content_box pagewidth">
+<div class='content_box pagewidth'>
   <div><h1>Your Education</h1></div>
-  <hr style="width:100%;">
+  <hr style='width:100%;'>
 
   <% if current_user.university.nil? %>
       <div>
-        <h3>t("select.university")</h3>
-        <button style="visibility: hidden;">l</button>
+        <h3>t('select.university')</h3>
+        <button style='visibility: hidden;'>l</button>
         <%= link_to user_university_edit_path do %>
-            <button style="float:right;width:70px;">Add</button>
+            <button style='float:right;width:70px;'>Add</button>
         <% end %>
       </div>
   <% else %>
       <div>
         <h3><%= current_user.university %></h3>
-        <button style="visibility: hidden;">l</button>
+        <button style='visibility: hidden;'>l</button>
         <%= link_to user_university_edit_path do %>
-            <button style="float:right;width:70px;">Choose</button>
+            <button style='float:right;width:70px;'>Choose</button>
         <% end %>
       </div>
   <% end %>
 
   <% if current_user.faculty.nil? %>
       <div>
-        <h3>t("select.faculty")</h3>
-        <button style="visibility: hidden;">l</button>
+        <h3>t('select.faculty')</h3>
+        <button style='visibility: hidden;'>l</button>
         <%= link_to user_faculty_edit_path do %>
-            <button style="float:right;width:70px;">Choose</button>
+            <button style='float:right;width:70px;'>Choose</button>
         <% end %>
       </div>
   <% else %>
       <div>
         <h3><%= @faculty %></h3>
-        <button style="visibility: hidden;">l</button>
-        <button style="visibility: hidden;">l</button>
+        <button style='visibility: hidden;'>l</button>
+        <button style='visibility: hidden;'>l</button>
         <%= link_to user_faculty_edit_path do %>
-            <button style="float:right;width:70px;">Choose</button>
+            <button style='float:right;width:70px;'>Choose</button>
         <% end %>
       </div>
   <% end %>
 
   <% if current_user.main_course_scenario.programs.size < 1 %>
       <div>
-        <h3>t("select.programs")</h3>
-        <button style="visibility: hidden;">l</button>
+        <h3>t('select.programs')</h3>
+        <button style='visibility: hidden;'>l</button>
         <%= link_to user_programs_new_path do %>
-            <button style="float:right;width:70px;">Add</button>
+            <button style='float:right;width:70px;'>Add</button>
         <% end %>
       </div>
   <% else %>
       <div>
         <h3>Programs</h3>
-        <button style="visibility: hidden;">l</button>
+        <button style='visibility: hidden;'>l</button>
         <%= link_to user_programs_new_path do %>
-            <button style="float:right;width:70px;">Add</button>
+            <button style='float:right;width:70px;'>Add</button>
         <% end %>
       </div>
-      <% @programs.order("type_id ASC, name ASC").each do |p| %>
+      <% @programs.order('type_id ASC, name ASC').each do |p| %>
           <div>
-            <div style="text-indent:15px;">
+            <div style='text-indent:15px;'>
               <%= link_to program_graph_path(p.id) do %>
                   <h4><%= p %></h4>
               <% end %>
               <% if p.type.id != 4 %>
-                  <button style="visibility: hidden;">l</button>
-                  <div style="float:right;"><%= form_tag(:controller => "user_programs", :action => "removeProgram", :method => "post", "data-service" => p) do %>
-                        <%= submit_tag("Remove", :style => "width:70px;") %>
+                  <button style='visibility: hidden;'>l</button>
+                  <div style='float:right;'><%= form_tag(:controller => 'user_programs', :action => 'removeProgram', :method => 'post', 'data-service' => p) do %>
+                        <%= submit_tag('Remove', :style => 'width:70px;') %>
                     <% end %></div>
               <% end %>
             </div>
@@ -74,24 +74,24 @@
 
   <% if current_user.main_course_scenario.programs.size > 0 %>
 
-      <hr style="width:100%;">
+      <hr style='width:100%;'>
 
       <div><h1>Your Status</h1></div>
 
-      <div class="center donut" id="credits" data-pc-1="<%= ((current_user.total_completed_ratio / current_user.main_course_scenario.programs.size)*100).to_i.to_s %>">
+      <div class='center donut' id='credits' data-pc-1='<%= (current_user.total_completed_ratio*100).to_i.to_s %>'>
       </div>
 
-      <hr style="width:100%;">
+      <hr style='width:100%;'>
 
-      <% @programs.order("type_id ASC, name ASC").each do |p| %>
-          <div><h4 class="underline_link">
+      <% @programs.order('type_id ASC, name ASC').each do |p| %>
+          <div><h4 class='underline_link'>
             <%= link_to program_graph_path(p.id) do %>
                 <%= p.name %> (<%= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s %>%)
             <% end %>
           </h4></div>
 
           <% p.groups.each do |s| %>
-              <div style="text-indent:15px"><h5>
+              <div style='text-indent:15px'><h5>
                 <%= s.short_name %> (<%= (s.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s %>%)
               </h5></div>
           <% end %>
@@ -100,7 +100,7 @@
 
   <% end %>
 
-  <hr style="width:100%;">
+  <hr style='width:100%;'>
 
   <div>
     <h1>Your Courses
@@ -121,12 +121,13 @@
   <% current_user.main_course_scenario.taking_courses.sort_by! { |a| [a.course.subject, a.course.code] }.each do |c| %>
       <div>
         <%= link_to course_path(c.course.id) do %>
-            <h4 title="<%= c.course.name %>" class="underline_link">
+            <h4 title='<%= c.course.name %>' class='underline_link'>
               <%= c.course.subject.name + ' ' + c.course.code.to_s %>
             </h4>
             <h5>
               - <%= c.course.name %>
-              <% unless c.semester.nil? %> -  (<%= c.semester.to_s.capitalize %> <%= c.year %>)<% end %></h5>
+              <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
+              <% end %></h5>
         <% end %>
         <button style='visibility:hidden;'>I</button>
         <div style='float:right;'>
@@ -147,7 +148,7 @@
       <% current_user.completed_courses.sort_by! { |a| [a.course.subject, a.course.code] }.each do |c| %>
           <div>
             <%= link_to course_path(c.course.id) do %>
-                <h4 title="<%= c.course.name %>" class="underline_link">
+                <h4 title='<%= c.course.name %>' class='underline_link'>
                   <%= c.course.subject.name + ' ' + c.course.code.to_s %>
                 </h4>
                 <h5> - <%= c.course.name %>
@@ -174,6 +175,6 @@
 </div>
 
 
-<script type="text/javascript">
-  loadDonuts();
+<script type='text/javascript'>
+    loadDonuts();
 </script>
