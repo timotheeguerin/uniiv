@@ -14,9 +14,9 @@ class ProgramGroupController < ApplicationController
     @group = ProgramGroup.find(params[:id])
 
     @ratios = {}
-    @ratios[:actual] = @group.get_completion_ratio(current_scenario)[:ratio] * 100 unless @term.nil?
+    @ratios[:actual] = (@group.get_completion_ratio(current_scenario)[:ratio] * 100).to_i
     unless @term.nil?
-      @ratios[:requested] = @group.get_completion_ratio(current_scenario, @term)[:ratio] * 100
+      @ratios[:requested] = (@group.get_completion_ratio(current_scenario, @term)[:ratio] * 100).to_i
       @ratios[:requested] = '' if @ratios[:actual] == @ratios[:requested]
     end
   end
