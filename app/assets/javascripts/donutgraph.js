@@ -1,31 +1,41 @@
+function graphDonut(percentage1,percentage2,id)
+{
+  if(percentage2 == 0)
+  {
+    graphDonutOne(percentage1,id);
+  }else{
+    graphDonutTwo(percentage1,percentage2,id);
+  }
+}
+
 function graphDonutOne(percentage,id)
 {
     var canvasid = id + "_canvas";
     document.getElementById(id).innerHTML = "<canvas id='" + canvasid + "' width='150px' height='150px'></canvas>";
-    donutone(75,75,75,20,percentage,0,canvasid);
+    donutone(75,75,75,15,percentage,0,canvasid);
 }
 
 function graphDonutTwo(percentage1,percentage2,id)
 {
     var canvasid = id + "_canvas";
     document.getElementById(id).innerHTML = "<canvas id='" + canvasid + "' width='150px' height='150px'></canvas>";
-    donuttwo(75,75,75,20,percentage1,percentage2,0,canvasid);
+    donuttwo(75,75,75,15,percentage1,percentage2,0,canvasid);
 }
 
 function donutone(x, y, radius, thickness, percentage, offset, id) {
     var canvas = document.getElementById(id);
     drawDonut(x, y, radius, thickness, 1, offset, canvas, "#f5f5f5");
-    drawDonut(x, y, radius, thickness, percentage, offset, canvas, "#274d9b");
-    drawText(x+5,y+10,percentage*100 + "%",canvas);
+    drawDonut(x, y, radius, thickness, percentage/100, offset, canvas, "#274d9b");
+    drawText(x+5,y+10,percentage + "%",canvas);
 }
 
 function donuttwo(x,y,radius,thickness,percentage1,percentage2,offset,id){
     var canvas = document.getElementById(id);
     drawDonut(x, y, radius, thickness, 1, offset, canvas, "#f5f5f5");
-    drawDonut(x, y, radius, thickness, percentage1, offset, canvas, "#274d9b");
-    drawText(x+5,y-5,percentage1*100 + "%",canvas);
-    drawDonut(x, y, radius, thickness, percentage2, offset+percentage1, canvas, "E8A627");
-    drawText(x+5,y+25,percentage2*100 + "%",canvas);
+    drawDonut(x, y, radius, thickness, percentage1/100, offset, canvas, "#274d9b");
+    drawText(x+5,y-5,percentage1 + "%",canvas);
+    drawDonut(x, y, radius, thickness, percentage2/100, offset+percentage1, canvas, "E8A627");
+    drawText(x+5,y+25,percentage2 + "%",canvas);
 }
 
 function drawDonut(x, y, radius, thickness, percentage, offset, canvas, color) {
