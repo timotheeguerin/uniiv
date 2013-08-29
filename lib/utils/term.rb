@@ -43,4 +43,7 @@ class Term
     current_term
   end
 
+  def ==(comparison_object)
+    comparison_object.instance_of?(self.class) and comparison_object.year == self.year and comparison_object.semester == self.semester
+  end
 end

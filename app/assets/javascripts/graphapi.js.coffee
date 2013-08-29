@@ -14,9 +14,11 @@ $(document).ready ->
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info .content")
   graph_reload = $('#graphreload')
-
+  semester_id = ''
+  year = ''
   if canvas_container.length > 0
-
+    semester_id = canvas_container.attr('data-semester')
+    year = canvas_container.attr('data-year')
     graph = new CanGraph({
       container: 'canvas-container'
       loading_container: 'graph_loader'
@@ -38,6 +40,7 @@ $(document).ready ->
         array = graph.id.split('_', 2)
         type = array[0]
         id = array[1]
+        sidebar_loader.show()
         if type == 'p'
           loadProgram(id)
         else if type == 'g'
@@ -93,7 +96,10 @@ $(document).ready ->
 
   load_sidebar = (url) ->
     sidebar_info.attr('data-url', url)
-    $.get(url).success (data) ->
+    $.get(url, {
+      semester: semester_id
+      year: year
+    }).success (data) ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()

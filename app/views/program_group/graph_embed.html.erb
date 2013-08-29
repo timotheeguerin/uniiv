@@ -1,5 +1,5 @@
 <div><h3><%= @group.short_name %></h3></div>
-<div class="center donut" id="program_group" data-pc-1="<%= (@group.get_completion_ratio(current_scenario)[:ratio].*100).to_i.to_s %>">
+<div class="center donut" id="program_group" data-pc-1="<%= @ratios[:requested] %> " data-pc-2="<%= @ratios[:actual] %>">
 </div>
 <% restriction = @group.restriction.to_s %>
 <% if restriction == "min_credit" %>
@@ -9,7 +9,8 @@
           of <%= @group.value %> credits.</h5></div>
     <% else %>
         <% @group.subgroups.each do |g| %>
-            <div><h5><%= g.short_name %> (<%= g.get_completion_ratio(current_scenario)[:ratio]*100 %>%)</h5></div>
+            <div><h5><%= g.short_name %> (<%= g.get_completion_ratio(current_scenario)[:ratio]*100 %>%)</h5>
+            </div>
         <% end %>
     <% end %>
 <% elsif restriction == "min_grp" %>
@@ -18,8 +19,10 @@
 
 <% elsif restriction == "all" %>
     <div>
-      <h5>You have completed <%= @group.count_completed_courses(current_scenario) %> out of <%= @group.courses.size %>
+      <h5>You have completed <%= @group.count_completed_courses(current_scenario) %> out
+        of <%= @group.courses.size %>
         courses.</h5></div>
 <% end %>
-
-<script type="text/javascript">loadDonuts();</script>
+<script type='text/javascript'>
+    loadDonuts();
+</script>

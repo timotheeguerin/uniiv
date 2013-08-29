@@ -11,7 +11,6 @@ class NodeElement extends LabelElement
   computeStyle: (style) ->
     super(style)
     if style.corner_status?
-      console.log('CORNE: ' + JSON.stringify(style.corner_status))
       if not @corner_element?
         if(@style.shape == 'circle')
           radius = style.corner_status.radius
@@ -40,7 +39,6 @@ class NodeElement extends LabelElement
         @group.add(@corner_element)
 
       if style.corner_status.color?
-        console.log('color: ' + style.corner_status.color)
         @corner_element.setFill(style.corner_status.color)
       @corner_element.setZIndex(10)
 

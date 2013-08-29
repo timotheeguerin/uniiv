@@ -90,9 +90,6 @@ class ProgramGroup < ActiveRecord::Base
 
         ratio = (completed_credit + subgroup_completed[:value])/ (value + subgroup_completed[:coefficient])
         ratio = 1 if ratio > 1
-        puts 'Com: ' + completed_credit.to_s
-        puts 'ratio: ' + ratio.to_s
-        puts 'coef: ' + value.to_s
         {:ratio => ratio, :coefficient => value, :value => value*ratio}
       when 'min_grp'
         return {:ratio => 1, :coefficient => 1, :value => 1}

@@ -24,12 +24,12 @@
   <% @prev = @term.prev %>
   <div class="center">
     <%= link_to user_graph_path + "?year=" + @next.year.to_s + "&semester=" + @next.semester.id.to_s do %>
-      <button>Next Semester</button>
+        <button>Next Semester</button>
     <% end %>
   </div>
   <div class="center">
     <%= link_to (user_graph_path + "?year=" + @prev.year.to_s + "&semester=" + @prev.semester.id.to_s) do %>
-      <button>Prev Semester</button>
+        <button>Prev Semester</button>
     <% end %>
   </div>
 </div>
@@ -105,5 +105,6 @@
 
     </div>
   </div>
-  <div id="canvas-container" data-url='<%= user_graph_data_path %>?semester=<%= @term.semester.id %>&year=<%= @term.year.to_s %>'></div>
+  <div id="canvas-container" data-url='<%= user_graph_data_path %>?semester=<%= @term.semester.id %>&year=<%= @term.year.to_s %>'
+       data-semester='<%= @term.semester.id %>' data-year='<%= @term.year.to_s %>'></div>
 </div>
