@@ -134,8 +134,8 @@
                 "shape": "circle",
                 "color": "#e8a627",
                 "radius": "10",
-                "angle": -45,
-                "delta": 3
+                "angle": -60,
+                "delta": 1
             }
 
         },
@@ -164,8 +164,8 @@
                 "shape": "circle",
                 "color": "#e8a627",
                 "radius": "10",
-                "angle": -45,
-                "delta": 3
+                "angle": -60,
+                "delta": 1
             }
         },
         "hover": {
@@ -193,8 +193,8 @@
                 "shape": "circle",
                 "color": "#e8a627",
                 "radius": "10",
-                "angle": -45,
-                "delta": 3
+                "angle": -60,
+                "delta": 1
             }
         },
         "hover": {
