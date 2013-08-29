@@ -1,5 +1,5 @@
 <div><h3><%= @group.short_name %></h3></div>
-<div class="center donut" id="program_group" data-pc-1="<%= @ratios[:requested] %> " data-pc-2="<%= @ratios[:actual] %>">
+<div class="center donut" id="program_group" data-pc-1="<%= @ratios[:actual] %> " data-pc-2="<%= @ratios[:requested] %>">
 </div>
 <% restriction = @group.restriction.to_s %>
 <% if restriction == "min_credit" %>
