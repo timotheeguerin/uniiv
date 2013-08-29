@@ -150,6 +150,64 @@
             }
         }
     },
+    "node_taking_available": {
+        "normal": {
+            "background": {
+                "color": "#1a9e69"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
+            },
+            "corner_status": {
+                "shape": "circle",
+                "color": "#e8a627",
+                "radius": "10",
+                "angle": -45,
+                "delta": 3
+            }
+        },
+        "hover": {
+            "background": {
+                "color": "#2c7659"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#096741"
+            }
+        }
+    },
+    "node_taking_unavailable": {
+        "normal": {
+            "background": {
+                "color": "#e86027"
+            },
+            "label": {
+                "halign": "center",
+                "valign": "center",
+                "color": "#f5f5f5"
+            },
+            "corner_status": {
+                "shape": "circle",
+                "color": "#e8a627",
+                "radius": "10",
+                "angle": -45,
+                "delta": 3
+            }
+        },
+        "hover": {
+            "background": {
+                "color": "#ae6241"
+            }
+        },
+        "active": {
+            "background": {
+                "color": "#97360d"
+            }
+        }
+    },
     "arrow": {
         "onlydefault": true,
         "normal": {

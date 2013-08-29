@@ -82,10 +82,9 @@ class DotGraph
     unless @nodes.has_key?(course_id)
 
       state = course.get_course_state(@current_scenario, @term)
-      if state == CourseState::COMPLETED
-        realstate = course.get_course_state(@current_scenario)
-        if realstate != CourseState::COMPLETED
-          state = CourseState::TAKI NG_COMPLETED
+      if state != CourseState::TAKING
+        if @current_scenario.plan_to_take_course(course)
+          state = 'taking_' + state.to_s
         end
       end
       course_node = graph.add_node(course_id)

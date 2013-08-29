@@ -24,6 +24,10 @@ class Course::Scenario < ActiveRecord::Base
     false
   end
 
+  def plan_to_take_course(course)
+    taking_courses.where(:course_id => course).size >0
+  end
+
   def requirements_completed?(course, term = nil)
     course.requirements_completed?(self, term)
   end
