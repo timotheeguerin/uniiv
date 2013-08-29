@@ -20,9 +20,15 @@ function loadDonuts(){
 
 function graphDonut(percentage1,percentage2,id)
 {
-  if(percentage2 == 0)
+  if(percentage1 == 0 && percentage2 == 0)
+  {
+    graphDonutTwo(percentage1,percentage2,id);
+  }else if(percentage2 == 0)
   {
     graphDonutOne(percentage1,id);
+  }else if(percentage1 == 0)
+  {
+    graphDonutOneYellow(percentage2,id);
   }else{
     graphDonutTwo(percentage1,percentage2,id);
   }
@@ -31,6 +37,12 @@ function graphDonut(percentage1,percentage2,id)
 function graphDonutOne(percentage,id)
 {
     donutone(75,75,75,12,percentage,0,id);
+}
+
+
+function graphDonutOneYellow(percentage,id)
+{
+    donutoneyellow(75,75,75,12,percentage,0,id);
 }
 
 function graphDonutTwo(percentage1,percentage2,id)
@@ -45,12 +57,19 @@ function donutone(x, y, radius, thickness, percentage, offset, id) {
     drawText(x+5,y+10,percentage + "%",canvas);
 }
 
+function donutoneyellow(x,y,radius,thickness,percentage,offset,id){
+    var canvas = document.getElementById(id);
+    drawDonut(x, y, radius, thickness, 1, offset, canvas, "#f5f5f5");
+    drawDonut(x, y, radius, thickness, percentage/100, offset, canvas, "#E8A627");
+    drawText(x+5,y+10,percentage + "%",canvas);
+}
+
 function donuttwo(x,y,radius,thickness,percentage1,percentage2,offset,id){
     var canvas = document.getElementById(id);
     drawDonut(x, y, radius, thickness, 1, offset, canvas, "#f5f5f5");
     drawDonut(x, y, radius, thickness, percentage1/100, offset, canvas, "#274d9b");
     drawText(x+5,y-5,percentage1 + "%",canvas);
-    drawDonut(x, y, radius, thickness, percentage2/100, offset+percentage1, canvas, "E8A627");
+    drawDonut(x, y, radius, thickness, percentage2/100, offset+percentage1, canvas, "#E8A627");
     drawText(x+5,y+25,percentage2 + "%",canvas);
 }
 
