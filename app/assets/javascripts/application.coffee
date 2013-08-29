@@ -14,6 +14,7 @@
 #= require jquery_ujs
 #= require_tree .
 #= require jquery.raty
+#= require donutgraph
 
 $(window).resize ()->
   if ($("#fold").length == 0)
