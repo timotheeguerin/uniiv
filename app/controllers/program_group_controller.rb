@@ -3,7 +3,6 @@ class ProgramGroupController < ApplicationController
 
   def setup
     @term = nil
-    puts 'sme: ' + params[:semester].to_s
     unless params[:semester].nil? or params[:year].nil?
       year = params[:year]
       semester = Course::Semester.find(params[:semester])
