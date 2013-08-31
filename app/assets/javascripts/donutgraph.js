@@ -1,3 +1,5 @@
+loadDonuts();
+
 function loadDonuts(){
   $(".donut").each(function(i, obj)
   {
@@ -69,7 +71,7 @@ function donuttwo(x,y,radius,thickness,percentage1,percentage2,offset,id){
     drawDonut(x, y, radius, thickness, 1, offset, canvas, "#f5f5f5");
     drawDonut(x, y, radius, thickness, percentage1/100, offset, canvas, "#274d9b");
     drawText(x+5,y-5,percentage1 + "%",canvas);
-    drawDonut(x, y, radius, thickness, percentage2/100, offset+percentage1, canvas, "#E8A627");
+    drawDonut(x, y, radius, thickness, percentage2/100,offset+(percentage1/100), canvas, "#E8A627");
     drawText(x+5,y+25,percentage2 + "%",canvas);
 }
 
@@ -78,17 +80,16 @@ function drawDonut(x, y, radius, thickness, percentage, offset, canvas, color) {
     var context = canvas.getContext('2d');
     var startAngle = 0 + (2 * offset * Math.PI);
     var endAngle = 2 * Math.PI * percentage + (offset * Math.PI * 2);
-
     context.beginPath();
     var point = getPoint(x, y, radius, startAngle);
     var ipoint = getPoint(x, y, radius - thickness, startAngle);
     context.moveTo(ipoint[0], ipoint[1]);
     context.lineTo(point[0], point[1]);
     context.arc(x, y, radius, startAngle, endAngle, 0);
-    point = getPoint(x, y, radius, endAngle);
-    ipoint = getPoint(x, y, radius - thickness, endAngle);
-    context.moveTo(point[0], point[1]);
-    context.lineTo(ipoint[0], ipoint[1]);
+    var point2 = getPoint(x, y, radius, endAngle);
+    var ipoint2 = getPoint(x, y, radius - thickness, endAngle);
+    context.moveTo(point2[0], point2[1]);
+    context.lineTo(ipoint2[0], ipoint2[1]);
     context.arc(x, y, radius - thickness, endAngle, startAngle, 1);
     context.fillStyle = color;
     context.fill();
