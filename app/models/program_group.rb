@@ -39,7 +39,7 @@ class ProgramGroup < ActiveRecord::Base
     subgroups.each do |subgroup|
       coef = subgroup.get_coefficient
       
-      ratio += (subgroup.get_completion_ratio(scenario, term)[:ratio]) * coef
+      ratio += (subgroup.get_completion_ratio(scenario, term)[:value])
       coefficient += coef
     end
     return {:ratio => 0, :coefficient => 0, :value => 0} if coefficient == 0
