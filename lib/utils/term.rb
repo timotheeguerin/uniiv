@@ -6,6 +6,16 @@ class Term
     @year = year.to_i
   end
 
+  #Return the falll semester of the current year
+  def first_of_year
+    case @semester.name
+      when 'fall'
+        self
+      else
+        Term.new(Course::Semester.find_by_name('fall'), @year -1)
+    end
+  end
+
   def next
     case @semester.name
       when 'winter'

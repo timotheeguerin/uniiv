@@ -9,13 +9,17 @@ class User::CourseTakingController < ApplicationController
 
   #Sort the course
   def sort_course
-    @terms = {}
-    term = current_term
+    @years = {}
+    term = current_term.first_of_year
     @previous_courses = current_scenario.get_course_before_than(term.semester, term.year)
-    (1..12).each do
-      courses = current_scenario.get_course_in_semester(term.semester, term.year)
-      @terms[term] = courses
-      term = term.next
+    (0..4).each do |year|
+      terms = {}
+      (1..3).each do
+        courses = current_scenario.get_course_in_semester(term.semester, term.year)
+        terms[term] = courses
+        term = term.next
+      end
+      @years[year] = terms
     end
     current_scenario.taking_courses.each do |course|
     end
