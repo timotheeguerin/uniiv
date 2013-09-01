@@ -38,7 +38,7 @@ class ProgramGroup < ActiveRecord::Base
     coefficient = 0
     subgroups.each do |subgroup|
       coef = subgroup.get_coefficient
-      
+
       ratio += (subgroup.get_completion_ratio(scenario, term)[:value])
       coefficient += coef
     end
@@ -105,7 +105,7 @@ class ProgramGroup < ActiveRecord::Base
     end
   end
 
-  def get_coefficient()
+  def get_coefficient
     case restriction.name
       when 'min_credit'
         value
@@ -114,6 +114,24 @@ class ProgramGroup < ActiveRecord::Base
       else
         count_total_credit
     end
+  end
+
+  def get_all_courses(options={})
+    result = []
+    default_options={
+        :only_taking => false,
+        :only_not_taking => false,
+        :only_completed => false,
+        :only_not_completed => false
+    }
+    options = options.reverse_merge(default_options)
+    user = options[:user]
+    result = courses
+    unless user.nil?
+      result = result.where { id.in(user.taking_courses.select { course_id }) } if options[:only_taking]
+      result = result.where { id.not_in(user.taking_courses.select { course_id }) } if options[:only_taking]
+    end
+    result
   end
 
   def id_to_s

@@ -92,6 +92,11 @@ class Course::Course < ActiveRecord::Base
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
   end
+
+  #Compute the completxity to get to this course with all the prerequisite
+  def get_complexity
+    prerequisite.get_complexity
+  end
 end
 
 class CourseState

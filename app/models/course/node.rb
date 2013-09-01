@@ -194,6 +194,27 @@ class Course::Node < ActiveRecord::Base
     end
   end
 
+  def get_complexity
+    case operation
+      when NodeOperation::AND
+        complexity = 0
+        nodes.each do |node|
+          complexity += node.get_complexity
+        end
+        return complexity
+      when NodeOperation::AND
+        complexity = 0
+        nodes.each do |node|
+          complexity += 0.5*node.get_complexity
+        end
+        return complexity
+      else
+        course.get_complexity
+
+
+    end
+  end
+
 end
 
 
