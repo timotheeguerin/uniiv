@@ -22,7 +22,7 @@
         position: relative;
         border: 1px dashed #dfdfdf;
         background: transparent;
-        padding:0px;
+        padding: 0px;
     }
 
     ul.sortable li.placeholder:before {
@@ -60,8 +60,8 @@
         border: 1px solid #dfdfdf;
         float: right;
         padding: 10px;
-        padding-top:0px;
-        padding-bottom:0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
         box-sizing: border-box;
         border-radius: 5px;
         background-color: #fafafa;
@@ -76,13 +76,13 @@
   <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
     <div>
       <!--<ul class='sortable no-drag draggable_box drag_box sortable_noindent' data-type='delete' style="padding:5px;margin-left:auto;margin-right:auto;width:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">-->
-      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin' 
+      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
           data-type='delete'
           data-group='course'
           data-update-url='<%= update_course_taking_path %>'
           style="line-height:30px;padding:2px;text-align:center;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
         <h4>Drag a course here to remove</h4>
-        <img src="/assets/bin.png" style="width:30px;" alt="bin" />
+        <img src="/assets/bin.png" style="width:30px;" alt="bin"/>
       </ul>
     </div>
     <div><input type="text" placeholder="<%= t('search.course') %>"
@@ -115,20 +115,24 @@
             </ul>
           </div>
       <% end %>
-
-      <% @terms.each do |term, courses| %>
-          <div><h4><%= term.semester.to_s.capitalize %>  <%= term.year %></h4></div>
+      <% @years.each do |year, terms| %>
           <div>
-            <ul class='sortable connected draggable_box drag_box sortable_noindent'
-                data-group='course'
-                data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
-                data-update-url='<%= update_course_taking_path %>'>
-              <% courses.each do |course| %>
-                  <li>
-                    <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s + " - " + course.course.name %></h5></div>
-                  </li>
-              <% end %>
-            </ul>
+            <% terms.each do |term, courses| %>
+                <div><h4><%= term.semester.to_s.capitalize %>  <%= term.year %></h4></div>
+                <div>
+                  <ul class='sortable connected draggable_box drag_box sortable_noindent'
+                      data-group='course'
+                      data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
+                      data-update-url='<%= update_course_taking_path %>'>
+                    <% courses.each do |course| %>
+                        <li>
+                          <div data-course-id='<%= course.course.id %>'>
+                            <h5><%= course.course.to_s + " - " + course.course.name %></h5></div>
+                        </li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
           </div>
       <% end %>
     </div>
