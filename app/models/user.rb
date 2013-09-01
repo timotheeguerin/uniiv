@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :course_scenarios, :class_name => Course::Scenario
   has_one :main_course_scenario, -> { where :main => true }, :class_name => Course::Scenario
 
+  has_many :course_recommendations, :class_name => UsersCoursesRecommendation
+
   validates :advanced_standing_credits, :presence => true
 
   # Include default devise modules. Others available are:
@@ -110,6 +112,10 @@ class User < ActiveRecord::Base
 
   def requirements_completed_after_taking?(course)
     course.requirements_completed_after_taking?(self, true)
+  end
+
+  def get_recommended_courses
+
   end
 
   def to_s
