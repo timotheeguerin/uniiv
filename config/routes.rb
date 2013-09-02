@@ -75,12 +75,12 @@ Uniiv::Application.routes.draw do
   get 'course/search/list' => 'course#search_list', :as => :search_course_list
 
   #Course review controller
-  get 'course/:course_id/review/' => 'course_review#index', :as => 'course_reviews'
-  get 'course/:course_id/review/:id/show' => 'course_review#show', :as => 'course_review'
+  get 'course/:course_id/review/' => 'course_review#index', :as => :course_reviews
+  get 'course/:course_id/review/:id/show' => 'course_review#show', :as => :course_review
   get 'course/:course_id/review/new' => 'course_review#new', :as => 'course_review_new'
   post 'course/:course_id/review/new' => 'course_review#create', :as => 'course_review_create'
-  get 'course/:course_id/review/new/graph/embed' => 'course_review#new_graph_embed', :as => 'course_review_new_graph_embed'
-  post 'course/:course_id/review/new/graph/embed' => 'course_review#create_graph_embed', :as => 'course_review_create_graph_embed'
+  get 'course/:course_id/review/new/graph/embed' => 'course_review#new_graph_embed', :as => :course_review_new_graph_embed, :defaults => {:graph_embed => true}
+  post 'course/:course_id/review/new/graph/embed' => 'course_review#create', :as => :course_review_create_graph_embed, :defaults => {:graph_embed => true}
 
   #User
   get 'user_dashboard/index' => 'user_dashboard#index', :as => :user_education

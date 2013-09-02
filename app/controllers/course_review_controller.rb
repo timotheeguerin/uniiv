@@ -23,27 +23,23 @@ class CourseReviewController < ApplicationController
   end
 
   def create
-    if create_review
-      redirect_to course_review_path(@review)
+    @review = Course::Review.new(params[:course_review].permit!)
+    @review.course = @course
+    @review.user = current_user
+    if @review.save
+      if params[:graph_emebed]
+        return_json 'review.added', :url => course_graph_emebed_path(@review)
+      else
+        redirect_to course_path(@review)
+      end
     else
       render 'new'
     end
 
   end
 
-  def create_graph_embed
-    if create_review
-      redirect_to course_review_path(@review)
-    else
-      render 'new_graph_embed'
-    end
-  end
-
   def create_review
-    @review = Course::Review.new(params[:course_review].permit!)
-    @review.course = @course
-    @review.user = current_user
-    @review.save
+
   end
 
 end
