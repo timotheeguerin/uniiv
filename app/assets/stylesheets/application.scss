@@ -195,18 +195,154 @@ $login_width: 500px;
 }
 
 /*
+ * tags
+*/
+h1 {
+  font-weight: 300;
+  font-family: "Open Sans";
+  font-size: 40px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: #555555;
+}
+
+h2 {
+  font-weight: 300;
+  font-family: "Open Sans";
+  font-size: 32px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: #555555;
+}
+
+h3 {
+  font-weight: 300;
+  display: inline-block;
+  font-size: 26px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+h4 {
+  font-weight: 300;
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: #555555;
+}
+
+h5 {
+  font-weight: 300;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: #555555;
+}
+
+* {
+  text-rendering: optimizelegibility;
+  font-family: "Open Sans", Helvetica, Verdana, Sans-serif;
+  font-weight: lighter;
+  font-smooth: always;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: $page_background_color;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+input {
+  outline: none;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  border: 1px solid $palette_blue_medium;
+  -moz-box-shadow: 0px 0px 2px #888888;
+  -webkit-box-shadow: 0px 0px 2px #888888;
+  box-shadow: 0px 0px 2px #888888;
+}
+
+input[type="submit"], button {
+  border: 1px solid $nav_border_color;
+  border-radius: $page_border_radius;
+  padding: 5px;
+  background-color: $button_gradient_bottom;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom);
+  border-top: 1px solid $nav_border_color;
+}
+
+input[type="submit"]:hover, button:hover {
+  background-color: $button_gradient_bottom_hover;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+}
+
+input[type="submit"]:active, button:active {
+  background-color: $button_gradient_bottom_active;
+  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+}
+
+input[type="submit"]:disabled, input[type="submit"][disabled=disabled], button[disabled=disabled], button:disabled {
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #e3e3e3;
+  background-image: -moz-linear-gradient(#ffffff, #e0e0e0);
+  background-image: -webkit-linear-gradient(#ffffff, #e0e0e0);
+  background-image: linear-gradient(#ffffff, #e0e0e0);
+  border-top: 1px solid #d5d5d5;
+  color: #ccc;
+}
+
+canvas {
+  z-index: 0;
+}
+
+/*
  * classes
 */
+
+.invalid-time
+{
+  background-color: $palette_orange_lighter;
+}
 
 .popup_ajax
 {
     position: fixed;
     padding: 10px;
-    top:50px;
+    top:55px;
     right: 10px;
     border-radius: 5px;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 350px;
     background-color:  $palette_blue_lighter;
     color: white;
     cursor: pointer;
@@ -372,136 +508,4 @@ $login_width: 500px;
 
 .unavailable {
   background-color: $palette_orange_medium;
-}
-
-/*
- * tags
-*/
-h1 {
-  font-weight: 300;
-  font-family: "Open Sans";
-  font-size: 40px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  color: #555555;
-}
-
-h2 {
-  font-weight: 300;
-  font-family: "Open Sans";
-  font-size: 32px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  color: #555555;
-}
-
-h3 {
-  font-weight: 300;
-  display: inline-block;
-  font-size: 26px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #555555;
-}
-
-h4 {
-  font-weight: 300;
-  display: inline-block;
-  font-size: 20px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  color: #555555;
-}
-
-h5 {
-  font-weight: 300;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  color: #555555;
-}
-
-* {
-  text-rendering: optimizelegibility;
-  font-family: "Open Sans", Helvetica, Verdana, Sans-serif;
-  font-weight: lighter;
-  font-smooth: always;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  background-color: $page_background_color;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  font-family: inherit;
-}
-
-input {
-  outline: none;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-  border: 1px solid $nav_border_color;
-  border-radius: $page_border_radius;
-  padding-left: 5px;
-  padding-right: 5px;
-  box-sizing: border-box;
-}
-
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-  border: 1px solid $palette_blue_medium;
-  -moz-box-shadow: 0px 0px 2px #888888;
-  -webkit-box-shadow: 0px 0px 2px #888888;
-  box-shadow: 0px 0px 2px #888888;
-}
-
-input[type="submit"], button {
-  border: 1px solid $nav_border_color;
-  border-radius: $page_border_radius;
-  padding: 5px;
-  background-color: $button_gradient_bottom;
-  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom);
-  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom);
-  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom);
-  border-top: 1px solid $nav_border_color;
-}
-
-input[type="submit"]:hover, button:hover {
-  background-color: $button_gradient_bottom_hover;
-  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
-  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
-  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
-}
-
-input[type="submit"]:active, button:active {
-  background-color: $button_gradient_bottom_active;
-  background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
-  background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
-  background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_active);
-}
-
-input[type="submit"]:disabled, input[type="submit"][disabled=disabled], button[disabled=disabled], button:disabled {
-  border: 1px solid #d5d5d5;
-  border-radius: 5px;
-  padding: 5px;
-  background-color: #e3e3e3;
-  background-image: -moz-linear-gradient(#ffffff, #e0e0e0);
-  background-image: -webkit-linear-gradient(#ffffff, #e0e0e0);
-  background-image: linear-gradient(#ffffff, #e0e0e0);
-  border-top: 1px solid #d5d5d5;
-  color: #ccc;
-}
-
-canvas {
-  z-index: 0;
 }
