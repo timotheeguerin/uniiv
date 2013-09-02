@@ -107,7 +107,7 @@
               <% @previous_courses.each do |course| %>
                   <li>
                     <div data-course-id='<%= course.course.id %>'>
-                      <h5><%= course.course.to_s + " - " + course.course.name %>
+                      <h5><%= course.course.to_s + ' - ' + course.course.name %>
                       </h5>
                     </div>
                   </li>
@@ -125,9 +125,9 @@
                       data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
                       data-update-url='<%= update_course_taking_path %>'>
                     <% courses.each do |course| %>
-                        <li>
+                        <li class='<%= 'invalid-time' unless course.is_time_valid?(term) %>'>
                           <div data-course-id='<%= course.course.id %>'>
-                            <h5><%= course.course.to_s + " - " + course.course.name %></h5></div>
+                            <h5><%= course.course.to_s + ' - ' + course.course.name %></h5></div>
                         </li>
                     <% end %>
                   </ul>

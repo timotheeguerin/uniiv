@@ -9,7 +9,7 @@ class UserTakingCourse < ActiveRecord::Base
   validates :semester, :presence => true
   validates :year, :presence => true
 
-  validate :couse_not_completed
+  validate :validate_couse_not_completed
 
 
   after_save :reindex
@@ -27,12 +27,17 @@ class UserTakingCourse < ActiveRecord::Base
     course.index
   end
 
+  #Can the user take this course at this time
+  def is_time_valid?(term= nil)
+    course_scenario.can_take_course?(course, term)
+  end
+
   searchable do
 
   end
 
   private
-  def couse_not_completed
+  def validate_couse_not_completed
     uid = user.id
     c_id = course_id
     completed_course = UserCompletedCourse.where { (user_id == uid) & (course_id == c_id) }.first
