@@ -54,6 +54,9 @@ $(document).ready ()->
           $item.remove()
         $.post(update_url, parameters).success((data) ->
           ajaxPopupPush(data.message)
+          unless remove
+            $item.removeClass('invalid-time')
+            $item.addClass(data.clazz)
         ).error (error) ->
           console.log(error)
     })
