@@ -100,6 +100,10 @@ class Course::Expr < ActiveRecord::Base
     end
   end
 
+  def list_dependencies
+    node.list_dependencies
+  end
+
   def as_json(options={})
     hash = super(:except => [:created_at, :updated_at])
     hash[:node] = node.as_json
