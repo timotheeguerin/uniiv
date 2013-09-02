@@ -12,6 +12,10 @@ class Course::Course < ActiveRecord::Base
   has_many :users, :class_name => User, :through => :user_completed_courses
   has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
 
+  has_and_belongs_to_many :program_groups, :class_name => ProgramGroup
+
+
+  #Validations
   validates_uniqueness_of :code, scope: :subject
   validates :subject_id, :presence => true
   validates :name, :presence => true
@@ -87,6 +91,9 @@ class Course::Course < ActiveRecord::Base
   searchable do
     text :subject do
       subject.name
+    end
+    text :programs do
+      program_groups.map { |group| group.parent_program.to_s }
     end
     text :description
     text :code

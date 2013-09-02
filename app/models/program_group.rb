@@ -21,6 +21,16 @@ class ProgramGroup < ActiveRecord::Base
     end
   end
 
+  def parent_program
+    if groupparent.nil?
+      nil
+    elsif groupparent.instance_of?(Program)
+      groupparent
+    else
+      groupparent.parent_program
+    end
+  end
+
 
   def get_requirement_level
     complexity = 0
