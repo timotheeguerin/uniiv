@@ -155,14 +155,14 @@ class Course::Node < ActiveRecord::Base
     case operation
       when NodeOperation::OR
         nodes.each do |n|
-          if n.requirements_completed?(scenario)
+          if n.requirements_completed?(scenario, term)
             return true
           end
         end
         return false
       when NodeOperation::AND
         nodes.each do |n|
-          unless n.requirements_completed?(scenario)
+          unless n.requirements_completed?(scenario, term)
             return false
           end
         end

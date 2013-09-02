@@ -42,6 +42,7 @@ class Course::Course < ActiveRecord::Base
   end
 
   def requirements_completed?(scenario, term = nil)
+    puts 'pre: ' + prerequisite.requirements_completed?(scenario, term).to_s unless prerequisite.nil?
     unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
     end

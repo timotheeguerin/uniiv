@@ -28,7 +28,7 @@ class UserTakingCourse < ActiveRecord::Base
   end
 
   #Can the user take this course at this time
-  def is_time_valid?(term= nil)
+  def is_time_valid?(term = nil)
     course_scenario.can_take_course?(course, term)
   end
 
