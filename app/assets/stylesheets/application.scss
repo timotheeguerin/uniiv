@@ -330,6 +330,41 @@ canvas {
  * classes
 */
 
+.autocomplete-suggestions
+{
+  border-radius: 5px;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.autocomplete-suggestion
+{
+  color: #555555;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.autocomplete-selected
+{
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 5px;
+}
+.autocomplete-suggestion strong
+{
+  font-weight: bold;
+  color: #274d9b;
+}
+
+.dash_images
+{
+  width: 40px;
+  margin-left:5px;
+  margin-right: 5px;
+}
+
 .invalid-time
 {
   background-color: $palette_orange_lighter;
