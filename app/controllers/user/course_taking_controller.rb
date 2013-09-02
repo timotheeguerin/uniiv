@@ -41,7 +41,9 @@ class User::CourseTakingController < ApplicationController
       user_taking_course.semester = Course::Semester.find(params[:semester_id])
       user_taking_course.year = params[:year]
       user_taking_course.save
-      return_json('course.take.update.success')
+      options = {}
+      options[:clazz] = 'invalid-time' unless user_taking_course.is_time_valid?
+      return_json('course.take.update.success', options)
     end
 
   end
@@ -88,7 +90,7 @@ class User::CourseTakingController < ApplicationController
 
     if @user_taking_course.save
       if params[:graph_embed]
-        return_json('course.course_taking.added', course_graph_embed_path(@course))
+        return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
       else
         redirect_to course_path(@course)
       end
@@ -121,7 +123,7 @@ class User::CourseTakingController < ApplicationController
     if @user_completed_course.save
       puts 'saved'
       if params[:graph_embed]
-        return_json('course.completed', course_graph_embed_path(@course))
+        return_json('course.completed', :url => course_graph_embed_path(@course))
       else
         redirect_to course_path(@course)
       end
@@ -139,7 +141,7 @@ class User::CourseTakingController < ApplicationController
     user_completed_course.destroy unless user_completed_course.nil?
 
     if params[:graph_embed]
-      return_json('course.untake', course_graph_embed_path(@course))
+      return_json('course.untake', :url => course_graph_embed_path(@course))
     else
       redirect_to course_path(@course)
     end
