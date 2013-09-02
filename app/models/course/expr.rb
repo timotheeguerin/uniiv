@@ -92,6 +92,14 @@ class Course::Expr < ActiveRecord::Base
     node.requirements_completed?(scenario, term)
   end
 
+  def get_complexity
+    if node.nil?
+      0
+    else
+      node.get_complexity
+    end
+  end
+
   def as_json(options={})
     hash = super(:except => [:created_at, :updated_at])
     hash[:node] = node.as_json

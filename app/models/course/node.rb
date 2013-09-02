@@ -155,14 +155,14 @@ class Course::Node < ActiveRecord::Base
     case operation
       when NodeOperation::OR
         nodes.each do |n|
-          if n.requirements_completed?(scenario)
+          if n.requirements_completed?(scenario, term)
             return true
           end
         end
         return false
       when NodeOperation::AND
         nodes.each do |n|
-          unless n.requirements_completed?(scenario)
+          unless n.requirements_completed?(scenario, term)
             return false
           end
         end
@@ -191,6 +191,27 @@ class Course::Node < ActiveRecord::Base
         count += n.count_requirements
       end
       count
+    end
+  end
+
+  def get_complexity
+    case operation
+      when NodeOperation::AND
+        complexity = 0
+        nodes.each do |node|
+          complexity += node.get_complexity
+        end
+        return complexity
+      when NodeOperation::AND
+        complexity = 0
+        nodes.each do |node|
+          complexity += 0.5*node.get_complexity
+        end
+        return complexity
+      else
+        course.get_complexity
+
+
     end
   end
 

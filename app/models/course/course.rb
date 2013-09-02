@@ -42,6 +42,7 @@ class Course::Course < ActiveRecord::Base
   end
 
   def requirements_completed?(scenario, term = nil)
+    puts 'pre: ' + prerequisite.requirements_completed?(scenario, term).to_s unless prerequisite.nil?
     unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
     end
@@ -91,6 +92,11 @@ class Course::Course < ActiveRecord::Base
     text :code
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
+  end
+
+  #Compute the completxity to get to this course with all the prerequisite
+  def get_complexity
+    prerequisite.get_complexity
   end
 end
 

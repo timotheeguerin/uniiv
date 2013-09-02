@@ -38,11 +38,11 @@ class ApplicationController < ActionController::Base
     @current_semester
   end
 
-  def return_json(message, url = nil)
+  def return_json(message, options ={})
     json = {}
     json[:success] = true
     json[:message] = t(message)
-    json[:url] = url unless url.nil?
+    json = json.merge(options)
     render :json => json.to_json
   end
 
