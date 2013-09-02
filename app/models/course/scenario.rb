@@ -32,6 +32,16 @@ class Course::Scenario < ActiveRecord::Base
     course.requirements_completed?(self, term)
   end
 
+  #Return if the user is taking courses at the wrong time
+  def has_errors?
+    taking_courses.each do |course|
+      unless course.is_time_valid?
+        return true
+      end
+    end
+    false
+  end
+
   #Check if a course is going to be completed in the given term
   def will_course_be_completed(course, term)
     taking_course = taking_courses.where(:course_id => course).first

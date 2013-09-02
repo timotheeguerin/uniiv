@@ -11,7 +11,8 @@ class User::ScenarioController < ApplicationController
 
     current_user.course_scenarios << scenario
     if current_user.save
-      flash[:notice] = t('scenario.create.successF')
+      current_scenario = scenario
+      flash[:notice] = t('scenario.create.success')
       redirect_to user_education_path
     else
       render :new
