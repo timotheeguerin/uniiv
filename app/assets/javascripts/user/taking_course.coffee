@@ -54,9 +54,12 @@ $(document).ready ()->
           $item.remove()
         $.post(update_url, parameters).success((data) ->
           ajaxPopupPush(data.message)
-          unless remove
-            $item.removeClass('invalid-time')
-            $item.addClass(data.clazz)
+          if data.invalid_courses?
+            $('div[data-course-id]').each ->
+              if data.invalid_courses.indexOf(parseInt($(this).attr('data-course-id'))) == -1
+                $(this).parent().removeClass('invalid-time')
+              else
+                $(this).parent().addClass('invalid-time')
         ).error (error) ->
           console.log(error)
     })

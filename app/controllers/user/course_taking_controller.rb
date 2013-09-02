@@ -30,7 +30,7 @@ class User::CourseTakingController < ApplicationController
     user_taking_course = current_scenario.taking_courses.where(:course_id => course.id).first
     if params[:remove] == 'true'
       user_taking_course.destroy unless user_taking_course.nil?
-      return_json('course.take.remove.success')
+
     else
       if user_taking_course.nil?
         user_taking_course = UserTakingCourse.new
@@ -41,9 +41,16 @@ class User::CourseTakingController < ApplicationController
       user_taking_course.semester = Course::Semester.find(params[:semester_id])
       user_taking_course.year = params[:year]
       user_taking_course.save
-      options = {}
-      options[:clazz] = 'invalid-time' unless user_taking_course.is_time_valid?
-      return_json('course.take.update.success', options)
+
+    end
+    invalid_courses = []
+    current_scenario.taking_courses.each do |c|
+      invalid_courses << c.course.id unless c.is_time_valid?
+    end
+    if params[:remove] == 'true'
+      return_json('course.take.remove.success', :invalid_courses => invalid_courses)
+    else
+      return_json('course.take.update.success', :invalid_courses => invalid_courses)
     end
 
   end
