@@ -24,7 +24,7 @@ getURLParameters = (params) ->
 
 checkDependencies = (course_id, remove = false) ->
   $('li.dependency').each () ->
-    if $(this).attr('data-course-id') == coures_id
+    if $(this).children().attr('data-course-id') == course_id
       if remove
         $(this).removeClass('notsortable')
       else
@@ -37,8 +37,6 @@ handleSortable = (element) ->
   group = element.attr('data-group')
   if element.hasClass('no-drop')
     drop = false
-  if element.hasClass('duplicate')
-    console.log('depe')
   element.sortable({
     group: group
     drop: drop
@@ -63,6 +61,8 @@ handleSortable = (element) ->
       })
     onDrop: ($item, container, _super) ->
       _super($item, container)
+      if $item.parent("ul")[0] == container.el[0] #Dont do anything if drop on the same box
+        return
       ul = $item.closest('ul')
       update_url = ul.attr('data-update-url')
       type = ul.attr('data-type')
@@ -84,9 +84,7 @@ handleSortable = (element) ->
         $item.remove()
         $item = tmpItemp
         #Remap event
-        console.log($item.html())
         $item.find('ul.sortable').each () ->
-          console.log('item: psoekf')
           handleSortable($(this))
 
         if data.invalid_courses?
