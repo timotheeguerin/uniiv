@@ -22,8 +22,14 @@ getURLParameters = (params) ->
     result[sParameterName[0]] = sParameterName[1]
   return result
 
-checkDependencies = () ->
+checkDependencies = (course_id, remove = false) ->
   $('li.dependency').each () ->
+    if $(this).attr('data-course-id') == coures_id
+      if remove
+        $(this).removeClass('notsortable')
+      else
+        $(this).addClass('notsortable')
+
 
 handleSortable = (element) ->
   adjustment = {}
@@ -89,6 +95,9 @@ handleSortable = (element) ->
               $(this).parent().removeClass('invalid-time')
             else
               $(this).parent().addClass('invalid-time')
+
+        checkDependencies(course_id, remove)
+
       ).error (error) ->
         console.log(error)
   })

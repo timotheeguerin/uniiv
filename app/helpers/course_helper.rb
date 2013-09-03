@@ -31,7 +31,7 @@ module CourseHelper
         r += render template, :course => course
       end
     else
-      r = r + ' (' + node.nodes.map! { |k| "#{get_node_html(k)}" }.join(' ' + node.operation + ' ') + ') '
+      r = r + ' (' + node.nodes.map! { |k| "#{get_node_html(k, template)}" }.join(' ' + node.operation + ' ') + ') '
     end
     r
   end
