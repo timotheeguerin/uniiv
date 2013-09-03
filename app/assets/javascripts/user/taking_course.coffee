@@ -74,7 +74,9 @@ handleSortable = (element) ->
         $item.remove()
       $.post(update_url, parameters).success((data) ->
         ajaxPopupPush(data.message)
-        $item.replaceWith(data.html)
+        tmpItemp = $item.after(data.html)
+        $item.remove()
+        $item = tmpItemp
         #Remap event
         console.log($item.html())
         $item.find('ul.sortable').each () ->

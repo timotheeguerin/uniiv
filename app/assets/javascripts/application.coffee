@@ -85,6 +85,13 @@ $(document).ready () ->
         input_data.val(id) if input_data.length > 0
     })
 
+  $(document).on 'click', '.toggledisplay', () ->
+    console.log('clo')
+    container = $($(this).attr('data-container'))
+    if container.is(':visible')
+      container.slideUp(200)
+    else
+      container.slideDown(200)
 
 setupStarRatings = () ->
   $('input.star-rating').each () ->

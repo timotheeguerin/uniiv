@@ -3,11 +3,14 @@
     <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
 
     <div style="float:right;">
+      <button style="position:relative;bottom:3px;" class='toggledisplay' data-container='#dependencies_<%= course.course.id %>'>
+        >
+      </button>
       <%= link_to course_path(course.course), :target => "_blank" do %>
           <button style="position:relative;bottom:3px;">Info</button>
       <% end %>
     </div>
-    <div class='dependencies'>
+    <div id='dependencies_<%= course.course.id %>' class='dependencies' style='display: none'>
       <hr/>
       <div>
         <h5><%= t('prerequisites') %>: </h5>
