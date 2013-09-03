@@ -63,7 +63,6 @@ handleSortable = (element) ->
     onDrop: ($item, container, _super) ->
       _super($item, container)
       if $item.data('origin-container') == container.el[0] #Dont do anything if drop on the same box
-        console.log('same')
         return
       ul = $item.closest('ul')
       update_url = ul.attr('data-update-url')
@@ -82,7 +81,8 @@ handleSortable = (element) ->
       })
       if remove
         $item.remove()
-        console.log('dorp')
+      loading_anim = $item.append($("#loading_animation").html())
+      loading_anim.show()
       $.post(update_url, parameters).success((data) ->
         ajaxPopupPush(data.message)
         if need_reload
@@ -102,6 +102,7 @@ handleSortable = (element) ->
               $(this).parent().addClass('invalid-time')
 
         checkDependencies(course_id, remove)
+        #loading_anim.remove()
 
       ).error (error) ->
         console.log(error)
