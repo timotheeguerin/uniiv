@@ -50,7 +50,11 @@ class User::CourseTakingController < ApplicationController
     if params[:remove] == 'true'
       return_json('course.take.remove.success', :invalid_courses => invalid_courses)
     else
-      html = render_to_string :partial => 'course/course_list_item', :locals => {:course => user_taking_course, :invalid_time => false}
+      if params[:need_reload]
+        html = render_to_string :partial => 'course/course_list_item', :locals => {:course => user_taking_course, :invalid_time => false}
+      else
+        html = ''
+      end
       return_json('course.take.update.success', :invalid_courses => invalid_courses, :html => html)
     end
 
@@ -142,8 +146,8 @@ class User::CourseTakingController < ApplicationController
   end
 
   def remove
-    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
-    user_completed_course = current_user.completed_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course_id => @course).first
+    user_completed_course = current_user.completed_courses.where(:course_id => @course).first
 
     user_taking_course.destroy unless user_taking_course.nil?
     user_completed_course.destroy unless user_completed_course.nil?

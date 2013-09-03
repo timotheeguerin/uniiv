@@ -244,6 +244,11 @@ h5 {
   font-family: "Open Sans", Helvetica, Verdana, Sans-serif;
   font-weight: lighter;
   font-smooth: always;
+  position: relative;
+}
+
+ul {
+  position: static;
 }
 
 html {
@@ -330,58 +335,58 @@ canvas {
 */
 
 body.dragging, body.dragging * {
-    cursor: move !important;
+  cursor: move !important;
 }
 
 .dragged {
-    position: absolute;
-    opacity: 0.5;
-    z-index: 2000;
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
 }
 
 ul.sortable li {
-    display: block;
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid #CCC;
-    cursor: pointer;
+  display: block;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #CCC;
+  cursor: pointer;
 }
 
 ul.sortable li.placeholder {
-    height: 50px;
-    position: relative;
-    border: 1px dashed #dfdfdf;
-    background: transparent;
-    padding: 0px;
+  height: 50px;
+  position: relative;
+  border: 1px dashed #dfdfdf;
+  background: transparent;
+  padding: 0px;
 }
 
 ul.sortable li.placeholder:before {
-    position: absolute;
+  position: absolute;
 }
 
 .drag_box {
-    min-height: 25px;
-    border-radius: 5px;
+  min-height: 25px;
+  border-radius: 5px;
 }
 
 .draggable_box {
-    border: 1px dashed #dfdfdf;
-    background-color: #f5f5f5;
+  border: 1px dashed #dfdfdf;
+  background-color: #f5f5f5;
 }
 
 .undraggable_box {
-    border: 1px solid #dfdfdf;
-    background-color: #f5f5f5;
+  border: 1px solid #dfdfdf;
+  background-color: #f5f5f5;
 }
 
 .sortable_noindent {
-    padding: 0px;
-    text-indent: 0px;
+  padding: 0px;
+  text-indent: 0px;
 }
 
 .left_box_sortcourse {
-    display: inline-block;
-    width: 535px;
+  display: inline-block;
+  width: 535px;
 }
 
 .right_box_sortcourse {
@@ -433,8 +438,7 @@ li.notsortable h5
   color: white !important;
 }
 
-.autocomplete-suggestions
-{
+.autocomplete-suggestions {
   border-radius: 5px;
   border: 1px solid #dfdfdf;
   background-color: #ffffff;
@@ -442,44 +446,40 @@ li.notsortable h5
   padding: 5px;
 }
 
-.autocomplete-suggestion
-{
+.autocomplete-suggestion {
   color: #555555;
   border-radius: 5px;
   padding: 5px;
 }
 
-.autocomplete-selected
-{
+.autocomplete-selected {
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 5px;
 }
-.autocomplete-suggestion strong
-{
+
+.autocomplete-suggestion strong {
   font-weight: bold;
   color: #274d9b;
 }
 
-.dash_images
-{
+.dash_images {
   width: 40px;
-  margin-left:5px;
+  margin-left: 5px;
   margin-right: 5px;
 }
 
-.popup_ajax
-{
-    position: fixed;
-    padding: 10px;
-    top:55px;
-    right: 10px;
-    border-radius: 5px;
-    max-width: 350px;
-    background-color:  $palette_blue_lighter;
-    color: white;
-    cursor: pointer;
-    z-index: 1000;
+.popup_ajax {
+  position: fixed;
+  padding: 10px;
+  top: 55px;
+  right: 10px;
+  border-radius: 5px;
+  max-width: 350px;
+  background-color: $palette_blue_lighter;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .underline_link {
