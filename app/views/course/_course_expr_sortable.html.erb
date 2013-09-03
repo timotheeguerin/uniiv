@@ -1,0 +1,5 @@
+<li class='dependency <%= 'notsortable' if current_scenario.is_taking_course?(course) or current_scenario.has_completed_course?(course) %>' style='display: inline-block'>
+  <div data-course-id="<%= course.id %>">
+    <h5><%= course.to_s %></h5>
+  </div>
+</li>

@@ -55,12 +55,7 @@
                         data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
                         data-update-url='<%= update_course_taking_path %>'>
                       <% courses.each do |course| %>
-                          <li class='<%= 'invalid-time' unless course.is_time_valid? %>'>
-                            <div data-course-id='<%= course.course.id %>'>
-                              <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
-                              <div style="float:right;"><%= link_to course_path(course.course), :target => "_blank" do %><button style="position:relative;bottom:3px;">Info</button><% end %></div>
-                            </div>
-                          </li>
+                          <%= course_list_item(course) %>
                       <% end %>
                     </ul>
                   </div>
