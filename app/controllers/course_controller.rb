@@ -41,14 +41,24 @@ class CourseController < ApplicationController
 
   def search_course
     limit = params[:limit]
+    query = params[:q]
+    prerequisites = false
+    if query.downcase.start_with?('pre:')
+      query = query[4..-1]
+      prerequisites = true
+    end
     search = Course::Course.search do
-      fulltext params[:q]
+      fulltext query
       paginate(:page => 1, :per_page => limit) unless limit.nil?
       without(:course_scenario_ids, current_scenario.id) if params[:only_not_taking]
       with(:course_scenario_ids, current_scenario.id) if params[:only_taking]
       without(:user_ids, current_user.id) if params[:only_not_completed]
       with(:user_uds, current_user.id) if params[:only_completed]
     end
-    search.results
+    if prerequisites
+      search.results.first.list_dependencies(:inc_co => false)
+    else
+      search.results
+    end
   end
 end

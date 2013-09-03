@@ -215,6 +215,19 @@ class Course::Node < ActiveRecord::Base
     end
   end
 
+  def list_dependencies
+    case operation
+      when NodeOperation::NODE
+        [course]
+      else
+        courses = []
+        nodes.each do |node|
+          courses += node.list_dependencies
+        end
+        courses
+    end
+  end
+
 end
 
 

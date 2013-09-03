@@ -105,6 +105,22 @@ class Course::Course < ActiveRecord::Base
   def get_complexity
     prerequisite.get_complexity
   end
+
+  def list_dependencies(options = {})
+    default_options = {
+        :inc_pre => true,
+        :inc_co => true
+    }
+    options = options.reverse_merge(default_options)
+    courses = []
+    if not prerequisite.nil? and options[:inc_pre]
+      courses += prerequisite.list_dependencies
+    end
+    if corequisite.nil? and options[:inc_co]
+      courses += corequisite.list_dependencies
+    end
+    courses
+  end
 end
 
 class CourseState
