@@ -399,60 +399,17 @@ ul.sortable li.placeholder:before {
 
 ul.sortable li
 {
-  background-color: $palette_green_lighter;
-}
-
-ul.sortable h5
-{
-  color: white;
+  background-color: #f0f0f0;
 }
 
 li.invalid-time
 {
-  background-color: #F4895B !important;
+  background-color: $palette_orange_lighter !important;
 }
 
 li.invalid-time h5
 {
   color: white;
-}
-
-ul.sortable button
-{
-  @include lineargrad($palette_green_lighter, $palette_green_medium);
-  border-color: $palette_green_darker;
-  color: white;
-}
-
-ul.sortable button:hover
-{
-  @include lineargrad(darken($palette_green_lighter,5%), $palette_green_medium);
-  cursor: pointer;
-}
-
-ul.sortable button:active
-{
-  @include lineargrad(darken($palette_green_lighter,10%), $palette_green_medium);
-  cursor: pointer;
-}
-
-li.invalid-time button
-{
-  @include lineargrad($palette_orange_lighter, $palette_orange_medium);
-  border-color: $palette_orange_darker;
-  color: white;
-}
-
-li.invalid-time button:hover
-{
-  @include lineargrad(darken($palette_orange_lighter,5%), $palette_orange_medium);
-  cursor: pointer;
-}
-
-li.invalid-time button:active
-{
-  @include lineargrad(darken($palette_orange_lighter,10%), $palette_orange_medium);
-  cursor: pointer;
 }
 
 .autocomplete-suggestions
