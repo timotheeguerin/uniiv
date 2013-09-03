@@ -1,6 +1,6 @@
 <% @courses.each do |course| %>
     <li>
-      <div data-course-id='<%= course.id %>' data-type='new'>
+      <div data-course-id='<%= course.id %>' data-type='new' data-need-reload=true>
         <h5><%= course.to_s %>
         </h5>
       </div>

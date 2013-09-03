@@ -42,6 +42,7 @@ handleSortable = (element) ->
     drop: drop
     itemSelector: 'li:not(.notsortable)'
     onDragStart: ($item, container, _super) -> #Reposition the draggin element relative from where it was grabbed
+      $item.data('origin-container', container.el[0])
       ul = $item.closest('ul')
       if ul.hasClass('duplicate')
         $item.clone().insertAfter($item)
@@ -61,7 +62,8 @@ handleSortable = (element) ->
       })
     onDrop: ($item, container, _super) ->
       _super($item, container)
-      if $item.parent("ul")[0] == container.el[0] #Dont do anything if drop on the same box
+      if $item.data('origin-container') == container.el[0] #Dont do anything if drop on the same box
+        console.log('same')
         return
       ul = $item.closest('ul')
       update_url = ul.attr('data-update-url')
@@ -69,20 +71,25 @@ handleSortable = (element) ->
       course_id = $item.children().attr('data-course-id')
       params = ul.attr('data-params')
       remove = false
+      need_reload = false
       remove = true if type == 'delete'
+      need_reload = true if $item.children().attr('data-need-reload')
 
       parameters = $.extend(getURLParameters(params), {
         course_id: course_id
         remove: remove
-      }
-      )
+        need_reload: need_reload
+      })
       if remove
         $item.remove()
+        console.log('dorp')
       $.post(update_url, parameters).success((data) ->
         ajaxPopupPush(data.message)
-        tmpItemp = $item.after(data.html)
-        $item.remove()
-        $item = tmpItemp
+        if need_reload
+          tmpItemp = $item.after(data.html)
+          $item.remove()
+          $item = tmpItemp
+
         #Remap event
         $item.find('ul.sortable').each () ->
           handleSortable($(this))
