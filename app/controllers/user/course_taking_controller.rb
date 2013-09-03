@@ -146,8 +146,8 @@ class User::CourseTakingController < ApplicationController
   end
 
   def remove
-    user_taking_course = current_scenario.taking_courses.where(:course => @course).first
-    user_completed_course = current_user.completed_courses.where(:course => @course).first
+    user_taking_course = current_scenario.taking_courses.where(:course_id => @course).first
+    user_completed_course = current_user.completed_courses.where(:course_id => @course).first
 
     user_taking_course.destroy unless user_taking_course.nil?
     user_completed_course.destroy unless user_completed_course.nil?
