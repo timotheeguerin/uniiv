@@ -50,7 +50,8 @@ class User::CourseTakingController < ApplicationController
     if params[:remove] == 'true'
       return_json('course.take.remove.success', :invalid_courses => invalid_courses)
     else
-      return_json('course.take.update.success', :invalid_courses => invalid_courses)
+      html = render_to_string :partial => 'course/course_list_item', :locals => {:course => user_taking_course, :invalid_time => false}
+      return_json('course.take.update.success', :invalid_courses => invalid_courses, :html => html)
     end
 
   end

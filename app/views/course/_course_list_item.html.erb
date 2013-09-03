@@ -1,0 +1,41 @@
+<li class='<%= 'invalid-time' if invalid_time %>'>
+  <div data-course-id='<%= course.course.id %>'>
+    <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
+
+    <div style="float:right;">
+      <button style="position:relative;bottom:3px;" class='toggledisplay' data-container='#dependencies_<%= course.course.id %>'>
+        >
+      </button>
+      <%= link_to course_path(course.course), :target => "_blank" do %>
+          <button style="position:relative;bottom:3px;">Info</button>
+      <% end %>
+    </div>
+    <div id='dependencies_<%= course.course.id %>' class='dependencies' style='display: none'>
+      <hr/>
+      <div>
+        <h5><%= t('prerequisites') %>: </h5>
+        <% if course.course.prerequisite.nil? %>
+            <%= t('none') %>
+        <% else %>
+            <div style="display: inline-block">
+              <ul class='sortable no-drop duplicate' data-group='course'>
+                <%= raw get_expr_html(course.course.prerequisite, 'course/course_expr_sortable') %>
+              </ul>
+            </div>
+        <% end %>
+      </div>
+      <div>
+        <h5><%= t('corequisites') %>: </h5>
+        <% if course.course.corequisite.nil? %>
+            <%= t('none') %>
+        <% else %>
+            <div style="display: inline-block">
+              <ul class='sortable no-drop duplicate' style="display: inline-block" data-group='course'>
+                <%= raw get_expr_html(course.course.corequisite, 'course/course_expr_sortable') %>
+              </ul>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</li>
