@@ -301,6 +301,7 @@ input[type="submit"]:hover, button:hover {
   background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
   background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
   background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_hover);
+  cursor: pointer;
 }
 
 input[type="submit"]:active, button:active {
@@ -308,6 +309,7 @@ input[type="submit"]:active, button:active {
   background-image: -moz-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
   background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom_active);
   background-image: linear-gradient($button_gradient_top, $button_gradient_bottom_active);
+  cursor: pointer;
 }
 
 input[type="submit"]:disabled, input[type="submit"][disabled=disabled], button[disabled=disabled], button:disabled {

@@ -66,7 +66,39 @@
         border-radius: 5px;
         background-color: #fafafa;
     }
-
+    
+    li.invalid-time h5
+    {
+      color: white;
+    }
+    
+    li.invalid-time button
+    {
+      background-image: linear-gradient(#F4895B,#d4693b);
+      background-image: -webkit-linear-gradient(#F4895B,#d4693b);
+      background-image: -moz-linear-gradient(#F4895B,#d4693b);
+      background-color: #e4794B;
+      border-color: #d4693b;
+      color: white;
+    }
+    
+    li.invalid-time button:hover
+    {
+      background-image: linear-gradient(#d4693B,#d4693b);
+      background-image: -webkit-linear-gradient(#d4693B,#d4693b);
+      background-image: -moz-linear-gradient(#d4693B,#d4693b);
+      background-color: #d4693B;
+      cursor: pointer;
+    }
+    
+    li.invalid-time button:active
+    {
+      background-image: linear-gradient(#c4592B,#d4693b);
+      background-image: -webkit-linear-gradient(#c4592B,#d4693b);
+      background-image: -moz-linear-gradient(#c4592B,#d4693b);
+      background-color: #c4592b;
+      cursor: pointer;
+    }
 </style>
 
 <div class="content_box pagewidth">
@@ -117,22 +149,26 @@
       <% end %>
       <% @years.each do |year, terms| %>
           <div>
-            <% terms.each do |term, courses| %>
-                <div><h4><%= term.semester.to_s.capitalize %>  <%= term.year %></h4></div>
-                <div>
-                  <ul class='sortable connected draggable_box drag_box sortable_noindent'
-                      data-group='course'
-                      data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
-                      data-update-url='<%= update_course_taking_path %>'>
-                    <% courses.each do |course| %>
-                        <li class='<%= 'invalid-time' unless course.is_time_valid? %>'>
-                          <div data-course-id='<%= course.course.id %>'>
-                            <h5><%= course.course.to_s + ' - ' + course.course.name %></h5></div>
-                        </li>
-                    <% end %>
-                  </ul>
-                </div>
-            <% end %>
+            <div style="padding:10px;margin-bottom:25px;background-color:#fafafa;border-radius:5px;border:1px solid #dfdfdf;">
+              <% terms.each do |term, courses| %>
+                  <div><h4><%= term.semester.to_s.capitalize %>  <%= term.year %></h4></div>
+                  <div>
+                    <ul class='sortable connected draggable_box drag_box sortable_noindent'
+                        data-group='course'
+                        data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
+                        data-update-url='<%= update_course_taking_path %>'>
+                      <% courses.each do |course| %>
+                          <li class='<%= 'invalid-time' unless course.is_time_valid? %>'>
+                            <div data-course-id='<%= course.course.id %>'>
+                              <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
+                              <div style="float:right;"><%= link_to course_path(course.course), :target => "_blank" do %><button style="position:relative;bottom:3px;">Info</button><% end %></div>
+                            </div>
+                          </li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+            </div>
           </div>
       <% end %>
     </div>
