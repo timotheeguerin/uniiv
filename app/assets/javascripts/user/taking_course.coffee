@@ -102,7 +102,7 @@ handleSortable = (element) ->
               $(this).parent().addClass('invalid-time')
 
         checkDependencies(course_id, remove)
-        #loading_anim.remove()
+        loading_anim.remove()
 
       ).error (error) ->
         console.log(error)
