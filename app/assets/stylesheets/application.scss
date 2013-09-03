@@ -400,6 +400,17 @@ ul.sortable li.placeholder:before {
 ul.sortable li
 {
   background-color: #f0f0f0;
+  color: #555555;
+}
+
+li.invalid-time
+{
+  color: white;
+}
+
+li.dependency h5
+{
+  color: #555555 !important;
 }
 
 li.invalid-time
@@ -410,6 +421,16 @@ li.invalid-time
 li.invalid-time h5
 {
   color: white;
+}
+
+li.notsortable
+{
+  background-color: $palette_blue_lighter !important;
+}
+
+li.notsortable h5
+{
+  color: white !important;
 }
 
 .autocomplete-suggestions
