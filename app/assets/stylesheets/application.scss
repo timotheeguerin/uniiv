@@ -85,6 +85,20 @@ $login_width: 500px;
   background-size: 100% 100%;
 }
 
+@mixin grabcursor {
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: -o-grab;
+}
+
+@mixin grabbingcursor {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+  cursor: -o-grabbing;
+}
+
 /*
  * ids
 */
@@ -335,7 +349,6 @@ canvas {
 */
 
 body.dragging, body.dragging * {
-  cursor: move !important;
 }
 
 .dragged {
@@ -350,6 +363,14 @@ ul.sortable li {
   padding: 5px;
   border: 1px solid #CCC;
   cursor: pointer;
+  background-color: #f0f0f0;
+  color: #555555;
+
+  @include grabcursor;
+}
+
+ul.sortable li:active {
+  @include grabbingcursor;
 }
 
 ul.sortable li.placeholder {
@@ -390,51 +411,39 @@ ul.sortable li.placeholder:before {
 }
 
 .right_box_sortcourse {
-    width: 300px;
-    margin-left: 10px;
-    border: 1px solid #dfdfdf;
-    float: right;
-    padding: 10px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    background-color: #fafafa;
+  width: 300px;
+  margin-left: 10px;
+  border: 1px solid #dfdfdf;
+  float: right;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #fafafa;
 }
 
-ul.sortable li
-{
-  background-color: #f0f0f0;
-  color: #555555;
-}
-
-li.invalid-time
-{
+li.invalid-time {
   color: white;
 }
 
-li.dependency h5
-{
+li.dependency h5 {
   color: #555555 !important;
 }
 
-li.invalid-time
-{
+li.invalid-time {
   background-color: $palette_orange_lighter !important;
 }
 
-li.invalid-time h5
-{
+li.invalid-time h5 {
   color: white;
 }
 
-li.notsortable
-{
+li.notsortable {
   background-color: $palette_blue_lighter !important;
 }
 
-li.notsortable h5
-{
+li.notsortable h5 {
   color: white !important;
 }
 
