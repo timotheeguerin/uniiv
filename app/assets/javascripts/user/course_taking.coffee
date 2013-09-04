@@ -42,8 +42,8 @@ handleSortable = (element) ->
     drop: drop
     itemSelector: 'li:not(.notsortable)'
     onDragStart: ($item, container, _super) -> #Reposition the draggin element relative from where it was grabbed
-      $item.data('origin-container', container.el[0])
       ul = $item.closest('ul')
+      $item.data('origin-container', ul)
       if ul.hasClass('duplicate')
         $item.clone().insertAfter($item)
       offset = $item.offset()
@@ -62,9 +62,10 @@ handleSortable = (element) ->
       })
     onDrop: ($item, container, _super) ->
       _super($item, container)
-      if $item.data('origin-container') == container.el[0] #Dont do anything if drop on the same box
-        return
       ul = $item.closest('ul')
+      if $item.data('origin-container') == ul #Dont do anything if drop on the same box
+        return
+
       update_url = ul.attr('data-update-url')
       type = ul.attr('data-type')
       course_id = $item.children().attr('data-course-id')

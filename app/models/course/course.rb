@@ -52,7 +52,9 @@ class Course::Course < ActiveRecord::Base
     unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
     end
-    unless  corequisite.nil? or corequisite.requirements_completed?(scenario, term.next)
+    nextterm = nil
+    nextterm = term.next unless term.nil?
+    unless  corequisite.nil? or corequisite.requirements_completed?(scenario, nextterm)
       return false
     end
     true
