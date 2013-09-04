@@ -9,7 +9,7 @@ class UserUniversityController < ApplicationController
   def create
     university = University.find(params[:id])
     current_user.university = university
-    current_user.save  
+    current_user.save
   end
 
   def edit
@@ -20,10 +20,11 @@ class UserUniversityController < ApplicationController
     university = University.find_by_name(params[:uni])
     if university.nil?
       redirect_to user_university_new_path, :alert => t('error.university.nil')
+    else
+      current_user.university = university
+      current_user.save
+      redirect_to user_education_path
     end
-    current_user.university = university
-    current_user.save
-    redirect_to user_education_path
   end
 
   def delete
