@@ -310,6 +310,7 @@ input[type="submit"], button {
   background-image: -webkit-linear-gradient($button_gradient_top, $button_gradient_bottom);
   background-image: linear-gradient($button_gradient_top, $button_gradient_bottom);
   border-top: 1px solid $nav_border_color;
+  color: #555555;
 }
 
 input[type="submit"]:hover, button:hover {
@@ -384,6 +385,16 @@ ul.sortable li.placeholder:before {
   position: absolute;
 }
 
+li.invalid-time span
+{
+  color: white;
+}
+
+li.dependency span
+{
+  color: #555555;
+}
+
 .drag_box {
   min-height: 25px;
   border-radius: 5px;
@@ -431,20 +442,17 @@ div.dependencies li {
   font-size: 9pt;
 }
 
-li.invalid-time {
-  background-color: $palette_orange_lighter !important;
-}
-
 li.invalid-time h5 {
   color: white;
 }
 
-li.notsortable {
-  background-color: $palette_blue_lighter !important;
+li.invalid-time{
+  background-color: $palette_orange_lighter !important;
 }
 
-li.notsortable h5 {
-  color: white !important;
+li.invalid-time.dependency {
+  background-color: $palette_orange_lightest !important;
+  border: 1px solid $palette_orange_lightest !important;
 }
 
 .autocomplete-suggestions {
