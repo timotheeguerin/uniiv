@@ -28,7 +28,7 @@ class UserFacultyController < ApplicationController
       redirect_to user_faculty_new_path, :alert => t('error.faculty.nil')
     end
     current_user.faculty = faculty
-    current_user.course.scenarios.each do |scenario|
+    current_user.course_scenarios.each do |scenario|
       scenario.programs.where(:type_id => ProgramsType.find_by_name('faculty')).destroy_all #Remove all the faculty requirements
       scenario.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
     end
