@@ -365,7 +365,6 @@ ul.sortable li {
   cursor: pointer;
   background-color: #f0f0f0;
   color: #555555;
-
   @include grabcursor;
 }
 
@@ -427,8 +426,9 @@ li.invalid-time {
   color: white;
 }
 
-li.dependency h5 {
+div.dependencies li {
   color: #555555 !important;
+  font-size: 9pt;
 }
 
 li.invalid-time {
