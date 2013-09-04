@@ -30,6 +30,7 @@ class UserFacultyController < ApplicationController
     current_user.faculty = faculty
     current_user.course_scenarios.each do |scenario|
       scenario.programs.where(:type_id => ProgramsType.find_by_name('faculty')).destroy_all #Remove all the faculty requirements
+      puts 'fqr: ' + faculty.faculty_requirements.to_s
       scenario.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
     end
     current_user.save
