@@ -479,12 +479,14 @@ li.invalid-time.dependency {
   color: #555555;
   border-radius: 5px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .autocomplete-selected {
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .autocomplete-suggestion strong {
