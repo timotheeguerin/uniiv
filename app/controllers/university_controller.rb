@@ -16,7 +16,7 @@ class UniversityController < ApplicationController
 
   def search
     limit = params[:limit]
-    search = Program.search do
+    search = University.search do
       fulltext params[:q]
       paginate(:page => 1, :per_page => limit) unless limit.nil?
     end
