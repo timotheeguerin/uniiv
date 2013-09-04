@@ -2,7 +2,7 @@
   <h2>Choose your university</h2>
   <%= form_tag(user_university_update_path) do %>
     <div><h5>Search for university by name.</h5></div>
-    <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => university_search_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#uni"}) %>
+    <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => university_search_autocomplete_path , "data-input-data" => "#uni"}) %>
     <%= hidden_field_tag("uni", nil, "id" => "uni") %>
   <div class="right">
     <%= submit_tag("Choose") %>
