@@ -24,7 +24,7 @@ class UserTakingCourse < ActiveRecord::Base
   end
 
   def reindex
-    course.index
+    course.index unless course.nil?
   end
 
   #Can the user take this course at this time
