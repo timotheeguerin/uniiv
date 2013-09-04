@@ -17,9 +17,9 @@ class UserUniversityController < ApplicationController
   end
 
   def update
-    university = University.find_by_name(params[:uni])
+    university = University.find(params[:uni])
     if university.nil?
-      redirect_to user_university_new_path, :alert => t('error.university.nil')
+      redirect_to user_university_edit_path, :alert => t('error.university.nil')
     else
       current_user.university = university
       current_user.save
