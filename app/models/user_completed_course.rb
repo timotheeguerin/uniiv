@@ -18,7 +18,7 @@ class UserCompletedCourse < ActiveRecord::Base
   end
 
   def reindex
-    course.index
+    course.index unless course.nil?
   end
 
   #Remove this course if the user is taking it in any scenarios
