@@ -1,12 +1,27 @@
-<div id='loading_animation' style="display: hidden">
-  <div style='position: absolute; left: -15px; top: 0'>
-    B
-  </div>
-</div>
-
+<style>
+  div.microdiv li
+  {
+    padding:1px !important;
+    border:none !important;
+  }
+  .microdiv
+  {
+    box-sizing:border-box;
+    width:50px;
+    height:50px;
+    padding:12px;
+    position:absolute;
+    top: -7px;
+    right: -7px;
+  }
+</style>
+    <div id='loading_animation' style="display:none;margin-right:10px;"><div class="microdiv"><ul class="graph-loading-small" style="font-size:3px;"><li></li><li></li><li></li><li></li></ul></div></div>
 <div class="content_box pagewidth">
   <div><h1>Course Manager</h1></div>
-  <div><h5>Rearrange your courses by clicking and dragging.</h5><div style="float:right;"><%= link_to user_graph_path do %><button>View Path</button><% end %></div></div>
+  <div><h5>Rearrange your courses by clicking and dragging.</h5>
+  <div style="float:right;>
+    <%= link_to user_graph_path do %><button>View Path</button><% end %></div>
+  </div>
   <hr style="width:100%;">
   <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
     <div>
