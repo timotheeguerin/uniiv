@@ -23,7 +23,7 @@ class UserFacultyController < ApplicationController
   end
 
   def update
-    faculty = Faculty.find_by_name(params[:fac])
+    faculty = Faculty.find(params[:fac])
     if faculty.nil?
       redirect_to user_faculty_new_path, :alert => t('error.faculty.nil')
     end
