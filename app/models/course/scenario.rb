@@ -76,5 +76,9 @@ class Course::Scenario < ActiveRecord::Base
     courses.include?(course)
   end
 
+  def to_s
+    "#{user.to_s} (#{id.to_s})"
+  end
+
   alias :can_take_course? :requirements_completed?
 end

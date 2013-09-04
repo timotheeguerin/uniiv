@@ -24,6 +24,8 @@ class Course::Course < ActiveRecord::Base
   validates :credit, :presence => true
   validates :hours, :presence => true
 
+  #Remove all association after destroy
+  after_destroy :delete_association
 
   def to_s
     get_short_name
@@ -120,6 +122,11 @@ class Course::Course < ActiveRecord::Base
       courses += corequisite.list_dependencies
     end
     courses
+  end
+
+  def delete_association
+    scenario_taking_courses.destroy_all
+    user_completed_courses.destroy_all
   end
 end
 

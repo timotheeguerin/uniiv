@@ -81,7 +81,7 @@ handleSortable = (element) ->
       })
       if remove
         $item.remove()
-      loading_anim = $item.append($("#loading_animation").html())
+      loading_anim = $($("#loading_animation").html()).appendTo($item)
       loading_anim.show()
       $.post(update_url, parameters).success((data) ->
         ajaxPopupPush(data.message)
