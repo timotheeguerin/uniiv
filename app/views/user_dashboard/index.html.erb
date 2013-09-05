@@ -119,71 +119,73 @@
     </h1>
   </div>
 
-  <hr style='width:100%'>
-
-  <div><h3>Courses in progress</h3></div>
-  <div class="course_list_container"><% current_user.main_course_scenario.taking_courses.sort_by! { |a| [a.course.subject, a.course.code] }.each do |c| %>
-      <div>
-        <%= link_to course_path(c.course.id) do %>
-            <h4 title='<%= c.course.name %>' class='underline_link'>
-              <%= c.course.subject.name + ' ' + c.course.code.to_s %>
-            </h4>
-            <h5>
-              - <%= c.course.name %>
-              <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
-              <% end %></h5>
-        <% end %>
-        <button style='visibility:hidden;'>I</button>
-        <div style='float:right;'>
-          <%= link_to user_complete_course_path(c.course) do %>
-              <button><%= t('label.complete') %></button>
+  <% unless current_user.university.nil? %>
+    <hr style='width:100%'>
+    <div><h3>Courses in progress</h3></div>
+    <div class="course_list_container"><% current_user.main_course_scenario.taking_courses.sort_by! { |a| [a.course.subject, a.course.code] }.each do |c| %>
+        <div>
+          <%= link_to course_path(c.course.id) do %>
+              <h4 title='<%= c.course.name %>' class='underline_link'>
+                <%= c.course.subject.name + ' ' + c.course.code.to_s %>
+              </h4>
+              <h5>
+                - <%= c.course.name %>
+                <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
+                <% end %></h5>
           <% end %>
+          <button style='visibility:hidden;'>I</button>
+          <div style='float:right;'>
+            <%= link_to user_complete_course_path(c.course) do %>
+                <button><%= t('label.complete') %></button>
+            <% end %>
+          </div>
         </div>
-      </div>
-  <% end %></div>
-  <% if current_user.main_course_scenario.taking_courses.empty? %>
-      <div><h5><%= t('courses.inprogress.empty') %></h5></div>
+    <% end %></div>
+    <% if current_user.main_course_scenario.taking_courses.empty? %>
+        <div><h5><%= t('courses.inprogress.empty') %></h5></div>
+    <% end %>
   <% end %>
 
-  <hr style='width:100%'>
+  
 
   <% unless current_user.university.nil? %>
-      <div><h3>Courses completed</h3></div>
-      <div class="course_list_container"><% current_user.completed_courses.sort_by! { |a| [a.course.subject, a.course.code] }.each do |c| %>
-          <div>
-            <%= link_to course_path(c.course.id) do %>
-                <h4 title='<%= c.course.name %>' class='underline_link'>
-                  <%= c.course.subject.name + ' ' + c.course.code.to_s %>
-                </h4>
-                <h5> - <%= c.course.name %>
-                  <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
-                  <% end %>
-                  <% if c.advanced_standing %> - (Advanced Standing)
-                  <% end %>
-                </h5>
+    <hr style='width:100%'>
+    <div><h3>Courses completed</h3></div>
+    <div class="course_list_container"><% current_user.completed_courses.sort_by! { |a| [a.course.subject, a.course.code] }.each do |c| %>
+        <div>
+          <%= link_to course_path(c.course.id) do %>
+              <h4 title='<%= c.course.name %>' class='underline_link'>
+                <%= c.course.subject.name + ' ' + c.course.code.to_s %>
+              </h4>
+              <h5> - <%= c.course.name %>
+                <% unless c.semester.nil? %> - (<%= c.semester.to_s.capitalize %> <%= c.year %>)
+                <% end %>
+                <% if c.advanced_standing %> - (Advanced Standing)
+                <% end %>
+              </h5>
+          <% end %>
+          <button style='visibility:hidden;'>I</button>
+          <div style='float:right;'>
+            <% unless current_user.reviewed_course?(c.course) or c.advanced_standing %>
+              <%= link_to course_review_new_path(c.course.id) do %>
+                  <button><%= t('course.addreview') %></button>
+              <% end %>
+            <% else %>
+              <button style="visibility:hidden"><%= t('course.addreview') %></button>
             <% end %>
-            <button style='visibility:hidden;'>I</button>
-            <div style='float:right;'>
-              <% unless current_user.reviewed_course?(c.course) or c.advanced_standing %>
-                <%= link_to course_review_new_path(c.course.id) do %>
-                    <button><%= t('course.addreview') %></button>
-                <% end %>
-              <% else %>
-                <button style="visibility:hidden"><%= t('course.addreview') %></button>
-              <% end %>
-            </div>
-            <div style="float:right">
-              <% unless c.advanced_standing %>
-                <%= form_tag(user_remove_course_path(c.course)) do %>
-                  <%= submit_tag(t('label.remove')) %>
-                <% end %>
-              <% end %>
-            </div>
           </div>
-      <% end %></div>
-      <% if current_user.completed_courses.empty? %>
-          <div><h5><%= t('courses.completed.empty') %></h5></div>
-      <% end %>
+          <div style="float:right">
+            <% unless c.advanced_standing %>
+              <%= form_tag(user_remove_course_path(c.course)) do %>
+                <%= submit_tag(t('label.remove')) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+    <% end %></div>
+    <% if current_user.completed_courses.empty? %>
+        <div><h5><%= t('courses.completed.empty') %></h5></div>
+    <% end %>
   <% end %>
 </div>
 

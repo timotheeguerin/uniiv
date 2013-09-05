@@ -352,10 +352,15 @@ canvas {
 body.dragging, body.dragging * {
 }
 
+.course_list_container > div
+{
+  border-radius: 5px;
+  padding: 1px;
+}
+
 .course_list_container > div:nth-child(odd)
 {
   background-color: #f5f5f5;
-  padding: 3wpx;
 }
 
 .dragged {
