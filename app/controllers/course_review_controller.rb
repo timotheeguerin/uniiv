@@ -28,7 +28,7 @@ class CourseReviewController < ApplicationController
     @review.user = current_user
     if @review.save
       if params[:graph_emebed]
-        return_json 'review.added', :url => course_graph_emebed_path(@review)
+        return_json 'review.added', :url => course_graph_emebed_path(@review.course.id)
       else
         redirect_to course_path(@review)
       end

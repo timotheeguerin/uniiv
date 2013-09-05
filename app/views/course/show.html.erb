@@ -91,6 +91,9 @@
           <div>
             <div><h3><%= r.user.email.split("@")[0] %></h3></div>
             <div><h5><%= r.comment %></h5></div>
+            <% r.ratings.each do |s| %>
+                <div style="width:32%;text-align:center;display:inline-block;"><h5><%= s.criteria.name %>: </h5><h3><%= s.score %></h3></div>
+            <% end %>
           </div>
       <% end %>
   <% end %>
