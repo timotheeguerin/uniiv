@@ -46,7 +46,7 @@
       <h4><%= t('suggestions') %></h4>
 
       <div class="sortable_list_container">
-        <ul id='search-output-container' class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
+        <ul class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
           <% current_scenario.get_courses_in_programs(:only_not_taking => true, :only_not_completed => true)[0..3].each do |course| %>
               <li>
                 <div data-course-id='<%= course.id %>' data-need-reload=true>
