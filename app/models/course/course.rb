@@ -4,11 +4,11 @@ class Course::Course < ActiveRecord::Base
   belongs_to :prerequisite, :class_name => Course::Expr
   belongs_to :corequisite, :class_name => Course::Expr
 
-  has_many :reviews, :class_name => Course::Review
+  has_many :reviews, :class_name => Course::Review, :dependent => :destroy
 
   has_and_belongs_to_many :restricted_years, :class_name => UniversityYear
-  has_many :scenario_taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_id'
-  has_many :user_completed_courses, :class_name => UserCompletedCourse, :foreign_key => 'course_id'
+  has_many :scenario_taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_id', :dependent => :destroy
+  has_many :user_completed_courses, :class_name => UserCompletedCourse, :foreign_key => 'course_id', :dependent => :destroy
   has_many :users, :class_name => User, :through => :user_completed_courses
   has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
 
@@ -25,7 +25,6 @@ class Course::Course < ActiveRecord::Base
   validates :hours, :presence => true
 
   #Remove all association after destroy
-  after_destroy :delete_association
 
   def to_s
     get_short_name
@@ -124,11 +123,6 @@ class Course::Course < ActiveRecord::Base
       courses += corequisite.list_dependencies
     end
     courses
-  end
-
-  def delete_association
-    scenario_taking_courses.destroy_all
-    user_completed_courses.destroy_all
   end
 end
 

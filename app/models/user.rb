@@ -3,20 +3,21 @@ class User < ActiveRecord::Base
   belongs_to :university, :class_name => University
   belongs_to :faculty, :class_name => Faculty
 
-  has_many :emails, :class_name => UserEmail
+  has_many :emails, :class_name => UserEmail, :dependent => :destroy
 
   has_and_belongs_to_many :roles
 
   #has_many :taking_courses, :class_name => UserTakingCourse
-  has_many :completed_courses, :class_name => UserCompletedCourse
+  has_many :completed_courses, :class_name => UserCompletedCourse, :dependent => :destroy
 
   has_many :course_reviews, :class_name => Course::Review
 
-  has_many :course_scenarios, :class_name => Course::Scenario
+  has_many :course_scenarios, :class_name => Course::Scenario, :dependent => :destroy
   has_one :main_course_scenario, -> { where :main => true }, :class_name => Course::Scenario
 
-  has_many :course_recommendations, :class_name => UsersCoursesRecommendation
+  has_many :course_recommendations, :class_name => UsersCoursesRecommendation, :dependent => :destroy
 
+  #Validations
   validates :advanced_standing_credits, :presence => true
 
   # Include default devise modules. Others available are:

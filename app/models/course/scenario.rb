@@ -76,6 +76,10 @@ class Course::Scenario < ActiveRecord::Base
     courses.include?(course)
   end
 
+  def get_course_recommendations
+
+  end
+
   def to_s
     "#{user.to_s} (#{id.to_s})"
   end
