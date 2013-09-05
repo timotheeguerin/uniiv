@@ -115,22 +115,6 @@ class User < ActiveRecord::Base
     course.requirements_completed_after_taking?(self, true)
   end
 
-  def get_course_in_programs(options={})
-    courses = []
-    default_options={
-        :only_taking => false,
-        :only_not_taking => false,
-        :only_completed => false,
-        :only_not_completed => false
-    }
-    options = options.reverse_merge(default_options)
-    programs.each do |program|
-      program.groups.each do |group|
-
-      end
-    end
-    courses
-  end
 
   def get_recommended_courses
 

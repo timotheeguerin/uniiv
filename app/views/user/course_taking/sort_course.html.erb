@@ -43,6 +43,23 @@
   <hr style="width: 100%;"/>
   <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
     <div>
+      <h4><%= t('suggestions') %></h4>
+
+      <div class="sortable_list_container">
+        <ul id='search-output-container' class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
+          <% current_scenario.get_courses_in_programs(:only_not_taking => true, :only_not_completed => true)[0..3].each do |course| %>
+              <li>
+                <div data-course-id='<%= course.id %>' data-need-reload=true>
+                  <h5><%= course.to_s %>
+                  </h5>
+                </div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div>
       <!--<ul class='sortable no-drag draggable_box drag_box sortable_noindent' data-type='delete' style="padding:5px;margin-left:auto;margin-right:auto;width:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">-->
       <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
           data-type='delete'

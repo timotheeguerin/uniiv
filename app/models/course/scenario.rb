@@ -80,6 +80,23 @@ class Course::Scenario < ActiveRecord::Base
 
   end
 
+  def get_courses_in_programs(options={})
+    courses = []
+    default_options={
+        :scenario => self,
+        :only_taking => false,
+        :only_not_taking => false,
+        :only_completed => false,
+        :only_not_completed => false
+    }
+    options = options.reverse_merge(default_options)
+    programs.each do |program|
+      courses += program.get_all_courses(options)
+    end
+    courses
+  end
+
+
   def to_s
     "#{user.to_s} (#{id.to_s})"
   end
