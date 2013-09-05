@@ -17,21 +17,31 @@ class Program < ActiveRecord::Base
   def get_completion_ratio(scenario, term=nil)
     ratio = 0
     coef = 0
-
-    puts '---------------------------'
-    puts name
     groups.each do |group|
       hash = group.get_completion_ratio(scenario, term)
       ratio += hash[:value]
       coef += hash[:coefficient]
     end
-    puts 'ra: ' + ratio.to_s
-    puts 'coef: ' + coef.to_s
     {:ratio => ratio / coef.to_f, :coefficient => coef, :value => ratio}
   end
 
   def id_to_s
     'p_' + id.to_s
+  end
+
+  def get_all_courses(options={})
+    result = []
+    default_options={
+        :only_taking => false,
+        :only_not_taking => false,
+        :only_completed => false,
+        :only_not_completed => false
+    }
+    options = options.reverse_merge(default_options)
+    groups.each do |group|
+      result += group.get_all_courses(options)
+    end
+    result
   end
 
   searchable do

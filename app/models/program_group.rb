@@ -135,11 +135,11 @@ class ProgramGroup < ActiveRecord::Base
         :only_not_completed => false
     }
     options = options.reverse_merge(default_options)
-    user = options[:user]
+    scenario = options[:scenario]
     result = courses
-    unless user.nil?
-      result = result.where { id.in(user.taking_courses.select { course_id }) } if options[:only_taking]
-      result = result.where { id.not_in(user.taking_courses.select { course_id }) } if options[:only_taking]
+    unless scenario.nil?
+      result = result.where { id.in(scenario.taking_courses.pluck(:course_id)) } if options[:only_taking]
+      result = result.where { id.not_in(scenario.taking_courses.pluck(:course_id)) } if options[:only_not_taking]
     end
     result
   end

@@ -83,7 +83,7 @@ class DotGraph
 
       state = course.get_course_state(@current_scenario, @term)
       if state != CourseState::TAKING
-        if @current_scenario.plan_to_take_course(course)
+        if @current_scenario.plan_to_take_course?(course)
           state = 'taking_' + state.to_s
         end
       end
