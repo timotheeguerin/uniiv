@@ -90,9 +90,7 @@
       <% reviews.each do |r| %>
           <div>
             <div><h3><%= r.user.email.split("@")[0] %></h3></div>
-            <div>
-              <h5><%= r.comment %></h5>
-            </div>
+            <div><h5><%= r.comment %></h5></div>
           </div>
       <% end %>
   <% end %>
