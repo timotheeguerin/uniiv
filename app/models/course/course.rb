@@ -15,6 +15,10 @@ class Course::Course < ActiveRecord::Base
   has_and_belongs_to_many :program_groups, :class_name => ProgramGroup
 
 
+
+  #Admin
+  has_one :admin_course_requirement_filled, :class_name => Admin::CourseRequirementFilled
+
   #Validations
   validates_uniqueness_of :code, scope: :subject
   validates :subject_id, :presence => true
@@ -24,7 +28,16 @@ class Course::Course < ActiveRecord::Base
   validates :credit, :presence => true
   validates :hours, :presence => true
 
-  #Remove all association after destroy
+  #Callbacks
+  after_create :after_create
+
+  def after_create
+    filled = Admin::CourseRequirementFilled.new
+    filled.corequisites=false
+    filled.prerequisites=false
+    filled.course = self
+    filled.save
+  end
 
   def to_s
     get_short_name

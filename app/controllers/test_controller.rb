@@ -1,6 +1,20 @@
 class TestController < ApplicationController
   def index
-    check_user_has_main_scenario
+    check_course_requirement_filled
+  end
+
+  def check_course_requirement_filled
+    Course::Course.all.each do |course|
+      if course.admin_course_requirement_filled.nil?
+        filled = Admin::CourseRequirementFilled.new
+        filled.corequisites=true
+        filled.prerequisites=true
+        filled.corequisites=false if course.prerequisite.nil?
+        filled.prerequisites=false if course.corequisite.nil?
+        filled.course = course
+        filled.save
+      end
+    end
   end
 
 

@@ -53,7 +53,6 @@ class User < ActiveRecord::Base
       coef += hash[:coefficient]
     end
     ratio / coef
-    #TODO
   end
 
   def has_completed_course?(course, inc_advanced_standing = true)

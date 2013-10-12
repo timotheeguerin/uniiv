@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130901004826) do
+ActiveRecord::Schema.define(version: 20131012024242) do
+
+  create_table "admin_course_requirement_filleds", force: true do |t|
+    t.boolean  "prerequisites"
+    t.boolean  "corequisites"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_course_requirement_filleds", ["course_id"], name: "index_admin_course_requirement_filleds_on_course_id", using: :btree
 
   create_table "badges", force: true do |t|
     t.string   "name"
