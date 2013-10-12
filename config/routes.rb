@@ -1,4 +1,5 @@
 Uniiv::Application.routes.draw do
+  get "course_requirements/index"
   get 'scenario/new'
   get 'course_taking/new'
   get 'course_taking/new_graph_embed'
@@ -46,6 +47,16 @@ Uniiv::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => 'registrations'}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root to: 'welcome#index'
+
+  #Admin utils
+  namespace :admin do
+    namespace :utils do
+      get 'course/requirements' => 'course_requirements#index', :as => :check_course_requirements_completed
+      get 'course/requirements/:id/none' => 'course_requirements#mark_as_none', :as => :course_requirement_mark_none
+      get 'course/requirements/:id/input' => 'course_requirements#input_requirement', :as => :course_requirement_input
+      post 'course/requirements/:id/input' => 'course_requirements#save_requirement', :as => :course_requirement_input_save
+    end
+  end
 
   get 'test' => 'test#index'
 

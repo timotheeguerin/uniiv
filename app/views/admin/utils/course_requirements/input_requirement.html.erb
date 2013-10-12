@@ -1,0 +1,8 @@
+<div>
+  <div>Choose <%= @type %></div>
+  <%= form_tag admin_utils_course_requirement_input_save_path do %>
+      <%= label_tag :expr, 'Input expression: ' %>
+      <%= text_field_tag :expr %>
+      <%= hidden_field_tag :type, @type %>
+  <% end %>
+</div>
