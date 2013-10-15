@@ -94,7 +94,8 @@ Uniiv::Application.routes.draw do
   post 'course/:course_id/review/new/graph/embed' => 'course_review#create', :as => :course_review_create_graph_embed, :defaults => {:graph_embed => true}
 
   #User
-  get 'user_dashboard/index' => 'user_dashboard#index', :as => :user_education
+  get 'user_dashboard/index' => 'user_dashboard#index'
+  get 'education'  => 'user_dashboard#index', :as => :user_education
 
   #Program controller
   get 'program/:id', to: 'program#show', as: 'program'
