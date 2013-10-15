@@ -152,7 +152,7 @@
   <hr style='width:100%;'>
   <div><h1>Completed Courses</h1></div>
   <div class='row'>
-    <% current_user.completed_courses.each do |c| %>
+    <% current_user.completed_courses.sort_by! { |c| c.advanced_standing.to_s }.reverse.each do |c| %>
       <div class='col-md-4'>
         <div class='dashboard_coursebox'>
           <div class='row'>
@@ -161,14 +161,18 @@
             </div>
             <div class='col-xs-6 text-right'>
               <div class='btn-group'>
-                <button type='button' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'>
-                  <span class='glyphicon glyphicon-comment'></span>
-                </button>
+                <% unless c.advanced_standing %>
+                  <a type='button' href='<%= course_review_new_path(c.course) %>' <%= 'disabled' if current_user.reviewed_course?(c.course) %> class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'>
+                    <span class='whitetext glyphicon glyphicon-comment'></span>
+                  </a>
+                <% end %>
                 <a type='button' href='<%= course_path(c) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
                   <span class='whitetext glyphicon glyphicon-info-sign'></span></a>
-                <button type='button' class='btn btn-danger' rel='tooltip' data-toggle='tooltip' title='Remove'>
-                  <span class='glyphicon glyphicon-remove-sign'></span>
-                </button>
+                <% unless c.advanced_standing %>
+                  <button type='button' class='btn btn-danger' rel='tooltip' data-toggle='tooltip' title='Remove'>
+                    <span class='glyphicon glyphicon-remove-sign'></span>
+                  </button>
+                <% end %>
               </div>
             </div>
           </div>
