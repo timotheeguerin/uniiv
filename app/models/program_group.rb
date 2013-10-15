@@ -144,6 +144,19 @@ class ProgramGroup < ActiveRecord::Base
     result
   end
 
+  def completed?(scenario, options = {})
+    default_options = {
+        :planning => false #Check also using the course the user is taking
+    }
+    options = default_options.merge(options)
+    term = nil
+
+    if options[:planning]
+      term = Term::last_allowed
+    end
+    get_completion_ratio(scenario, term) == 1
+  end
+
   def id_to_s
     'g_' + id.to_s
   end

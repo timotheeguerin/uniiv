@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  prerequisites: false
+  corequisite: false
+  course_id: 
+
+two:
+  prerequisites: false
+  corequisite: false
+  course_id: 

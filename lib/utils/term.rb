@@ -53,6 +53,12 @@ class Term
     current_term
   end
 
+  def self.last_allowed
+    term = now
+    term.year += 6
+    term
+  end
+
   def ==(comparison_object)
     comparison_object.instance_of?(self.class) and comparison_object.year == self.year and comparison_object.semester == self.semester
   end

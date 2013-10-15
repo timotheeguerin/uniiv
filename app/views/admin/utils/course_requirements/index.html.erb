@@ -1,0 +1,22 @@
+<ul>
+
+  <% @uncompleted_courses.each do |course| %>
+      <li>
+        <span><%= course.course %></span>
+        <span> Prerequisites: </span>
+        <% if course.prerequisites %>
+            <span>Completed</span>
+        <% else %>
+            <span><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'prerequisites') %></span>
+            <span><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'prerequisites') %></span>
+        <% end %>
+        <span> Corequisites: </span>
+        <% if course.corequisites %>
+            <span>Completed</span>
+        <% else %>
+            <span><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'corequisites') %></span>
+            <span><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'corequisites') %></span>
+        <% end %>
+      </li>
+  <% end %>
+</ul>

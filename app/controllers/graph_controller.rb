@@ -22,11 +22,10 @@ class GraphController < ApplicationController
   def show
     authorize! :read, :graph
 
-    #current_user ||= User.new
     if current_user.university.nil?
-      redirect_to user_education_path, :alert => t("university.notselected")
+      redirect_to user_education_path, :alert => t('university.notselected')
     elsif current_scenario.programs.size == 0
-      redirect_to user_education_path, :alert => t("programs.zero.selected")
+      redirect_to user_education_path, :alert => t('programs.zero.selected')
     end
   end
 
