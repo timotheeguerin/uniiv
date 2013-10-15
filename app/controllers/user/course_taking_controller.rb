@@ -28,21 +28,24 @@ class User::CourseTakingController < ApplicationController
   def update_course_taking
     course = Course::Course.find(params[:course_id])
     user_taking_course = current_scenario.taking_courses.where(:course_id => course.id).first
+
+    #if the action is to remove the course
     if params[:remove] == 'true'
       user_taking_course.destroy unless user_taking_course.nil?
-
     else
-      if user_taking_course.nil?
+      if user_taking_course.nil? #if user is not currently taking the course mark this course as taking
         user_taking_course = UserTakingCourse.new
         user_taking_course.course_scenario = current_scenario
         user_taking_course.course = course
       end
 
+      #Update the time when the user is taking the course
       user_taking_course.semester = Course::Semester.find(params[:semester_id])
       user_taking_course.year = params[:year]
       user_taking_course.save
-
     end
+
+    #Load the list of courses that are now taken at the wrong time
     invalid_courses = []
     current_scenario.taking_courses.each do |c|
       invalid_courses << c.course.id unless c.is_time_valid?
