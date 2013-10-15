@@ -1,124 +1,89 @@
-<style>
-    div.microdiv li {
-        padding: 1px !important;
-        border: none !important;
-    }
-
-    .microdiv {
-        box-sizing: border-box;
-        width: 50px;
-        height: 50px;
-        padding: 12px;
-        position: absolute;
-        top: -7px;
-        right: -7px;
-    }
-
-    div.sortable_list_container {
-        position: static;
-    }
-
-</style>
-<div id='loading_animation' style="display:none;margin-right:10px;">
-  <div class="microdiv">
-    <ul class="graph-loading-small" style="font-size:3px;">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-</div>
-<div class="content_box pagewidth">
-  <div><h1>Course Manager</h1></div>
-  <div>
+<div class='row'>
+  <div class='col-md-12'>
+    <h1>Course Manager</h1>
     <h5>Rearrange your courses by clicking and dragging.</h5>
-
-    <div style="float:right;">
-      <%= link_to user_graph_path do %>
-          <button>View Path</button>
-      <% end %>
-    </div>
+    <hr>
   </div>
-  <hr style="width: 100%;"/>
-  <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
-    <div>
-      <h4><%= t('suggestions') %></h4>
-
-      <div class="sortable_list_container">
-        <ul class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
-          <% current_scenario.get_courses_in_programs(:only_not_taking => true, :only_not_completed => true)[0..3].each do |course| %>
-              <li>
-                <div data-course-id='<%= course.id %>' data-need-reload=true>
-                  <h5><%= course.to_s %>
-                  </h5>
-                </div>
-              </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-
-    <div>
-      <!--<ul class='sortable no-drag draggable_box drag_box sortable_noindent' data-type='delete' style="padding:5px;margin-left:auto;margin-right:auto;width:30px;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">-->
-      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
-          data-type='delete'
-          data-group='course'
-          data-update-url='<%= update_course_taking_path %>'
-          style="line-height:30px;padding:2px;text-align:center;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
-        <h4>Drag a course here to remove</h4>
-        <img src="/assets/bin.png" style="width:30px;" alt="bin"/>
-      </ul>
-    </div>
-    <div><input type="text" placeholder="<%= t('search.course') %>"
-                id='search_new_course'
-                class="form_input_longer form_biginput search-ajax"
-                data-search-output='#search-output-container'
-                data-search-url='<%= search_course_list_path %>?only_not_taking=true&only_not_completed=true&limit=5'/>
-    </div>
-
-    <div class="sortable_list_container">
-      <ul id='search-output-container' class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
-      </ul>
-    </div>
-  </div>
-  <div class="left_box_sortcourse">
-    <div id='course_sorter'>
-      <div id='message_container'></div>
-      <% unless @previous_courses.size == 0 %>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div id='course_sorter'>
+        <div id='message_container'></div>
+        <% unless @previous_courses.size == 0 %>
           <div><h4> <%= t('course.before_current_term') %></h4></div>
           <div>
             <ul class='sortable no-drop undraggable_box drag_box sortable_noindent' data-group='course' data-update-url='<%= update_course_taking_path %>'>
               <% @previous_courses.each do |course| %>
-                  <li>
-                    <div data-course-id='<%= course.course.id %>'>
-                      <h5><%= course.course.to_s + ' - ' + course.course.name %>
-                      </h5>
-                    </div>
-                  </li>
+                <li>
+                  <div data-course-id='<%= course.course.id %>'>
+                    <h5><%= course.course.to_s + ' - ' + course.course.name %>
+                    </h5>
+                  </div>
+                </li>
               <% end %>
             </ul>
           </div>
-      <% end %>
-      <% @years.each do |year, terms| %>
+        <% end %>
+        <% @years.each do |year, terms| %>
           <div>
-            <div style="padding:10px;margin-bottom:25px;background-color:#fafafa;border-radius:5px;border:1px solid #dfdfdf;">
+            <div>
               <% terms.each do |term, courses| %>
-                  <div><h4><%= term.semester.to_s.capitalize %>  <%= term.year %></h4></div>
-                  <div class="sortable_list_container">
-                    <ul class='sortable connected draggable_box drag_box sortable_noindent'
-                        data-group='course'
-                        data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
-                        data-update-url='<%= update_course_taking_path %>'>
-                      <% courses.each do |course| %>
-                          <%= course_list_item(course) %>
-                      <% end %>
-                    </ul>
-                  </div>
+                <label><%= term.semester.to_s.capitalize %>  <%= term.year %></label>
+
+                <div class="sortable_list_container">
+                  <ul class='sortable connected draggable_box drag_box sortable_noindent'
+                      data-group='course'
+                      data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
+                      data-update-url='<%= update_course_taking_path %>'>
+                    <% courses.each do |course| %>
+                      <%= course_list_item(course) %>
+                    <% end %>
+                  </ul>
+                </div>
               <% end %>
             </div>
           </div>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div>
+        <label><%= t('suggestions') %></label>
+
+        <div class="sortable_list_container">
+          <ul class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
+            <% current_scenario.get_courses_in_programs(:only_not_taking => true, :only_not_completed => true)[0..3].each do |course| %>
+              <li>
+                <div data-course-id='<%= course.id %>' data-need-reload=true>
+                  <h5><%= course.to_s %></h5>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class='text-center'>
+        <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
+            data-type='delete'
+            data-group='course'
+            data-update-url='<%= user_advanced_standings_remove_path %>'
+        >
+          <label>Drag a course here to remove</label>
+          <br>
+          <span class='glyphicon glyphicon-trash'></span>
+        </ul>
+      </div>
+      <div class="sortable_list_container">
+        <div class='form-group'>
+          <label>Search for a course</label>
+          <input type="text" placeholder="Course"
+                 id='search_new_course'
+                 class="form-control search-ajax"
+                 data-search-output='#search-output-container'
+                 data-search-url='<%= search_course_list_path %>?only_not_taking=true&only_not_completed=true&limit=5'/>
+        </div>
+        <ul id='search-output-container' class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

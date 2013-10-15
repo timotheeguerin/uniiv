@@ -2,22 +2,22 @@ class UserEmailsController < ApplicationController
 
   def index
   end
-  
+
   def addEmail
-  em = params["email"]
-  UserEmail.all.each do |e|
-    if e.email == em
-      flash[:alert] = t("useremail.duplicate")
-    redirect_to user_emails_index_path
-    return
+    em = params["email"]
+    UserEmail.all.each do |e|
+      if e.email == em
+        flash[:alert] = t("useremail.duplicate")
+        redirect_to user_emails_index_path
+        return
+      end
     end
-  end
-  
+
     email = UserEmail.new
     email.user = current_user
     email.email = em
     email.save
-    
+
     flash[:notice] = t("useremail.add")
     redirect_to user_emails_index_path
   end
@@ -37,8 +37,8 @@ class UserEmailsController < ApplicationController
     flash[:notice] = t("useremail.makedefault")
     redirect_to user_emails_index_path
   end
-  
-    def removeEmail
+
+  def removeEmail
     emailid = params["data-service"]
     email = UserEmail.find(emailid)
     email.destroy

@@ -1,12 +1,16 @@
-<div class="content_box pagewidth_twothirds">
-  <h2>Choose your faculty</h2>
-  <%= form_tag(user_faculty_update_path) do %>
-    <div><h5>Search for a faculty, either by name or by university name.</h5></div>
-    <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => faculty_search_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#fac"}) %>
-    <%= hidden_field_tag("fac", nil, "id" => "fac") %>
-    <div class="right">
-      <%= submit_tag("Choose") %>
-    </div>
-<% end %>
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <h2>Choose your faculty</h2>
+    <%= form_tag(user_faculty_update_path) do %>
+      <div class='form-group'>
+        <label>Search for a faculty, either by name or by university name.</label>
+        <%= text_field_tag('doesntmatter', nil, options = {:class => 'form-control autocomplete', 'data-url' => faculty_search_autocomplete_path + '?only_not_taking=true', 'data-input-data' => '#fac'}) %>
+        <%= hidden_field_tag('fac', nil, :id => 'fac') %>
+      </div>
+      <div class='pull-right'>
+        <%= submit_tag('Choose', :class => 'btn btn-primary') %>
+      </div>
+    <% end %>
+  </div>
 </div>
 

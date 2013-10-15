@@ -1,14 +1,12 @@
-<div class="content_box pagewidth_twothirds">
-  <div><h1>Settings</h1></div>
-
-  <hr style="width:100%;">
-
-  <div class="center">
-    <%= link_to user_emails_index_path do %>
-        <button>Manage Emails</button>
-    <% end %>
-    <%= link_to edit_user_registration_path do %>
-        <button>Manage Password</button>
-    <% end %>
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <h1>Settings</h1>
+    <hr>
+    <div class='text-center'>
+      <div class='btn-group'>
+        <a href='<%= user_emails_index_path %>' class='btn btn-primary'><span class='whitetext'>Manage Emails</span></a>
+        <a href='<%= edit_user_registration_path %>' class='btn btn-primary'><span class='whitetext'>Manage Password</span></a>
+      </div>
+    </div>
   </div>
 </div>

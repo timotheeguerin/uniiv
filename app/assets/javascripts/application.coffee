@@ -16,27 +16,10 @@
 #= require jquery.raty
 #= require donutgraph
 
-$(window).resize ()->
-  if ($("#fold").length == 0)
-    newheight = $(window).height() - 75
-  if ($("#content").height() < newheight)
-    $("#content").css("height", newheight)
-  else
-  newheight = $(window).height() - 40;
-  $("#content").css("height", newheight);
-
-$(window).load () ->
-  if ($("#fold").length == 0)
-    newheight = $(window).height() - 75;
-    if ($("#content").height() < newheight)
-      $("#content").css("height", newheight)
-  else
-    newheight = $(window).height() - 40;
-    $("#content").css("height", newheight)
-
 $(document).ready () ->
   $("#graphreload").click ()->
     location.reload();
+  $("button")
 
   $('.nano').each ->
     $(this).nanoScroller()
@@ -90,8 +73,10 @@ $(document).ready () ->
     container = $($(this).attr('data-container'))
     if container.is(':visible')
       container.slideUp(200)
+      $(this).find('span').first().resetRotation()
     else
       container.slideDown(200)
+      $(this).find('span').first().rotate(180)
 
 setupStarRatings = () ->
   $('input.star-rating').each () ->
@@ -108,3 +93,17 @@ setupStarRatings = () ->
         targetKeep: true
         score: value
       })
+
+jQuery.fn.rotate = (degrees) ->
+  $(this).css
+    "-webkit-transform": "rotate(" + degrees + "deg)"
+    "-moz-transform": "rotate(" + degrees + "deg)"
+    "-ms-transform": "rotate(" + degrees + "deg)"
+    transform: "rotate(" + degrees + "deg)"
+
+jQuery.fn.resetRotation = () ->
+  $(this).css
+    "-webkit-transform": "rotate(" + 0 + "deg)"
+    "-moz-transform": "rotate(" + 0 + "deg)"
+    "-ms-transform": "rotate(" + 0 + "deg)"
+    transform: "rotate(" + 0 + "deg)"

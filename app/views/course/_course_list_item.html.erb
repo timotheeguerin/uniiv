@@ -1,40 +1,42 @@
 <li class='<%= 'invalid-time' if invalid_time %>'>
-  <div data-course-id='<%= course.course.id %>'>
-    <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
-
-    <div style="float:right;margin-right:30px;">
-      <button style="position:relative;bottom:3px;" class='toggledisplay' data-container='#dependencies_<%= course.course.id %>'>
-        >
-      </button>
-      <%= link_to course_path(course.course), :target => '_blank' do %>
-          <button style="position:relative;bottom:3px;">Info</button>
-      <% end %>
+  <div class='row' data-course-id='<%= course.course.id %>'>
+    <div class='col-md-9'>
+      <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
     </div>
-    <div id='dependencies_<%= course.course.id %>' class='dependencies' style='display: none'>
-      <hr/>
-      <div>
-        <h5><%= t('prerequisites') %>: </h5>
-        <% if course.course.prerequisite.nil? %>
+    <div class='col-md-3 text-right'>
+      <div class='btn-group'>
+        <button class='toggledisplay btn btn-success' data-container='#dependencies_<%= course.course.id %>'>
+          <span class='glyphicon glyphicon-chevron-down'></span>
+        </button>
+        <a href='<%= course_path(course.course) %>' class='btn btn-info' target='_blank'><span class='whitetext glyphicon glyphicon-info-sign'></span></a>
+      </div>
+    </div>
+    <div id='dependencies_<%= course.course.id %>' class='row dependencies' style='display: none'>
+      <div class='col-md-10 col-md-offset-1'>
+        <div>
+          <div><label><%= t('prerequisites') %>: </label></div>
+          <% if course.course.prerequisite.nil? %>
             <%= t('none') %>
-        <% else %>
+          <% else %>
             <div style="display: inline-block">
               <ul class='sortable no-drop duplicate' data-group='course'>
                 <%= raw get_expr_html(course.course.prerequisite, 'course/course_expr_sortable') %>
               </ul>
             </div>
-        <% end %>
-      </div>
-      <div>
-        <h5><%= t('corequisites') %>: </h5>
-        <% if course.course.corequisite.nil? %>
+          <% end %>
+        </div>
+        <div>
+          <div><label><%= t('corequisites') %>: </label></div>
+          <% if course.course.corequisite.nil? %>
             <%= t('none') %>
-        <% else %>
+          <% else %>
             <div style="display: inline-block">
               <ul class='sortable no-drop duplicate' style="display: inline-block" data-group='course'>
                 <%= raw get_expr_html(course.course.corequisite, 'course/course_expr_sortable') %>
               </ul>
             </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

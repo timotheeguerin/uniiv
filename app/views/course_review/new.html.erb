@@ -1,7 +1,9 @@
-<div class="content_box pagewidth_half">
-  <div><h1>Review for <%= @course.subject.name.to_s + " " + @course.code.to_s %></h1></div>
-  <hr style="width: 100%">
-  <div class='new_review_form'>
-    <%= render :partial => 'review_form', :locals => {:path => course_review_create_path(@course)} %>
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <h1>Review for <%= @course.subject.name.to_s + ' ' + @course.code.to_s %></h1>
+    <hr>
+    <div class='new_review_form'>
+      <%= render :partial => 'review_form', :locals => {:path => course_review_create_path(@course)} %>
+    </div>
   </div>
 </div>

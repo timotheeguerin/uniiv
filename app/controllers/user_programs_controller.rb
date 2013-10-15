@@ -14,7 +14,7 @@ class UserProgramsController < ApplicationController
     if current_user.main_course_scenario.programs.size > 6
       redirect_to user_education_path, :alert => t('error.program.maximum')
     else
-      if(params.has_key?("prog") and !params["prog"].nil? and params["prog"] != "")
+      if (params.has_key?("prog") and !params["prog"].nil? and params["prog"] != "")
         program = params[:prog]
         program = Program.find(params["prog"])
         puts program.nil?

@@ -1,28 +1,38 @@
-<div class="content_box pagewidth_twothirds">
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
 
-  <div><h2>Add an Email</h2></div>
+    <h2>Add an Email</h2>
 
-    <%= form_tag(:action => "addEmail", :method => "post")  do %>
-    <div><%= text_field_tag 'email' , nil, { :class => "form_input_long middle form_biginput" } %>
-    <div class="right"><%= submit_tag 'Add' %></div></div>
-  <% end %>
-  
-  <hr style="width:100%">
-  
-  <div><h2>Manage Emails</h2></div>
-  <% UserEmail.all.where('user_id' => current_user).each do |email| %>
-    <div>
-      <%= email.email %>
-      <button style="visibility:hidden;">I</button>
-      <% if email.primary %>
-      <% else %>
-        <div style="float:right;"><%= form_tag(:action => "removeEmail", "data-service" => email, :method => "post") do %>
-          <%= submit_tag("Remove") %>
-        <% end %></div>
-        <div style="float:right;"><%= form_tag(:action => "makeDefault", "data-service" => email, :method => "post") do %>
-          <%= submit_tag("Make Default") %>
-        <% end %></div>
-      <% end %>
-    </div>
-  <% end %>
+    <%= form_tag(:action => "addEmail", :method => "post", :html => {:class => 'form'}) do %>
+      <div class='form-group'>
+        <label>Enter a new email</label>
+        <%= text_field_tag 'email', nil, {:class => 'form-control'} %>
+      </div>
+      <div class="pull-right"><%= submit_tag('Add', :class => 'btn btn-primary') %></div>
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+
+    <hr>
+
+    <div><h2>Manage Emails</h2></div>
+    <% UserEmail.all.where('user_id' => current_user).each do |email| %>
+      <div>
+        <%= email.email %>
+        <button style="visibility:hidden;">I</button>
+        <% if email.primary %>
+        <% else %>
+          <div style="float:right;"><%= form_tag(:action => "removeEmail", "data-service" => email, :method => "post") do %>
+              <%= submit_tag("Remove") %>
+            <% end %></div>
+          <div style="float:right;"><%= form_tag(:action => "makeDefault", "data-service" => email, :method => "post") do %>
+              <%= submit_tag("Make Default") %>
+            <% end %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

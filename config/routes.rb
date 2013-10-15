@@ -1,4 +1,8 @@
 Uniiv::Application.routes.draw do
+
+  get 'blog/:blog_id' => 'blog#show', :as => :blog_show
+  get 'blog/' => 'blog#index', :as => :blog_index
+
   get 'scenario/new'
   get 'course_taking/new'
   get 'course_taking/new_graph_embed'

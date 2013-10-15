@@ -1,129 +1,67 @@
-<style>
-    body.dragging, body.dragging * {
-        cursor: move !important;
-    }
-
-    .dragged {
-        position: absolute;
-        opacity: 0.5;
-        z-index: 2000;
-    }
-
-    ul.sortable li {
-        display: block;
-        margin: 5px;
-        padding: 5px;
-        border: 1px solid #CCC;
-        cursor: pointer;
-    }
-
-    ul.sortable li.placeholder {
-        height: 50px;
-        position: relative;
-        border: 1px dashed #dfdfdf;
-        background: transparent;
-    }
-
-    ul.sortable li.placeholder:before {
-        position: absolute;
-    }
-
-    .drag_box {
-        min-height: 25px;
-        border-radius: 5px;
-    }
-
-    .draggable_box {
-        border: 1px dashed #dfdfdf;
-        background-color: #f5f5f5;
-    }
-
-    .undraggable_box {
-        border: 1px solid #dfdfdf;
-        background-color: #f5f5f5;
-    }
-
-    .sortable_noindent {
-        padding: 0px;
-        text-indent: 0px;
-    }
-
-    .left_box_sortcourse {
-        display: inline-block;
-        width: 535px;
-    }
-
-    .right_box_sortcourse {
-        width: 300px;
-        margin-left: 10px;
-        border: 1px solid #dfdfdf;
-        float: right;
-        padding: 5px;
-        box-sizing: border-box;
-        border-radius: 5px;
-        background-color: #fafafa;
-    }
-
-</style>
-
-<div class="content_box pagewidth">
-  <div><h1>Advanced Standing</h1></div>
-  <div><h5>Advanced Standing is the extra credit you get from a university from your high school education.<br>
-                      Rearrange your courses by clicking and dragging.
-  </h5></div>
-  <hr style="width:100%;">
-  <div class="right_box_sortcourse" id="moveableboxsortcourse" data-topspacing="50">
-    <div>
-      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
-          data-type='delete'
-          data-group='course'
-          data-update-url='<%= user_advanced_standings_remove_path %>'
-          style="line-height:30px;padding:2px;text-align:center;border:1px dashed #dfdfdf;border-radius: 5px;text-align:center;background-color:#ffffff;">
-        <h4>Drag a course here to remove</h4>
-        <img src="/assets/bin.png" style="width:30px;" alt="bin" />
-      </ul>
-      
-    </div>
-    <div><input type="text" placeholder="<%= t('search.course') %>"
-                id='search_new_course'
-                class="form_input_longer form_biginput search-ajax"
-                data-search-output='#search-output-container'
-                data-search-url='<%= search_course_list_path %>?only_not_taking=true&only_not_completed=true&limit=5'/>
-    </div>
-
-    <div>
-      <ul id='search-output-container'
-          class='sortable no-drop draggable_box drag_box sortable_noindent'
-          data-group='course'
-      >
-
-      </ul>
-    </div>
+<div class='row'>
+  <div class='col-md-12'>
+    <h1>Advanced Standing</h1>
+    <h5>Advanced Standing is the extra credit you get from a university from your high school education. Rearrange your
+      courses by clicking and dragging.</h5>
+    <hr>
   </div>
-  <div class="left_box_sortcourse">
-    <div>
-      <%= form_tag(user_advanced_standings_setcredit_path, :class => "useajax") do %>
-      <div><h4>Total Credits:</h4></div><div><%= text_field_tag("advanced_standing_credit", current_user.advanced_standing_credits, :class => "form_biginput form_input_longer submitonedit") %></div>
-      <% end %>
-    </div>
-  
-    <div id='course_sorter'>
-      <div id='message_container'></div>
-
-      <div><h4><%= t('advancedstanding.courses') %></h4></div>
+  <div class='row'>
+    <div class='col-md-8'>
       <div>
-        <ul class='sortable connected draggable_box drag_box sortable_noindent'
-            data-group='course'
-            data-params=''
-            data-update-url='<%= user_advanced_standings_create_path %>'>
-          <% @courses.each do |course| %>
+        <%= form_tag(user_advanced_standings_setcredit_path, :class => "useajax") do %>
+          <div class='form-group'>
+            <label>Total Credits:</label>
+            <%= text_field_tag('advanced_standing_credit', current_user.advanced_standing_credits, :class => 'form-control') %>
+          </div>
+        <% end %>
+      </div>
+      <div id='course_sorter'>
+        <div id='message_container'></div>
+        <label><%= t('advancedstanding.courses') %></label>
+
+        <div>
+          <ul class='sortable connected draggable_box drag_box sortable_noindent'
+              data-group='course'
+              data-params=''
+              data-update-url='<%= user_advanced_standings_create_path %>'>
+            <% @courses.each do |course| %>
               <li>
                 <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s %></h5></div>
               </li>
-          <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div class='text-center'>
+        <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
+            data-type='delete'
+            data-group='course'
+            data-update-url='<%= user_advanced_standings_remove_path %>'
+        >
+          <label>Drag a course here to remove</label>
+          <br>
+          <span class='glyphicon glyphicon-trash'></span>
         </ul>
       </div>
-
+      <div>
+        <div class='form-group'>
+          <label>Course Search</label>
+          <input type='text'
+                 id='search_new_course'
+                 class="form-control search-ajax"
+                 data-search-output='#search-output-container'
+                 data-search-url='<%= search_course_list_path %>?only_not_taking=true&only_not_completed=true&limit=5'/>
+        </div>
+      </div>
+      <div>
+        <ul id='search-output-container'
+            class='sortable no-drop draggable_box drag_box sortable_noindent'
+            data-group='course'
+        >
+        </ul>
+      </div>
     </div>
   </div>
 </div>

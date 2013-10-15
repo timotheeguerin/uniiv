@@ -1,101 +1,128 @@
-<!DOCTYPE html>
 <html>
+
 <head>
   <title>Uniiv</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-<div id="wrapper">
-  <div id="nav_top">
-    <div id="nav_top_container">
-      <div id="nav_top_left">
-        <%= link_to root_url do %>
-            <img src="/assets/logo.png" style="height:20px;padding-top:10px"/>
-        <% end %>
 
+<div class='navbar navbar-inverse navbar-fixed-top whitetext'>
+  <div class='container'>
+    <div class='navbar-header visible-lg visible-md'>
+      <ul class='navbar-nav nav'>
+        <li><%= link_to root_url do %>
+            <span class='glyphicon glyphicon-home'></span> Uniiv
+          <% end %></li>
         <% if user_signed_in? %>
-          <span id="nav_top_left_links">
-            <%= link_to "Path", user_graph_path %>&nbsp;
-            <%= link_to "Education", user_education_path %>
-          </span>
+          <li><%= link_to user_graph_path do %>
+              <span class='glyphicon glyphicon-random'></span> Path
+            <% end %></li>
+          <li><%= link_to user_education_path do %>
+              <span class='glyphicon glyphicon-book'></span> Education
+            <% end %></li>
         <% end %>
-
-      </div>
-      <div id="nav_top_right">
+      </ul>
+    </div>
+    <div class='navbar-header pull-right visible-lg visible-md'>
+      <ul class='navbar-nav nav'>
         <% if user_signed_in? %>
-            <% if can? :access, :rails_admin %>
-                <%= link_to "Admin", rails_admin.dashboard_path %>&nbsp;&nbsp;
-            <% end %>
+          <% if can? :access, :rails_admin %>
+            <li><%= link_to rails_admin.dashboard_path do %>
+                <span class='glyphicon glyphicon-wrench'></span> Admin
+              <% end %></li>
+          <% end %>
 
-            <%= link_to "Account", user_settings_index_path %>
-            &nbsp;
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+          <li><%= link_to user_settings_index_path do %>
+              <span class='glyphicon glyphicon-user'></span> Account
+            <% end %></li>
+          <li><%= link_to destroy_user_session_path, method: :delete do %>
+              <span class='glyphicon glyphicon-log-out'></span> Log Out
+            <% end %></li>
         <% else %>
-            <%= link_to "Log In", new_user_session_path %>
-            &nbsp;
-            <%= link_to "Sign Up", new_user_registration_path %>
+          <li><%= link_to new_user_session_path do %>
+              <span class='glyphicon glyphicon-log-in'></span> Log In
+            <% end %></li>
+          <li><%= link_to new_user_registration_path do %>
+              <span class='glyphicon glyphicon-user'></span> Sign Up
+            <% end %></li>
         <% end %>
-      </div>
+      </ul>
+    </div>
+    <div class='navbar-nav nav visible-xs visible-sm'>
+      <ul class="navbar-nav nav">
+        <li><%= link_to "Uniiv", root_url %></li>
+        <% if user_signed_in? %>
+          <% if can? :access, :rails_admin %>
+            <li><%= link_to "Admin", rails_admin.dashboard_path %></li>
+          <% end %>
+          <li><%= link_to "Path", user_graph_path %></li>
+          <li><%= link_to "Education", user_education_path %></li>
+          <li><%= link_to "Account", user_settings_index_path %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
+</div>
 
-
-  <div id="content">
-    <% if notice %>
-        <div class="alert alert-notice"><%= raw(notice) %></div>
-    <% end %>
-    <% if alert %>
-        <div class="alert alert-error"><%= raw(alert) %></div>
-    <% end %>
+<div class="wrapper">
+  <% if notice or alert %>
+    <div class="container text-center">
+      <% if notice %>
+        <div class="row">
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(notice) %>
+          </div>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="row">
+          <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(alert) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="container">
     <%= yield %>
   </div>
+  <div class="push"></div>
 </div>
-<!-- end wrapper -->
 
-<div id="nav_bottom">
-  <div id="nav_bottom_container">
-    <table id="footer_table">
-      <tr class="footer_table_heading">
-        <th style="width:20%;"><a href="#bottom">About</a></th>
-        <th style="width:20%;"></th>
-        <th style="width:20%;"><a href="#bottom">Contact Us</a></th>
-        <th style="width:20%;"></th>
-        <th style="width:20%;"><a href="#bottom">Legal</a></th>
-      </tr>
-      <tr>
-        <td>
-          <ul class="footer_list">
-            <li><%= link_to "Uniiv", static_page_uniiv_path %></li>
-            <li><%= link_to "Story", static_page_story_path %></li>
-            <li><%= link_to raw("Team"), static_page_team_path %></li>
-          </ul>
-        </td>
-        <td>
-        </td>
-        <td>
-          <ul class="footer_list">
-            <li><%= link_to "Get Involved", static_page_getinvolved_path %></li>
-            <li><%= link_to "Suggestions", static_page_suggestions_path %></li>
-            <li><%= link_to "Bug Reports", static_page_bugreports_path %></li>
-          </ul>
-        </td>
-        <td>
-        </td>
-        <td>
-          <ul class="footer_list">
-            <li><%= link_to "Cookies", static_page_cookies_path %></li>
-            <li><%= link_to "Privacy", static_page_privacy_path %></li>
-            <li><%= link_to raw("&nbsp;"), static_page_termsofuse_path %>
-              <a name="bottom"></a></li>
-          </ul>
-        </td>
-      </tr>
-    </table>
+<div class="container footer">
+  <hr style='width:100%;'>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <ul class="list-unstyled">
+        <li><%= link_to 'Uniiv', static_page_uniiv_path %></li>
+        <li><%= link_to 'Story', static_page_story_path %></li>
+        <li><%= link_to 'Team', static_page_team_path %></li>
+      </ul>
+    </div>
+    <div class="col-md-4 text-center">
+      <ul class="list-unstyled">
+        <li><%= link_to 'Get Involved', static_page_getinvolved_path %></li>
+        <li><%= link_to 'Suggestions', static_page_suggestions_path %></li>
+        <li><%= link_to 'Bug Reports', static_page_bugreports_path %></li>
+      </ul>
+    </div>
+    <div class="col-md-4 text-center">
+      <ul class="list-unstyled">
+        <li><%= link_to 'Cookies', static_page_cookies_path %></li>
+        <li><%= link_to 'Privacy', static_page_privacy_path %></li>
+        <li><%= link_to raw('&nbsp;'), static_page_termsofuse_path %>
+      </ul>
+    </div>
   </div>
 </div>
 </body>
+
 </html>

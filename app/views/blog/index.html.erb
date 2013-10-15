@@ -1,0 +1,18 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <h1>Blog</h1>
+    <% if @posts.size == 0 %>
+      <hr>
+      <h3>Sorry!</h3>
+      <h5>There are no posts to display.</h5>
+    <% end %>
+    <% @posts.each do |p| %>
+      <hr style="width:100%;">
+      <div>
+        <h3 class="blogopen"><%= p.title %></h3>
+
+        <div style="display:none;"><%= raw(p.content) %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
