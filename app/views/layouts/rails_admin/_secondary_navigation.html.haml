@@ -1,7 +1,7 @@
 %ul.nav.pull-right
+  %li= link_to t('admin.utils.checkcourse_requirement_filled').capitalize, main_app.admin_utils_check_course_requirements_completed_path
   - actions(:root).each do |action|
     %li= link_to wording_for(:menu, action), { :action => action.action_name, :controller => 'rails_admin/main' }, :class => 'pjax'
-    %li= link_to t('admin.utils.checkcourse_requirement_filled').capitalize, main_app.admin_utils_check_course_requirements_completed_path
   - if main_app_root_path = (main_app.root_path rescue false)
     %li= link_to t('admin.home.name').capitalize, main_app_root_path
   - if _current_user
