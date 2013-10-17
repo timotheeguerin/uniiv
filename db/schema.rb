@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012024242) do
+ActiveRecord::Schema.define(version: 20131017162557) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20131012024242) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "buisness_times", force: true do |t|
+    t.integer  "day_id"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "buisness_timeable_id"
+    t.string   "buisness_timeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "buisness_times", ["day_id"], name: "index_buisness_times_on_day_id", using: :btree
 
   create_table "course_courses", force: true do |t|
     t.string   "name"
@@ -150,6 +162,18 @@ ActiveRecord::Schema.define(version: 20131012024242) do
     t.integer "scenario_id"
   end
 
+  create_table "course_schedules", force: true do |t|
+    t.integer  "year"
+    t.integer  "semester_id"
+    t.integer  "course_id"
+    t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_schedules", ["course_id"], name: "index_course_schedules_on_course_id", using: :btree
+  add_index "course_schedules", ["semester_id"], name: "index_course_schedules_on_semester_id", using: :btree
+
   create_table "course_semesters", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -166,6 +190,12 @@ ActiveRecord::Schema.define(version: 20131012024242) do
   end
 
   add_index "course_subjects", ["university_id"], name: "index_course_subjects_on_university_id", using: :btree
+
+  create_table "days", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "faculties", force: true do |t|
     t.string   "name"
