@@ -1,3 +1,3 @@
-$("#graphreload").click(function() {
-  $(location).reload();
+$("#graphreload").click(function () {
+    $(location).reload();
 });

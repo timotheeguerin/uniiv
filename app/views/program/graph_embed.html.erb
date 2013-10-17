@@ -3,8 +3,8 @@
 </div>
 <div>
   <% @program.groups.each do |g| %>
-      <div><h5><%= g.short_name + " (" + (g.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s + "%)" %></h5>
-      </div>
+    <div><h5><%= g.short_name + " (" + (g.get_completion_ratio(current_scenario)[:ratio]*100).to_i.to_s + "%)" %></h5>
+    </div>
   <% end %>
 </div>
 <script type="text/javascript">loadDonuts();</script>

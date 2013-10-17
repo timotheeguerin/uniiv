@@ -3,9 +3,8 @@
 #=require graph/element/ContainerElement
 
 resizeCanvasContainer = () ->
-  newheight = $(window).height() - 40;
-  $("#canvas-container").height(newheight)
-  $("#graph_sidebar_info").css("max-height", newheight - (300 + $("#programsfromuser").height()))
+  newheight = $(window).height() - 75;
+  $("#canvas-container").parent().height(newheight);
 
 
 $(document).ready ->

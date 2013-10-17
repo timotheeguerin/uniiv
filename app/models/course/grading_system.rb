@@ -4,5 +4,5 @@ class Course::GradingSystem < ActiveRecord::Base
   def to_s
     name
   end
-  
+
 end

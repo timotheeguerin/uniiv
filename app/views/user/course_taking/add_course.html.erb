@@ -5,9 +5,9 @@
       <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => search_course_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#course"}) %>
       <%= hidden_field_tag("course", nil, "id" => "course") %>
 
-      
+
       <div class="right">
-        <%= submit_tag(t('course.mark_taking'), :name=> "take") %>
+        <%= submit_tag(t('course.mark_taking'), :name => "take") %>
         <%= submit_tag(t('course.mark_completed'), :name => "complete") %>
       </div>
     <% end %>
