@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  value: 1.5
+  group_id: 
+  scheme_id: 
+
+two:
+  value: 1.5
+  group_id: 
+  scheme_id: 

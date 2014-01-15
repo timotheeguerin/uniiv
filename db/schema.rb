@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017162557) do
+ActiveRecord::Schema.define(version: 20140115231801) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -207,6 +207,48 @@ ActiveRecord::Schema.define(version: 20131017162557) do
   end
 
   add_index "faculties", ["university_id"], name: "index_faculties_on_university_id", using: :btree
+
+  create_table "fgc_grades", force: true do |t|
+    t.string   "name"
+    t.float    "value"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fgc_grades", ["group_id"], name: "index_fgc_grades_on_group_id", using: :btree
+
+  create_table "fgc_groups", force: true do |t|
+    t.integer  "prediction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fgc_percents", force: true do |t|
+    t.float    "value"
+    t.integer  "group_id"
+    t.integer  "scheme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fgc_percents", ["group_id"], name: "index_fgc_percents_on_group_id", using: :btree
+  add_index "fgc_percents", ["scheme_id"], name: "index_fgc_percents_on_scheme_id", using: :btree
+
+  create_table "fgc_predictions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fgc_schemes", force: true do |t|
+    t.integer  "prediction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fgc_schemes", ["prediction_id"], name: "index_fgc_schemes_on_prediction_id", using: :btree
 
   create_table "program_group_restrictions", force: true do |t|
     t.string   "name"
