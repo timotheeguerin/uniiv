@@ -60,10 +60,13 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   def create
     grade = Fgc::Grade.new
     group = Fgc::Group.new
+    if @prediction.schemes.empty?
+      @prediction.schemes << Fgc::Scheme.new
+    end
     @prediction.schemes.each do |scheme|
-      percent = Fgc::Group.new
+      percent = Fgc::Percent.new
       percent.scheme = scheme
-      percent.value = true
+      percent.value = 0
       group.percents << percent
     end
     group.grades << grade

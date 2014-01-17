@@ -13,30 +13,40 @@
 
   <% @prediction.groups.each do |group| %>
       <div>
-        <% first = true %>
-        <% group.grades.each do |grade| %>
-            <% if first
-                 first = false
-               else
-            %>
-                <br>
-            <% end %>
-            <% form_tag(utils_fgc_edit_grade_name_path) do %>
-                <%= text_field_tag :name, grade.name %>
-                <%= hidden_field_tag :grade, grade.id %>
-            <% end %>
-            |
-            <% form_tag(utils_fgc_edit_grade_value_path) do %>
-                <%= text_field_tag :value, grade.value %>
-                <%= hidden_field_tag :grade, grade.id %>
-            <% end %>
+        <div style="display: inline-block">
+          <% group.grades.each do |grade| %>
 
-        <% end %>
+              <div style="display: inline-block">
+                <%= form_tag(utils_fgc_edit_grade_name_path) do %>
+                    <%= text_field_tag :name, grade.name, :placeholder => 'Name' %>
+                    <%= hidden_field_tag :grade, grade.id %>
+                <% end %>
+
+              </div>
+              |
+              <div style="display: inline-block">
+                <%= form_tag(utils_fgc_edit_grade_value_path) do %>
+                    <%= text_field_tag :value, grade.value, :placeholder => 'Grade' %>
+                    <%= hidden_field_tag :grade, grade.id %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+        <div style="display: inline-block">
+          <% group.percents.each do |percent| %>
+              <div style="display: inline-block">
+                <%= form_tag(utils_fgc_edit_group_percent_path) do %>
+                    <%= text_field_tag :value, percent.value, :placeholder => 'Percent' %>
+                    <%= hidden_field_tag :percent, percent.id %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
       </div>
-      <%= group.percents.each do |percent| %>
-          <% form_tag(utils_fgc_edit_group_percent_path) do %>
-              <%= text_field_tag :value, percent.value %>
-              <%= hidden_field_tag :percent, percent.id %>
+
+      <% unless group.simple? %>
+          <%= form_tag(utils_fgc_add_grade_to_group_path) do %>
+              <%= submit_tag(t('fgc.add_grade_to_group')) %>
           <% end %>
       <% end %>
   <% end %>

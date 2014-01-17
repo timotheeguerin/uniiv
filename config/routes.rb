@@ -141,6 +141,7 @@ Uniiv::Application.routes.draw do
     post 'utils/finalgradecalculator/course/:id/edit_grade_value' => 'final_grade_calculator#edit_grade_value', :as => :utils_fgc_edit_grade_value
     post 'utils/finalgradecalculator/course/:id/create_group' => 'final_grade_calculator#create_group', :as => :utils_fgc_create_group
     post 'utils/finalgradecalculator/course/:id/edit_percent' => 'final_grade_calculator#edit_percent', :as => :utils_fgc_edit_group_percent
+    post 'utils/finalgradecalculator/course/:id/add_grade_to_group' => 'final_grade_calculator#add_grade_to_group', :as => :utils_fgc_add_grade_to_group
     post 'utils/finalgradecalculator/course/:id/create_scheme' => 'final_grade_calculator#create_scheme', :as => :utils_fgc_create_scheme
   end
 
