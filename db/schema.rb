@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20140115231801) do
 
   create_table "fgc_groups", force: true do |t|
     t.integer  "prediction_id"
+    t.boolean  "simple",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -244,6 +245,7 @@ ActiveRecord::Schema.define(version: 20140115231801) do
 
   create_table "fgc_schemes", force: true do |t|
     t.integer  "prediction_id"
+    t.float    "final_percent", default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

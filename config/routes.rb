@@ -95,7 +95,7 @@ Uniiv::Application.routes.draw do
 
   #User
   get 'user_dashboard/index' => 'user_dashboard#index'
-  get 'education'  => 'user_dashboard#index', :as => :user_education
+  get 'education' => 'user_dashboard#index', :as => :user_education
 
   #Program controller
   get 'program/:id', to: 'program#show', as: 'program'
@@ -132,6 +132,13 @@ Uniiv::Application.routes.draw do
     get 'scenario/new' => 'scenario#new', :as => :user_new_scenario
     post 'scenario/remove' => 'scenario#remove', :as => :user_remove_scenario
     post 'scenario/setmain' => 'scenario#set_main', :as => :user_setmain_scenario
+  end
+
+  scope :module => 'utils' do
+    get 'utils/finalgradecalculator/course/:id' => 'final_grade_calculator#show', :as => :utils_fgc
+    post 'utils/finalgradecalculator/course/:id/create_grade' => 'final_grade_calculator#create_grade', :as => :utils_fgc_create_grade
+    post 'utils/finalgradecalculator/course/:id/create_group' => 'final_grade_calculator#create_group', :as => :utils_fgc_create_group
+    post 'utils/finalgradecalculator/course/:id/create_scheme' => 'final_grade_calculator#create_scheme', :as => :utils_fgc_create_scheme
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

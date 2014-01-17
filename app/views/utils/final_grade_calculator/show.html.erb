@@ -1,0 +1,30 @@
+<div>
+  <% form_tag(utils_fgc_create_grade) do %>
+      <%= submit_tag(t('fgc.create_grade')) %>
+  <% end %>
+
+  <% form_tag(utils_fgc_create_group) do %>
+      <%= submit_tag(t('fgc.create_group')) %>
+  <% end %>
+</div>
+
+<div>
+
+  <% @prediction.groups.each do |group| %>
+      <div>
+        <% first = true %>
+        <% group.grades.each do |grade| %>
+            <% if first
+                first = false
+               else
+            %>
+                <br>
+            <% end %>
+            <span><%= grade.name %> | <%= grade.value %> </span>
+        <% end %>
+      </div>
+      <%= group.percents.each do |percent| %>
+        <span> | <%= percent.value %></span>
+      <% end %>
+  <% end %>
+</div>

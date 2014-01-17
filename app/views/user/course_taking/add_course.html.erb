@@ -2,7 +2,7 @@
   <div><h1><%= t('course.add') %></h1></div>
   <div>
     <%= form_tag(handle_user_add_course_path) do %>
-      <%= text_field_tag("doesntmatter", nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => search_course_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#course"}) %>
+      <%= text_field_tag('doesntmatter', nil, options = {:class => "form_biginput form_input_longer autocomplete", "data-url" => search_course_autocomplete_path + "?only_not_taking=true", "data-input-data" => "#course"}) %>
       <%= hidden_field_tag("course", nil, "id" => "course") %>
 
 
