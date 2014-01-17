@@ -43,7 +43,6 @@
               </div>
           <% end %>
         </div>
-      </div>
 
       <% unless group.simple? %>
           <%= form_tag(utils_fgc_add_grade_to_group_path) do %>
@@ -51,5 +50,6 @@
               <%= submit_tag(t('fgc.add_grade_to_group')) %>
           <% end %>
       <% end %>
+      </div>
   <% end %>
 </div>
