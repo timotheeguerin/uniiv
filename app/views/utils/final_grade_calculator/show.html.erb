@@ -1,9 +1,10 @@
 <div>
-  <% form_tag(utils_fgc_create_grade) do %>
+  lol
+  <%= form_tag(utils_fgc_create_grade_path) do %>
       <%= submit_tag(t('fgc.create_grade')) %>
   <% end %>
 
-  <% form_tag(utils_fgc_create_group) do %>
+  <%= form_tag(utils_fgc_create_group_path) do %>
       <%= submit_tag(t('fgc.create_group')) %>
   <% end %>
 </div>
@@ -15,16 +16,28 @@
         <% first = true %>
         <% group.grades.each do |grade| %>
             <% if first
-                first = false
+                 first = false
                else
             %>
                 <br>
             <% end %>
-            <span><%= grade.name %> | <%= grade.value %> </span>
+            <% form_tag(utils_fgc_edit_grade_name_path) do %>
+                <%= text_field_tag :name, grade.name %>
+                <%= hidden_field_tag :grade, grade.id %>
+            <% end %>
+            |
+            <% form_tag(utils_fgc_edit_grade_value_path) do %>
+                <%= text_field_tag :value, grade.value %>
+                <%= hidden_field_tag :grade, grade.id %>
+            <% end %>
+
         <% end %>
       </div>
       <%= group.percents.each do |percent| %>
-        <span> | <%= percent.value %></span>
+          <% form_tag(utils_fgc_edit_group_percent_path) do %>
+              <%= text_field_tag :value, percent.value %>
+              <%= hidden_field_tag :percent, percent.id %>
+          <% end %>
       <% end %>
   <% end %>
 </div>

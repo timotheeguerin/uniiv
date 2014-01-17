@@ -3,7 +3,14 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   before_action :setup
 
   def setup
+    authorize! :read, :fgc
     @prediction = Fgc::Prediction.find_by_user_id_and_course_id(current_user.id, params[:id])
+    if @prediction.nil?
+      @prediction = Fgc::Prediction.new
+      @prediction.user = current_user
+      @prediction.course = Course::Course.find(params[:id])
+      @prediction.save
+    end
   end
 
   def show
@@ -24,6 +31,12 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     return_json('Value edited successfully')
   end
 
+  def edit_grade_name
+    grade = Fgc::Grade.find(params[:grade])
+    grade.value = params[:name]
+    grade.save
+    return_json('Value edited successfully')
+  end
   def delete_grade
     grade = Fgc::Grade.find(params[:grade])
     unless grade.nil?
@@ -47,11 +60,11 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   def create
     grade = Fgc::Grade.new
     group = Fgc::Group.new
-    @prediction.scheme.each do |scheme|
+    @prediction.schemes.each do |scheme|
       percent = Fgc::Group.new
       percent.scheme = scheme
       percent.value = true
-      group.scheme << percent
+      group.percents << percent
     end
     group.grades << grade
     @prediction.groups << group
