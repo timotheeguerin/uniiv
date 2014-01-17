@@ -57,6 +57,13 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     render :show
   end
 
+  def add_grade_to_group
+    group = Fgc::Group.find(params[:group])
+    group.grades <<  Fgc::Grade.new
+    group.save
+    render :show
+  end
+
   def create
     grade = Fgc::Grade.new
     group = Fgc::Group.new
