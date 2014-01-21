@@ -1,0 +1,9 @@
+<h1>Enter url of the course to load</h1>
+
+<%= form_tag(admin_utils_course_load_create_path) do %>
+    <div class="form-group">
+      <%= text_field_tag :url, @url, :class => 'form-control' %>
+      <br>
+      <%= submit_tag 'Load', :class => 'btn btn-default' %>
+    </div>
+<% end %>

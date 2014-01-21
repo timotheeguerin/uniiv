@@ -47,10 +47,10 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
 
       if params[:type]== 'corequisites'
         course.corequisites = true
-        course.course.corequisite =expr
+        course.course.corequisite = expr
       else
         course.prerequisites = true
-        course.course.prerequisite =expr
+        course.course.prerequisite = expr
       end
       course.course.save
       course.save
