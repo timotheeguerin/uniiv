@@ -8,6 +8,9 @@ class Course::Expr < ActiveRecord::Base
     id.to_s + ': ' + node.to_s
   end
 
+  def to_input
+    node.to_s
+  end
   def name
     to_s
   end

@@ -1,22 +1,36 @@
-<ul>
-
+<div class='list-group'>
+  <div class='list-group-item'>
+    <div style="display: inline-block; width: 100px">
+      <span>Course</span>
+    </div>
+    <div style="display: inline-block; width: 200px">
+      <span>Prerequisites</span>
+    </div>
+    <div style="display: inline-block; width: 200px">
+      <span>Corequisites</span>
+    </div>
+  </div>
   <% @uncompleted_courses.each do |course| %>
-      <li>
-        <span><%= course.course %></span>
-        <span> Prerequisites: </span>
-        <% if course.prerequisites %>
-            <span>Completed</span>
-        <% else %>
-            <span><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'prerequisites') %></span>
-            <span><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'prerequisites') %></span>
-        <% end %>
-        <span> Corequisites: </span>
-        <% if course.corequisites %>
-            <span>Completed</span>
-        <% else %>
-            <span><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'corequisites') %></span>
-            <span><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'corequisites') %></span>
-        <% end %>
-      </li>
+      <div class='list-group-item'>
+        <div style="display: inline-block; width: 100px">
+          <span><%= link_to course.course, course_path(course.course) %> </span>
+        </div>
+        <div style="display: inline-block; width: 200px">
+          <% if course.prerequisites %>
+              <span class="label label-success">Completed</span>
+          <% else %>
+              <span class="btn btn-default"><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'prerequisites') %></span>
+              <span class="btn btn-default"><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'prerequisites') %></span>
+          <% end %>
+        </div>
+        <div style="display: inline-block; width: 200px">
+          <% if course.corequisites %>
+              <span class="label label-success">Completed</span>
+          <% else %>
+              <span class="btn btn-default"><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'corequisites') %></span>
+              <span class="btn btn-default"><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'corequisites') %></span>
+          <% end %>
+        </div>
+      </div>
   <% end %>
-</ul>
+</div>
