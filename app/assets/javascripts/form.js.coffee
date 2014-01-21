@@ -1,12 +1,13 @@
 $(document).ready ->
   $(document).on 'submit', 'form.useajax', submitFormAjax
   #Submit a form when the input is edited(has a timer)
-  typingTimer = null
+
+  typingTimer = {}
   $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
-    if typingTimer != null
+    if typingTimer[input] != null
       clearTimeout(typingTimer)
-    typingTimer = setTimeout(()->
+    typingTimer[input] = setTimeout(()->
       typingTimer = null
       input.closest('form').submit()
     , 500)
