@@ -46,14 +46,14 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
 
 
       if params[:type]== 'corequisites'
-        course.corequisites = true
-        course.course.corequisite = expr
+        @course.corequisites = true
+        @course.course.corequisite = expr
       else
-        course.prerequisites = true
-        course.course.prerequisite = expr
+        @course.prerequisites = true
+        @course.course.prerequisite = expr
       end
-      course.course.save
-      course.save
+      @course.course.save
+      @course.save
       redirect_to admin_utils_check_course_requirements_completed_path
     end
   end

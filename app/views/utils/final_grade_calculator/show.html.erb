@@ -7,9 +7,18 @@
       <%= submit_tag(t('fgc.create_group')) %>
   <% end %>
 </div>
-
 <div>
-
+  <div>Final percent:</div>
+  <div>
+    <%= @prediction.schemes.each do |scheme| %>
+        <%= form_tag(utils_fgc_edit_final_percent_path, :class => 'useajax') do %>
+            <%= text_field_tag :percent, grade.name, :placeholder => 'Final percent', :class => 'submitonedit' %>
+            <%= hidden_field_tag :scheme, scheme.id %>
+        <% end %>
+    <%= end %>
+  </div>
+</div>
+<div>
   <% @prediction.groups.each do |group| %>
       <div style="border: 1px solid black; margin-bottom: 10px; padding: 10px 0 0 10px">
         <div style="display: inline-block">
@@ -17,7 +26,7 @@
               <div>
                 <div style="display: inline-block">
                   <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
-                      <%= text_field_tag :name, grade.name, :placeholder => 'Name' , :class => 'submitonedit'%>
+                      <%= text_field_tag :name, grade.name, :placeholder => 'Name', :class => 'submitonedit' %>
                       <%= hidden_field_tag :grade, grade.id %>
                   <% end %>
 
@@ -25,7 +34,7 @@
                 |
                 <div style="display: inline-block">
                   <%= form_tag(utils_fgc_edit_grade_value_path, :class => 'useajax') do %>
-                      <%= text_field_tag :value, grade.value, :placeholder => 'Grade'  , :class => 'submitonedit'%>
+                      <%= text_field_tag :value, grade.value, :placeholder => 'Grade', :class => 'submitonedit' %>
                       <%= hidden_field_tag :grade, grade.id %>
                   <% end %>
                 </div>
@@ -33,10 +42,11 @@
           <% end %>
         </div>
         <div style="display: inline-block">
-          <% group.percents.each do |percent| %>
+          <%= @prediction.schemes.each do |scheme| %>
+              <% percent = group.scheme_percent(scheme) %>
               <div style="display: inline-block">
                 <%= form_tag(utils_fgc_edit_group_percent_path, :class => 'useajax') do %>
-                    <%= text_field_tag :value, percent.value, :placeholder => 'Percent'  , :class => 'submitonedit'%>
+                    <%= text_field_tag :value, percent.value, :placeholder => 'Percent', :class => 'submitonedit' %>
                     <%= hidden_field_tag :percent, percent.id %>
                 <% end %>
               </div>

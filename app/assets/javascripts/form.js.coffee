@@ -8,7 +8,7 @@ $(document).ready ->
     if typingTimer[input] != null
       clearTimeout(typingTimer)
     typingTimer[input] = setTimeout(()->
-      typingTimer = null
+      typingTimer[input]   = null
       input.closest('form').submit()
     , 500)
 
