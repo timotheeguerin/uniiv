@@ -33,10 +33,11 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   def edit_grade_name
     grade = Fgc::Grade.find(params[:grade])
-    grade.value = params[:name]
+    grade.name = params[:name]
     grade.save
-    return_json('Value edited successfully')
+    return_json('Name edited successfully')
   end
+
   def delete_grade
     grade = Fgc::Grade.find(params[:grade])
     unless grade.nil?
@@ -59,7 +60,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   def add_grade_to_group
     group = Fgc::Group.find(params[:group])
-    group.grades <<  Fgc::Grade.new
+    group.grades << Fgc::Grade.new
     group.save
     render :show
   end
@@ -84,8 +85,8 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   #Edit the percent value of the group
   def edit_group_percent
-    percent = Pgc::Percent.find_by_group_id_and_scheme_id(params[:group], params[:scheme])
-    percent.value = params[:percent]
+    percent = Fgc::Percent.find(params[:percent])
+    percent.value = params[:value]
     percent.save
     return_json('Group percent updated')
   end
@@ -97,6 +98,12 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       group.delete
     end
     return_json('Group removed successfully')
+  end
+
+  def edit_final_percent
+    @scheme = Fgc::Scheme.find(params[:scheme])
+    @scheme.final_percent = params[:percent]
+    @scheme.save
   end
 
   #When the user created a new grading scheme(ex: midterm 0%)

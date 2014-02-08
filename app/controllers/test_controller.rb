@@ -4,13 +4,14 @@ class TestController < ApplicationController
   end
 
   def check_course_requirement_filled
+    Admin::CourseRequirementFilled.all.delete_all
     Course::Course.all.each do |course|
       if course.admin_course_requirement_filled.nil?
         filled = Admin::CourseRequirementFilled.new
         filled.corequisites=true
         filled.prerequisites=true
-        filled.corequisites=false if course.prerequisite.nil?
-        filled.prerequisites=false if course.corequisite.nil?
+        filled.prerequisites=false if course.prerequisite.nil?
+        filled.corequisites=false if course.corequisite.nil?
         filled.course = course
         filled.save
       end

@@ -22,11 +22,19 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
   end
 
   def input_requirement
+    @course = Admin::CourseRequirementFilled.find(params[:id])
     @type = params[:type]
+
+    @expr = nil
+    if params[:type]== 'corequisites'
+      @expr = @course.course.corequisite.to_input unless @course.course.corequisite.nil?
+    else
+      @expr = @course.course.prerequisite.to_input unless @course.course.prerequisite.nil?
+    end
   end
 
   def save_requirement
-    course = Admin::CourseRequirementFilled.find(params[:id])
+    @course = Admin::CourseRequirementFilled.find(params[:id])
 
     input = params['expr']
     expr = Course::Expr.parse(input)
@@ -36,16 +44,15 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
     else
       expr.save
 
-
       if params[:type]== 'corequisites'
-        course.corequisites = true
-        course.course.corequisite =expr
+        @course.corequisites = true
+        @course.course.corequisite = expr
       else
-        course.prerequisites = true
-        course.course.prerequisite =expr
+        @course.prerequisites = true
+        @course.course.prerequisite = expr
       end
-      course.course.save
-      course.save
+      @course.course.save
+      @course.save
       redirect_to admin_utils_check_course_requirements_completed_path
     end
   end

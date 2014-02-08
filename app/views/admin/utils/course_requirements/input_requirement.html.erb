@@ -1,9 +1,11 @@
 <div>
-  <div>Choose <%= @type %></div>
+  <h1>Choose <%= @type %> for <span><%= link_to @course.course, course_path(@course.course) %> </span></h1>
   <%= form_tag admin_utils_course_requirement_input_save_path do %>
-      <%= label_tag :expr, 'Input expression: ' %>
-      <%= text_field_tag :expr %>
-      <%= hidden_field_tag :type, @type %>
-      <%= submit_tag %>
+      <div class="form-group">
+        <%= label_tag :expr, 'Input expression: ' %>
+        <%= text_field_tag :expr, @expr, :class => 'form-control' %>
+        <%= hidden_field_tag :type, @type %>
+        <%= submit_tag 'Submit', :class => 'btn btn-default' %>
+      </div>
   <% end %>
 </div>

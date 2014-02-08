@@ -1,4 +1,7 @@
 Uniiv::Application.routes.draw do
+  get "utils/index"
+  get "course_loader/index"
+  get "course_loader/new"
   get "course_requirements/index"
   get 'scenario/new'
   get 'course_taking/new'
@@ -44,19 +47,24 @@ Uniiv::Application.routes.draw do
   get 'graph/index'
   get 'test/index'
 
-  devise_for :users, :controllers => {:registrations => 'registrations'}
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   root to: 'welcome#index'
 
   #Admin utils
   namespace :admin do
+    get 'utils' => 'utils#index', :as => :utils_home
     namespace :utils do
       get 'course/requirements' => 'course_requirements#index', :as => :check_course_requirements_completed
       get 'course/requirements/:id/none' => 'course_requirements#mark_as_none', :as => :course_requirement_mark_none
       get 'course/requirements/:id/input' => 'course_requirements#input_requirement', :as => :course_requirement_input
       post 'course/requirements/:id/input' => 'course_requirements#save_requirement', :as => :course_requirement_input_save
+      get 'course/loader/load' => 'course_loader#new', :as => :course_load_new
+      post 'course/loader/load' => 'course_loader#load', :as => :course_load_create
     end
   end
+
+  devise_for :users, :controllers => {:registrations => 'registrations'}
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get 'test' => 'test#index'
 
@@ -77,7 +85,7 @@ Uniiv::Application.routes.draw do
   get 'graph/program/:id' => 'graph#show_program_graph', :as => 'program_graph'
 
   #Course controller
-  get 'course/:id', to: 'course#show', as: 'course'
+  get 'course/:id', to: 'course#show', as: :course
   get 'course/:id/show' => 'course#show'
   get 'course/:id/graph/embed' => 'course#graph_embed', :as => :course_graph_embed
   get 'course/:id/json' => 'course#json'
@@ -140,7 +148,7 @@ Uniiv::Application.routes.draw do
     post 'utils/finalgradecalculator/course/:id/edit_grade_name' => 'final_grade_calculator#edit_grade_name', :as => :utils_fgc_edit_grade_name
     post 'utils/finalgradecalculator/course/:id/edit_grade_value' => 'final_grade_calculator#edit_grade_value', :as => :utils_fgc_edit_grade_value
     post 'utils/finalgradecalculator/course/:id/create_group' => 'final_grade_calculator#create_group', :as => :utils_fgc_create_group
-    post 'utils/finalgradecalculator/course/:id/edit_percent' => 'final_grade_calculator#edit_percent', :as => :utils_fgc_edit_group_percent
+    post 'utils/finalgradecalculator/course/:id/edit_percent' => 'final_grade_calculator#edit_group_percent', :as => :utils_fgc_edit_group_percent
     post 'utils/finalgradecalculator/course/:id/add_grade_to_group' => 'final_grade_calculator#add_grade_to_group', :as => :utils_fgc_add_grade_to_group
     post 'utils/finalgradecalculator/course/:id/create_scheme' => 'final_grade_calculator#create_scheme', :as => :utils_fgc_create_scheme
   end

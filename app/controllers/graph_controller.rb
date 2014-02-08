@@ -1,9 +1,3 @@
-require 'graph/node'
-require 'graph/spline'
-require 'graph/graph'
-require 'graph/dot_graph'
-require 'graph/packer'
-
 
 class GraphController < ApplicationController
   include GraphHelper
@@ -71,7 +65,7 @@ class GraphController < ApplicationController
     margin ||= 30
     padding ||= 15
 
-    prg_graph = Graph.new(program.name)
+    prg_graph = Graph::Graph.new(program.name)
     program.groups.each do |group|
       dot_graph = generate_graph_from_group(group, style)
       puts '------------------------------------'
@@ -85,7 +79,7 @@ class GraphController < ApplicationController
         prg_graph.subgraphs << graph
       end
     end
-    p = Packer.new
+    p = Graph::Packer.new
     prg_graph.type = 'program'
     p.pack_graph(prg_graph, margin)
     prg_graph.add_padding(padding)
@@ -102,7 +96,7 @@ class GraphController < ApplicationController
     completed_percent = (group.get_completion_ratio(current_scenario, @term)[:ratio] * 100).round
     label = "#{group.name} (#{completed_percent}%)"
     g = GraphViz.new(:G, :type => :digraph, :strict => true, :label => label, :fontsize => 20)
-    dot_graph = DotGraph.new(g, current_scenario, @term)
+    dot_graph = Graph::DotGraph.new(g, current_scenario, @term)
     content_graph = g.add_graph('cluster_' + group.name)
     content_graph[:label] = ''
     content_graph[:margin] = margin
@@ -114,7 +108,7 @@ class GraphController < ApplicationController
   def generate_graph_from_dot(dot, nodes, level = 0)
     json = {}
     GraphViz.parse_string(dot) do |g|
-      json = Graph::from_dot(g, nodes, level, true)
+      json = Graph::Graph::from_dot(g, nodes, level, true)
     end
     json
   end
