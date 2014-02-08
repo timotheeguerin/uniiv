@@ -44,7 +44,6 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
     else
       expr.save
 
-
       if params[:type]== 'corequisites'
         @course.corequisites = true
         @course.course.corequisite = expr

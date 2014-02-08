@@ -1,5 +1,22 @@
 <h1>Enter url of the course to load</h1>
+<% unless @course.nil? %>
+    You have just added the following course:
+    <ul class="list-group">
+      <li class="list-group-item">Name: <%= @course.name %></li>
+      <li class="list-group-item">Subject: <%= @course.subject %></li>
+      <li class="list-group-item">Code: <%= @course.code %></li>
+      <li class="list-group-item">Description: <%= @course.description %></li>
+      <li class="list-group-item">Hours: <%= @course.hours %></li>
+      <li class="list-group-item">Credit: <%= @course.credit %></li>
+    </ul>
 
+    <%= link_to 'Edit', course_path(@course), :class => 'btn btn-default' %>
+
+
+    <hr>
+
+    Add an other course
+<% end %>
 <%= form_tag(admin_utils_course_load_create_path) do %>
     <div class="form-group">
       <%= text_field_tag :url, @url, :class => 'form-control' %>
