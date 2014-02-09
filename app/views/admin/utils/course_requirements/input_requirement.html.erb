@@ -1,5 +1,7 @@
 <div>
   <h1>Choose <%= @type %> for <span><%= link_to @course.course, course_path(@course.course) %> </span></h1>
+  <hr>
+  Read on the page: "<%= @read%>"
   <%= form_tag admin_utils_course_requirement_input_save_path do %>
       <div class="form-group">
         <%= label_tag :expr, 'Input expression: ' %>

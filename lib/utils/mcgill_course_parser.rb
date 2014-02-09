@@ -14,7 +14,7 @@ module Utils
 
     def self.parse_additional_info(additional_info, hash)
       additional_info.each do |info|
-        if info.text.start_with?('Prerequisite:')
+        if info.text.start_with?('Prerequisite:') or info.text.start_with?('Prerequisites:')
           hash[:prerequisite] = info.text
         elsif info.text.start_with?('Corequisite:')
           hash[:corequisite] = info.text
@@ -34,8 +34,7 @@ module Utils
       title = container.css('h1')[0].text
 
       parse_title(title, hash)
-      content = container.css('.content')[0]
-
+      content = container.css('#content-area .content')[0]
       hash[:description] = content.css('p')[0].text.split(':', 2)[1]
       additional_info = content.css('ul')[0].css('li')
       parse_additional_info(additional_info, hash)

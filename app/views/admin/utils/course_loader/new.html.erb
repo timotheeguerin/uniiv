@@ -1,16 +1,34 @@
 <h1>Enter url of the course to load</h1>
 <% unless @course.nil? %>
     You have just added the following course:
-    <ul class="list-group">
-      <li class="list-group-item">Name: <%= @course.name %></li>
-      <li class="list-group-item">Subject: <%= @course.subject %></li>
-      <li class="list-group-item">Code: <%= @course.code %></li>
-      <li class="list-group-item">Description: <%= @course.description %></li>
-      <li class="list-group-item">Hours: <%= @course.hours %></li>
-      <li class="list-group-item">Credit: <%= @course.credit %></li>
-    </ul>
+    <table class="table table-hover table-striped">
+      <tr>
+        <td>Name:</td>
+        <td> <%= @course.name %></td>
+      </tr>
+      <tr>
+        <td>Subject:</td>
+        <td> <%= @course.subject %></td>
+      </tr>
+      <tr>
+        <td>Code:</td>
+        <td><%= @course.code %></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><%= @course.description %></td>
+      </tr>
+      <tr>
+        <td>Hours:</td>
+        <td><%= @course.hours %></td>
+      </tr>
+      <tr>
+        <td>Credit:</td>
+        <td><%= @course.credit %></td>
+      </tr>
+    </table>
 
-    <%= link_to 'Edit', course_path(@course), :class => 'btn btn-default' %>
+    <%= link_to 'View', course_path(@course), :class => 'btn btn-default' %>
 
 
     <hr>

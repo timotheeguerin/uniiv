@@ -16,15 +16,19 @@ class Admin::Utils::CourseLoaderController < ApplicationController
       course.description = hash[:description]
       course.hours = hash[:hours]
       course.credit = hash[:credit]
-      course.save
+      unless course.save
+        flash[:notice] = 'Course already added'
+        render 'new'
+        return
+      end
+      requirement = Admin::CourseRequirementFilled.find_by_course_id(course.id)
+      requirement.prerequisite_read=hash[:prerequisite].to_s
+      requirement.corequisite_read=hash[:corequisite].to_s
+      unless requirement.save
+        flash[:notice] = 'Error while saving the requirement readings'
+      end
+      puts 'p:' + requirement.prerequisite_read
 
-      requirement = Admin::CourseRequirementFilled.new
-      requirement.course = course
-      requirement.prerequisite_read=hash[:prerequisite]
-      requirement.corequisite_read=hash[:corequisite]
-      requirement.prerequisites = false
-      requirement.corequisites = false
-      requirement.save
       @course = course
       render :new
     end
