@@ -3,9 +3,9 @@ class Fgc::Group < ActiveRecord::Base
   has_many :grades, :class_name => Fgc::Grade
   has_many :percents, :class_name => Fgc::Percent
 
-  def scheme_precent(scheme)
+  def scheme_percent(scheme)
     scheme = scheme.id unless scheme.is_a? Numeric
-    percents.each do |precent|
+    percents.each do |percent|
       if percent.scheme.id == scheme
         return percent
       end

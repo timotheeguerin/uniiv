@@ -1,64 +1,83 @@
-<div>
-  <%= form_tag(utils_fgc_create_grade_path) do %>
-      <%= submit_tag(t('fgc.create_grade')) %>
-  <% end %>
+<div class='final_grade_calculator'>
 
-  <%= form_tag(utils_fgc_create_group_path) do %>
-      <%= submit_tag(t('fgc.create_group')) %>
-  <% end %>
-</div>
-<div>
-  <div>Final percent:</div>
   <div>
-    <%= @prediction.schemes.each do |scheme| %>
-        <%= form_tag(utils_fgc_edit_final_percent_path, :class => 'useajax') do %>
-            <%= text_field_tag :percent, grade.name, :placeholder => 'Final percent', :class => 'submitonedit' %>
-            <%= hidden_field_tag :scheme, scheme.id %>
-        <% end %>
-    <%= end %>
+    Predictions:
+
+    <table class='table'>
+      <% @course.university.grading_system.entities.each do |entity| %>
+          <tr>
+            <td> <%= entity.name %></td>
+            <td><span class='prediction' data-min-percent='85'></span></td>
+          </tr>
+      <% end %>
+    </table>
   </div>
-</div>
-<div>
-  <% @prediction.groups.each do |group| %>
-      <div style="border: 1px solid black; margin-bottom: 10px; padding: 10px 0 0 10px">
-        <div style="display: inline-block">
-          <% group.grades.each do |grade| %>
-              <div>
-                <div style="display: inline-block">
-                  <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
-                      <%= text_field_tag :name, grade.name, :placeholder => 'Name', :class => 'submitonedit' %>
-                      <%= hidden_field_tag :grade, grade.id %>
-                  <% end %>
 
-                </div>
-                |
-                <div style="display: inline-block">
-                  <%= form_tag(utils_fgc_edit_grade_value_path, :class => 'useajax') do %>
-                      <%= text_field_tag :value, grade.value, :placeholder => 'Grade', :class => 'submitonedit' %>
-                      <%= hidden_field_tag :grade, grade.id %>
-                  <% end %>
-                </div>
-              </div>
-          <% end %>
-        </div>
-        <div style="display: inline-block">
-          <%= @prediction.schemes.each do |scheme| %>
-              <% percent = group.scheme_percent(scheme) %>
-              <div style="display: inline-block">
-                <%= form_tag(utils_fgc_edit_group_percent_path, :class => 'useajax') do %>
-                    <%= text_field_tag :value, percent.value, :placeholder => 'Percent', :class => 'submitonedit' %>
-                    <%= hidden_field_tag :percent, percent.id %>
-                <% end %>
-              </div>
-          <% end %>
-        </div>
+  <div>
+    <%= form_tag(utils_fgc_create_grade_path) do %>
+        <%= submit_tag(t('fgc.create_grade')) %>
+    <% end %>
 
-        <% unless group.simple? %>
-            <%= form_tag(utils_fgc_add_grade_to_group_path) do %>
-                <%= hidden_field_tag :group, group.id %>
-                <%= submit_tag(t('fgc.add_grade_to_group')) %>
+    <%= form_tag(utils_fgc_create_group_path) do %>
+        <%= submit_tag(t('fgc.create_group')) %>
+    <% end %>
+  </div>
+  <div>
+    <div>Final percent:</div>
+    <div>
+      <% @prediction.schemes.each do |scheme| %>
+          <div class='final_percent'>
+            <%= form_tag(utils_fgc_edit_final_percent_path, :class => 'useajax', 'data-scheme' => scheme.id) do %>
+                <%= text_field_tag :percent, scheme.final_percent, :placeholder => 'Final percent', :class => 'submitonedit', 'data-field' => 'final-percent' %>
+                <%= hidden_field_tag :scheme, scheme.id %>
             <% end %>
-        <% end %>
-      </div>
-  <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <% @prediction.groups.each do |group| %>
+        <div style="border: 1px solid black; margin-bottom: 10px; padding: 10px 0 0 10px" class='group'>
+          <div style="display: inline-block">
+            <% group.grades.each do |grade| %>
+                <div class='grade'>
+                  <div style="display: inline-block">
+                    <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
+                        <%= text_field_tag :name, grade.name, :placeholder => 'Name', :class => 'submitonedit' %>
+                        <%= hidden_field_tag :grade, grade.id %>
+                    <% end %>
+
+                  </div>
+                  |
+                  <div style="display: inline-block" class='grade_value'>
+                    <%= form_tag(utils_fgc_edit_grade_value_path, :class => 'useajax') do %>
+                        <%= text_field_tag :value, grade.value, :placeholder => 'Grade', :class => 'submitonedit', 'data-field' => 'grade' %>
+                        <%= hidden_field_tag :grade, grade.id %>
+                    <% end %>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+          <div style="display: inline-block">
+            <% @prediction.schemes.each do |scheme| %>
+                <% percent = group.scheme_percent(scheme) %>
+                <div style="display: inline-block" class='scheme' data-scheme='<%= scheme.id %>'>
+                  <%= form_tag(utils_fgc_edit_group_percent_path, :class => 'useajax') do %>
+                      <%= text_field_tag :value, percent.value, :placeholder => 'Percent', :class => 'submitonedit', 'data-field' => 'percent' %>
+                      <%= hidden_field_tag :percent, percent.id %>
+                  <% end %>
+                </div>
+            <% end %>
+          </div>
+
+          <% unless group.simple? %>
+              <%= form_tag(utils_fgc_add_grade_to_group_path) do %>
+                  <%= hidden_field_tag :group, group.id %>
+                  <%= submit_tag(t('fgc.add_grade_to_group')) %>
+              <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
 </div>

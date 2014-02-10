@@ -4,6 +4,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   def setup
     authorize! :read, :fgc
+    @course = Course::Course.find(params[:id])
     @prediction = Fgc::Prediction.find_by_user_id_and_course_id(current_user.id, params[:id])
     if @prediction.nil?
       @prediction = Fgc::Prediction.new
