@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121204216) do
+ActiveRecord::Schema.define(version: 20140210005847) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140121204216) do
     t.integer  "system_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "min_score"
   end
 
   add_index "course_grading_system_entities", ["system_id"], name: "index_course_grading_system_entities_on_system_id", using: :btree

@@ -9,6 +9,9 @@ $(document).ready ->
   if content.length != 0
     $(content).on('submit', 'form.useajax', () ->
       update_form_values($(this))
+      update_schemes(content)
+      console.log('submit: ' + JSON.stringify(schemes))
+      update_predictions(content)
     )
 
     content.find('form.useajax').each ->
@@ -63,9 +66,7 @@ compute_min_score = (prediction) ->
     score = 0
     for group in scheme['groups']
       score += group['grade'] * group['percent'] / 100
-    console.log(score)
     need.push((prediction - score) / scheme['final_percent'] * 100)
-  console.log(need + ' - ' + prediction)
   return Math.min.apply(Math, need)
 
 update_form_values = (form) ->

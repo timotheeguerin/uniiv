@@ -14,7 +14,6 @@ $(document).ready ->
 
 #Submit a form using ajax
 submitFormAjax = () ->
-  console.log('submitinh')
   form = $(this)
   $.ajax({
     url: $(this).attr('action'),

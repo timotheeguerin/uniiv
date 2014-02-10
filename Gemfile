@@ -49,7 +49,6 @@ gem 'rails_admin'
 gem 'devise'
 
 gem 'cancan'
-
 gem 'i18n-active_record', :github => 'timcolonel/i18n-active_record', :require => 'i18n/active_record'
 
 gem 'json'

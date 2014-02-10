@@ -7,7 +7,7 @@
       <% @course.university.grading_system.entities.each do |entity| %>
           <tr>
             <td> <%= entity.name %></td>
-            <td><span class='prediction' data-min-percent='85'></span></td>
+            <td><span class='prediction' data-min-percent='<%= entity.min_score %>'></span></td>
           </tr>
       <% end %>
     </table>
