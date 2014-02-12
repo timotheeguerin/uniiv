@@ -1,4 +1,6 @@
 Uniiv::Application.routes.draw do
+  get "program_editor/index"
+  get "program_editor/new"
   get "utils/index"
   get "course_loader/index"
   get "course_loader/new"

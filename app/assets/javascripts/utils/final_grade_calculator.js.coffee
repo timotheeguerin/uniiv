@@ -17,7 +17,6 @@ $(document).ready ->
     content.find('form.useajax').each ->
       update_form_values($(this))
 
-
     update_schemes(content)
 
     console.log(JSON.stringify(schemes))
