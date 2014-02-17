@@ -55,6 +55,11 @@ class Course::Course < ActiveRecord::Base
     subject.to_s + ' ' + code.to_s
   end
 
+  def get_detail_name
+    "#{get_short_name}: #{name}"
+  end
+
+  #Return the name for the DOT graph
   def get_dot_name
     subject.to_s + '\n' + code.to_s
   end

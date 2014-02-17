@@ -1,10 +1,11 @@
-    class Program < ActiveRecord::Base
+class Program < ActiveRecord::Base
   belongs_to :type, :class_name => ProgramsType
   belongs_to :faculty, :class_name => Faculty
   has_many :groups, :class_name => ProgramGroup, :as => :groupparent
 
   #Allow only one faculty requirement per faculty
-  validates_uniqueness_of :type_id, :scope => :faculty, :if => Proc.new { |obj| obj.type.name == 'faculty' }
+  validates_uniqueness_of :type_id, :scope => :faculty, :if => Proc.new { |obj| obj.type == ProgramsType.find_by_name('faculty') }
+
 
   def to_s
     name.to_s+ " (#{type.to_s.capitalize})"
@@ -42,6 +43,18 @@
       result += group.get_all_courses(options)
     end
     result
+  end
+
+  def self.search_program(params)
+    university_id = params[:university_id]
+    faculty_id = params[:faculty_id]
+    search = Program.search do
+      params.setup_search(self)
+      with :university_id, university_id unless university_id.nil?
+      with :faculty_id, faculty_id unless faculty_id.nil?
+    end
+    params.results = search.results
+    params.results
   end
 
   searchable do

@@ -1,4 +1,6 @@
 $(document).ready ->
+  $('.selectpicker').selectpicker();
+
   $(document).on 'submit', 'form.useajax', submitFormAjax
   #Submit a form when the input is edited(has a timer)
 

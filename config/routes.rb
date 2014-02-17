@@ -62,6 +62,8 @@ Uniiv::Application.routes.draw do
       post 'course/requirements/:id/input' => 'course_requirements#save_requirement', :as => :course_requirement_input_save
       get 'course/loader/load' => 'course_loader#new', :as => :course_load_new
       post 'course/loader/load' => 'course_loader#load', :as => :course_load_create
+
+      get 'program/editor' => 'program_editor#index', :as => :program_editor
     end
   end
 
@@ -78,7 +80,13 @@ Uniiv::Application.routes.draw do
 
   #Program controller
   get 'program/search/autocomplete' => 'program#search_autocomplete', :as => :program_search_autocomplete
-
+  get 'program/:id', to: 'program#show', as: 'program'
+  get 'program/:id/graph/embed' => 'program#graph_embed'
+  get 'program/new' => 'program#new', :as => :program_new
+  post 'program/new' => 'program#create', :as => :program_create
+  get 'program:id/edit' => 'program#edit', :as => :program_edit
+  patch 'program:id/edit' => 'program#update', :as => :program_update
+  post 'program/delete' => 'program#delete', :as => :program_delete
 
   #Graph controller
   get 'mygraph' => 'graph#show', :as => :user_graph
@@ -107,13 +115,11 @@ Uniiv::Application.routes.draw do
   get 'user_dashboard/index' => 'user_dashboard#index'
   get 'education' => 'user_dashboard#index', :as => :user_education
 
-  #Program controller
-  get 'program/:id', to: 'program#show', as: 'program'
-  get 'program/:id/graph/embed' => 'program#graph_embed'
 
   #Group controller
   get 'group/:id', to: 'program_group#show', as: 'group'
   get 'group/:id/graph/embed' => 'program_group#graph_embed'
+  post 'group/delete', to: 'program_group#delete', :as => :program_group_delete
 
   #User course controller
   scope :module => 'user' do

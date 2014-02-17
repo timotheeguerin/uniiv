@@ -1,2 +1,37 @@
-<h1>Admin::Utils::ProgramEditor#index</h1>
-<p>Find me in app/views/admin/utils/program_editor/index.html.erb</p>
+<h1>Program editor</h1>
+Edit/Create programs
+<hr>
+
+<%= form_tag admin_utils_program_editor_path, :method => 'get' do %>
+    <div class="input-group">
+      <%= text_field_tag :q, @search.query, :class => 'form-control' %>
+      <span class="input-group-btn">
+     <%= submit_tag :Search, :class => 'btn btn-default' %>
+    </span>
+    </div>
+<% end %>
+
+<table class="table ">
+  <% @search.results.each do |program| %>
+      <tr>
+        <td><%= link_to program.to_s, program_path(program) %></td>
+        <td>
+          <div class='btn-group' style="color: white">
+            <div style="display: inline-block">
+              <a href="<%= program_edit_path(program)%>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            </div>
+            <div style="display: inline-block">
+              <%= form_tag program_delete_path, :class=>"form-inline" do %>
+                  <%= hidden_field_tag :id, program.id %>
+                  <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                  </button>
+              <% end %>
+            </div>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+</table>

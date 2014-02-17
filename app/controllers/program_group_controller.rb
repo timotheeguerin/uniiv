@@ -24,6 +24,12 @@ class ProgramGroupController < ApplicationController
 
   end
 
+  def delete
+    @program_group = ProgramGroup.find(params[:id])
+    authorize! :delete, @program_group
+    @program_group.delete
+    redirect_to :back
+  end
   def graph_embed
     render :layout => false
   end

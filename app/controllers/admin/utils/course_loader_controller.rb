@@ -16,6 +16,11 @@ class Admin::Utils::CourseLoaderController < ApplicationController
       course.description = hash[:description]
       course.hours = hash[:hours]
       course.credit = hash[:credit]
+      if course.subject.nil?
+        flash[:notice] = "Unknown subject `#{hash[:subject]}`, please add it first"
+        render 'new'
+        return
+      end
       unless course.save
         flash[:notice] = 'Course already added'
         render 'new'

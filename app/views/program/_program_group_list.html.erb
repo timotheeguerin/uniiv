@@ -1,0 +1,26 @@
+<div>
+  <% groups.each do |group| %>
+      <div class="row list-group-item">
+        <div class='col-md-10'>
+            <%= render :partial => 'program_group/show', :locals => {:group => group}%>
+        </div>
+        <div class='col-md-2'>
+          <div class='btn-group' style="color: white">
+            <div style="display: inline-block">
+              <a href="<%= %>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            </div>
+            <div style="display: inline-block">
+              <%= form_tag program_group_delete_path do %>
+                  <%= hidden_field_tag :id, group.id %>
+                  <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                  </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

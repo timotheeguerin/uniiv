@@ -23,16 +23,51 @@ class ProgramController < ApplicationController
     render :json => json.to_json
   end
 
-  def search
-    limit = params[:limit]
-    university_id = params[:university_id]
-    faculty_id = params[:faculty_id]
-    search = Program.search do
-      fulltext params[:q]
-      paginate(:page => 1, :per_page => limit) unless limit.nil?
-      with :university_id, university_id unless university_id.nil?
-      with :faculty_id, faculty_id unless faculty_id.nil?
+  def new
+    authorize! :create, Program
+    @program = Program.new
+  end
+
+  def create
+    authorize! :create, Program
+    @program = Program.new(program_params)
+
+    if @program.save
+      redirect_to admin_utils_program_path
     end
-    search.results
+    redirect_to admin_utils_program_path
+  end
+
+  def edit
+    @program = Program.find(params[:id])
+    authorize! :update, @program
+  end
+
+  def update
+    @program = Program.find(params[:id])
+    authorize! :update, @program
+    if @program.update(program_params)
+      flash[:notice] = t('program.updated.success')
+      if params[:saveandedit]
+        redirect_to admin_utils_program_edit_path(@program)
+      else
+        redirect_to admin_utils_program_path
+      end
+    else
+      render :edit
+    end
+  end
+
+  def delete
+    @program = Program.find(params[:id])
+    authorize! :delete, @program
+    @program.delete
+    redirect_to :back
+  end
+
+  def search
+    s = Search.from_params(params)
+    Program.search_program(s)
+    s
   end
 end
