@@ -1,0 +1,5 @@
+<%= form_tag program_group_new_path, :method => 'get' do %>
+    <%= hidden_field_tag :parent_id, parent.id %>
+    <%= hidden_field_tag :parent_type, parent.class.to_s %>
+    <%= submit_tag 'Add new', :class => 'btn btn-primary form-control' %>
+<% end %>

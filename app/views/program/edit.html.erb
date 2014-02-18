@@ -1,8 +1,7 @@
-<%= render :partial => 'program_field_form', :locals => {:url =>program_update_path} %>
+<%= render :partial => 'program_field_form', :locals => {:url => program_update_path} %>
 
 
 <hr>
 
 Program Groups:
-
 <%= render :partial => 'program_group_list', :locals => {:groups => @program.groups} %>

@@ -4,7 +4,7 @@ class TestController < ApplicationController
   end
 
   def check_course_requirement_filled
-    Admin::CourseRequirementFilled.all.delete_all
+    Admin::CourseRequirementFilled.all.destroy_all
     Course::Course.all.each do |course|
       if course.admin_course_requirement_filled.nil?
         filled = Admin::CourseRequirementFilled.new

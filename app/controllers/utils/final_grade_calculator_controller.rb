@@ -44,9 +44,9 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     unless grade.nil?
       group = grade.group
       if group.grades.size == 1
-        group.delete
+        group.destroy
       end
-      grade.delete
+      grade.destroy
     end
     return_json('Grade removed successfully')
   end
@@ -96,7 +96,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   def delete_group
     group = Fgc::Group.find(params[:group])
     unless group.nil?
-      group.delete
+      group.destroy
     end
     return_json('Group removed successfully')
   end

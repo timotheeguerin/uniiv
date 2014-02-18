@@ -84,9 +84,20 @@ Uniiv::Application.routes.draw do
   get 'program/:id/graph/embed' => 'program#graph_embed'
   get 'program/new' => 'program#new', :as => :program_new
   post 'program/new' => 'program#create', :as => :program_create
-  get 'program:id/edit' => 'program#edit', :as => :program_edit
+  get 'program/:id/edit' => 'program#edit', :as => :program_edit
   patch 'program:id/edit' => 'program#update', :as => :program_update
   post 'program/delete' => 'program#delete', :as => :program_delete
+
+  #Group controller
+
+  get 'program/group/new' => 'program_group#new', :as => :program_group_new
+  get 'program/group/:id' => 'program_group#show', as: 'group'
+  get 'program/group/:id/graph/embed' => 'program_group#graph_embed'
+  post 'program/group/new' => 'program_group#create', :as => :program_group_create
+  get 'program/group/:id/edit' => 'program_group#edit', :as => :program_group_edit
+  patch 'program/group/:id/edit' => 'program_group#update', :as => :program_group_update
+  post 'program/group/delete', to: 'program_group#delete', :as => :program_group_delete
+
 
   #Graph controller
   get 'mygraph' => 'graph#show', :as => :user_graph
@@ -114,12 +125,6 @@ Uniiv::Application.routes.draw do
   #User
   get 'user_dashboard/index' => 'user_dashboard#index'
   get 'education' => 'user_dashboard#index', :as => :user_education
-
-
-  #Group controller
-  get 'group/:id', to: 'program_group#show', as: 'group'
-  get 'group/:id/graph/embed' => 'program_group#graph_embed'
-  post 'group/delete', to: 'program_group#delete', :as => :program_group_delete
 
   #User course controller
   scope :module => 'user' do

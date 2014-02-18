@@ -61,10 +61,13 @@ class ProgramController < ApplicationController
   def delete
     @program = Program.find(params[:id])
     authorize! :delete, @program
-    @program.delete
+    @program.destroy
     redirect_to :back
   end
 
+  def program_params
+    params.require(:program).permit(:name, :type_id, :faculty_id)
+  end
   def search
     s = Search.from_params(params)
     Program.search_program(s)

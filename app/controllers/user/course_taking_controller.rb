@@ -67,24 +67,24 @@ class User::CourseTakingController < ApplicationController
   def add_course
     @courses = Course::Course.all.sort_by! { |x| [x.subject.name, x.code] }.to_a
     current_user.completed_courses.each do |c|
-      @courses.delete(c.course)
+      @courses.destroy(c.course)
     end
     current_user.main_course_scenario.taking_courses.each do |c|
-      @courses.delete(c)
+      @courses.destroy(c)
     end
     @courses = @courses.map { |x| [x.subject.name + " " + x.code.to_s + " - " + x.name, x.id] }
   end
 
   #decide which type of course to take
   def handle_add_course
-    @course = params["course"];
-    if Course::Course.find_by_id(@course)
-      if params["take"]
+    @course = params[:course]
+    if Course::Course.find(@course)
+      if params[:take]
         redirect_to user_take_course_path(@course)
-      elsif params["complete"]
+      elsif params[:complete]
         redirect_to user_complete_course_path(@course)
       else
-        puts "shiiiiet controller add_course_two doesnt work"
+        puts 'Wrong params'
       end
     end
   end

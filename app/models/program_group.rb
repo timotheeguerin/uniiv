@@ -10,7 +10,7 @@ class ProgramGroup < ActiveRecord::Base
 
 
   def to_s
-    name
+    name.to_s + " (#{type.to_s})"
   end
 
   def type

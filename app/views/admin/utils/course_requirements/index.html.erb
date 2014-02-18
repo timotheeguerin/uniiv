@@ -1,36 +1,49 @@
-<div class='list-group'>
-  <div class='list-group-item'>
-    <div style="display: inline-block; width: 100px">
+<table class='table table-striped'>
+  <thead>
+  <tr>
+    <th>
       <span>Course</span>
-    </div>
-    <div style="display: inline-block; width: 200px">
+    </th>
+    <th>
       <span>Prerequisites</span>
-    </div>
-    <div style="display: inline-block; width: 200px">
+    </th>
+    <th>
       <span>Corequisites</span>
-    </div>
-  </div>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
   <% @uncompleted_courses.each do |course| %>
-      <div class='list-group-item'>
-        <div style="display: inline-block; width: 100px">
+      <tr>
+        <td>
           <span><%= link_to course.course, course_path(course.course) %> </span>
-        </div>
-        <div style="display: inline-block; width: 200px">
+        </td>
+        <td>
           <% if course.prerequisites %>
               <span class="label label-success">Completed</span>
           <% else %>
-              <span class="btn btn-default"><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'prerequisites') %></span>
-              <span class="btn btn-default"><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'prerequisites') %></span>
+              <a class="btn btn-default" href="<%= admin_utils_course_requirement_mark_none_path(course, :type => 'prerequisites') %>">None </a>
+              <a class="btn btn-default" href="<%= admin_utils_course_requirement_input_path(course, :type => 'prerequisites') %>">Input
+                <% unless course.prerequisite_read.nil? or course.prerequisite_read.blank? %>
+                    <span class='glyphicon glyphicon-comment'></span>
+                <% end %>
+              </a>
           <% end %>
-        </div>
-        <div style="display: inline-block; width: 200px">
+        </td>
+        <td>
           <% if course.corequisites %>
               <span class="label label-success">Completed</span>
           <% else %>
-              <span class="btn btn-default"><%= link_to 'None', admin_utils_course_requirement_mark_none_path(course, :type => 'corequisites') %></span>
-              <span class="btn btn-default"><%= link_to 'Input', admin_utils_course_requirement_input_path(course, :type => 'corequisites') %></span>
+              <a class="btn btn-default" href="<%= admin_utils_course_requirement_mark_none_path(course, :type => 'corequisites') %>">None </a>
+              <a class="btn btn-default" href="<%= admin_utils_course_requirement_input_path(course, :type => 'corequisites') %>">
+                Input
+                <% unless course.corequisite_read.nil? or course.corequisite_read.blank? %>
+                    <span class='glyphicon glyphicon-comment'></span>
+                <% end %>
+              </a>
           <% end %>
-        </div>
-      </div>
+        </td>
+      </tr>
   <% end %>
-</div>
+  </tbody>
+</table>

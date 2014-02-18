@@ -1,5 +1,4 @@
 class ProgramGroupController < ApplicationController
-  before_action :setup
 
   def setup
     @term = nil
@@ -21,17 +20,71 @@ class ProgramGroupController < ApplicationController
   end
 
   def show
+    setup
+  end
 
+  def new
+    @program_group = ProgramGroup.new
+    @program_group.groupparent = find_parent
+  end
+
+  def create
+    @program_group = ProgramGroup.new(program_group_params)
+    @program_group.groupparent = find_parent
+    if @program_group.save
+      if params[:saveandedit]
+        redirect_to program_group_edit_path(@program_group)
+      else
+        redirect_to_parent
+      end
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @program_group.find(params[:id])
+  end
+
+  def update
+    @program_group.find(params[:id])
+    if @program_group.update(program_group_params)
+      if params[:saveandedit]
+        redirect_to program_group_edit_path(@program_group)
+      else
+        redirect_to_parent
+      end
+    else
+      render :edit
+    end
   end
 
   def delete
     @program_group = ProgramGroup.find(params[:id])
     authorize! :delete, @program_group
-    @program_group.delete
+    @program_group.destroy
     redirect_to :back
   end
+
+  def program_group_params
+    params.require(:program_group).permit(:name, :restriction_id, :value)
+  end
+
+  def find_parent
+    params[:parent_type].constantize.find(params[:parent_id])
+  end
+
   def graph_embed
+    setup
     render :layout => false
+  end
+
+  def redirect_to_parent
+    if @program_group.groupparent.is_a? Program
+      redirect_to program_edit_path(@program_group.groupparent)
+    elsif @program_group.groupparent.is_a? ProgramGroup
+      redirect_to program_group_edit_path(@program_group.groupparent)
+    end
   end
 
 end
