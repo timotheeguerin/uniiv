@@ -1,10 +1,4 @@
 Uniiv::Application.routes.draw do
-  get "program_editor/index"
-  get "program_editor/new"
-  get "utils/index"
-  get "course_loader/index"
-  get "course_loader/new"
-  get "course_requirements/index"
   get 'scenario/new'
   get 'course_taking/new'
   get 'course_taking/new_graph_embed'
@@ -166,6 +160,10 @@ Uniiv::Application.routes.draw do
     post 'utils/finalgradecalculator/course/:id/create_scheme' => 'final_grade_calculator#create_scheme', :as => :utils_fgc_create_scheme
     post 'utils/finalgradecalculator/course/:id/edit_final_percent' => 'final_grade_calculator#edit_final_percent', :as => :utils_fgc_edit_final_percent
   end
+
+  #manytomany relationship contrller
+  get 'mtmrelationship' => 'manytomany_relationship#list', :as => :manytomany_relationship
+  post 'mtmrelationship/delete' => 'manytomany_relationship#delete', :as => :manytomany_relationship_delete
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

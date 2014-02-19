@@ -1,0 +1,32 @@
+<h1>Edit program group</h1>
+<div>This group belongs to <%= @program_group.groupparent.to_s %></div>
+
+
+<div class='panel panel-default'>
+  <div class="panel-heading">
+    Edit information
+  </div>
+  <div class="panel-body">
+    <%= render :partial => 'form', :locals => {:url => program_group_update_path} %>
+  </div>
+</div>
+
+<div class='panel panel-default'>
+  <div class="panel-heading">
+    Courses:
+  </div>
+  <div class="panel-body">
+    <div class='bs-docs-grid'>
+    <%= render_manytomany_relationship_list(ProgramGroup, @program_group.id, 'courses') %>
+      </div>
+  </div>
+</div>
+
+<div class='panel panel-default'>
+  <div class="panel-heading">
+    Subgroups:
+  </div>
+  <%= render :partial => 'program_group/program_group_list', :locals => {:groups => @program_group.subgroups, :parent => @program_group} %>
+  <div class="panel-body">
+  </div>
+</div>

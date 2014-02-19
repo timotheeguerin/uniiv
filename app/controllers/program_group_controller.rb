@@ -43,7 +43,7 @@ class ProgramGroupController < ApplicationController
   end
 
   def edit
-    @program_group.find(params[:id])
+    @program_group= ProgramGroup.find(params[:id])
   end
 
   def update

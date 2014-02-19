@@ -9,39 +9,39 @@
       <div id='course_sorter'>
         <div id='message_container'></div>
         <% unless @previous_courses.size == 0 %>
-          <div><h4> <%= t('course.before_current_term') %></h4></div>
-          <div>
-            <ul class='sortable no-drop undraggable_box drag_box sortable_noindent' data-group='course' data-update-url='<%= update_course_taking_path %>'>
-              <% @previous_courses.each do |course| %>
-                <li>
-                  <div data-course-id='<%= course.course.id %>'>
-                    <h5><%= course.course.to_s + ' - ' + course.course.name %>
-                    </h5>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </div>
+            <div><h4> <%= t('course.before_current_term') %></h4></div>
+            <div>
+              <ul class='sortable no-drop undraggable_box drag_box sortable_noindent' data-group='course' data-update-url='<%= update_course_taking_path %>'>
+                <% @previous_courses.each do |course| %>
+                    <li>
+                      <div data-course-id='<%= course.course.id %>'>
+                        <h5><%= course.course.to_s + ' - ' + course.course.name %>
+                        </h5>
+                      </div>
+                    </li>
+                <% end %>
+              </ul>
+            </div>
         <% end %>
         <% @years.each do |year, terms| %>
-          <div>
             <div>
-              <% terms.each do |term, courses| %>
-                <label><%= term.semester.to_s.capitalize %>  <%= term.year %></label>
+              <div>
+                <% terms.each do |term, courses| %>
+                    <label><%= term.semester.to_s.capitalize %>  <%= term.year %></label>
 
-                <div class="sortable_list_container">
-                  <ul class='sortable connected draggable_box drag_box sortable_noindent'
-                      data-group='course'
-                      data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
-                      data-update-url='<%= update_course_taking_path %>'>
-                    <% courses.each do |course| %>
-                      <%= course_list_item(course) %>
-                    <% end %>
-                  </ul>
-                </div>
-              <% end %>
+                    <div class="sortable_list_container">
+                      <ul class='sortable connected draggable_box drag_box sortable_noindent'
+                          data-group='course'
+                          data-params='semester_id=<%= term.semester.id %>&year=<%= term.year %>'
+                          data-update-url='<%= update_course_taking_path %>'>
+                        <% courses.each do |course| %>
+                            <%= course_list_item(course) %>
+                        <% end %>
+                      </ul>
+                    </div>
+                <% end %>
+              </div>
             </div>
-          </div>
         <% end %>
       </div>
     </div>
@@ -52,11 +52,11 @@
         <div class="sortable_list_container">
           <ul class='sortable no-drop draggable_box drag_box sortable_noindent' data-group='course'>
             <% current_scenario.get_courses_in_programs(:only_not_taking => true, :only_not_completed => true)[0..3].each do |course| %>
-              <li>
-                <div data-course-id='<%= course.id %>' data-need-reload=true>
-                  <h5><%= course.to_s %></h5>
-                </div>
-              </li>
+                <li>
+                  <div data-course-id='<%= course.id %>' data-need-reload=true>
+                    <h5><%= course.to_s %></h5>
+                  </div>
+                </li>
             <% end %>
           </ul>
         </div>

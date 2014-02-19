@@ -1,0 +1,21 @@
+<% list = relation[:list] %>
+<% object = relation[:object] %>
+<% relation_class = relation[:relation_class] %>
+
+<div class='list-group row-container'>
+
+  <% list.each do |element| %>
+      <div class='row list-group-item'>
+        <div class='col-md-11'><%= element.to_s %></div>
+        <div class='col-md-1'>
+          <%= form_tag manytomany_relationship_delete_path do %>
+              <%= hidden_field_tag :id, element.id %>
+              <%= render :partial => 'manytomany_relationship/hidden_params', :locals => {:mparams => mparams} %>
+              <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
+                <span class="glyphicon glyphicon-remove-sign"></span>
+              </button>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>
