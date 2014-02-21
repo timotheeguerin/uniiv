@@ -160,4 +160,11 @@ class ProgramGroup < ActiveRecord::Base
   def id_to_s
     'g_' + id.to_s
   end
+
+  searchable do
+    text :program do
+      parent_program.name
+    end
+    text :name
+  end
 end

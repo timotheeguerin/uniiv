@@ -10,7 +10,7 @@
         <div class='col-md-1'>
           <%= form_tag manytomany_relationship_delete_path do %>
               <%= hidden_field_tag :id, element.id %>
-              <%= render :partial => 'manytomany_relationship/hidden_params', :locals => {:mparams => mparams} %>
+              <%= render_manytomany_relationship_params(mparams) %>
               <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
                 <span class="glyphicon glyphicon-remove-sign"></span>
               </button>
@@ -18,4 +18,24 @@
         </div>
       </div>
   <% end %>
+
+  <div class='row list-group-item'>
+    <%= form_tag(manytomany_relationship_create_path) do %>
+        <div class='form-group'>
+          <label>Search a course to add to this program group</label>
+          <div class="input-group">
+            <%= render_manytomany_relationship_params(mparams) %>
+            <%= text_field_tag('element_id', nil, options =
+                    {:class => 'form-control autocomplete',
+                     'data-url' => manytomany_relationship_search_autocomplete_path(:model => mparams[:model], :model_id => mparams[:model_id], :relation => mparams[:relation]),
+                     'data-input-data' => true}) %>
+
+
+            <span class="input-group-btn">
+            <%= submit_tag('Add', :class => 'btn btn-primary') %>
+          </span>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>

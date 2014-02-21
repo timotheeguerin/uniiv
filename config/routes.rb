@@ -164,6 +164,9 @@ Uniiv::Application.routes.draw do
   #manytomany relationship contrller
   get 'mtmrelationship' => 'manytomany_relationship#list', :as => :manytomany_relationship
   post 'mtmrelationship/delete' => 'manytomany_relationship#delete', :as => :manytomany_relationship_delete
+  post 'mtmrelationship/create' => 'manytomany_relationship#create', :as => :manytomany_relationship_create
+  get 'mtmrelationship/search/autocomplete' => 'manytomany_relationship#search_autocomplete', :as => :manytomany_relationship_search_autocomplete
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

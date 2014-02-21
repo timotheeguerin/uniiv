@@ -9,7 +9,7 @@ class ProgramController < ApplicationController
   end
 
   def search_autocomplete
-    programs = search
+    programs = search.results
     json = {}
     json[:query] = params[:q]
     suggestions = []
@@ -68,6 +68,7 @@ class ProgramController < ApplicationController
   def program_params
     params.require(:program).permit(:name, :type_id, :faculty_id)
   end
+
   def search
     s = Search.from_params(params)
     Program.search_program(s)

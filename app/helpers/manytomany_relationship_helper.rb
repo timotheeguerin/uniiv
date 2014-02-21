@@ -2,7 +2,8 @@ module ManytomanyRelationshipHelper
 
   def get_relation(mparams)
     relation = {}
-    relation[:object] = mparams[:model].constantize.find(mparams[:model_id])
+    relation[:object_class] = mparams[:model].constantize
+    relation[:object] = relation[:object_class].find(mparams[:model_id])
     relation[:list] = relation[:object].send(mparams[:relation])
     relation[:relation_class] = relation[:object].class.reflect_on_association(mparams[:relation].to_sym).class_name.constantize
     relation
@@ -15,5 +16,9 @@ module ManytomanyRelationshipHelper
     mparams[:relation] = relation
     relation = get_relation(mparams)
     render :partial => 'manytomany_relationship/list', :locals => {:relation => relation, :mparams => mparams}
+  end
+
+  def render_manytomany_relationship_params(mparams)
+  render :partial => 'manytomany_relationship/hidden_params', :locals => {:mparams => mparams}
   end
 end

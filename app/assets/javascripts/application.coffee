@@ -54,19 +54,6 @@ $(document).ready () ->
     input.keydown () ->
       clearTimeout(typingTimer);
 
-  $('input.autocomplete').each () ->
-    input = $(this)
-    url = input.attr('data-url')
-    input_data = $($(input.attr('data-input-data')))
-    console.log(url)
-    input.autocomplete({
-      serviceUrl: url
-      paramName: 'q'
-      params: {limit: 5}
-      onSelect: (suggestion, query, queryLowerCase) ->
-        id = suggestion.data
-        input_data.val(id) if input_data.length > 0
-    })
 
   $(document).on 'click', '.toggledisplay', () ->
     console.log('clo')

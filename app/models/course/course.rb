@@ -15,7 +15,6 @@ class Course::Course < ActiveRecord::Base
   has_and_belongs_to_many :program_groups, :class_name => ProgramGroup
 
 
-
   #Admin
   has_one :admin_course_requirement_filled, :class_name => Admin::CourseRequirementFilled
 
@@ -109,6 +108,7 @@ class Course::Course < ActiveRecord::Base
 
   delegate :university, :to => :subject
 
+  #Sunspot indexing
   searchable do
     text :subject do
       subject.name
@@ -120,6 +120,7 @@ class Course::Course < ActiveRecord::Base
     text :code
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
+    integer :program_group_ids, :references => ProgramGroup, :multiple => true
   end
 
   #Compute the completxity to get to this course with all the prerequisite

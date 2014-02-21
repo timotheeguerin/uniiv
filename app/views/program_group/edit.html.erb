@@ -15,11 +15,7 @@
   <div class="panel-heading">
     Courses:
   </div>
-  <div class="panel-body">
-    <div class='bs-docs-grid'>
-    <%= render_manytomany_relationship_list(ProgramGroup, @program_group.id, 'courses') %>
-      </div>
-  </div>
+  <%= render_manytomany_relationship_list(ProgramGroup, @program_group.id, 'courses') %>
 </div>
 
 <div class='panel panel-default'>
@@ -27,6 +23,4 @@
     Subgroups:
   </div>
   <%= render :partial => 'program_group/program_group_list', :locals => {:groups => @program_group.subgroups, :parent => @program_group} %>
-  <div class="panel-body">
-  </div>
 </div>
