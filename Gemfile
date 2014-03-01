@@ -50,7 +50,7 @@ gem 'devise'
 
 gem 'cancan'
 gem 'i18n-active_record', :github => 'timcolonel/i18n-active_record', :require => 'i18n/active_record'
-
+gem 'bootstrap-sass'
 gem 'json'
 
 gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'

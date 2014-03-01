@@ -1,6 +1,9 @@
 //
 //= require_self
 //= require_tree .
+
+/**Boostrap import */
+@import "bootstrap";
 /*
  * fonts
 */
@@ -307,14 +310,12 @@ li.invalid-time.dependency {
 Jquery automplete styling
 *******************************************/
 .autocomplete-suggestions {
-  border: 1px solid #999;
-  background: #FFF;
-  cursor: default;
-  overflow: auto;
-  box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+  @extend .dropdown-menu;
+
 }
 
 .autocomplete-suggestion {
+  cursor: hand;
   padding: 2px 5px;
   white-space: nowrap;
   overflow: hidden;
