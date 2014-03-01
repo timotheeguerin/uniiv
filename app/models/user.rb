@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
-    if (email = conditions.destroy(:email))
+    if (email = conditions[:email])
       User.includes(:emails).where('user_emails.email = ?', email).first
     else
       where(conditions).first

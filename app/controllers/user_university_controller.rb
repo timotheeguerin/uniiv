@@ -3,30 +3,18 @@ class UserUniversityController < ApplicationController
     @current_university = current_user.university
   end
 
-  def new
-  end
-
-  def create
-    university = University.find(params[:id])
-    current_user.university = university
-    current_user.save
-  end
-
   def edit
     @current_university = current_user.university
   end
 
   def update
     university = University.find(params[:uni])
-    if university.nil?
-      redirect_to user_university_edit_path, :alert => t('error.university.nil')
-    else
-      current_user.university = university
-      current_user.save
-      redirect_to user_education_path
-    end
+    current_user.university = university
+    current_user.save
+    redirect_to user_education_path
   end
 
+  #This will delete the user university and all its relation(courses taken,...)
   def delete
     current_user.university = nil
     current_user.save

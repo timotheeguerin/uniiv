@@ -23,6 +23,7 @@
     <%= form_tag(manytomany_relationship_create_path) do %>
         <div class='form-group'>
           <label>Search a course to add to this program group</label>
+
           <div class="input-group">
             <%= render_manytomany_relationship_params(mparams) %>
             <%= text_field_tag('element_id', nil, options =
@@ -32,8 +33,8 @@
 
 
             <span class="input-group-btn">
-            <%= submit_tag('Add', :class => 'btn btn-primary') %>
-          </span>
+                <%= submit_tag('Add', :class => 'btn btn-primary') %>
+            </span>
           </div>
         </div>
     <% end %>

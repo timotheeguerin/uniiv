@@ -34,12 +34,6 @@ Uniiv::Application.routes.draw do
   get 'user_faculty/edit'
   post 'user_faculty/update'
   get 'user_faculty/delete'
-  get 'user_university/show'
-  get 'user_university/new'
-  get 'user_university/create'
-  get 'user_university/edit'
-  post 'user_university/update'
-  get 'user_university/delete'
   get 'graph/index'
   get 'test/index'
 
@@ -63,6 +57,13 @@ Uniiv::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => 'registrations'}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+
+  #User university controller
+  get 'user/university/show' => 'user_university#show', :as => :user_university_show
+  get 'user/university/edit' => 'user_university#edit', :as => :user_university_edit
+  post 'user/university/edit' => 'user_university#update', :as => :user_university_update
+  get 'user/university/delete' => 'user_university#delte', :as => :user_university_delete
 
   get 'test' => 'test#index'
 

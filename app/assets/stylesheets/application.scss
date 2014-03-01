@@ -1,9 +1,6 @@
-/*
- *
- *= require_self
- *= require_tree .
- */
-
+//
+//= require_self
+//= require_tree .
 /*
  * fonts
 */
@@ -304,4 +301,9 @@ li.invalid-time.dependency {
 .row-container {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+/* Jquery automplete styling */
+.autocomplete-suggestions {
+
 }
