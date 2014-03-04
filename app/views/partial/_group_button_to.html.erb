@@ -1,0 +1,7 @@
+<%= form_tag url, form_params do %>
+    <%= hidden_field_tag name, value %>
+    <% if redirect_to_current %>
+        <%= hidden_field_tag :redirect, request.env['PATH_INFO'] %>
+    <% end %>
+<% end %>
+<%= content_tag :button, content, params %>

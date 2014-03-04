@@ -4,17 +4,8 @@ class UserFacultyController < ApplicationController
     @faculty = current_user.faculty
   end
 
-  def new
-    @university = current_user.university
-  end
-
-  def create
-    faculty = Faculty.find(params[:id])
-    current_user.faculty = faculty
-    current_user.save
-  end
-
   def edit
+    authorize! :edit, current_user
     @university = current_user.university
     if @university.nil?
       redirect_to user_university_edit_path, :alert => t('error.university.notselected')
@@ -23,14 +14,15 @@ class UserFacultyController < ApplicationController
   end
 
   def update
-    faculty = Faculty.find(params[:fac])
+    authorize! :edit, current_user
+    faculty = Faculty.find(params[:faculty_id])
     if faculty.nil?
       redirect_to user_faculty_new_path, :alert => t('error.faculty.nil')
     end
     current_user.faculty = faculty
+    #Update the faculty requirement programs by removing the old ones and adding the new ones
     current_user.course_scenarios.each do |scenario|
-      scenario.programs.where(:type_id => ProgramsType.find_by_name('faculty')).destroy_all #Remove all the faculty requirements
-      puts 'fqr: ' + faculty.faculty_requirements.to_s
+      scenario.programs.where(:type_id => ProgramsType.find_by_name('faculty')).destroy_all
       scenario.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
     end
     current_user.save

@@ -5,107 +5,108 @@
 
 <div class='row'>
   <% if current_user.university.nil? %>
-    <h3><%= t('select.university') %></h3>
-    <%= link_to user_university_edit_path do %>
-      <button class='btn btn-primary'>Add</button>
-    <% end %>
+      <h3><%= t('select.university') %></h3>
+      <%= link_to user_university_edit_path do %>
+          <button class='btn btn-primary'>Add</button>
+      <% end %>
   <% else %>
-    <h3><%= current_user.university %>
-      <a href='<%= user_university_edit_path %>'>
-        <span class='glyphicon glyphicon-repeat pull-right' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
-      </a>
-    </h3>
+      <h3><%= current_user.university %>
+        <a href='<%= user_university_edit_path %>'>
+          <span class='glyphicon glyphicon-edit pull-right' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
+        </a>
+      </h3>
   <% end %>
 </div>
 
 <div class='row'>
   <% if current_user.faculty.nil? %>
-    <h3><%= t('select.faculty') %></h3>
-    <%= link_to user_faculty_edit_path do %>
-      <button class='btn btn-primary'>Choose</button>
-    <% end %>
+      <h3><%= t('select.faculty') %></h3>
+      <%= link_to user_faculty_edit_path do %>
+          <button class='btn btn-primary'>Choose</button>
+      <% end %>
   <% else %>
-    <h3>
-      <%= @faculty %>
-      <a href='<%= user_faculty_edit_path %>'>
-        <span class='glyphicon glyphicon-repeat pull-right'></span>
-      </a>
-    </h3>
+      <h3>
+        <%= @faculty %>
+        <a href='<%= user_faculty_edit_path %>'>
+          <span class='glyphicon glyphicon-pencil pull-right'></span>
+        </a>
+      </h3>
   <% end %>
 </div>
 
 <div class='row'>
   <% if current_user.main_course_scenario.programs.size < 1 %>
-    <h3><%= t('select.programs') %></h3>
-    <%= link_to user_programs_new_path do %>
-      <button class='btn btn-primary'>Add</button>
-    <% end %>
-  <% else %>
-    <h3>
-      Programs<a href='<%= user_programs_new_path %>'><span class='glyphicon glyphicon-plus pull-right'></span></a>
-    </h3>
-
-    <div>
-      <% @programs.order('type_id ASC, name ASC').each do |p| %>
-        <div class='row'>
-          <div class='text-indent col-md-8'><h4><%= p %></h4></div>
-          <div class='col-md-4 text-right'>
-            <%= form_tag({:controller => 'user_programs', :action => 'removeProgram', :method => 'post', 'data-service' => p}, {}) do %>
-              <div class='btn-group'>
-                <a class='btn btn-info' href='<%= program_graph_path(p) %>' rel='tooltip' data-toggle='tooltip' title='View Path'><span class='whitetext glyphicon glyphicon-info-sign'></span></a>
-                <button class='btn btn-danger'
-                        <% if p.type.id == 4 %>disabled
-                        <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
-                  <span class='glyphicon glyphicon-remove-sign'></span></button>
-              </div>
-              </div>
-            <% end %>
-            </div>
+      <h3><%= t('select.programs') %></h3>
+      <%= link_to user_programs_new_path do %>
+          <button class='btn btn-primary'>Add</button>
       <% end %>
-    </div>
-  <% end %>
-</div>
+  <% else %>
+      <h3>
+        Programs<a href='<%= user_programs_new_path %>'><span class='glyphicon glyphicon-plus pull-right'></span></a>
+      </h3>
 
-<% if current_user.main_course_scenario.programs.size > 0 %>
-  <hr style='width:100%;'>
-  <h1>Your Status</h1>
-  <% perc = (current_user.total_completed_ratio*100).to_i.to_s %>
-  <div class="row">
-    <div class='col-md-6 col-md-offset-3'>
-      <div class='text-center'><h3><%= perc %>% Degree Completion</h3></div>
-      <div class='progress'>
-        <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
-          <span class='sr-only'><%= perc %>% Complete</span>
+      <div>
+        <% @programs.order('type_id ASC, name ASC').each do |p| %>
+            <div class='row'>
+              <div class='text-indent col-md-8'><h4><%= p %></h4></div>
+              <div class='col-md-4 text-right'>
+                <%= form_tag(user_programs_delete_path) do %>
+                    <div class='btn-group'>
+                      <a class='btn btn-info' href='<%= program_graph_path(p) %>' rel='tooltip' data-toggle='tooltip' title='View Path'><span class='whitetext glyphicon glyphicon-info-sign'></span></a>
+                      <button class='btn btn-danger'
+                              <% if p.type.id == 4 %>disabled
+                              <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
+                        <span class='glyphicon glyphicon-remove-sign'></span></button>
+                    </div>
+                    <%= hidden_field_tag :program_id, p.id %>
+                <% end %>
+              </div>
+        <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-  <% cred = (current_user.count_completed_credit).to_i.to_s %>
-  <% cred2 = 0 %>
-  <% current_scenario.taking_courses.each do |tc| %>
-    <% cred2 += tc.course.credit %>
   <% end %>
-  <% cred2 = cred2.to_i.to_s %>
-  <div class="row">
-    <div class='col-md-6 col-md-offset-3'>
-      <div class='text-center'><h3><%= cred %> Credits Completed</h3></div>
-      <div class='progress'>
-        <div class='progress-bar' role='progress-bar' style='width:<%= cred %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= cred.to_s + " credits completed" %>'>
-          <span class='sr-only'><%= cred %>% Complete</span>
-        </div>
-        <div class='progress-bar progress-bar-warning' role='progress-bar' style='width:<%= cred2 %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= cred2.to_s + " credits in-progress" %>'>
-          <span class='sr-only'><%= cred2 %>% Complete</span>
+  </div>
+  <% if current_user.main_course_scenario.programs.size > 0 %>
+      <hr style='width:100%;'>
+      <h1>Your Status</h1>
+      <% perc = (current_user.total_completed_ratio*100).to_i.to_s %>
+      <div class="row">
+        <div class='col-md-6 col-md-offset-3'>
+          <div class='text-center'><h3><%= perc %>% Degree Completion</h3></div>
+          <div class='progress'>
+            <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+              <span class='sr-only'><%= perc %>% Complete</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+      <% cred = (current_user.count_completed_credit).to_i.to_s %>
+      <% cred2 = 0 %>
+      <% current_scenario.taking_courses.each do |tc| %>
+          <% cred2 += tc.course.credit %>
+      <% end %>
+      <% cred2 = cred2.to_i.to_s %>
+      <div class="row">
+        <div class='col-md-6 col-md-offset-3'>
+          <div class='text-center'><h3><%= cred %> Credits Completed</h3></div>
+          <div class='progress'>
+            <div class='progress-bar' role='progress-bar' style='width:<%= cred %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= cred.to_s + " credits completed" %>'>
+              <span class='sr-only'><%= cred %>% Complete</span>
+            </div>
+            <div class='progress-bar progress-bar-warning' role='progress-bar' style='width:<%= cred2 %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= cred2.to_s + " credits in-progress" %>'>
+              <span class='sr-only'><%= cred2 %>% Complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <% end %>
   <div class='row'>
     <div class='col-md-12 text-center'>
       <div class='text-center'><h3>
         <% if current_scenario.has_errors? %>You have a problem with your courses.
-          <% issues='btn-danger' %>
+            <% issues='btn-danger' %>
         <% else %>You have no problems with your courses.
-          <% issues='btn-success' %>
+            <% issues='btn-success' %>
         <% end %></h3></div>
       <div class='btn-group whitetext'>
         <a href='<%= user_advanced_standings_path %>' class='btn btn-primary'>Advanced Standing</a>
@@ -114,70 +115,44 @@
       </div>
     </div>
   </div>
-<% end %>
+  <% if current_scenario.taking_courses.size > 0 %>
+      <%= render :partial => 'course_taking', :locals => {:taking_courses=>current_scenario.taking_courses} %>
+  <% end %>
 
-<% if current_scenario.taking_courses.size > 0 %>
-  <hr>
-  <div>
-    <h1>In-Progress Courses</h1>
-  </div>
-  <div class='row'>
-    <% current_scenario.taking_courses.each do |c| %>
-      <div class='col-md-4'>
-        <div class='dashboard_coursebox'>
-          <div class='row'>
-            <div class='col-xs-6'>
-              <a href='<%= course_path(c.course) %>'><h4><%= c.course.subject.name %> <%= c.course.code %></h4></a>
-            </div>
-            <div class='col-xs-6 text-right'>
-              <div class='btn-group'>
-                <button type='button' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Complete'>
-                  <span class='glyphicon glyphicon-ok-sign'></span>
-                </button>
-                <a type='button' href='<%= course_path(c) %>' class='tooltipdestroy btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
-                  <span class='whitetext glyphicon glyphicon-info-sign'></span></a>
-                <button type='button' class='btn btn-danger' rel='tooltip' data-toggle='tooltip' title='Remove'>
-                  <span class='glyphicon glyphicon-remove-sign'></span>
-                </button>
+  <% if current_user.completed_courses.size > 0 %>
+      <hr style='width:100%;'>
+      <div><h1>Completed Courses</h1></div>
+      <div class='row'>
+        <% current_user.completed_courses.sort_by! { |c| c.advanced_standing.to_s }.reverse.each do |c| %>
+            <div class='col-md-4 course_completed_container'>
+              <div class='dashboard_coursebox'>
+                <div class='row'>
+                  <div class='col-xs-5'>
+                    <a href='<%= course_path(c.course) %>'><span><%= c.course.subject.name %> <%= c.course.code %></span>
+                    </a>
+                  </div>
+                  <div class='col-xs-7 text-right'>
+                    <div class='btn-group'>
+                      <% unless c.advanced_standing %>
+                          <a type='button' href='<%= course_review_new_path(c.course) %>' <%= 'disabled' if current_user.reviewed_course?(c.course) %> class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'>
+                            <span class='whitetext glyphicon glyphicon-comment'></span>
+                          </a>
+                      <% end %>
+                      <a type='button' href='<%= course_path(c) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
+                        <span class='whitetext glyphicon glyphicon-info-sign'></span></a>
+                      <% unless c.advanced_standing %>
+                          <%= group_button_to user_remove_course_path(c.course),
+                                              :name => :course_id, :value => c.course.id, :useajax => true, :delete_parent => '.course_completed_container',
+                                              :class => 'btn btn-danger', :rel => 'tooltip', 'data-toggle' => 'tooltip', :title => 'Remove' do %>
+                              <span class='glyphicon glyphicon-remove-sign'></span>
+                          <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-<% end %>
-
-<% if current_user.completed_courses.size > 0 %>
-  <hr style='width:100%;'>
-  <div><h1>Completed Courses</h1></div>
-  <div class='row'>
-    <% current_user.completed_courses.sort_by! { |c| c.advanced_standing.to_s }.reverse.each do |c| %>
-      <div class='col-md-4'>
-        <div class='dashboard_coursebox'>
-          <div class='row'>
-            <div class='col-xs-6'>
-              <a href='<%= course_path(c.course) %>'><h4><%= c.course.subject.name %> <%= c.course.code %></h4></a>
-            </div>
-            <div class='col-xs-6 text-right'>
-              <div class='btn-group'>
-                <% unless c.advanced_standing %>
-                  <a type='button' href='<%= course_review_new_path(c.course) %>' <%= 'disabled' if current_user.reviewed_course?(c.course) %> class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'>
-                    <span class='whitetext glyphicon glyphicon-comment'></span>
-                  </a>
-                <% end %>
-                <a type='button' href='<%= course_path(c) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
-                  <span class='whitetext glyphicon glyphicon-info-sign'></span></a>
-                <% unless c.advanced_standing %>
-                  <button type='button' class='btn btn-danger' rel='tooltip' data-toggle='tooltip' title='Remove'>
-                    <span class='glyphicon glyphicon-remove-sign'></span>
-                  </button>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>

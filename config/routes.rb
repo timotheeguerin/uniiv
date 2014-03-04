@@ -22,18 +22,6 @@ Uniiv::Application.routes.draw do
   post 'user_emails/addEmail'
   get 'user_emails/index'
 
-  get 'user_programs/show'
-  get 'user_programs/new'
-  post 'user_programs/create'
-  get 'user_programs/edit'
-  get 'user_programs/update'
-  get 'user_programs/delete'
-  get 'user_faculty/show'
-  get 'user_faculty/new'
-  get 'user_faculty/create'
-  get 'user_faculty/edit'
-  post 'user_faculty/update'
-  get 'user_faculty/delete'
   get 'graph/index'
   get 'test/index'
 
@@ -63,7 +51,20 @@ Uniiv::Application.routes.draw do
   get 'user/university/show' => 'user_university#show', :as => :user_university_show
   get 'user/university/edit' => 'user_university#edit', :as => :user_university_edit
   post 'user/university/edit' => 'user_university#update', :as => :user_university_update
-  get 'user/university/delete' => 'user_university#delte', :as => :user_university_delete
+  post 'user/university/delete' => 'user_university#delte', :as => :user_university_delete
+
+  #User faculty controller
+  get 'user/faculty/show' => 'user_faculty#show', :as => :user_faculty_show
+  get 'user/faculty/edit' => 'user_faculty#edit', :as => :user_faculty_edit
+  post 'user/faculty/edit' => 'user_faculty#update', :as => :user_faculty_update
+  post 'user/faculty/delete' => 'user_faculty#delte', :as => :user_faculty_delete
+
+
+  #User faculty controller
+  get 'user/program/show' => 'user_programs#show', :as => :user_programs_show
+  get 'user/program/new' => 'user_programs#new', :as => :user_programs_new
+  post 'user/program/new' => 'user_programs#create', :as => :user_programs_create
+  post 'user/program/delete' => 'user_programs#delete', :as => :user_programs_delete
 
   get 'test' => 'test#index'
 
@@ -134,7 +135,7 @@ Uniiv::Application.routes.draw do
     post 'course/:id/untake/graph/embed' => 'course_taking#remove', :as => 'user_remove_course_ge', :defaults => {:graph_embed => true}
     get 'course/:id/complete' => 'course_taking#complete', :as => 'user_complete_course'
     get 'course/:id/complete/graph/embed' => 'course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
-    post 'course/:id/complete' => 'course_taking#create_complete', :as => 'user_mark_complete_course'
+    post 'course/:id/complete' => 'course_taking#create_complete', :as => :user_mark_complete_course
     post 'course/:id/complete/graph/embed' => 'course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
     post 'user/course/take/update' => 'course_taking#update_course_taking', :as => :update_course_taking
 

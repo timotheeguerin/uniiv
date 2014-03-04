@@ -1,5 +1,7 @@
 $(document).ready ->
-  $('.selectpicker').selectpicker();
+  $('.selectpicker').selectpicker({
+    width: 'auto'
+  });
 
   $(document).on 'submit', 'form.useajax', submitFormAjax
 
@@ -54,6 +56,14 @@ submitFormAjax = () ->
   }).success((data) ->
     if data.message
       ajaxPopupPush(data.message)
+    if form.data('delete-parent')
+      parent = form.closest(form.data('delete-parent'))
+      parent.find("[rel='tooltip']").each () ->
+        console.log($(this))
+        $(this).tooltip('destroy')
+      parent.fadeOut(300, () ->
+        $(this).remove())
+    form.off()
     $(form).trigger('formAjaxComplete', data)
   )
   return false

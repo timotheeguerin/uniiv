@@ -8,7 +8,7 @@ class UserUniversityController < ApplicationController
   end
 
   def update
-    university = University.find(params[:uni])
+    university = University.find(params[:university_id])
     current_user.university = university
     current_user.save
     redirect_to user_education_path

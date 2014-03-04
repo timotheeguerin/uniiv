@@ -15,6 +15,7 @@
 #= require_tree .
 #= require jquery.raty
 #= require donutgraph
+#= require bootstrap
 
 $(document).ready () ->
   $("#graphreload").click ()->

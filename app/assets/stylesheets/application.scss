@@ -129,10 +129,12 @@ form {
   background-color: $palette_grey_lighter;
 }
 
-.dashboard_coursebox .btn-group {
-  position: relative;
-  top: 5px;
+.dashboard_coursebox select {
+  height: 28px;
+  padding-top: 3;
 }
+
+
 
 *:not(.glyphicon) {
   font-family: 'Open Sans', sans-serif !important;

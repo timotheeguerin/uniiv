@@ -136,15 +136,18 @@ class User::CourseTakingController < ApplicationController
     @user_completed_course.user = current_user
 
     if @user_completed_course.save
-      puts 'saved'
-      if params[:graph_embed]
-        return_json('course.completed', :url => course_graph_embed_path(@course))
+      if request.xhr?
+        if params[:graph_embed]
+          return_json('course.completed', :url => course_graph_embed_path(@course))
+        else
+          return_json('course.completed')
+        end
+
       else
         redirect_to course_path(@course)
       end
     else
-      puts 'fail to save'
-      _render 'new'
+      _render 'complete'
     end
   end
 
@@ -155,10 +158,10 @@ class User::CourseTakingController < ApplicationController
     user_taking_course.destroy unless user_taking_course.nil?
     user_completed_course.destroy unless user_completed_course.nil?
 
-    if params[:graph_embed]
+    if request.xhr?
       return_json('course.untake', :url => course_graph_embed_path(@course))
     else
-      redirect_to course_path(@course)
+      redirect_to :back
     end
 
   end
