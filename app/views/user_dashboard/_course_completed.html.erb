@@ -1,0 +1,36 @@
+<% if current_user.completed_courses.size > 0 %>
+    <hr style='width:100%;'>
+    <div><h1>Completed Courses</h1></div>
+    <div class='row'>
+      <% current_user.completed_courses.sort_by! { |c| c.advanced_standing.to_s }.reverse.each do |c| %>
+          <div class='col-md-4 course_completed_container'>
+            <div class='dashboard_coursebox'>
+              <div class='row'>
+                <div class='col-xs-5'>
+                  <a href='<%= course_path(c.course) %>'><span><%= c.course.subject.name %> <%= c.course.code %></span>
+                  </a>
+                </div>
+                <div class='col-xs-7 text-right'>
+                  <div class='btn-group'>
+                    <% unless c.advanced_standing %>
+                        <a type='button' href='<%= course_review_new_path(c.course) %>' <%= 'disabled' if current_user.reviewed_course?(c.course) %> class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'>
+                          <span class='whitetext glyphicon glyphicon-comment'></span>
+                        </a>
+                    <% end %>
+                    <a type='button' href='<%= course_path(c) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
+                      <span class='whitetext glyphicon glyphicon-info-sign'></span></a>
+                    <% unless c.advanced_standing %>
+                        <%= group_button_to user_remove_course_path(c.course),
+                                            :name => :course_id, :value => c.course.id, :useajax => true, :delete_parent => '.course_completed_container',
+                                            :class => 'btn btn-danger', :rel => 'tooltip', 'data-toggle' => 'tooltip', :title => 'Remove' do %>
+                            <span class='glyphicon glyphicon-remove-sign'></span>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% end %>

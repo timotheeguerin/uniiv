@@ -8,6 +8,7 @@ module User::CourseTakingHelper
     course_complete.year = user_taking_course.year
     html = {:class => 'useajax'}
     html['data-delete-parent'] = params[:delete_parent] unless params[:delete_parent].nil?
+    html['data-reload']= params[:reload] unless params[:reload].nil?
     render :partial => 'user/course_taking/complete_inline_form', :locals =>
         {:course => user_taking_course.course, :course_complete => course_complete, :grades => grades, :html=> html}
   end

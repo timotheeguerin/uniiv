@@ -119,8 +119,9 @@ Uniiv::Application.routes.draw do
   post 'course/:course_id/review/new/graph/embed' => 'course_review#create', :as => :course_review_create_graph_embed, :defaults => {:graph_embed => true}
 
   #User
-  get 'user_dashboard/index' => 'user_dashboard#index'
   get 'education' => 'user_dashboard#index', :as => :user_education
+  get 'education/course_taking_content' => 'user_dashboard#user_course_taking_content', :as => :user_education_course_taking_content
+  get 'education/course_completed_content' => 'user_dashboard#user_course_completed_content', :as => :user_education_course_completed_content
 
   #User course controller
   scope :module => 'user' do

@@ -56,14 +56,26 @@ submitFormAjax = () ->
   }).success((data) ->
     if data.message
       ajaxPopupPush(data.message)
-    if form.data('delete-parent')
+    if form.data('delete-parent') #Delete the closest parent with the given selector
       parent = form.closest(form.data('delete-parent'))
       parent.find("[rel='tooltip']").each () ->
-        console.log($(this))
         $(this).tooltip('destroy')
       parent.fadeOut(300, () ->
         $(this).remove())
+    if form.data('reload') #Delete the closest parent with the given selector
+      $(form.data('reload')).each () ->
+        reload_container($(this))
+
     form.off()
     $(form).trigger('formAjaxComplete', data)
   )
   return false
+
+
+
+
+reload_container = (container) ->
+  url = container.data('url')
+  $.get(url, (data) ->
+    container.html(data)
+  )
