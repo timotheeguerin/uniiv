@@ -54,4 +54,18 @@ class ApplicationController < ActionController::Base
       render view
     end
   end
+
+  #Redirect to the path given in the url if it exist otherwise to the path given as parameter.
+  # If parameter empty return to back
+  def _redirect_to(path=nil)
+    if params[:redirect].nil?
+      if path.nil?
+        redirect_to :back
+      else
+        redirect_to path
+      end
+    else
+      redirect_to params[:redirect]
+    end
+  end
 end

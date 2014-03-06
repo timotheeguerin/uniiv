@@ -14,6 +14,7 @@ class Course::Scenario < ActiveRecord::Base
     end
   end
 
+  #Return if the scenario is taking this course at the given semester(default is the current one)
   def is_taking_course?(course, term = nil?)
     term ||= Term::now
     taking_courses.each do |c|
@@ -24,6 +25,7 @@ class Course::Scenario < ActiveRecord::Base
     false
   end
 
+  #Return if the user planned to take this course in any term
   def plan_to_take_course?(course)
     taking_courses.where(:course_id => course).size >0
   end

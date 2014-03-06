@@ -1,5 +1,5 @@
 <% id ="taking_carousel_#{course.id}_#{SecureRandom.uuid}" %>
-<div class='course-buttons-container'>
+<div class='course-buttons-container pull-right'>
   <div id='<%= id %>' class='carousel slide' data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
       <div class="item active">
@@ -13,14 +13,14 @@
             </a>
             <%= group_button_to user_remove_course_path(course.course),
                                 :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => '.course_taking_container',
-                                :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove' do %>
+                                :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
                 <span class='glyphicon glyphicon-remove-sign'></span>
             <% end %>
           </div>
         </div>
       </div>
       <div class='item'>
-        <div class='container-fluid'>
+        <div class=''>
           <div class='row'>
             <div class='col-md-3'>
               <a class='btn btn-success' href="#<%= id %>" rel='tooltip' title='Back' data-slide="prev">

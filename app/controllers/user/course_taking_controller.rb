@@ -80,9 +80,9 @@ class User::CourseTakingController < ApplicationController
     @course = params[:course]
     if Course::Course.find(@course)
       if params[:take]
-        redirect_to user_take_course_path(@course)
+        _redirect_to user_take_course_path(@course)
       elsif params[:complete]
-        redirect_to user_complete_course_path(@course)
+        _redirect_to user_complete_course_path(@course)
       else
         puts 'Wrong params'
       end
@@ -107,7 +107,7 @@ class User::CourseTakingController < ApplicationController
       if params[:graph_embed]
         return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
       else
-        redirect_to course_path(@course)
+        _redirect_to course_path(@course)
       end
     else
       _render 'new'
@@ -127,7 +127,7 @@ class User::CourseTakingController < ApplicationController
   end
 
   def create_complete
-    @user_completed_course = UserCompletedCourse.new(params[:user_completed_course].permit(:semester_id, :year, :grade_id))
+    @user_completed_course = UserCompletedCourse.new(params.require(:user_completed_course).permit(:semester_id, :year, :grade_id))
     user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
     unless user_taking_course.nil? #If the course was taken before
       user_taking_course.destroy
@@ -144,7 +144,7 @@ class User::CourseTakingController < ApplicationController
         end
 
       else
-        redirect_to course_path(@course)
+        _redirect_to course_path(@course)
       end
     else
       _render 'complete'
@@ -161,7 +161,7 @@ class User::CourseTakingController < ApplicationController
     if request.xhr?
       return_json('course.untake', :url => course_graph_embed_path(@course))
     else
-      redirect_to :back
+      _redirect_to :back
     end
 
   end

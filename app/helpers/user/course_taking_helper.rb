@@ -3,11 +3,15 @@ module User::CourseTakingHelper
   def user_course_buttons(course, useajax = false)
     if user_signed_in?
       if current_user.has_completed_course?(course)
-        user_course_completed = current_user.completed_courses.where { course_id = course.id }.first
-        render :partial => 'user/course_taking/course_taking_buttons', :locals => {:course => user_course_completed, :useajax=> useajax}
-      elsif current_scenario.is_taking_course?(course)
-        user_course_taking = current_scenario.taking_courses.where { course_id = course.id }.first
-        render :partial => 'user/course_taking/course_taking_buttons', :locals => {:course => user_course_taking, :useajax=> useajax}
+        user_course_completed = current_user.completed_courses.where(:course_id => course.id).first
+        render :partial => 'user/course_taking/course_completed_buttons', :locals => {:course => user_course_completed, :useajax => useajax}
+      elsif current_scenario.plan_to_take_course?(course)
+        puts course.id
+        user_course_taking = current_scenario.taking_courses.where(:course_id => course.id).first
+        puts user_course_taking
+        render :partial => 'user/course_taking/course_taking_buttons', :locals => {:course => user_course_taking, :useajax => useajax}
+      else
+        render :partial => 'user/course_taking/course_default_buttons', :locals => {:course => course, :useajax => useajax}
       end
     else
 

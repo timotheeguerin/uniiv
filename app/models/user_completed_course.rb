@@ -4,8 +4,11 @@ class UserCompletedCourse < ActiveRecord::Base
   belongs_to :grade, :class_name => Course::GradingSystemEntity
   belongs_to :semester, :class_name => Course::Semester
 
-  validates :course_id, :presence => true
-  validates :user_id, :presence => true
+  validates_presence_of :course_id
+  validates_presence_of :user_id
+  validates_presence_of :grade_id
+  validates_presence_of :semester_id
+  validates_presence_of :year
   validates_uniqueness_of :course_id, :scope => :user_id
 
   after_validation :remove_course_taking, on: [:create, :update]

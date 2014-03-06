@@ -19,12 +19,10 @@ module Utils
         elsif info.text.start_with?('Corequisite:')
           hash[:corequisite] = info.text
         elsif info.text.match(/.* hours/)
+          puts 'parsing hours'
           hash[:hours] = info.text
         end
       end
-
-      hash[:hours] ||= 3
-
     end
 
     def self.parse_page(url)
@@ -41,6 +39,7 @@ module Utils
         additional_info = list.css('li')
         parse_additional_info(additional_info, hash)
       end
+      hash[:hours] ||= 3
       hash
     end
 
