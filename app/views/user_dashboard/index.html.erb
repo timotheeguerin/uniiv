@@ -12,7 +12,7 @@
   <% else %>
       <h3><%= current_user.university %>
         <a href='<%= user_university_edit_path %>'>
-          <span class='glyphicon glyphicon-edit pull-right' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
+          <span class='glyphicon glyphicon-pencil pull-right' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
         </a>
       </h3>
   <% end %>
@@ -45,14 +45,27 @@
         Programs<a href='<%= user_programs_new_path %>'><span class='glyphicon glyphicon-plus pull-right'></span></a>
       </h3>
 
-      <div>
+      <div class='program_list'>
         <% @programs.order('type_id ASC, name ASC').each do |p| %>
             <div class='row'>
-              <div class='text-indent col-md-8'><h4><%= p %></h4></div>
-              <div class='col-md-4 text-right'>
+              <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
+              <div class='text-indent col-md-2'>
+                <div class='progress'>
+                  <% perc= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i %>
+                  <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+                    <span class='sr-only'><%= perc %>% Complete</span>
+                  </div>
+                </div>
+              </div>
+              <div class='col-md-2 text-right'>
                 <%= form_tag(user_programs_delete_path) do %>
                     <div class='btn-group'>
-                      <a class='btn btn-info' href='<%= program_graph_path(p) %>' rel='tooltip' data-toggle='tooltip' title='View Path'><span class='whitetext glyphicon glyphicon-info-sign'></span></a>
+                      <a class='btn btn-info' href='<%= program_path(p) %>' rel='tooltip' title='Information'>
+                        <span class='whitetext glyphicon glyphicon-info-sign'></span>
+                      </a>
+                      <a class='btn btn-info' href='<%= program_graph_path(p) %>' rel='tooltip' title='View Path'>
+                        <span class='whitetext glyphicon glyphicon-random'></span>
+                      </a>
                       <button class='btn btn-danger'
                               <% if p.type.id == 4 %>disabled
                               <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
@@ -61,64 +74,17 @@
                     <%= hidden_field_tag :program_id, p.id %>
                 <% end %>
               </div>
+            </div>
         <% end %>
-        </div>
+      </div>
   <% end %>
-  </div>
-  <% if current_user.main_course_scenario.programs.size > 0 %>
-      <hr style='width:100%;'>
-      <h1>Your Status</h1>
-      <% perc = (current_user.total_completed_ratio*100).to_i.to_s %>
-      <div class="row">
-        <div class='col-md-6 col-md-offset-3'>
-          <div class='text-center'><h3><%= perc %>% Degree Completion</h3></div>
-          <div class='progress'>
-            <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
-              <span class='sr-only'><%= perc %>% Complete</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% cred = (current_user.count_completed_credit).to_i.to_s %>
-      <% cred2 = 0 %>
-      <% current_scenario.taking_courses.each do |tc| %>
-          <% cred2 += tc.course.credit %>
-      <% end %>
-      <% cred2 = cred2.to_i.to_s %>
-      <div class="row">
-        <div class='col-md-6 col-md-offset-3'>
-          <div class='text-center'><h3><%= cred %> Credits Completed</h3></div>
-          <div class='progress'>
-            <div class='progress-bar' role='progress-bar' style='width:<%= cred %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= cred.to_s + " credits completed" %>'>
-              <span class='sr-only'><%= cred %>% Complete</span>
-            </div>
-            <div class='progress-bar progress-bar-warning' role='progress-bar' style='width:<%= cred2 %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= cred2.to_s + " credits in-progress" %>'>
-              <span class='sr-only'><%= cred2 %>% Complete</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  <% end %>
-  <div class='row'>
-    <div class='col-md-12 text-center'>
-      <div class='text-center'><h3>
-        <% if current_scenario.has_errors? %>You have a problem with your courses.
-            <% issues='btn-danger' %>
-        <% else %>You have no problems with your courses.
-            <% issues='btn-success' %>
-        <% end %></h3></div>
-      <div class='btn-group whitetext'>
-        <a href='<%= user_advanced_standings_path %>' class='btn btn-primary'>Advanced Standing</a>
-        <a href='<%= user_graph_path %>' class='btn btn-info'>View Path</a>
-        <a href='<%= user_sort_course_path %>' class='btn <%= issues %> btn-linker'>Manage Courses</a>
-      </div>
-    </div>
-  </div>
-  <div id='user_course_taking_container' data-url='<%= user_education_course_taking_content_path %>'>
-    <%= render :partial => 'course_taking' %>
-  </div>
-  <div id='user_course_completed_container' data-url='<%= user_education_course_completed_content_path %>'>
-    <%= render :partial => 'course_completed' %>
-  </div>
+</div>
+<div id='user_education_status_container' data-url='<%= user_education_status_content_path %>'>
+  <%= render :partial => 'education_status' %>
+</div>
+<div id='user_course_taking_container' data-url='<%= user_education_course_taking_content_path %>'>
+  <%= render :partial => 'course_taking' %>
+</div>
+<div id='user_course_completed_container' data-url='<%= user_education_course_completed_content_path %>'>
+  <%= render :partial => 'course_completed' %>
 </div>

@@ -1,4 +1,3 @@
-
 class GraphController < ApplicationController
   include GraphHelper
   before_action :setup
@@ -21,12 +20,11 @@ class GraphController < ApplicationController
     elsif current_scenario.programs.size == 0
       redirect_to user_education_path, :alert => t('programs.zero.selected')
     end
+    @fullwidth=true
   end
 
   def user_data
     graphs_json = []
-
-
     style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
 
     current_scenario.programs.each do |program|
@@ -44,6 +42,7 @@ class GraphController < ApplicationController
 
   def show_program_graph
     @program = Program.find(params[:id])
+    @fullwidth=true
   end
 
   def program_graph_data

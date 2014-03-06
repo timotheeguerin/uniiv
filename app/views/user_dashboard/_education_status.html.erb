@@ -1,0 +1,58 @@
+<% if current_user.main_course_scenario.programs.size > 0 %>
+    <hr>
+    <h1>Your Status</h1>
+    <% perc = (current_user.total_completed_ratio*100).to_i %>
+    <div class="row">
+      <div class='col-md-6 col-md-offset-3'>
+        <div class='text-center'><h3><%= perc %>% Degree Completion</h3></div>
+        <div class='progress'>
+          <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+            <span class='sr-only'><%= perc %>% Complete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% cred = (current_user.count_completed_credit).to_i.to_s %>
+    <% cred2 = 0 %>
+    <% current_scenario.taking_courses.each do |tc| %>
+        <% cred2 += tc.course.credit %>
+    <% end %>
+    <% cred2 = cred2.to_i.to_s %>
+    <div class="row">
+      <div class='col-md-6 col-md-offset-3'>
+        <div class='text-center'><h3><%= cred %> Credits Completed</h3></div>
+        <div class='progress'>
+          <div class='progress-bar' role='progress-bar' style='width:<%= cred %>%;' rel='tooltip' data-placement='bottom' title='<%= cred.to_s + " credits completed" %>'>
+            <span class='sr-only'><%= cred %>% Complete</span>
+          </div>
+          <div class='progress-bar progress-bar-warning' role='progress-bar' style='width:<%= cred2 %>%;' rel='tooltip' data-placement='bottom' title='<%= cred2.to_s + " credits in-progress" %>'>
+            <span class='sr-only'><%= cred2 %>% Complete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+<div class='row'>
+  <div class='col-md-12 text-center'>
+    <div class='text-center'>
+      <% error = current_scenario.has_errors? %>
+      <% if  error %>
+          <div class="alert alert-danger">You have a problem with your courses.</div>
+          <% issues='btn-danger' %>
+      <% else %>You have no problems with your courses.
+          <% issues='btn-success' %>
+      <% end %>
+    </div>
+    <div class='btn-group whitetext'>
+      <a href='<%= user_advanced_standings_path %>' class='btn btn-primary'>Advanced Standing</a>
+      <a href='<%= user_graph_path %>' class='btn btn-info'>View Path</a>
+      <a href='<%= user_sort_course_path %>' class='btn <%= issues %> btn-linker'>
+        <% if error %>
+            <span class='glyphicon glyphicon-warning-sign'></span>
+        <% end %>
+        Manage Courses
+      </a>
+    </div>
+  </div>
+</div>

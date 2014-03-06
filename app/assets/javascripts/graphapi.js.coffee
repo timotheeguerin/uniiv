@@ -74,6 +74,7 @@ $(document).ready ->
       #graph_reload.show()
       location.reload()
 
+
   reload_graph_info = () ->
     url = sidebar_info.attr('data-url')
     if url? and url != ''
@@ -99,11 +100,13 @@ $(document).ready ->
       semester: semester_id
       year: year
     }).success (data) ->
+      remove_tooltip(sidebar_info)
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
       sidebar_info.parent().nanoScroller()
-      $(document).trigger('ajaxloadhtml')
+      console.log(sidebar_info)
+      $(document).trigger('ajaxloadhtml', [sidebar_info])
 
 
 class Ressources

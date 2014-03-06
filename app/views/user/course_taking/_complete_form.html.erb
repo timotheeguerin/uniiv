@@ -1,33 +1,36 @@
 <% clazz ||= ''
    taking_course ||= false
 %>
-<%= form_for @user_completed_course, :url => path, html: {class: clazz} do |f| %>
-  <% if @user_completed_course.errors.any? %>
-    <div>
-      Errors:
+<%= form_for @user_completed_course, :url => path, html: {class: clazz + ' form-horizontal'} do |f| %>
+    <% if @user_completed_course.errors.any? %>
+        <div>
+          Errors:
+        </div>
+        <div>
+          <ul>
+            <% @user_completed_course.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <% unless taking_course %>
+        <%= render :partial => 'take_fields', :locals => {:f => f} %>
+    <% end %>
+    <div class='form-group'>
+      <%= f.label :grade, :class => 'col-sm-4' %>
+      <div class="col-sm-8">
+        <%= f.select :grade_id, options_from_collection_for_select(@grades, 'id', 'name'), {}, :class => 'selectpicker' %>
+      </div>
     </div>
-    <div>
-      <ul>
-        <% @user_completed_course.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <% unless taking_course %>
-    <%= render :partial => 'take_fields', :locals => {:f => f} %>
-  <% end %>
-  <div>
-    <%= f.label :grade %>
-    <%= f.select :grade_id, options_from_collection_for_select(@grades, 'id', 'name') %>
-  </div>
-  <% if normal %>
-    <div class="right">
-      <%= f.submit(t('course.mark_completed')) %>
-    </div>
-  <% else %>
-    <div class="center">
-      <%= f.submit(t('course.mark_completed')) %>
-    </div>
-  <% end %>
+    <br>
+    <% if normal %>
+        <div class="right">
+          <%= f.submit(t('course.mark_taking'), :class => 'form-control') %>
+        </div>
+    <% else %>
+        <div class="center">
+          <%= f.submit(t('course.mark_taking'), :class => 'btn btn-primary') %>
+        </div>
+    <% end %>
 <% end %>

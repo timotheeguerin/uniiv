@@ -1,13 +1,14 @@
 <% clazz ||= '' %>
-<%= form_for @user_taking_course, :url => path, html: {class: clazz} do |f| %>
+<%= form_for @user_taking_course, :url => path, html: {class: clazz + ' form-horizontal'} do |f| %>
   <%= render :partial => 'take_fields', :locals => {:f => f} %>
+    <br>
   <% if normal %>
     <div class="right">
-      <%= f.submit(t('course.mark_taking')) %>
+      <%= f.submit(t('course.mark_taking'), :class=>'form-control') %>
     </div>
   <% else %>
     <div class="center">
-      <%= f.submit(t('course.mark_taking')) %>
+      <%= f.submit(t('course.mark_taking'), :class=>'btn btn-primary') %>
     </div>
   <% end %>
 <% end %>

@@ -1,12 +1,9 @@
 <div class='row'>
-  <div class='col-md-9 graph'>
+  <div class='col-md-10 graph'>
     <div id="canvas-container" data-url='<%= user_graph_data_path %>?semester=<%= @term.semester.id %>&year=<%= @term.year.to_s %>' data-semester='<%= @term.semester.id %>' data-year='<%= @term.year.to_s %>'>
     </div>
   </div>
-  <div class='col-md-3 graphsidebar'>
-    <% @next = @term.next %>
-    <% @prev = @term.prev %>
-
+  <div class='col-md-2 graphsidebar'>
     <div>
       <% perc = (current_user.total_completed_ratio*100).to_i.to_s %>
       <div class="row">
@@ -22,7 +19,7 @@
       <% cred = (current_user.count_completed_credit).to_i.to_s %>
       <% cred2 = 0 %>
       <% current_scenario.taking_courses.each do |tc| %>
-        <% cred2 += tc.course.credit %>
+          <% cred2 += tc.course.credit %>
       <% end %>
       <% cred2 = cred2.to_i.to_s %>
       <div class="row">
@@ -47,26 +44,15 @@
     <div>
       <div id="programsfromuser">
         <% current_scenario.programs.order("type_id ASC, name ASC").each do |p| %>
-          <div>
-            <small><%= p %></small>
-          </div>
+            <div>
+              <small><%= p %></small>
+            </div>
         <% end %></div>
       <hr>
       <div id="graph_sidebar_info" class='nano'>
         <div class='content'></div>
       </div>
     </div>
-    <div class='row text-center graphnavigation'>
-      <div class='btn-group'>
-        <button id='zoomin_graph' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='Zoom In'>
-          <span class='glyphicon glyphicon-zoom-in'></span>
-        </button>
-        <button id='zoomout_graph' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='Zoom Out'>
-          <span class='glyphicon glyphicon-zoom-out'></span>
-        </button>
-        <a href='<%= user_graph_path + "?year=" + @prev.year.to_s + "&semester=" + @prev.semester.id.to_s %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='Previous Semester'><span class='whitetext glyphicon glyphicon-arrow-left'></span></a>
-        <a href='<%= user_graph_path + "?year=" + @next.year.to_s + "&semester=" + @next.semester.id.to_s %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='Next Semester'><span class='whitetext glyphicon glyphicon-arrow-right'></span></a>
-      </div>
-    </div>
+    <%= render :partial => 'graph/graph_navigation' %>
   </div>
 </div>

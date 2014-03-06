@@ -36,8 +36,11 @@ module Utils
       parse_title(title, hash)
       content = container.css('#content-area .content')[0]
       hash[:description] = content.css('p')[0].text.split(':', 2)[1]
-      additional_info = content.css('ul')[0].css('li')
-      parse_additional_info(additional_info, hash)
+      list =  content.css('ul')[0]
+      unless  list.nil?
+        additional_info = list.css('li')
+        parse_additional_info(additional_info, hash)
+      end
       hash
     end
 

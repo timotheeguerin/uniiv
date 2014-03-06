@@ -1,7 +1,7 @@
 <% if current_scenario.taking_courses.size > 0 %>
     <hr>
     <div>
-      <h1>In-Progress Courses</h1>
+      <a href='<%= user_sort_course_path %>'><h1>In-Progress Courses</h1></a>
     </div>
     <div class='row'>
       <% current_scenario.taking_courses.each do |c| %>
@@ -13,41 +13,7 @@
                   </a>
                 </div>
                 <div class='col-xs-7 text-right'>
-                  <div id='taking_carousel_<%= c.id %>' class='carousel slide' data-ride="carousel" data-interval="false">
-                    <div class="carousel-inner">
-                      <div class="item active">
-                        <div>
-                          <div class='btn-group'>
-                            <a class='btn btn-success' href="#taking_carousel_<%= c.id %>" rel='tooltip' title='Complete' data-slide="next">
-                              <span class='glyphicon glyphicon-ok-sign whitetext'></span>
-                            </a>
-                            <a type='button' href='<%= course_path(c) %>' class='tooltipdestroy btn btn-info' rel='tooltip' title='<%= c.course.name %>'>
-                              <span class='whitetext glyphicon glyphicon-info-sign'></span>
-                            </a>
-                            <%= group_button_to user_remove_course_path(c.course),
-                                                :name => :course_id, :value => c.course.id, :useajax => true, :delete_parent => '.course_taking_container',
-                                                :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove' do %>
-                                <span class='glyphicon glyphicon-remove-sign'></span>
-                            <% end %>
-                          </div>
-                        </div>
-                      </div>
-                      <div class='item'>
-                        <div class='container-fluid'>
-                          <div class='row'>
-                            <div class='col-md-3'>
-                              <a class='btn btn-success' href="#taking_carousel_<%= c.id %>" rel='tooltip' title='Back' data-slide="prev">
-                                <span class='glyphicon glyphicon-chevron-left whitetext'></span>
-                              </a>
-                            </div>
-                            <div class='col-md-9'>
-                              <%= complete_course_inline_form(c, :delete_parent => '.course_taking_container', :reload => '#user_course_completed_container') %>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <%= render :partial => 'user/course_taking/course_taking_buttons', :locals => {:course => c, :useajax => true} %>
                 </div>
               </div>
             </div>

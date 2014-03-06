@@ -58,8 +58,7 @@ submitFormAjax = () ->
       ajaxPopupPush(data.message)
     if form.data('delete-parent') #Delete the closest parent with the given selector
       parent = form.closest(form.data('delete-parent'))
-      parent.find("[rel='tooltip']").each () ->
-        $(this).tooltip('destroy')
+      remove_tooltip(parent)
       parent.fadeOut(300, () ->
         $(this).remove())
     if form.data('reload') #Delete the closest parent with the given selector
@@ -79,3 +78,8 @@ reload_container = (container) ->
   $.get(url, (data) ->
     container.html(data)
   )
+
+
+window.remove_tooltip = (container) ->
+  container.find("[rel='tooltip']").each () ->
+    $(this).tooltip('destroy')

@@ -20,14 +20,14 @@
 $(document).ready () ->
   $("#graphreload").click ()->
     location.reload();
-  $("button")
 
   $('.nano').each ->
-    $(this).nanoScroller()
+    $(this).nanoScroller({ tabIndex: ' ' })
   setupStarRatings()
 
-  $(document).on 'ajaxloadhtml', () ->
+  $(document).on 'ajaxloadhtml', (e, container) ->
     setupStarRatings()
+    reload_scripts(container)
 
   $('.search-ajax').each () ->
     input = $(this)
@@ -81,6 +81,12 @@ setupStarRatings = () ->
         targetKeep: true
         score: value
       })
+
+
+reload_scripts = (container) ->
+  container.find('.selectpicker').selectpicker({
+      width: 'auto'
+    });
 
 jQuery.fn.rotate = (degrees) ->
   $(this).css

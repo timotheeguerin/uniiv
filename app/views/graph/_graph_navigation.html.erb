@@ -1,0 +1,18 @@
+<div class='row text-center graphnavigation'>
+  <div class='btn-group'>
+    <button id='zoomin_graph' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='Zoom In'>
+      <span class='glyphicon glyphicon-zoom-in'></span>
+    </button>
+    <button id='zoomout_graph' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='Zoom Out'>
+      <span class='glyphicon glyphicon-zoom-out'></span>
+    </button>
+    <% next_sem = @term.next %>
+    <% prev_sem = @term.prev %>
+    <a href='<%= user_graph_path(:year => prev_sem.year, :semester => prev_sem.semester.id) %>' class='btn btn-info' rel='tooltip' title='Previous Semester'>
+      <span class='whitetext glyphicon glyphicon-arrow-left'></span>
+    </a>
+    <a href='<%= user_graph_path(:year => next_sem.year, :semester => next_sem.semester.id) %>' class='btn btn-info' rel='tooltip' title='Next Semester'>
+      <span class='whitetext glyphicon glyphicon-arrow-right'></span>
+    </a>
+  </div>
+</div>

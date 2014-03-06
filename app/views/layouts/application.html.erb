@@ -15,40 +15,40 @@
     <div class='navbar-header visible-lg visible-md'>
       <ul class='navbar-nav nav'>
         <li><%= link_to root_url do %>
-            <span class='glyphicon glyphicon-home'></span> Uniiv
+              <span class='glyphicon glyphicon-home'></span> Uniiv
           <% end %></li>
         <% if user_signed_in? %>
-          <li><%= link_to user_graph_path do %>
-              <span class='glyphicon glyphicon-random'></span> Path
-            <% end %></li>
-          <li><%= link_to user_education_path do %>
-              <span class='glyphicon glyphicon-book'></span> Education
-            <% end %></li>
+            <li><%= link_to user_graph_path do %>
+                  <span class='glyphicon glyphicon-random'></span> Path
+              <% end %></li>
+            <li><%= link_to user_education_path do %>
+                  <span class='glyphicon glyphicon-book'></span> Education
+              <% end %></li>
         <% end %>
       </ul>
     </div>
     <div class='navbar-header pull-right visible-lg visible-md'>
       <ul class='navbar-nav nav'>
         <% if user_signed_in? %>
-          <% if can? :access, :rails_admin %>
-            <li><%= link_to rails_admin.dashboard_path do %>
-                <span class='glyphicon glyphicon-wrench'></span> Admin
-              <% end %></li>
-          <% end %>
+            <% if can? :access, :rails_admin %>
+                <li><%= link_to rails_admin.dashboard_path do %>
+                      <span class='glyphicon glyphicon-wrench'></span> Admin
+                  <% end %></li>
+            <% end %>
 
-          <li><%= link_to user_settings_index_path do %>
-              <span class='glyphicon glyphicon-user'></span> Account
-            <% end %></li>
-          <li><%= link_to destroy_user_session_path, method: :delete do %>
-              <span class='glyphicon glyphicon-log-out'></span> Log Out
-            <% end %></li>
+            <li><%= link_to user_settings_index_path do %>
+                  <span class='glyphicon glyphicon-user'></span> Account
+              <% end %></li>
+            <li><%= link_to destroy_user_session_path, method: :delete do %>
+                  <span class='glyphicon glyphicon-log-out'></span> Log Out
+              <% end %></li>
         <% else %>
-          <li><%= link_to new_user_session_path do %>
-              <span class='glyphicon glyphicon-log-in'></span> Log In
-            <% end %></li>
-          <li><%= link_to new_user_registration_path do %>
-              <span class='glyphicon glyphicon-user'></span> Sign Up
-            <% end %></li>
+            <li><%= link_to new_user_session_path do %>
+                  <span class='glyphicon glyphicon-log-in'></span> Log In
+              <% end %></li>
+            <li><%= link_to new_user_registration_path do %>
+                  <span class='glyphicon glyphicon-user'></span> Sign Up
+              <% end %></li>
         <% end %>
       </ul>
     </div>
@@ -56,16 +56,16 @@
       <ul class="navbar-nav nav">
         <li><%= link_to "Uniiv", root_url %></li>
         <% if user_signed_in? %>
-          <% if can? :access, :rails_admin %>
-            <li><%= link_to "Admin", rails_admin.dashboard_path %></li>
-          <% end %>
-          <li><%= link_to "Path", user_graph_path %></li>
-          <li><%= link_to "Education", user_education_path %></li>
-          <li><%= link_to "Account", user_settings_index_path %></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+            <% if can? :access, :rails_admin %>
+                <li><%= link_to "Admin", rails_admin.dashboard_path %></li>
+            <% end %>
+            <li><%= link_to "Path", user_graph_path %></li>
+            <li><%= link_to "Education", user_education_path %></li>
+            <li><%= link_to "Account", user_settings_index_path %></li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to "Log In", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <li><%= link_to "Log In", new_user_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <% end %>
       </ul>
     </div>
@@ -74,24 +74,27 @@
 
 <div class="wrapper">
   <% if notice or alert %>
-    <div class="container text-center">
-      <% if notice %>
-        <div class="row">
-          <div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(notice) %>
-          </div>
-        </div>
-      <% end %>
-      <% if alert %>
-        <div class="row">
-          <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(alert) %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+      <div class="container text-center">
+        <% if notice %>
+            <div class="row">
+              <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(notice) %>
+              </div>
+            </div>
+        <% end %>
+        <% if alert %>
+            <div class="row">
+              <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(alert) %>
+              </div>
+            </div>
+        <% end %>
+      </div>
   <% end %>
-  <div class="container">
+  <!--Check if we need to use the fullscreen width or just the default size(For example the graph) -->
+  <% container = 'container' %>
+  <% container = 'container-fluid' if defined?(@fullwidth) and @fullwidth %>
+  <div class="<%= container %>">
     <%= yield %>
   </div>
   <div class="push"></div>

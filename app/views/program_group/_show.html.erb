@@ -1,14 +1,21 @@
 <div>
-  <div><%= group.name %></div>
+  <div><h4><%= link_to group.name, group_path(group) %></h4></div>
   <hr>
 
   <% unless group.courses.empty? %>
-      <div>
-        <ul>
-          <% group.courses.each do |course| %>
-              <li><%= link_to course.get_detail_name, course_path(course) %></li>
-          <% end %>
-        </ul>
+      <div class="container-fluid">
+        <% group.courses.each do |course| %>
+            <div class='dashboard_coursebox'>
+              <div class='row'>
+                <div class='col-md-9'>
+                  <%= link_to course.get_detail_name, course_path(course) %>
+                </div>
+                <div class='col-md-3'>
+                  <%= user_course_buttons(course) %>
+                </div>
+              </div>
+            </div>
+        <% end %>
       </div>
   <% end %>
   <% unless group.subgroups.empty? %>
