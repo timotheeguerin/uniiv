@@ -11,7 +11,7 @@ class Search
   end
 
   def self.from_params(params)
-    search = Search.new
+    search = Utils::Search.new
     search.limit = params[:limit] unless params[:limit].nil?
     search.query = params[:q] unless params[:q].nil?
     search.page = params[:page] unless params[:page].nil?

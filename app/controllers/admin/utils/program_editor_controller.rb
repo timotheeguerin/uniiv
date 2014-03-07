@@ -4,7 +4,7 @@ class Admin::Utils::ProgramEditorController < ApplicationController
   end
 
   def search
-    s= Search.from_params(params)
+    s= Utils::Search.from_params(params)
     Program.search_program(s)
     s
   end
