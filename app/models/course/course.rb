@@ -143,6 +143,10 @@ class Course::Course < ActiveRecord::Base
     end
     courses
   end
+
+  def already_exist?
+    Course::Course.where(:subject_id => subject_id, :code => code).size > 0
+  end
 end
 
 class CourseState
