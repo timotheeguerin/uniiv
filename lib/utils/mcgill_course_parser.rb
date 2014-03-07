@@ -103,7 +103,7 @@ module Utils
           elsif  result[:unknown_subject]
             stats[:unknown_subjects] << result[:subject]
           else
-            stats[:errors] << result[:error]
+            stats[:errors] << "#{href} => #{result[:error]}"
           end
           puts href
         end
