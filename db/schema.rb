@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210005847) do
+ActiveRecord::Schema.define(version: 20140307183911) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20140210005847) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "prerequisite_read"
-    t.string   "corequisite_read"
+    t.text     "prerequisite_read"
+    t.text     "corequisite_read"
   end
 
   add_index "admin_course_requirement_filleds", ["course_id"], name: "index_admin_course_requirement_filleds_on_course_id", using: :btree
