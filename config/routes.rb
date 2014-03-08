@@ -38,7 +38,7 @@ Uniiv::Application.routes.draw do
       post 'course/requirements/:id/input' => 'course_requirements#save_requirement', :as => :course_requirement_input_save
       get 'course/loader/load' => 'course_loader#new', :as => :course_load_new
       post 'course/loader/load' => 'course_loader#load', :as => :course_load_create
-      get 'course/loader/load_all' => 'course_loader#load_all', :as => :course_load_all
+      post 'course/loader/load_all' => 'course_loader#load_all', :as => :course_load_all
       get 'program/editor' => 'program_editor#index', :as => :program_editor
     end
   end

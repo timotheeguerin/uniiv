@@ -36,6 +36,10 @@
 
     Add an other course
 <% end %>
+
+<%= form_tag(admin_utils_course_load_all_path) do %>
+    <%= submit_tag 'Load all courses', :class => 'btn btn-default', :title => 'Warning: Take time..', :rel => 'tooltip' %>
+<% end %>
 <%= form_tag(admin_utils_course_load_create_path) do %>
     <div class="form-group">
       <%= text_field_tag :url, @url, :class => 'form-control' %>
