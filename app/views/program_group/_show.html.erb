@@ -3,6 +3,7 @@
     <div class='row'>
       <div class='col-md-8'>
         <h4><%= link_to group.name, group_path(group) %></h4>
+        <span><%= t("group.#{group.restriction.to_s}", :value=> group.value) %></span>
       </div>
       <div class='col-md-4'>
         <div class='progress'>
@@ -25,15 +26,15 @@
                 <div class='col-md-9'>
                   <div>
                     <div style="display: inline-block;width: 30px; font-size: 24" class='vertical-align'>
-                        <% if current_user.has_completed_course?(course) %>
-                            <span class='glyphicon glyphicon-ok-circle greentext' title='You have complted this course' rel='tooltip'></span>
-                        <% elsif current_scenario.is_taking_course?(course) %>
+                      <% if current_user.has_completed_course?(course) %>
+                          <span class='glyphicon glyphicon-ok-circle greentext' title='You have complted this course' rel='tooltip'></span>
+                      <% elsif current_scenario.is_taking_course?(course) %>
 
-                            <span class='glyphicon glyphicon-screenshot yellowtext' title='You are taking this course' rel='tooltip'></span>
-                        <% end %>
+                          <span class='glyphicon glyphicon-screenshot yellowtext' title='You are taking this course' rel='tooltip'></span>
+                      <% end %>
                     </div>
                     <div style="display: inline-block" class='vertical-align'>
-                        <%= link_to course.get_detail_name, course_path(course) %>
+                      <%= link_to course.get_detail_name, course_path(course) %>
                     </div>
                   </div>
                 </div>
