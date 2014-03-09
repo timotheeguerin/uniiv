@@ -1,5 +1,3 @@
-require 'utils/term'
-
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -33,14 +31,15 @@ class ApplicationController < ActionController::Base
 
   def current_term
     if @current_semester.nil?
-      @current_semester = Term::now
+      @current_semester = Utils::Term::now
     end
     @current_semester
   end
 
   def return_json(message, options ={})
     json = {}
-    json[:success] = true
+    json[:success] = options[:success]
+    json[:success] ||= true
     json[:message] = t(message)
     json = json.merge(options)
     render :json => json.to_json

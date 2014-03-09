@@ -152,7 +152,7 @@ class ProgramGroup < ActiveRecord::Base
     term = nil
 
     if options[:planning]
-      term = Term::last_allowed
+      term = Utils::Term::last_allowed
     end
     get_completion_ratio(scenario, term) == 1
   end
@@ -163,7 +163,7 @@ class ProgramGroup < ActiveRecord::Base
 
   searchable do
     text :program do
-      parent_program.name
+      parent_program.name unless parent_program.nil?
     end
     text :name
   end

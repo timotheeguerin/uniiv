@@ -5,9 +5,9 @@ class ProgramGroupController < ApplicationController
     unless params[:semester].nil? or params[:year].nil?
       year = params[:year]
       semester = Course::Semester.find(params[:semester])
-      @term = Term.new(semester, year)
+      @term = Utils::Term.new(semester, year)
     end
-    @term ||= Term::now
+    @term ||= Utils::Term::now
 
     @group = ProgramGroup.find(params[:id])
 

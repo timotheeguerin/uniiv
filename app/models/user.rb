@@ -56,24 +56,15 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_course?(course, inc_advanced_standing = true)
-    completed_courses.each do |c|
-      if c.course == course
-        if inc_advanced_standing && c.advanced_standing
-          return false
-        end
-        return true
-      end
+    if inc_advanced_standing
+      completed_courses.where(:course_id => course.id).size > 0
+    else
+      completed_courses.where(:course_id => course.id, :advanced_standing => false).size > 0
     end
-    false
   end
 
   def is_taking_course?(course)
-    main_course_scenario.taking_courses.each do |c|
-      if c.course == course
-        return true
-      end
-    end
-    false
+    main_course_scenario.taking_courses.where(:course_id => course.id) > 0
   end
 
   def has_completed_or_taking_course?(course)

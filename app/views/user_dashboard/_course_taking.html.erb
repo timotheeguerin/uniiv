@@ -1,24 +1,28 @@
-<% if current_scenario.taking_courses.size > 0 %>
-    <hr>
-    <div>
-      <a href='<%= user_sort_course_path %>'><h1>In-Progress Courses</h1></a>
-    </div>
-    <div class='row'>
-      <% current_scenario.taking_courses.each do |c| %>
-          <div class='col-md-4 course_taking_container'>
-            <div class='dashboard_coursebox'>
-              <div class='row'>
-                <div class='col-xs-5'>
-                  <a href='<%= course_path(c.course) %>'><%= c.course.subject.name %> <%= c.course.code %>
-                  </a>
-                </div>
-                <div class='col-xs-7 text-right'>
-                  <%= render :partial => 'user/course_taking/course_taking_buttons', :locals => {:course => c, :useajax => true} %>
-                </div>
-              </div>
-            </div>
-          </div>
-      <% end %>
-    </div>
+<hr>
+<div>
+  <a href='<%= user_sort_course_path %>'><h1>In-Progress Courses (<%= current_term %>)</h1></a>
+</div>
 
+<% if current_scenario.taking_courses.size > 0 %>
+
+    <%= render :partial => 'course_taking_row', :locals => {:courses => current_scenario.get_course_in_semester(current_term.semester, current_term.year)} %>
+    <div>
+      <a href='<%= user_sort_course_path %>'>
+        <h2>
+          Past Courses
+        </h2>
+      </a>
+
+      <span>These are the courses you should have completed by now. Enter the grade you got.</span>
+    </div>
+    <%= render :partial => 'course_taking_row', :locals =>
+            {:courses => current_scenario.get_course_before_than(current_term.semester, current_term.year), :default_item => 'complete_form'} %>
+
+    <div>
+      <a href='<%= user_sort_course_path %>'><h2>Planned Courses</h2></a>
+    </div>
+    <%= render :partial => 'course_taking_row', :locals => {:courses => current_scenario.get_course_later_than(current_term.semester, current_term.year)} %>
+<% else %>
+    <span>You are not taking any courses</span>
 <% end %>
+

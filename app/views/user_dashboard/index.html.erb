@@ -69,7 +69,8 @@
                       <button class='btn btn-danger'
                               <% if p.type.id == 4 %>disabled
                               <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
-                        <span class='glyphicon glyphicon-remove-sign'></span></button>
+                        <span class='glyphicon glyphicon-remove-sign'></span>
+                      </button>
                     </div>
                     <%= hidden_field_tag :program_id, p.id %>
                 <% end %>

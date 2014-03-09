@@ -1,10 +1,21 @@
 class User::CourseTakingController < ApplicationController
-  before_action :setup
+  before_action :setup, :except => :sort_course
 
   def setup
     authorize! :edit, current_user
+    params[:id] = params[:course_id] unless params[:course_id].nil?
     @course = Course::Course.find(params[:id]) unless params[:id].nil?
+    if @course.nil?
+      if request.xhr?
+        return_json('course.notfound', :success => false)
+      else
+        flash[:notice] = 'Course not found'
+        _redirect_to :back
+      end
+    end
     @semesters = Course::Semester.all
+
+
   end
 
   #Sort the course
@@ -163,7 +174,6 @@ class User::CourseTakingController < ApplicationController
     else
       _redirect_to :back
     end
-
   end
 
 end

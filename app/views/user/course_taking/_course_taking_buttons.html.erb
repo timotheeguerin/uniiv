@@ -1,8 +1,13 @@
 <% id ="taking_carousel_#{course.id}_#{SecureRandom.uuid}" %>
+<% default_item ||= 'buttons' %>
 <div class='course-buttons-container pull-right'>
   <div id='<%= id %>' class='carousel slide' data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
-      <div class="item active">
+      <div class="item
+        <% if default_item == 'buttons' %>
+        active
+        <% end %>
+        ">
         <div>
           <div class='btn-group'>
             <a class='btn btn-success' href="#<%= id %>" rel='tooltip' title='Complete' data-slide="next">
@@ -19,7 +24,11 @@
           </div>
         </div>
       </div>
-      <div class='item'>
+      <div class='item
+        <% if default_item == 'complete_form' %>
+        active
+        <% end %>
+        '>
         <div class=''>
           <div class='row'>
             <div class='col-md-3'>
