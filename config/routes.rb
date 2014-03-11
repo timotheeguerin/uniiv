@@ -155,7 +155,9 @@ Uniiv::Application.routes.draw do
   end
 
   scope :module => 'utils' do
-    get 'utils/finalgradecalculator/course/:id' => 'final_grade_calculator#show', :as => :utils_fgc
+    get 'utils/finalgradecalculator' => 'final_grade_calculator#index', :as => :utils_fgc
+    get 'utils/finalgradecalculator/search' => 'final_grade_calculator#search', :as => :utils_fgc_search
+    get 'utils/finalgradecalculator/course/:id' => 'final_grade_calculator#show', :as => :utils_fgc_course
     post 'utils/finalgradecalculator/course/:id/create_grade' => 'final_grade_calculator#create_grade', :as => :utils_fgc_create_grade
     post 'utils/finalgradecalculator/course/:id/edit_grade_name' => 'final_grade_calculator#edit_grade_name', :as => :utils_fgc_edit_grade_name
     post 'utils/finalgradecalculator/course/:id/edit_grade_value' => 'final_grade_calculator#edit_grade_value', :as => :utils_fgc_edit_grade_value

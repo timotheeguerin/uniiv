@@ -25,7 +25,8 @@ module User::CourseTakingHelper
     course_complete.semester = user_taking_course.semester
     course_complete.year = user_taking_course.year
     html = {}
-    html[:class] = 'useajax' if params[:useajax]
+    html[:class] = 'form-inline'
+    html[:class] += ' useajax' if params[:useajax]
     html['data-delete-parent'] = params[:delete_parent] unless params[:delete_parent].nil?
     html['data-reload']= params[:reload] unless params[:reload].nil?
     render :partial => 'user/course_taking/complete_inline_form', :locals =>

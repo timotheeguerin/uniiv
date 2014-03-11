@@ -1,6 +1,6 @@
 class Utils::FinalGradeCalculatorController < ApplicationController
 
-  before_action :setup
+  before_action :setup, :except => [:index, :search]
 
   def setup
     authorize! :read, :fgc
@@ -10,8 +10,26 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       @prediction = Fgc::Prediction.new
       @prediction.user = current_user
       @prediction.course = Course::Course.find(params[:id])
+      scheme = Fgc::Scheme.new
+      scheme.final_percent = 0
+      @prediction.schemes << scheme
       @prediction.save
     end
+  end
+
+  def index
+    @courses = Course::Course.search do
+      fulltext params[:q]
+      paginate :page => 1, :per_page => 10
+    end.results
+  end
+
+  def search
+    @courses = Course::Course.search do
+      fulltext params[:q]
+      paginate :page => 1, :per_page => 10
+    end.results
+    render :partial => 'course_link_list', :layout => false
   end
 
   def show
@@ -22,7 +40,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     group = create
     group.simple = true
     group.save
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   def edit_grade_value
@@ -48,7 +66,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       end
       grade.destroy
     end
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   #Called when the user create a new group for mulitple grade(All assignments)
@@ -56,7 +74,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     group = create
     group.simple = false
     group.save
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   def create_scheme
@@ -69,26 +87,26 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       scheme.percents << percent
     end
     @prediction.save
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   def remove_scheme
     scheme = Fgc::Scheme.find(params[:scheme])
     scheme.destroy
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   def add_grade_to_group
     group = Fgc::Group.find(params[:group])
     group.grades << Fgc::Grade.new
     group.save
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   def remove_group
     group = Fgc::Group.find(params[:group])
     group.destroy
-    _redirect_to utils_fgc_path(@prediction.course_id)
+    _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
   def create

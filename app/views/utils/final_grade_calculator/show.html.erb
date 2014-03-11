@@ -1,29 +1,46 @@
-<h1>Final grade calculator</h1>
-<span>Calculate the grade you need to get at your final to achieve your goal</span>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-7'>
+      <h1>Final grade calculator</h1>
+      <span>Calculate the grade you need to get at your final to achieve your goal</span>
+    </div>
+    <div class='col-md-5'>
+      <div class='well'>
+        <div class='container-fluid'>
+          <div class='row'>
+            <div class='col-md-6'>
+              <div>
+                <strong><%= link_to @prediction.course, course_path(@prediction.course) %></strong>
+              </div>
+              <span><%= @prediction.course.name %></span>
+            </div>
+            <div class='col-md-6'>
+              <div>
+                <%= user_course_buttons(@prediction.course) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <hr>
 <div class='final_grade_calculator'>
   <div class='container'>
     <div class='row'>
       <div class='col-md-10'>
-        <div class='row'>
-          <div class='col-md-4'>
-          </div>
-          <div class='col-md-8'>
-            <div class='btn-group'>
-              <%= group_button_to utils_fgc_create_grade_path, :class => 'btn btn-primary', :title => t('fgc.create_grade.info'), :rel => 'tooltip' do %>
-                  <%= t('fgc.create_grade') %>
-              <% end %>
-              <%= group_button_to utils_fgc_create_group_path, :class => 'btn btn-primary', :title => t('fgc.create_group.info'), :rel => 'tooltip' do %>
-                  <%= t('fgc.create_group') %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <hr>
-
-        <div class='container nopadding-left'>
+        <div class='container nopadding-left' style='padding-bottom: 10px'>
           <div class='row'>
             <div class='col-md-4'>
+              <div class='btn-group'>
+                <%= group_button_to utils_fgc_create_grade_path, :class => 'btn btn-primary', :title => t('fgc.create_grade.info'), :rel => 'tooltip' do %>
+                    <%= t('fgc.create_grade') %>
+                <% end %>
+                <%= group_button_to utils_fgc_create_group_path, :class => 'btn btn-primary', :title => t('fgc.create_group.info'), :rel => 'tooltip' do %>
+                    <%= t('fgc.create_group') %>
+                <% end %>
+              </div>
             </div>
             <div class='col-md-6'>
               <div class='container nopadding-left'>
@@ -51,7 +68,7 @@
                       </div>
                   <% end %>
                   <div class='col-md-1'>
-                    <div style='padding-bottom: 5px'>
+                    <div>
                       <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary',
                                     :title => t('fgc.create_scheme.info'), :rel => 'tooltip', :disabled => !@prediction.can_add_more_schemes? do %>
                           <span class='glyphicon glyphicon-plus'></span>
@@ -173,7 +190,12 @@
       <div class='col-md-2'>
         <div class='fgcaffix'>
           Predictions:
-
+          <div class="progress progress-vertical">
+            <div class="bar bar-success" style="height: 70%;width:100%"></div>
+            <div class="bar bar-warning" style="height: 20%;width:100%"></div>
+            <div class="bar bar-danger" style="height: 10%;width:100%"></div>
+          </div>
+          <!--
           <table class='table'>
             <% @course.university.grading_system.entities.each do |entity| %>
                 <tr>
@@ -181,7 +203,7 @@
                   <td><span class='prediction' data-min-percent='<%= entity.min_score %>'></span></td>
                 </tr>
             <% end %>
-          </table>
+          </table>-->
         </div>
 
       </div>

@@ -1,0 +1,7 @@
+<div>
+  <% @courses.each do |course| %>
+      <div class='dashboard_coursebox'>
+        <%= link_to course.get_detail_name, utils_fgc_course_path(course) %>
+      </div>
+  <% end %>
+</div>
