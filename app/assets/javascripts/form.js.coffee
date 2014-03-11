@@ -43,7 +43,7 @@ $(document).ready ->
     typingTimer[input] = setTimeout(()->
       typingTimer[input] = null
       input.closest('form').submit()
-    , 500)
+    , 2000)
 
 #Submit a form using ajax
 submitFormAjax = () ->

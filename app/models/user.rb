@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def is_taking_course?(course)
-    main_course_scenario.taking_courses.where(:course_id => course.id) > 0
+    main_course_scenario.taking_courses.where(:course_id => course.id).size > 0
   end
 
   def has_completed_or_taking_course?(course)

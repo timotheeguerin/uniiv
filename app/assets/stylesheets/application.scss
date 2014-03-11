@@ -351,3 +351,20 @@ Jquery automplete styling
 .autocomplete-selected {
   background: #F0F0F0;
 }
+
+.tooglecontent .item.active, .showonhover {
+  display: none;
+}
+
+.nopadding-left
+{
+  padding-left: 0;
+}
+
+.fgcaffix {
+  width: 100px;
+}
+
+.fgcaffix.affix {
+  top: 60px;
+}

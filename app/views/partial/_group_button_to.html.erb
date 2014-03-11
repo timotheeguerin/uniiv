@@ -1,7 +1,12 @@
-<%= form_tag url, form_params do %>
-    <%= hidden_field_tag name, value %>
-    <% unless redirect_to_path.nil? %>
-        <%= hidden_field_tag :redirect, redirect_to_path %>
-    <% end %>
+
+<%= content_tag :button, params do %>
+<%= content %>
+    <div class='hidden'>
+      <%= form_tag url, form_params do %>
+          <%= hidden_field_tag name, value %>
+          <% unless redirect_to_path.nil? %>
+              <%= hidden_field_tag :redirect, redirect_to_path %>
+          <% end %>
+      <% end %>
+    </div>
 <% end %>
-<%= content_tag :button, content, params %>

@@ -55,6 +55,17 @@ $(document).ready () ->
     input.keydown () ->
       clearTimeout(typingTimer);
 
+  #Toogle the display of two children: one by default and one when mouse hover
+  $(document).on 'mouseenter', '.tooglecontent', () ->
+    $(this).find('.item.default').hide()
+    $(this).find('.item.active').show()
+
+  $(document).on 'mouseleave', '.tooglecontent', () ->
+    $(this).find('.item.active').hide()
+    $(this).find('.item.default').show()
+
+  showonhover();
+
 
   $(document).on 'click', '.toggledisplay', () ->
     console.log('clo')
@@ -82,11 +93,25 @@ setupStarRatings = () ->
         score: value
       })
 
+showonhover = (container)->
+  container ?= document
+  $(document).find('.showonhover').each () ->
+    item = $(this)
+    container = $(this).closest($(this).data('hover-container'))
+    container.mouseenter () ->
+      item.show()
+    container.mouseleave () ->
+      item.hide()
+
+
 
 reload_scripts = (container) ->
   container.find('.selectpicker').selectpicker({
       width: 'auto'
     });
+  showonhover(container)
+
+
 
 jQuery.fn.rotate = (degrees) ->
   $(this).css

@@ -216,11 +216,12 @@ class CanGraph
 
 
       @container.add(group)
-
+    console.log('t:' + totalWidth)
     @setupNodesListener()
 
     totalWidth = @viewport.canvasSize.x if totalWidth < @viewport.canvasSize.x
     maxHeight = @viewport.canvasSize.y if maxHeight < @viewport.canvasSize.y
+
     @container.setSize(totalWidth, maxHeight)
     @viewport.resizeLayer(@container.getWidth() + 2 * padding, @container.getHeight() + 2 * padding)
     @viewport.autoResizeBackground()
@@ -305,6 +306,7 @@ class Graph
     @load(data)
 
   load: (data) ->
+    console.log(JSON.stringify(data.dimension))
     container_group = new Kinetic.Group(
       x: 0
       y: 0

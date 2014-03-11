@@ -22,6 +22,14 @@ $(document).ready ->
     console.log(JSON.stringify(schemes))
     update_predictions(content)
 
+    $('.fgcaffix').each () ->
+      top = $(this).offset().top - $('header').height() - 20
+      $(this).affix({
+        offset: {
+          top: top
+        }
+      })
+
 
 
 update_schemes = (content) ->
@@ -66,7 +74,7 @@ compute_min_score = (prediction) ->
     for group in scheme['groups']
       score += group['grade'] * group['percent'] / 100
     need.push((prediction - score) / scheme['final_percent'] * 100)
-  return Math.min.apply(Math, need)
+  return Math.round(Math.min.apply(Math, need)*10)/10
 
 update_form_values = (form) ->
   form.find('input[type=text]').each ->

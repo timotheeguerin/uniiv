@@ -22,7 +22,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     group = create
     group.simple = true
     group.save
-    render :show
+    _redirect_to utils_fgc_path(@prediction.course_id)
   end
 
   def edit_grade_value
@@ -39,7 +39,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     return_json('Name edited successfully')
   end
 
-  def delete_grade
+  def remove_grade
     grade = Fgc::Grade.find(params[:grade])
     unless grade.nil?
       group = grade.group
@@ -48,7 +48,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       end
       grade.destroy
     end
-    return_json('Grade removed successfully')
+    _redirect_to utils_fgc_path(@prediction.course_id)
   end
 
   #Called when the user create a new group for mulitple grade(All assignments)
@@ -56,14 +56,39 @@ class Utils::FinalGradeCalculatorController < ApplicationController
     group = create
     group.simple = false
     group.save
-    render :show
+    _redirect_to utils_fgc_path(@prediction.course_id)
+  end
+
+  def create_scheme
+    scheme = Fgc::Scheme.new
+    @prediction.schemes << scheme
+    @prediction.groups.each do |group|
+      percent = Fgc::Percent.new
+      percent.group = group
+      percent.value = 0
+      scheme.percents << percent
+    end
+    @prediction.save
+    _redirect_to utils_fgc_path(@prediction.course_id)
+  end
+
+  def remove_scheme
+    scheme = Fgc::Scheme.find(params[:scheme])
+    scheme.destroy
+    _redirect_to utils_fgc_path(@prediction.course_id)
   end
 
   def add_grade_to_group
     group = Fgc::Group.find(params[:group])
     group.grades << Fgc::Grade.new
     group.save
-    render :show
+    _redirect_to utils_fgc_path(@prediction.course_id)
+  end
+
+  def remove_group
+    group = Fgc::Group.find(params[:group])
+    group.destroy
+    _redirect_to utils_fgc_path(@prediction.course_id)
   end
 
   def create
