@@ -41,12 +41,12 @@
             </div>
             <div class='col-md-1'>
               <div class='text-center'>
-                <Strong>Grade</Strong>
+                <Strong>Grade %</Strong>
               </div>
             </div>
             <div class='col-md-6'>
               <div >
-                <Strong>Weight of the grade</Strong>
+                <Strong>Weight of the grade %</Strong>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
                   <% end %>
                   <div class='col-md-1'>
                     <div>
-                      <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary btn-sm',
+                      <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary btn-sm ',
                                     :title => t('fgc.create_scheme.info'), :rel => 'tooltip', :disabled => !@prediction.can_add_more_schemes? do %>
                           <span class='glyphicon glyphicon-plus'></span>
                       <% end %>
