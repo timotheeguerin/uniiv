@@ -25,11 +25,8 @@ $(document).ready ->
     $('.fgcaffix').each () ->
       top = $(this).offset().top - $('header').height() - 20
       $(this).affix({
-        offset: {
-          top: top
-        }
+        offset: {  top: top }
       })
-
 
 
 update_schemes = (content) ->
@@ -51,6 +48,23 @@ update_schemes = (content) ->
       group['grade'] = grade
       group['percent'] = parseFloat(form.data('percent'))
       scheme['groups'].push(group)
+
+  check_scheme_total_percent(content, schemes)
+
+#Check if the total percent is really 100%
+check_scheme_total_percent = (content, schemes) ->
+  for scheme in schemes
+    percent = scheme['final_percent']
+    for group in scheme['groups']
+      percent += group['percent']
+    warning_box = $(content).find('.scheme_percent_wrong[data-scheme=' + scheme['id'] + ']')
+    console.log(warning_box.html())
+    if percent != 100
+      console.log('invalud')
+      warning_box.show()
+    else
+      warning_box.hide()
+
 
 calculate_group_grade = (group) ->
   total = 0
@@ -74,7 +88,7 @@ compute_min_score = (prediction) ->
     for group in scheme['groups']
       score += group['grade'] * group['percent'] / 100
     need.push((prediction - score) / scheme['final_percent'] * 100)
-  return Math.round(Math.min.apply(Math, need)*10)/10
+  return Math.round(Math.min.apply(Math, need) * 10) / 10
 
 update_form_values = (form) ->
   form.find('input[type=text]').each ->

@@ -18,18 +18,24 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   end
 
   def index
-    @courses = Course::Course.search do
-      fulltext params[:q]
-      paginate :page => 1, :per_page => 10
-    end.results
+    authorize! :read, :fgc
+    @courses =[]
+    if params[:q]
+      @courses = Course::Course.search do
+        fulltext params[:q]
+        paginate :page => 1, :per_page => 10
+      end.results
+    end
   end
 
   def search
-    @courses = Course::Course.search do
+    authorize! :read, :fgc
+    courses = []
+    courses = Course::Course.search do
       fulltext params[:q]
       paginate :page => 1, :per_page => 10
     end.results
-    render :partial => 'course_link_list', :layout => false
+    render :partial => 'course_link_list', :layout => false, :locals => {:courses => courses}
   end
 
   def show

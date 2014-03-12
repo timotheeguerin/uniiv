@@ -32,15 +32,43 @@
       <div class='col-md-10'>
         <div class='container nopadding-left' style='padding-bottom: 10px'>
           <div class='row'>
-            <div class='col-md-4'>
-              <div class='btn-group'>
-                <%= group_button_to utils_fgc_create_grade_path, :class => 'btn btn-primary', :title => t('fgc.create_grade.info'), :rel => 'tooltip' do %>
-                    <%= t('fgc.create_grade') %>
-                <% end %>
-                <%= group_button_to utils_fgc_create_group_path, :class => 'btn btn-primary', :title => t('fgc.create_group.info'), :rel => 'tooltip' do %>
-                    <%= t('fgc.create_group') %>
-                <% end %>
+            <div class='col-md-1'>
+            </div>
+            <div class='col-md-2'>
+              <div class='text-center'>
+                <Strong>Name</Strong>
               </div>
+            </div>
+            <div class='col-md-1'>
+              <div class='text-center'>
+                <Strong>Grade</Strong>
+              </div>
+            </div>
+            <div class='col-md-6'>
+              <div >
+                <Strong>Weight of the grade</Strong>
+              </div>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>
+            </div>
+            <div class='col-md-6'>
+              <div class='container nopadding-left'>
+                <div class='row' style="margin-bottom: 10px">
+                  <% @prediction.schemes.each do |scheme| %>
+                      <div class='col-md-1 text-center'>
+                        <div class='scheme_percent_wrong' data-scheme='<%= scheme.id %>'>
+                          <span class='glyphicon glyphicon-warning-sign redtext' title='This scheme percent doesnot sums to 100%' rel='tooltip'></span>
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>
             </div>
             <div class='col-md-6'>
               <div class='container nopadding-left'>
@@ -55,7 +83,7 @@
                               <div class='item active'>
                                 <%= form_tag(utils_fgc_remove_scheme_path) do %>
                                     <%= hidden_field_tag :scheme, scheme.id %>
-                                    <button class='btn btn-danger' title="<%= t('fgc.remove_scheme') %>" rel='tooltip'>
+                                    <button class='btn btn-danger btn-sm' title="<%= t('fgc.remove_scheme') %>" rel='tooltip'>
                                       <span class='glyphicon glyphicon-remove'></span>
                                     </button>
                                 <% end %>
@@ -69,7 +97,7 @@
                   <% end %>
                   <div class='col-md-1'>
                     <div>
-                      <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary',
+                      <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary btn-sm',
                                     :title => t('fgc.create_scheme.info'), :rel => 'tooltip', :disabled => !@prediction.can_add_more_schemes? do %>
                           <span class='glyphicon glyphicon-plus'></span>
                       <% end %>
@@ -90,7 +118,7 @@
                     <% @prediction.schemes.each do |scheme| %>
                         <div class='col-md-1 final_percent'>
                           <%= form_tag(utils_fgc_edit_final_percent_path, :class => 'useajax', 'data-scheme' => scheme.id) do %>
-                              <%= text_field_tag :percent, scheme.final_percent, :placeholder => 'Final percent', :class => 'submitonedit form-control', 'data-field' => 'final-percent' %>
+                              <%= text_field_tag :percent, scheme.final_percent, :placeholder => 'Final percent', :class => 'submitonedit form-control percentage', 'data-field' => 'final-percent' %>
                               <%= hidden_field_tag :scheme, scheme.id %>
                           <% end %>
                         </div>
@@ -111,6 +139,20 @@
                       <% group.grades.each_with_index do |grade, i| %>
                           <div class='grade container nopadding-left'>
                             <div class='row'>
+                              <div class='col-md-1'>
+                                <div class='showonhover' data-hover-container='.group'>
+                                  <div class='btn-group' style='margin-top: 5px'>
+                                    <%= group_button_to utils_fgc_remove_grade_path, :name => 'grade', :value => grade.id, :class => 'btn btn-danger btn-sm' do %>
+                                        <span class='glyphicon glyphicon-remove'></span>
+                                    <% end %>
+                                    <% if i == group.grades.size-1 %>
+                                        <%= group_button_to utils_fgc_add_grade_to_group_path, :name => 'group', :value => group.id, :class => 'btn btn-primary btn-sm' do %>
+                                            <span class='glyphicon glyphicon-plus'></span>
+                                        <% end %>
+                                    <% end %>
+                                  </div>
+                                </div>
+                              </div>
                               <div class='col-md-2'>
                                 <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
                                     <%= text_field_tag :name, grade.name, :placeholder => 'Name', :class => 'submitonedit form-control' %>
@@ -120,22 +162,11 @@
                               </div>
                               <div class='col-md-1 grade_value'>
                                 <%= form_tag(utils_fgc_edit_grade_value_path, :class => 'useajax') do %>
-                                    <%= text_field_tag :value, grade.value, :placeholder => 'Grade', :class => 'submitonedit form-control', 'data-field' => 'grade' %>
+                                    <%= text_field_tag :value, grade.value, :placeholder => 'Grade', :class => 'submitonedit form-control percentage', 'data-field' => 'grade' %>
                                     <%= hidden_field_tag :grade, grade.id %>
                                 <% end %>
                               </div>
-                              <% if i > 0 %>
-                                  <div class='col-md-1'>
-                                    <div class='showonhover' data-hover-container='.group'>
-                                      <%= form_tag(utils_fgc_remove_grade_path) do %>
-                                          <%= hidden_field_tag :grade, grade.id %>
-                                          <button class='btn btn-danger' title='<%= t('fgc.remove_grade') %>' rel='tooltip'>
-                                            <span class='glyphicon glyphicon-remove'></span>
-                                          </button>
-                                      <% end %>
-                                    </div>
-                                  </div>
-                              <% end %>
+
                             </div>
                           </div>
                       <% end %>
@@ -148,42 +179,21 @@
                               <div class='col-md-1 scheme' data-scheme='<%= scheme.id %>'>
                                 <%= form_tag(utils_fgc_edit_group_percent_path, :class => 'useajax') do %>
                                     <%= hidden_field_tag :percent, percent.id %>
-                                    <%= text_field_tag :value, percent.value, :placeholder => 'Percent', :class => 'submitonedit form-control', 'data-field' => 'percent' %>
+                                    <%= text_field_tag :value, percent.value, :placeholder => 'Percent', :class => 'submitonedit form-control percentage', 'data-field' => 'percent' %>
                                 <% end %>
                               </div>
                           <% end %>
                         </div>
                       </div>
                     </div>
-                    <div class='col-md-1'>
-                      <div class='showonhover' data-hover-container='.group'>
-                        <%= form_tag(utils_fgc_remove_group_path) do %>
-                            <%= hidden_field_tag :group, group.id %>
-                            <button class='btn btn-danger' title='Remove' rel='tooltip'>
-                              <span class='glyphicon glyphicon-remove'></span>
-                            </button>
-                        <% end %>
-                      </div>
-                    </div>
                   </div>
                 </div>
-                <% unless group.simple? %>
-                    <hr>
-                    <div class='container'>
-                      <div class='row'>
-                        <div class='col-md-4'>
-                          <%= form_tag(utils_fgc_add_grade_to_group_path) do %>
-                              <%= hidden_field_tag :group, group.id %>
-                              <button class='btn btn-primary'>
-                                <%= t('fgc.add_grade_to_group') %>
-                              </button>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                <% end %>
-
               </div>
+          <% end %>
+        </div>
+        <div>
+          <%= button_to utils_fgc_create_grade_path, :class => 'btn btn-primary form-control' do %>
+              <span class='glyphicon glyphicon-plus'></span>
           <% end %>
         </div>
       </div>
@@ -191,8 +201,8 @@
         <div class='fgcaffix'>
           Predictions:
 
-          <table class='table'>
-            <% @course.university.grading_system.entities.where(:pass=> true).order(:min_score=> :desc).each do |entity| %>
+          <table class='table table-stripped'>
+            <% @course.university.grading_system.entities.where(:pass => true).order(:min_score => :desc).each do |entity| %>
                 <tr>
                   <td> <%= entity.name %></td>
                   <td>

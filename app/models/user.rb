@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   has_many :course_recommendations, :class_name => UsersCoursesRecommendation, :dependent => :destroy
 
+  has_many :fgc_predictions, :class_name => Fgc::Prediction
+
   #Validations
   validates :advanced_standing_credits, :presence => true
 
@@ -108,6 +110,11 @@ class User < ActiveRecord::Base
 
   def get_recommended_courses
 
+  end
+
+  #Return the list of the latest edited final grade calculator courses
+  def get_last_fgc_courses(limit = 5)
+    fgc_predictions.order(:updated_at => :desc).limit(limit)
   end
 
   def to_s

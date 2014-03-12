@@ -1,20 +1,37 @@
 <h1>Final grade calculator</h1>
 <span>Calculate the grade you need to get at your final to achieve your goal</span>
 <hr>
-
-<div>First select the course</div>
-<div>
-  <%= form_tag(utils_fgc_path, :method => 'get') do %>
-      <div class='form-group'>
-        <div class='input-group'>
-          <%= text_field_tag(:q, params[:q], options = {:class => 'form-control search-ajax', 'data-search-output' => '#course_list_container', 'data-search-url' => utils_fgc_search_path}) %>
-          <span class="input-group-btn">
-                <%= submit_tag('Search', :class => 'btn btn-primary') %>
-            </span>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div>First select the course</div>
+      <div>
+        <%= form_tag(utils_fgc_path, :method => 'get') do %>
+            <div class='form-group'>
+              <div class='input-group'>
+                <%= text_field_tag(:q, params[:q], options = {:class => 'form-control search-ajax', 'data-search-output' => '#course_list_container', 'data-search-url' => utils_fgc_search_path}) %>
+                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                <span class="input-group-btn">
+                    <%= submit_tag('Search', :class => 'btn btn-primary') %>
+                </span>
+              </div>
+            </div>
+        <% end %>
+        <div id='course_list_container'>
+          <%= render :partial => 'course_link_list', :locals => {:courses => @courses} %>
         </div>
       </div>
-  <% end %>
-  <div id='course_list_container'>
-    <%= render :partial => 'course_link_list' %>
+    </div>
+
+    <div class='col-md-4'>
+      <div><h3>Latest courses</h3></div>
+      <div>
+        <% current_user.get_last_fgc_courses.each do |prediction| %>
+            <div class='dashboard_coursebox'>
+              <%= link_to prediction.course.get_detail_name, utils_fgc_course_path(prediction.course) %>
+            </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

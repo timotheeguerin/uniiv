@@ -33,16 +33,36 @@ $(document).ready ->
         input.data('searching', false)
     })
 
+  $(document).on 'keyup', 'form input.percentage', ()->
+    checkvalid($(this))
 
   #Submit a form when the input is edited(has a timer)
   typingTimer = {}
+  saveTimer = {}
+  savesigns = {}
   $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
     if typingTimer[input] != null
-      clearTimeout(typingTimer)
+      clearTimeout(typingTimer[input])
+    if saveTimer[input] != null
+      clearTimeout(saveTimer[input])
+    if savesigns[input]
+      savesigns[input].remove()
+
     typingTimer[input] = setTimeout(()->
       typingTimer[input] = null
-      input.closest('form').submit()
+      if checkvalid(input)
+        input.closest('form').submit()
+        success_sign = $('<div data-original-title="Saved!" rel="tooltip"><span class="glyphicon glyphicon-ok greentext"></span></div>').appendTo('body')
+        success_sign.css('position', 'absolute')
+        success_sign.offset({
+          top: input.offset().top + 8,
+          left: input.offset().left + input.outerWidth() + 3
+        })
+        savesigns[input] = success_sign
+        saveTimer[input] = setTimeout(()->
+          success_sign.remove()
+        , 2000)
     , 2000)
 
 #Submit a form using ajax
@@ -67,10 +87,9 @@ submitFormAjax = () ->
 
     form.off()
     $(form).trigger('formAjaxComplete', data)
+
   )
   return false
-
-
 
 
 reload_container = (container) ->
@@ -83,3 +102,15 @@ reload_container = (container) ->
 window.remove_tooltip = (container) ->
   container.find("[rel='tooltip']").each () ->
     $(this).tooltip('destroy')
+
+checkvalid = (input) ->
+  if input.hasClass('percentage')
+    val = parseFloat(input.val())
+    if val > 100
+      input.val(100)
+    else if val < 0
+      input.val(0)
+    else if val < 1 and input.val().indexOf('%') != -1
+      input.val(100 * val)
+    return true
+  return true
