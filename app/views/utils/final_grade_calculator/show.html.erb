@@ -190,16 +190,14 @@
       <div class='col-md-2'>
         <div class='fgcaffix'>
           Predictions:
-          <!--<div class="progress progress-vertical">
-            <div class="bar bar-success" style="height: 70%;width:100%"></div>
-            <div class="bar bar-warning" style="height: 20%;width:100%"></div>
-            <div class="bar bar-danger" style="height: 10%;width:100%"></div>
-          </div>-->
+
           <table class='table'>
-            <% @course.university.grading_system.entities.each do |entity| %>
+            <% @course.university.grading_system.entities.where(:pass=> true).order(:min_score=> :desc).each do |entity| %>
                 <tr>
                   <td> <%= entity.name %></td>
-                  <td><span class='prediction' data-min-percent='<%= entity.min_score %>'></span></td>
+                  <td>
+                    <span class='prediction' data-min-percent='<%= entity.min_score %>'></span>
+                  </td>
                 </tr>
             <% end %>
           </table>

@@ -85,4 +85,10 @@ update_form_values = (form) ->
 update_predictions = (content) ->
   content.find('.prediction').each ->
     value = compute_min_score(parseInt($(this).data('min-percent')))
-    $(this).text(value)
+
+    if value <= 0
+      $(this).html('<span class="glyphicon glyphicon-ok greentext"></span>')
+    else if value > 100
+      $(this).html('<span class="glyphicon glyphicon-remove redtext"></span>')
+    else
+      $(this).text(value)

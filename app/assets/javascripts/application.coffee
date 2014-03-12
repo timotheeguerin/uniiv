@@ -64,6 +64,7 @@ $(document).ready () ->
     $(this).find('.item.active').hide()
     $(this).find('.item.default').show()
 
+
   showonhover();
 
 

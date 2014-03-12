@@ -162,6 +162,9 @@ a {
 .yellowtext {
   color: $palette_yellow_medium;
 }
+.redtext {
+  color: $palette_orange_darkest;
+}
 
 .vertical-align {
   display: table-cell;
@@ -368,3 +371,4 @@ Jquery automplete styling
 .fgcaffix.affix {
   top: 60px;
 }
+
