@@ -42,15 +42,17 @@ $(document).ready ->
   savesigns = {}
   $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
-    if typingTimer[input] != null
-      clearTimeout(typingTimer[input])
-    if saveTimer[input] != null
-      clearTimeout(saveTimer[input])
-    if savesigns[input]
-      savesigns[input].remove()
+    form = input.closest('form')
+    input_id = form.attr('action') + input.attr('name')
+    if typingTimer[input_id] != null
+      clearTimeout(typingTimer[input_id])
+    if saveTimer[input_id] != null
+      clearTimeout(saveTimer[input_id])
+    if savesigns[input_id]
+      savesigns[input_id].remove()
 
-    typingTimer[input] = setTimeout(()->
-      typingTimer[input] = null
+    typingTimer[input_id] = setTimeout(()->
+      typingTimer[input_id] = null
       if checkvalid(input)
         input.closest('form').submit()
         success_sign = $('<div data-original-title="Saved!" rel="tooltip"><span class="glyphicon glyphicon-ok greentext"></span></div>').appendTo('body')
@@ -59,8 +61,8 @@ $(document).ready ->
           top: input.offset().top + 8,
           left: input.offset().left + input.outerWidth() + 3
         })
-        savesigns[input] = success_sign
-        saveTimer[input] = setTimeout(()->
+        savesigns[input_id] = success_sign
+        saveTimer[input_id] = setTimeout(()->
           success_sign.remove()
         , 2000)
     , 2000)
