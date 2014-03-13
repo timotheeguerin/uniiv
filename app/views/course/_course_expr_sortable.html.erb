@@ -1,9 +1,9 @@
 <li class='dependency <%= 'notsortable' if current_scenario.plan_to_take_course?(course) or current_user.has_completed_course?(course) %>' style='display: inline-block'>
   <div data-course-id="<%= course.id %>" data-need-reload=true>
-    <span><%= course.to_s %></span>
+    <span class='<%= get_course_css_class(course) %>'><%= course.to_s %></span>
 
     <div style="display: inline-block"><%= link_to course_path(course), :target => '_blank' do %>
-          <button class='btn btn-info'>
+          <button class='btn btn-info btn-sm'>
             <span class='glyphicon glyphicon-info-sign'></span>
           </button>
       <% end %></div>

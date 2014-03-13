@@ -64,7 +64,6 @@ class Course::Course < ActiveRecord::Base
   end
 
   def requirements_completed?(scenario, term = nil)
-    puts 'pre: ' + prerequisite.requirements_completed?(scenario, term).to_s unless prerequisite.nil?
     unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
     end
@@ -83,7 +82,7 @@ class Course::Course < ActiveRecord::Base
     user = scenario.user
     if scenario.has_completed_course?(self, true, term)
       CourseState::COMPLETED
-    elsif scenario.is_taking_course?(self, term)
+    elsif scenario.plan_to_take_course?(self)
       CourseState::TAKING
     elsif scenario.can_take_course?(self, term)
       CourseState::AVAILABLE

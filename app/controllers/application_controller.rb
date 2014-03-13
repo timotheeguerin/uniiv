@@ -4,7 +4,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_scenario, :current_scenario=, :current_term
 
+  rescue_from CanCan::AccessDenied do |exception|
+    if user_signed_in?
+      redirect_to main_app.root_url, :alert => exception.message
+    else
+      redirect_to main_app.new_user_session_path(:redirect => request.env['PATH_INFO'])
+    end
+
+  end
+
   private
+
+  def after_sign_in_path_for(ressource)
+    get_redirect_path(user_education_path)
+  end
+  def after_sign_up_path_for(ressource)
+    get_redirect_path(user_education_path)
+  end
+
   def current_scenario
     unless session[:scenario_id].nil?
       @current_scenario ||= current_user.course_scenarios.find(session[:scenario_id])
@@ -57,14 +74,18 @@ class ApplicationController < ActionController::Base
   #Redirect to the path given in the url if it exist otherwise to the path given as parameter.
   # If parameter empty return to back
   def _redirect_to(path=nil)
+    redirect_to get_redirect_path(path)
+  end
+
+  def get_redirect_path(path = nil)
     if params[:redirect].nil?
       if path.nil?
-        redirect_to :back
+        :back
       else
-        redirect_to path
+        path
       end
     else
-      redirect_to params[:redirect]
+       params[:redirect]
     end
   end
 end

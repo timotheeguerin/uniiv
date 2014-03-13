@@ -247,6 +247,11 @@ ul.sortable li {
   @include grabcursor;
 }
 
+ul.sortable li.highlight {
+  box-shadow: 0 0 5px $palette_blue_lightest;
+  border: 1px solid $palette_blue_lightest;
+}
+
 ul.sortable li.placeholder {
   height: 50px;
   position: relative;

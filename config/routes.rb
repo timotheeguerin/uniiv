@@ -1,4 +1,5 @@
 Uniiv::Application.routes.draw do
+  get "transcript_loader/index"
   get 'scenario/new'
   get 'course_taking/new'
   get 'course_taking/new_graph_embed'

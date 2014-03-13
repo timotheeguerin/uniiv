@@ -3,13 +3,13 @@ module CourseHelper
   def get_course_css_class(course)
     state = course.get_course_state(current_scenario)
     case state
-      when 'completed'
+      when CourseState::COMPLETED
         'course_completed'
-      when 'course_taking'
+      when CourseState::TAKING
         return 'course_taking'
-      when 'available'
+      when CourseState::AVAILABLE
         return 'course_available'
-      when 'unavailable'
+      when CourseState::UNAVAILABLE
         return 'course_unavailable'
       else
         return 'course_unavailable'

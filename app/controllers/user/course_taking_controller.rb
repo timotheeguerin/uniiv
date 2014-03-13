@@ -20,6 +20,7 @@ class User::CourseTakingController < ApplicationController
 
   #Sort the course
   def sort_course
+    authorize! :edit, current_user
     @years = {}
     term = current_term.first_of_year
     @previous_courses = current_scenario.get_course_before_than(term.semester, term.year)

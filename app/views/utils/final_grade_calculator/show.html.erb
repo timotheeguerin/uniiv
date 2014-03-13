@@ -155,7 +155,7 @@
                               </div>
                               <div class='col-md-2'>
                                 <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
-                                    <%= text_field_tag :name, grade.name, :placeholder => 'Name', :class => 'submitonedit form-control' %>
+                                    <%= text_field_tag :name, grade.name, :placeholder => 'Name (e.g. Midterm)', :class => 'submitonedit form-control' %>
                                     <%= hidden_field_tag :grade, grade.id %>
                                 <% end %>
 

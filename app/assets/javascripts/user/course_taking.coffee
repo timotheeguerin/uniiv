@@ -10,6 +10,15 @@ $(document).ready ()->
     })
   )
 
+  $(document).on('mouseenter', 'li.dependency.notsortable', () ->
+    course_id = $(this).children(':first').data('course-id')
+    $("div.sortable_list_container >  ul > li > div[data-course-id=" + course_id + "] ").parent().addClass('highlight')
+  )
+  $(document).on('mouseleave', 'li.dependency.notsortable', () ->
+    course_id = $(this).children(':first').data('course-id')
+    $("div.sortable_list_container > ul > li > div[data-course-id=" + course_id + "] ").parent().removeClass('highlight')
+  )
+
   $('.sortable').each ()->
     handleSortable($(this))
 

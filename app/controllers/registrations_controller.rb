@@ -29,10 +29,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def after_sign_up_path_for(ressource)
-    user_education_path
-  end
-
   def update
     super
   end

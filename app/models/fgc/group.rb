@@ -1,7 +1,7 @@
 class Fgc::Group < ActiveRecord::Base
   belongs_to :prediction, :class_name => Fgc::Prediction, :touch => true
   has_many :grades, :class_name => Fgc::Grade
-  has_many :percents, :class_name => Fgc::Percent
+  has_many :percents, :class_name => Fgc::Percent, :dependent => :destroy
 
   def scheme_percent(scheme)
     scheme = scheme.id unless scheme.is_a? Numeric
