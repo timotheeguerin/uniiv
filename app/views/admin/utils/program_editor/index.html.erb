@@ -1,5 +1,9 @@
 <h1>Program editor</h1>
 Edit/Create programs
+
+<div class='whitetext'>
+  <%= link_to 'New program', program_new_path, :class => 'btn btn-primary' %>
+</div>
 <hr>
 
 <%= form_tag admin_utils_program_editor_path, :method => 'get' do %>
@@ -18,12 +22,12 @@ Edit/Create programs
         <td>
           <div class='btn-group' style="color: white">
             <div style="display: inline-block">
-              <a href="<%= program_edit_path(program)%>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
+              <a href="<%= program_edit_path(program) %>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
                 <span class="glyphicon glyphicon-pencil"></span>
               </a>
             </div>
             <div style="display: inline-block">
-              <%= form_tag program_delete_path, :class=>"form-inline" do %>
+              <%= form_tag program_delete_path, :class => "form-inline" do %>
                   <%= hidden_field_tag :id, program.id %>
                   <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
                     <span class="glyphicon glyphicon-remove-sign"></span>

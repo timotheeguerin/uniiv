@@ -77,10 +77,11 @@ Uniiv::Application.routes.draw do
 
   #Program controller
   get 'program/search/autocomplete' => 'program#search_autocomplete', :as => :program_search_autocomplete
-  get 'program/:id', to: 'program#show', as: 'program'
-  get 'program/:id/graph/embed' => 'program#graph_embed'
   get 'program/new' => 'program#new', :as => :program_new
   post 'program/new' => 'program#create', :as => :program_create
+  get 'program/:id', to: 'program#show', as: 'program'
+  get 'program/:id/graph/embed' => 'program#graph_embed'
+
   get 'program/:id/edit' => 'program#edit', :as => :program_edit
   patch 'program:id/edit' => 'program#update', :as => :program_update
   post 'program/delete' => 'program#delete', :as => :program_delete
