@@ -1,0 +1,1 @@
+rake db:sync_local

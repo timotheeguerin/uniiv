@@ -21,3 +21,4 @@
 solr/data/
 solr/default/
 solr/development/
+solr/pids/
