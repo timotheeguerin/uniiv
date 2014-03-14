@@ -26,7 +26,7 @@ development_main:
   username: root
   password: madremia350
   socket: /var/run/mysqld/mysqld.sock
-  host: 192.168.2.19
+  host: bendodev.no-ip.org
   ssh_user: timssh
 
 # Warning: The database defined as "test" will be erased and

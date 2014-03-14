@@ -138,8 +138,12 @@ class ProgramGroup < ActiveRecord::Base
     scenario = options[:scenario]
     result = courses
     unless scenario.nil?
-      result = result.where { id.in(scenario.taking_courses.pluck(:course_id)) } if options[:only_taking]
-      result = result.where { id.not_in(scenario.taking_courses.pluck(:course_id)) } if options[:only_not_taking]
+      result = result.where do
+        id.in(scenario.taking_courses.pluck(:course_id)) if options[:only_taking] and
+        id.in(scenario.user.completed_courses.pluck(:course_id)) if options[:only_completed] and
+        id.not_in(scenario.taking_courses.pluck(:course_id)) if options[:only_not_taking] and
+        id.not_in(scenario.user.completed_courses.pluck(:course_id)) if options[:only_not_completed]
+      end
     end
     result
   end

@@ -92,10 +92,8 @@ class Course::Scenario < ActiveRecord::Base
         :only_not_completed => false
     }
     options = options.reverse_merge(default_options)
-    programs.each do |program|
-      courses += program.get_all_courses(options)
-    end
-    courses
+    options[:programs] ||= programs.map{|x| x.id}
+    Course::Course.search_course(options)
   end
 
 

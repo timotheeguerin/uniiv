@@ -43,7 +43,7 @@ $(document).ready ->
   $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
     form = input.closest('form')
-    input_id = form.attr('action') + input.attr('name')
+    input_id = get_input_id(input)
     if typingTimer[input_id] != null
       clearTimeout(typingTimer[input_id])
     if saveTimer[input_id] != null
@@ -116,3 +116,10 @@ checkvalid = (input) ->
       input.val(100 * val)
     return true
   return true
+
+get_input_id = (input)->
+  form = input.closest('form')
+  input_id = form.attr('action')
+  form.find('input[type=hidden]').each () ->
+    input_id += '_' + $(this).attr('name')+ '_' + $(this).attr('value')
+  return input_id + '_' + input.attr('name')

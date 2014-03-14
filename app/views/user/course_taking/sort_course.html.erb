@@ -25,6 +25,7 @@
         <% end %>
         <% @years.each do |year, terms| %>
             <div>
+              <div class='text-center'><h3><%= terms.keys.first.year %> - <%= terms.keys.last.year %></h3></div>
               <div>
                 <% terms.each do |term, courses| %>
                     <label><%= term.semester.to_s.capitalize %>  <%= term.year %></label>
@@ -41,6 +42,7 @@
                     </div>
                 <% end %>
               </div>
+              <hr>
             </div>
         <% end %>
       </div>

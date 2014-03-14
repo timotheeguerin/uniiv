@@ -107,6 +107,23 @@ class Course::Course < ActiveRecord::Base
 
   delegate :university, :to => :subject
 
+  def self.search_course(params)
+    scenario = params[:scenario]
+    search = Course::Course.search do
+      fulltext query if params[:q]
+      paginate(:page => 1, :per_page => params[:limit]) unless params[:limit].nil?
+      unless scenario.nil?
+        without(:course_scenario_ids, scenario.id) if params[:only_not_taking]
+        with(:course_scenario_ids, scenario.id) if params[:only_taking]
+        without(:user_ids, scenario.user.id) if params[:only_not_completed]
+        with(:user_ids, scenario.user.id) if params[:only_completed]
+      end
+      with(:program_group_ids, params[:program_groups]) if params[:program_groups]
+      with(:program_ids, params[:programs]) if params[:programs]
+    end
+    search.results
+  end
+
   #Sunspot indexing
   searchable do
     text :subject do
@@ -120,6 +137,9 @@ class Course::Course < ActiveRecord::Base
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
     integer :program_group_ids, :references => ProgramGroup, :multiple => true
+    integer :program_ids, :references => Program, :multiple => true do
+      program_groups.map { |group| group.parent_program.id }
+    end
   end
 
   #Compute the completxity to get to this course with all the prerequisite
