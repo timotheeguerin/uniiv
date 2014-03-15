@@ -27,7 +27,7 @@ class ManytomanyRelationshipController < ApplicationController
     @relation[:object].save
     element.save
     if request.xhr?
-      return_json('Course added to program')
+      return_json('Element added')
     else
       redirect_to :back
     end
@@ -58,7 +58,11 @@ class ManytomanyRelationshipController < ApplicationController
     if element.nil?
     else
       @relation[:list].delete(element)
-      redirect_to :back
+      if request.xhr?
+        return_json('Element removed')
+      else
+        _redirect_to :back
+      end
     end
   end
 

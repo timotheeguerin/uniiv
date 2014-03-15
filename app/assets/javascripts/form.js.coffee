@@ -70,6 +70,8 @@ $(document).ready ->
 #Submit a form using ajax
 submitFormAjax = () ->
   form = $(this)
+  submit_button = form.find('button, input[type="submit"]')
+  submit_button.prop('disabled', true)
   $.ajax({
     url: $(this).attr('action'),
     type: $(this).attr('method'),
@@ -86,7 +88,7 @@ submitFormAjax = () ->
     if form.data('reload') #Delete the closest parent with the given selector
       $(form.data('reload')).each () ->
         reload_container($(this))
-
+    submit_button.prop('disabled', false) unless form.data('unique-submission') #Renable form for submition
     form.off()
     $(form).trigger('formAjaxComplete', data)
 
