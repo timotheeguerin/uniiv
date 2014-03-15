@@ -13,7 +13,7 @@ class CourseRecommendationEngine
     end
   end
 
-  #Compute the list of recommended courses using the programs of the users
+  #Compute the show of recommended courses using the programs of the users
   def self.compute_program_recommendation(scenario)
     user = scenario.user
     courses_scores = {}
@@ -37,7 +37,7 @@ class CourseRecommendationEngine
     end
   end
 
-  #Compute the list of recommended courses using the courses taken/completed
+  #Compute the show of recommended courses using the courses taken/completed
   #by other user in the same program as you
   def self.compute_popular_in_programs(scenario)
     user - scenario.user

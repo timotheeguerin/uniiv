@@ -57,7 +57,7 @@ class User::CourseTakingController < ApplicationController
       user_taking_course.save
     end
 
-    #Load the list of courses that are now taken at the wrong time
+    #Load the show of courses that are now taken at the wrong time
     invalid_courses = []
     current_scenario.taking_courses.each do |c|
       invalid_courses << c.course.id unless c.is_time_valid?
@@ -75,7 +75,7 @@ class User::CourseTakingController < ApplicationController
 
   end
 
-  #Display a list of course to be taken or completed
+  #Display a show of course to be taken or completed
   def add_course
     @courses = Course::Course.all.sort_by! { |x| [x.subject.name, x.code] }.to_a
     current_user.completed_courses.each do |c|

@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
 
   end
 
-  #Return the list of the latest edited final grade calculator courses
+  #Return the show of the latest edited final grade calculator courses
   def get_last_fgc_courses(limit = 5)
     fgc_predictions.order(:updated_at => :desc).limit(limit)
   end

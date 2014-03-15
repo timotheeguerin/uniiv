@@ -110,7 +110,7 @@ Uniiv::Application.routes.draw do
   get 'course/:id/json' => 'course#json'
   get 'course/search/data' => 'course#search_json', :as => :search_course_json
   get 'course/search/autocomplete' => 'course#search_autocomplete', :as => :search_course_autocomplete
-  get 'course/search/list' => 'course#search_list', :as => :search_course_list
+  get 'course/search/show' => 'course#search_list', :as => :search_course_list
 
   #Course review controller
   get 'course/:course_id/review/' => 'course_review#index', :as => :course_reviews
@@ -184,7 +184,7 @@ Uniiv::Application.routes.draw do
   end
 
   #manytomany relationship contrller
-  get 'mtmrelationship' => 'manytomany_relationship#list', :as => :manytomany_relationship
+  get 'mtmrelationship' => 'manytomany_relationship#show', :as => :manytomany_relationship
   post 'mtmrelationship/delete' => 'manytomany_relationship#delete', :as => :manytomany_relationship_delete
   post 'mtmrelationship/create' => 'manytomany_relationship#create', :as => :manytomany_relationship_create
   get 'mtmrelationship/search/autocomplete' => 'manytomany_relationship#search_autocomplete', :as => :manytomany_relationship_search_autocomplete

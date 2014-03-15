@@ -11,13 +11,13 @@ class ManytomanyRelationshipController < ApplicationController
     @relation = get_relation(mparams)
   end
 
-  def list
+  def show
 
   end
 
   def create
     element = @relation[:relation_class].find(params[:element_id])
-    @relation[:list] << element
+    @relation[:show] << element
     #Save both for indexing
     @relation[:object].save
     element.save
@@ -48,11 +48,11 @@ class ManytomanyRelationshipController < ApplicationController
     element = @relation[:relation_class].find(params[:id])
     if element.nil?
     else
-      @relation[:list].delete(element)
+      @relation[:show].delete(element)
       redirect_to :back
     end
   end
 
-  #Return the relation list
+  #Return the relation show
 
 end

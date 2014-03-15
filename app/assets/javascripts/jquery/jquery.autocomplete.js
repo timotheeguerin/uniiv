@@ -150,7 +150,7 @@
 
             container.appendTo(options.appendTo).width(options.width);
 
-            // Listen for mouse over event on suggestions list:
+            // Listen for mouse over event on suggestions show:
             container.on('mouseover.autocomplete', suggestionSelector, function () {
                 that.activate($(this).data('index'));
             });
@@ -161,7 +161,7 @@
                 container.children('.' + selected).removeClass(selected);
             });
 
-            // Listen for click event on suggestions list:
+            // Listen for click event on suggestions show:
             container.on('click.autocomplete', suggestionSelector, function () {
                 that.select($(this).data('index'), false);
             });
