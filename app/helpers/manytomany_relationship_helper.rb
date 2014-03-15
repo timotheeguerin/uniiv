@@ -4,7 +4,7 @@ module ManytomanyRelationshipHelper
     relation = {}
     relation[:object_class] = mparams[:model].constantize
     relation[:object] = relation[:object_class].find(mparams[:model_id])
-    relation[:show] = relation[:object].send(mparams[:relation])
+    relation[:list] = relation[:object].send(mparams[:relation])
     relation[:relation_class] = relation[:object].class.reflect_on_association(mparams[:relation].to_sym).class_name.constantize
     relation
   end

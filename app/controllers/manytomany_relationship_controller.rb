@@ -4,24 +4,33 @@ class ManytomanyRelationshipController < ApplicationController
   before_action :setup
 
   def setup
-    mparams = {}
-    mparams[:model] = params[:model]
-    mparams[:model_id] = params[:model_id]
-    mparams[:relation] = params[:relation]
-    @relation = get_relation(mparams)
+    @mparams = {}
+    @mparams[:model] = params[:model]
+    @mparams[:model_id] = params[:model_id]
+    @mparams[:relation] = params[:relation]
+
+    @relation = get_relation(@mparams)
   end
 
   def show
 
   end
 
+  def list
+    render :partial => 'manytomany_relationship/list', :layout => false, :locals => {:list => @relation[:list], :mparams=> @mparams}
+  end
+
   def create
     element = @relation[:relation_class].find(params[:element_id])
-    @relation[:show] << element
+    @relation[:list] << element
     #Save both for indexing
     @relation[:object].save
     element.save
-    redirect_to :back
+    if request.xhr?
+      return_json('Course added to program')
+    else
+      redirect_to :back
+    end
   end
 
   def search_autocomplete
@@ -48,7 +57,7 @@ class ManytomanyRelationshipController < ApplicationController
     element = @relation[:relation_class].find(params[:id])
     if element.nil?
     else
-      @relation[:show].delete(element)
+      @relation[:list].delete(element)
       redirect_to :back
     end
   end

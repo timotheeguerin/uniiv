@@ -3,10 +3,10 @@ class ProgramGroup < ActiveRecord::Base
   belongs_to :restriction, :class_name => ProgramGroupRestriction
   belongs_to :groupparent, :polymorphic => true
   has_many :subgroups, :class_name => ProgramGroup, :as => :groupparent
-  has_and_belongs_to_many :courses, :class_name => Course::Course
+  has_and_belongs_to_many :courses, :class_name => Course::Course , :uniq => true
 
   #Complete a number of programs
-  has_and_belongs_to_many :programs, :class_name => Program
+  has_and_belongs_to_many :programs, :class_name => Program , :uniq => true
 
 
   def to_s

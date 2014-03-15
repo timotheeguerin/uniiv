@@ -1,26 +1,14 @@
-<% list = relation[:show] %>
+<% list = relation[:list] %>
 <% object = relation[:object] %>
 <% relation_class = relation[:relation_class] %>
 
 <div class='list-group row-container'>
 
-  <% list.each do |element| %>
-      <div class='row list-group-item'>
-        <div class='col-md-11'><%= element.to_s %></div>
-        <div class='col-md-1'>
-          <%= form_tag manytomany_relationship_delete_path do %>
-              <%= hidden_field_tag :id, element.id %>
-              <%= render_manytomany_relationship_params(mparams) %>
-              <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
-                <span class="glyphicon glyphicon-remove-sign"></span>
-              </button>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
-
+  <div id='manytomany_list' data-url='<%= manytomany_relationship_list_path(:model => mparams[:model], :model_id => mparams[:model_id], :relation => mparams[:relation]) %>'>
+    <%= render :partial => 'manytomany_relationship/list', :locals => {:list => list, :mparams => mparams} %>
+  </div>
   <div class='row list-group-item'>
-    <%= form_tag(manytomany_relationship_create_path) do %>
+    <%= form_tag manytomany_relationship_create_path, :class => 'useajax', 'data-reload' => '#manytomany_list' do %>
         <div class='form-group'>
           <label>Search a course to add to this program group</label>
 
@@ -30,7 +18,6 @@
                     {:class => 'form-control autocomplete',
                      'data-url' => manytomany_relationship_search_autocomplete_path(:model => mparams[:model], :model_id => mparams[:model_id], :relation => mparams[:relation]),
                      'data-input-data' => true}) %>
-
 
             <span class="input-group-btn">
                 <%= submit_tag('Add', :class => 'btn btn-primary') %>
