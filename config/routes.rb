@@ -174,6 +174,13 @@ Uniiv::Application.routes.draw do
     post 'utils/finalgradecalculator/course/:id/remove_scheme' => 'final_grade_calculator#remove_scheme', :as => :utils_fgc_remove_scheme
 
     post 'utils/finalgradecalculator/course/:id/edit_final_percent' => 'final_grade_calculator#edit_final_percent', :as => :utils_fgc_edit_final_percent
+
+
+    get 'utils/transcript/loader' => 'transcript_loader#index', :as => :transcript_loader
+    get 'utils/transcript/loader/parse' => 'transcript_loader#parse_show', :as => :transcript_loader_parse
+    post 'utils/transcript/loader/parse' => 'transcript_loader#parse'
+    get 'utils/transcript/loader/parse/manual' => 'transcript_loader#parse_manual_show', :as => :transcript_loader_parse_manual
+    post 'utils/transcript/loader/parse/manual' => 'transcript_loader#parse_manual'
   end
 
   #manytomany relationship contrller

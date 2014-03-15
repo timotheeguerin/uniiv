@@ -1,0 +1,50 @@
+<div>
+  <h1>Transcript loader</h1>
+
+  <p>Automatically load the course from your transcript</p>
+  <hr>
+  <div class='row'>
+
+    <div class='col-md-5'>
+      <%= form_tag(transcript_loader_parse_path) do  %>
+          Please enter your credientials for <%= current_user.university %>
+          <br>
+
+          <div class='form-group'>
+            <%= label_tag :username %>
+            <%= text_field_tag :username, '', :class => 'form-control' %>
+          </div>
+          <div class='form-group'>
+            <%= label_tag :password %>
+            <%= password_field_tag :password, '', :class => 'form-control' %>
+          </div>
+          <button class='btn btn-primary form-control'>
+            Load
+          </button>
+      <% end %>
+
+    </div>
+    <div class='col-md-1'>
+
+    </div>
+    <div class='col-md-1'>
+      <div class='pull-right'>
+        <span class='glyphicon glyphicon-warning-sign redtext glyphicon-lg'> </span>
+      </div>
+    </div>
+    <div class='col-md-5'>
+      <div>
+        The information enter will not be stored.
+        They will only be used to login and retrieve your transcript.
+      </div>
+      <div>
+        You can alternatively load your transcript manually by going there and following the steps
+      </div>
+      <div class='pull-right'>
+        <a href='<%= transcript_loader_parse_manual_path %>' class='btn btn-default'>
+          Manual load
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

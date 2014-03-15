@@ -1,0 +1,32 @@
+<h1>Transcript loader</h1>
+<p>Manualy load the course from your transcript</p>
+<hr>
+<div>
+  <div>
+    <h2>1. Login to minerva</h2>
+
+    <div><%= link_to 'Login', @url, :class => 'btn btn-default btn-sm' %> then navigate to your transcript</div>
+    <hr>
+  </div>
+  <div>
+    <h2>2. Copy the transcript html</h2>
+
+    <div>Right click on the page and select 'View page source' or similar. Copy all the content of the new page.</div>
+    <hr>
+  </div>
+  <div>
+    <h2>3. Upload your transcript</h2>
+
+    <div>
+      <%= form_tag transcript_loader_parse_manual_path do %>
+          <%= text_area_tag :html, '', :class => 'transcript_textarea form-control' %>
+          <button class='btn btn-primary form-control'>
+            Load
+          </button>
+      <% end %>
+
+    </div>
+
+
+  </div>
+</div>

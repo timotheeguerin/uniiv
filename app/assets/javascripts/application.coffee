@@ -21,6 +21,10 @@ $(document).ready () ->
   $("#graphreload").click ()->
     location.reload();
 
+  newheight = $(window).height() - 75;
+  $(".window-height").each () ->
+    $(this).height(newheight);
+
   $('.nano').each ->
     $(this).nanoScroller({ tabIndex: ' ' })
   setupStarRatings()

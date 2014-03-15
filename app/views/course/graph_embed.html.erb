@@ -39,7 +39,7 @@
 
 <div class='text-center'>
   <div class='btn-group'>
-    <button class='btn btn-info' rel='popover' data-toggle='popover' title='<%= @course.description %>' data-placement='left'>
+    <button class='btn btn-info' rel='popover' data-toggle='popover' data-content='<%= @course.description %>' data-placement='left'>
       <span class='whitetext glyphicon glyphicon-eye-open'></span></button>
     <% if current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
       <% coursesindb = current_scenario.taking_courses.to_a %>

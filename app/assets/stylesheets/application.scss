@@ -143,7 +143,7 @@ form {
   display: inline-block;
 }
 
-a {
+a:not(.btn) {
   color: inherit !important;
   text-decoration: inherit !important;
 }
@@ -377,3 +377,25 @@ Jquery automplete styling
   top: 60px;
 }
 
+span.glyphicon.glyphicon-xs {
+  font-size: 10;
+}
+span.glyphicon.glyphicon-sm {
+  font-size: 16;
+}
+span.glyphicon.glyphicon-md {
+  font-size: 20;
+}
+
+span.glyphicon.glyphicon-lg {
+  font-size: 36;
+}
+
+span.glyphicon.glyphicon-xl {
+  font-size: 72;
+}
+
+textarea.transcript_textarea {
+  resize: none;
+  height: 200px;
+}
