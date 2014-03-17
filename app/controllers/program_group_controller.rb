@@ -47,7 +47,7 @@ class ProgramGroupController < ApplicationController
   end
 
   def update
-    @program_group.find(params[:id])
+    @program_group= ProgramGroup.find(params[:id])
     if @program_group.update(program_group_params)
       if params[:saveandedit]
         redirect_to program_group_edit_path(@program_group)

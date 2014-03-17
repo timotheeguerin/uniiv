@@ -8,6 +8,11 @@ class ProgramGroup < ActiveRecord::Base
   #Complete a number of programs
   has_and_belongs_to_many :programs, :class_name => Program , :uniq => true
 
+  before_save :default_values
+  def default_values
+    self.value ||= 0 unless restriction.name = 'all'
+  end
+
 
   def to_s
     name.to_s + " (#{type.to_s})"
@@ -92,15 +97,18 @@ class ProgramGroup < ActiveRecord::Base
   end
 
   def get_completion_ratio(scenario, term = nil)
+    puts 'COMPLETEION GROUP: ' + id.to_s
     case restriction.name
       when 'min_credit'
+        puts 'MIN CREDIT'
         completed_credit = count_credit_completed_courses(scenario, term)
         subgroup_completed = get_subgroups_completed_ratio(scenario)
-        return 1 if value == 0 and subgroup_completed[:coefficient] == 0
-
-
+        puts 'Sub group completed: ' + subgroup_completed.to_s
+        puts 'Value:  ' + value.to_s
+        return {:ratio => 0, :coefficient => 1, :value => 0} if value == 0 and subgroup_completed[:coefficient] == 0
         ratio = (completed_credit + subgroup_completed[:value])/ (value + subgroup_completed[:coefficient])
         ratio = 1 if ratio > 1
+        puts 'VALUE: ' + value.to_s
         {:ratio => ratio, :coefficient => value, :value => value*ratio}
       when 'min_grp'
         return {:ratio => 1, :coefficient => 1, :value => 1}
