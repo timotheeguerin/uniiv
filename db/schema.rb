@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307183911) do
+ActiveRecord::Schema.define(version: 20140317154222) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -183,6 +183,18 @@ ActiveRecord::Schema.define(version: 20140307183911) do
     t.datetime "updated_at"
     t.integer  "order"
   end
+
+  create_table "course_subject_requirement_nodes", force: true do |t|
+    t.integer  "amount"
+    t.integer  "subject_id"
+    t.integer  "level"
+    t.integer  "node_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_subject_requirement_nodes", ["node_id"], name: "index_course_subject_requirement_nodes_on_node_id", using: :btree
+  add_index "course_subject_requirement_nodes", ["subject_id"], name: "index_course_subject_requirement_nodes_on_subject_id", using: :btree
 
   create_table "course_subjects", force: true do |t|
     t.string   "name"

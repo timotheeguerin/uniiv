@@ -1,0 +1,23 @@
+<% requirements.each_with_index do |requirement, i| %>
+    <% nb = i %>
+    <% nb = i + params[:start_count].to_i if params[:start_count] %>
+    <% element = "subject_requirement_#{nb}" %>
+    <%= hidden_field_tag "#{element}[id]", requirement.id %>
+    <div class='container'>
+      <div class='row'>
+        <hr>
+        <div class='col-md-2'>
+          <%= label_tag "#{element}[amount]", 'Amount' %>
+          <%= text_field_tag "#{element}[amount]", requirement.amount, :class => 'form-control' %>
+        </div>
+        <div class='col-md-2'>
+          <%= label_tag "#{element}[subject]", 'Subject name' %>
+          <%= text_field_tag "#{element}[subject]", requirement.subject, :class => 'form-control' %>
+        </div>
+        <div class='col-md-2'>
+          <%= label_tag "#{element}[level]", 'Level(-1 for any)' %>
+          <%= text_field_tag "#{element}[level]", requirement.level, :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
+<% end %>

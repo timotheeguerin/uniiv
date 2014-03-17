@@ -1,5 +1,8 @@
 class Course::Node < ActiveRecord::Base
+  #Course to complete in this node
   belongs_to :course, :class_name => Course
+
+  #Multiple expression can have the same requirement
   has_many :exprs, :class_name => Course::Expr
 
   has_and_belongs_to_many :nodes,
@@ -13,6 +16,8 @@ class Course::Node < ActiveRecord::Base
                           :association_foreign_key => 'course_node_id',
                           :class_name => Course::Node,
                           :join_table => 'course_node_childrens'
+
+  has_many :subject_requirement_nodes, :class_name => Course::SubjectRequirementNode, :foreign_key => 'node_id', :dependent => :destroy
 
   accepts_nested_attributes_for :nodes
 
@@ -121,7 +126,8 @@ class Course::Node < ActiveRecord::Base
     if operation == NodeOperation::NODE
       r = r + course.to_s
     else
-      r = r + ' (' + nodes.map! { |k| "#{k.to_s}" }.join(' ' + operation + ' ') + ') '
+      list = nodes.map { |k| "#{k.to_s}" } + subject_requirement_nodes.map { |k| "#{k.to_s}" }
+      r = r + ' (' + list.join(' ' + operation + ' ') + ') '
     end
     r
   end

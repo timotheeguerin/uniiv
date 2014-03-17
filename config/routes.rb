@@ -36,6 +36,7 @@ Uniiv::Application.routes.draw do
       get 'course/requirements' => 'course_requirements#index', :as => :check_course_requirements_completed
       get 'course/requirements/:id/none' => 'course_requirements#mark_as_none', :as => :course_requirement_mark_none
       get 'course/requirements/:id/input' => 'course_requirements#input_requirement', :as => :course_requirement_input
+      get 'course/requirements/:id/subject_input_requirement' => 'course_requirements#subject_input_requirement', :as => :course_requirement_subject_input
       post 'course/requirements/:id/input' => 'course_requirements#save_requirement', :as => :course_requirement_input_save
       get 'course/loader/load' => 'course_loader#new', :as => :course_load_new
       post 'course/loader/load' => 'course_loader#load', :as => :course_load_create

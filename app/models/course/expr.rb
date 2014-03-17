@@ -4,6 +4,13 @@ class Course::Expr < ActiveRecord::Base
   has_many :courses_pre, :class_name => Course::Course, :foreign_key => 'prerequisite_id'
   has_many :courses_co, :class_name => Course::Course, :foreign_key => 'corequisite_id'
 
+  def check_destroy
+    puts 'CHECKING DESTROY'
+    if courses_co.nil? and courses_pre.nil?
+      destroy
+    end
+  end
+
   def to_s
     id.to_s + ': ' + node.to_s
   end
@@ -11,6 +18,7 @@ class Course::Expr < ActiveRecord::Base
   def to_input
     node.to_s
   end
+
   def name
     to_s
   end
@@ -19,12 +27,27 @@ class Course::Expr < ActiveRecord::Base
     node.to_html
   end
 
-  def self.parse(string)
+  def self.parse(string, subject_requirements = [])
     nodes = Course::Node.parse(string)
     return nil if nodes.nil?
+    node = nil
+    if nodes.size == 0
+      node = Course::Node.new
+      node.operation = NodeOperation::AND
+    else
+      node = nodes[0]
+    end
+
+    if node.operation == NodeOperation::OR
+      tmp_node = node
+      node = Course::Node.new
+      node.nodes << tmp_node
+      node.operation = NodeOperation::AND
+    end
+    node.subject_requirement_nodes = subject_requirements
     expr = Course::Expr.new
     if nodes != nil
-      expr.node = nodes[0]
+      expr.node = node
     end
     return expr
   end

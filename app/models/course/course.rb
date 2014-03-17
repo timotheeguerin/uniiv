@@ -30,12 +30,24 @@ class Course::Course < ActiveRecord::Base
   #Callbacks
   after_create :after_create
 
+  after_update :check_requirements
+
+
   def after_create
     filled = Admin::CourseRequirementFilled.new
     filled.corequisites=false
     filled.prerequisites=false
     filled.course = self
     filled.save
+  end
+
+  def check_requirements
+    if prerequisite_id_changed?
+      Course::Expr.find(prerequisite_id_was).destroy
+    end
+    if corequisite_id_changed?
+      Course::Expr.find(corequisite_id_was).destroy
+    end
   end
 
   def to_s

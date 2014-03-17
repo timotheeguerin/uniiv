@@ -29,6 +29,22 @@ $(document).ready () ->
     $(this).nanoScroller({ tabIndex: ' ' })
   setupStarRatings()
 
+  $(document).on 'click', '.loadcontainer-onclick', (e) ->
+    e.preventDefault()
+    button = $(this)
+    container = $(button.data('container'))
+
+    params = button.data('params')
+    console.log(params)
+    url = button.data('url')
+    $.get(url, params).success (data) ->
+      container.append(data)
+      if button.data('increase-param')
+        params[button.data('increase-param')] += 1
+        console.log(button.data('params')['start_count'])
+        button.data('params', params)
+
+
   $(document).on 'ajaxloadhtml', (e, container) ->
     setupStarRatings()
     reload_scripts(container)
@@ -109,13 +125,11 @@ showonhover = (container)->
       item.hide()
 
 
-
 reload_scripts = (container) ->
   container.find('.selectpicker').selectpicker({
-      width: 'auto'
-    });
+    width: 'auto'
+  });
   showonhover(container)
-
 
 
 jQuery.fn.rotate = (degrees) ->

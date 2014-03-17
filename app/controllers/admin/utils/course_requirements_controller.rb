@@ -24,6 +24,7 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
   def input_requirement
     @course = Admin::CourseRequirementFilled.find(params[:id])
     @type = params[:type]
+    @subject_requirements = []
 
     @expr = nil
     if params[:type]== 'corequisites'
@@ -35,27 +36,52 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
     end
   end
 
+  def subject_input_requirement
+    requirement = Course::SubjectRequirementNode.new
+    render :partial => 'subject_requirement_input', :locals => {:requirements => [requirement]}
+  end
+
   def save_requirement
     @course = Admin::CourseRequirementFilled.find(params[:id])
 
-    input = params['expr']
-    expr = Course::Expr.parse(input)
-    if expr.nil?
-      flash[:error] = "Error parsing the expression '#{input}', one of the course entered might not exist!"
+    input = params[:expr]
+
+    @subject_requirements = get_subject_requirement_params(params)
+    puts @subject_requirements
+    @expr = Course::Expr.parse(input, @subject_requirements)
+
+    if @expr.nil?
+      flash[:alert] = "Error parsing the expression '#{input}', one of the course entered might not exist!"
       render :input_requirement
     else
-      expr.save
+      @expr.save
 
       if params[:type]== 'corequisites'
         @course.corequisites = true
-        @course.course.corequisite = expr
+        @course.course.corequisite = @expr
       else
         @course.prerequisites = true
-        @course.course.prerequisite = expr
+        @course.course.prerequisite = @expr
       end
       @course.course.save
       @course.save
+      flash[:notice] = "Expression parsed #{@expr.node}!"
       redirect_to admin_utils_check_course_requirements_completed_path
     end
+  end
+
+
+  def get_subject_requirement_params(params)
+    results = []
+    params.each do |key, value|
+      if key.match /^subject_requirement_[0-9]+$/
+        requirement = Course::SubjectRequirementNode.new
+        requirement.amount = value[:amount]
+        requirement.subject = Course::Subject.find_by_name(value[:subject])
+        requirement.level = value[:level]
+        results << requirement
+      end
+    end
+    results
   end
 end

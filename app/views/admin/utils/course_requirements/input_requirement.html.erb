@@ -1,12 +1,27 @@
 <div>
   <h1>Choose <%= @type %> for <span><%= link_to @course.course, course_path(@course.course) %> </span></h1>
   <hr>
-  Read on the page: "<%= @read%>"
+  Read on the page: "<%= @read %>"
   <%= form_tag admin_utils_course_requirement_input_save_path do %>
       <div class="form-group">
         <%= label_tag :expr, 'Input expression: ' %>
         <%= text_field_tag :expr, @expr, :class => 'form-control' %>
         <%= hidden_field_tag :type, @type %>
+
+        <div class='subject_requirement_input_container'>
+          <%= render :partial => 'subject_requirement_input', :locals => {:requirements => @subject_requirements} %>
+        </div>
+        <hr>
+        <div>
+          <button class='loadcontainer-onclick btn btn-primary'
+                  data-container='.subject_requirement_input_container'
+                  data-url='<%= admin_utils_course_requirement_subject_input_path %>'
+                  data-params='{"start_count": 0}'
+                  data-increase-param='start_count'>
+            Add subject requirement
+          </button>
+        </div>
+        <hr>
         <%= submit_tag 'Submit', :class => 'btn btn-default' %>
       </div>
   <% end %>
