@@ -33,9 +33,14 @@ class ProgramController < ApplicationController
     @program = Program.new(program_params)
 
     if @program.save
-      redirect_to admin_utils_program_path
+      if params[:saveandedit]
+        redirect_to program_edit_path(@program)
+      else
+        redirect_to admin_utils_program_editor_path
+      end
+    else
+      render :new
     end
-    redirect_to admin_utils_program_path
   end
 
   def edit
@@ -49,9 +54,9 @@ class ProgramController < ApplicationController
     if @program.update(program_params)
       flash[:notice] = t('program.updated.success')
       if params[:saveandedit]
-        redirect_to admin_utils_program_edit_path(@program)
+        redirect_to program_edit_path(@program)
       else
-        redirect_to admin_utils_program_path
+        redirect_to admin_utils_program_editor_path
       end
     else
       render :edit
