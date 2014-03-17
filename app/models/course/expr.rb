@@ -6,7 +6,7 @@ class Course::Expr < ActiveRecord::Base
 
   def check_destroy
     puts 'CHECKING DESTROY'
-    if courses_co.nil? and courses_pre.nil?
+    if courses_co.empty? and courses_pre.empty?
       destroy
     end
   end
@@ -16,7 +16,7 @@ class Course::Expr < ActiveRecord::Base
   end
 
   def to_input
-    node.to_s
+    node.to_input
   end
 
   def name

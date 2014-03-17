@@ -28,10 +28,16 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
 
     @expr = nil
     if params[:type]== 'corequisites'
-      @expr = @course.course.corequisite.to_input unless @course.course.corequisite.nil?
+      unless @course.course.corequisite.nil?
+        @expr = @course.course.corequisite.to_input
+        @subject_requirements = @course.course.corequisite.node.subject_requirement_nodes
+      end
       @read = @course.corequisite_read
     else
-      @expr = @course.course.prerequisite.to_input unless @course.course.prerequisite.nil?
+      unless @course.course.prerequisite.nil?
+        @expr = @course.course.prerequisite.to_input
+        @subject_requirements = @course.course.prerequisite.node.subject_requirement_nodes
+      end
       @read = @course.prerequisite_read
     end
   end

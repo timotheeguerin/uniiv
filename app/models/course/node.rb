@@ -132,6 +132,17 @@ class Course::Node < ActiveRecord::Base
     r
   end
 
+  def to_input
+    r = ''
+    return '' if operation.nil? or nodes.size == 0
+    if operation == NodeOperation::NODE
+      r = r + course.to_s
+    else
+      r = r + ' (' + nodes.map { |k| "#{k.to_s}" }.join(' ' + operation + ' ') + ') '
+    end
+    r
+  end
+
   def to_html
     r = ''
     return '' if operation.nil?

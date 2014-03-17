@@ -42,11 +42,11 @@ class Course::Course < ActiveRecord::Base
   end
 
   def check_requirements
-    if prerequisite_id_changed?
-      Course::Expr.find(prerequisite_id_was).destroy
+    if prerequisite_id_changed? and not prerequisite_id_was.nil?
+      Course::Expr.find(prerequisite_id_was).check_destroy
     end
-    if corequisite_id_changed?
-      Course::Expr.find(corequisite_id_was).destroy
+    if corequisite_id_changed? and not prerequisite_id_was.nil?
+      Course::Expr.find(corequisite_id_was).check_destroy
     end
   end
 
