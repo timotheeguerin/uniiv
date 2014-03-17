@@ -3,7 +3,7 @@ module ApplicationHelper
   def group_button_to(url, params={}, &block)
     name = params[:name]
     value = params[:value]
-    id = "#{name}_#{value}"
+    id = "#{name}_#{value}_#{SecureRandom.uuid}"
 
     redirect_to_path =params[:redirect_to]
     form_params={}

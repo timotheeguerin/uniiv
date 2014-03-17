@@ -1,5 +1,5 @@
 Uniiv::Application.routes.draw do
-  get "transcript_loader/index"
+
   get 'scenario/new'
   get 'course_taking/new'
   get 'course_taking/new_graph_embed'
@@ -88,7 +88,6 @@ Uniiv::Application.routes.draw do
   post 'program/delete' => 'program#delete', :as => :program_delete
 
   #Group controller
-
   get 'program/group/new' => 'program_group#new', :as => :program_group_new
   get 'program/group/:id' => 'program_group#show', as: 'group'
   get 'program/group/:id/graph/embed' => 'program_group#graph_embed'
@@ -97,6 +96,12 @@ Uniiv::Application.routes.draw do
   patch 'program/group/:id/edit' => 'program_group#update', :as => :program_group_update
   post 'program/group/delete', to: 'program_group#delete', :as => :program_group_delete
 
+  #Group subject course list controller
+  get 'program/group/subject_course_list/new' => 'group_subject_course_list#new', :as => :group_subject_course_list_new
+  post 'program/group/subject_course_list/new' => 'group_subject_course_list#create', :as => :group_subject_course_list_create
+  get 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#edit', :as => :group_subject_course_list_edit
+  post 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#update', :as => :group_subject_course_list_update
+  post 'program/group/subject_course_list/delete' => 'group_subject_course_list#delete', :as => :group_subject_course_list_delete
 
   #Graph controller
   get 'mygraph' => 'graph#show', :as => :user_graph

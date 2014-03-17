@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  subject_id: 
+  level: 1
+  operation: MyString
+  program_group_id: 
+
+two:
+  subject_id: 
+  level: 1
+  operation: MyString
+  program_group_id: 

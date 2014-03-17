@@ -20,6 +20,13 @@
 
 <div class='panel panel-default'>
   <div class="panel-heading">
+    Course by subject:
+  </div>
+  <%= render :partial => 'program_group/program_group_subject_course_list', :locals => {:program_group => @program_group} %>
+</div>
+
+<div class='panel panel-default'>
+  <div class="panel-heading">
     Subgroups:
   </div>
   <%= render :partial => 'program_group/program_group_edit_list', :locals => {:groups => @program_group.subgroups, :parent => @program_group} %>

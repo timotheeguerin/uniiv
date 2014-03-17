@@ -2,17 +2,28 @@ class ProgramGroup < ActiveRecord::Base
 
   belongs_to :restriction, :class_name => ProgramGroupRestriction
   belongs_to :groupparent, :polymorphic => true
+
   has_many :subgroups, :class_name => ProgramGroup, :as => :groupparent
+
+  #List of courses to complete
   has_and_belongs_to_many :courses, :class_name => Course::Course , :uniq => true
+
+  has_many :subject_courses, :class_name => Course::SubjectCourseList
 
   #Complete a number of programs
   has_and_belongs_to_many :programs, :class_name => Program , :uniq => true
+
+  #Used to override the course method
+  alias :courses_relation :courses
 
   before_save :default_values
   def default_values
     self.value ||= 0 unless restriction.name = 'all'
   end
 
+  def courses
+    courses_relation
+  end
 
   def to_s
     name.to_s + " (#{type.to_s})"

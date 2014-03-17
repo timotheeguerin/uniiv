@@ -1,0 +1,26 @@
+<div>
+
+  <%= form_tag url do %>
+      <div class='form-group'>
+        <%= label_tag :subject %>
+        <%= text_field_tag :subject, @subject_course_list.subject, :class => 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= label_tag :level %>
+        <%= text_field_tag :level, @subject_course_list.level, :class => 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= label_tag :operation %>
+        <div>
+          <%= select_tag :operation, options_for_select(Course::SubjectCourseListOperation.to_a), :class => 'selectpicker form-control ' %>
+        </div>
+
+      </div>
+      <%= hidden_field_tag :program_group, @subject_course_list.program_group_id %>
+      <div class='form-group'>
+        <%= submit_tag :Save, :class => 'btn btn-default' %>
+        <%= submit_tag 'Save and edit', :name => :saveandedit, :class => 'btn btn-default' %>
+      </div>
+
+  <% end %>
+</div>
