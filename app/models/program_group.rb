@@ -6,15 +6,13 @@ class ProgramGroup < ActiveRecord::Base
   has_many :subgroups, :class_name => ProgramGroup, :as => :groupparent
 
   #List of courses to complete
-  has_and_belongs_to_many :courses, :class_name => Course::Course , :uniq => true
+  has_and_belongs_to_many :list_courses, :class_name => Course::Course , :uniq => true
 
+  #List of the subject_courses
   has_many :subject_courses, :class_name => Course::SubjectCourseList
 
   #Complete a number of programs
   has_and_belongs_to_many :programs, :class_name => Program , :uniq => true
-
-  #Used to override the course method
-  alias :courses_relation :courses
 
   before_save :default_values
   def default_values
@@ -22,7 +20,11 @@ class ProgramGroup < ActiveRecord::Base
   end
 
   def courses
-    courses_relation
+    result = list_courses
+    subject_courses.each do |subject_course|
+      result += subject_course.courses
+    end
+    result
   end
 
   def to_s
