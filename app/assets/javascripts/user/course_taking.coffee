@@ -23,7 +23,6 @@ $(document).ready ()->
     handleSortable($(this))
 
 
-
 getURLParameters = (params) ->
   return {} unless params?
   result = {}
@@ -57,13 +56,21 @@ handleSortable = (element) ->
     group: group
     drop: drop
     itemSelector: 'li:not(.notsortable)'
-    onMousedown: ($item, event, _super) ->
+    onMousedown: ($item, _super,  event) ->
       cancel = false
-      $item.find('.btn').each () ->
-        if $(this).attr('data-over') == 'true'
-          cancel = true
-          return
+      if event.target.nodeName == 'INPUT' or event.target.nodeName == 'SELECT'
+        cancel = true
+      unless cancel
+        $item.find('.btn').each () ->
+          if $(this).attr('data-over') == 'true'
+            cancel = true
+            return
+
+      unless cancel
+        event.preventDefault()
+
       return not cancel
+
 
     onDragStart: ($item, container, _super) -> #Reposition the draggin element relative from where it was grabbed
       ul = $item.closest('ul')
