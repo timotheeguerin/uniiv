@@ -178,6 +178,14 @@ class Course::Course < ActiveRecord::Base
   def already_exist?
     Course::Course.where(:subject_id => subject_id, :code => code).size > 0
   end
+
+  #Get the course from the string of format SUBJECT CODE(e.g. MATH 222)
+  def self.find_by_string(str, university)
+    array = str.split(/[[:space:]]/)
+    subject = Course::Subject.where(:name => array[0], :university_id => university.id).first
+    code = array[1]
+    Course::Course.where(:subject_id => subject.id, :code => code).first
+  end
 end
 
 class CourseState

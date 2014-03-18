@@ -117,6 +117,32 @@ class User < ActiveRecord::Base
     fgc_predictions.order(:updated_at => :desc).limit(limit)
   end
 
+  #Complete a course, term can be nil if the course was already taking
+  #Will remove the course from the scenario in which the user is taking it
+  def complete_course(course, grade, term = nil)
+    user_completed_course = completed_courses.where(:course => course).first
+    if user_completed_course.nil?
+      course_scenarios.each do |scenario|
+        taking_course = scenario.taking_courses.where(:course_id => course.id).first
+        unless taking_course.nil?
+          term ||= taking_course.term
+          taking_course.destroy
+        end
+      end
+      user_completed_course = UserCompletedCourse.new
+      user_completed_course.course = course
+      user_completed_course.user = self
+    end
+    user_completed_course.term = term
+    user_completed_course.grade= grade
+    if user_completed_course.save
+      true
+    else
+      self.errors.add :completed_courses, user_completed_course.errors.full_messages
+      false
+    end
+  end
+
   def to_s
     email
   end

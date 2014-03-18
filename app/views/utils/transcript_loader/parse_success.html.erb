@@ -1,0 +1,35 @@
+<div>
+  <h1>Your transcript was successfully parsed!</h1>
+  <% if @already_added > 0 %>
+      <strong><%= @already_added %> were already marked as completed</strong>
+  <% end %>
+  <hr>
+</div>
+
+<% if @records.size > 0 %>
+    <div>
+      <table class='table'>
+        <tr>
+          <th>Course</th>
+          <th>Grade</th>
+          <th>Semester</th>
+        </tr>
+        <% @records.each do |record| %>
+            <tr>
+              <td><%= record[:course] %></td>
+              <td><%= record[:grade] %></td>
+              <td><%= record[:term] %></td>
+              <td>
+                <% if record[:success] %>
+                    <span class='glyphicon glyphicon-ok greentext' title='<%= record[:notice] %>' rel='tooltip'></span>
+                <% else %>
+                    <span class='glyphicon glyphicon-remove redtext' title='<%= record[:errors] %>' rel='tooltip'></span>
+                <% end %>
+              </td>
+            </tr>
+
+        <% end %>
+      </table>
+    </div>
+
+<% end %>

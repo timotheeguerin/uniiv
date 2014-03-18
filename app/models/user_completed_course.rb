@@ -29,5 +29,14 @@ class UserCompletedCourse < ActiveRecord::Base
     c_id = course_id
     UserTakingCourse.joins(:course_scenario).where { course_scenario.user.id == user_id && course_id==c_id }.readonly(false).destroy_all
   end
+  def term
+    return nil if year.nil? or semesester.nil?
+    Term.new(semester, year)
+  end
+
+  def term=(term)
+    self.semester = term.semester
+    self.year = term.year
+  end
 
 end

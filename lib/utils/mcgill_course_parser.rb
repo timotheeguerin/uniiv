@@ -84,7 +84,7 @@ module Utils
       stats[:errors] = []
       i = 0
       while true do
-        url = "http://www.mcgill.ca/study/2013-2014/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
+        url = "http://www.mc_gill.ca/study/2013-2014/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
         page = Nokogiri::HTML(open(url))
         results = page.css('dl.search-results')[0]
         if results.nil? #Last page

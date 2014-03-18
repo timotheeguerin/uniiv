@@ -49,4 +49,14 @@ class UserTakingCourse < ActiveRecord::Base
     end
   end
 
+  def term
+    return nil if year.nil? or semesester.nil?
+    Term.new(semester, year)
+  end
+
+  def term=(term)
+    self.semester = term.semester
+    self.year = term.year
+  end
+
 end

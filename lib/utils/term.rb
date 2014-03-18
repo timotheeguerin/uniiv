@@ -7,6 +7,14 @@ module Utils
       @year = year.to_i
     end
 
+    def self.from_a(array)
+      Term.new(Course::Semester.find_by_name(array[0]), array[1])
+    end
+
+    def self.from_string(str)
+      Term.from_a(str.split(/[[:space:]]/))
+    end
+
     #Return the falll semester of the current year
     def first_of_year
       case @semester.name

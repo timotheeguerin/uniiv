@@ -92,10 +92,33 @@ class Course::Scenario < ActiveRecord::Base
         :only_not_completed => false
     }
     options = options.reverse_merge(default_options)
-    options[:programs] ||= programs.map{|x| x.id}
+    options[:programs] ||= programs.map { |x| x.id }
     Course::Course.search_course(options)
   end
 
+  #Take the given course at the given semester
+  #If user is already taking the course update it
+  def take_course(course, term)
+    user_taking_course = taking_courses.where(:course_id => course.id).first
+    if user_taking_course.nil?
+      user_taking_course = UserTakingCourse.new
+      user_taking_course.course_scenario = self
+      user_taking_course.course = course
+    end
+    user_taking_course.semester = term.semester
+    user_taking_course.year = term.year
+    if user_taking_course.save
+      true
+    else
+      self.errors.add(:taking_courses, user_taking_course.errors.full_messages)
+      false
+    end
+  end
+
+
+  def complete_course(course, term = nil)
+    user.complete_course(course, term)
+  end
 
   def to_s
     "#{user.to_s} (#{id.to_s})"
