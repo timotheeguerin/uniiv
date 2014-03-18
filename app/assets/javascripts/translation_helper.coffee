@@ -35,7 +35,6 @@ $(document).ready () ->
 get_content = (span)->
   url = '/translation/update'
   key = span.attr('title').match(/translation missing: (.*)/)[1]
-  console.log(key)
   content = "<form action='" + url + "' method='post' class='translation_helper'>"
   content += "<div class='alert alert-danger hidden'></div>"
   content += "<input type='hidden' name='key' value='" + key + "'>"

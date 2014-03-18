@@ -234,7 +234,14 @@
 
                 this.setPointer(e)
 
-                this.options.onMousedown(this.item, e, groupDefaults.onMousedown)
+                //Cancel the drag if the mousedown event return false
+                result = this.options.onMousedown(this.item, e, groupDefaults.onMousedown)
+                if (result == false) {
+                    this.clearDimensions()
+                    this.clearOffsetParent()
+                    this.toggleListeners('off')
+                    return
+                }
             } else {
                 this.toggleListeners('on', ['drop'])
             }
@@ -249,6 +256,8 @@
                 this.options.onDragStart(this.item, this.itemContainer, groupDefaults.onDragStart)
                 this.item.before(this.placeholder)
                 this.dragging = true
+
+
             }
 
             this.setPointer(e)

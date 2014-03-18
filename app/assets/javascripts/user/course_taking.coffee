@@ -22,6 +22,8 @@ $(document).ready ()->
   $('.sortable').each ()->
     handleSortable($(this))
 
+
+
 getURLParameters = (params) ->
   return {} unless params?
   result = {}
@@ -41,6 +43,11 @@ checkDependencies = (course_id, remove = false) ->
 
 
 handleSortable = (element) ->
+  $(element).on 'mouseenter', '.btn', () ->
+    $(this).attr('data-over', true)
+  $(element).on 'mouseleave', '.btn', () ->
+    $(this).attr('data-over', false)
+
   adjustment = {}
   drop = true
   group = element.attr('data-group')
@@ -50,6 +57,14 @@ handleSortable = (element) ->
     group: group
     drop: drop
     itemSelector: 'li:not(.notsortable)'
+    onMousedown: ($item, event, _super) ->
+      cancel = false
+      $item.find('.btn').each () ->
+        if $(this).attr('data-over') == 'true'
+          cancel = true
+          return
+      return not cancel
+
     onDragStart: ($item, container, _super) -> #Reposition the draggin element relative from where it was grabbed
       ul = $item.closest('ul')
       $item.data('origin-container', ul)
