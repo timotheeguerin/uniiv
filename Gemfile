@@ -72,3 +72,5 @@ gem 'sunspot_rails'
 gem 'sunspot_solr', :group => :development
 
 gem 'progress_bar'
+
+gem 'mechanize'

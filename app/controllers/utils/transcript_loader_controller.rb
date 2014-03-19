@@ -10,12 +10,21 @@ class Utils::TranscriptLoaderController < ApplicationController
   end
 
   def parse_show
-
     render :parse
   end
 
   def parse
     @url = 'https://horizon.mc_gill.ca/pban1/twbkwbis.P_WWWLogin' #TODO load by university
+    begin
+      html = Utils::Transcript::McGill::Authenticator.retrieve_transcript(params[:email], params[:password])
+    rescue Utils::Transcript::McGill::AuthenticationError => e
+      flash[:alert] = e.message
+      render :parse
+      return
+    end
+
+    process_html(html)
+    render :parse_success
   end
 
   def parse_manual_show
@@ -25,8 +34,13 @@ class Utils::TranscriptLoaderController < ApplicationController
 
   def parse_manual
     html = params[:html]
+    process_html(html)
+    render :parse_success
+  end
+
+  def process_html(html)
     results = Utils::Transcript::McGill::TranscriptParser.parse(html)
-    @records = {}
+    @records = []
     @already_added = 0
     results.records.each do |result|
       if result[:grade].nil?
@@ -54,6 +68,5 @@ class Utils::TranscriptLoaderController < ApplicationController
         end
       end
     end
-    render :parse_success
   end
 end
