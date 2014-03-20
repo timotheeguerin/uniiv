@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320210350) do
+ActiveRecord::Schema.define(version: 20140320211247) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -298,8 +298,6 @@ ActiveRecord::Schema.define(version: 20140320210350) do
 
   create_table "program_groups", force: true do |t|
     t.string   "name"
-    t.integer  "restriction_id"
-    t.integer  "value"
     t.integer  "groupparent_id"
     t.string   "groupparent_type"
     t.datetime "created_at"

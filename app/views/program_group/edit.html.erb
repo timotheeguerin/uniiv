@@ -13,6 +13,14 @@
 
 <div class='panel panel-default'>
   <div class="panel-heading">
+    Edit requirements
+  </div>
+  <%= render :partial => 'program/group_restriction/show', :locals => {:group => @program_group} %>
+</div>
+
+
+<div class='panel panel-default'>
+  <div class="panel-heading">
     Courses:
   </div>
   <%= render_manytomany_relationship_list(Program::Group, @program_group.id, 'list_courses') %>

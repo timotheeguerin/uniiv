@@ -1,0 +1,2 @@
+module Program::GroupRestrictionHelper
+end

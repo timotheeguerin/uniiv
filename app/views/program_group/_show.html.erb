@@ -3,7 +3,9 @@
     <div class='row'>
       <div class='col-md-8'>
         <h4><%= link_to group.name, group_path(group) %></h4>
-        <span><%= t("group.#{group.restriction.to_s}", :value=> group.value) %></span>
+        <% group.restrictions.each do |restriction| %>
+            <div><%= t("group.#{restriction.type.to_s}", :value => restriction.value) %></div>
+        <% end %>
       </div>
       <div class='col-md-4'>
         <div class='progress'>

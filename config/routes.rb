@@ -87,6 +87,12 @@ Uniiv::Application.routes.draw do
   patch 'program:id/edit' => 'program#update', :as => :program_update
   post 'program/delete' => 'program#delete', :as => :program_delete
 
+  #Group restricion
+  get 'program/group/restriction/create'=> 'program/group_restriction#list', :as => :program_group_restriction_list
+  post 'program/group/restriction/create' => 'program/group_restriction#create', :as => :program_group_restriction_create
+  post 'program/group/restriction/delete' => 'program/group_restriction#delete', :as => :program_group_restriction_delete
+
+
   #Group controller
   get 'program/group/new' => 'program_group#new', :as => :program_group_new
   get 'program/group/:id' => 'program_group#show', as: 'group'

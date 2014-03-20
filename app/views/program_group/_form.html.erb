@@ -8,15 +8,6 @@
       For example if you are required to complete 9 credit in the spcified courses then put type to be min_credit and value to 9
     </div>
     <div class="form-group">
-      <%= f.label :restriction_id, 'Restriction Type' %>
-      <%= f.select :restriction_id, options_from_collection_for_select(GroupRestrictionType.all, 'id', 'to_s', @program_group.restriction_id),
-                   {}, :class => 'form-control selectpicker' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :value, 'Restriction value' %>
-      <%= f.text_field :value, :class => 'form-control' %>
-    </div>
-    <div class="form-group">
       <%= f.submit :Save, :class => 'btn btn-default' %>
       <%= f.submit 'Save and edit', :name => :saveandedit, :class => 'btn btn-default' %>
     </div>

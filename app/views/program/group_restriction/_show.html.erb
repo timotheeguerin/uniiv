@@ -1,0 +1,22 @@
+<div class='list-group'>
+  <div id='requirement_list_container' data-url="<%= program_group_restriction_list_path(:group => group.id) %>">
+<%= render :partial => 'program/group_restriction/list', :locals => {:group => group} %>
+  </div>
+  <div class='list-group-item'>
+    <%= form_tag program_group_restriction_create_path, :class => 'useajax form-inline', 'data-reload' => '#requirement_list_container' do %>
+        <%= hidden_field_tag :group, group.id %>
+        <div class="form-group">
+          <%= label_tag :type, 'Restriction type' %>
+          <%= select_tag :type, options_from_collection_for_select(Program::GroupRestrictionType.all, 'id', 'to_s'),
+                         :class => 'form-control selectpicker' %>
+        </div>
+        <div class='form-group'>
+          <%= label_tag :value %>
+          <%= text_field_tag :value, '', :class => 'form-control' %>
+        </div>
+        <div class='form-group'>
+          <%= submit_tag('Add', :class => 'btn btn-primary') %>
+        </div>
+    <% end %>
+  </div>
+</div>
