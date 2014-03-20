@@ -1,4 +1,4 @@
-class CreateProgramGroupRestrictions < ActiveRecord::Migration
+class CreateProgramGroupRestrictionOlds < ActiveRecord::Migration
   def change
     create_table :program_group_restrictions do |t|
       t.string :name

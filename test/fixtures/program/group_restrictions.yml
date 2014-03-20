@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  program_group_id: 
+  value: 1
+  type_id: 
+
+two:
+  program_group_id: 
+  value: 1
+  type_id: 

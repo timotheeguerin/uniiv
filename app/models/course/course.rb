@@ -12,7 +12,7 @@ class Course::Course < ActiveRecord::Base
   has_many :users, :class_name => User, :through => :user_completed_courses
   has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
 
-  has_and_belongs_to_many :program_groups, :class_name => ProgramGroup
+  has_and_belongs_to_many :program_groups, :class_name => Program::Group
 
 
   #Admin
@@ -148,7 +148,7 @@ class Course::Course < ActiveRecord::Base
     text :code
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
-    integer :program_group_ids, :references => ProgramGroup, :multiple => true
+    integer :program_group_ids, :references => Program::Group, :multiple => true
     integer :program_ids, :references => Program, :multiple => true do
       program_groups.map { |group| group.parent_program.id }
     end

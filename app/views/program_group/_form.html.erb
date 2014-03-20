@@ -9,7 +9,7 @@
     </div>
     <div class="form-group">
       <%= f.label :restriction_id, 'Restriction Type' %>
-      <%= f.select :restriction_id, options_from_collection_for_select(ProgramGroupRestrictionType.all, 'id', 'to_s', @program_group.restriction_id),
+      <%= f.select :restriction_id, options_from_collection_for_select(GroupRestrictionType.all, 'id', 'to_s', @program_group.restriction_id),
                    {}, :class => 'form-control selectpicker' %>
     </div>
     <div class="form-group">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320193951) do
+ActiveRecord::Schema.define(version: 20140320200029) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20140320193951) do
 
   add_index "course_scenarios", ["user_id"], name: "index_course_scenarios_on_user_id", using: :btree
 
-  create_table "course_scenarios_programs", force: true do |t|
+  create_table "course_scenarios_program_programs", force: true do |t|
     t.integer "program_id"
     t.integer "scenario_id"
   end
@@ -285,6 +285,17 @@ ActiveRecord::Schema.define(version: 20140320193951) do
     t.datetime "updated_at"
   end
 
+  create_table "program_group_restrictions", force: true do |t|
+    t.integer  "program_group_id"
+    t.integer  "value"
+    t.integer  "type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "program_group_restrictions", ["program_group_id"], name: "index_program_group_restrictions_on_program_group_id", using: :btree
+  add_index "program_group_restrictions", ["type_id"], name: "index_program_group_restrictions_on_type_id", using: :btree
+
   create_table "program_groups", force: true do |t|
     t.string   "name"
     t.integer  "restriction_id"
@@ -301,7 +312,7 @@ ActiveRecord::Schema.define(version: 20140320193951) do
     t.integer "program_group_id", null: false
   end
 
-  create_table "programs", force: true do |t|
+  create_table "program_programs", force: true do |t|
     t.string   "name"
     t.integer  "type_id"
     t.integer  "faculty_id"
@@ -309,8 +320,8 @@ ActiveRecord::Schema.define(version: 20140320193951) do
     t.datetime "updated_at"
   end
 
-  add_index "programs", ["faculty_id"], name: "index_programs_on_faculty_id", using: :btree
-  add_index "programs", ["type_id"], name: "index_programs_on_type_id", using: :btree
+  add_index "program_programs", ["faculty_id"], name: "index_program_programs_on_faculty_id", using: :btree
+  add_index "program_programs", ["type_id"], name: "index_program_programs_on_type_id", using: :btree
 
   create_table "programs_types", force: true do |t|
     t.string   "name"

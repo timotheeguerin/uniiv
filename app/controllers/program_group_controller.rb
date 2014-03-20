@@ -9,7 +9,7 @@ class ProgramGroupController < ApplicationController
     end
     @term ||= Utils::Term::now
 
-    @group = ProgramGroup.find(params[:id])
+    @group = Program::Group.find(params[:id])
 
     @ratios = {}
     @ratios[:actual] = (@group.get_completion_ratio(current_scenario)[:ratio] * 100).to_i
@@ -24,12 +24,12 @@ class ProgramGroupController < ApplicationController
   end
 
   def new
-    @program_group = ProgramGroup.new
+    @program_group = Program::Group.new
     @program_group.groupparent = find_parent
   end
 
   def create
-    @program_group = ProgramGroup.new(program_group_params)
+    @program_group = Program::Group.new(program_group_params)
     @program_group.groupparent = find_parent
     if @program_group.save
       if params[:saveandedit]
@@ -43,11 +43,11 @@ class ProgramGroupController < ApplicationController
   end
 
   def edit
-    @program_group= ProgramGroup.find(params[:id])
+    @program_group= Program::Group.find(params[:id])
   end
 
   def update
-    @program_group= ProgramGroup.find(params[:id])
+    @program_group= Program::Group.find(params[:id])
     if @program_group.update(program_group_params)
       if params[:saveandedit]
         redirect_to program_group_edit_path(@program_group)
@@ -60,7 +60,7 @@ class ProgramGroupController < ApplicationController
   end
 
   def delete
-    @program_group = ProgramGroup.find(params[:id])
+    @program_group = Program::Group.find(params[:id])
     authorize! :delete, @program_group
     @program_group.destroy
     redirect_to :back
@@ -80,9 +80,9 @@ class ProgramGroupController < ApplicationController
   end
 
   def redirect_to_parent
-    if @program_group.groupparent.is_a? Program
+    if @program_group.groupparent.is_a? Program::Program
       redirect_to program_edit_path(@program_group.groupparent)
-    elsif @program_group.groupparent.is_a? ProgramGroup
+    elsif @program_group.groupparent.is_a? Program::Group
       redirect_to program_group_edit_path(@program_group.groupparent)
     end
   end

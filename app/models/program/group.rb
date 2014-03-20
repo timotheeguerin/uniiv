@@ -1,23 +1,24 @@
-class ProgramGroup < ActiveRecord::Base
+class Program::Group < ActiveRecord::Base
 
-  belongs_to :restriction, :class_name => ProgramGroupRestrictionType
+  belongs_to :restriction, :class_name => GroupRestrictionType
   belongs_to :groupparent, :polymorphic => true
 
-  has_many :subgroups, :class_name => ProgramGroup, :as => :groupparent
+  has_many :subgroups, :class_name => Program::Group, :as => :groupparent
 
   #List of courses to complete
-  has_and_belongs_to_many :list_courses, :class_name => Course::Course , :uniq => true
+  has_and_belongs_to_many :list_courses, :class_name => Course::Course, :uniq => true, :foreign_key => 'program_group_id'
 
   #List of the subject_courses
-  has_many :subject_courses, :class_name => Course::SubjectCourseList
+  has_many :subject_courses, :class_name => Course::SubjectCourseList, :foreign_key => 'program_group_id'
 
   #Complete a number of programs
-  has_and_belongs_to_many :programs, :class_name => Program , :uniq => true
+  has_and_belongs_to_many :programs, :class_name => Program::Program, :uniq => true
 
   validates_presence_of :groupparent_id
   validates_presence_of :restriction
 
   before_save :default_values
+
   def default_values
     self.value ||= 0 unless restriction.name = 'all'
   end
@@ -164,9 +165,9 @@ class ProgramGroup < ActiveRecord::Base
     unless scenario.nil?
       result = result.where do
         id.in(scenario.taking_courses.pluck(:course_id)) if options[:only_taking] and
-        id.in(scenario.user.completed_courses.pluck(:course_id)) if options[:only_completed] and
-        id.not_in(scenario.taking_courses.pluck(:course_id)) if options[:only_not_taking] and
-        id.not_in(scenario.user.completed_courses.pluck(:course_id)) if options[:only_not_completed]
+            id.in(scenario.user.completed_courses.pluck(:course_id)) if options[:only_completed] and
+            id.not_in(scenario.taking_courses.pluck(:course_id)) if options[:only_not_taking] and
+            id.not_in(scenario.user.completed_courses.pluck(:course_id)) if options[:only_not_completed]
       end
     end
     result

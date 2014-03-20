@@ -1,10 +1,10 @@
 class ProgramController < ApplicationController
   def show
-    @program = Program.find(params[:id])
+    @program = Program::Program.find(params[:id])
   end
 
   def graph_embed
-    @program = Program.find(params[:id])
+    @program = Program::Program.find(params[:id])
     render :layout => false
   end
 
@@ -24,13 +24,13 @@ class ProgramController < ApplicationController
   end
 
   def new
-    authorize! :create, Program
-    @program = Program.new
+    authorize! :create, Program::Program
+    @program = Program::Program.new
   end
 
   def create
-    authorize! :create, Program
-    @program = Program.new(program_params)
+    authorize! :create, Program::Program
+    @program = Program::Program.new(program_params)
 
     if @program.save
       if params[:saveandedit]
@@ -44,12 +44,12 @@ class ProgramController < ApplicationController
   end
 
   def edit
-    @program = Program.find(params[:id])
+    @program = Program::Program.find(params[:id])
     authorize! :update, @program
   end
 
   def update
-    @program = Program.find(params[:id])
+    @program = Program::Program.find(params[:id])
     authorize! :update, @program
     if @program.update(program_params)
       flash[:notice] = t('program.updated.success')
@@ -64,7 +64,7 @@ class ProgramController < ApplicationController
   end
 
   def delete
-    @program = Program.find(params[:id])
+    @program = Program::Program.find(params[:id])
     authorize! :delete, @program
     @program.destroy
     redirect_to :back
@@ -76,7 +76,7 @@ class ProgramController < ApplicationController
 
   def search
     s = Utils::Search.from_params(params)
-    Program.search_program(s)
+    Program::Program.search_program(s)
     s
   end
 end
