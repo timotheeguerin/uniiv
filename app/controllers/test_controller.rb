@@ -1,6 +1,5 @@
 class TestController < ApplicationController
   def index
-    set_group_restricions
   end
 
   def set_group_restricions
