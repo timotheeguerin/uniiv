@@ -38,7 +38,7 @@
     <div class='text-center'>
       <% error = current_scenario.has_errors? %>
       <% if  error %>
-          <div class="alert alert-danger">You have a problem with your courses.</div>
+        <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>You have a problem with your courses.</div>
           <% issues='btn-danger' %>
       <% else %>You have no problems with your courses.
           <% issues='btn-success' %>
