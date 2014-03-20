@@ -6,10 +6,10 @@ class Program::Group < ActiveRecord::Base
   has_many :subgroups, :class_name => Program::Group, :as => :groupparent
 
   #List of courses to complete
-  has_and_belongs_to_many :list_courses, :class_name => Course::Course, :uniq => true, :foreign_key => 'program_group_id'
+  has_and_belongs_to_many :list_courses, :class_name => Course::Course, :uniq => true
 
   #List of the subject_courses
-  has_many :subject_courses, :class_name => Course::SubjectCourseList, :foreign_key => 'program_group_id'
+  has_many :subject_courses, :class_name => Course::SubjectCourseList
 
   #Complete a number of programs
   has_and_belongs_to_many :programs, :class_name => Program::Program, :uniq => true
@@ -46,7 +46,7 @@ class Program::Group < ActiveRecord::Base
   def parent_program
     if groupparent.nil?
       nil
-    elsif groupparent.instance_of?(Program)
+    elsif groupparent.instance_of?(Program::Program)
       groupparent
     else
       groupparent.parent_program

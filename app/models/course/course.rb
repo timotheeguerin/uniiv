@@ -149,7 +149,7 @@ class Course::Course < ActiveRecord::Base
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
     integer :program_group_ids, :references => Program::Group, :multiple => true
-    integer :program_ids, :references => Program, :multiple => true do
+    integer :program_ids, :references => Program::Program, :multiple => true do
       program_groups.map { |group| group.parent_program.id }
     end
   end
