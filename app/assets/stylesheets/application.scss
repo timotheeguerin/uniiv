@@ -115,7 +115,7 @@ form {
   margin: 0 auto -3em;
 }
 
-.footer, .push {
+footer, .push {
   height: 4em;
 }
 
@@ -135,9 +135,14 @@ form {
   padding-top: 3;
 }
 
-*:not(.glyphicon) {
-  font-family: 'Open Sans', sans-serif !important;
+*:not(glyphicon){
+  font-family: 'Open Sans', sans-serif;
 }
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Lato', sans-serif;
+}
+
 
 .inline {
   display: inline-block;

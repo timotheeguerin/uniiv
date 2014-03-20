@@ -18,6 +18,9 @@
 #ignore rubymine
 .idea/
 
+#ignore the logs
+/log/*
+
 solr/data/
 solr/default/
 solr/development/
