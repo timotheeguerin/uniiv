@@ -1,6 +1,17 @@
 class TestController < ApplicationController
   def index
-    check_course_requirement_filled
+    set_group_restricions
+  end
+
+  def set_group_restricions
+    Program::GroupRestriction.destroy_all
+    Program::Group.all.each do |group|
+      restriction = Program::GroupRestriction.new
+      restriction.group = group
+      restriction.value = group.value
+      restriction.type = group.restriction
+      restriction.save
+    end
   end
 
   def check_course_requirement_filled

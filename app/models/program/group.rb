@@ -11,6 +11,8 @@ class Program::Group < ActiveRecord::Base
   #List of the subject_courses
   has_many :subject_courses, :class_name => Course::SubjectCourseList
 
+  has_many :restrictions, :class_name => Program::GroupRestriction
+
   #Complete a number of programs
   has_and_belongs_to_many :programs, :class_name => Program::Program, :uniq => true
 
