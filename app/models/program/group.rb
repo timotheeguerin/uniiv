@@ -144,9 +144,10 @@ class Program::Group < ActiveRecord::Base
   end
 
   def get_coefficient
-    case restrictions.first.type.name
+    restriction = restrictions.first
+    case restriction.type.name
       when 'min_credit'
-        value
+    restriction.value
       when 'min_grp'
         return 1
       else
