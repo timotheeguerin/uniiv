@@ -2917,7 +2917,7 @@ var Kinetic = {};
         },
         /**
          * clone node.  Returns a new Node instance with identical attributes.  You can also override
-         *  the node properties with an object literal, enabling you to use an existing node as a template
+         *  the node properties with an object literal, enabling you to use an existing node as a templates
          *  for another node
          * @method
          * @memberof Kinetic.Node.prototype

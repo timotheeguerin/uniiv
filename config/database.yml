@@ -13,8 +13,8 @@ development:
   encoding: utf8
   database: uniiv_development
   pool: 5
-  username: root
-  password: madremia350
+  username: <%= ENV['RAILS_DB_USERNAME'] %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: 127.0.0.1
 
@@ -23,8 +23,8 @@ development_main:
   encoding: utf8
   database: uniiv_development
   pool: 5
-  username: root
-  password: madremia350
+  username: <%= ENV['RAILS_DB_USERNAME'] %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: bendodev.no-ip.org
   ssh_user: timssh
@@ -37,8 +37,8 @@ test:
   encoding: utf8
   database: uniiv_test
   pool: 5
-  username: root
-  password: madremia350
+  username: <%= ENV['RAILS_DB_USERNAME'] %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: 127.0.0.1
 
@@ -47,6 +47,6 @@ production:
   encoding: utf8
   database: uniiv_production
   pool: 5
-  username: root
-  password: madremia350
+  username: <%= ENV['RAILS_DB_USERNAME'] %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock

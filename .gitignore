@@ -25,3 +25,6 @@ solr/data/
 solr/default/
 solr/development/
 solr/pids/
+
+#Local files that depend on the machine
+config/local/
