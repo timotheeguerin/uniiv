@@ -9,5 +9,5 @@ uniiv
 
 Setup the database login information for the machine
 ```bash
-rake uniiv:install
+rails g uniiv:install
 ```
