@@ -24,13 +24,15 @@ module Uniiv
     silence_warnings do
       OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE unless Rails.env.production?
     end
-
+    puts 'ENVIR'
+    puts Rails.env
     env_file = File.join(Rails.root, 'config/local', 'local_env.yml')
     if File.exists?(env_file)
       YAML.load(File.open(env_file)).each do |key, value|
         ENV[key.to_s] = value
       end
     else
+
       raise 'Local db env file local not found!'
     end
   end
