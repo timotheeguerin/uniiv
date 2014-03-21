@@ -31,10 +31,8 @@ module Uniiv
         ENV[key.to_s] = value
       end
     else
-      unless $0.end_with?('rake')
-        raise 'Local db env file local not found!'
-      end
-
+      #unless $0.end_with?('rake')
+        puts 'WARNING: Local db env file local not found!'
     end
   end
 end
