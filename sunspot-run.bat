@@ -1,2 +1,4 @@
+@echo off
 cd %~dp0
-rake sunspot:solr:run
+@echo on
+rake sunspot:solr:run >> 1

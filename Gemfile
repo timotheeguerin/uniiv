@@ -74,3 +74,10 @@ gem 'sunspot_solr', :group => :development
 gem 'progress_bar'
 
 gem 'mechanize'
+
+#Testing
+gem 'minitest'
+
+gem 'mocha'
+
+gem 'minitest-reporters'
