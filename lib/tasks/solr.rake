@@ -41,6 +41,8 @@ namespace :sunspot do
       puts "Successfully stopped Solr ..."
     end
 
+
+
     task :reindex => :"sunspot:reindex"
   end
 end

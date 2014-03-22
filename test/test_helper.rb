@@ -4,7 +4,9 @@ require 'rails/test_help'
 require 'minitest/reporters'
 require 'minitest/mock'
 require 'mocha'
-
+Dir["#{Rails.root}/lib/**/*.rb"].each do |rb_file|
+  require rb_file
+end
 MiniTest::Reporters.use!
 
 class ActiveSupport::TestCase

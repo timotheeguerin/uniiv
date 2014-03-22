@@ -1,5 +1,6 @@
 class Admin::Utils::ProgramEditorController < ApplicationController
   def index
+    authorize! :edit, Program
     @search = search
   end
 
