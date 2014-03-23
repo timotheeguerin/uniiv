@@ -15,6 +15,7 @@ class CourseController < ApplicationController
   end
 
   def search_list
+    params[:need_reload] ||= false
     @courses = search_course
     render :layout => false
   end

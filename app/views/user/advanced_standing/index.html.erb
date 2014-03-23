@@ -9,10 +9,10 @@
     <div class='col-md-8'>
       <div>
         <%= form_tag(user_advanced_standings_setcredit_path, :class => "useajax") do %>
-          <div class='form-group'>
-            <label>Total Credits:</label>
-            <%= text_field_tag('advanced_standing_credit', current_user.advanced_standing_credits, :class => 'form-control') %>
-          </div>
+            <div class='form-group'>
+              <label>Total Credits:</label>
+              <%= text_field_tag('advanced_standing_credit', current_user.advanced_standing_credits, :class => 'form-control submitonedit') %>
+            </div>
         <% end %>
       </div>
       <div id='course_sorter'>
@@ -25,9 +25,9 @@
               data-params=''
               data-update-url='<%= user_advanced_standings_create_path %>'>
             <% @courses.each do |course| %>
-              <li>
-                <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s %></h5></div>
-              </li>
+                <li>
+                  <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s %></h5></div>
+                </li>
             <% end %>
           </ul>
         </div>

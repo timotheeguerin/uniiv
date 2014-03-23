@@ -21,20 +21,25 @@ class User::AdvancedStandingController < ApplicationController
       completed_course.course = course
       completed_course.user = current_user
       completed_course.advanced_standing = true
-      completed_course.save
-      return_json('advancedstanding.added')
+      if completed_course.save
+        return_json('advancedstanding.added')
+      else
+        puts completed_course.errors.full_messages
+        return_json(completed_course.errors.full_messages, :success => false)
+      end
     end
   end
 
   def remove
-    course = Course::Course.find(params[:course_id])
-    completed_course = current_user.completed_courses.where { (:course_id == course.id) & (:advanced_standing) }.first
+    completed_course = current_user.completed_courses.where(:course_id => params[:course_id]).first
     if completed_course.nil?
       return_json('advancedstanding.noexist')
     else
-      puts 'remove'
-      completed_course.destroy
-      return_json('advancedstanding.removed')
+      if completed_course.destroy
+        return_json('advancedstanding.removed')
+      else
+        return_json(completed_course.errors.full_messages, :success => true)
+      end
     end
   end
 end

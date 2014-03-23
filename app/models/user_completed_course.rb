@@ -6,9 +6,9 @@ class UserCompletedCourse < ActiveRecord::Base
 
   validates_presence_of :course_id
   validates_presence_of :user_id
-  validates_presence_of :grade_id
-  validates_presence_of :semester_id
-  validates_presence_of :year
+  validates_presence_of :grade_id, :unless=> :advanced_standing
+  validates_presence_of :semester_id, :unless=> :advanced_standing
+  validates_presence_of :year, :unless=> :advanced_standing
   validates_uniqueness_of :course_id, :scope => :user_id
 
   after_validation :remove_course_taking, on: [:create, :update]

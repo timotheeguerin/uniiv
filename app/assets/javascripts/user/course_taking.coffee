@@ -104,7 +104,7 @@ handleSortable = (element) ->
       remove = false
       need_reload = false
       remove = true if type == 'delete'
-      need_reload = true if $item.children().attr('data-need-reload')
+      need_reload = true if $item.children().attr('data-need-reload') == 'true'
 
       parameters = $.extend(getURLParameters(params), {
         course_id: course_id
@@ -117,6 +117,7 @@ handleSortable = (element) ->
       loading_anim.show()
       $.post(update_url, parameters).success((data) ->
         ajaxPopupPush(data.message)
+        console.log('ned:' + need_reload)
         if need_reload
           tmpItemp = $item.after(data.html)
           $item.remove()
