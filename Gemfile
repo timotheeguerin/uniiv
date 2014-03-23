@@ -49,7 +49,9 @@ gem 'rails_admin'
 gem 'devise'
 
 gem 'cancan'
-gem 'i18n-active_record', :github => 'timcolonel/i18n-active_record', :require => 'i18n/active_record'
+gem 'i18n-active_record',
+    :git => 'git://github.com/timcolonel/i18n-active_record.git',
+    :require => 'i18n/active_record'
 gem 'bootstrap-sass'
 gem 'json'
 

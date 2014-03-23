@@ -1,6 +1,5 @@
 class Program::Group < ActiveRecord::Base
 
-  belongs_to :restriction, :class_name => GroupRestrictionType
   belongs_to :groupparent, :polymorphic => true
 
   has_many :subgroups, :class_name => Program::Group, :as => :groupparent
@@ -17,13 +16,6 @@ class Program::Group < ActiveRecord::Base
   has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::Program
 
   validates_presence_of :groupparent_id
-  validates_presence_of :restriction
-
-  before_save :default_values
-
-  def default_values
-    self.value ||= 0 unless restriction.name = 'all'
-  end
 
   def courses
     result = list_courses
@@ -116,7 +108,6 @@ class Program::Group < ActiveRecord::Base
   end
 
   def get_completion_ratio(scenario, term = nil)
-    puts 'COMPLETEION GROUP: ' + id.to_s
     restriction = restrictions.first
     case restriction.type.name
       when 'min_credit'

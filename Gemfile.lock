@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/timcolonel/i18n-active_record.git
-  revision: ad9be273f250bc33ab1b3d78e119b90c39f9b089
+  revision: 8c8f80bf3766163c29b3a2d389462a5cf855882b
   specs:
     i18n-active_record (0.0.3)
       i18n (>= 0.5.0)

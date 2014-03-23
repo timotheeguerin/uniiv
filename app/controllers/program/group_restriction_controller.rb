@@ -1,5 +1,5 @@
+#Controller to manage the group restriction(Min group, min credit)
 class Program::GroupRestrictionController < ApplicationController
-
   def list
     group = Program::Group.find(params[:group])
     render :partial => 'list', :locals => {:group => group}
