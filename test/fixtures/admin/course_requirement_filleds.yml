@@ -1,0 +1,13 @@
+without_prerequisite:
+  course: without_prerequisite
+with_prerequisite:
+  course: with_prerequisite
+without_corequisite:
+  course: without_corequisite
+with_corequisite:
+  course: with_corequisite
+
+simple:
+  course: simple_course
+  prerequisites: false
+  corequisites: false

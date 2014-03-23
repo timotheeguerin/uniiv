@@ -1,0 +1,3 @@
+single_node:
+  operation: 'NODE'
+  course: simple_course

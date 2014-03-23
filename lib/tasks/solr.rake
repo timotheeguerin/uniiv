@@ -5,7 +5,7 @@ namespace :sunspot do
       case RUBY_PLATFORM
         when /w(in)?32$/, /java$/
           abort("This command is not supported on #{RUBY_PLATFORM}. " +
-                    "Use rake sunspot:solr:run to run Solr in the foreground.")
+                    'Use rake sunspot:solr:run to run Solr in the foreground.')
       end
 
       if defined?(Sunspot::Rails::Server)
@@ -13,7 +13,7 @@ namespace :sunspot do
       else
         Sunspot::Solr::Server.new.start
       end
-      puts "Successfully started Solr ..."
+      puts 'Successfully started Solr ...'
     end
 
     desc 'Run the Solr instance in the foreground'
@@ -30,7 +30,7 @@ namespace :sunspot do
       case RUBY_PLATFORM
         when /w(in)?32$/, /java$/
           abort("This command is not supported on #{RUBY_PLATFORM}. " +
-                    "Use rake sunspot:solr:run to run Solr in the foreground.")
+                    'Use rake sunspot:solr:run to run Solr in the foreground.')
       end
 
       if defined?(Sunspot::Rails::Server)
@@ -38,11 +38,11 @@ namespace :sunspot do
       else
         Sunspot::Solr::Server.new.stop
       end
-      puts "Successfully stopped Solr ..."
+      puts 'Successfully stopped Solr ...'
     end
 
 
 
-    task :reindex => :"sunspot:reindex"
+    task :reindex => :'sunspot:reindex'
   end
 end

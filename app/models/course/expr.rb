@@ -5,7 +5,6 @@ class Course::Expr < ActiveRecord::Base
   has_many :courses_co, :class_name => Course::Course, :foreign_key => 'corequisite_id'
 
   def check_destroy
-    puts 'CHECKING DESTROY'
     if courses_co.empty? and courses_pre.empty?
       destroy
     end
@@ -30,7 +29,6 @@ class Course::Expr < ActiveRecord::Base
   def self.parse(string, subject_requirements = [])
     nodes = Course::Node.parse(string)
     return nil if nodes.nil?
-    node = nil
     if nodes.size == 0
       node = Course::Node.new
       node.operation = NodeOperation::AND

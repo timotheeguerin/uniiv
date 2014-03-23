@@ -14,7 +14,7 @@ class Admin::Utils::CourseRequirementsControllerTest < ActionController::TestCas
 
 
   test 'mark as none prerequisite' do
-    req =  Admin::CourseRequirementFilled.create!(:prerequisites=> false)
+    req = Admin::CourseRequirementFilled.create!(:prerequisites => false)
     get :mark_as_none, :id => req.id, :type => 'prerequisite'
     assert_response :redirect
     req.reload
@@ -22,33 +22,51 @@ class Admin::Utils::CourseRequirementsControllerTest < ActionController::TestCas
   end
 
   test 'mark as none corequisite' do
-    req =  Admin::CourseRequirementFilled.create!(:corequisites=> false)
+    req = Admin::CourseRequirementFilled.create!(:corequisites => false)
     get :mark_as_none, :id => req.id, :type => 'corequisites'
     assert_response :redirect
     req.reload
     assert req.corequisites?, 'Corequisite should have been filled to true'
   end
 
-=begin
-  test 'should get input requirement' do
-    req =  Admin::CourseRequirementFilled.create!()
-    get :input_requirement, :id => req.id
+
+  test 'Test get input requirements with prerequisite' do
+    req = admin_course_requirement_filleds(:with_prerequisite)
+    get :input_requirement, :id => req.id, :type => 'prerequisite'
+    assert_response :success
+  end
+
+  test 'Test get input requirements without prerequisite' do
+    req = admin_course_requirement_filleds(:without_prerequisite)
+    get :input_requirement, :id => req.id, :type => 'prerequisite'
+    assert_response :success
+  end
+
+  test 'Test get input requirements with corequisite' do
+    req = admin_course_requirement_filleds(:with_corequisite)
+    get :input_requirement, :id => req.id, :type => 'corequisite'
+    assert_response :success
+  end
+
+  test 'Test get input requirements without corequisite' do
+    req = admin_course_requirement_filleds(:without_corequisite)
+    get :input_requirement, :id => req.id, :type => 'corequisite'
     assert_response :success
   end
 
   test 'should get subject_input_requirement' do
-    get :subject_input_requirement
+    req = admin_course_requirement_filleds(:simple)
+    get :subject_input_requirement, :id => req.id
     assert_response :success
   end
 
-  test 'should get save_requirement' do
-    get :save_requirement
-    assert_response :success
+  test 'should save prerequisite' do
+    subject = course_subjects(:default)
+    course = Course::Course.create!(:name => 'Tmp course', :credit => 3, :hours => 3, :description => 'Empty desc', :subject=> subject, :code => 1234)
+    req = Admin::CourseRequirementFilled.find_by_course_id(course.id)
+    get :save_requirement, :id => req.id, :type => 'prerequisite'
+    assert_response :redirect
+    course.destroy #Cleanup so we can reusse the code
   end
-  test 'should get get_subject_requirement_params' do
-    get :save_requirement
-    assert_response :success
-  end
-=end
 
 end

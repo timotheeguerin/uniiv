@@ -42,6 +42,7 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
     end
   end
 
+  #Return a partial to add new subject requirement(e.g. Take 1 course of level 200 in MATH)
   def subject_input_requirement
     requirement = Course::SubjectRequirementNode.new
     render :partial => 'subject_requirement_input', :locals => {:requirements => [requirement]}
@@ -53,7 +54,6 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
     input = params[:expr]
 
     @subject_requirements = get_subject_requirement_params(params)
-    puts @subject_requirements
     @expr = Course::Expr.parse(input, @subject_requirements)
 
     if @expr.nil?

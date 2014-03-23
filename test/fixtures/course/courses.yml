@@ -1,0 +1,16 @@
+with_prerequisite:
+  name: 'Course with prerequisite'
+  prerequisite: expr
+
+without_prerequisite:
+  name: 'Course without prerequisite'
+
+with_corequisite:
+  name: 'Course with corequisite'
+  corequisite: expr
+
+without_corequisite:
+  name: 'Course without corequisite'
+
+simple_course:
+  name: 'Simple Course'
