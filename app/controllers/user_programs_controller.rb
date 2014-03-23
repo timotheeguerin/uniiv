@@ -4,6 +4,7 @@ class UserProgramsController < ApplicationController
   end
 
   def new
+    authorize! :edit, current_user
     @faculty = current_user.faculty
     if @faculty.nil?
       redirect_to user_faculty_edit_path, :alert => t('error.faculty.notselected')
@@ -11,6 +12,7 @@ class UserProgramsController < ApplicationController
   end
 
   def create
+    authorize! :edit, current_user
     if current_user.main_course_scenario.programs.size > 6
       redirect_to user_education_path, :alert => t('error.program.maximum')
     else
@@ -25,13 +27,14 @@ class UserProgramsController < ApplicationController
         else
           current_user.main_course_scenario.programs << program
           current_user.save
-          redirect_to user_education_path, :notice => t('program.add.success')
+          redirect_to user_education_selection_path, :notice => t('program.add.success')
         end
       end
     end
   end
 
   def delete
+    authorize! :edit, current_user
     program = Program::Program.find(params[:program_id])
     current_user.main_course_scenario.programs.delete(program)
 

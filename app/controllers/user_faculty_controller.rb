@@ -26,7 +26,7 @@ class UserFacultyController < ApplicationController
       scenario.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
     end
     current_user.save
-    redirect_to user_education_path
+    redirect_to user_education_selection_path
   end
 
   def delete

@@ -4,14 +4,16 @@ class UserUniversityController < ApplicationController
   end
 
   def edit
+    authorize! :edit, current_user
     @current_university = current_user.university
   end
 
   def update
+    authorize! :edit, current_user
     university = University.find(params[:university_id])
     current_user.university = university
     current_user.save
-    redirect_to user_education_path
+    redirect_to user_education_selection_path
   end
 
   #This will delete the user university and all its relation(courses taken,...)

@@ -7,18 +7,6 @@
     <% end %>
 
     <h1>Choose your university</h1>
-    <%= form_tag(user_university_update_path) do %>
-        <div class='form-group'>
-          <label>Search for university by name.</label>
-
-          <div class="input-group">
-            <%= text_field_tag('university_id', nil, options = {:class => 'form-control autocomplete disablesubmit', 'data-url' => university_search_autocomplete_path, 'data-input-data' => 'true'}) %>
-
-            <span class="input-group-btn">
-                <%= submit_tag('Choose', :class => 'btn btn-primary', :disabled=> true) %>
-            </span>
-          </div>
-        </div>
-    <% end %>
+    <%= render :partial => 'form', :locals => {:university => current_user.university} %>
   </div>
 </div>

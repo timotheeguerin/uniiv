@@ -21,6 +21,7 @@ $(document).ready ->
     if input.attr('data-input-data')
       data_input = $("<input name='" + input.attr('name') + "' type='hidden'>").appendTo(input.closest('form'))
       input.attr('name', 'text_for_' + input.attr('name'))
+      data_input.val(input.data('value'))
 
     input.autocomplete({
       serviceUrl: url

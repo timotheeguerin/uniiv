@@ -135,14 +135,13 @@ footer, .push {
   padding-top: 3;
 }
 
-*:not(glyphicon){
+*:not(glyphicon) {
   font-family: 'Open Sans', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
-
 
 .inline {
   display: inline-block;
@@ -168,6 +167,7 @@ Blue
 .lightest_bluetext {
   color: $palette_blue_lightest;
 }
+
 .light_bluetext {
   color: $palette_blue_lighter;
 }
@@ -184,13 +184,13 @@ Blue
   color: $palette_blue_darkest;
 }
 
-
 /****************************************
 Green
 *****************************************/
 .lightest_greentext {
   color: $palette_green_lightest;
 }
+
 .light_greentext {
   color: $palette_green_lighter;
 }
@@ -207,13 +207,13 @@ Green
   color: $palette_green_darkest;
 }
 
-
 /****************************************
 Yellow
 *****************************************/
 .lightest_yellowtext {
   color: $palette_yellow_lightest;
 }
+
 .light_yellowtext {
   color: $palette_yellow_lighter;
 }
@@ -230,14 +230,13 @@ Yellow
   color: $palette_yellow_darkest;
 }
 
-
-
 /****************************************
 red
 *****************************************/
 .lightest_redtext {
   color: $palette_orange_lightest;
 }
+
 .light_redtext {
   color: $palette_orange_lighter;
 }
@@ -260,6 +259,7 @@ Gray
 .lightest_greytext {
   color: $palette_grey_lightest;
 }
+
 .light_greytext {
   color: $palette_grey_lighter;
 }
@@ -279,7 +279,6 @@ Gray
 .darkest_greytext {
   color: $palette_grey_darkest;
 }
-
 
 .vertical-align {
   display: table-cell;
@@ -455,7 +454,6 @@ li.invalid-time.dependency {
   width: 180px;
 }
 
-
 /*******************************************
 Jquery automplete styling
 *******************************************/
@@ -479,8 +477,7 @@ Jquery automplete styling
   display: none;
 }
 
-.nopadding-left
-{
+.nopadding-left {
   padding-left: 0;
 }
 
@@ -492,25 +489,27 @@ Jquery automplete styling
   top: 60px;
 }
 
-span.glyphicon.glyphicon-xs {
+span.glyphicon.glyphicon-xs, .text-xs {
   font-size: 10;
 }
-span.glyphicon.glyphicon-sm {
+
+span.glyphicon.glyphicon-sm, .text-sm {
   font-size: 16;
 }
-span.glyphicon.glyphicon-md {
+
+span.glyphicon.glyphicon-md, .text-md {
   font-size: 20;
 }
 
-span.glyphicon.glyphicon-lg {
+span.glyphicon.glyphicon-lg, .text-lg {
   font-size: 36;
 }
 
-span.glyphicon.glyphicon-xl {
+span.glyphicon.glyphicon-xl, .text-xl {
   font-size: 72;
 }
 
-span.glyphicon.glyphicon-xxl {
+span.glyphicon.glyphicon-xxl, .text-xxl {
   font-size: 144;
 }
 
@@ -523,10 +522,15 @@ textarea.transcript_textarea {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
 .homepage-presentation .row:not(:last-child) {
   border-bottom: 1px solid #eee;
 }
 
 .homepage-presentation .row [class^='col-']:not(:last-child) {
   border-right: 1px solid #eee;
+}
+
+.row.education_selection_row {
+  height: 75;
 }

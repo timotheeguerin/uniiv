@@ -87,8 +87,17 @@ $(document).ready () ->
   showonhover();
 
 
-  $(document).on 'click', '.toggledisplay', () ->
-    console.log('clo')
+  $(document).on 'click', '.toggledisplay .toggledisplay-btn', () ->
+    btn = $(this)
+    container = btn.closest('.toggledisplay')
+    active = container.find('.item.active')
+    active.removeClass('active')
+    active.fadeOut 200, () ->
+      next = active.next('.item')
+      next = active.parent().children('.item').first() if next.length == 0
+      next.addClass('active').fadeIn(200)
+
+  $(document).on 'click', '.rotatecontent', () ->
     container = $($(this).attr('data-container'))
     if container.is(':visible')
       container.slideUp(200)
