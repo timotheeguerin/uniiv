@@ -8,9 +8,9 @@
           <div class='input-group'>
 
             <%= text_field_tag('program_id', nil, options =
-                    {:class => 'form-control autocomplete', 'data-url' => program_search_autocomplete_path(:only_not_taking => true), 'data-input-data' => 'true'}) %>
+                    {:class => 'form-control autocomplete disablesubmit', 'data-url' => program_search_autocomplete_path(:only_not_taking => true), 'data-input-data' => 'true'}) %>
             <span class="input-group-btn">
-                <%= submit_tag('Choose', :class => 'btn btn-primary') %>
+                <%= submit_tag('Choose', :class => 'btn btn-primary', :disabled=> true) %>
             </span>
           </div>
         </div>

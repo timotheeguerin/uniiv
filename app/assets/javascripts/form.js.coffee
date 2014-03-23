@@ -10,6 +10,7 @@ $(document).ready ->
   #data-input-data: boolean if replace the input with the data for form submition
   $('input.autocomplete').each () ->
     input = $(this)
+    form = input.closest('form')
 
     #Remove form submition when pressing enter
     input.on 'keypress', (e) ->
@@ -27,10 +28,16 @@ $(document).ready ->
       params: {limit: 5}
       onSearchStart: () ->
         input.data('searching', true)
-      onSelect: (suggestion, query, queryLowerCase) ->
+        data_input.val('') #Clear the val if the something was previously selected
+        if input.hasClass('disablesubmit')
+          form.find('button,input[type="submit"]').prop('disabled', true)
+
+    onSelect: (suggestion, query, queryLowerCase) ->
         id = suggestion.data
         data_input.val(id) if data_input.length > 0
         input.data('searching', false)
+        if input.hasClass('disablesubmit')
+          form.find('button,input[type="submit"]').prop('disabled', false)
     })
 
   $(document).on 'keyup', 'form input.percentage', ()->
