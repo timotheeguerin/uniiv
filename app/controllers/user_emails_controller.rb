@@ -1,9 +1,11 @@
 class UserEmailsController < ApplicationController
 
   def index
+    authorize! :edit, current_user
   end
 
   def addEmail
+    authorize! :edit, current_user
     em = params["email"]
     UserEmail.all.each do |e|
       if e.email == em
@@ -23,6 +25,7 @@ class UserEmailsController < ApplicationController
   end
 
   def makeDefault
+    authorize! :edit, current_user
     emailid = params["data-service"]
     email = UserEmail.find(emailid)
     user = email.user
@@ -39,6 +42,7 @@ class UserEmailsController < ApplicationController
   end
 
   def removeEmail
+    authorize! :edit, current_user
     emailid = params["data-service"]
     email = UserEmail.find(emailid)
     email.destroy

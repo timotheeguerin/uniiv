@@ -3,7 +3,7 @@
       <label>Search for university by name.</label>
 
       <div class="input-group">
-        <%= text_field_tag('university_id', university.to_s, options =
+        <%= text_field_tag('university_id', '', options =
                 {:class => 'form-control autocomplete disablesubmit', 'data-url' => university_search_autocomplete_path, 'data-input-data' => 'true'}) %>
 
         <span class="input-group-btn">
