@@ -5,6 +5,14 @@ class UserDashboardController < ApplicationController
     @university = current_user.university
     @faculty = current_user.faculty
     @programs = current_user.main_course_scenario.programs
+
+    if current_scenario.programs.empty?
+      redirect_to user_education_selection_path
+    end
+  end
+
+  def selection
+    authorize! :read, current_user
   end
 
   def user_course_taking_content

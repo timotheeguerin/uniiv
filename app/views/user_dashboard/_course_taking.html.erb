@@ -1,6 +1,6 @@
 <hr>
 <div>
-  <a href='<%= user_sort_course_path %>'><h1>In-Progress Courses (<%= current_term %>)</h1></a>
+  <a href='<%= user_sort_course_path %>'><h2>In-Progress Courses (<%= current_term %>)</h2></a>
 </div>
 
 <% if current_scenario.taking_courses.size > 0 %>
@@ -8,9 +8,9 @@
     <%= render :partial => 'course_taking_row', :locals => {:courses => current_scenario.get_course_in_semester(current_term.semester, current_term.year)} %>
     <div>
       <a href='<%= user_sort_course_path %>'>
-        <h2>
+        <h3>
           Past Courses
-        </h2>
+        </h3>
       </a>
 
       <span>These are the courses you should have completed by now. Enter the grade you got.</span>
@@ -19,7 +19,7 @@
             {:courses => current_scenario.get_course_before_than(current_term.semester, current_term.year), :default_item => 'complete_form'} %>
 
     <div>
-      <a href='<%= user_sort_course_path %>'><h2>Planned Courses</h2></a>
+      <a href='<%= user_sort_course_path %>'><h3>Planned Courses</h3></a>
     </div>
     <%= render :partial => 'course_taking_row', :locals => {:courses => current_scenario.get_course_later_than(current_term.semester, current_term.year)} %>
 <% else %>

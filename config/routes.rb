@@ -134,6 +134,7 @@ Uniiv::Application.routes.draw do
 
   #User
   get 'education' => 'user_dashboard#index', :as => :user_education
+  get 'education/selection' => 'user_dashboard#selection', :as => :user_education_selection
   get 'education/status' => 'user_dashboard#education_status', :as => :user_education_status_content
   get 'education/course_taking_content' => 'user_dashboard#user_course_taking_content', :as => :user_education_course_taking_content
   get 'education/course_completed_content' => 'user_dashboard#user_course_completed_content', :as => :user_education_course_completed_content

@@ -1,6 +1,6 @@
 <% if current_user.completed_courses.size > 0 %>
     <hr style='width:100%;'>
-    <div><h1>Completed Courses</h1></div>
+    <div><h2>Completed Courses</h2></div>
     <div class='row'>
       <% current_user.completed_courses.sort_by! { |c| c.advanced_standing.to_s }.reverse.each do |c| %>
           <div class='col-md-4 course_completed_container'>

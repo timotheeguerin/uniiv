@@ -1,0 +1,83 @@
+<div class='container'>
+  <div>
+    <h1>Edit your education</h1>
+  </div>
+  <hr>
+  <div class='row'>
+    <% if current_user.university.nil? %>
+        <h3><%= t('select.university') %></h3>
+        <%= link_to user_university_edit_path do %>
+            <button class='btn btn-primary'>Add</button>
+        <% end %>
+    <% else %>
+        <h3><%= current_user.university %>
+          <a href='<%= user_university_edit_path %>'>
+            <span class='glyphicon glyphicon-pencil pull-right' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
+          </a>
+        </h3>
+    <% end %>
+  </div>
+
+  <div class='row'>
+    <% if current_user.faculty.nil? %>
+        <h3><%= t('select.faculty') %></h3>
+        <%= link_to user_faculty_edit_path do %>
+            <button class='btn btn-primary'>Choose</button>
+        <% end %>
+    <% else %>
+        <h3>
+          <%= current_user.faculty %>
+          <a href='<%= user_faculty_edit_path %>'>
+            <span class='glyphicon glyphicon-pencil pull-right'></span>
+          </a>
+        </h3>
+    <% end %>
+  </div>
+
+  <div class='row'>
+    <% if current_user.main_course_scenario.programs.size < 1 %>
+        <h3><%= t('select.programs') %></h3>
+        <%= link_to user_programs_new_path do %>
+            <button class='btn btn-primary'>Add</button>
+        <% end %>
+    <% else %>
+        <h3>
+          Programs<a href='<%= user_programs_new_path %>'><span class='glyphicon glyphicon-plus pull-right'></span></a>
+        </h3>
+
+        <div class='program_list'>
+          <% current_scenario.programs.order('type_id ASC, name ASC').each do |p| %>
+              <div class='row'>
+                <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
+                <div class='text-indent col-md-2'>
+                  <div class='progress'>
+                    <% perc= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i %>
+                    <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+                      <span class='sr-only'><%= perc %>% Complete</span>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-md-2 text-right'>
+                  <%= form_tag(user_programs_delete_path) do %>
+                      <div class='btn-group'>
+                        <a class='btn btn-info' href='<%= program_path(p) %>' rel='tooltip' title='Information'>
+                          <span class='whitetext glyphicon glyphicon-info-sign'></span>
+                        </a>
+                        <a class='btn btn-warning' href='<%= program_graph_path(p) %>' rel='tooltip' title='View Path'>
+                          <span class='whitetext glyphicon glyphicon-random'></span>
+                        </a>
+                        <button class='btn btn-danger'
+                                <% if p.type.id == 4 %>disabled
+                                <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
+                          <span class='glyphicon glyphicon-remove-sign'></span>
+                        </button>
+                      </div>
+                      <%= hidden_field_tag :program_id, p.id %>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
