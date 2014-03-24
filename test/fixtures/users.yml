@@ -1,0 +1,3 @@
+simple_user:
+  email: simple@user.com
+  encrypted_password: bestpasswordintheworld

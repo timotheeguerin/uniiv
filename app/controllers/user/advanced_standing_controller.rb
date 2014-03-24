@@ -1,11 +1,13 @@
 class User::AdvancedStandingController < ApplicationController
 
   def index
+    authorize! :edit, current_user
     @courses = current_user.completed_courses.where(:advanced_standing => true)
     @given_credit = current_user.advanced_standing_credits
   end
 
   def set_credit
+    authorize! :edit, current_user
     params[:credit] ||= 0
     current_user.advanced_standing_credits = params[:advanced_standing_credit]
     current_user.save
@@ -13,6 +15,7 @@ class User::AdvancedStandingController < ApplicationController
   end
 
   def create
+    authorize! :edit, current_user
     course = Course::Course.find(params[:course_id])
     if current_user.has_completed_course?(course)
       return_json('advancedstanding.alreadytaken')
@@ -31,6 +34,7 @@ class User::AdvancedStandingController < ApplicationController
   end
 
   def remove
+    authorize! :edit, current_user
     completed_course = current_user.completed_courses.where(:course_id => params[:course_id]).first
     if completed_course.nil?
       return_json('advancedstanding.noexist')

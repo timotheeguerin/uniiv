@@ -14,3 +14,4 @@ without_corequisite:
 
 simple_course:
   name: 'Simple Course'
+  subject: default
