@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321021810) do
+ActiveRecord::Schema.define(version: 20140325144307) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -95,13 +95,13 @@ ActiveRecord::Schema.define(version: 20140321021810) do
     t.float    "value"
     t.boolean  "pass"
     t.boolean  "pass_core"
-    t.integer  "system_id"
+    t.integer  "grading_system_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "min_score"
   end
 
-  add_index "course_grading_system_entities", ["system_id"], name: "index_course_grading_system_entities_on_system_id", using: :btree
+  add_index "course_grading_system_entities", ["grading_system_id"], name: "index_course_grading_system_entities_on_grading_system_id", using: :btree
 
   create_table "course_grading_systems", force: true do |t|
     t.string   "name"

@@ -83,3 +83,5 @@ gem 'minitest'
 gem 'mocha'
 
 gem 'minitest-reporters'
+
+gem 'factory_girl_rails'
