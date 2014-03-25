@@ -1,7 +1,9 @@
 # This will guess the User class
 FactoryGirl.define do
   factory :user do
-    email 'test@test.com'
+    sequence :email do |n|
+      "test.#{n}@testing.com"
+    end
     password 'superpassword'
 
     after(:create) do |object|

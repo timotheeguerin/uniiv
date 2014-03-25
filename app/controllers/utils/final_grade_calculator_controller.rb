@@ -44,7 +44,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   #Call when the user want to have a single grade(Midterm)
   def create_grade
     group = create
-    group.simple = true
     group.save
     _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
@@ -72,14 +71,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       end
       grade.destroy
     end
-    _redirect_to utils_fgc_course_path(@prediction.course_id)
-  end
-
-  #Called when the user create a new group for mulitple grade(All assignments)
-  def create_group
-    group = create
-    group.simple = false
-    group.save
     _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
