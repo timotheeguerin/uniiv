@@ -14,6 +14,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       scheme.final_percent = 0
       @prediction.schemes << scheme
       @prediction.save
+
     end
   end
 
@@ -30,7 +31,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   def search
     authorize! :read, :fgc
-    courses = []
     courses = Course::Course.search do
       fulltext params[:q]
       paginate :page => 1, :per_page => 10
