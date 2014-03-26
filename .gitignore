@@ -29,3 +29,6 @@ solr/pids/
 
 #Local files that depend on the machine
 config/local/
+
+
+config/initializer/secret_token.rb
