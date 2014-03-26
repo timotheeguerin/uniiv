@@ -1,0 +1,73 @@
+<div class='item course_inline_form'>
+  <div class='container-fluid pull-left'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <%= content %>
+      </div>
+      <div class='col-md-9'>
+        <div class="input-group">
+          <%= text_field_tag :year, current_term.year, :class => 'form-control', :title => 'Input year', :rel => 'tooltip' %>
+          <span class='input-group-btn'>
+            <a class='btn btn-success' href="#<%= carousel_id %>" data-slide="next">
+              <span class='glyphicon glyphicon-arrow-right'></span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='item course_inline_form'>
+  <div class='container-fluid pull-left'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <a class='btn btn-success' href="#<%= carousel_id %>" rel='tooltip' title='Complete' data-slide="prev">
+          <span class='glyphicon glyphicon-arrow-left'></span>
+        </a>
+      </div>
+      <div class='col-md-7'>
+        <div class='btn-group' data-toggle='buttons'>
+          <% Course::Semester.all.each do |semester| %>
+              <% active = (semester.name == current_term.semester.name) %>
+              <label class="btn btn-default btn-sm" title="<%= semester %>" rel='tooltip'>
+                <%= radio_button_tag :semester_id, :checked => active, :class => 'hidden' %>
+                <%= semester.name.capitalize[0] %>
+              </label>
+          <% end %>
+        </div>
+      </div>
+      <div class='col-md-2'>
+        <% if action == 'take' %>
+            <button class='btn btn-warning' rel='tooltip' title='Take'>
+              <span class='glyphicon glyphicon-plus-sign'></span>
+            </button>
+        <% else %>
+            <a class='btn btn-success' href="#<%= carousel_id %>" rel='tooltip' title='Complete' data-slide="next">
+              <span class='glyphicon glyphicon-arrow-right'></span>
+            </a>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if  action == 'complete' %>
+    <div class='item'>
+      <div class='container-fluid pull-left'>
+        <div class='row'>
+          <div class='col-md-3'>
+            <a class='btn btn-success' href="#<%= carousel_id %>" rel='tooltip' title='Back' data-slide="prev">
+              <span class='glyphicon glyphicon-chevron-left whitetext'></span>
+            </a>
+          </div>
+          <div class='col-md-9'>
+            <%= complete_course_inline_form(course, :delete_parent => '.course_taking_container',
+                                            :reload => '#user_course_completed_container', :useajax => useajax) %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
