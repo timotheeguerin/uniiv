@@ -9,7 +9,7 @@
       <div class='container homepage-presentation'>
         <div class='row'>
           <div class='col-md-6'>
-            <a href="<%= transcript_loader_parse_path unless user_signed_in? %>">
+            <a href="<%= transcript_loader_parse_path if user_signed_in? %>">
               <div>
                 <span class='glyphicon glyphicon-cloud-upload glyphicon-xl lightest_bluetext'></span>
               </div>
@@ -20,7 +20,7 @@
           </div>
 
           <div class='col-md-6'>
-            <a href="<%= user_graph_path unless user_signed_in? %>">
+            <a href="<%= user_graph_path if user_signed_in? %>">
               <div>
                 <span class='glyphicon glyphicon-random glyphicon-xl light_redtext'></span>
               </div>
@@ -32,7 +32,7 @@
         </div>
         <div class='row'>
           <div class='col-md-6'>
-            <a href="<%= user_education_path unless user_signed_in? %>">
+            <a href="<%= user_education_path if user_signed_in? %>">
               <div>
                 <span class='glyphicon glyphicon-road glyphicon-xl light_yellowtext'></span>
               </div>

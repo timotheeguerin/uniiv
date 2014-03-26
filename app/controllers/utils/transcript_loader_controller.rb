@@ -53,6 +53,8 @@ class Utils::TranscriptLoaderController < ApplicationController
           current_scenario.errors.clear
         end
       else
+        puts result[:course]
+        puts 'bullshit'
         if current_user.has_completed_course?(result[:course])
           @already_added += 1
         else
