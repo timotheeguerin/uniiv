@@ -4,7 +4,7 @@
         <%= text_field_tag('faculty_id', nil, options =
                 {:class => 'form-control autocomplete disablesubmit', 'data-url' => faculty_search_autocomplete_path + '?only_not_taking=true', 'data-input-data' => true}) %>
         <span class="input-group-btn">
-                <%= submit_tag('Choose', :class => 'btn btn-primary', :disabled=> true) %>
+                <%= submit_tag 'Choose', :class => 'btn btn-primary needconfirmation', :disabled=> true,  'data-confirm-dialog' => t('user.faculty.edit.confirmation') %>
             </span>
       </div>
     </div>

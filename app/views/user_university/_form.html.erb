@@ -5,8 +5,8 @@
                 {:class => 'form-control autocomplete disablesubmit', 'data-url' => university_search_autocomplete_path, 'data-input-data' => 'true'}) %>
 
         <span class="input-group-btn">
-                <%= submit_tag('Choose', :class => 'btn btn-primary', :disabled => true) %>
-            </span>
+            <%= submit_tag('Choose', :class => 'btn btn-primary needconfirmation', :disabled => true, 'data-confirm-dialog' => t('user.university.edit.confirmation')) %>
+        </span>
       </div>
     </div>
 <% end %>

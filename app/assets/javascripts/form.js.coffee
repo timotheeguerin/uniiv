@@ -3,6 +3,23 @@ $(document).ready ->
     width: 'auto'
   });
 
+  $(document).on 'click', 'button.needconfirmation, input[type=submit].needconfirmation', (event) ->
+    event.preventDefault()
+    button = $(this)
+    form = button.closest('form')
+    modale = $('#confirmation_modal').clone().appendTo('body')
+    modale.find('.modal-body').html(button.data('confirm-dialog'))
+    modale.modal('show')
+
+    modale.on 'click', '.btn[data-confirmation]', () ->
+      console.log('cliing')
+      if $(this).data('confirmation') == 'continue'
+        form.submit()
+      modale.modal('hide')
+      setTimeout(()->
+        modale.remove()
+      , 2000)
+
   $(document).on 'submit', 'form.useajax', submitFormAjax
 
   #Script for autocomplete input
@@ -33,7 +50,7 @@ $(document).ready ->
         if input.hasClass('disablesubmit')
           form.find('button,input[type="submit"]').prop('disabled', true)
 
-    onSelect: (suggestion, query, queryLowerCase) ->
+      onSelect: (suggestion, query, queryLowerCase) ->
         id = suggestion.data
         data_input.val(id) if data_input.length > 0
         input.data('searching', false)
@@ -131,5 +148,5 @@ get_input_id = (input)->
   form = input.closest('form')
   input_id = form.attr('action')
   form.find('input[type=hidden]').each () ->
-    input_id += '_' + $(this).attr('name')+ '_' + $(this).attr('value')
+    input_id += '_' + $(this).attr('name') + '_' + $(this).attr('value')
   return input_id + '_' + input.attr('name')
