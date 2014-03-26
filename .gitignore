@@ -22,6 +22,7 @@
 /log/*
 
 solr/data/
+solr/test/data/
 solr/default/
 solr/development/
 solr/pids/

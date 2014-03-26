@@ -5,6 +5,7 @@ FactoryGirl.define do
       "test.#{n}@testing.com"
     end
     password 'superpassword'
+    advanced_standing_credits 0
 
     after(:create) do |object|
       create(:course_main_scenario,  :user => object)
