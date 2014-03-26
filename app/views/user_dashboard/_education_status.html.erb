@@ -12,26 +12,6 @@
         </div>
       </div>
     </div>
-    <% cred = (current_user.count_completed_credit).to_i.to_s %>
-    <% cred2 = 0 %>
-    <% current_scenario.taking_courses.each do |tc| %>
-        <% cred2 += tc.course.credit %>
-    <% end %>
-    <% cred2 = cred2.to_i.to_s %>
-    <div class="row">
-      <div class='col-md-6 col-md-offset-3'>
-        <div class='text-center'><h3><%= cred %> Credits Completed</h3></div>
-        <div class='progress'>
-          <div class='progress-bar' role='progress-bar' style='width:<%= cred %>%;' rel='tooltip' data-placement='bottom' title='<%= cred.to_s + " credits completed" %>'>
-            <span class='sr-only'><%= cred %>% Complete</span>
-          </div>
-          <div class='progress-bar progress-bar-warning' role='progress-bar' style='width:<%= cred2 %>%;' rel='tooltip' data-placement='bottom' title='<%= cred2.to_s + " credits in-progress" %>'>
-            <span class='sr-only'><%= cred2 %>% Complete</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
 <% end %>
 <div class='row'>
   <div class='col-md-12 text-center'>

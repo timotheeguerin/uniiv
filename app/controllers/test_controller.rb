@@ -1,5 +1,6 @@
 class TestController < ApplicationController
   def index
+    authorize! :test, :all
   end
 
   def set_group_restricions

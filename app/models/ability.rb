@@ -35,6 +35,11 @@ class Ability
       can :read, :all # allow alpha tester to read everything
       can :edit, user
     end
+
+    if user.role? :user
+      can :read, :all # allow alpha tester to read everything
+      can :edit, user
+    end
     if user.role? :admin
       can :manage, :all
     end
