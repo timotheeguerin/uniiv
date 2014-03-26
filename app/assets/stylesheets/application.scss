@@ -111,6 +111,12 @@ form {
 
 .navbar {
   background-color: $palette_green_medium;
+  font-weight: bold;
+}
+
+.navbar li:hover {
+  background-color: $palette_green_darker;
+  color: $palette_grey_medium_light
 }
 .navbar-inverse {
   border: none;
