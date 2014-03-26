@@ -108,6 +108,14 @@ form {
   margin: 0;
 }
 
+
+.navbar {
+  background-color: $palette_green_medium;
+}
+.navbar-inverse {
+  border: none;
+}
+
 .wrapper {
   min-height: 100%;
   height: auto !important;
