@@ -12,6 +12,8 @@ class UserUniversityController < ApplicationController
     authorize! :edit, current_user
     university = University.find(params[:university_id])
     current_user.university = university
+    current_user.faculty = nil
+    current_user.reset
     current_user.save
     redirect_to user_education_selection_path
   end

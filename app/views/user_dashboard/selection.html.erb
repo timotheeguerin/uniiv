@@ -12,7 +12,13 @@
           </button>
         </div>
         <div class='col-md-6'>
-          <span class='text-md'><%= current_user.university %> </span>
+          <span class='text-md'>
+            <% if current_user.university.nil? %>
+                <%= t('select.university') %>
+            <% else %>
+                <%= current_user.university %>
+            <% end %>
+          </span>
         </div>
       </div>
       <div class='item' style="display: none">
@@ -27,88 +33,98 @@
       </div>
     </div>
   </div>
-  <hr>
-  <div class='row education_selection_row'>
-    <div class='toggledisplay'>
-      <div class='item active'>
-        <div class='col-md-1'>
-          <button class='btn btn-primary toggledisplay-btn pull-right'>
-            <span class='glyphicon glyphicon-pencil' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
-          </button>
-        </div>
-        <div class='col-md-6'>
-          <span class='text-md'><%= current_user.faculty %> </span>
+  <% unless current_user.university.nil? %>
+      <hr>
+      <div class='row education_selection_row'>
+        <div class='toggledisplay'>
+          <div class='item active'>
+            <div class='col-md-1'>
+              <button class='btn btn-primary toggledisplay-btn pull-right'>
+                <span class='glyphicon glyphicon-pencil' rel='tooltip' data-toggle='tooltip' title='Change University'></span>
+              </button>
+            </div>
+            <div class='col-md-6'>
+          <span class='text-md'>
+            <% if current_user.faculty.nil? %>
+                <i><%= t('select.faculty') %></i>
+            <% else %>
+                <%= current_user.faculty %>
+            <% end %>
+          </span>
+            </div>
+          </div>
+          <div class='item' style="display: none">
+            <div class='col-md-1'>
+              <button class='btn btn-danger toggledisplay-btn pull-right'>
+                <span class='glyphicon glyphicon-remove ' rel='tooltip' data-toggle='tooltip' title='Cancel'></span>
+              </button>
+            </div>
+            <div class='col-md-10'>
+              <%= render :partial => 'user_faculty/form', :locals => {:faculty => current_user.faculty} %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class='item' style="display: none">
-        <div class='col-md-1'>
-          <button class='btn btn-danger toggledisplay-btn pull-right'>
-            <span class='glyphicon glyphicon-remove ' rel='tooltip' data-toggle='tooltip' title='Cancel'></span>
-          </button>
-        </div>
-        <div class='col-md-10'>
-          <%= render :partial => 'user_faculty/form', :locals => {:faculty => current_user.faculty} %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class='row'>
-    <% if current_user.main_course_scenario.programs.empty? %>
-        <h3><%= t('select.programs') %></h3>
-        <%= link_to user_programs_new_path do %>
-            <button class='btn btn-primary'>Add</button>
-        <% end %>
-    <% else %>
-        <div class='col-md-1'>
+      <% unless current_user.faculty.nil? %>
+          <hr>
+          <div class='row'>
+            <% if current_user.main_course_scenario.programs.empty? %>
+                <h3><%= t('select.programs') %></h3>
+                <%= link_to user_programs_new_path do %>
+                    <button class='btn btn-primary'>Add</button>
+                <% end %>
+            <% else %>
+                <div class='col-md-1'>
 
-        </div>
-        <div class='col-md-10'>
+                </div>
+                <div class='col-md-10'>
 
         <span class='text-md'>
               Program
         </span>
 
-          <div class='program_list'>
-            <% current_scenario.programs.order('type_id ASC, name ASC').each do |p| %>
-                <div class='row'>
-                  <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
-                  <div class='text-indent col-md-2'>
-                    <div class='progress'>
-                      <% perc= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i %>
-                      <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
-                        <span class='sr-only'><%= perc %>% Complete</span>
+                  <div class='program_list'>
+                    <% current_scenario.programs.order('type_id ASC, name ASC').each do |p| %>
+                        <div class='row'>
+                          <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
+                          <div class='text-indent col-md-2'>
+                            <div class='progress'>
+                              <% perc= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i %>
+                              <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+                                <span class='sr-only'><%= perc %>% Complete</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class='col-md-2 text-right'>
+                            <%= form_tag(user_programs_delete_path) do %>
+                                <div class='btn-group'>
+                                  <a class='btn btn-info' href='<%= program_path(p) %>' rel='tooltip' title='Information'>
+                                    <span class='whitetext glyphicon glyphicon-info-sign'></span>
+                                  </a>
+                                  <a class='btn btn-warning' href='<%= program_graph_path(p) %>' rel='tooltip' title='View Path'>
+                                    <span class='whitetext glyphicon glyphicon-random'></span>
+                                  </a>
+                                  <button class='btn btn-danger'
+                                          <% if p.type.id == 4 %>disabled
+                                          <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
+                                    <span class='glyphicon glyphicon-remove-sign'></span>
+                                  </button>
+                                </div>
+                                <%= hidden_field_tag :program_id, p.id %>
+                            <% end %>
+                          </div>
+                        </div>
+                    <% end %>
+                    <hr>
+                    <div class='row'>
+                      <div>
+                        <%= render :partial => 'user_programs/form' %>
                       </div>
                     </div>
                   </div>
-                  <div class='col-md-2 text-right'>
-                    <%= form_tag(user_programs_delete_path) do %>
-                        <div class='btn-group'>
-                          <a class='btn btn-info' href='<%= program_path(p) %>' rel='tooltip' title='Information'>
-                            <span class='whitetext glyphicon glyphicon-info-sign'></span>
-                          </a>
-                          <a class='btn btn-warning' href='<%= program_graph_path(p) %>' rel='tooltip' title='View Path'>
-                            <span class='whitetext glyphicon glyphicon-random'></span>
-                          </a>
-                          <button class='btn btn-danger'
-                                  <% if p.type.id == 4 %>disabled
-                                  <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
-                            <span class='glyphicon glyphicon-remove-sign'></span>
-                          </button>
-                        </div>
-                        <%= hidden_field_tag :program_id, p.id %>
-                    <% end %>
-                  </div>
                 </div>
             <% end %>
-            <hr>
-            <div class='row'>
-              <div>
-                <%= render :partial => 'user_programs/form' %>
-              </div>
-            </div>
           </div>
-        </div>
-    <% end %>
-  </div>
+      <% end %>
+  <% end %>
 </div>

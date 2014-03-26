@@ -40,6 +40,9 @@ $(document).ready ->
       input.attr('name', 'text_for_' + input.attr('name'))
       data_input.val(input.data('value'))
 
+    unless input.is(":visible")
+      console.log('wd: ' + input.width())
+
     input.autocomplete({
       serviceUrl: url
       paramName: 'q'

@@ -143,6 +143,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  #Will reset everything the user is taking
+  def reset
+    course_scenarios.destroy_all
+    scenario= Course::Scenario.new
+    scenario.main = true
+    course_scenarios << scenario
+    completed_courses.destroy_all
+  end
+
   def to_s
     email
   end

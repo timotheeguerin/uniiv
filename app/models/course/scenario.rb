@@ -1,6 +1,6 @@
 class Course::Scenario < ActiveRecord::Base
   belongs_to :user, :class_name => User
-  has_many :taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_scenario_id'
+  has_many :taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_scenario_id', :dependent => :destroy
   has_many :courses, :through => :taking_courses
 
   has_and_belongs_to_many :programs, :class_name => Program::Program
