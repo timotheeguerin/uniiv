@@ -152,6 +152,17 @@ class User < ActiveRecord::Base
     completed_courses.destroy_all
   end
 
+  #Compute how much the user has completed
+  def education_selection_status
+    percent = 0
+    step = 25
+    percent += step unless university.nil?
+    percent += step unless faculty.nil?
+    percent += step if main_course_scenario.programs.size > 0
+    percent += step if completed_courses.size > 0 or main_course_scenario.taking_courses.size > 0
+    percent
+  end
+
   def to_s
     email
   end

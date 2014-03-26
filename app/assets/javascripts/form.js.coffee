@@ -48,6 +48,7 @@ $(document).ready ->
       paramName: 'q'
       params: {limit: 5}
       onSearchStart: () ->
+        input.autocomplete('setOptions', {width: input.outerWidth()})
         input.data('searching', true)
         data_input.val('') #Clear the val if the something was previously selected
         if input.hasClass('disablesubmit')

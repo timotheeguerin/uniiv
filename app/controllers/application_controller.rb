@@ -23,9 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_scenario
-    unless session[:scenario_id].nil?
-      @current_scenario ||= current_user.course_scenarios.find(session[:scenario_id])
-    end
     if @current_scenario.nil?
       @current_scenario = current_user.main_course_scenario
       session[:scenario_id] = @current_scenario.id
