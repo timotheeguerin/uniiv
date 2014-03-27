@@ -17,6 +17,7 @@
 #= require bootstrap
 
 $(document).ready () ->
+  new WOW().init();
   $("#graphreload").click ()->
     location.reload();
 
