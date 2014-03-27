@@ -1,9 +1,9 @@
 <div class='course-buttons-container pull-right'>
   <div class='btn-group'>
-    <a href='<%= user_take_course_path(course) %>' class='btn btn-warning' rel='tooltip' data-toggle='tooltip' title='Mark In-Progress'>
+    <a href='<%= user_take_course_path(course) %>' class='btn btn-warning ajaxmodal' rel='tooltip' data-toggle='tooltip' title='Mark In-Progress'>
       <span class='whitetext glyphicon glyphicon-plus-sign'></span>
     </a>
-    <a href='<%= user_complete_course_path(course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Mark Completed'>
+    <a href='<%= user_complete_course_path(course) %>' class='btn btn-success ajaxmodal' rel='tooltip' data-toggle='tooltip' title='Mark Completed'>
       <span class='whitetext glyphicon glyphicon-ok-sign'></span>
     </a>
     <a type='button' href='<%= course_path(course) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= course.name %>'>

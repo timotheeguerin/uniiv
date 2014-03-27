@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   end
 
   def _render(view)
-    if params[:graph_embed]
+    if request.xhr?
       view += '_graph_embed'
       render view, :layout => false
     else

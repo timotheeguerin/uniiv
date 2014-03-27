@@ -14,8 +14,6 @@ class User::CourseTakingController < ApplicationController
       end
     end
     @semesters = Course::Semester.all
-
-
   end
 
   #Sort the course
@@ -103,6 +101,9 @@ class User::CourseTakingController < ApplicationController
 
   def new
     @user_taking_course = UserTakingCourse.new
+    if request.xhr?
+      render :layout => false
+    end
   end
 
   def new_graph_embed
@@ -135,6 +136,7 @@ class User::CourseTakingController < ApplicationController
       @user_completed_course.semester = user_taking_course.semester
       @user_completed_course.year = user_taking_course.year
     end
+
     _render 'complete'
   end
 

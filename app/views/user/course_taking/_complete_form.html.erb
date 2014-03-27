@@ -24,13 +24,7 @@
       </div>
     </div>
     <br>
-    <% if normal %>
-        <div class="right">
-          <%= f.submit(t('course.mark_taking'), :class => 'form-control') %>
-        </div>
-    <% else %>
-        <div class="center">
-          <%= f.submit(t('course.mark_taking'), :class => 'btn btn-primary') %>
-        </div>
-    <% end %>
+    <div class="center">
+      <%= f.submit(t('course.mark_taking'), :class => 'btn btn-success form-control') %>
+    </div>
 <% end %>

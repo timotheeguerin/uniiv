@@ -12,13 +12,32 @@ $(document).ready ->
     modale.modal('show')
 
     modale.on 'click', '.btn[data-confirmation]', () ->
-      console.log('cliing')
       if $(this).data('confirmation') == 'continue'
         form.submit()
       modale.modal('hide')
       setTimeout(()->
         modale.remove()
       , 2000)
+
+  #Display a modal with the content of the href on the link
+  $(document).on 'click' , '.ajaxmodal', () ->
+    event.preventDefault()
+    button = $(this)
+    form = button.closest('form')
+    modale = $('#ajaxmodal').clone().appendTo('body')
+    modale.modal('show')
+    title = button.attr('data-original-title')
+    title ||= button.attr('title')
+    modale.find('.modal-title').html(title)
+    $.get(button.attr('href')).success (data) ->
+      modale.find('.modal-body').html(data)
+
+    modale.on 'click', '.btn[data-confirmation]', () ->
+      modale.modal('hide')
+      setTimeout(()->
+        modale.remove()
+      , 2000)
+
 
   $(document).on 'submit', 'form.useajax', submitFormAjax
 
