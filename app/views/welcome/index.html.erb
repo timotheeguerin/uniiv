@@ -60,9 +60,11 @@
 
     </div>
     <div class='col-md-4'>
-      <div class='image-container'>
-        <%= image_tag('examples/transcript_parser_home.png') %>
-      </div>
+      <%= image_hover_tag 'examples/transcript_parser_home.png', transcript_loader_parse_path  do %>
+          <h4>Upload it now</h4>
+
+          <p>Some description</p>
+      <% end %>
     </div>
     <div class='col-md-2'>
 
@@ -131,7 +133,11 @@
     </div>
     <div class='col-md-4'>
       <div class='image-container'>
-        <%= image_tag('examples/view_graph.png') %>
+        <%= image_hover_tag 'examples/view_graph.png', user_graph_path  do %>
+            <h4>View your graph</h4>
+
+            <p>Some description</p>
+        <% end %>
       </div>
     </div>
   </div>
@@ -144,7 +150,11 @@
     </div>
     <div class='col-md-4'>
       <div class='image-container'>
-        <%= image_tag('examples/plan_courses.png') %>
+        <%= image_hover_tag 'examples/plan_courses.png', user_education_path  do %>
+            <h4>Manage your courses</h4>
+
+            <p>Some description</p>
+        <% end %>
       </div>
     </div>
     <div class='col-md-2'>

@@ -90,6 +90,22 @@ $nav_text_color: white;
   cursor: -o-grabbing;
 }
 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
 .raty-star-div {
   display: block;
   margin-left: auto;
@@ -570,8 +586,48 @@ textarea.transcript_textarea {
   border-bottom: 1px solid #e5e5e5;
 }
 
+$hover-img-height: 100px;
+
 .marketing-section img {
   width: 100%;
-  margin: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.hover-tile-outer {
+  cursor: pointer;
+
+  .hover-tile-container {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+
+  .hover-tile-container:hover > .hover-tile {
+    @include transform(translate(0, -100%));
+  }
+
+  .hover-tile {
+    position: absolute;
+    @include transition(all, .2s ease-in-out);
+    background: inherit;
+    color: white;
+    padding: 20 20 30 20px;
+    width: 100%;
+  }
+
+  .hover-tile-visible {
+    color: transparentize(white, .3);
+    font-size: 2em;
+    font-weight: 200;
+    text-align: center;
+  }
+
+  .hover-tile-hidden {
+    background: transparentize(black, .5);
+    h4 {
+      margin-bottom: .5em;
+    }
+    p {
+      color: transparentize(white, .3);
+    }
+  }
 }

@@ -18,4 +18,9 @@ module ApplicationHelper
         {:url => url, :content => content,
          :form_params => form_params, :name => name, :value => value, :params => params, :redirect_to_path => redirect_to_path}
   end
+
+  def image_hover_tag(image, link = nil, &block)
+    content = capture(&block)
+    render :partial => 'partial/image_hover_tag', :locals => {:image => image, :content => content, :link => link}
+  end
 end
