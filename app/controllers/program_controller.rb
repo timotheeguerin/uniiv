@@ -71,7 +71,7 @@ class ProgramController < ApplicationController
   end
 
   def program_params
-    params.require(:program).permit(:name, :type_id, :faculty_id)
+    params.require(:program_program).permit(:name, :type_id, :faculty_id)
   end
 
   def search

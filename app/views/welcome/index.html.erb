@@ -1,60 +1,179 @@
-<div id="home_content" class="content_box" style="padding:20px;">
-  <div>
-    <div class="jumbotron text-center" style="background-color:transparent;">
-      <h1>Uniiv</h1>
+<div class='marketing-section row'>
+  <div class="jumbotron text-center" style="background-color:transparent;">
+    <h1>Uniiv</h1>
 
-      <h2>Helping you decide what courses to choose</h2>
-      <br>
+    <h2>Helping you decide what courses to choose</h2>
+    <br>
 
-      <div class='container homepage-presentation'>
-        <div class='row'>
-          <div class='col-md-6'>
-            <a href="<%= transcript_loader_parse_path if user_signed_in? %>">
-              <div>
-                <span class='glyphicon glyphicon-cloud-upload glyphicon-xl lightest_bluetext'></span>
-              </div>
-              <div>
-                <h3>Upload your transcript</h3>
-              </div>
-            </a>
-          </div>
-
-          <div class='col-md-6'>
-            <a href="<%= user_graph_path if user_signed_in? %>">
-              <div>
-                <span class='glyphicon glyphicon-random glyphicon-xl light_redtext'></span>
-              </div>
-              <div>
-                <h3>View your possibilities</h3>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col-md-6'>
-            <a href="<%= user_education_path if user_signed_in? %>">
-              <div>
-                <span class='glyphicon glyphicon-road glyphicon-xl light_yellowtext'></span>
-              </div>
-              <div>
-                <h3>Plan your curriculum</h3>
-              </div>
-            </a>
-          </div>
+    <div class='container homepage-presentation'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <a href="#uploadtranscript_section">
+            <div>
+              <span class='glyphicon glyphicon-cloud-upload glyphicon-xl lightest_bluetext'></span>
+            </div>
+            <div>
+              <h3>Upload your transcript</h3>
+            </div>
           </a>
-          <div class='col-md-6'>
+        </div>
+
+        <div class='col-md-6'>
+          <a href="<%= user_graph_path if user_signed_in? %>">
             <div>
-              <span class='glyphicon glyphicon-ok-circle glyphicon-xl lightest_greentext'></span>
+              <span class='glyphicon glyphicon-random glyphicon-xl light_redtext'></span>
             </div>
             <div>
-              <h3>Succeed</h3>
+              <h3>View your possibilities</h3>
             </div>
+          </a>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <a href="<%= user_education_path if user_signed_in? %>">
+            <div>
+              <span class='glyphicon glyphicon-road glyphicon-xl light_yellowtext'></span>
+            </div>
+            <div>
+              <h3>Plan your curriculum</h3>
+            </div>
+          </a>
+        </div>
+        </a>
+        <div class='col-md-6'>
+          <div>
+            <span class='glyphicon glyphicon-ok-circle glyphicon-xl lightest_greentext'></span>
+          </div>
+          <div>
+            <h3>Succeed</h3>
           </div>
         </div>
       </div>
+    </div>
 
+  </div>
+</div>
+<div id='uploadtranscript_section' class='marketing-section row'>
+  <div class='row'>
+    <div class='col-md-1'>
+
+    </div>
+    <div class='col-md-4'>
+      <div class='image-container'>
+        <%= image_tag('examples/transcript_parser_home.png') %>
+      </div>
+    </div>
+    <div class='col-md-2'>
+
+    </div>
+    <div class='col-md-4'>
+      <h2 class='h1'>Upload your transcript</h2>
+
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
     </div>
   </div>
 </div>
+
+<div id='uploadtranscript_section' class='marketing-section row'>
+  <div class='row'>
+    <div class='col-md-1'>
+
+    </div>
+    <div class='col-md-4 text-right'>
+      <h2 class='h1'>View your path</h2>
+
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+    </div>
+
+    <div class='col-md-2'>
+
+    </div>
+    <div class='col-md-4'>
+      <div class='image-container'>
+        <%= image_tag('examples/view_graph.png') %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div id='uploadtranscript_section' class='marketing-section row'>
+  <div class='row'>
+    <div class='col-md-1'>
+
+    </div>
+    <div class='col-md-4'>
+      <div class='image-container'>
+        <%= image_tag('examples/plan_courses.png') %>
+      </div>
+    </div>
+    <div class='col-md-2'>
+
+    </div>
+    <div class='col-md-4'>
+      <h2 class='h1'>Plan your curriculum</h2>
+
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+      <div>
+        Ansowm Dscription
+      </div>
+    </div>
+  </div>
 </div>
