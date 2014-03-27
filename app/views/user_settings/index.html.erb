@@ -2,11 +2,7 @@
   <div class='col-md-6 col-md-offset-3'>
     <h1>Settings</h1>
     <hr>
-    <div class='text-center'>
-      <div class='btn-group'>
-        <a href='<%= user_emails_index_path %>' class='btn btn-primary'><span class='whitetext'>Manage Emails</span></a>
-        <a href='<%= edit_user_registration_path %>' class='btn btn-primary'><span class='whitetext'>Manage Password</span></a>
-      </div>
-    </div>
+    <%= render :partial => 'user_emails/show' %>
+    <%= render :partial => 'devise/registrations/edit', :locals => {:resource => current_user, :resource_name => 'user'} %>
   </div>
 </div>

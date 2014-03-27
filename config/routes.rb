@@ -18,9 +18,7 @@ Uniiv::Application.routes.draw do
   get 'program/index'
   get 'program/graph_embed'
   post 'user_programs/removeProgram'
-  post 'user_emails/removeEmail'
-  post 'user_emails/makeDefault'
-  post 'user_emails/addEmail'
+
   get 'user_emails/index'
 
   get 'graph/index'
@@ -48,6 +46,10 @@ Uniiv::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => 'registrations'}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  #User setttings
+  post 'user_emails/new' => 'user_emails#new', :as => :user_email_new
+  post 'user_emails/set_as_default' => 'user_emails#set_as_default', :as => :user_email_set_as_default
+  post 'user_emails/remove' => 'user_emails#remove', :as => :user_email_remove
 
   #User university controller
   get 'user/university/show' => 'user_university#show', :as => :user_university_show
@@ -88,7 +90,7 @@ Uniiv::Application.routes.draw do
   post 'program/delete' => 'program#delete', :as => :program_delete
 
   #Group restricion
-  get 'program/group/restriction/create'=> 'program/group_restriction#list', :as => :program_group_restriction_list
+  get 'program/group/restriction/create' => 'program/group_restriction#list', :as => :program_group_restriction_list
   post 'program/group/restriction/create' => 'program/group_restriction#create', :as => :program_group_restriction_create
   post 'program/group/restriction/delete' => 'program/group_restriction#delete', :as => :program_group_restriction_delete
 

@@ -1,9 +1,11 @@
 class Admin::Utils::CourseLoaderController < ApplicationController
   def new
+    authorize! :create, Course::Course
     @url = ''
   end
 
   def load
+    authorize! :create, Course::Course
     @url = params['url']
     if @url.nil?
       render :new
@@ -21,6 +23,7 @@ class Admin::Utils::CourseLoaderController < ApplicationController
   end
 
   def load_all
+    authorize! :create, Course::Course
     @hrefs = Utils::McgillCourseParser.parse_all
   end
 end

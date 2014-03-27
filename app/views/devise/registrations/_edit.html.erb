@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>Change Password</h2>
+  </div>
+
+  <div class='panel-body text-right'>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'form-horizontal'}) do |f| %>
+        <div class="form-group">
+          <div class="col-md-5">
+            <label>New password</label>
+          </div>
+          <div class="col-md-7">
+            <%= f.password_field :password, :autocomplete => 'off', :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-5">
+            <label>Repeat New Password</label>
+          </div>
+          <div class="col-md-7">
+            <%= f.password_field :password_confirmation, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-5">
+            <label>Current Password</label>
+          </div>
+          <div class="col-md-7">
+            <%= f.password_field :current_password, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class="pull-right"><%= f.submit('Update', :class => 'btn btn-primary') %></div>
+    <% end %>
+  </div>
+</div>

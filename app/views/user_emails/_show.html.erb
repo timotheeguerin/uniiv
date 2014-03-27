@@ -1,0 +1,44 @@
+<div></div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>Manage Emails</h2>
+  </div>
+  <div class='list-group'>
+    <% current_user.emails.order(:primary => :desc).each do |email| %>
+        <div class='list-group-item'>
+          <div class='row'>
+            <div class="col-md-8">
+              <%= email.email %>
+            </div>
+            <div class="col-md-4">
+              <% if email.primary %>
+              <% else %>
+                  <div class='btn-group pull-right'>
+                    <%= group_button_to user_email_set_as_default_path, :name => 'email', :value => email.id, :class => 'btn btn-primary btn-sm', :title => 'Set as default', :rel => 'tooltip' do %>
+                        <span class='glyphicon glyphicon-tag'></span>
+                    <% end %>
+                    <%= group_button_to user_email_remove_path, :name => 'email', :value => email.id, :class => 'btn btn-danger btn-sm', :title => 'Remove', :rel => 'tooltip' do %>
+                        <span class='glyphicon glyphicon-remove'></span>
+                    <% end %>
+                  </div>
+
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <div class='list-group-item'>
+      <%= form_tag(user_email_new_path, :html => {:class => 'form'}) do %>
+          <div class='form-group'>
+            <div class='input-group'>
+              <%= text_field_tag 'email', nil, {:class => 'form-control', :placeholder => 'Enter a new email'} %>
+              <div class="input-group-btn"><%= submit_tag('Add', :class => 'btn btn-primary') %></div>
+            </div>
+          </div>
+
+      <% end %>
+    </div>
+
+  </div>
+</div>

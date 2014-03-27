@@ -1,33 +1,29 @@
 class UserEmailsController < ApplicationController
 
-  def index
+  before_action :setup
+
+  def setup
     authorize! :edit, current_user
   end
 
-  def addEmail
-    authorize! :edit, current_user
-    em = params["email"]
-    UserEmail.all.each do |e|
-      if e.email == em
-        flash[:alert] = t("useremail.duplicate")
-        redirect_to user_emails_index_path
-        return
-      end
-    end
+  def index
 
+  end
+
+  def new
     email = UserEmail.new
     email.user = current_user
-    email.email = em
-    email.save
-
-    flash[:notice] = t("useremail.add")
-    redirect_to user_emails_index_path
+    email.email = params['email']
+    if email.save
+      flash[:notice] = t('useremail.add')
+    else
+      flash[:alert] = t('useremail.duplicate')
+    end
+    redirect_to user_settings_index_path
   end
 
-  def makeDefault
-    authorize! :edit, current_user
-    emailid = params["data-service"]
-    email = UserEmail.find(emailid)
+  def set_as_default
+    email = UserEmail.find(params[:email])
     user = email.user
     user.email = email.email
     user.emails.each do |e|
@@ -37,17 +33,20 @@ class UserEmailsController < ApplicationController
     email.primary = true
     email.save
     user.save
-    flash[:notice] = t("useremail.makedefault")
-    redirect_to user_emails_index_path
+    flash[:notice] = t('useremail.makedefault')
+    redirect_to user_settings_index_path
   end
 
-  def removeEmail
-    authorize! :edit, current_user
-    emailid = params["data-service"]
-    email = UserEmail.find(emailid)
-    email.destroy
-    flash[:notice] = t("useremail.remove")
-    redirect_to user_emails_index_path
+  def remove
+    email = UserEmail.find(params[:email])
+    if email.primary?
+      flash[:notice] = t('useremail.delete.primary.error')
+    else
+      flash[:notice] = t('useremail.remove')
+      email.destroy
+    end
+
+    redirect_to user_settings_index_path
   end
 
 end
