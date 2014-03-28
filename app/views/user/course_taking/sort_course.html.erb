@@ -67,7 +67,7 @@
         <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
             data-type='delete'
             data-group='course'
-            data-update-url='<%= user_remove_course_form_path %>'>
+            data-update-url='<%= update_course_taking_path(:remove => true) %>'>
           <span>Drag a course here to remove</span>
           <br>
           <span class='glyphicon glyphicon-trash'></span>

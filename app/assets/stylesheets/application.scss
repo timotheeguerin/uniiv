@@ -391,7 +391,10 @@ body.dragging, body.dragging * {
 ul.sortable {
   text-indent: 0px;
   padding-left: 0px;
+}
 
+ul.sortable h5 {
+  margin-left: 8px;
 }
 
 ul.sortable li {
@@ -399,7 +402,12 @@ ul.sortable li {
   margin: 5px;
   padding: 5px;
   border: 1px solid #CCC;
+  background-color: $palette_grey_lightest;
   @include grabcursor;
+  h5 {
+    color: $palette_grey_darker;
+    font-weight: bold;
+  }
 }
 
 ul.sortable li.highlight {
@@ -425,8 +433,9 @@ ul.sortable li.placeholder:before {
 
 .draggable_box {
   border: 1px dashed #dfdfdf;
-  background-color: #f5f5f5;
+  background-color: $palette_grey_medium_light;
 }
+
 
 .undraggable_box {
   border: 1px solid #dfdfdf;
@@ -438,7 +447,9 @@ ul.sortable li.placeholder:before {
 }
 
 li.invalid-time {
+  background-color: $palette_orange_lightest !important;
   color: white;
+
 }
 
 div.dependencies li {
@@ -446,18 +457,11 @@ div.dependencies li {
   font-size: 9pt;
 }
 
-li.invalid-time h5 {
-  color: white;
-}
-
 li.dependency.notsortable {
   border: 1px solid transparent;
   background-color: rgba(0, 0, 0, 0);
 }
 
-li.invalid-time {
-  background-color: $palette_orange_lighter !important;
-}
 
 li.invalid-time.dependency {
   background-color: rgba(0, 0, 0, 0);
