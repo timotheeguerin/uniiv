@@ -29,10 +29,9 @@ class UserTakingCourse < ActiveRecord::Base
 
   #Can the user take this course at this time
   def is_time_valid?(term = nil)
-    if term.nil?
-      term = Utils::Term.new(semester, year)
-    end
+    term = Utils::Term.new(semester, year) if term.nil?
     course_scenario.can_take_course?(course, term)
+
   end
 
   searchable do
