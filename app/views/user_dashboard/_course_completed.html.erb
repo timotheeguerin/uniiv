@@ -17,7 +17,7 @@
                           <span class='whitetext glyphicon glyphicon-comment'></span>
                         </a>
                     <% end %>
-                    <a type='button' href='<%= course_path(c) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
+                    <a type='button' href='<%= course_path(c.course) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= c.course.name %>'>
                       <span class='whitetext glyphicon glyphicon-info-sign'></span></a>
                     <% unless c.advanced_standing %>
                         <%= group_button_to user_remove_course_path(c.course),
