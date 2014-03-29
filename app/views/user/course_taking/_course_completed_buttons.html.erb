@@ -5,7 +5,8 @@
           <span class='whitetext glyphicon glyphicon-comment'></span>
         </a>
     <% end %>
-    <a type='button' href='<%= course_path(course.course) %>' class='btn btn-info' rel='tooltip' data-toggle='tooltip' title='<%= course.course.name %>'>
+    <a type='button' href='<%= course_path(course.course) %>' class='btn btn-info' rel='tooltip'
+       data-toggle='tooltip' title='<%= course.course.name %>'>
       <span class='whitetext glyphicon glyphicon-info-sign'></span>
     </a>
     <% unless course.advanced_standing %>

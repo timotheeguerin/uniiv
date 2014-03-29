@@ -1,6 +1,6 @@
 class Course::SubjectCourseList < ActiveRecord::Base
   belongs_to :subject, :class_name => Course::Subject
-  belongs_to :program_group, :class_name => Program::Group
+  belongs_to :group, :class_name => Program::Group
 
   validates_presence_of :subject
   validates_presence_of :program_group
