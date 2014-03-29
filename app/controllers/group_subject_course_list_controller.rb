@@ -4,7 +4,7 @@ class GroupSubjectCourseListController < ApplicationController
   def new
     authorize! :edit, Course::SubjectCourseList
     @subject_course_list = Course::SubjectCourseList.new
-    @subject_course_list.program_group = Program::Group.find(params[:program_group])
+    @subject_course_list.group = Program::Group.find(params[:program_group])
   end
 
   def create
@@ -15,7 +15,7 @@ class GroupSubjectCourseListController < ApplicationController
       if params[:saveandedit]
         redirect_to group_subject_course_list_new_path(@subject_course_list)
       else
-        redirect_to program_group_edit_path(@subject_course_list.program_group)
+        redirect_to program_group_edit_path(@subject_course_list.group)
       end
     else
       flash[:alert] = @subject_course_list.errors.full_messages
