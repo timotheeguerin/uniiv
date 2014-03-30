@@ -23,6 +23,7 @@ class Program::Program < ActiveRecord::Base
       ratio += hash[:value]
       coef += hash[:coefficient]
     end
+    coef = 1 if coef == 0
     {:ratio => ratio / coef.to_f, :coefficient => coef, :value => ratio}
   end
 

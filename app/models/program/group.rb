@@ -115,7 +115,6 @@ class Program::Group < ActiveRecord::Base
         completed_credit = count_credit_completed_courses(scenario, term)
         subgroup_completed = get_subgroups_completed_ratio(scenario)
         puts 'Sub group completed: ' + subgroup_completed.to_s
-        puts 'Value:  ' + restriction.value.to_s
         return {:ratio => 0, :coefficient => 1, :value => 0} if restriction.value == 0 and subgroup_completed[:coefficient] == 0
         ratio = (completed_credit + subgroup_completed[:value])/ (restriction.value + subgroup_completed[:coefficient])
         ratio = 1 if ratio > 1

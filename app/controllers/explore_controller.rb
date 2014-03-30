@@ -6,6 +6,13 @@ class ExploreController < ApplicationController
   end
 
   def index
+    @fullwidth = true
+    @showcase = {}
+    if current_user.faculty.nil?
+      @showcase[:faculty] = Faculty.offset(rand(Faculty.count)).first
+    else
+      @showcase[:faculty] = current_user.faculty
+    end
 
   end
 

@@ -163,6 +163,7 @@ class User < ActiveRecord::Base
     percent
   end
 
+
   def to_s
     email
   end

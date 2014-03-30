@@ -7,6 +7,16 @@ class Faculty < ActiveRecord::Base
     name
   end
 
+  #Get the faculty programs by type
+  def programs_by_type
+    types = {}
+    programs.each do |program|
+      types[program.type] ||= []
+      types[program.type] << program
+    end
+    types
+  end
+
   searchable do
     integer :university_id
     text :university do

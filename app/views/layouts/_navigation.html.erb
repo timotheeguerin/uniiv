@@ -1,0 +1,64 @@
+<nav class='navbar navbar-inverse navbar-fixed-top whitetext'>
+  <div class='container'>
+    <div class='navbar-header visible-lg visible-md'>
+      <ul class='navbar-nav nav'>
+        <li>
+          <%= link_to root_url do %>
+              <span class='glyphicon glyphicon-home'></span> Uniiv
+          <% end %>
+        </li>
+        <% if user_signed_in? %>
+            <li>
+              <%= link_to user_graph_path do %>
+                  <span class='glyphicon glyphicon-random'></span> Path
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_education_path do %>
+                  <span class='glyphicon glyphicon-book'></span> Transcript
+              <% end %>
+            </li>
+            <li>
+              <%= link_to explore_path do %>
+                  <span class='glyphicon glyphicon-search'></span> Explore
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class='navbar-header pull-right visible-lg visible-md'>
+      <ul class='navbar-nav nav'>
+        <% if user_signed_in? %>
+            <% if can? :access, :rails_admin %>
+                <li>
+                  <%= link_to rails_admin.dashboard_path do %>
+                      <span class='glyphicon glyphicon-wrench'></span> Admin
+                  <% end %>
+                </li>
+            <% end %>
+            <li>
+              <%= link_to user_settings_index_path do %>
+                  <span class='glyphicon glyphicon-user'></span> Account
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                  <span class='glyphicon glyphicon-log-out'></span> Log Out
+              <% end %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to new_user_session_path do %>
+                  <span class='glyphicon glyphicon-log-in'></span> Log In
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                  <span class='glyphicon glyphicon-user'></span> Sign Up
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
