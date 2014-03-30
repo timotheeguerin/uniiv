@@ -60,8 +60,6 @@ class User::CourseTakingController < ApplicationController
     current_scenario.taking_courses.each do |c|
       invalid_courses << c.course.id unless c.is_time_valid?
     end
-    puts 'INVALID'
-    puts invalid_courses
     if params[:remove] == 'true'
       return_json('course.take.remove.success', :invalid_courses => invalid_courses)
     else
@@ -122,7 +120,7 @@ class User::CourseTakingController < ApplicationController
       if params[:graph_embed]
         return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
       else
-        _redirect_to course_path(@course)
+        _redirect_to :back
       end
     else
       _render 'new'
