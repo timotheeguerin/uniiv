@@ -73,6 +73,7 @@ Uniiv::Application.routes.draw do
 
   #Explore controller
   get 'explore' => 'explore#index', :as => :explore
+  get 'explore/programs' => 'explore#programs', :as => :explore_programs
 
   #Contact us controller
   post 'contactus' => 'contactus_form#create', :as => :contactus

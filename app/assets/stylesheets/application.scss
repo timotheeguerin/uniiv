@@ -193,6 +193,10 @@ a:not(.btn) {
   text-decoration: inherit !important;
 }
 
+a:hover {
+  color: $palette_grey_medium_light
+}
+
 .btn-blank {
   border: none;
   background-color: transparent;
@@ -777,5 +781,28 @@ $hover-img-height: 100px;
   input[type="submit"] {
     background-color: $palette_blue_lighter;
     font-weight: bold;
+  }
+}
+
+.explore-section {
+  padding: 40px 0;
+  border-bottom: 1px solid #eee;
+
+  .display-container {
+    border: 1px solid #f1f1f1;
+    background: #f9f9f9;
+    padding: 5px;
+    .display-element {
+      margin: 5px 0;
+      height: 20px;
+    }
+  }
+
+}
+
+.explore-section:nth-child(even) {
+  background: #f9f9f9;
+  .display-container {
+    background: white;
   }
 }

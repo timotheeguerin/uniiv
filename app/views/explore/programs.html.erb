@@ -1,0 +1,62 @@
+<div class='row explore-section'>
+  <div class='container'>
+    <%= form_tag '', :method => :get do %>
+        <div class="input-group">
+          <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control' %>
+          <span class="input-group-btn">
+            <button class="btn btn-primary text-md">
+              <span class='glyphicon glyphicon-search'></span>
+            </button>
+          </span>
+        </div>
+    <% end %>
+  </div>
+</div>
+<% @faculties.each do |faculty, program_types| %>
+    <div class='row explore-section'>
+      <div class='container'>
+        <h2><%= faculty %></h2>
+
+        <div>
+          <% program_types.each do |type, programs| %>
+              <div>
+                <h3>
+                  <%= type.to_s.capitalize.pluralize %>
+                </h3>
+
+                <div class='row display-container'>
+                  <% programs.each do |program| %>
+                      <div class='col-md-6 display-element'>
+                        <div class='row'>
+                          <div class='col-md-1'>
+                            <div class='showonhover' data-hover-container='.display-element'>
+                              <a class='btn btn-warning btn-sm ' href='<%= program_graph_path(program) %>' rel='tooltip' title='View Path'>
+                                <span class='whitetext glyphicon glyphicon-random'></span>
+                              </a>
+                            </div>
+                          </div>
+                          <div class='col-md-2'>
+                            <div class='progress'>
+                              <% perc= (program.get_completion_ratio(current_scenario)[:ratio]*100).to_i %>
+                              <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0'
+                                   aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom'
+                                   data-toggle='tooltip' title='<%= "#{perc}% complete" %>'>
+                                <span class='sr-only'><%= perc %>% Complete</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class='col-md-8'>
+                            <a href='<%= program_path(program) %>'>
+                              <%= program.name %>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>

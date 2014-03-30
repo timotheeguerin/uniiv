@@ -21,7 +21,7 @@
                   <span class='glyphicon glyphicon-random'></span> Path
               <% end %></li>
             <li><%= link_to user_education_path do %>
-                  <span class='glyphicon glyphicon-book'></span> Education
+                  <span class='glyphicon glyphicon-book'></span> Transcript
               <% end %></li>
         <% end %>
       </ul>
@@ -53,15 +53,15 @@
     </div>
     <div class='navbar-nav nav visible-xs visible-sm'>
       <ul class="navbar-nav nav">
-        <li><%= link_to "Uniiv", root_url %></li>
+        <li><%= link_to 'Uniiv', root_url %></li>
         <% if user_signed_in? %>
             <% if can? :access, :rails_admin %>
-                <li><%= link_to "Admin", rails_admin.dashboard_path %></li>
+                <li><%= link_to 'Admin', rails_admin.dashboard_path %></li>
             <% end %>
-            <li><%= link_to "Path", user_graph_path %></li>
-            <li><%= link_to "Education", user_education_path %></li>
-            <li><%= link_to "Account", user_settings_index_path %></li>
-            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'Path', user_graph_path %></li>
+            <li><%= link_to 'Transcript', user_education_path %></li>
+            <li><%= link_to 'Account', user_settings_index_path %></li>
+            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
         <% else %>
             <li><%= link_to "Log In", new_user_session_path %></li>
             <li><%= link_to "Sign Up", new_user_registration_path %></li>
@@ -126,7 +126,7 @@
 </footer>
 
 <div class=''>
-<%= render :partial => 'layouts/confirmation_modal' %>
+  <%= render :partial => 'layouts/confirmation_modal' %>
 </div>
 </body>
 
