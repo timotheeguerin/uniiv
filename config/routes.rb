@@ -70,6 +70,13 @@ Uniiv::Application.routes.draw do
   post 'user/program/new' => 'user_programs#create', :as => :user_programs_create
   post 'user/program/delete' => 'user_programs#delete', :as => :user_programs_delete
 
+
+  #Explore controller
+  get 'explore' => 'explore#index', :as => :explore
+
+  #Contact us controller
+  post 'contactus' => 'contactus_form#create', :as => :contactus
+
   get 'test' => 'test#index'
 
   #University controller

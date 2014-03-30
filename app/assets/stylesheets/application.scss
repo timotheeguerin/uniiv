@@ -114,7 +114,7 @@ $nav_text_color: white;
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 html, body {
@@ -321,6 +321,125 @@ Gray
   color: $palette_grey_darkest;
 }
 
+/****************************************
+Blue
+*****************************************/
+.lightest_blue_bg {
+  background-color: $palette_blue_lightest;
+}
+
+.light_blue_bg {
+  background-color: $palette_blue_lighter;
+}
+
+.blue_bg {
+  background-color: $palette_blue_medium;
+}
+
+.dark_blue_bg {
+  background-color: $palette_blue_darker;
+}
+
+.darkest_blue_bg {
+  background-color: $palette_blue_darkest;
+}
+
+/****************************************
+Green
+*****************************************/
+.lightest_green_bg {
+  background-color: $palette_green_lightest;
+}
+
+.light_green_bg {
+  background-color: $palette_green_lighter;
+}
+
+.green_bg {
+  background-color: $palette_green_medium;
+}
+
+.dark_green_bg {
+  background-color: $palette_green_darker;
+}
+
+.darkest_green_bg {
+  background-color: $palette_green_darkest;
+}
+
+/****************************************
+Yellow
+*****************************************/
+.lightest_yellow_bg {
+  background-color: $palette_yellow_lightest;
+}
+
+.light_yellow_bg {
+  background-color: $palette_yellow_lighter;
+}
+
+.yellow_bg {
+  background-color: $palette_yellow_medium;
+}
+
+.dark_yellow_bg {
+  background-color: $palette_yellow_darker;
+}
+
+.darkest_yellow_bg {
+  background-color: $palette_yellow_darkest;
+}
+
+/****************************************
+red
+*****************************************/
+.lightest_red_bg {
+  background-color: $palette_orange_lightest;
+}
+
+.light_red_bg {
+  background-color: $palette_orange_lighter;
+}
+
+.red_bg {
+  background-color: $palette_orange_medium;
+}
+
+.dark_red_bg {
+  background-color: $palette_orange_darker;
+}
+
+.darkest_red_bg {
+  background-color: $palette_orange_darkest;
+}
+
+/****************************************
+Gray
+*****************************************/
+.lightest_grey_bg {
+  background-color: $palette_grey_lightest;
+}
+
+.light_grey_bg {
+  background-color: $palette_grey_lighter;
+}
+
+.grey_bg {
+  background-color: $palette_grey_medium_light;
+}
+
+.grey_bg_md {
+  background-color: $palette_grey_medium_dark;
+}
+
+.dark_grey_bg {
+  background-color: $palette_grey_darker;
+}
+
+.darkest_grey_bg {
+  background-color: $palette_grey_darkest;
+}
+
 .vertical-align {
   display: table-cell;
   vertical-align: middle;
@@ -436,7 +555,6 @@ ul.sortable li.placeholder:before {
   background-color: $palette_grey_medium_light;
 }
 
-
 .undraggable_box {
   border: 1px solid #dfdfdf;
   background-color: #f5f5f5;
@@ -461,7 +579,6 @@ li.dependency.notsortable {
   border: 1px solid transparent;
   background-color: rgba(0, 0, 0, 0);
 }
-
 
 li.invalid-time.dependency {
   background-color: rgba(0, 0, 0, 0);
@@ -634,5 +751,31 @@ $hover-img-height: 100px;
     p {
       color: transparentize(white, .3);
     }
+  }
+}
+
+.contactForm {
+  font-size: 30px;
+
+  input, textarea {
+    /* max-width: 25rem; */
+    width: 100%;
+    margin: 1rem auto;
+    padding: 1rem;
+    display: block;
+    background: #1E2024;
+    border: none;
+
+    font-weight: 200;
+    border-radius: .2rem;
+  }
+  textarea {
+    resize: vertical;
+    height: 7em;
+  }
+
+  input[type="submit"] {
+    background-color: $palette_blue_lighter;
+    font-weight: bold;
   }
 }

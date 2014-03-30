@@ -1,0 +1,8 @@
+<% form ||= ContactusForm.new %>
+<div class='contactForm'>
+  <%= form_for form, :url => contactus_path do |f| %>
+      <%= f.text_field :email, :placeholder => 'Email' %>
+      <%= f.text_area :content, :placeholder => 'Message' %>
+      <%= f.submit 'Contact us' %>
+  <% end %>
+</div>

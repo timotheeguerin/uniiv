@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325144307) do
+ActiveRecord::Schema.define(version: 20140330191026) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 20140325144307) do
   end
 
   add_index "buisness_times", ["day_id"], name: "index_buisness_times_on_day_id", using: :btree
+
+  create_table "contactus_forms", force: true do |t|
+    t.string   "email"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "course_courses", force: true do |t|
     t.string   "name"
