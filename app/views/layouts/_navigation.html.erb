@@ -1,67 +1,60 @@
 <nav class='navbar navbar-inverse navbar-fixed-top whitetext'>
   <div class='container'>
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header_navbarcollapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-    </div>
-    <div class='collapse navbar-collapse' id='header_navbarcollapse'>
+    <div class="navbar-header pull-left">
       <ul class='navbar-nav nav'>
         <li>
           <%= link_to root_url do %>
-              <span class='glyphicon glyphicon-home'></span> Uniiv
+              <span class='glyphicon glyphicon-home'></span> <span class="hidden-xs hidden-sm">Uniiv</span>
           <% end %>
         </li>
         <% if user_signed_in? %>
             <li>
               <%= link_to user_graph_path do %>
-                  <span class='glyphicon glyphicon-random'></span> Path
+                  <span class='glyphicon glyphicon-random'></span> <span class="hidden-xs">Path</span>
               <% end %>
             </li>
             <li>
               <%= link_to user_education_path do %>
-                  <span class='glyphicon glyphicon-book'></span> Transcript
+                  <span class='glyphicon glyphicon-book'></span> <span class="hidden-xs">Transcript</span>
               <% end %>
             </li>
             <li>
               <%= link_to explore_path do %>
-                  <span class='glyphicon glyphicon-search'></span> Explore
+                  <span class='glyphicon glyphicon-search'></span> <span class="hidden-xs">Explore</span>
               <% end %>
             </li>
         <% end %>
       </ul>
+    </div>
+    <div class="navbar-header pull-right">
       <ul class='navbar-nav nav  navbar-right'>
         <% if user_signed_in? %>
             <% if can? :access, :rails_admin %>
                 <li>
                   <%= link_to rails_admin.dashboard_path do %>
-                      <span class='glyphicon glyphicon-wrench'></span> Admin
+                      <span class='glyphicon glyphicon-wrench'></span> <span class="hidden-xs hidden-sm">Admin</span>
                   <% end %>
                 </li>
             <% end %>
             <li>
               <%= link_to user_settings_index_path do %>
-                  <span class='glyphicon glyphicon-user'></span> Account
+                  <span class='glyphicon glyphicon-user'></span> <span class="hidden-xs hidden-sm">Account</span>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                  <span class='glyphicon glyphicon-log-out'></span> Log Out
+                  <span class='glyphicon glyphicon-log-out'></span> <span class="hidden-xs hidden-sm">Log out</span>
               <% end %>
             </li>
         <% else %>
             <li>
               <%= link_to new_user_session_path do %>
-                  <span class='glyphicon glyphicon-log-in'></span> Log In
+                  <span class='glyphicon glyphicon-log-in'></span> <span class="hidden-xs">Log in</span>
               <% end %>
             </li>
             <li>
               <%= link_to new_user_registration_path do %>
-                  <span class='glyphicon glyphicon-user'></span> Sign Up
+                  <span class='glyphicon glyphicon-user'></span> <span class="hidden-xs">Sign in</span>
               <% end %>
             </li>
         <% end %>
