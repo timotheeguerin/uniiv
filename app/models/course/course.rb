@@ -146,6 +146,7 @@ class Course::Course < ActiveRecord::Base
     end
     text :description
     text :code
+    integer :subject_id
     integer :course_scenario_ids, :references => Course::Scenario, :multiple => true
     integer :user_ids, :references => User, :multiple => true
     integer :program_group_ids, :references => Program::Group, :multiple => true

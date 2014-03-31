@@ -3,6 +3,7 @@ class University < ActiveRecord::Base
   belongs_to :year_system, :class_name => UniversityYearSystem
 
   has_many :faculties, :class_name => Faculty
+  has_many :subjects, :class_name => Course::Subject
 
 
   def to_s

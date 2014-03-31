@@ -31,19 +31,20 @@ class ExploreController < ApplicationController
     @faculties
   end
 
-  def search
 
+
+  def courses
+    @subject = Course::Subject.where(:id => params[:subject]).first
+    results = Course::Course.search do
+      fulltext params[:q]
+      with(:subject_id, @subject.id) unless @subject.nil?
+    end.results
+    @fullwidth = true
+    @courses = results
   end
 
-  def get_results
-    results = []
-    if params[:program_only]
-    elsif  params[:course_only]
-    else
-      results = Sunspot.search model_list do |query|
-        query.fulltext params[:q]
-      end
-    end
-
+  #List of all subjects
+  def subjects
+    @fullwidth = true
   end
 end

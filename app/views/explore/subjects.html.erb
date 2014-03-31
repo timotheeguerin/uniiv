@@ -1,0 +1,17 @@
+<div class="row explore-section">
+  <div class="container">
+    <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control filter_content', :autocomplete => 'off', 'data-elements' => '.filter-element' %>
+  </div>
+</div>
+
+<div class="row explore-section">
+  <div class="container">
+    <% current_user.university.subjects.order(:name).each do |subject| %>
+        <div class="col-md-2 filter-element" data-name='<%= subject.name %>'>
+          <a href="<%= explore_courses_path(:subject => subject.id) %>" class='btn btn-default btn-block'>
+            <%= subject %>
+          </a>
+        </div>
+    <% end %>
+  </div>
+</div>

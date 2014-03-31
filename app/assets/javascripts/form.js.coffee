@@ -20,7 +20,7 @@ $(document).ready ->
       , 2000)
 
   #Display a modal with the content of the href on the link
-  $(document).on 'click' , '.ajaxmodal', () ->
+  $(document).on 'click', '.ajaxmodal', () ->
     event.preventDefault()
     button = $(this)
     form = button.closest('form')
@@ -40,6 +40,16 @@ $(document).ready ->
 
 
   $(document).on 'submit', 'form.useajax', submitFormAjax
+
+
+  $(document).on 'keyup', 'input.filter_content', () ->
+    input = $(this)
+    elements = $(input.data('elements'))
+    if input.val().length > 0
+      elements.hide()
+      elements.filter('[data-name^="' + input.val().toUpperCase() + '"]').show()
+    else
+      elements.show()
 
   #Script for autocomplete input
   #data-url: url for the autocomplete

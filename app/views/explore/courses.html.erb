@@ -1,0 +1,51 @@
+<div class='row explore-section'>
+  <div class='container'>
+    <h1>Explore courses</h1>
+    <%= form_tag '', :method => :get do %>
+        <div class="input-group">
+          <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control' %>
+          <span class="input-group-btn">
+            <button class="btn btn-primary text-md">
+              <span class='glyphicon glyphicon-search'></span>
+            </button>
+          </span>
+        </div>
+    <% end %>
+  </div>
+</div>
+<% if @subject.nil? %>
+    <% Course::Subject.limit(5).each do |subject| %>
+        <div class='row explore-section'>
+          <div class="container">
+            <h2>
+              <%= subject.name.capitalize %>
+            </h2>
+
+            <div class='display-container'>
+              <div class="row">
+                <% subject.courses.limit(6).each do |course| %>
+                    <div class="col-md-6">
+                      <%= course %>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <div class='row explore-section'>
+      <div class="container">
+        <a class='btn btn-primary btn-block'>
+            See all subjects
+        </a>
+      </div>
+    </div>
+<% else %>
+    <div class='row explore-section'>
+      <% @courses.each do |course| %>
+          <div>
+            <%= course %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
