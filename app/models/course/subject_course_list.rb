@@ -3,7 +3,7 @@ class Course::SubjectCourseList < ActiveRecord::Base
   belongs_to :group, :class_name => Program::Group
 
   validates_presence_of :subject
-  validates_presence_of :program_group
+  validates_presence_of :group
   validates_presence_of :level
   validates_presence_of :operation
 
