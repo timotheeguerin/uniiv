@@ -3,6 +3,12 @@
     <h1>Explore courses</h1>
     <%= form_tag '', :method => :get do %>
         <div class="input-group">
+          <% unless @subject.nil? %>
+              <span class="input-group-addon">
+                <%= @subject %>
+                <%= hidden_field_tag :subject, @subject.id %>
+              </span>
+          <% end %>
           <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control' %>
           <span class="input-group-btn">
             <button class="btn btn-primary text-md">
@@ -36,7 +42,7 @@
     <div class='row explore-section'>
       <div class="container">
         <a class='btn btn-primary btn-block'>
-            See all subjects
+          See all subjects
         </a>
       </div>
     </div>

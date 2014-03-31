@@ -37,7 +37,7 @@ class ExploreController < ApplicationController
     @subject = Course::Subject.where(:id => params[:subject]).first
     results = Course::Course.search do
       fulltext params[:q]
-      with(:subject_id, @subject.id) unless @subject.nil?
+      with(:subject_id, params[:subject]) unless params[:subject].nil?
     end.results
     @fullwidth = true
     @courses = results
