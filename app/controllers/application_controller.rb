@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   def after_sign_up_path_for(ressource)
     get_redirect_path(user_education_path)
   end
+
   def current_scenario
     if @current_scenario.nil?
       @current_scenario = current_user.main_course_scenario

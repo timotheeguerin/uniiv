@@ -41,13 +41,21 @@ class RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, flash_key
       end
       sign_in resource_name, resource, bypass: true
-      flash[:notice]  = t('user.password.update.success')
+      flash[:notice] = t('user.password.update.success')
       respond_with resource, location: user_settings_index_path
     else
       clean_up_passwords resource
-      flash[:alert]  = resource.errors.full_messages.first
+      flash[:alert] = resource.errors.full_messages.first
       redirect_to user_settings_index_path
     end
+  end
+
+  def destroy
+    self.resource.destroy
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    set_flash_message :notice, :destroyed if is_flashing_format?
+    yield resource if block_given?
+    redirect_to root_path, :notice => 'Account removed with succces!'
   end
 
   def resource_params

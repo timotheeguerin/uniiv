@@ -13,5 +13,13 @@
     <br>
     <%= render :partial => 'user_emails/show' %>
     <%= render :partial => 'devise/registrations/edit', :locals => {:resource => current_user, :resource_name => 'user'} %>
+
+    <hr>
+    <div>
+      <%= form_tag user_registration_path(current_user), :method => :delete do %>
+          <%= submit_tag 'Cancel my account', :class => 'btn btn-danger btn-block needconfirmation', 'data-confirm-dialog' => 'Are you sure?' %>
+      <% end %>
+    </div>
+
   </div>
 </div>
