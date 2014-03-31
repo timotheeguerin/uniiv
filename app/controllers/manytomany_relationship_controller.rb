@@ -39,6 +39,7 @@ class ManytomanyRelationshipController < ApplicationController
       fulltext params[:q]
       puts 'r: ' + @relation.to_s
       without('program_group_ids', relation[:object].id)
+      paginate :page => 1, :per_page => 5
     end.results
     json = {}
     json[:query] = params[:q]

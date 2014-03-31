@@ -65,10 +65,10 @@
             <div class='course_result'>
               <div class="row course_title">
                 <div class="col-md-2 text-right">
-                  <%= course %>
+                  <%= link_to course, course_path(course) %>
                 </div>
                 <div class="col-md-9">
-                  <%= course.name %>
+                  <%= link_to course.name, course_path(course) %>
                 </div>
                 <div class="col-md-1">
                   <button class="btn btn-success btn-sm rotatecontent" data-container='#course_container_<%= course.id %>'>

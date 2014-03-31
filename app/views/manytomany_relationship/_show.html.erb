@@ -8,14 +8,14 @@
     <%= render :partial => 'manytomany_relationship/list', :locals => {:list => list, :mparams => mparams} %>
   </div>
   <div class='row list-group-item'>
-    <%= form_tag manytomany_relationship_create_path, :class => 'useajax', 'data-reload' => '#manytomany_list' do %>
+    <%= form_tag manytomany_relationship_create_path, :class => 'useajax clear_inputs', 'data-reload' => '#manytomany_list' do %>
         <div class='form-group'>
           <label>Search a course to add to this program group</label>
 
           <div class="input-group">
             <%= render_manytomany_relationship_params(mparams) %>
             <%= text_field_tag('element_id', nil, options =
-                    {:class => 'form-control autocomplete',
+                    {:class => 'form-control autocomplete disablesubmit',
                      'data-url' => manytomany_relationship_search_autocomplete_path(:model => mparams[:model], :model_id => mparams[:model_id], :relation => mparams[:relation]),
                      'data-input-data' => true}) %>
 

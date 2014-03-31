@@ -143,6 +143,8 @@ submitFormAjax = () ->
       remove_tooltip(parent)
       parent.fadeOut(300, () ->
         $(this).remove())
+    if form.hasClass('clear_inputs')
+      form.find('input[type="text"]').val('')
     if form.data('reload') #Delete the closest parent with the given selector
       $(form.data('reload')).each () ->
         reload_container($(this))
