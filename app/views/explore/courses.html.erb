@@ -9,7 +9,7 @@
                 <%= hidden_field_tag :subject, @subject.id %>
               </span>
           <% end %>
-          <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control' %>
+          <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control', :autocomplete => 'off' %>
           <span class="input-group-btn">
             <button class="btn btn-primary text-md">
               <span class='glyphicon glyphicon-search'></span>
@@ -19,13 +19,24 @@
     <% end %>
   </div>
 </div>
-<% if @subject.nil? %>
+<% if @courses.empty? %>
     <% Course::Subject.limit(5).each do |subject| %>
         <div class='row explore-section'>
           <div class="container">
-            <h2>
-              <%= subject.name.capitalize %>
-            </h2>
+            <div class='row'>
+              <div class='col-md-8'>
+                <h2>
+                  <%= subject.name.capitalize %>
+                </h2>
+              </div>
+              <div class='col-md-4'>
+                <div class="text-right" style="margin-top: 40">
+                  <a href="<%= explore_courses_path(:subject => subject) %>">
+                    See all <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
 
             <div class='display-container'>
               <div class="row">
@@ -41,17 +52,54 @@
     <% end %>
     <div class='row explore-section'>
       <div class="container">
-        <a class='btn btn-primary btn-block'>
+        <a href="<%= explore_subjects_path %>" class='btn btn-primary btn-block'>
           See all subjects
         </a>
       </div>
     </div>
 <% else %>
     <div class='row explore-section'>
-      <% @courses.each do |course| %>
-          <div>
-            <%= course %>
-          </div>
-      <% end %>
+
+      <div class="container">
+        <% @courses.each do |course| %>
+            <div class='course_result'>
+              <div class="row course_title">
+                <div class="col-md-2 text-right">
+                  <%= course %>
+                </div>
+                <div class="col-md-9">
+                  <%= course.name %>
+                </div>
+                <div class="col-md-1">
+                  <button class="btn btn-success btn-sm rotatecontent" data-container='#course_container_<%= course.id %>'>
+                    <span class='glyphicon glyphicon-chevron-down'></span>
+                  </button>
+                </div>
+              </div>
+              <div id='course_container_<%= course.id %>' class='row course_description' style='display: none'>
+                <div class="col-md-4 col-md-offset-2">
+                  <%= course.description %>
+                </div>
+                <div class="col-md-4">
+                  <p>Prerequisites:
+                    <% if course.prerequisite.nil? %>
+                        None.
+                    <% else %>
+                        <%= raw(get_expr_html(course.prerequisite)) %>
+                    <% end %>
+                  </p>
+
+                  <p>Corequisites:
+                    <% if course.corequisite.nil? %>
+                        None.
+                    <% else %>
+                        <%= raw(get_expr_html(course.corequisite)) %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
     </div>
 <% end %>

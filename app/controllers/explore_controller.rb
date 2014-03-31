@@ -35,12 +35,14 @@ class ExploreController < ApplicationController
 
   def courses
     @subject = Course::Subject.where(:id => params[:subject]).first
-    results = Course::Course.search do
-      fulltext params[:q]
-      with(:subject_id, params[:subject]) unless params[:subject].nil?
-    end.results
+    if not @subject.nil? or not (params[:q].nil? or params[:q].blank?)
+      @courses = Course::Course.search do
+        fulltext params[:q]
+        with(:subject_id, params[:subject]) unless params[:subject].nil?
+      end.results
+    end
     @fullwidth = true
-    @courses = results
+    @courses ||= []
   end
 
   #List of all subjects

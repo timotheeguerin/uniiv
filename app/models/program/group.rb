@@ -109,28 +109,33 @@ class Program::Group < ActiveRecord::Base
 
   def get_completion_ratio(scenario, term = nil)
     restriction = restrictions.first
-    case restriction.type.name
-      when 'min_credit'
-        puts 'MIN CREDIT'
-        completed_credit = count_credit_completed_courses(scenario, term)
-        subgroup_completed = get_subgroups_completed_ratio(scenario)
-        puts 'Sub group completed: ' + subgroup_completed.to_s
-        return {:ratio => 0, :coefficient => 1, :value => 0} if restriction.value == 0 and subgroup_completed[:coefficient] == 0
-        ratio = (completed_credit + subgroup_completed[:value])/ (restriction.value + subgroup_completed[:coefficient])
-        ratio = 1 if ratio > 1
-        puts 'VALUE: ' + restriction.value.to_s
-        {:ratio => ratio, :coefficient => restriction.value, :value => restriction.value*ratio}
-      when 'min_grp'
-        return {:ratio => 1, :coefficient => 1, :value => 1}
-      else
-        if courses.size != 0
-          coef = courses.size.to_f
-          value = count_completed_courses(scenario, term)
-          return {:ratio => value/ coef, :coefficient => coef, :value => value}
+    if restriction.nil?
+      {:ratio => 0, :coefficient => 1, :value => 0}
+    else
+      case restriction.type.name
+        when 'min_credit'
+          puts 'MIN CREDIT'
+          completed_credit = count_credit_completed_courses(scenario, term)
+          subgroup_completed = get_subgroups_completed_ratio(scenario)
+          puts 'Sub group completed: ' + subgroup_completed.to_s
+          return {:ratio => 0, :coefficient => 1, :value => 0} if restriction.value == 0 and subgroup_completed[:coefficient] == 0
+          ratio = (completed_credit + subgroup_completed[:value])/ (restriction.value + subgroup_completed[:coefficient])
+          ratio = 1 if ratio > 1
+          puts 'VALUE: ' + restriction.value.to_s
+          {:ratio => ratio, :coefficient => restriction.value, :value => restriction.value*ratio}
+        when 'min_grp'
+          return {:ratio => 1, :coefficient => 1, :value => 1}
         else
-          return {:ratio => 1, :coefficient => 0, :value => 1}
-        end
+          if courses.size != 0
+            coef = courses.size.to_f
+            value = count_completed_courses(scenario, term)
+            return {:ratio => value/ coef, :coefficient => coef, :value => value}
+          else
+            return {:ratio => 1, :coefficient => 0, :value => 1}
+          end
+      end
     end
+
   end
 
   def get_coefficient

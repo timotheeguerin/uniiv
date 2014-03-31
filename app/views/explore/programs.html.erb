@@ -3,7 +3,7 @@
     <h1>Explore programs</h1>
     <%= form_tag '', :method => :get do %>
         <div class="input-group">
-          <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control' %>
+          <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control', :autocomplete => 'off'  %>
           <span class="input-group-btn">
             <button class="btn btn-primary text-md">
               <span class='glyphicon glyphicon-search'></span>

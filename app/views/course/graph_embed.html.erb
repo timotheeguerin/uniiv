@@ -1,14 +1,14 @@
 <% @course_status = "" %>
 <% if current_user.is_taking_course?(@course) %>
-  <% c = current_scenario.get_by_course(@course) %>
-  <% unless c.semester.nil? or c.year.nil? %>
-    <% @course_status = c.semester.to_s.capitalize + ' ' + c.year.to_s %>
-  <% end %>
+    <% c = current_scenario.get_by_course(@course) %>
+    <% unless c.semester.nil? or c.year.nil? %>
+        <% @course_status = c.semester.to_s.capitalize + ' ' + c.year.to_s %>
+    <% end %>
 <% elsif current_user.has_completed_course?(@course) %>
-  <% c = UserCompletedCourse.all.where(:user_id => current_user.id).where(:course_id => @course.id).first %>
-  <% unless c.semester.nil? or c.year.nil? %>
-    <% @course_status = c.semester.to_s.capitalize + ' ' + c.year.to_s %>
-  <% end %>
+    <% c = UserCompletedCourse.all.where(:user_id => current_user.id).where(:course_id => @course.id).first %>
+    <% unless c.semester.nil? or c.year.nil? %>
+        <% @course_status = c.semester.to_s.capitalize + ' ' + c.year.to_s %>
+    <% end %>
 <% end %>
 
 
@@ -22,16 +22,16 @@
 
 <div>Prerequisites:
   <% if @course.prerequisite.nil? %>
-    None.
+      None.
   <% else %>
-    <%= raw(get_expr_html(@course.prerequisite)) %>
+      <%= raw(get_expr_html(@course.prerequisite)) %>
   <% end %>
 </div>
 <div>Corequisites:
   <% if @course.corequisite.nil? %>
-    None.
+      None.
   <% else %>
-    <%= raw(get_expr_html(@course.corequisite)) %>
+      <%= raw(get_expr_html(@course.corequisite)) %>
   <% end %>
 </div>
 
@@ -42,31 +42,35 @@
     <button class='btn btn-info' rel='popover' data-toggle='popover' data-content='<%= @course.description %>' data-placement='left'>
       <span class='whitetext glyphicon glyphicon-eye-open'></span></button>
     <% if current_user.is_taking_course?(@course) or current_user.has_completed_course?(@course) %>
-      <% coursesindb = current_scenario.taking_courses.to_a %>
-      <% coursesindb.concat(current_user.completed_courses.to_a) %>
-      <% variable = -1 %>
-      <% coursesindb.each do |cid| %>
-        <% if cid.course == @course %>
-          <% variable = cid %>
+        <% coursesindb = current_scenario.taking_courses.to_a %>
+        <% coursesindb.concat(current_user.completed_courses.to_a) %>
+        <% variable = -1 %>
+        <% coursesindb.each do |cid| %>
+            <% if cid.course == @course %>
+                <% variable = cid %>
+            <% end %>
         <% end %>
-      <% end %>
-      <% if current_user.is_taking_course?(@course) %>
-        <a href='<%= user_complete_course_ge_path(@course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Mark Completed'><span class='whitetext glyphicon glyphicon-ok-sign'></span></a>
-        <a href='' class='btn btn-danger' rel='tooltip' data-type='ext' data-toggle='tooltip' title='Remove'><span class='whitetext glyphicon glyphicon-remove-sign'></span></a>
-      <% else %>
-        <% unless current_user.reviewed_course?(@course) %>
-          <a href='<%= course_review_new_graph_embed_path(@course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'><span class='whitetext glyphicon glyphicon-comment'></span></a>
+        <% if current_user.is_taking_course?(@course) %>
+            <a href='<%= user_complete_course_ge_path(@course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Mark Completed'><span class='whitetext glyphicon glyphicon-ok-sign'></span></a>
+            <a href='' class='btn btn-danger' rel='tooltip' data-type='ext' data-toggle='tooltip' title='Remove'><span class='whitetext glyphicon glyphicon-remove-sign'></span></a>
+        <% else %>
+            <% unless current_user.reviewed_course?(@course) %>
+                <a href='<%= course_review_new_graph_embed_path(@course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Review'><span class='whitetext glyphicon glyphicon-comment'></span></a>
+            <% end %>
+            <a href='' class='btn btn-danger' rel='tooltip' data-type='ext' data-toggle='tooltip' title='Remove'><span class='whitetext glyphicon glyphicon-remove-sign'></span></a>
         <% end %>
-        <a href='' class='btn btn-danger' rel='tooltip' data-type='ext' data-toggle='tooltip' title='Remove'><span class='whitetext glyphicon glyphicon-remove-sign'></span></a>
-      <% end %>
     <% else %>
-      <a href='<%= user_take_course_graph_embed_path(@course) %>' class='btn btn-warning' rel='tooltip' data-toggle='tooltip' title='Mark In-Progress'><span class='whitetext glyphicon glyphicon-plus-sign'></span></a>
-      <a href='<%= user_complete_course_ge_path(@course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Mark Completed'><span class='whitetext glyphicon glyphicon-ok-sign'></span></a>
+        <a href='<%= user_take_course_graph_embed_path(@course) %>' class='btn btn-warning' rel='tooltip' data-toggle='tooltip' title='Mark In-Progress'><span class='whitetext glyphicon glyphicon-plus-sign'></span></a>
+        <a href='<%= user_complete_course_ge_path(@course) %>' class='btn btn-success' rel='tooltip' data-toggle='tooltip' title='Mark Completed'><span class='whitetext glyphicon glyphicon-ok-sign'></span></a>
     <% end %>
     <% if @course.reviews.size >= 0 %>
-      <a class='btn btn-info' href='<%= course_path(@course) %>' data-type='ext' rel='tooltip' data-toggle='tooltip' title='There are <%= @course.reviews.size %> reviews.'><span class='whitetext glyphicon glyphicon-bullhorn'></span></a>
+        <a class='btn btn-info' href='<%= course_path(@course) %>' data-type='ext' rel='tooltip' data-toggle='tooltip' title='There are <%= @course.reviews.size %> reviews.'><span class='whitetext glyphicon glyphicon-bullhorn'></span></a>
     <% end %>
   </div>
 </div>
-
+<div>
+  <div class='text-xxl text-center' style="margin-top: 20px">
+    <%= raw(course_status_icon(@course)) %>
+  </div>
+</div>
 <script type='text/javascript' src='/assets/tooltiprun.js'></script>

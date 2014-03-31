@@ -45,4 +45,20 @@ module CourseHelper
     render 'course/course_list_item', :course => course, :invalid_time => invalid_time
   end
 
+  def course_status_icon(course)
+    state = course.get_course_state(current_scenario)
+    content = ''
+    case state
+      when CourseState::COMPLETED
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ok-circle bluetext', :title => t('course.completed'), 'data-toggle'=> 'tooltip'
+      when CourseState::TAKING
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-time yellowtext', :title => t('course.taking'), 'data-toggle'=> 'tooltip'
+      when CourseState::AVAILABLE
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-thumbs-up greentext', :title => t('course.available'), 'data-toggle'=> 'tooltip'
+      when CourseState::UNAVAILABLE
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ban-circle redtext', :title => t('course.unavailable'), 'data-toggle'=> 'tooltip'
+    end
+    content
+  end
+
 end

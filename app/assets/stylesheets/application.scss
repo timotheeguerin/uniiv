@@ -130,6 +130,10 @@ form {
   font-weight: bold;
 }
 
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
+}
+
 .navbar li:hover {
   background-color: $palette_green_darker;
   color: $palette_grey_medium_light
@@ -189,12 +193,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a:not(.btn) {
-  color: inherit !important;
-  text-decoration: inherit !important;
+  color: inherit;
+  text-decoration: inherit;
 }
 
 a:hover {
-  color: $palette_grey_medium_light
+  color: $palette_grey_darker;
 }
 
 .btn-blank {
@@ -809,4 +813,29 @@ $hover-img-height: 100px;
 
 .filter-element {
   margin: 5px 0;
+}
+
+.course_result {
+  margin: 5px 0;
+  padding: 10px 0;
+  border: 1px solid #f1f1f1;
+  background: white;
+  .row.course_title {
+    font-size: 20px;
+    .text-right {
+      font-weight: bold;
+    }
+  }
+  .row.course_description {
+    display: none;
+    border-top: 1px solid $palette_grey_lighter;
+    margin-top: 10px;
+    padding-top: 10px;
+    text-align:justify;
+    text-justify:inter-word;
+
+    [class^='col-']:not(:last-child) {
+      border-right: 1px solid $palette_grey_lighter;
+    }
+  }
 }
