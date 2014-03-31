@@ -57,7 +57,8 @@ class ManytomanyRelationshipController < ApplicationController
     element = @relation[:relation_class].find(params[:id])
     if element.nil?
     else
-      @relation[:list].delete(element)
+      @relation[:list].destroy(element)
+      element.index
       if request.xhr?
         return_json('Element removed')
       else
