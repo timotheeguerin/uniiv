@@ -23,8 +23,8 @@ development_main:
   encoding: utf8
   database: uniiv_development
   pool: 5
-  username: <%= ENV['RAILS_DB_USERNAME'] %>
-  password: <%= ENV['RAILS_DB_PASSWORD'] %>
+  username: <%= ENV['RAILS_MAIN_DB_USERNAME'] %>
+  password: <%= ENV['RAILS_MAIN_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: bendodev.no-ip.org
   ssh_user: timssh
