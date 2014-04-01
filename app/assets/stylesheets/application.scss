@@ -4,7 +4,6 @@
 //= require animate
 
 /**Boostrap import */
-@import "bootstrap";
 
 /*
  * fonts
@@ -57,6 +56,11 @@ $nav_border_color: #d5d5d5;
 
 $nav_text_size: 14px;
 $nav_text_color: white;
+/*
+$brand-success: $palette_green_medium;
+$brand-primary: $palette_blue_lighter;
+$brand-danger: $palette_orange_medium;*/
+@import "bootstrap";
 
 /*
   * mixins
@@ -133,6 +137,7 @@ form {
 .navbar-inverse .navbar-nav > li > a {
   color: white;
 }
+
 .navbar-nav > li {
   float: left;
 }
@@ -795,6 +800,9 @@ $hover-img-height: 100px;
   padding: 40px 0;
   border-bottom: 1px solid #eee;
 
+  h3 {
+    font-variant: small-caps;
+  }
   .display-container {
     border: 1px solid #f1f1f1;
     background: #f9f9f9;
@@ -834,8 +842,8 @@ $hover-img-height: 100px;
     border-top: 1px solid $palette_grey_lighter;
     margin-top: 10px;
     padding-top: 10px;
-    text-align:justify;
-    text-justify:inter-word;
+    text-align: justify;
+    text-justify: inter-word;
 
     [class^='col-']:not(:last-child) {
       border-right: 1px solid $palette_grey_lighter;

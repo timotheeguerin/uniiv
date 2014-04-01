@@ -42,7 +42,29 @@
               <div class="row">
                 <% subject.courses.limit(6).each do |course| %>
                     <div class="col-md-6">
-                      <%= course %>
+                      <div style="padding: 10px">
+                        <div class="row">
+                          <div class="col-md-1 text-right text-lg">
+                            <%= course_status_icon(course) %>
+                          </div>
+                          <div class="col-md-11">
+                            <div class="row text-sm dark_greytext" style="font-weight: bold;">
+                              <div class="col-md-3">
+                                <%= link_to course, course_path(course) %>
+                              </div>
+                              <div class="col-md-8" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                <%= link_to course.name, course_path(course) %>
+                              </div>
+                            </div>
+                            <div class="row text-sm">
+                              <div class='col-md-11' style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                <i> <%= course.description %></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                 <% end %>
               </div>

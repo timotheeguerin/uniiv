@@ -108,6 +108,16 @@ class Program::Group < ActiveRecord::Base
   end
 
   def get_completion_ratio(scenario, term = nil)
+    return  {:ratio => 1, :coefficient => 0, :value => 1}
+    if restrictions.size == 0
+      Utils::Ratio.empty
+    else
+      ratio = Utils::Ratio.empty
+      restrictions.each do |restriction|
+
+      end
+      ratio
+    end
     restriction = restrictions.first
     if restriction.nil?
       {:ratio => 0, :coefficient => 1, :value => 0}
@@ -124,7 +134,7 @@ class Program::Group < ActiveRecord::Base
           puts 'VALUE: ' + restriction.value.to_s
           {:ratio => ratio, :coefficient => restriction.value, :value => restriction.value*ratio}
         when 'min_grp'
-          return {:ratio => 1, :coefficient => 1, :value => 1}
+          {:ratio => 1, :coefficient => 1, :value => 1}
         else
           if courses.size != 0
             coef = courses.size.to_f
