@@ -55,8 +55,8 @@ module Utils
       @ratio == 0
     end
 
-    def self.full
-      Utils::Ratio.new(1)
+    def self.full(coefficient = nil)
+      Utils::Ratio.new(1, coefficient)
     end
 
     def self.empty
@@ -66,6 +66,10 @@ module Utils
     #Create a ratio with ratio =0 and coef = 0
     def self.zero
       Utils::Ratio.new(0, 0)
+    end
+
+    def self.from_value(value, coefficient)
+      Utils::Ratio.new(value.to_f/coefficient.to_f, coefficient.to_f)
     end
 
     def to_s
