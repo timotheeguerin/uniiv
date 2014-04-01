@@ -5,7 +5,7 @@
   </div>
   <div class='col-md-2 graphsidebar'>
     <div>
-      <% perc = (current_user.total_completed_ratio*100).to_i.to_s %>
+      <% perc = current_user.total_completed_ratio.percent.to_i.to_s %>
       <div class="row">
         <div class='col-md-12'>
           <div class='text-center'><%= perc %>% Degree Completion</div>

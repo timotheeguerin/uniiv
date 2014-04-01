@@ -92,7 +92,7 @@ class GraphController < ApplicationController
   def generate_graph_from_group(group, style)
     margin = 20
     margin = style[:padding] unless style[:padding].nil?
-    completed_percent = (group.get_completion_ratio(current_scenario, @term)[:ratio] * 100).round
+    completed_percent = group.get_completion_ratio(current_scenario, @term).percent.round
     label = "#{group.name} (#{completed_percent}%)"
     g = GraphViz.new(:G, :type => :digraph, :strict => true, :label => label, :fontsize => 20)
     dot_graph = Graph::DotGraph.new(g, current_scenario, @term)

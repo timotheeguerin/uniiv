@@ -15,9 +15,6 @@ class Course::SubjectCourseList < ActiveRecord::Base
   def courses
     result = Course::Course.where(:subject_id => subject_id)
     l = level
-    puts 'COURSES +++++++============='
-    puts operation
-    puts '============================'
     case operation
       when 'LESS'
         result.where { code < l }
