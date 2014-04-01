@@ -1,6 +1,6 @@
 namespace :db do
   def command_args(config)
-    abort "Missing database name" if config['database'].blank?
+    abort 'Missing database name' if config['database'].blank?
 
     args = ''
     args << "-u #{config['username']} " if config['username'].present?
@@ -17,7 +17,9 @@ namespace :db do
     live = config['development_main']
 
     #Clean the database
-    Rake.application.invoke_task('db:reset')
+    Rake.application.invoke_task('db:drop')
+    Rake.application.invoke_task('db:create')
+    Rake.application.invoke_task('db:migrate:all')
 
     abort 'Dev db is not mysql' unless dev['adapter'] =~ /mysql/
     abort 'Live db is not mysql' unless live['adapter'] =~ /mysql/
