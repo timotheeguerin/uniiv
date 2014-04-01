@@ -15,8 +15,8 @@ module Uniiv
     def install
       username = ask_for('Database username?', 'root', _username)
       password = ask_for('Database password?', '', _password)
-      username_main = ask_for('Main database username?', 'root', _username)
-      password_main = ask_for('Main database password?', '', _password)
+      username_main = ask_for('Main database username?', 'root', _username_main)
+      password_main = ask_for('Main database password?', '', _password_main)
       template 'local_env_initializer.yml.erb', 'config/local/local_env.yml',
                :username => username, :password => password,
                :username_main => username_main, :password_main => password_main

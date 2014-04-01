@@ -1,2 +1,5 @@
 RAILS_DB_USERNAME: test_user
 RAILS_DB_PASSWORD: test_password
+
+RAILS_MAIN_DB_USERNAME: test_user_main
+RAILS_MAIN_DB_PASSWORD: test_password_main

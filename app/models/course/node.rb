@@ -247,7 +247,6 @@ class Course::Node < ActiveRecord::Base
 
 end
 
-
 class NodeOperation
   NODE = 'NODE'
   OR = 'OR'

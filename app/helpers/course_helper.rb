@@ -25,6 +25,7 @@ module CourseHelper
     return '' if node.operation.nil?
     if node.operation == NodeOperation::NODE
       course = node.course
+      puts 'N: ' + node.id.to_s
       if template.nil?
         r = r + "<a href='#{course_path(:id => course.id)}' data-id='#{course.id}' data-type='course' class='#{get_course_css_class(course)} underline_link'>#{course.to_s}</a>"
       else
