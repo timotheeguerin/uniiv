@@ -850,3 +850,24 @@ $hover-img-height: 100px;
     }
   }
 }
+
+.explore-menu {
+  width: 100%;
+  a.explore-choice {
+    display: block;
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    border-bottom: 1px solid $palette_grey_medium_light;
+    border-top: 1px solid $palette_grey_medium_light;
+    text-align: center;
+    padding-bottom: 30px;
+
+    &:hover {
+      background: transparentize($palette_grey_darker, .95);
+    }
+    &:not(:last-child) {
+      border-right: 1px solid $palette_grey_medium_light;
+    }
+  }
+}

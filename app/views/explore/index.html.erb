@@ -1,21 +1,22 @@
 <div class='row explore-section'>
   <div class="container">
-    <div class="row">
-      <div class='col-md-6'>
-        <a href='<%= explore_programs_path %>' class="btn btn-default btn-block" style="height: 155px;">
-          Explore programs
-        </a>
-      </div>
+    <div class="explore-menu">
+      <a href='<%= explore_programs_path %>' class="explore-choice">
+        <h2>Explore programs</h2>
 
-      <div class='col-md-3'>
-        <a class="btn btn-default btn-block" style="height: 75px;">
-          Explore courses
-        </a>
-        <a class="btn btn-default btn-block" style="height: 75px;">
-          Explore courses by subject
-        </a>
-      </div>
+        <div>
+            Discover new programs
+        </div>
+      </a>
+      <a href='<%= explore_courses_path %>' class="explore-choice">
+        <h2>Explore courses</h2>
+
+        <div>
+            Browse courses
+        </div>
+      </a>
     </div>
+
   </div>
 
 </div>

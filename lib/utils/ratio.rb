@@ -47,6 +47,16 @@ module Utils
       @ratio == other.ratio
     end
 
+    def <=>(other)
+      if self < other
+        -1
+      elsif self == other
+        0
+      else
+        1
+      end
+    end
+
     def full?
       @ratio == 1
     end
@@ -55,7 +65,7 @@ module Utils
       @ratio == 0
     end
 
-    def self.full(coefficient = nil)
+    def self.full(coefficient = 1)
       Utils::Ratio.new(1, coefficient)
     end
 

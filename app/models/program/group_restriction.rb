@@ -14,13 +14,15 @@ class Program::GroupRestriction < ActiveRecord::Base
   def get_completition_ratio(scenario, term = nil)
     case type.name
       when 'min_credit'
-        puts 'MIN CRREDI'
+        puts 'MIN CRREDI: ' + value.to_s
         compute_ratio(group.count_credit_completed_courses(scenario, term), value)
       when 'min_grp'
         return Utils::Ratio.full if value == 0
-        ratios = group.get_subgroups_completed_ratio(scenario, term).sort()
+        ratios = group.get_subgroups_completed_ratio(scenario, term)
         ratio = ratios[0...value].inject { |sum, x| sum + x }
-        compute_ratio(ratio, value)
+        puts 'Ratios: ' + ratios.to_s
+        puts 'RATIO: ' + ratio.to_s
+        compute_ratio(ratio.value, value*ratio.coefficient)
       else #Complete all
         count = group.count_completed_courses(scenario, term)
         total_course = group.count_all_courses
@@ -30,7 +32,9 @@ class Program::GroupRestriction < ActiveRecord::Base
   end
 
   def compute_ratio(count, goal)
-    if count > goal or goal == 0
+    if goal == 0
+      Utils::Ratio.full
+    elsif count > goal
       Utils::Ratio.full(goal)
     else
       Utils::Ratio.from_value(count.to_f, goal.to_f)
