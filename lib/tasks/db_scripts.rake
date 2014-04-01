@@ -4,7 +4,7 @@ namespace :db do
 
     args = ''
     args << "-u #{config['username']} " if config['username'].present?
-    args << "-p#{config['password']} " if config['password'].present?
+    args << "-p\"#{config['password']}\" " if config['password'].present?
     args << config['database']
   end
 
