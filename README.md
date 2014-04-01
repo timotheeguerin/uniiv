@@ -20,4 +20,10 @@ Setup the database login information for the machine
 rails g uniiv:install
 ```
 
+```bash
+rake db:create
+rake db:migrate
+rake db:sync_local
+```
+
 [Javascript tools](https://github.com/timcolonel/uniiv/wiki/Javascript)
