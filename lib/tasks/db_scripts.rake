@@ -19,7 +19,8 @@ namespace :db do
     #Clean the database
     Rake.application.invoke_task('db:drop')
     Rake.application.invoke_task('db:create')
-    Rake.application.invoke_task('db:migrate:all')
+    Rake.application.invoke_task('db:migrate')
+    Rake.application.invoke_task('db:test:prepare')
 
     abort 'Dev db is not mysql' unless dev['adapter'] =~ /mysql/
     abort 'Live db is not mysql' unless live['adapter'] =~ /mysql/
