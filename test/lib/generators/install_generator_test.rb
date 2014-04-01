@@ -12,8 +12,10 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   end
 
   test 'Assert local env file exists and contains the right values' do
-    run_generator ['test_user', 'test_password']
+    run_generator ['test_user', 'test_password', 'test_user_main', 'test_password_main' ]
     assert_file 'config/local/local_env.yml', /test_user/
     assert_file 'config/local/local_env.yml', /test_password/
+    assert_file 'config/local/local_env.yml', /test_user_main/
+    assert_file 'config/local/local_env.yml', /test_password_main/
   end
 end
