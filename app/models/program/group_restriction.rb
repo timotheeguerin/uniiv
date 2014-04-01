@@ -12,8 +12,9 @@ class Program::GroupRestriction < ActiveRecord::Base
   end
 
   def get_completition_ratio(scenario, term = nil)
-    case type
+    case type.name
       when 'min_credit'
+        puts 'MIN CRREDI'
         compute_ratio(group.count_credit_completed_courses(scenario, term), value)
       when 'min_grp'
         return Utils::Ratio.full if value == 0

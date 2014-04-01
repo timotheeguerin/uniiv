@@ -105,18 +105,13 @@ class Program::Group < ActiveRecord::Base
 
   def get_completion_ratio(scenario, term = nil)
     if restrictions.size == 0
-      puts 'EMPTY'
       Utils::Ratio.empty
     else
 
       ratio = Utils::Ratio.zero
       restrictions.each do |restriction|
-        t = restriction.get_completition_ratio(scenario, term)
-        puts 'Restriction RATIO: ' + t.to_s
         ratio += restriction.get_completition_ratio(scenario, term)
       end
-      puts 'RATIO: '
-      puts ratio
       ratio
     end
   end
