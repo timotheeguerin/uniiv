@@ -47,14 +47,11 @@ class User < ActiveRecord::Base
   end
 
   def total_completed_ratio
-    ratio = 0
-    coef = 0
+    ratio = Utils::Ratio.zero
     self.main_course_scenario.programs.each do |p|
-      hash = p.get_completion_ratio(main_course_scenario)
-      ratio += hash[:value]
-      coef += hash[:coefficient]
+      ratio += p.get_completion_ratio(main_course_scenario)
     end
-    ratio / coef
+    ratio
   end
 
   def has_completed_course?(course, inc_advanced_standing = true)

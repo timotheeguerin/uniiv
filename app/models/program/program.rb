@@ -16,15 +16,11 @@ class Program::Program < ActiveRecord::Base
   end
 
   def get_completion_ratio(scenario, term=nil)
-    ratio = 0
-    coef = 0
+    ratio = Utils::Ratio.zero
     groups.each do |group|
-      hash = group.get_completion_ratio(scenario, term)
-      ratio += hash[:value]
-      coef += hash[:coefficient]
+      ratio += group.get_completion_ratio(scenario, term)
     end
-    coef = 1 if coef == 0
-    {:ratio => ratio / coef.to_f, :coefficient => coef, :value => ratio}
+    ratio
   end
 
   def id_to_s

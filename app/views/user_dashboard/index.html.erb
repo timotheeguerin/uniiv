@@ -17,7 +17,7 @@
           <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
           <div class='text-indent col-md-2'>
             <div class='progress'>
-              <% perc= (p.get_completion_ratio(current_scenario)[:ratio]*100).to_i %>
+              <% perc= (p.get_completion_ratio(current_scenario).percent).to_i %>
               <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
                 <span class='sr-only'><%= perc %>% Complete</span>
               </div>

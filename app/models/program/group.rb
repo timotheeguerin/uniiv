@@ -60,24 +60,11 @@ class Program::Group < ActiveRecord::Base
   end
 
   def get_subgroups_completed_ratio(scenario, term = nil)
-    ratio = 0
-    coefficient = 0
+    ratios = []
     subgroups.each do |subgroup|
-      coef = subgroup.get_coefficient
-
-      ratio += (subgroup.get_completion_ratio(scenario, term)[:value])
-      coefficient += coef
+      ratios << subgroup.get_completion_ratio(scenario, term)
     end
-    return {:ratio => 0, :coefficient => 0, :value => 0} if coefficient == 0
-    {:ratio => ratio/coefficient.to_f, :coefficient => coefficient, :value => ratio}
-  end
-
-  def get_subgroups_coef
-    coefficient = 0
-    subgroups.each do |subgroup|
-      coefficient += subgroup.get_coefficient
-    end
-    coefficient
+    ratios
   end
 
   def count_completed_courses(scenario, term= nil)
@@ -107,52 +94,38 @@ class Program::Group < ActiveRecord::Base
     count
   end
 
+  #Count all the courses in the group and subgroups
+  def count_all_courses
+    count = courses.size()
+    subgroups.each do |subgroup|
+      count += subgroup.count_all_courses
+    end
+    count
+  end
+
   def get_completion_ratio(scenario, term = nil)
-    return  {:ratio => 1, :coefficient => 0, :value => 1}
     if restrictions.size == 0
+      puts 'EMPTY'
       Utils::Ratio.empty
     else
-      ratio = Utils::Ratio.empty
-      restrictions.each do |restriction|
 
+      ratio = Utils::Ratio.zero
+      restrictions.each do |restriction|
+        t = restriction.get_completition_ratio(scenario, term)
+        puts 'Restriction RATIO: ' + t.to_s
+        ratio += restriction.get_completition_ratio(scenario, term)
       end
+      puts 'RATIO: '
+      puts ratio
       ratio
     end
-    restriction = restrictions.first
-    if restriction.nil?
-      {:ratio => 0, :coefficient => 1, :value => 0}
-    else
-      case restriction.type.name
-        when 'min_credit'
-          puts 'MIN CREDIT'
-          completed_credit = count_credit_completed_courses(scenario, term)
-          subgroup_completed = get_subgroups_completed_ratio(scenario)
-          puts 'Sub group completed: ' + subgroup_completed.to_s
-          return {:ratio => 0, :coefficient => 1, :value => 0} if restriction.value == 0 and subgroup_completed[:coefficient] == 0
-          ratio = (completed_credit + subgroup_completed[:value])/ (restriction.value + subgroup_completed[:coefficient])
-          ratio = 1 if ratio > 1
-          puts 'VALUE: ' + restriction.value.to_s
-          {:ratio => ratio, :coefficient => restriction.value, :value => restriction.value*ratio}
-        when 'min_grp'
-          {:ratio => 1, :coefficient => 1, :value => 1}
-        else
-          if courses.size != 0
-            coef = courses.size.to_f
-            value = count_completed_courses(scenario, term)
-            return {:ratio => value/ coef, :coefficient => coef, :value => value}
-          else
-            return {:ratio => 1, :coefficient => 0, :value => 1}
-          end
-      end
-    end
-
   end
 
   def get_coefficient
     restriction = restrictions.first
     case restriction.type.name
       when 'min_credit'
-    restriction.value
+        restriction.value
       when 'min_grp'
         return 1
       else

@@ -1,7 +1,7 @@
 <% if current_user.main_course_scenario.programs.size > 0 %>
     <hr>
     <h2>Your Status</h2>
-    <% perc = (current_user.total_completed_ratio*100).to_i %>
+    <% perc = (current_user.total_completed_ratio.percent).to_i %>
     <div class="row">
       <div class='col-md-6 col-md-offset-3'>
         <div class='text-center'><h3><%= perc %>% Degree Completion</h3></div>

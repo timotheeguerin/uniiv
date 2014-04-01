@@ -1,5 +1,5 @@
 module Utils
-  class Utils::Term
+  class Term
     attr_accessor :semester, :year
 
     def initialize(semester = nil, year = nil)

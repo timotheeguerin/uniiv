@@ -14,7 +14,7 @@ class UserCompletedCourse < ActiveRecord::Base
   after_validation :remove_course_taking, on: [:create, :update]
 
   validate do |course|
-    errors.add(:grade, 'Grade cannot be a fail grade') unless course.grade.pass?
+    errors.add(:grade, 'Grade cannot be a fail grade') unless grade.nil? or course.grade.pass?
   end
 
   after_save :reindex
