@@ -30,9 +30,9 @@ class Program::GroupRestriction < ActiveRecord::Base
 
   def compute_ratio(count, goal)
     if count > goal or goal == 0
-      Utils::Ratio.full
+      Utils::Ratio.full(goal)
     else
-      Utils::Ratio.new(count.to_f/goal.to_f)
+      Utils::Ratio.from_value(count.to_f, goal.to_f)
     end
   end
 end
