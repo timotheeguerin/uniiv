@@ -91,6 +91,9 @@ class Program::Group < ActiveRecord::Base
     courses.each do |course|
       count += course.credit
     end
+    subgroups.each do |subgroup|
+      count += subgroup.count_total_credit
+    end
     count
   end
 

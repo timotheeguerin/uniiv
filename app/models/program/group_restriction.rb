@@ -23,8 +23,9 @@ class Program::GroupRestriction < ActiveRecord::Base
         compute_ratio(ratio, value)
       else #Complete all
         count = group.count_completed_courses(scenario, term)
-        goal = group.count_all_courses
-        compute_ratio(count, goal)
+        total_course = group.count_all_courses
+        total_credit = group.count_total_credit
+        Utils::Ratio.new(count.to_f/total_course.to_f, total_credit)
     end
   end
 
