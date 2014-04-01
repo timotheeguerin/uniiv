@@ -27,6 +27,9 @@ Uniiv::Application.routes.draw do
 
   root to: 'welcome#index'
 
+  #Just return the header
+  get 'header' => 'welcome#header'
+
   #Admin utils
   namespace :admin do
     get 'utils' => 'utils#index', :as => :utils_home
