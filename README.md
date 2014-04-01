@@ -11,7 +11,7 @@ bundle install
 ```
 
 Install external dependencies
-* Mysql
+* Mysql server
 * Graphviz
 
 Setup the database login information for the machine
