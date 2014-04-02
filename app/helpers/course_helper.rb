@@ -51,13 +51,13 @@ module CourseHelper
     content = ''
     case state
       when CourseState::COMPLETED
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ok-circle bluetext', :title => t('course.completed'), 'data-toggle'=> 'tooltip'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ok-circle bluetext', :title => t('course.completed'), 'rel'=> 'tooltip', 'data-placement'=>'left'
       when CourseState::TAKING
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-time yellowtext', :title => t('course.taking'), 'data-toggle'=> 'tooltip'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-time yellowtext', :title => t('course.taking'), 'rel'=> 'tooltip', 'data-placement'=>'left'
       when CourseState::AVAILABLE
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-thumbs-up greentext', :title => t('course.available'), 'data-toggle'=> 'tooltip'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-thumbs-up greentext', :title => t('course.available'), 'rel'=> 'tooltip', 'data-placement'=>'left'
       when CourseState::UNAVAILABLE
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ban-circle redtext', :title => t('course.unavailable'), 'data-toggle'=> 'tooltip'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ban-circle redtext', :title => t('course.unavailable'), 'rel'=> 'tooltip', 'data-placement'=>'left'
     end
     content
   end

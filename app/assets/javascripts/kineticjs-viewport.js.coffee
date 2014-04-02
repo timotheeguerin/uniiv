@@ -1,4 +1,4 @@
-#=require kineticjs
+#=require other-lib/kineticjs
 
 class window.ViewPort
 

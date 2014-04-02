@@ -150,11 +150,13 @@ showonhover = (container)->
       item.hide()
 
 
-reload_scripts = (container) ->
+window.reload_scripts = (container) ->
   container.find('.selectpicker').selectpicker({
     width: 'auto'
   });
   showonhover(container)
+  for script in window.script_reloader
+    script(container)
 
 
 jQuery.fn.rotate = (degrees) ->

@@ -5,6 +5,7 @@
 resizeCanvasContainer = () ->
   newheight = $(window).height() - 75;
   $("#canvas-container").parent().height(newheight);
+  $("#canvas-container").parent().parent().height(newheight);
 
 
 $(document).ready ->
@@ -105,7 +106,6 @@ $(document).ready ->
       sidebar_loader.hide()
       sidebar_info.show()
       sidebar_info.parent().nanoScroller()
-      console.log(sidebar_info)
       $(document).trigger('ajaxloadhtml', [sidebar_info])
 
 
