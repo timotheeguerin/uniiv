@@ -51,12 +51,15 @@ $(document).ready () ->
       container = $(this)
       top = container.offset().top;
       if scroll > top
-        console.log('reach bottom')
         url = container.data('url')
+        container.html(loading_animation)
+        time = new Date().getTime()
         $.get(url).success (data) ->
-          console.log('bullshit')
-          console.log(data)
-          container.replaceWith(data)
+          wait_time = 1000-parseInt((new Date().getTime() - time))
+          console.log('time:' + wait_time)
+          setTimeout( () ->
+            container.replaceWith(data)
+          ,wait_time)
 
   $(document).on 'ajaxloadhtml', (e, container) ->
     setupStarRatings()
@@ -167,3 +170,11 @@ jQuery.fn.resetRotation = () ->
     "-moz-transform": "rotate(" + 0 + "deg)"
     "-ms-transform": "rotate(" + 0 + "deg)"
     transform: "rotate(" + 0 + "deg)"
+
+
+loading_animation = () ->
+  return '<div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>'
