@@ -856,12 +856,11 @@ $hover-img-height: 100px;
   }
 }
 
-.explore-menu {
+.explore-menu, .choice-menu {
   width: 100%;
-  a.explore-choice {
+  a.explore-choice, a.btn-lg-choice {
     display: block;
     float: left;
-    width: 50%;
     box-sizing: border-box;
     border-bottom: 1px solid $palette_grey_medium_light;
     border-top: 1px solid $palette_grey_medium_light;
@@ -875,6 +874,7 @@ $hover-img-height: 100px;
       border-right: 1px solid $palette_grey_medium_light;
     }
   }
+
 }
 
 .spinner {
