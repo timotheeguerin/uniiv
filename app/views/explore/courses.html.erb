@@ -3,10 +3,10 @@
     <h1>Explore courses</h1>
     <%= form_tag '', :method => :get do %>
         <div class="input-group">
-          <% unless @subject.nil? %>
+          <% unless @results[:subject].nil? %>
               <span class="input-group-addon">
-                <%= @subject %>
-                <%= hidden_field_tag :subject, @subject.id %>
+                <%= @results[:subject] %>
+                <%= hidden_field_tag :subject, @results[:subject].id %>
               </span>
           <% end %>
           <%= text_field_tag :q, params[:q], :placeholder => 'Search...', :class => 'form-control', :autocomplete => 'off' %>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
 </div>
-<% if @courses.empty? %>
+<% if @results[:courses].empty? %>
     <% Course::Subject.limit(5).each do |subject| %>
         <div class='row explore-section'>
           <div class="container">
@@ -83,45 +83,7 @@
     <div class='row explore-section'>
 
       <div class="container">
-        <% @courses.each do |course| %>
-            <div class='course_result'>
-              <div class="row course_title">
-                <div class="col-md-2 text-right">
-                  <%= link_to course, course_path(course) %>
-                </div>
-                <div class="col-md-9">
-                  <%= link_to course.name, course_path(course) %>
-                </div>
-                <div class="col-md-1">
-                  <button class="btn btn-success btn-sm rotatecontent" data-container='#course_container_<%= course.id %>'>
-                    <span class='glyphicon glyphicon-chevron-down'></span>
-                  </button>
-                </div>
-              </div>
-              <div id='course_container_<%= course.id %>' class='row course_description' style='display: none'>
-                <div class="col-md-4 col-md-offset-2">
-                  <%= course.description %>
-                </div>
-                <div class="col-md-4">
-                  <p>Prerequisites:
-                    <% if course.prerequisite.nil? %>
-                        None.
-                    <% else %>
-                        <%= raw(get_expr_html(course.prerequisite)) %>
-                    <% end %>
-                  </p>
-
-                  <p>Corequisites:
-                    <% if course.corequisite.nil? %>
-                        None.
-                    <% else %>
-                        <%= raw(get_expr_html(course.corequisite)) %>
-                    <% end %>
-                  </p>
-                </div>
-              </div>
-            </div>
-        <% end %>
+        <%= render :partial => 'course_list', :locals => {:results => @results} %>
       </div>
     </div>
 <% end %>

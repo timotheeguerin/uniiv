@@ -45,6 +45,19 @@ $(document).ready () ->
         button.data('params', params)
 
 
+  $(document).on 'scroll', '', () ->
+    scroll = $(this).scrollTop() + $(window).height()
+    $('.load_on_scroll_reach').each () ->
+      container = $(this)
+      top = container.offset().top;
+      if scroll > top
+        console.log('reach bottom')
+        url = container.data('url')
+        $.get(url).success (data) ->
+          console.log('bullshit')
+          console.log(data)
+          container.replaceWith(data)
+
   $(document).on 'ajaxloadhtml', (e, container) ->
     setupStarRatings()
     reload_scripts(container)

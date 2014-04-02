@@ -1,0 +1,43 @@
+<% results[:courses].each do |course| %>
+    <div class='course_result'>
+      <div class="row course_title">
+        <div class="col-md-2 text-right">
+          <%= link_to course, course_path(course) %>
+        </div>
+        <div class="col-md-9">
+          <%= link_to course.name, course_path(course) %>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-success btn-sm rotatecontent" data-container='#course_container_<%= course.id %>'>
+            <span class='glyphicon glyphicon-chevron-down'></span>
+          </button>
+        </div>
+      </div>
+      <div id='course_container_<%= course.id %>' class='row course_description' style='display: none'>
+        <div class="col-md-4 col-md-offset-2">
+          <%= course.description %>
+        </div>
+        <div class="col-md-4">
+          <p>Prerequisites:
+            <% if course.prerequisite.nil? %>
+                None.
+            <% else %>
+                <%= raw(get_expr_html(course.prerequisite)) %>
+            <% end %>
+          </p>
+
+          <p>Corequisites:
+            <% if course.corequisite.nil? %>
+                None.
+            <% else %>
+                <%= raw(get_expr_html(course.corequisite)) %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+<% end %>
+<% unless results[:next_page].nil? %>
+    <div class='load_on_scroll_reach' data-url='<%= explore_courses_next_page_path(:page => results[:next_page], :subject => params[:subject], :q => params[:q]) %>'>
+    </div>
+<% end %>

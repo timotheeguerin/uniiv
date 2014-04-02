@@ -78,6 +78,7 @@ Uniiv::Application.routes.draw do
   get 'explore' => 'explore#index', :as => :explore
   get 'explore/programs' => 'explore#programs', :as => :explore_programs
   get 'explore/courses' => 'explore#courses', :as => :explore_courses
+  get 'explore/courses/next_page' => 'explore#courses_list', :as => :explore_courses_next_page
   get 'explore/subjects' => 'explore#subjects', :as => :explore_subjects
 
   #Contact us controller
