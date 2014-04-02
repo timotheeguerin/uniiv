@@ -1,4 +1,7 @@
 class ContactusFormController < ApplicationController
+  def new
+    @fullwidth = true
+  end
   def create
     @form = ContactusForm.new(params.require(:contactus_form).permit(:email, :content))
 

@@ -1,10 +1,16 @@
 <footer>
   <div class="container">
-    <div class="row" style="margin-top: 30">
-      <div class="col-md-2 col-md-offset-5 text-center">
+    <div class="row text-md" style="margin-top: 30; height: 36px">
+      <div class="col-md-2 col-md-offset-3 text-right footer-element">
+        <%= link_to 'Blog', 'http://blog.uniiv.com' %>
+      </div>
+      <div class="col-md-2 text-center">
         <a href='#top'>
           <span class='glyphicon glyphicon-chevron-up glyphicon-lg'></span>
         </a>
+      </div>
+      <div class="col-md-2 text-left footer-element">
+        <%= link_to 'Contact us', contactus_path %>
       </div>
     </div>
   </div>

@@ -82,7 +82,8 @@ Uniiv::Application.routes.draw do
   get 'explore/subjects' => 'explore#subjects', :as => :explore_subjects
 
   #Contact us controller
-  post 'contactus' => 'contactus_form#create', :as => :contactus
+  get 'contactus' => 'contactus_form#new', :as => :contactus
+  post 'contactus' => 'contactus_form#create'
 
   get 'test' => 'test#index'
 
