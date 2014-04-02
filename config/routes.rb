@@ -206,7 +206,7 @@ Uniiv::Application.routes.draw do
 
 
     get 'utils/transcript/loader' => 'transcript_loader#index', :as => :transcript_loader
-    get 'utils/transcript/loader/parse' => 'transcript_loader#parse_show', :as => :transcript_loader_parse, :as => :upload_transcript
+    get 'utils/transcript/loader/parse' => 'transcript_loader#parse_show', :as => :upload_transcript
     post 'utils/transcript/loader/parse' => 'transcript_loader#parse'
     get 'utils/transcript/loader/parse/manual' => 'transcript_loader#parse_manual_show', :as => :transcript_loader_parse_manual
     post 'utils/transcript/loader/parse/manual' => 'transcript_loader#parse_manual'
