@@ -744,6 +744,7 @@ $hover-img-height: 100px;
   cursor: pointer;
 
   .hover-tile-container {
+    display: block;
     position: relative;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
