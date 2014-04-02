@@ -9,11 +9,6 @@
         </li>
         <% if user_signed_in? %>
             <li>
-              <%= link_to user_graph_path do %>
-                  <span class='glyphicon glyphicon-random'></span> <span class="hidden-xs">Path</span>
-              <% end %>
-            </li>
-            <li>
               <%= link_to user_education_path do %>
                   <span class='glyphicon glyphicon-book'></span> <span class="hidden-xs">Transcript</span>
               <% end %>
