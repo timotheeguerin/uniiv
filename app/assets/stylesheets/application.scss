@@ -930,3 +930,24 @@ $hover-img-height: 100px;
     -webkit-transform: scale(1.0);
   }
 }
+
+/***************************************************************************
+        PROGRESS BAR
+****************************************************************************/
+.progress {
+  position: relative;
+}
+
+.progress .progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress  span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  display: block;
+}

@@ -1,14 +1,14 @@
 <% if current_user.main_course_scenario.programs.size > 0 %>
-    <hr>
-    <h2>Your Status</h2>
+
     <% perc = (current_user.total_completed_ratio.percent).to_i %>
     <div class="row">
-      <div class='col-md-6 col-md-offset-3'>
-        <div class='text-center'><h3><%= perc %>% Degree Completion</h3></div>
-        <div class='progress'>
-          <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
-            <span class='sr-only'><%= perc %>% Complete</span>
+      <div class='col-md-12'>
+        <div class='progress' style="margin-top: 3rem; height: 5rem">
+          <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= 50 %>%;z-index: 11'
+               rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+            <span class="progress-center text-md" style="line-height:5rem">60% Complete</span>
           </div>
+
         </div>
       </div>
     </div>
@@ -18,7 +18,10 @@
     <div class='text-center'>
       <% error = current_scenario.has_errors? %>
       <% if  error %>
-        <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>You have a problem with your courses.</div>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            You have a problem with your courses.
+          </div>
           <% issues='btn-danger' %>
       <% else %>You have no problems with your courses.
           <% issues='btn-success' %>
@@ -35,4 +38,34 @@
       </a>
     </div>
   </div>
+</div>
+
+<div class='program_list'>
+  <% current_scenario.programs.order('type_id ASC, name ASC').each do |p| %>
+      <div class='row'>
+        <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
+        <div class='text-indent col-md-2'>
+          <div class='progress'>
+            <% perc= (p.get_completion_ratio(current_scenario).percent).to_i %>
+            <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;' rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
+              <span class='sr-only'><%= perc %>% Complete</span>
+            </div>
+          </div>
+        </div>
+        <div class='col-md-2 text-right'>
+          <%= form_tag(user_programs_delete_path) do %>
+              <div class='btn-group'>
+                <a class='btn btn-info' href='<%= program_path(p) %>' rel='tooltip' title='Information'>
+                  <span class='whitetext glyphicon glyphicon-info-sign'></span>
+                </a>
+                <a class='btn btn-warning' href='<%= program_graph_path(p) %>' rel='tooltip' title='View Path'>
+                  <span class='whitetext glyphicon glyphicon-random'></span>
+                </a>
+
+              </div>
+              <%= hidden_field_tag :program_id, p.id %>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
 </div>

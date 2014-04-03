@@ -1,6 +1,10 @@
 class WelcomeController < ApplicationController
   def index
-    @fullwidth = true
+    if user_signed_in?
+      render 'user_dashboard/index'
+    else
+      @fullwidth = true
+    end
   end
 
   def header
