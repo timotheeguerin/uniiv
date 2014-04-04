@@ -1,4 +1,9 @@
 class CourseController < ApplicationController
+  before_action :setup
+
+  def setup
+    authorize! :read, Course::Course
+  end
 
   def show
     @course = Course::Course.find(params[:id])

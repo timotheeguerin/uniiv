@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     if user_signed_in?
-      render 'user_dashboard/index'
+      redirect_to user_education_path
     else
       @fullwidth = true
     end

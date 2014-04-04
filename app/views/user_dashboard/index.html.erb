@@ -52,7 +52,7 @@
 <% if current_user.completed_courses.empty? and current_scenario.taking_courses.empty? %>
     <hr>
     <div class='text-center'>
-      <a href="<%= transcript_loader_parse_path if user_signed_in? %>" class="btn">
+      <a href="<%= upload_transcript_path if user_signed_in? %>" class="btn">
         <div>
           <span class='glyphicon glyphicon-cloud-upload glyphicon-xl lightest_bluetext'></span>
         </div>

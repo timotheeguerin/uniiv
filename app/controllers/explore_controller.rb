@@ -2,7 +2,7 @@ class ExploreController < ApplicationController
   before_action :setup
 
   def setup
-    authorize! :view, :explore
+    authorize! :read, :explore
   end
 
   def index
