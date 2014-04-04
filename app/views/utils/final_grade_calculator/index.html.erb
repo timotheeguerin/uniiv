@@ -9,8 +9,8 @@
         <%= form_tag(utils_fgc_path, :method => 'get') do %>
             <div class='form-group'>
               <div class='input-group'>
-                <%= text_field_tag(:q, params[:q], options = {:class => 'form-control search-ajax', 'data-search-output' => '#course_list_container', 'data-search-url' => utils_fgc_search_path}) %>
-                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                <%= text_field_tag(:q, params[:q], options = {:class => 'form-control search-ajax', 'data-search-output' => '#course_list_container',
+                                                              'data-search-url' => utils_fgc_search_path, :autocomplete => 'off'}) %>
                 <span class="input-group-btn">
                     <%= submit_tag('Search', :class => 'btn btn-primary') %>
                 </span>

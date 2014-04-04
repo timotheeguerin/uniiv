@@ -1,6 +1,13 @@
 <hr>
-<div>
-  <a href='<%= user_sort_course_path %>'><h2>In-Progress Courses (<%= current_term %>)</h2></a>
+<div style="position: relative">
+  <a href='<%= user_sort_course_path %>'>
+    <h2>In-Progress Courses (<%= current_term %>)</h2>
+  </a>
+  <div class="top_right" style="margin-top: 0rem">
+    <a href="<%= utils_fgc_path %>" class="btn btn-primary">
+      Final grade calculator
+    </a>
+  </div>
 </div>
 
 <% if current_scenario.taking_courses.size > 0 %>
