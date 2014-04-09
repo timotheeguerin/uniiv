@@ -18,10 +18,12 @@ namespace :db do
     live = config['development_main']
 
     #Clean the database
-    Rake.application.invoke_task('db:drop')
-    Rake.application.invoke_task('db:create')
-    Rake.application.invoke_task('db:migrate')
-    Rake.application.invoke_task('db:test:prepare')
+    if args[:database] == 'development'
+      Rake.application.invoke_task('db:drop')
+      Rake.application.invoke_task('db:create')
+      Rake.application.invoke_task('db:migrate')
+      Rake.application.invoke_task('db:test:prepare')
+    end
 
     abort 'Dev db is not mysql' unless dev['adapter'] =~ /mysql/
     abort 'Live db is not mysql' unless live['adapter'] =~ /mysql/
