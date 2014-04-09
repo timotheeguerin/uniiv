@@ -32,3 +32,6 @@ config/local/
 
 
 config/initializer/secret_token.rb
+
+
+public/assets/

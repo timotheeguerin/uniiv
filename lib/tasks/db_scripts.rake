@@ -8,12 +8,13 @@ namespace :db do
     args << config['database']
   end
 
-  task :sync_local do
+  task :sync_local, :database do |t, args|
+    args.with_defaults(:database => 'development')
     config = Rails.application.config.database_configuration
 
     abort 'Missing Main developement db config' if config['development_main'].blank?
 
-    dev = config['development']
+    dev = config[args[:database]]
     live = config['development_main']
 
     #Clean the database
