@@ -56,11 +56,11 @@ $(document).ready () ->
         container.html(loading_animation)
         time = new Date().getTime()
         $.get(url).success (data) ->
-          wait_time = 1000-parseInt((new Date().getTime() - time))
+          wait_time = 1000 - parseInt((new Date().getTime() - time))
           console.log('time:' + wait_time)
-          setTimeout( () ->
+          setTimeout(() ->
             container.replaceWith(data)
-          ,wait_time)
+          , wait_time)
 
   $(document).on 'ajaxloadhtml', (e, container) ->
     setupStarRatings()
@@ -177,7 +177,7 @@ jQuery.fn.resetRotation = () ->
 
 loading_animation = () ->
   return '<div class="spinner">
-              <div class="bounce1"></div>
-              <div class="bounce2"></div>
-              <div class="bounce3"></div>
-            </div>'
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+              </div>'
