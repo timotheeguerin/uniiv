@@ -44,7 +44,9 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   #Call when the user want to have a single grade(Midterm)
   def create_grade
     group = create
-    group.save
+    unless group.save
+      flash[:alert] = group.errors.full_messages
+    end
     _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
@@ -139,12 +141,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       group.destroy
     end
     return_json('Group removed successfully')
-  end
-
-  def edit_final_percent
-    @scheme = Fgc::Scheme.find(params[:scheme])
-    @scheme.final_percent = params[:percent]
-    @scheme.save
   end
 
   #When the user created a new grading scheme(ex: midterm 0%)
