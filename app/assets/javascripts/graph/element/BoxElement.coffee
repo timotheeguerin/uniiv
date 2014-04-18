@@ -40,7 +40,7 @@ class BoxElement extends GraphElement
         @background.setFill(style.background.color)
       if(style.background.image?)       #if the background have an image
         image = style.background.image
-        src = assets_path(style.background.image.src)
+        src = style.background.image.src
         @background.setFillPatternImage(Ressources.images[src])
 
         if(image.offset?)
