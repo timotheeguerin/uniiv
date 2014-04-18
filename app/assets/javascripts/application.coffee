@@ -17,6 +17,7 @@
 #= require bootstrap
 #= require assets_path
 
+
 $(document).ready () ->
   new WOW().init();
   $("#graphreload").click ()->
