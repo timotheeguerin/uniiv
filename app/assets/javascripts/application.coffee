@@ -37,13 +37,11 @@ $(document).ready () ->
     container = $(button.data('container'))
 
     params = button.data('params')
-    console.log(params)
     url = button.data('url')
     $.get(url, params).success (data) ->
       container.append(data)
       if button.data('increase-param')
         params[button.data('increase-param')] += 1
-        console.log(button.data('params')['start_count'])
         button.data('params', params)
 
 
@@ -58,7 +56,6 @@ $(document).ready () ->
         time = new Date().getTime()
         $.get(url).success (data) ->
           wait_time = 1000 - parseInt((new Date().getTime() - time))
-          console.log('time:' + wait_time)
           setTimeout(() ->
             container.replaceWith(data)
           , wait_time)

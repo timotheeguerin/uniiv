@@ -122,7 +122,7 @@ class Ressources
   @addImage: (src) ->
     if(!@images[src]?)
       image = new Image()
-      image.src = src
+      image.src = assets_path(src)
       @images[src] = image
 
   #Call the given function when all images are loaded
