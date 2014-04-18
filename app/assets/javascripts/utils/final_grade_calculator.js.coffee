@@ -31,10 +31,9 @@ $(document).ready ->
 
 update_schemes = (content) ->
   schemes = []
-  content.find('.final_percent form').each () ->
+  content.find('.scheme').each () ->
     scheme = {}
-    scheme['id'] = $(this).data('scheme')
-    scheme['final_percent'] = parseFloat($(this).data('final-percent'))
+    scheme['id'] = $(this).data('id')
     scheme['groups'] = []
     schemes.push(scheme)
 
@@ -49,18 +48,23 @@ update_schemes = (content) ->
       group['percent'] = parseFloat(form.data('percent'))
       scheme['groups'].push(group)
 
-  check_scheme_total_percent(content, schemes)
+  update_scheme_final_percent(content, schemes)
+  #Update the final percent value
+  content.find('.final_percent').each () ->
+    scheme = get_scheme(schemes, $(this).data('scheme'))
+    $(this).children('span').text(scheme['final_percent'])
+
 
 #Check if the total percent is really 100%
-check_scheme_total_percent = (content, schemes) ->
+update_scheme_final_percent = (content, schemes) ->
   for scheme in schemes
-    percent = scheme['final_percent']
+    percent = 0
     for group in scheme['groups']
       percent += group['percent']
     warning_box = $(content).find('.scheme_percent_wrong[data-scheme=' + scheme['id'] + ']')
     console.log(warning_box.html())
-    if percent != 100
-      console.log('invalud')
+    scheme['final_percent'] = 100 - percent
+    if percent > 100 or percent < 0
       warning_box.show()
     else
       warning_box.hide()

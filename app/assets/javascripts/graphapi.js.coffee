@@ -216,7 +216,6 @@ class CanGraph
 
 
       @container.add(group)
-    console.log('t:' + totalWidth)
     @setupNodesListener()
 
     totalWidth = @viewport.canvasSize.x if totalWidth < @viewport.canvasSize.x
