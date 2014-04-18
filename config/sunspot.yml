@@ -4,6 +4,7 @@ production:
     port: 8080
     log_level: WARNING
     path: /solr/production
+    pid_dir: '/var/run'
     # read_timeout: 2
     # open_timeout: 0.5
     pid_dir: '/var/run'
