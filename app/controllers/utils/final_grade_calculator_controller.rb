@@ -11,7 +11,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       @prediction.user = current_user
       @prediction.course = Course::Course.find(params[:id])
       scheme = Fgc::Scheme.new
-      scheme.final_percent = 0
       @prediction.schemes << scheme
       @prediction.save
 
