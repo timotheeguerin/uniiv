@@ -734,6 +734,10 @@ textarea.transcript_textarea {
   border-bottom: 1px solid #e5e5e5;
 }
 
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 $hover-img-height: 100px;
 
 .marketing-section img {

@@ -32,6 +32,20 @@
             </div>
         <% end %>
       </div>
+
+      <hr>
+      <div>
+        <h3>
+          Course in progress
+        </h3>
+      </div>
+      <div>
+        <% current_scenario.taking_courses.limit(10).each do |course| %>
+            <div class='dashboard_coursebox ellipsis'>
+              <%= link_to course.course.get_detail_name, utils_fgc_course_path(course.course) %>
+            </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
