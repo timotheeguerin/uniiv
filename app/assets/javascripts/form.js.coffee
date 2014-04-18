@@ -98,6 +98,14 @@ $(document).ready ->
   typingTimer = {}
   saveTimer = {}
   savesigns = {}
+  oldValues = {}
+
+  $(document).on 'focus', 'form input.submitonedit', () ->
+    input = $(this)
+    form = input.closest('form')
+    input_id = get_input_id(input)
+    oldValues[input_id] = input.val()
+
   $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
     form = input.closest('form')
@@ -112,6 +120,9 @@ $(document).ready ->
     typingTimer[input_id] = setTimeout(()->
       typingTimer[input_id] = null
       if checkvalid(input)
+        #dont submit if the input content has not changed
+        return if oldValues[input_id] == input.val()
+        oldValues[input_id] = input.val()
         input.closest('form').submit()
         success_sign = $('<div data-original-title="Saved!" rel="tooltip"><span class="glyphicon glyphicon-ok greentext"></span></div>').appendTo('body')
         success_sign.css('position', 'absolute')
