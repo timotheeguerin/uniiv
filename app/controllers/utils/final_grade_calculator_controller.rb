@@ -97,7 +97,21 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   def add_grade_to_group
     group = Fgc::Group.find(params[:group])
-    group.grades << Fgc::Grade.new
+    grade = Fgc::Grade.new
+    last_name = group.grades.last.name
+    last_name ||= ''
+
+    match = last_name.scan(/(\d+)/)[0]
+    if match.nil? or match.size == 0
+      grade.name = "#{last_name} 2"
+    else
+      count = match[-1].to_i
+      count ||= 0
+      grade.name = last_name.gsub(/(\d+)/, (count+1).to_s)
+    end
+
+
+    group.grades << grade
     group.save
     _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
