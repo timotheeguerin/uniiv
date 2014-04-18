@@ -10,7 +10,6 @@ $(document).ready ->
     $(content).on('submit', 'form.useajax', () ->
       update_form_values($(this))
       update_schemes(content)
-      console.log('submit: ' + JSON.stringify(schemes))
       update_predictions(content)
     )
 
@@ -19,7 +18,6 @@ $(document).ready ->
 
     update_schemes(content)
 
-    console.log(JSON.stringify(schemes))
     update_predictions(content)
 
     $('.fgcaffix').each () ->
@@ -62,7 +60,6 @@ update_scheme_final_percent = (content, schemes) ->
     for group in scheme['groups']
       percent += group['percent']
     warning_box = $(content).find('.scheme_percent_wrong[data-scheme=' + scheme['id'] + ']')
-    console.log(warning_box.html())
     scheme['final_percent'] = 100 - percent
     if percent > 100 or percent < 0
       warning_box.show()

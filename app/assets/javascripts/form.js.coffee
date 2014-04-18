@@ -134,7 +134,7 @@ $(document).ready ->
         saveTimer[input_id] = setTimeout(()->
           success_sign.remove()
         , 2000)
-    , 2000)
+    , 800)
 
 #Submit a form using ajax
 submitFormAjax = () ->
