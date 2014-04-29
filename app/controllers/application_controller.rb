@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(ressource)
     get_redirect_path(user_education_path)
   end
+
   def after_sign_up_path_for(ressource)
     get_redirect_path(user_education_path)
   end
@@ -82,7 +83,46 @@ class ApplicationController < ActionController::Base
         path
       end
     else
-       params[:redirect]
+      params[:redirect]
+    end
+  end
+
+  def redirect_or_json(options)
+    success = options[:success]
+    success ||= true
+    message = options[:message]
+    destination = options[:destination]
+    if request.xhr?
+      if params[:graph_embed]
+        return_json(message, :url => destination, :success => success)
+      else
+        return_json(message, :success => success)
+      end
+
+    else
+      flash_success(message, success)
+      _redirect_to destination
+    end
+  end
+
+  def render_or_json(options)
+    success = options[:success]
+    success ||= false
+    message = options[:message]
+    view = options[:view]
+    if request.xhr?
+      return_json(message, :url => destination, :success => success)
+    else
+      flash_success(message, success)
+      render view
+    end
+  end
+
+  def flash_success(message, success)
+    if success
+      flash[:notice] = t(message)
+    else
+      flash[:alert] = t(message)
     end
   end
 end

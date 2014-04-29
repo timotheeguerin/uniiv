@@ -1,4 +1,4 @@
-<%= form_for course_complete, :url => user_mark_complete_course_path(course), :html => html do |f| %>
+<%= form_for course_complete, :url => user_complete_course_path(course), :html => html do |f| %>
     <div class='hidden'><%= course %></div>
     <div class="input-group">
       <%= f.hidden_field :year, :value => course_complete.year %>

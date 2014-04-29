@@ -3,7 +3,7 @@
     <%= f.label :semester, :class => 'col-sm-4' %>
   </div>
   <div class='btn-group col-sm-8' data-toggle='buttons'>
-    <% @semesters.each do |semester| %>
+    <% Course::Semester.all.load.each do |semester| %>
         <% active = (semester.name == current_term.semester.name) %>
         <label class="btn btn-default btn-sm <%= 'active' if active %>">
           <%= f.radio_button :semester_id, semester.id, :checked => active, :class => 'hidden' %>

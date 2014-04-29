@@ -127,42 +127,6 @@ class User::CoursePlannerController < ApplicationController
     end
   end
 
-  def complete
-    @user_completed_course = UserCompletedCourse.new
-    @grades = current_user.university.grading_system.entities
-    user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
 
-    unless user_taking_course.nil? #Check if the course was already mark as taking
-      @user_completed_course.semester = user_taking_course.semester
-      @user_completed_course.year = user_taking_course.year
-    end
-
-    _render 'complete'
-  end
-
-  def create_complete
-    @user_completed_course = UserCompletedCourse.new(params.require(:user_completed_course).permit(:semester_id, :year, :grade_id))
-    user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
-    unless user_taking_course.nil? #If the course was taken before
-      user_taking_course.destroy
-    end
-    @user_completed_course.course = @course
-    @user_completed_course.user = current_user
-
-    if @user_completed_course.save
-      if request.xhr?
-        if params[:graph_embed]
-          return_json('course.completed', :url => course_graph_embed_path(@course))
-        else
-          return_json('course.completed')
-        end
-
-      else
-        _redirect_to course_path(@course)
-      end
-    else
-      _render 'complete'
-    end
-  end
 
 end

@@ -5,6 +5,7 @@ FactoryGirl.define do
       "test.#{n}@testing.com"
     end
     password 'superpassword'
+    university
     advanced_standing_credits 0
 
     after(:create) do |object|
