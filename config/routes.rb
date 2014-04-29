@@ -1,8 +1,6 @@
 Uniiv::Application.routes.draw do
 
   get 'scenario/new'
-  get 'course_taking/new'
-  get 'course_taking/new_graph_embed'
   get 'static_page/uniiv'
   get 'static_page/story'
   get 'static_page/team'
@@ -158,21 +156,25 @@ Uniiv::Application.routes.draw do
 
   #User course controller
   scope :module => 'user' do
-    get 'user/course/add' => 'course_taking#add_course', :as => :user_add_course
-    post 'user/course/add' => 'course_taking#handle_add_course', :as => :handle_user_add_course
-    get 'user/course/sort' => 'course_taking#sort_course', :as => :user_sort_course
-    get 'course/:id/take' => 'course_taking#new', :as => :user_take_course
-    post 'course/:id/take' => 'course_taking#create', :as => 'user_take_course_create'
-    get 'course/:id/take/graph/embed' => 'course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
-    post 'course/:id/take/graph/embed' => 'course_taking#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
-    post 'course/untake' => 'course_taking#remove', :as => :user_remove_course_form
-    post 'course/:id/untake' => 'course_taking#remove', :as => :user_remove_course
-    post 'course/:id/untake/graph/embed' => 'course_taking#remove', :as => 'user_remove_course_ge', :defaults => {:graph_embed => true}
-    get 'course/:id/complete' => 'course_taking#complete', :as => 'user_complete_course'
-    get 'course/:id/complete/graph/embed' => 'course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
-    post 'course/:id/complete' => 'course_taking#create_complete', :as => :user_mark_complete_course
-    post 'course/:id/complete/graph/embed' => 'course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
-    post 'user/course/take/update' => 'course_taking#update_course_taking', :as => :update_course_taking
+
+    #Course taking controller
+    get 'user/course/add' => 'course_planner#add_course', :as => :user_add_course
+    post 'user/course/add' => 'course_planner#handle_add_course', :as => :handle_user_add_course
+    get 'user/course/sort' => 'course_planner#sort_course', :as => :user_sort_course
+    get 'course/:id/take' => 'course_planner#new', :as => :user_take_course
+    post 'course/:id/take' => 'course_planner#create', :as => 'user_take_course_create'
+    get 'course/:id/take/graph/embed' => 'course_planner#new_graph_embed', :as => 'user_take_course_graph_embed'
+    post 'course/:id/take/graph/embed' => 'course_planner#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
+
+    get 'course/:id/complete' => 'course_planner#complete', :as => 'user_complete_course'
+    get 'course/:id/complete/graph/embed' => 'course_planner#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
+    post 'course/:id/complete' => 'course_planner#create_complete', :as => :user_mark_complete_course
+    post 'course/:id/complete/graph/embed' => 'course_planner#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+    post 'user/course/take/update' => 'course_planner#update_course_taking', :as => :update_course_taking
+
+    #User course controller
+    post 'user/course/untake' => 'course#remove', :as => :user_untake_course
+
 
     #User advanced standing controller
     get 'user/advanced-standings' => 'advanced_standing#index', :as => :user_advanced_standings

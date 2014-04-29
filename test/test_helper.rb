@@ -32,5 +32,6 @@ class ActionController::TestCase
     @ability = Object.new
     @ability.extend(CanCan::Ability)
     @controller.stubs(:current_ability).returns(@ability)
+    @request.env['HTTP_REFERER'] = '/back'
   end
 end

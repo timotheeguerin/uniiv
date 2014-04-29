@@ -120,6 +120,12 @@ class Course::Scenario < ActiveRecord::Base
     user.complete_course(course, term)
   end
 
+  def untake_course(course, skip_completed = false)
+    user_taking_course = taking_courses.where(:course_id => course).first
+    user_taking_course.destroy unless user_taking_course.nil?
+    user.uncomplete_course(course) unless skip_completed
+  end
+
   def to_s
     "#{user.to_s} (#{id.to_s})"
   end

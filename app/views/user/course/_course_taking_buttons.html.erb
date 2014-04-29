@@ -16,7 +16,7 @@
             <a type='button' href='<%= course_path(course.course.id) %>' class='tooltipdestroy btn btn-info' rel='tooltip' title='<%= course.course.name %>'>
               <span class='whitetext glyphicon glyphicon-info-sign'></span>
             </a>
-            <%= group_button_to user_remove_course_path(course.course),
+            <%= group_button_to user_untake_course_path,
                                 :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => '.course_taking_container',
                                 :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
                 <span class='glyphicon glyphicon-remove-sign'></span>

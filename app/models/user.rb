@@ -160,6 +160,10 @@ class User < ActiveRecord::Base
     percent
   end
 
+  def uncomplete_course(course)
+    user_completed_course = completed_courses.where(:course_id => course).first
+    user_completed_course.destroy unless user_completed_course.nil?
+  end
 
   def to_s
     email

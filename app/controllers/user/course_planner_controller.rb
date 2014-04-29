@@ -1,4 +1,4 @@
-class User::CourseTakingController < ApplicationController
+class User::CoursePlannerController < ApplicationController
   before_action :setup, :except => :sort_course
 
   def setup
@@ -162,20 +162,6 @@ class User::CourseTakingController < ApplicationController
       end
     else
       _render 'complete'
-    end
-  end
-
-  def remove
-    user_taking_course = current_scenario.taking_courses.where(:course_id => @course).first
-    user_completed_course = current_user.completed_courses.where(:course_id => @course).first
-
-    user_taking_course.destroy unless user_taking_course.nil?
-    user_completed_course.destroy unless user_completed_course.nil?
-
-    if request.xhr?
-      return_json('course.untake', :url => course_graph_embed_path(@course))
-    else
-      _redirect_to :back
     end
   end
 
