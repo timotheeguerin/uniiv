@@ -54,7 +54,7 @@
   <div class='row'>
     <div class='col-md-6 col-md-offset-6'>
       <div class='container-fluid'>
-        <div class='row'>
+        <div class='row scheme_list'>
           <% prediction.schemes.each_with_index do |scheme, i| %>
               <div class='col-md-3 text-center'>
                 <div class="scheme" data-id='<%= scheme.id %>'>
@@ -136,7 +136,7 @@
             </div>
             <div class='col-md-6'>
               <div class='container-fluid'>
-                <div class='row'>
+                <div class='row group_scheme_list'>
                   <% prediction.schemes.each do |scheme| %>
                       <% percent = group.scheme_percent(scheme) %>
                       <div class='col-md-3 scheme' data-scheme='<%= scheme.id %>'>

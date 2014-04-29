@@ -29,7 +29,7 @@ $(document).ready ->
 
 update_schemes = (content) ->
   schemes = []
-  content.find('.scheme').each () ->
+  content.find('.scheme_list .scheme').each () ->
     scheme = {}
     scheme['id'] = $(this).data('id')
     scheme['groups'] = []
@@ -51,6 +51,8 @@ update_schemes = (content) ->
   content.find('.final_percent').each () ->
     scheme = get_scheme(schemes, $(this).data('scheme'))
     $(this).children('span').text(scheme['final_percent'])
+
+  console.log(schemes)
 
 
 #Check if the total percent is really 100%
