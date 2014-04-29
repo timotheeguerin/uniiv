@@ -161,10 +161,6 @@ Uniiv::Application.routes.draw do
     get 'user/course/add' => 'course_planner#add_course', :as => :user_add_course
     post 'user/course/add' => 'course_planner#handle_add_course', :as => :handle_user_add_course
     get 'user/course/sort' => 'course_planner#sort_course', :as => :user_sort_course
-    get 'course/:id/take' => 'course_planner#new', :as => :user_take_course
-    post 'course/:id/take' => 'course_planner#create', :as => 'user_take_course_create'
-    get 'course/:id/take/graph/embed' => 'course_planner#new_graph_embed', :as => 'user_take_course_graph_embed'
-    post 'course/:id/take/graph/embed' => 'course_planner#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
 
 
     post 'user/course/take/update' => 'course_planner#update_course_taking', :as => :update_course_taking
@@ -175,6 +171,11 @@ Uniiv::Application.routes.draw do
     get 'course/:course_id/complete/graph/embed' => 'course#complete_show', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
     post 'course/:course_id/complete' => 'course#complete_create', :as => :user_mark_complete_course
     post 'course/:course_id/complete/graph/embed' => 'course#complete_create', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+    get 'course/:course_id/take' => 'course#take_show', :as => :user_take_course
+    get 'course/:course_id/take/graph/embed' => 'course#take_show', :as => 'user_take_course_graph_embed', :defaults => {:graph_embed => true}
+    post 'course/:course_id/take' => 'course#take_create', :as => 'user_take_course_create'
+    post 'course/:course_id/take/graph/embed' => 'course#take_create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
+
 
     #User advanced standing controller
     get 'user/advanced-standings' => 'advanced_standing#index', :as => :user_advanced_standings

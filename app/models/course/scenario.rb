@@ -15,7 +15,7 @@ class Course::Scenario < ActiveRecord::Base
   end
 
   #Return if the scenario is taking this course at the given semester(default is the current one)
-  def is_taking_course?(course, term = nil?)
+  def is_taking_course?(course, term = nil)
     term ||= Utils::Term::now
     taking_courses.each do |c|
       if c.course == course and c.year == term.year and c.semester == term.semester

@@ -99,34 +99,4 @@ class User::CoursePlannerController < ApplicationController
     end
   end
 
-  def new
-    @user_taking_course = UserTakingCourse.new
-    if request.xhr?
-      render :layout => false
-    end
-  end
-
-  def new_graph_embed
-    @user_taking_course = UserTakingCourse.new
-    render :layout => false
-  end
-
-  def create
-    @user_taking_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year))
-    @user_taking_course.course = @course
-    @user_taking_course.course_scenario = current_scenario
-
-    if @user_taking_course.save
-      if params[:graph_embed]
-        return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
-      else
-        _redirect_to :back
-      end
-    else
-      _render 'new'
-    end
-  end
-
-
-
 end

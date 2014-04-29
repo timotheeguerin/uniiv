@@ -14,6 +14,35 @@ class User::CourseController < ApplicationController
     end
   end
 
+
+  def take_show
+    @user_taking_course = UserTakingCourse.new
+    if request.xhr?
+      render :layout => false
+    end
+  end
+
+  def take_create
+    @user_taking_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year))
+    @user_taking_course.course = @course
+    @user_taking_course.course_scenario = current_scenario
+
+    if @user_taking_course.save
+      puts 'SAVED: ' + current_scenario.plan_to_take_course?(@course).to_s
+      puts current_scenario.taking_courses.to_a.to_s
+      puts @course.id
+      if params[:graph_embed]
+        return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
+      else
+        _redirect_to :back
+      end
+    else
+      puts 'NOT SAVED!'
+      _render 'take_show'
+    end
+  end
+
+
   def complete_show
     @user_completed_course = UserCompletedCourse.new
     @grades = current_user.university.grading_system.entities
