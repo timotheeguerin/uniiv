@@ -17,7 +17,7 @@ class ExploreController < ApplicationController
   end
 
   def programs
-    results = Program::Program.search do
+    results = Program::ProgramVersion.search do
       fulltext params[:q]
     end.results
     @fullwidth = true

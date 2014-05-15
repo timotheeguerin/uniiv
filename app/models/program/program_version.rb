@@ -1,4 +1,4 @@
-class Program::Program < ActiveRecord::Base
+class Program::ProgramVersion < ActiveRecord::Base
   belongs_to :type, :class_name => ProgramsType
   belongs_to :faculty, :class_name => Faculty
   has_many :groups, :class_name => Program::Group, :as => :groupparent
@@ -45,7 +45,7 @@ class Program::Program < ActiveRecord::Base
   def self.search_program(params)
     university_id = params[:university_id]
     faculty_id = params[:faculty_id]
-    search = Program::Program.search do
+    search = Program::ProgramVersion.search do
       params.setup_search(self)
       with :university_id, university_id unless university_id.nil?
       with :faculty_id, faculty_id unless faculty_id.nil?

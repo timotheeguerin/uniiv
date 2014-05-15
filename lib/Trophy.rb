@@ -1,4 +1,4 @@
-require 'Trophy/controller_extensions'
+require 'trophy/controller_extensions'
 
 module Trophy
   # Load configuration from initializer

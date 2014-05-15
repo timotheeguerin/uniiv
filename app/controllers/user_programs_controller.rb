@@ -19,7 +19,7 @@ class UserProgramsController < ApplicationController
       if params[:program_id].nil?
         redirect_to user_programs_new_path, :alert => t('error.program.nil')
       else
-        program = Program::Program.find(params[:program_id])
+        program = Program::ProgramVersion.find(params[:program_id])
         if program.nil?
           redirect_to user_programs_new_path, :alert => t('error.program.nil')
         elsif current_user.main_course_scenario.programs.include? program
@@ -35,7 +35,7 @@ class UserProgramsController < ApplicationController
 
   def delete
     authorize! :edit, current_user
-    program = Program::Program.find(params[:program_id])
+    program = Program::ProgramVersion.find(params[:program_id])
     current_user.main_course_scenario.programs.delete(program)
 
     redirect_to user_education_path, :notice => t("program.remove.success")

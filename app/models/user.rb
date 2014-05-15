@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
 
   def total_completed_ratio
     ratio = Utils::Ratio.zero
+    self.main_course_scenario.programs.size
     self.main_course_scenario.programs.each do |p|
+      puts 'oijoij'
       ratio += p.get_completion_ratio(main_course_scenario)
     end
     ratio
@@ -103,7 +105,6 @@ class User < ActiveRecord::Base
   def requirements_completed_after_taking?(course)
     course.requirements_completed_after_taking?(self, true)
   end
-
 
   def get_recommended_courses
 

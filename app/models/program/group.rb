@@ -13,7 +13,7 @@ class Program::Group < ActiveRecord::Base
   has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
 
   #Complete a number of programs
-  has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::Program
+  has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::ProgramVersion
 
   validates_presence_of :groupparent_id
 
@@ -40,7 +40,7 @@ class Program::Group < ActiveRecord::Base
   def parent_program
     if groupparent.nil?
       nil
-    elsif groupparent.instance_of?(Program::Program)
+    elsif groupparent.instance_of?(Program::ProgramVersion)
       groupparent
     else
       groupparent.parent_program
