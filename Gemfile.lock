@@ -265,6 +265,7 @@ DEPENDENCIES
   rails-erd
   rails_admin
   ruby-graphviz!
+  safe_yaml
   sass-rails (~> 4.0.0)
   sdoc
   squeel

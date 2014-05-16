@@ -28,7 +28,7 @@
                     </span>
 
                 <div class='program_list'>
-                  <% current_scenario.programs.order('type_id ASC, name ASC').each do |p| %>
+                  <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p| %>
                       <div class='row'>
                         <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
                         <div class='text-indent col-md-2'>
@@ -49,7 +49,7 @@
                                   <span class='whitetext glyphicon glyphicon-random'></span>
                                 </a>
                                 <button class='btn btn-danger'
-                                        <% if p.type.id == 4 %>disabled
+                                        <% if p.program.type.id == 4 %>disabled
                                         <% end %> rel='tooltip' data-toggle='tooltip' title='Remove'>
                                   <span class='glyphicon glyphicon-remove-sign'></span>
                                 </button>

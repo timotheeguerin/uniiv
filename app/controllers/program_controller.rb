@@ -1,6 +1,7 @@
 class ProgramController < ApplicationController
   def show
     @program = Program::Program.find(params[:id])
+    @program_version = @program.versions.first
   end
 
   def graph_embed
@@ -30,7 +31,7 @@ class ProgramController < ApplicationController
 
   def create
     authorize! :create, Program::Program
-    @program = Program::Program.new(program_params)
+    @program = Program::Program.create(program_params)
 
     if @program.save
       if params[:saveandedit]

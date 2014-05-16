@@ -9,6 +9,7 @@ class TestController < ApplicationController
     Program::Program.all.each do |program|
       version = Program::ProgramVersion.new
       version.program = program
+      version.id = program.id
       version.save
       Program::Group.where(:groupparent_id => program, :groupparent_type => 'Program::Program').each do |group|
         group.groupparent = version

@@ -87,3 +87,5 @@ gem 'minitest-reporters'
 gem 'factory_girl_rails'
 
 gem 'animate-rails'
+
+gem 'safe_yaml'
