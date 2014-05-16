@@ -80,7 +80,7 @@ class ProgramGroupController < ApplicationController
   end
 
   def redirect_to_parent
-    if @program_group.groupparent.is_a? Program::ProgramVersion
+    if @program_group.groupparent.is_a? Program::Program
       redirect_to program_edit_path(@program_group.groupparent)
     elsif @program_group.groupparent.is_a? Program::Group
       redirect_to program_group_edit_path(@program_group.groupparent)

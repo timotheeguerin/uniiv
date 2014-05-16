@@ -1,7 +1,7 @@
 class Faculty < ActiveRecord::Base
   belongs_to :university
-  has_many :programs, :class_name => Program::ProgramVersion
-  has_one :faculty_requirements, -> { where :type_id => ProgramsType.find_by_name('faculty') }, :class_name => Program::ProgramVersion
+  has_many :programs, :class_name => Program::Program
+  has_one :faculty_requirements, -> { where :type_id => ProgramsType.find_by_name('faculty') }, :class_name => Program::Program
 
   def to_s
     name

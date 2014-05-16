@@ -41,12 +41,12 @@ class GraphController < ApplicationController
   end
 
   def show_program_graph
-    @program = Program::ProgramVersion.find(params[:id])
+    @program = Program::Program.find(params[:id])
     @fullwidth=true
   end
 
   def program_graph_data
-    program = Program::ProgramVersion.find(params[:id])
+    program = Program::Program.find(params[:id])
     style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
     prg_graph = get_program_graph(program, style)
 

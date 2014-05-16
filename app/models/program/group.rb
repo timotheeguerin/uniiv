@@ -13,7 +13,7 @@ class Program::Group < ActiveRecord::Base
   has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
 
   #Complete a number of programs
-  has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::ProgramVersion
+  has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::Program
 
   validates_presence_of :groupparent_id
 
@@ -175,7 +175,7 @@ class Program::Group < ActiveRecord::Base
 
   searchable do
     text :program do
-      parent_program.name unless parent_program.nil?
+      parent_program.program.name unless parent_program.nil?
     end
     text :name
   end

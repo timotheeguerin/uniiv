@@ -1,6 +1,20 @@
 class TestController < ApplicationController
   def index
     authorize! :test, :all
+    render :json => JSON.pretty_generate(migrate_program_version)
+  end
+
+
+  def migrate_program_version
+    Program::Program.all.each do |program|
+      version = Program::ProgramVersion.new
+      version.program = program
+      version.save
+      Program::Group.where(:groupparent_id => program, :groupparent_type => 'Program::Program').each do |group|
+        group.groupparent = version
+        group.save
+      end
+    end
   end
 
   def set_group_restricions
