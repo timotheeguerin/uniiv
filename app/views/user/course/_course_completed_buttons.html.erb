@@ -9,8 +9,8 @@
        data-toggle='tooltip' title='<%= course.course.name %>'>
       <span class='whitetext glyphicon glyphicon-info-sign'></span>
     </a>
-    <% unless course.advanced_standing %>
-        <%= group_button_to user_remove_course_path(course.course),
+    <% unless course.advanced_standing? %>
+        <%= group_button_to user_untake_course_path,
                             :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => '.course_completed_container',
                             :class => 'btn btn-danger', :rel => 'tooltip', 'data-toggle' => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
             <span class='glyphicon glyphicon-remove-sign'></span>

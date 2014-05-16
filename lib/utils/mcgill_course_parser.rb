@@ -2,7 +2,10 @@ require 'open-uri'
 module Utils
   class McgillCourseParser
 
-    def self.parse_course(url)
+    #Parse the course page of a mcgill course
+    #@param url Mcgill website url of the course
+    #@param update set to true to update a current course
+    def self.parse_course(url, update=true)
       hash = Utils::McgillCourseParser.parse_page(url)
       course = Course::Course.new
       course.name = hash[:name]
@@ -75,7 +78,9 @@ module Utils
       hash
     end
 
-    def self.parse_all
+    #Parse all the mcgill courses
+    #@param update set to true to update a current course
+    def self.parse_all(update = true)
       page_nb = 0
       stats = {}
       stats[:parsed] = 0
@@ -90,22 +95,27 @@ module Utils
         if results.nil? #Last page
           break
         end
-
+        puts '--------------------------------------------------------------'
+        puts "\t\t\t PAGE #{page_nb}"
+        puts '--------------------------------------------------------------'
         results.css('dt').each do |dt|
           i+=1
           href = dt.css('a')[0]['href']
-          puts "#{i} Parsing #{href}"
-          result = parse_course(href)
+          puts "##{i}\t #{href}"
+          result = parse_course(href, update)
           if result[:success]
             stats[:parsed] += 1
+            puts "\t\t Course added"
           elsif result[:already_added]
             stats[:already_added] += 1
+            puts "\t\t Course already added"
           elsif  result[:unknown_subject]
             stats[:unknown_subjects] << result[:subject]
+            puts "\t\t Unknown subject #{result[:subject]}"
           else
             stats[:errors] << "#{href} => #{result[:error]}"
+            puts "\t\t Error #{result[:error]}"
           end
-          puts href
         end
         page_nb +=1
       end

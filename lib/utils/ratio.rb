@@ -27,9 +27,9 @@ module Utils
     end
 
     def +(other)
-      output = Utils::Ratio.empty
+      output = Utils::Ratio.zero
       if other.is_a? Utils::Ratio
-        output.ratio = (value+other.value)/(@coefficient+other.coefficient)
+        output.ratio = (value+other.value)/(@coefficient+other.coefficient) if @coefficient != 0 and other.coefficient != 0
         output.coefficient = @coefficient + other.coefficient
       end
       output

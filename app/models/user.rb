@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
 
   def total_completed_ratio
     ratio = Utils::Ratio.zero
+    self.main_course_scenario.programs.size
     self.main_course_scenario.programs.each do |p|
+      puts 'oijoij'
       ratio += p.get_completion_ratio(main_course_scenario)
     end
     ratio
@@ -104,7 +106,6 @@ class User < ActiveRecord::Base
     course.requirements_completed_after_taking?(self, true)
   end
 
-
   def get_recommended_courses
 
   end
@@ -140,6 +141,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def uncomplete_course(course)
+    user_completed_course = completed_courses.where(:course_id => course).first
+    user_completed_course.destroy unless user_completed_course.nil?
+  end
+
   #Will reset everything the user is taking
   def reset
     course_scenarios.destroy_all
@@ -159,6 +165,7 @@ class User < ActiveRecord::Base
     percent += step if completed_courses.size > 0 or main_course_scenario.taking_courses.size > 0
     percent
   end
+
 
 
   def to_s

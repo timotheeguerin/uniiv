@@ -15,7 +15,7 @@ class Course::Scenario < ActiveRecord::Base
   end
 
   #Return if the scenario is taking this course at the given semester(default is the current one)
-  def is_taking_course?(course, term = nil?)
+  def is_taking_course?(course, term = nil)
     term ||= Utils::Term::now
     taking_courses.each do |c|
       if c.course == course and c.year == term.year and c.semester == term.semester
@@ -118,6 +118,12 @@ class Course::Scenario < ActiveRecord::Base
 
   def complete_course(course, term = nil)
     user.complete_course(course, term)
+  end
+
+  def untake_course(course, skip_completed = false)
+    user_taking_course = taking_courses.where(:course_id => course).first
+    user_taking_course.destroy unless user_taking_course.nil?
+    user.uncomplete_course(course) unless skip_completed
   end
 
   def to_s

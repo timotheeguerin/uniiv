@@ -1,4 +1,4 @@
-class User::CourseTakingController < ApplicationController
+class User::CoursePlannerController < ApplicationController
   before_action :setup, :except => :sort_course
 
   def setup
@@ -96,86 +96,6 @@ class User::CourseTakingController < ApplicationController
       else
         puts 'Wrong params'
       end
-    end
-  end
-
-  def new
-    @user_taking_course = UserTakingCourse.new
-    if request.xhr?
-      render :layout => false
-    end
-  end
-
-  def new_graph_embed
-    @user_taking_course = UserTakingCourse.new
-    render :layout => false
-  end
-
-  def create
-    @user_taking_course = UserTakingCourse.new(params[:user_taking_course].permit(:semester_id, :year))
-    @user_taking_course.course = @course
-    @user_taking_course.course_scenario = current_scenario
-
-    if @user_taking_course.save
-      if params[:graph_embed]
-        return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
-      else
-        _redirect_to :back
-      end
-    else
-      _render 'new'
-    end
-  end
-
-  def complete
-    @user_completed_course = UserCompletedCourse.new
-    @grades = current_user.university.grading_system.entities
-    user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
-
-    unless user_taking_course.nil? #Check if the course was already mark as taking
-      @user_completed_course.semester = user_taking_course.semester
-      @user_completed_course.year = user_taking_course.year
-    end
-
-    _render 'complete'
-  end
-
-  def create_complete
-    @user_completed_course = UserCompletedCourse.new(params.require(:user_completed_course).permit(:semester_id, :year, :grade_id))
-    user_taking_course = current_scenario.taking_courses.where(:course_id => @course.id).first
-    unless user_taking_course.nil? #If the course was taken before
-      user_taking_course.destroy
-    end
-    @user_completed_course.course = @course
-    @user_completed_course.user = current_user
-
-    if @user_completed_course.save
-      if request.xhr?
-        if params[:graph_embed]
-          return_json('course.completed', :url => course_graph_embed_path(@course))
-        else
-          return_json('course.completed')
-        end
-
-      else
-        _redirect_to course_path(@course)
-      end
-    else
-      _render 'complete'
-    end
-  end
-
-  def remove
-    user_taking_course = current_scenario.taking_courses.where(:course_id => @course).first
-    user_completed_course = current_user.completed_courses.where(:course_id => @course).first
-
-    user_taking_course.destroy unless user_taking_course.nil?
-    user_completed_course.destroy unless user_completed_course.nil?
-
-    if request.xhr?
-      return_json('course.untake', :url => course_graph_embed_path(@course))
-    else
-      _redirect_to :back
     end
   end
 

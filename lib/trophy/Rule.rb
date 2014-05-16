@@ -11,7 +11,7 @@ module Trophy
           if target_obj.present?
             block.call(target_obj)
           else
-            Rails.logger.warn '[Trophy] no target_obj found on Rule#applies?'
+            Rails.logger.warn '[trophy] no target_obj found on Rule#applies?'
             false
           end
         else

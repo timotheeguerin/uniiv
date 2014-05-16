@@ -40,7 +40,7 @@ class Program::Group < ActiveRecord::Base
   def parent_program
     if groupparent.nil?
       nil
-    elsif groupparent.instance_of?(Program::Program)
+    elsif groupparent.instance_of?(Program::ProgramVersion)
       groupparent
     else
       groupparent.parent_program
@@ -175,7 +175,7 @@ class Program::Group < ActiveRecord::Base
 
   searchable do
     text :program do
-      parent_program.name unless parent_program.nil?
+      parent_program.program.name unless parent_program.nil?
     end
     text :name
   end

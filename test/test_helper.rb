@@ -32,5 +32,10 @@ class ActionController::TestCase
     @ability = Object.new
     @ability.extend(CanCan::Ability)
     @controller.stubs(:current_ability).returns(@ability)
+    @request.env['HTTP_REFERER'] = '/back'
+  end
+
+  def set_current_scenario(scenario)
+    @controller.send(:current_scenario=, scenario)
   end
 end
