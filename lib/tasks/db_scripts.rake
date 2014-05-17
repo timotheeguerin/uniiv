@@ -44,9 +44,9 @@ namespace :db do
     abort "Missing Database config #{args[:database]}" if config[args[:database]].blank?
     database = config[args[:database]]
 
-    cmd = "mysqldump --opt #{command_args(database)} > #{args[:file]}"
+    cmd = "mysqldump --opt #{command_args(database)} > sqlbackups/#{args[:file]}"
     system `#{cmd}`
-    puts "Backup in #{args[:file]}"
+    puts "Backup in sqlbackups/#{args[:file]}"
   end
   task :restore, :file do |t, args|
     args.with_defaults(:file => 'backup.sql', :database => 'development')
