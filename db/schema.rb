@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515193218) do
+ActiveRecord::Schema.define(version: 20140516194303) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -315,6 +315,16 @@ ActiveRecord::Schema.define(version: 20140515193218) do
     t.integer "program_id", null: false
     t.integer "group_id",   null: false
   end
+
+  create_table "program_program_versions", force: true do |t|
+    t.integer  "program_id"
+    t.integer  "start_year"
+    t.integer  "end_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "program_program_versions", ["program_id"], name: "index_program_program_versions_on_program_id", using: :btree
 
   create_table "program_programs", force: true do |t|
     t.string   "name"
