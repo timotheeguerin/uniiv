@@ -9,6 +9,7 @@ class ProgramController < ApplicationController
     render :layout => false
   end
 
+
   def search_autocomplete
     programs = search.results
     json = {}

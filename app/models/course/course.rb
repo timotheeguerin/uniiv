@@ -12,6 +12,7 @@ class Course::Course < ActiveRecord::Base
   has_many :users, :class_name => User, :through => :user_completed_courses
   has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
 
+  #Program group having the course
   has_and_belongs_to_many :program_groups, :class_name => Program::Group
 
 

@@ -13,6 +13,14 @@ class Program::ProgramVersion < ActiveRecord::Base
     'p_' + id.to_s
   end
 
+  def to_academic_year
+    "#{start_year}-#{end_year}"
+  end
+
+  def type
+    program.type
+  end
+
   def get_completion_ratio(scenario, term=nil)
     ratio = Utils::Ratio.zero
     groups.each do |group|

@@ -91,6 +91,50 @@ $(document).ready ->
           form.find('button,input[type="submit"]').prop('disabled', false)
     })
 
+  $('select.selectize').each () ->
+    container = $(this)
+    form = container.closest('form')
+    renderOptions = {
+      option: ((item, escape) ->
+        if typeof(item.value) == "string"
+          '<div>' + item.value + '</div>'
+        else
+          result = '<div>' + item.value.title + '</div>'
+          result += '<div>' + item.value.subtitle + '</div>' if item.value.subtitle
+          result += '<div>' + item.value.description + '</div>' if item.value.description
+          '<div>' + result + '</div>'
+      )
+    }
+    container.selectize {
+      valueField: 'data',
+      labelField: 'value',
+      searchField: 'value',
+      create: false,
+      render: renderOptions,
+      load: (query, callback) ->
+        if (!query.length)
+          return callback()
+        $.ajax({
+          url: container.data('url'),
+          data: {q: query}
+          type: 'GET',
+          error: () ->
+            callback()
+          success: (data) ->
+            callback(data['suggestions'])
+        })
+      onChange: (id) ->
+        if container.data('update-element')
+          element = $(container.data('update-element'))
+          params = {}
+          params[element.data('param-name')] = id if element.data('param-name')
+          $.get(element.data('url'), params).success (data) ->
+            element.html(data)
+            reload_scripts(element)
+        if container.hasClass('disablesubmit')
+          form.find('button,input[type="submit"]').prop('disabled', false)
+    }
+
   $(document).on 'keyup', 'form input.percentage', ()->
     checkvalid($(this))
 
@@ -162,7 +206,6 @@ submitFormAjax = () ->
     submit_button.prop('disabled', false) unless form.data('unique-submission') #Renable form for submition
     form.off()
     $(form).trigger('formAjaxComplete', data)
-
   )
   return false
 

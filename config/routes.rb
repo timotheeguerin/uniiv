@@ -68,6 +68,7 @@ Uniiv::Application.routes.draw do
   #User faculty controller
   get 'user/program/show' => 'user_programs#show', :as => :user_programs_show
   get 'user/program/new' => 'user_programs#new', :as => :user_programs_new
+  get 'user/program/selectversion' => 'user_programs#select_version', :as => :user_program_select_version
   post 'user/program/new' => 'user_programs#create', :as => :user_programs_create
   post 'user/program/delete' => 'user_programs#delete', :as => :user_programs_delete
 
@@ -97,6 +98,7 @@ Uniiv::Application.routes.draw do
   post 'program/new' => 'program#create', :as => :program_create
   get 'program/:id', to: 'program#show', as: 'program'
   get 'program/:id/graph/embed' => 'program#graph_embed'
+
 
   get 'program/:id/edit' => 'program#edit', :as => :program_edit
   patch 'program:id/edit' => 'program#update', :as => :program_update

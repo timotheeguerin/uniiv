@@ -100,7 +100,7 @@ $(document).ready () ->
     $(this).find('.item.default').show()
 
 
-  showonhover();
+  showonhover
 
 
   $(document).on 'click', '.toggledisplay .toggledisplay-btn', () ->
