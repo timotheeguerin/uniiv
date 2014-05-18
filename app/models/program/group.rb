@@ -1,6 +1,6 @@
 class Program::Group < ActiveRecord::Base
 
-  belongs_to :groupparent, :polymorphic => true
+  belongs_to :groupparent, :polymorphic => true, :dependent => :destroy
 
   has_many :subgroups, :class_name => Program::Group, :as => :groupparent
 
@@ -40,7 +40,7 @@ class Program::Group < ActiveRecord::Base
   def parent_program
     if groupparent.nil?
       nil
-    elsif groupparent.instance_of?(Program::ProgramVersion)
+    elsif groupparent.is_a?(Program::ProgramVersion)
       groupparent
     else
       groupparent.parent_program

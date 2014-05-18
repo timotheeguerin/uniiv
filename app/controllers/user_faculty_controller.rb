@@ -23,8 +23,8 @@ class UserFacultyController < ApplicationController
     current_user.reset
     #Update the faculty requirement programs by removing the old ones and adding the new ones
     current_user.course_scenarios.each do |scenario|
-      scenario.programs.where(:type_id => ProgramsType.find_by_name('faculty')).destroy_all
-      scenario.programs << faculty.faculty_requirements unless faculty.faculty_requirements.nil?
+      scenario.programs.joins(:program).where(:program => {:type_id => ProgramsType.find_by_name('faculty')}).destroy_all
+      scenario.programs << faculty.faculty_requirements.versions.last unless faculty.faculty_requirements.nil?
     end
     current_user.save
     redirect_to user_education_selection_path
