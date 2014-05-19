@@ -7,8 +7,7 @@
         </select>
 
         <span class="input-group-btn">
-           <% needconfirmation = '' %>
-          <% needconfirmation = 'needconfirmation' unless current_user.faculty.nil? %>
+          <% needconfirmation =  current_user.faculty.nil? ? '' : 'needconfirmation' %>
             <%= submit_tag('Choose', :class => "btn btn-primary #{needconfirmation}", :disabled => true, 'data-confirm-dialog' => t('user.university.edit.confirmation')) %>
         </span>
       </div>
