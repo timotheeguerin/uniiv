@@ -20,7 +20,9 @@ class Program::Program < ActiveRecord::Base
     'p_' + id.to_s
   end
 
-
+  def last_version
+    versions.order(:start_year => :desc).first
+  end
 
   def self.search_program(params)
     university_id = params[:university_id]

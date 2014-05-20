@@ -27,6 +27,10 @@ class Course::SubjectCourseList < ActiveRecord::Base
         result.where { (code < l) | (code >= l+100) }
     end
   end
+
+  def new_copy
+    self.dup
+  end
 end
 
 class Course::SubjectCourseListOperation

@@ -8,7 +8,7 @@ class Program::Group < ActiveRecord::Base
   has_and_belongs_to_many :list_courses, -> { uniq }, :class_name => Course::Course
 
   #List of the subject_courses
-  has_many :subject_courses, :class_name => Course::SubjectCourseList
+  has_many :subject_courses, :class_name => Course::SubjectCourseList, :dependent => :destroy
 
   has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
 
@@ -171,6 +171,16 @@ class Program::Group < ActiveRecord::Base
 
   def id_to_s
     'g_' + id.to_s
+  end
+
+  def new_copy
+    group = self.dup
+    group.subgroups = self.subgroups.map(&:new_copy)
+    group.list_courses = self.list_courses
+    group.subject_courses = self.subject_courses.map(&:new_copy)
+    group.restrictions = self.restrictions.map(&:new_copy)
+    group.programs = self.programs
+    group
   end
 
   searchable do

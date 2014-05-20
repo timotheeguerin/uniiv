@@ -1,5 +1,7 @@
 Uniiv::Application.routes.draw do
 
+  get "version/new"
+  get "version/list"
   get 'scenario/new'
   get 'static_page/uniiv'
   get 'static_page/story'
@@ -104,9 +106,17 @@ Uniiv::Application.routes.draw do
   patch 'program:id/edit' => 'program#update', :as => :program_update
   post 'program/delete' => 'program#delete', :as => :program_delete
 
+  #Program version controller
+  get 'program/:program_id/version/new' => 'program/version#new', :as => :program_version_new
+  post 'program/:program_id/version/new' => 'program/version#create'
+  get 'program/:program_id/version/edit' => 'program/version#edit', :as => :program_version_edit
+  post 'program/:program_id/version/edit' => 'program/version#update'
+  get 'program/:program_id/version/list' => 'program/version#list', :as => :program_version_list
+  post 'program/:program_id/version/delete' => 'program/version#delete', :as => :program_version_delete
+
   #Group restricion
-  get 'program/group/restriction/create' => 'program/group_restriction#list', :as => :program_group_restriction_list
-  post 'program/group/restriction/create' => 'program/group_restriction#create', :as => :program_group_restriction_create
+  get 'program/group/restriction/new' => 'program/group_restriction#list', :as => :program_group_restriction_list
+  post 'program/group/restriction/new' => 'program/group_restriction#create', :as => :program_group_restriction_create
   post 'program/group/restriction/delete' => 'program/group_restriction#delete', :as => :program_group_restriction_delete
 
 

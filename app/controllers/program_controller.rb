@@ -1,7 +1,7 @@
 class ProgramController < ApplicationController
   def show
     @program = Program::Program.find(params[:id])
-    @program_version = @program.versions.first
+    @program_version = @program.last_version
   end
 
   def graph_embed

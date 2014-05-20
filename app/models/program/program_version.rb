@@ -44,4 +44,9 @@ class Program::ProgramVersion < ActiveRecord::Base
     result
   end
 
+  def new_copy
+    version = self.dup
+    version.groups = self.groups.map(&:new_copy)
+    version
+  end
 end
