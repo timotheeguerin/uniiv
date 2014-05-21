@@ -1,6 +1,6 @@
-class CreateProgramProgramVersions < ActiveRecord::Migration
+class CreateProgramVersions < ActiveRecord::Migration
   def change
-    create_table :program_program_versions do |t|
+    create_table :program_versions do |t|
       t.references :program, index: true
       t.integer :start_year
       t.integer :end_year

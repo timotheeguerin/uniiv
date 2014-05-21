@@ -7,7 +7,7 @@ class TestController < ApplicationController
 
   def migrate_program_version
     Program::Program.all.each do |program|
-      version = Program::ProgramVersion.new
+      version = Program::Version.new
       version.program = program
       version.id = program.id
       version.start_year=2010

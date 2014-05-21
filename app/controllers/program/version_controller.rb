@@ -7,15 +7,15 @@ class Program::VersionController < ApplicationController
   end
 
   def new
-    authorize! :new, Program::ProgramVersion
-    @program_version = Program::ProgramVersion.new
+    authorize! :new, Program::Version
+    @program_version = Program::Version.new
   end
 
   def create
-    authorize! :new, Program::ProgramVersion
-    template = Program::ProgramVersion.find_by_id(params[:template])
+    authorize! :new, Program::Version
+    template = Program::Version.find_by_id(params[:template])
     @program_version = if template.nil?
-                         Program::ProgramVersion.new
+                         Program::Version.new
                        else
                          template.new_copy
                        end

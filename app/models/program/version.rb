@@ -1,4 +1,4 @@
-class Program::ProgramVersion < ActiveRecord::Base
+class Program::Version < ActiveRecord::Base
   belongs_to :program, :class_name => Program::Program
   has_many :groups, :class_name => Program::Group, :as => :groupparent
 

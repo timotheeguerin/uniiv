@@ -40,7 +40,7 @@ class Program::Group < ActiveRecord::Base
   def parent_program
     if groupparent.nil?
       nil
-    elsif groupparent.is_a?(Program::ProgramVersion)
+    elsif groupparent.is_a?(Program::Version)
       groupparent
     else
       groupparent.parent_program
