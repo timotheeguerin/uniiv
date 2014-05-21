@@ -167,8 +167,8 @@ ActiveRecord::Schema.define(version: 20140516194303) do
 
   add_index "course_scenarios", ["user_id"], name: "index_course_scenarios_on_user_id", using: :btree
 
-  create_table "course_scenarios_program_program_versions", force: true do |t|
-    t.integer "program_version_id"
+  create_table "course_scenarios_program_versions", force: true do |t|
+    t.integer "version_id"
     t.integer "scenario_id"
   end
 
@@ -316,16 +316,6 @@ ActiveRecord::Schema.define(version: 20140516194303) do
     t.integer "group_id",   null: false
   end
 
-  create_table "program_program_versions", force: true do |t|
-    t.integer  "program_id"
-    t.integer  "start_year"
-    t.integer  "end_year"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "program_program_versions", ["program_id"], name: "index_program_program_versions_on_program_id", using: :btree
-
   create_table "program_programs", force: true do |t|
     t.string   "name"
     t.integer  "type_id"
@@ -336,6 +326,16 @@ ActiveRecord::Schema.define(version: 20140516194303) do
 
   add_index "program_programs", ["faculty_id"], name: "index_program_programs_on_faculty_id", using: :btree
   add_index "program_programs", ["type_id"], name: "index_program_programs_on_type_id", using: :btree
+
+  create_table "program_versions", force: true do |t|
+    t.integer  "program_id"
+    t.integer  "start_year"
+    t.integer  "end_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "program_versions", ["program_id"], name: "index_program_versions_on_program_id", using: :btree
 
   create_table "programs_types", force: true do |t|
     t.string   "name"

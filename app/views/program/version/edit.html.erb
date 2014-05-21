@@ -1,0 +1,10 @@
+<h1>Add new version to program <%= @program %></h1>
+<hr>
+<%= form_for @program_version, :url => program_version_edit_path, :class => 'form-horizontal' do |f| %>
+    <%= render :partial => 'form_fields', :locals => {:f => f} %>
+
+    <div class="form-group">
+      <%= submit_tag :save, :class => 'btn btn-primary' %>
+    </div>
+<% end %>
+
