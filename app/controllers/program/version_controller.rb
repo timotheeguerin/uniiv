@@ -12,7 +12,7 @@ class Program::VersionController < ApplicationController
   end
 
   def create
-    authorize! :new, Program::Version
+    authorize! :create, Program::Version
     template = Program::Version.find_by_id(params[:template])
     @program_version = if template.nil?
                          Program::Version.new
@@ -28,10 +28,30 @@ class Program::VersionController < ApplicationController
     end
   end
 
+  def edit
+    authorize! :edit, Program::Version
+    @program_version = Program::Version.find(params[:id])
+  end
+
+  def update
+    authorize! :update, Program::Version
+    @program_version = Program::Version.find(params[:id])
+    @program_version.assign_attributes(version_params)
+    if @program_version.save
+      redirect_to program_path(@program)
+    else
+      render :edit
+    end
+  end
+
+  def show
+
+  end
+  
   def list
   end
 
   def version_params
-    params.require(:program_program_version).permit(:start_year, :end_year)
+    params.require(:program_version).permit(:start_year, :end_year)
   end
 end
