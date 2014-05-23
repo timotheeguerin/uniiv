@@ -2,11 +2,12 @@ class ProgramController < ApplicationController
   def show
     @program = Program::Program.find(params[:id])
     @program_version = @program.last_version
+    render 'program/version/show'
   end
 
   def graph_embed
     @program = Program::Program.find(params[:id])
-    render :layout => false
+    render :action => 'program/version/show', :layout => false
   end
 
 

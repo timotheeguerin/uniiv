@@ -108,12 +108,13 @@ Uniiv::Application.routes.draw do
 
   #Program version controller
   get 'program/:program_id/version/new' => 'program/version#new', :as => :program_version_new
-  put 'program/:program_id/version/new' => 'program/version#create'
+  post 'program/:program_id/version/new' => 'program/version#create'
   get 'program/:program_id/version/list' => 'program/version#list', :as => :program_version_list
-  post 'program/:program_id/version/delete' => 'program/version#delete', :as => :program_version_delete
-  get 'program/:program_id/version/:id' => 'program/version#show', :as => :program_version
-  get 'program/:program_id/version/:id/edit' => 'program/version#edit', :as => :program_version_edit
-  patch 'program/:program_id/version/:id/edit' => 'program/version#update'
+  get 'program/version/change-version' => 'program/version#change_version', :as => :program_version_change
+  get 'program/version/:id' => 'program/version#show', :as => :program_version
+  get 'program/version/:id/edit' => 'program/version#edit', :as => :program_version_edit
+  patch 'program/version/:id/edit' => 'program/version#update'
+  delete 'program/version/delete' => 'program/version#delete', :as => :program_version_delete
 
   #Group restricion
   get 'program/group/restriction/new' => 'program/group_restriction#list', :as => :program_group_restriction_list

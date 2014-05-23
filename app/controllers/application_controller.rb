@@ -87,11 +87,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def redirect_or_json(options)
-    success = options[:success]
-    success ||= true
-    message = options[:message]
-    destination = options[:destination]
+  # Redirect to the given url or render json depending on the request
+  # If the request is made using ajax it will render json otherwise redirect
+  #   @param destination: Path to for redirection
+  #   @param success: Boolean if the request was successful(Will change the type of flash)
+  #   @param message: message to flash or send in json(Message need to be a key for translation)
+  def redirect_or_json(destination: nil, success: true, message: '')
     if request.xhr?
       if params[:graph_embed]
         return_json(message, :url => destination, :success => success)
@@ -100,7 +101,7 @@ class ApplicationController < ActionController::Base
       end
 
     else
-      flash_success(message, success)
+      flash_message(message, success)
       _redirect_to destination
     end
   end
@@ -113,12 +114,12 @@ class ApplicationController < ActionController::Base
     if request.xhr?
       return_json(message, :url => destination, :success => success)
     else
-      flash_success(message, success)
+      flash_message(message, success)
       render view
     end
   end
 
-  def flash_success(message, success)
+  def flash_message(message, success)
     if success
       flash[:notice] = t(message)
     else

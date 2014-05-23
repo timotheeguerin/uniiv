@@ -8,3 +8,6 @@
     </div>
 <% end %>
 
+<hr>
+
+<%= render :partial => 'program_group/program_group_edit_list', :locals => {:parent => @program_version, :groups => @program_version.groups} %>

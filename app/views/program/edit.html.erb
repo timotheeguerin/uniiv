@@ -3,5 +3,27 @@
 
 <hr>
 
-Program Groups:
-<%= render :partial => 'program_group/program_group_edit_list', :locals => {:groups => @program.groups, :parent => @program} %>
+<h2>Program Version:</h2>
+<div class="row">
+  <%= link_to program_version_new_path(@program), :class => 'btn btn-primary btn-block',
+              :title => t('program.version.new'), :rel => :tooltip do %>
+      <span class="glyphicon glyphicon-plus"></span>
+  <% end %>
+</div>
+<% @program.versions.each do |version| %>
+    <div class="row dashboard_coursebox">
+      <div class="col-md-6">
+        <a class='' href="<%= program_version_path(version) %>"><%= version.to_academic_year %></a>
+      </div>
+      <div class="col-md-2 col-md-offset-4">
+        <div class="btn-group pull-right">
+          <a class='btn btn-info' href="<%= program_version_path(version) %>">
+            <span class='glyphicon glyphicon-info-sign'></span>
+          </a>
+          <%= group_button_to program_version_delete_path, :name => :id, :value => version.id, :class => 'btn btn-danger', :method => :delete do %>
+              <span class='glyphicon glyphicon-remove'></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>

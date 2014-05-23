@@ -42,31 +42,25 @@ class Program::VersionControllerTest < ActionController::TestCase
   test 'should get edit' do
     @ability.can :edit, Program::Version
     version = create(:program_version)
-    program = version.program
-    get :edit, :program_id => program.id, :id => version.id
+    get :edit, :id => version.id
     assert_response :success
   end
 
   test 'should update' do
     @ability.can :edit, Program::Version
     version = create(:program_version)
-    program = version.program
-    get :edit, :program_id => program.id, :id => version.id, :program_version => {:start_year => 2014, :end_year => 2015}
-    assert_response :success
+    get :update, :id => version.id, :program_version => {:start_year => 2014, :end_year => 2015}
+    assert_response :redirect
+    version.reload
+    assert version.start_year = 2014
+    assert version.end_year = 2015
   end
 
   test 'should get show' do
-    @ability.can :edit, Program::Version
+    @ability.can :view, Program::Version
     version = create(:program_version)
     program = version.program
-    get :show, :program_id => program.id, :id => version.id
+    get :show, :id => version.id
     assert_response :success
   end
-
-
-  # test 'should get list' do
-  #   get :list
-  #   assert_response :success
-  # end
-
 end

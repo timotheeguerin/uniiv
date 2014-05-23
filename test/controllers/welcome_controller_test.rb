@@ -7,4 +7,11 @@ class WelcomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'Should redirect when sign in' do
+    user = create(:user)
+    sign_in user
+    get :index
+    assert_response :redirect
+    sign_out user
+  end
 end

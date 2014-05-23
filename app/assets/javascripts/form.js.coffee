@@ -3,6 +3,9 @@ $(document).ready ->
     width: 'auto'
   });
 
+  $(document).on 'change', 'select.submit-onselect', () ->
+    $(this).closest('form').submit()
+
   $(document).on 'click', 'button.needconfirmation, input[type=submit].needconfirmation', (event) ->
     event.preventDefault()
     button = $(this)

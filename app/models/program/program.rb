@@ -5,7 +5,7 @@ class Program::Program < ActiveRecord::Base
   #Allow only one faculty requirement per faculty
   validates_uniqueness_of :type_id, :scope => :faculty, :if => Proc.new { |obj| obj.type == ProgramsType.find_by_name('faculty') }
 
-  has_many :versions, :class_name => Program::Version
+  has_many :versions, -> { order 'start_year desc' }, :class_name => Program::Version
 
   def to_s
     name.to_s+ " (#{type.to_s.capitalize})"
@@ -21,7 +21,7 @@ class Program::Program < ActiveRecord::Base
   end
 
   def last_version
-    versions.order(:start_year => :desc).first
+    versions.first
   end
 
   def self.search_program(params)
