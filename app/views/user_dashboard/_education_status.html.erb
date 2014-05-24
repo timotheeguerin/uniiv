@@ -14,7 +14,7 @@
 <div class='program_list' style="margin-bottom: 5rem">
   <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC,  program_programs.name ASC').each do |p| %>
       <div class='row'>
-        <div class='text-indent col-md-8'><span><%= link_to p, program__version_path(p) %></span></div>
+        <div class='text-indent col-md-8'><span><%= link_to p, program_version_path(p) %></span></div>
         <div class='text-indent col-md-2'>
           <div class='progress'>
             <% perc= (p.get_completion_ratio(current_scenario).percent).to_i %>

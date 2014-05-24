@@ -1,38 +1,47 @@
 require 'open-uri'
 module Utils
   class McgillCourseParser
-
+    SubjectNotFound = Class.new(ActiveRecord::RecordNotFound)
+    CourseAlreadyAdded = Class.new(StandardError)
     #Parse the course page of a mcgill course
     #@param url Mcgill website url of the course
     #@param update set to true to update a current course
-    def self.parse_course(url, update=true)
-      hash = Utils::McgillCourseParser.parse_page(url)
-      course = Course::Course.new
-      course.name = hash[:name]
-      course.subject = Course::Subject.find_by_name(hash[:subject])
-      course.code = hash[:code]
-      course.description = hash[:description]
-      course.hours = hash[:hours]
-      course.credit = hash[:credit]
-      if course.subject.nil?
-        return {:error => "Unknown subject `#{hash[:subject]}`, please add it first", :success => false, :unknown_subject => true, :subject => hash[:subject]}
-      end
+    def self.load_course_from_url(url, update=true)
+      hash = parse_page(url)
+      course = course_from_hash(hash)
 
+      fail SubjectNotFound, hash[:subject] if course.subject.nil?
+      old_course = nil
       if course.already_exist?
-        return {:error => 'Already added', :success => false, :already_added => true}
+        fail CourseAlreadyAdded, 'Already added!' if course.already_exist? and not update
+
+        course, old_course = update_course(course)
       end
-      unless course.save
-        return {:error => "#{course.errors.full_messages}", :success => false}
-      end
-      requirement = Admin::CourseRequirementFilled.find_by_course_id(course.id)
-      requirement.prerequisite_read=hash[:prerequisite].to_s
-      requirement.corequisite_read=hash[:corequisite].to_s
-      unless requirement.save
-        return {:error => "#{requirement.errors.full_messages}", :success => false}
-      end
-      return {:course => course, :success => true}
+      course.save!
+      requirement, old_requirement = update_course_requirement(course, hash)
+      requirement.save!
+
+      {:course => course, :old_course => old_course, :requirement => requirement, :old_requirement => old_requirement}
     end
 
+    def self.update_course(new_course)
+      course = Course::Course.find_by_subject_id_and_code(new_course.subject_id, new_course.code)
+      old_course = course.dup
+      course.assign_attributes :name => new_course.name,
+                               :description => new_course.description,
+                               :hours => new_course.hours,
+                               :credit => new_course.credit
+
+      return course, old_course
+    end
+
+    def self.update_course_requirement(course, hash)
+      requirement = Admin::CourseRequirementFilled.find_by_course_id(course.id)
+      old_requirement = requirement.dup
+      requirement.prerequisite_read=hash[:prerequisite].to_s
+      requirement.corequisite_read=hash[:corequisite].to_s
+      return requirement, old_requirement
+    end
 
     def self.parse_title(title, hash)
       text = title.split('(', 2)[0]
@@ -58,6 +67,17 @@ module Utils
           hash[:hours] = info.text
         end
       end
+    end
+
+    def self.course_from_hash(hash)
+      course = Course::Course.new
+      course.name = hash[:name]
+      course.subject = Course::Subject.find_by_name(hash[:subject])
+      course.code = hash[:code]
+      course.description = hash[:description]
+      course.hours = hash[:hours]
+      course.credit = hash[:credit]
+      course
     end
 
     def self.parse_page(url)
@@ -102,7 +122,7 @@ module Utils
           i+=1
           href = dt.css('a')[0]['href']
           puts "##{i}\t #{href}"
-          result = parse_course(href, update)
+          result = load_course_from_url(href, update)
           if result[:success]
             stats[:parsed] += 1
             puts "\t\t Course added"

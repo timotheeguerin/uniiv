@@ -1,0 +1,73 @@
+<% course = @result[:course] %>
+<% old_course = @result[:old_course] %>
+<% requirement = @result[:requirement] %>
+<% old_requirement = @result[:old_requirement] %>
+<table class="table table-striped">
+  <tr>
+    <th>
+      Attribute
+    </th>
+    <% unless  old_course.nil? %>
+        <th> Old course</th>
+    <% end %>
+    <th>
+      Course
+    </th>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <% unless  old_course.nil? %>
+        <td> <%= old_course.name %></td>
+    <% end %>
+    <td> <%= course.name %></td>
+  </tr>
+  <tr>
+    <td>Subject:</td>
+    <% unless  old_course.nil? %>
+        <td> <%= old_course.subject %></td>
+    <% end %>
+    <td> <%= course.subject %></td>
+  </tr>
+  <tr>
+    <td>Code:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_course.code %></td>
+    <% end %>
+    <td><%= course.code %></td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_course.description %></td>
+    <% end %>
+    <td><%= course.description %></td>
+  </tr>
+  <tr>
+    <td>Hours:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_course.hours %></td>
+    <% end %>
+    <td><%= course.hours %></td>
+  </tr>
+  <tr>
+    <td>Credit:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_course.credit %></td>
+    <% end %>
+    <td><%= course.credit %></td>
+  </tr>
+  <tr>
+    <td>Prerequisites:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_requirement.prerequisite_read %></td>
+    <% end %>
+    <td><%= requirement.prerequisite_read %></td>
+  </tr>
+  <tr>
+    <td>Corequisites:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_requirement.corequisite_read %></td>
+    <% end %>
+    <td><%= requirement.corequisite_read %></td>
+  </tr>
+</table>

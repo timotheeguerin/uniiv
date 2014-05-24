@@ -2,19 +2,20 @@ class Admin::Utils::CourseLoaderController < ApplicationController
   def new
     authorize! :create, Course::Course
     @url = ''
+    @result = nil
   end
 
   def load
     authorize! :create, Course::Course
     @url = params['url']
+    @result = nil
     if @url.nil?
       render :new
     else
-      result = Utils::McgillCourseParser.parse_course(@url)
-      if result[:success]
-        @course = result[:course]
-      else
-        flash[:notice] = result[:error]
+      begin
+        @result = Utils::McgillCourseParser.load_course_from_url(@url)
+      rescue => e
+         flash[:alert] = "#{e.class.name.demodulize} : #{e.message}"
       end
       render :new
     end
