@@ -18,13 +18,13 @@ class UserUniversityControllerTest < ActionController::TestCase
     sign_in user
     @ability.can :edit, user
 
-    program = create(:program_program)
-    scenario.programs << program
-    user.faculty = program.faculty
+    version = create(:program_version)
+    scenario.programs << version
+    user.faculty = version.program.faculty
     user.save
     university = create(:university)
     get :update, :university_id => university.id
-    assert_response :success
+    assert_response :redirect
     user.reload
     assert user.university = university
     assert user.faculty.nil?
