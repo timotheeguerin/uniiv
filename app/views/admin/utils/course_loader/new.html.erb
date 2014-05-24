@@ -38,7 +38,8 @@
 <% end %>
 
 <%= form_tag(admin_utils_course_load_all_path) do %>
-    <%= submit_tag 'Load all courses', :class => 'btn btn-default', :title => 'Warning: Take time..', :rel => 'tooltip' %>
+    <%= submit_tag 'Load all courses', :class => 'btn btn-default needconfirmation',
+                   'data-confirmation-dialog' => 'Warning: This take some time and will freeze the server in development until complete', :rel => 'tooltip' %>
 <% end %>
 <%= form_tag(admin_utils_course_load_create_path) do %>
     <div class="form-group">

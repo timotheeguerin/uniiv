@@ -167,7 +167,6 @@ class User < ActiveRecord::Base
   end
 
 
-
   def to_s
     email
   end

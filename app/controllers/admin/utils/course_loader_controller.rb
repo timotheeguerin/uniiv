@@ -10,9 +10,7 @@ class Admin::Utils::CourseLoaderController < ApplicationController
     if @url.nil?
       render :new
     else
-
-
-      result = Utils::McgillCourseParser.parse_course(url)
+      result = Utils::McgillCourseParser.parse_course(@url)
       if result[:success]
         @course = result[:course]
       else
