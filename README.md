@@ -4,6 +4,7 @@ Your personal buddy to graduate in style.
 
 
 #Installation
+** Need ruby > 2.0.0 **
 Clone the repo and install dependencies
 ```bash
 git clone https://github.com/timcolonel/uniiv.git
