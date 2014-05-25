@@ -238,6 +238,12 @@ Uniiv::Application.routes.draw do
   get 'mtmrelationship/search/autocomplete' => 'manytomany_relationship#search_autocomplete', :as => :manytomany_relationship_search_autocomplete
 
 
+  #Switch user controller
+  get 'user' => 'switch_user#index', :as => :switch_user_index
+  get 'user/switch' => 'switch_user#select_switch', :as => :switch_user
+  get 'user/search' => 'switch_user#search', :as => :search_user
+  post 'user/switch' => 'switch_user#switch'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 

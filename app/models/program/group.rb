@@ -2,7 +2,7 @@ class Program::Group < ActiveRecord::Base
 
   belongs_to :groupparent, :polymorphic => true, :dependent => :destroy
 
-  has_many :subgroups, :class_name => Program::Group, :as => :groupparent
+  has_many :subgroups, :class_name => Program::Group, :as => :groupparent, :dependent => :destroy
 
   #List of courses to complete
   has_and_belongs_to_many :list_courses, -> { uniq }, :class_name => Course::Course

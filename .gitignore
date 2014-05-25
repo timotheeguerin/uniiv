@@ -29,6 +29,7 @@ solr/pids/
 
 sqlbackups/
 
+
 #Local files that depend on the machine
 config/local/
 

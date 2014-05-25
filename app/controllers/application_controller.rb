@@ -127,6 +127,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def real_current_user=(user)
+    session[:real_current_user_id] = user.id
+    @real_current_user=user
+  end
   #Return the real user when he is sign in as another
   def real_current_user
     if @real_current_user.nil?
@@ -146,6 +150,6 @@ class ApplicationController < ActionController::Base
 
   def sign_in_as(user)
     authorize! :sign_in_as, user
-
+    sign_in :user,  user
   end
 end

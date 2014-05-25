@@ -42,7 +42,7 @@ class Ability
     end
 
     if user.role? :advisor
-      can :edit, User, User.joins(:roles).where('roles.name in (?)', ['admin'])
+      can :sign_in, User.only_with_roles([:user])
     end
 
     if user.role? :admin

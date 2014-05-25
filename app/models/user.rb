@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :emails, :class_name => UserEmail, :dependent => :destroy
 
+  has_one :primary_email, -> { where :primary => true }, :class_name => UserEmail
   has_and_belongs_to_many :roles
 
   #has_many :taking_courses, :class_name => UserTakingCourse
@@ -177,6 +178,12 @@ class User < ActiveRecord::Base
 
   def to_s
     email
+  end
+
+  searchable do
+    text :emails do
+      emails.map { |email| email.email }
+    end
   end
 
   alias :can_take_course? :requirements_completed?
