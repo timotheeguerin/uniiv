@@ -109,7 +109,8 @@ module Utils
       stats[:errors] = []
       i = 0
       while true do
-        url = "http://www.mcgill.ca/study/2013-2014/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
+        year = '2013-2014'
+        url = "http://www.mcgill.ca/study/#{year}/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
         page = Nokogiri::HTML(open(url))
         results = page.css('dl.search-results')[0]
         if results.nil? #Last page
@@ -122,19 +123,19 @@ module Utils
           i+=1
           href = dt.css('a')[0]['href']
           puts "##{i}\t #{href}"
-          result = load_course_from_url(href, update)
-          if result[:success]
+          begin
+            load_course_from_url(href, update)
             stats[:parsed] += 1
             puts "\t\t Course added"
-          elsif result[:already_added]
+          rescue SubjectNotFound => e
+            stats[:unknown_subjects] << e.message
+            puts "\t\t Unknown subject #{e.message}"
+          rescue CourseAlreadyAdded
             stats[:already_added] += 1
             puts "\t\t Course already added"
-          elsif  result[:unknown_subject]
-            stats[:unknown_subjects] << result[:subject]
-            puts "\t\t Unknown subject #{result[:subject]}"
-          else
-            stats[:errors] << "#{href} => #{result[:error]}"
-            puts "\t\t Error #{result[:error]}"
+          rescue => e
+            stats[:errors] << "#{href} => #{e}"
+            puts "\t\t Error #{e}"
           end
         end
         page_nb +=1

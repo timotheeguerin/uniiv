@@ -30,7 +30,7 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new # guest user (not logged in)
-                      #can :manage, :all
+    #can :manage, :all
     if user.role? :alpha_tester
       can :read, :all # allow alpha tester to read everything
       can :edit, user
@@ -40,6 +40,11 @@ class Ability
       can :read, :all # allow alpha tester to read everything
       can :edit, user
     end
+
+    if user.role? :advisor
+      can :edit, User, User.joins(:roles).where('roles.name in (?)', ['admin'])
+    end
+
     if user.role? :admin
       can :manage, :all
     end

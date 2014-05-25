@@ -126,4 +126,26 @@ class ApplicationController < ActionController::Base
       flash[:alert] = t(message)
     end
   end
+
+  #Return the real user when he is sign in as another
+  def real_current_user
+    if @real_current_user.nil?
+      if session.key?(:real_current_user_id)
+        @real_current_user = User.find_by_id(session[:real_current_user_id])
+      end
+    else
+      @real_current_user = current_user
+    end
+    @real_current_user
+  end
+
+  #Tell if the current user is not the real current user
+  def sign_in_as_other?
+    @real_current_user.nil? and not session.key?(:real_current_user_id)
+  end
+
+  def sign_in_as(user)
+    authorize! :sign_in_as, user
+
+  end
 end

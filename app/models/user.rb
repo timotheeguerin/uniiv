@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
 
   has_many :fgc_predictions, :class_name => Fgc::Prediction
 
+  # Get the users without any of the given roles
+  # @param roles: list of roles names in an array
+  scope :without_roles, -> (roles) { joins(:roles).where.not(:roles => {:name => roles}) }
+
+  # Get the users that only have roles in the given list
+  # @param roles: list of roles names in an array
+  scope :only_with_roles, -> (roles) { without_roles(Role.where.not(:name => roles).pluck(:name)) }
+
   #Validations
   validates :advanced_standing_credits, :presence => true
 

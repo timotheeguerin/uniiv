@@ -13,6 +13,7 @@ class Program::VersionController < ApplicationController
   def change_version
     redirect_to program_version_path(:id => params[:version_id])
   end
+
   def new
     authorize! :new, Program::Version
     @program = Program::Program.find(params[:program_id])
@@ -63,6 +64,12 @@ class Program::VersionController < ApplicationController
     @program_version.destroy
     redirect_or_json :destination => program_path(@program_version.program),
                      :success => true, :message => 'program.version.delete.success'
+  end
+
+  #Show the difference bettween 2 version of the same program
+  def diff
+    @old_version = Program::Version.find(params[:old_version_id])
+    @version = Program::Version.find(params[:version_id])
   end
 
   def version_params
