@@ -145,11 +145,51 @@ form {
 
 .navbar-nav > li {
   float: left;
-}
-
-.navbar li:hover {
-  background-color: $palette_green_darker;
-  color: $palette_grey_medium_light
+  > a {
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  &:hover {
+    background-color: $palette_green_darker;
+    color: $palette_grey_medium_light;
+    > a {
+      background-color: $palette_green_darker;
+      color: $palette_grey_medium_light;
+    }
+  }
+  &.open {
+    background-color: $palette_green_darkest;
+    > a {
+      background: transparent !important;
+    }
+  }
+  > ul.dropdown-menu {
+    background-color: $palette_green_medium;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    margin: 0;
+    > li {
+      margin: 0;
+      &:hover {
+        background-color: $palette_green_darker;
+        color: $palette_grey_medium_light;
+      }
+      a {
+        padding: 1rem;
+        display: block;
+        color: white;
+        &:hover {
+          background-color: inherit;
+        }
+      }
+      &.divider {
+        background-color: $palette_green_darker;
+      }
+    }
+  }
 }
 
 .navbar-inverse {
@@ -193,7 +233,7 @@ footer {
   padding-top: 3;
 }
 
-.course-buttons-container  [class^='col-'] {
+.course-buttons-container [class^='col-'] {
   padding-left: 0;
   padding-right: 0;
 }
@@ -471,11 +511,6 @@ Gray
   vertical-align: middle;
 }
 
-.navbar-nav li {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 .text-indent {
   text-indent: 15px;
 }
@@ -742,6 +777,7 @@ textarea.transcript_textarea {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 $hover-img-height: 100px;
 
 .marketing-section img {
@@ -955,7 +991,7 @@ $hover-img-height: 100px;
   overflow: hidden;
 }
 
-.progress  span {
+.progress span {
   position: absolute;
   display: block;
   width: 100%;
