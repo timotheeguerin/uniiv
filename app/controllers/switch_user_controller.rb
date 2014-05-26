@@ -8,9 +8,16 @@ class SwitchUserController < ApplicationController
     begin
       sign_in_as(user)
       flash[:notice] = t('switch_user.success', user.to_s)
+      redirect_to root_path
     rescue CanCan::AccessDenied
       flash[:alert] = t('switch_user.permission.error')
     end
+  end
+
+  def switch_back
+    sign_back
+    flash[:notice] = t('switch_user.back.success')
+    redirect_to switch_user_path
   end
 
   def search

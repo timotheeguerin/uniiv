@@ -243,6 +243,7 @@ Uniiv::Application.routes.draw do
   get 'user/switch' => 'switch_user#select_switch', :as => :switch_user
   get 'user/search' => 'switch_user#search', :as => :search_user
   post 'user/switch' => 'switch_user#switch'
+  post 'user/switch/back' => 'switch_user#switch_back', :as => :switch_user_back
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

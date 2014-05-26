@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_scenario, :current_scenario=, :current_term
+  helper_method :current_scenario, :current_scenario=, :current_term, :sign_in_as_other?, :real_current_user
 
   rescue_from CanCan::AccessDenied do |exception|
     if user_signed_in?
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   end
 
-  private
+  protected
 
   def after_sign_in_path_for(ressource)
     get_redirect_path(user_education_path)
@@ -134,10 +134,8 @@ class ApplicationController < ActionController::Base
 
   #Return the real user when he is sign in as another
   def real_current_user
-    if @real_current_user.nil?
-      if session.key?(:real_current_user_id)
-        @real_current_user = User.find_by_id(session[:real_current_user_id])
-      end
+    if @real_current_user.nil? and session.key?(:real_current_user_id)
+      @real_current_user = User.find_by_id(session[:real_current_user_id])
     else
       @real_current_user = current_user
     end
@@ -146,7 +144,7 @@ class ApplicationController < ActionController::Base
 
   #Tell if the current user is not the real current user
   def sign_in_as_other?
-    @real_current_user.nil? and not session.key?(:real_current_user_id)
+    !(@real_current_user.nil? and not session.key?(:real_current_user_id))
   end
 
   def sign_in_as(user)
