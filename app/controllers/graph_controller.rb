@@ -47,9 +47,9 @@ class GraphController < ApplicationController
 
   def program_graph_data
     program = Program::Program.find(params[:id])
+    version = program.last_version
     style = JSON.parse(open("#{Rails.root}/app/assets/test/test.json").read)
-    prg_graph = get_program_graph(program, style)
-
+    prg_graph = get_program_graph(version, style)
 
     json = {}
     json[:style] = style
@@ -64,7 +64,7 @@ class GraphController < ApplicationController
     margin ||= 30
     padding ||= 15
 
-    prg_graph = Graph::Graph.new(program.name)
+    prg_graph = Graph::Graph.new(program.program.name)
     program.groups.each do |group|
       dot_graph = generate_graph_from_group(group, style)
       puts '------------------------------------'
@@ -85,7 +85,7 @@ class GraphController < ApplicationController
     prg_graph.move(Graph::Point.new(0, padding))
     prg_graph.dimension.y += padding
     prg_graph.id = program.id_to_s
-    prg_graph.label = program.name
+    prg_graph.label = program.program.name
     prg_graph
   end
 
