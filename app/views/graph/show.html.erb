@@ -43,7 +43,7 @@
     </div>
     <div>
       <div id="programsfromuser">
-        <% current_scenario.programs.order("type_id ASC, name ASC").each do |p| %>
+        <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p| %>
             <div>
               <small><%= p %></small>
             </div>
