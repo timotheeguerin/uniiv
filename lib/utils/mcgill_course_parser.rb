@@ -109,7 +109,7 @@ module Utils
       stats[:errors] = []
       i = 0
       while true do
-        year = '2013-2014'
+        year = '2014-2015'
         url = "http://www.mcgill.ca/study/#{year}/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
         page = Nokogiri::HTML(open(url))
         results = page.css('dl.search-results')[0]
