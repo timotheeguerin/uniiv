@@ -40,6 +40,9 @@ module Utils
       old_requirement = requirement.dup
       requirement.prerequisite_read=hash[:prerequisite].to_s
       requirement.corequisite_read=hash[:corequisite].to_s
+      #Update the flag to manully reenter the requirement
+      requirement.corequisites= (old_requirement.prerequisites? and requirement.corequisite_read == old_requirement.prerequisite_read)
+      requirement.corequisites= (old_requirement.corequisites? and requirement.corequisite_read == old_requirement.corequisite_read)
       return requirement, old_requirement
     end
 

@@ -4,3 +4,5 @@ require 'graphviz'
 
 # Initialize the Rails application.
 Uniiv::Application.initialize!
+
+Rails.logger = Logger.new(STDOUT)
