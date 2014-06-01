@@ -1,7 +1,6 @@
 class TestController < ApplicationController
   def index
     authorize! :test, :all
-    render :json => JSON.pretty_generate(migrate_program_version)
   end
 
 
