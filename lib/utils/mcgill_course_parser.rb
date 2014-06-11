@@ -8,15 +8,13 @@ module Utils
     #@param update set to true to update a current course
     def self.load_course_from_url(url, update=true)
       hash = parse_page(url)
+      puts hash
       course = course_from_hash(hash)
 
       fail SubjectNotFound, hash[:subject] if course.subject.nil?
       old_course = nil
-      if course.already_exist?
-        fail CourseAlreadyAdded, 'Already added!' if course.already_exist? and not update
+      course, old_course =update_course(course)
 
-        course, old_course = update_course(course)
-      end
       course.save!
       requirement, old_requirement = update_course_requirement(course, hash)
       requirement.save!
@@ -25,12 +23,22 @@ module Utils
     end
 
     def self.update_course(new_course)
-      course = Course::Course.find_by_subject_id_and_code(new_course.subject_id, new_course.code)
+      courses = Course::Course.where(:subject => new_course.subject, :code => new_course.code).load
+      course = if new_course.part.nil?
+                 return new_course, nil if courses.size == 0
+                 courses.order(:part => :desc).first
+               elsif courses.where(:part => new_course.part).size > 0
+                 courses.where(:part => new_course.part).first
+               else
+                 courses.where(:part => nil).first
+               end
+      return new_course, course if course.nil?
       old_course = course.dup
       course.assign_attributes :name => new_course.name,
                                :description => new_course.description,
                                :hours => new_course.hours,
-                               :credit => new_course.credit
+                               :credit => new_course.credit,
+                               :part => new_course.part
 
       return course, old_course
     end
@@ -40,7 +48,7 @@ module Utils
       old_requirement = requirement.dup
       requirement.prerequisite_read=hash[:prerequisite].to_s
       requirement.corequisite_read=hash[:corequisite].to_s
-      #Update the flag to manully reenter the requirement
+      #Update the flag to manually reenter the requirement
       requirement.corequisites= (old_requirement.prerequisites? and requirement.corequisite_read == old_requirement.prerequisite_read)
       requirement.corequisites= (old_requirement.corequisites? and requirement.corequisite_read == old_requirement.corequisite_read)
       return requirement, old_requirement
@@ -49,9 +57,10 @@ module Utils
     def self.parse_title(title, hash)
       text = title.split('(', 2)[0]
       credit = title.split('(', 2)[1]
-      hash[:subject] = text.split(' ')[0]
-      hash[:code] = text.split(' ')[1]
-      hash[:name] = text.split(' ', 3)[2]
+      hash[:subject], hash[:code], hash[:name] = text.split(' ', 3)
+      if hash[:code].downcase.include?('d')
+        hash[:code], hash[:part] = hash[:code].split(/d/i)
+      end
       if credit.nil?
         hash[:credit]=0
       else
@@ -77,6 +86,7 @@ module Utils
       course.name = hash[:name]
       course.subject = Course::Subject.find_by_name(hash[:subject])
       course.code = hash[:code]
+      course.part = hash[:part]
       course.description = hash[:description]
       course.hours = hash[:hours]
       course.credit = hash[:credit]

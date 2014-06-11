@@ -3,7 +3,7 @@
     <div class='row'>
       <div class='col-md-8'>
         <h3 class='<%= get_course_css_class(@course) %> underline_link'>
-          <%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course) %>
+          <%= link_to @course.get_short_name, course_path(@course) %>
         </h3>
       </div>
       <div class='col-md-4'>

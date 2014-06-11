@@ -36,6 +36,13 @@
     <td><%= course.code %></td>
   </tr>
   <tr>
+    <td>Part:</td>
+    <% unless  old_course.nil? %>
+        <td><%= old_course.part %></td>
+    <% end %>
+    <td><%= course.part %></td>
+  </tr>
+  <tr>
     <td>Description:</td>
     <% unless  old_course.nil? %>
         <td><%= old_course.description %></td>
