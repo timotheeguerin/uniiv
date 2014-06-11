@@ -1,7 +1,11 @@
 <footer>
   <div class="container">
     <div class="row text-md" style="margin-top: 30; height: 36px">
-      <div class="col-md-2 col-md-offset-3 text-right footer-element">
+      <div class="col-md-3 text-right footer-element">
+        <%= link_to 'Submit an error', 'https://docs.google.com/forms/d/1BHCp2lFcr4tkZgkyUoI36--tC_RuY9QmuuaX37aNM2o/viewform',
+                    :title => 'Submit a bug/problem you add with uniiv here', :target => '_blank' %>
+      </div>
+      <div class="col-md-2 text-right footer-element">
         <%= link_to 'Blog', 'http://blog.uniiv.com' %>
       </div>
       <div class="col-md-2 text-center">
@@ -11,6 +15,10 @@
       </div>
       <div class="col-md-2 text-left footer-element">
         <%= link_to 'Contact us', contactus_path %>
+      </div>
+      <div class="col-md-3 footer-element">
+        <%= link_to 'Request a new program', 'https://docs.google.com/forms/d/1GQnT8_WTCd0uRwFT7juwsrw_wFYpFgr2KUBGA3eAbNg/viewform',
+                    :title => 'Request for a new program to be added to uniiv', :target => '_blank' %>
       </div>
     </div>
   </div>
