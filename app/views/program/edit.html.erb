@@ -13,7 +13,7 @@
 <% @program.versions.each do |version| %>
     <div class="row dashboard_coursebox">
       <div class="col-md-6">
-        <a class='' href="<%= program_version_path(version) %>"><%= version.to_academic_year %></a>
+        <a class='' href="<%= program_version_edit_path(version) %>"><%= version.to_academic_year %></a>
       </div>
       <div class="col-md-2 col-md-offset-4">
         <div class="btn-group pull-right">
