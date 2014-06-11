@@ -8,11 +8,9 @@ module Utils
     #@param update set to true to update a current course
     def self.load_course_from_url(url, update=true)
       hash = parse_page(url)
-      puts hash
       course = course_from_hash(hash)
 
       fail SubjectNotFound, hash[:subject] if course.subject.nil?
-      old_course = nil
       course, old_course =update_course(course)
 
       course.save!
