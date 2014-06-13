@@ -8,7 +8,7 @@ class GroupSubjectCourseListController < ApplicationController
   def list_courses
     authorize! :view, Course::SubjectCourseList
     @subject_course_list = Course::SubjectCourseList.find(params[:id])
-    render :partial => 'course/course_list', :locals => {:courses => @subject_course_list.courses}
+    render :partial => 'list_courses', :locals => {:subject_course_list => @subject_course_list}
   end
 
   def new
