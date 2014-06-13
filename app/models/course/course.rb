@@ -195,9 +195,3 @@ class Course::Course < ActiveRecord::Base
   end
 end
 
-class CourseState
-  COMPLETED = 'completed'
-  TAKING = 'taking'
-  AVAILABLE = 'available'
-  UNAVAILABLE = 'unavailable'
-end

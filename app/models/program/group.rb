@@ -1,11 +1,11 @@
 class Program::Group < ActiveRecord::Base
 
-  belongs_to :groupparent, :polymorphic => true, :dependent => :destroy
+  belongs_to :groupparent, :polymorphic => true
 
   has_many :subgroups, :class_name => Program::Group, :as => :groupparent, :dependent => :destroy
 
   #List of courses to complete
-  has_and_belongs_to_many :list_courses, -> { uniq }, :class_name => Course::Course
+  has_and_belongs_to_many :courses, -> { uniq }, :class_name => Course::Course
 
   #List of the subject_courses
   has_many :subject_courses, :class_name => Course::SubjectCourseList, :dependent => :destroy
@@ -17,10 +17,10 @@ class Program::Group < ActiveRecord::Base
 
   validates_presence_of :groupparent_id
 
-  def courses
-    result = list_courses
+  def all_courses
+    result = courses
     subject_courses.each do |subject_course|
-      result += subject_course.courses
+      result = result | subject_course.courses
     end
     result
   end
@@ -110,10 +110,12 @@ class Program::Group < ActiveRecord::Base
     if restrictions.size == 0
       Utils::Ratio.empty
     else
+
       ratio = Utils::Ratio.zero
       restrictions.each do |restriction|
         ratio += restriction.get_completition_ratio(scenario, term)
       end
+      puts 'GR: ' + ratio.to_s
       ratio
     end
   end

@@ -246,14 +246,3 @@ class Course::Node < ActiveRecord::Base
   end
 
 end
-
-class NodeOperation
-  NODE = 'NODE'
-  OR = 'OR'
-  AND = 'AND'
-
-  public
-  def self.all_values
-    return [NodeOperation::NODE, NodeOperation::AND, NodeOperation::OR]
-  end
-end

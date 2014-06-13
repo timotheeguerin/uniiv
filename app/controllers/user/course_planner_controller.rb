@@ -64,7 +64,7 @@ class User::CoursePlannerController < ApplicationController
       return_json('course.take.remove.success', :invalid_courses => invalid_courses)
     else
       if params[:need_reload]
-        html = render_to_string :partial => 'course/course_list_item', :locals => {:course => user_taking_course, :invalid_time => false}
+        html = render_to_string :partial => 'course/sort_course_list_item', :locals => {:course => user_taking_course, :invalid_time => false}
       else
         html = ''
       end

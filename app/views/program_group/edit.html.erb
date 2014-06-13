@@ -23,7 +23,7 @@
   <div class="panel-heading">
     Courses:
   </div>
-  <%= render_manytomany_relationship_list(Program::Group, @program_group.id, 'list_courses') %>
+  <%= render_manytomany_relationship_list(Program::Group, @program_group.id, :courses) %>
 </div>
 
 <div class='panel panel-default'>

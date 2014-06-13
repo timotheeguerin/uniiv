@@ -83,8 +83,8 @@ $(document).ready () ->
           output.html(data)
           $(input).trigger('searchAjaxComplete', data)
         .error (xhr) ->
-            console.log('ER: ' + xhr.readyState + ", \tstatus: " + xhr.status + ', \turl: ' + send_url)
-            console.log('ER: ' + xhr.responseText)
+          console.log('ER: ' + xhr.readyState + ", \tstatus: " + xhr.status + ', \turl: ' + send_url)
+          console.log('ER: ' + xhr.responseText)
       , 500)
 
     input.keydown () ->
@@ -99,6 +99,16 @@ $(document).ready () ->
     $(this).find('.item.active').hide()
     $(this).find('.item.default').show()
 
+  $(document).on 'show', '.load-on-show', () ->
+    item = $(this)
+    return if item.data('load-once') and item.data('reloaded')
+    url = item.data('url')
+    item.html(loading_animation)
+    $.get(url).success((data) ->
+      item.html(data)
+    ).error (err) ->
+
+    item.data('reloaded', true)
 
   showonhover
 
@@ -119,6 +129,7 @@ $(document).ready () ->
       container.slideUp(200)
       $(this).find('span').first().resetRotation()
     else
+      container.hide().removeClass('hidden') if container.hasClass('hidden')
       container.slideDown(200)
       $(this).find('span').first().rotate(180)
 
@@ -175,7 +186,7 @@ jQuery.fn.resetRotation = () ->
 
 loading_animation = () ->
   return '<div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-              </div>'
+                      <div class="bounce1"></div>
+                      <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                    </div>'

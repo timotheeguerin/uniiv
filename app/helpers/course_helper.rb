@@ -43,7 +43,7 @@ module CourseHelper
 
   def course_list_item(course)
     invalid_time = (not course.is_time_valid?)
-    render 'course/course_list_item', :course => course, :invalid_time => invalid_time
+    render 'course/sort_course_list_item', :course => course, :invalid_time => invalid_time
   end
 
   def course_status_icon(course)

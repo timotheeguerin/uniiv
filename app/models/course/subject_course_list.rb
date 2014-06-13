@@ -11,6 +11,22 @@ class Course::SubjectCourseList < ActiveRecord::Base
     "#{subject} with  level #{operation} #{level}"
   end
 
+  def to_sentence
+    level_str= case operation
+                 when 'LESS'
+                   "#{level} or above"
+                 when 'MORE'
+                   "less than #{level}"
+                 when 'EQ'
+                   "between #{level} and #{level + 100}"
+                 when 'DIFF'
+                   "not between #{level} and #{level + 100}"
+                 else
+                   result
+               end
+    "Any courses in #{subject} at level #{level_str}"
+  end
+
   #Return the list of courses
   def courses
     result = Course::Course.where(:subject_id => subject_id)
@@ -21,10 +37,11 @@ class Course::SubjectCourseList < ActiveRecord::Base
       when 'MORE'
         result.where { code >= l }
       when 'EQ'
-        puts 'EQ'
         result.where { (code >= l) & (code < l+100) }
       when 'DIFF'
         result.where { (code < l) | (code >= l+100) }
+      else
+        result
     end
   end
 

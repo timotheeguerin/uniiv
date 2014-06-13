@@ -137,6 +137,8 @@ Uniiv::Application.routes.draw do
   get 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#edit', :as => :group_subject_course_list_edit
   post 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#update', :as => :group_subject_course_list_update
   post 'program/group/subject_course_list/delete' => 'group_subject_course_list#delete', :as => :group_subject_course_list_delete
+  get 'program/group/subject_course_list/:id' => 'group_subject_course_list#show', :as => :group_subject_course_list
+  get 'program/group/subject_course_list/:id/list-courses' => 'group_subject_course_list#list_courses', :as => :group_subject_course_list_courses
 
   #Graph controller
   get 'mygraph' => 'graph#show', :as => :user_graph

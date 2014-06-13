@@ -1,5 +1,15 @@
 class GroupSubjectCourseListController < ApplicationController
 
+  def show
+    authorize! :view, Course::SubjectCourseList
+  end
+
+  #This list all the courses matching a subject course list
+  def list_courses
+    authorize! :view, Course::SubjectCourseList
+    @subject_course_list = Course::SubjectCourseList.find(params[:id])
+    render :partial => 'course/course_list', :locals => {:courses => @subject_course_list.courses}
+  end
 
   def new
     authorize! :edit, Course::SubjectCourseList
