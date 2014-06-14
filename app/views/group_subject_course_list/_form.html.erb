@@ -1,5 +1,4 @@
 <div>
-
   <%= form_tag url do %>
       <div class='form-group'>
         <%= label_tag :subject %>
@@ -16,7 +15,7 @@
         </div>
 
       </div>
-      <%= hidden_field_tag :program_group, @subject_course_list.group_id %>
+      <%= hidden_field_tag :group, @subject_course_list.group_id %>
       <div class='form-group'>
         <%= submit_tag :Save, :class => 'btn btn-default' %>
         <%= submit_tag 'Save and edit', :name => :saveandedit, :class => 'btn btn-default' %>

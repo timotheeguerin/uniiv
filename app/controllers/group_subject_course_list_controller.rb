@@ -14,7 +14,7 @@ class GroupSubjectCourseListController < ApplicationController
   def new
     authorize! :edit, Course::SubjectCourseList
     @subject_course_list = Course::SubjectCourseList.new
-    @subject_course_list.group = Program::Group.find(params[:program_group])
+    @subject_course_list.group = Program::Group.find(params[:group])
   end
 
   def create
@@ -65,6 +65,6 @@ class GroupSubjectCourseListController < ApplicationController
     subject_course_list.level = params[:level]
     subject_course_list.operation = params[:operation]
     subject_course_list.subject = Course::Subject.find_by_name(params[:subject])
-    subject_course_list.group = Program::Group.find(params[:program_group])
+    subject_course_list.group = Program::Group.find(params[:group])
   end
 end

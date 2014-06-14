@@ -4,7 +4,7 @@ class CreateCourseSubjectCourseLists < ActiveRecord::Migration
       t.references :subject, index: true
       t.integer :level
       t.string :operation
-      t.references :program_group, index: true
+      t.references :group, index: true
 
       t.timestamps
     end

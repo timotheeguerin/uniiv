@@ -30,6 +30,4 @@ class Program::GroupRestrictionControllerTest < ActionController::TestCase
     assert JSON.parse(@response.body)['success'], "Json should return success but returned: #{JSON.parse(@response.body)}"
     group.destroy
   end
-
-
 end

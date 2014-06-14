@@ -1,15 +1,15 @@
-class ProgramGroupController < ApplicationController
+class Program::GroupController < ApplicationController
 
   def setup
-    @term = nil
-    unless params[:semester].nil? or params[:year].nil?
-      year = params[:year]
-      semester = Course::Semester.find(params[:semester])
-      @term = Utils::Term.new(semester, year)
-    end
-    @term ||= Utils::Term::now
-
     @group = Program::Group.find(params[:id])
+    @term = if params[:semester].nil? or params[:year].nil?
+              Utils::Term::now
+            else
+              year = params[:year]
+              semester = Course::Semester.find(params[:semester])
+              @term = Utils::Term.new(semester, year)
+            end
+
 
     @ratios = {}
     @ratios[:actual] = @group.get_completion_ratio(current_scenario).percent.to_i
@@ -21,14 +21,17 @@ class ProgramGroupController < ApplicationController
 
   def show
     setup
+    authorize! :view, @group
   end
 
   def new
+    authorize! :create, Program::Group
     @program_group = Program::Group.new
     @program_group.groupparent = find_parent
   end
 
   def create
+    authorize! :create, Program::Group
     @program_group = Program::Group.new(program_group_params)
     @program_group.groupparent = find_parent
     if @program_group.save
@@ -43,11 +46,13 @@ class ProgramGroupController < ApplicationController
   end
 
   def edit
-    @program_group= Program::Group.find(params[:id])
+    @program_group = Program::Group.find(params[:id])
+    authorize! :update, @program_group
   end
 
   def update
-    @program_group= Program::Group.find(params[:id])
+    @program_group = Program::Group.find(params[:id])
+    authorize! :create, @program_group
     if @program_group.update(program_group_params)
       if params[:saveandedit]
         redirect_to program_group_edit_path(@program_group)
@@ -67,11 +72,15 @@ class ProgramGroupController < ApplicationController
   end
 
   def program_group_params
-    params.require(:program_group).permit(:name, :restriction_id, :value)
+    params.require(:group).permit(:name)
   end
 
   def find_parent
-    params[:parent_type].constantize.find(params[:parent_id])
+    if params.key?(:parent_type) and params.key?(:parent_id)
+      params[:parent_type].constantize.find(params[:parent_id])
+    else
+      fail ActiveRecord::RecordNotFound
+    end
   end
 
   def graph_embed

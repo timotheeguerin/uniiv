@@ -16,6 +16,7 @@ class Program::Group < ActiveRecord::Base
   has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::Program
 
   validates_presence_of :groupparent_id
+  validates_presence_of :name
 
   def all_courses
     result = courses

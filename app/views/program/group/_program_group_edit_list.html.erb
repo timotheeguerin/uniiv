@@ -1,7 +1,7 @@
 <div class='list-group row-container'>
 
   <div class="row list-group-item">
-    <%= render :partial => 'program_group/new_group_link_form', :locals => {:parent => parent} %>
+    <%= render :partial => 'program/group/new_group_link_form', :locals => {:parent => parent} %>
   </div>
   <% groups.each do |group| %>
       <div class="row list-group-item">
@@ -30,7 +30,7 @@
 
   <% if groups.size > 1 %>
       <div class="row list-group-item">
-        <%= render :partial => 'program_group/new_group_link_form', :locals => {:parent => parent} %>
+        <%= render :partial => 'program/group/new_group_link_form', :locals => {:parent => parent} %>
       </div>
   <% end %>
 </div>

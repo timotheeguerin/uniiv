@@ -27,14 +27,21 @@ end
 
 class ActionController::TestCase
   setup :setup_uniiv
+  teardown :teardown_uniiv
 
   def setup_uniiv
+    @user = create(:user)
+    sign_in @user
     @ability = Object.new
     @ability.extend(CanCan::Ability)
     @controller.stubs(:current_ability).returns(@ability)
     @request.env['HTTP_REFERER'] = '/back'
   end
 
+  def teardown_uniiv
+    sign_out @user
+  end
+  
   def set_current_scenario(scenario)
     @controller.send(:current_scenario=, scenario)
   end

@@ -13,8 +13,8 @@ development:
   encoding: utf8
   database: uniiv_development
   pool: 5
-  username: <%= ENV['RAILS_DB_USERNAME'] %>
-  password: <%= ENV['RAILS_DB_PASSWORD'] %>
+  username: <%= ENV['LOCAL_DB_USERNAME'] %>
+  password: <%= ENV['LOCAL_DB_USERNAME'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: 127.0.0.1
 
@@ -23,10 +23,10 @@ development_main:
   encoding: utf8
   database: uniiv_development
   pool: 5
-  username: <%= ENV['RAILS_MAIN_DB_USERNAME'] %>
-  password: <%= ENV['RAILS_MAIN_DB_PASSWORD'] %>
+  username: <%= ENV['UNIIV_DEV_DB_USERNAME'] %>
+  password: <%= ENV['UNIIV_DEV_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
-  host: bendodev.no-ip.org
+  host: <%= ENV['UNIIV_DEV_DB_HOST'] %>
   ssh_user: timssh
 
 # Warning: The database defined as "test" will be erased and
@@ -37,8 +37,8 @@ test:
   encoding: utf8
   database: uniiv_test
   pool: 5
-  username: <%= ENV['RAILS_DB_USERNAME'] %>
-  password: <%= ENV['RAILS_DB_PASSWORD'] %>
+  username: <%= ENV['LOCAL_DB_USERNAME'] %>
+  password: <%= ENV['LOCAL_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: 127.0.0.1
 
@@ -47,6 +47,7 @@ production:
   encoding: utf8
   database: uniiv_production
   pool: 5
-  username: <%= ENV['RAILS_DB_USERNAME'] %>
-  password: <%= ENV['RAILS_DB_PASSWORD'] %>
+  username: <%= ENV['UNIIV_DEV_PROD_USERNAME'] %>
+  password: <%= ENV['UNIIV_DEV_PROD_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
+  host: <%= ENV['UNIIV_PROD_DB_HOST'] %>

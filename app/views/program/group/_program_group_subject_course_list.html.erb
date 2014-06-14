@@ -1,5 +1,5 @@
 <div class='list-group'>
-  <% program_group.subject_courses.each do |subject_course| %>
+  <% group.subject_courses.each do |subject_course| %>
       <div class='list-group-item subject_courses_element'>
         <div class='row'>
           <div class='col-md-10'>
@@ -20,7 +20,7 @@
       </div>
   <% end %>
   <div class='list-group-item'>
-    <a class='btn btn-primary form-control' href="<%= group_subject_course_list_new_path(:program_group => program_group) %>">
+    <a class='btn btn-primary form-control' href="<%= group_subject_course_list_new_path(:group => group) %>">
       Add new
     </a>
   </div>

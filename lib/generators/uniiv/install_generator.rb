@@ -7,19 +7,16 @@ module Uniiv
     source_root File.expand_path('../templates', __FILE__)
     desc 'Install local config file'
 
-    argument :_username, type: :string, required: false, desc: 'Database username'
-    argument :_password, type: :string, required: false, desc: 'Database password'
-    argument :_username_main, type: :string, required: false, desc: 'Main database username'
-    argument :_password_main, type: :string, required: false, desc: 'Main database password'
-
     def install
-      username = ask_for('Database username?', 'root', _username)
-      password = ask_for('Database password?', '', _password)
-      username_main = ask_for('Main database username?', 'root', _username_main)
-      password_main = ask_for('Main database password?', '', _password_main)
-      template 'local_env_initializer.yml.erb', 'config/local/local_env.yml',
-               :username => username, :password => password,
-               :username_main => username_main, :password_main => password_main
+      config = {
+          :local_username => 'root', :local_password => '',
+          :uniiv_dev_username => 'readonly', :uniiv_dev_password => '', :uniiv_dev_host => '',
+          :uniiv_prod_username => 'readonly', :uniiv_prod_password => '', :uniiv_prod_host => ''
+      }
+      config.each do |k, v|
+        config[k] = ask_for(k.to_s.humanize, v)
+      end
+      template 'local_env_initializer.yml.erb', 'config/local/local_env.yml', config
     end
   end
 end

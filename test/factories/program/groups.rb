@@ -5,7 +5,7 @@ FactoryGirl.define do
     name 'Program group'
 
     factory :program_group_subgroup do
-      association :groupparent, :factory => :program_group
+      association :groupparent, :factory => :group
     end
   end
 end
