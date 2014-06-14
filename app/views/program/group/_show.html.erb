@@ -53,7 +53,7 @@
         <div class='list-group'>
           <% group.subgroups.each do |subgroup| %>
               <div class="list-group-item">
-                <%= render :partial => 'program_group/show', :locals => {:group => subgroup} %>
+                <%= render :partial => 'program/group/show', :locals => {:group => subgroup} %>
               </div>
           <% end %>
         </div>
