@@ -128,10 +128,13 @@ class Ressources
   #Call the given function when all images are loaded
   @onLoadImage: (callback) ->
     loadedImages = 0
-    numImages = 0
+    numImages = Object.keys(@images).length
     #get num of sources
-    for src, image of @images
-      numImages += 1
+    console.log(@images)
+    if numImages == 0
+      console.log('no images')
+      callback()
+      return
 
     for src, image of @images
       image.onload = ()   ->
@@ -177,9 +180,11 @@ class CanGraph
 
   load: (url, callback) ->
     $.get(url, (data) =>
+      console.log 'loaded data'
       Ressources.loadImageFromJson (data)
       Ressources.style = data.style
       Ressources.onLoadImage => #Wait for the images to load
+        console.log 'image loaded'
         @loadGraphs(data)
         @canvas_container.show()
         @loading_screen.hide() if @loading_screen?
