@@ -55,9 +55,38 @@ class Program::GroupControllerTest < ActionController::TestCase
   end
 
   test 'edit return active record not found if parent not given' do
-    @ability.can :create, Program::Group
+    @ability.can :update, Program::Group
     assert_raises ActiveRecord::RecordNotFound do
       get :edit, :id => 0
+    end
+  end
+
+  test 'should update group' do
+    @ability.can :update, Program::Group
+    group = create(:program_group)
+    new_name = 'New name'
+    get :update, :id => group.id, :group => {:name => new_name}
+    assert_response :redirect
+    group.reload
+    assert_equal new_name, group.name
+  end
+
+  test 'should not update group if missing params' do
+    @ability.can :update, Program::Group
+    group = create(:program_group)
+    old_name = group.name
+    get :update, :id => group.id, :group => {:name => nil}
+    assert_response :success
+    group.reload
+    assert_equal old_name, group.name
+  end
+
+  test 'should delete group' do
+    @ability.can :delete, Program::Group
+    group = create(:program_group)
+    assert_difference 'Program::Group.count', -1 do
+      get :delete, :id => group.id
+      assert_response :redirect
     end
   end
 end

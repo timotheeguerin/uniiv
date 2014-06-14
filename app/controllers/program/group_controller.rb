@@ -52,7 +52,7 @@ class Program::GroupController < ApplicationController
 
   def update
     @program_group = Program::Group.find(params[:id])
-    authorize! :create, @program_group
+    authorize! :update, @program_group
     if @program_group.update(program_group_params)
       if params[:saveandedit]
         redirect_to program_group_edit_path(@program_group)
