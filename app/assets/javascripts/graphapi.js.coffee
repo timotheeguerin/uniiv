@@ -49,7 +49,6 @@ $(document).ready ->
     sidebar_info.on 'click', 'a', (e) ->
       url = $(this).attr('href')
       type = $(this).attr('data-type')
-      console.log('type:' + type)
       switch type
         when  "ext" #load the link normaly
           return true
@@ -57,7 +56,6 @@ $(document).ready ->
           node_id = 'c_' + $(this).attr('data-id')
           loadCourse(node_id, url + '/graph/embed')
         else
-          console.log('load link')
           load_sidebar(url)
 
       graph.update()
@@ -67,7 +65,6 @@ $(document).ready ->
       resizeCanvasContainer()
       graph.resize()
     $(document).on 'formAjaxComplete', '#graph_sidebar_info', (evt, data) ->
-      console.log('reiuhroehs: ' + JSON.stringify(data))
       if data.url?
         load_sidebar(data.url)
       else
@@ -114,10 +111,16 @@ class Ressources
   @style: {}
 
   @loadImageFromJson: (data) ->
-    for k0, v0 of data.style #for all the class in the style
-      for k, v of v0
-        if(v.background? && v.background.image? && v.background.image.src?)
-          @addImage(v.background.image.src)
+    for k, v of data.style #for all the class in the style
+      @load_image_from_hash(v)
+
+  @load_image_from_hash: (hash) ->
+    if(hash.background? and hash.background.image? and hash.background.image.src?)
+      @addImage(hash.background.image.src)
+    for k, v of hash
+      if k != 'background' and v instanceof Object
+        @load_image_from_hash(v)
+
 
   @addImage: (src) ->
     if(!@images[src]?)
@@ -130,9 +133,7 @@ class Ressources
     loadedImages = 0
     numImages = Object.keys(@images).length
     #get num of sources
-    console.log(@images)
     if numImages == 0
-      console.log('no images')
       callback()
       return
 
@@ -180,11 +181,9 @@ class CanGraph
 
   load: (url, callback) ->
     $.get(url, (data) =>
-      console.log 'loaded data'
       Ressources.loadImageFromJson (data)
       Ressources.style = data.style
       Ressources.onLoadImage => #Wait for the images to load
-        console.log 'image loaded'
         @loadGraphs(data)
         @canvas_container.show()
         @loading_screen.hide() if @loading_screen?
