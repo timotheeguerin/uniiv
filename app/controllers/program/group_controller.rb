@@ -71,6 +71,14 @@ class Program::GroupController < ApplicationController
     redirect_to :back
   end
 
+
+  def graph_embed
+    setup
+    render :layout => false
+  end
+
+  private
+
   def program_group_params
     params.require(:group).permit(:name)
   end
@@ -81,11 +89,6 @@ class Program::GroupController < ApplicationController
     else
       fail ActiveRecord::RecordNotFound
     end
-  end
-
-  def graph_embed
-    setup
-    render :layout => false
   end
 
   def redirect_to_parent

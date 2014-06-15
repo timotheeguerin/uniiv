@@ -9,7 +9,6 @@ class BoxElement extends GraphElement
 
   computeStyle: (style) ->
     if(style.background?) #if the background property is defined
-      #background = @group.get(".background")[0]
       if(!@background?)
         if(@style.shape == 'circle')
           @background = new Kinetic.Circle({
