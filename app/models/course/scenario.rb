@@ -3,7 +3,7 @@ class Course::Scenario < ActiveRecord::Base
   has_many :taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_scenario_id', :dependent => :destroy
   has_many :courses, :through => :taking_courses
 
-  has_and_belongs_to_many :programs, :class_name => Program::Version
+  has_and_belongs_to_many :programs, :class_name => 'Program::Version'
 
 
   def has_completed_course?(course, inc_advanced_standing = true, term = nil)

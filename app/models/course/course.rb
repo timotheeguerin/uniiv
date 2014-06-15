@@ -6,14 +6,14 @@ class Course::Course < ActiveRecord::Base
 
   has_many :reviews, :class_name => Course::Review, :dependent => :destroy
 
-  has_and_belongs_to_many :restricted_years, :class_name => UniversityYear
+  has_and_belongs_to_many :restricted_years, :class_name => 'UniversityYear'
   has_many :scenario_taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_id', :dependent => :destroy
   has_many :user_completed_courses, :class_name => UserCompletedCourse, :foreign_key => 'course_id', :dependent => :destroy
   has_many :users, :class_name => User, :through => :user_completed_courses
   has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
 
   #Program group having the course
-  has_and_belongs_to_many :program_groups, :class_name => Program::Group
+  has_and_belongs_to_many :program_groups, :class_name => 'Program::Group'
 
 
   #Admin

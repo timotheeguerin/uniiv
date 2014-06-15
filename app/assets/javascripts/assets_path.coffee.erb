@@ -4,7 +4,7 @@
 assets = {}
 %w(fonts images).each do |dir|
     Dir.chdir("#{Rails.root}/app/assets/#{dir}/") do
-      Dir['**/*'].each do |f|
+      Dir['**/*.*'].each do |f|
         assets[f] = asset_path(f)
       end
     end

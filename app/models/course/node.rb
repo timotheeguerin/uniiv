@@ -8,13 +8,13 @@ class Course::Node < ActiveRecord::Base
   has_and_belongs_to_many :nodes,
                           :foreign_key => 'course_node_id',
                           :association_foreign_key => 'children_id',
-                          :class_name => Course::Node,
+                          :class_name => 'Course::Node',
                           :join_table => 'course_node_childrens'
 
   has_and_belongs_to_many :parents,
                           :foreign_key => 'children_id',
                           :association_foreign_key => 'course_node_id',
-                          :class_name => Course::Node,
+                          :class_name => 'Course::Node',
                           :join_table => 'course_node_childrens'
 
   has_many :subject_requirement_nodes, :class_name => Course::SubjectRequirementNode, :foreign_key => 'node_id', :dependent => :destroy

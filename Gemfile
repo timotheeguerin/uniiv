@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.2.rc1'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.3.16'
@@ -88,3 +88,5 @@ gem 'animate-rails'
 gem 'safe_yaml'
 
 gem 'slim'
+
+gem 'tzinfo-data'

@@ -5,7 +5,7 @@ class Program::Group < ActiveRecord::Base
   has_many :subgroups, :class_name => Program::Group, :as => :groupparent, :dependent => :destroy
 
   #List of courses to complete
-  has_and_belongs_to_many :courses, -> { uniq }, :class_name => Course::Course
+  has_and_belongs_to_many :courses, -> { uniq }, :class_name => 'Course::Course'
 
   #List of the subject_courses
   has_many :subject_courses, :class_name => Course::SubjectCourseList, :dependent => :destroy
@@ -13,7 +13,7 @@ class Program::Group < ActiveRecord::Base
   has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
 
   #Complete a number of programs
-  has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::Program
+  has_and_belongs_to_many :programs, -> { uniq }, :class_name => 'Program::Program'
 
   validates_presence_of :groupparent_id
   validates_presence_of :name

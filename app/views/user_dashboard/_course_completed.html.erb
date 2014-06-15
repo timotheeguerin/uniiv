@@ -2,7 +2,7 @@
     <hr style='width:100%;'>
     <div><h2>Completed Courses</h2></div>
     <div class='row'>
-      <% current_user.completed_courses.sort_by! { |c| c.advanced_standing.to_s }.reverse.each do |c| %>
+      <% current_user.completed_courses.order(:advanced_standing => :desc).each do |c| %>
           <div class='col-md-4 course_completed_container'>
             <div class='dashboard_coursebox'>
               <div class='row'>
