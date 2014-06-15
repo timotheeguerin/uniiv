@@ -24,7 +24,8 @@ rails g uniiv:install
 ```bash
 rake db:create
 rake db:migrate
-rake db:sync_local
+rake db:sync_local #Not working currently use mysql workbench to export main dev and reimport locally
+
 ```
 
 [Javascript tools](https://github.com/timcolonel/uniiv/wiki/Javascript)
