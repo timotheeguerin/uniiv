@@ -33,13 +33,13 @@ class Course::SubjectCourseList < ActiveRecord::Base
     l = level
     case operation
       when 'LESS'
-        result.where { code < l }
+        result.where('code < ?', l)
       when 'MORE'
-        result.where { code >= l }
+        result.where('code >= ?', l)
       when 'EQ'
-        result.where { (code >= l) & (code < l+100) }
+        result.where('code >= ? AND code < ?', l, l+100)
       when 'DIFF'
-        result.where { (code < l) | (code >= l+100) }
+        result.where('code < ? OR code >= ?', l, l+100)
       else
         result
     end

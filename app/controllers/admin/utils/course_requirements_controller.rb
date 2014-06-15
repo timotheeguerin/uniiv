@@ -7,7 +7,7 @@ class Admin::Utils::CourseRequirementsController < ApplicationController
   end
 
   def index
-    @uncompleted_courses = Admin::CourseRequirementFilled.where { (prerequisites == false) | (corequisites == false) }.limit(10)
+    @uncompleted_courses = Admin::CourseRequirementFilled.where('prerequisites = ? OR corequisites = ?', false, false).limit(10)
   end
 
   def mark_as_none

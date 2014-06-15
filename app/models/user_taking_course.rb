@@ -9,7 +9,7 @@ class UserTakingCourse < ActiveRecord::Base
   validates :semester, :presence => true
   validates :year, :presence => true
 
-  validate :validate_couse_not_completed
+  validate :validate_course_not_completed
 
 
   after_save :reindex
@@ -39,10 +39,9 @@ class UserTakingCourse < ActiveRecord::Base
   end
 
   private
-  def validate_couse_not_completed
-    uid = user.id
-    c_id = course_id
-    completed_course = UserCompletedCourse.where { (user_id == uid) & (course_id == c_id) }.first
+  #Check the course is not completed before saving
+  def validate_course_not_completed
+    completed_course = UserCompletedCourse.where(:user_id => user.id, :course_id => course_id).first
     unless completed_course.nil?
       errors.add(:course, 'completed')
     end

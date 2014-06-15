@@ -131,8 +131,6 @@ GEM
     ntlm-http (0.1.1)
     options (2.3.2)
     orm_adapter (0.5.0)
-    polyamorous (0.6.4)
-      activerecord (>= 3.0)
     polyglot (0.3.4)
     powerbar (1.0.11)
       ansi (~> 1.4.0)
@@ -207,10 +205,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    squeel (1.1.1)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      polyamorous (~> 0.6.0)
     sunspot (2.1.0)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
@@ -272,7 +266,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   slim
-  squeel
   sunspot_rails
   sunspot_solr
   thin
