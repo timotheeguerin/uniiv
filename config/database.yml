@@ -14,7 +14,7 @@ development:
   database: uniiv_development
   pool: 5
   username: <%= ENV['LOCAL_DB_USERNAME'] %>
-  password: <%= ENV['LOCAL_DB_USERNAME'] %>
+  password: <%= ENV['LOCAL_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: 127.0.0.1
 
