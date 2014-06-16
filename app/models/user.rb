@@ -77,6 +77,14 @@ class User < ActiveRecord::Base
     main_course_scenario.taking_courses.where(:course_id => course.id).size > 0
   end
 
+  def taking_program?(program)
+    main_course_scenario.programs.where(:id => program.version.ids).size > 0
+  end
+
+  def taking_program_version?(program)
+    main_course_scenario.programs.include?(program)
+  end
+
   def has_completed_or_taking_course?(course)
     has_completed_course?(course) or is_taking_course?(course)
   end

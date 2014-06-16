@@ -3,8 +3,11 @@ class Course::Scenario < ActiveRecord::Base
   has_many :taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_scenario_id', :dependent => :destroy
   has_many :courses, :through => :taking_courses
 
-  has_and_belongs_to_many :programs, :class_name => 'Program::Version'
+  has_and_belongs_to_many :programs, -> { uniq }, :class_name => 'Program::Version'
 
+  validate do
+    errors.add(:programs, t('error.program.maximum')) if reached_max_programs?
+  end
 
   def has_completed_course?(course, inc_advanced_standing = true, term = nil)
     if term.nil?
@@ -123,6 +126,10 @@ class Course::Scenario < ActiveRecord::Base
     user_taking_course = taking_courses.where(:course_id => course).first
     user_taking_course.destroy unless user_taking_course.nil?
     user.uncomplete_course(course) unless skip_completed
+  end
+
+  def reached_max_programs?
+    programs.size > 6
   end
 
   def to_s

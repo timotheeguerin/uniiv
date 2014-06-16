@@ -23,6 +23,7 @@ class ActiveSupport::TestCase
 end
 
 class ActionController::TestCase
+  include Devise::TestHelpers
   setup :setup_uniiv
   teardown :teardown_uniiv
 
