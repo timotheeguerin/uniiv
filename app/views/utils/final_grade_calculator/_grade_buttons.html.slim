@@ -1,0 +1,7 @@
+div class='showonhover' data-hover-container='.group'
+  div class='btn-group' style='margin-top: 5px'
+    = group_button_to utils_fgc_remove_grade_path, :name => 'grade', :value => grade.id, :class => 'btn btn-danger btn-sm' do
+      span class='glyphicon glyphicon-remove'
+    - if index == group.grades.size-1
+      = group_button_to utils_fgc_add_grade_to_group_path, :name => 'group', :value => group.id, :class => 'btn btn-primary btn-sm' do
+        span class='glyphicon glyphicon-plus'

@@ -110,9 +110,6 @@ $(document).ready () ->
 
     item.data('reloaded', true)
 
-  showonhover
-
-
   $(document).on 'click', '.toggledisplay .toggledisplay-btn', () ->
     btn = $(this)
     container = btn.closest('.toggledisplay')
@@ -132,6 +129,8 @@ $(document).ready () ->
       container.hide().removeClass('hidden') if container.hasClass('hidden')
       container.slideDown(200)
       $(this).find('span').first().rotate(180)
+
+  showonhover(document)
 
 setupStarRatings = () ->
   $('input.star-rating').each () ->
@@ -153,6 +152,7 @@ showonhover = (container)->
   container ?= document
   $(document).find('.showonhover').each () ->
     item = $(this)
+    console.log(item)
     container = $(this).closest($(this).data('hover-container'))
     container.mouseenter () ->
       item.show()
