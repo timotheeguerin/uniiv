@@ -41,6 +41,7 @@ $(document).ready ->
         type = array[0]
         id = array[1]
         sidebar_loader.show()
+
         if type == 'p'
           loadProgram(id)
         else if type == 'g'
@@ -85,11 +86,11 @@ $(document).ready ->
     load_sidebar(url)
 
   loadProgram = (program_id) ->
-    url = '/program/' + program_id + '/graph/embed'
+    url = "/program/#{program_id}/graph/embed"
     load_sidebar(url)
 
-  loadGroup = (program_id) ->
-    url = '/group/' + program_id + '/graph/embed'
+  loadGroup = (group_id) ->
+    url = "/program/group/#{group_id}"
     load_sidebar(url)
 
   load_sidebar = (url) ->
@@ -102,6 +103,7 @@ $(document).ready ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
+      console.log(sidebar_info.parent())
       sidebar_info.parent().nanoScroller()
       $(document).trigger('ajaxloadhtml', [sidebar_info])
 
@@ -309,7 +311,6 @@ class Graph
     @load(data)
 
   load: (data) ->
-    console.log(JSON.stringify(data.dimension))
     container_group = new Kinetic.Group(
       x: 0
       y: 0

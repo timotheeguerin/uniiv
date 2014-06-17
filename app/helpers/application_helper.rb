@@ -26,4 +26,8 @@ module ApplicationHelper
     content = capture(&block)
     render :partial => 'partial/image_hover_tag', :locals => {:image => image, :content => content, :link => link}
   end
+
+  def progress_bar_tag(values, options ={})
+    render :partial => 'partial/progress_bar_tag', :locals => {:values => [*values]}
+  end
 end

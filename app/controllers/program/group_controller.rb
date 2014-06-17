@@ -22,6 +22,7 @@ class Program::GroupController < ApplicationController
   def show
     setup
     authorize! :view, @group
+    render :layout => false if request.xhr?
   end
 
   def new

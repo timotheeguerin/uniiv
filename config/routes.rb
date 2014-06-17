@@ -125,7 +125,7 @@ Uniiv::Application.routes.draw do
   #Group controller
   get 'program/group/new' => 'program/group#new', :as => :program_group_new
   get 'program/group/:id' => 'program/group#show', as: 'group'
-  get 'program/group/:id/graph/embed' => 'program/group#graph_embed'
+  #get 'program/group/:id/graph/embed' => 'program/group#graph_embed'
   post 'program/group/new' => 'program/group#create', :as => :program_group_create
   get 'program/group/:id/edit' => 'program/group#edit', :as => :program_group_edit
   patch 'program/group/:id/edit' => 'program/group#update', :as => :program_group_update

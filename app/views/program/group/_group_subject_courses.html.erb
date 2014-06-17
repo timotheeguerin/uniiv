@@ -1,0 +1,19 @@
+<hr>
+<div>
+  <% group.subject_courses.each do |subject_course| %>
+      <div class='row'>
+        <div class='col-md-9'>
+          <h4> <%= subject_course.to_sentence %></h4>
+        </div>
+        <div class='col-md-1 col-md-offset-2'>
+          <button class='rotatecontent btn btn-success' data-container='#<%= dom_id(subject_course) %>'>
+            <span class='glyphicon glyphicon-chevron-down'></span>
+          </button>
+        </div>
+      </div>
+      <div id='<%= dom_id(subject_course) %>' class='hidden load-on-show subject-course-list-courses-container'
+           data-url='<%= group_subject_course_list_courses_path(subject_course) %>'
+           data-load-once="true">
+      </div>
+  <% end %>
+</div>
