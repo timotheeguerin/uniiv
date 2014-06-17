@@ -15,12 +15,14 @@
             <div><%= @term.semester.name.capitalize + ' ' + @term.year.to_s %></div>
           </div>
         </div>
-
-        <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p| %>
-            <div>
-              <small><%= p %></small>
-            </div>
-        <% end %></div>
+        <div class="row">
+          <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p| %>
+              <div class="col-md-6">
+                <small><%= p %></small>
+              </div>
+          <% end %>
+        </div>
+      </div>
       <hr>
       <div>
         <% perc = current_user.total_completed_ratio.percent.to_i.to_s %>
@@ -36,11 +38,12 @@
     <div id="graph_sidebar_info" class="graph-sidebar-body">
       <div class='nano has-scrollbar'>
         <div class='nano-content content'>
-          <div class="center-info-box light_greytext">
+          <div class="center-info-box greytext">
             <div>
-                <span class="glyphicon glyphicon-map-marker glyphicon-xl"></span>
+              <span class="glyphicon glyphicon-map-marker glyphicon-xl"></span>
             </div>
             <br>
+
             <div>
               <i>Click on any elements on the graph to show details</i>
             </div>
