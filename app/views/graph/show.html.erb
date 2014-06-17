@@ -5,32 +5,46 @@
     <%= render :partial => 'graph/graph_navigation' %>
   </div>
   <div class='col-md-3 graphsidebar'>
-    <div>
-      <div><h4><%= current_user.university %></h4></div>
-      <div><%= @term.semester.name.capitalize + ' ' + @term.year.to_s %></div>
-    </div>
-    <hr>
-    <div>
-      <% perc = current_user.total_completed_ratio.percent.to_i.to_s %>
-      <div class="row">
-        <div class='col-md-12'>
-          <div class='text-center'><%= perc %>% Degree Completion</div>
-          <%= progress_bar_tag perc %>
+    <div class="graph-sidebar-header">
+      <div>
+        <div class="row">
+          <div class="col-md-6">
+            <h4><%= current_user.university %></h4>
+          </div>
+          <div class="col-md-6 text-right">
+            <div><%= @term.semester.name.capitalize + ' ' + @term.year.to_s %></div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div>
-      <div id="programsfromuser">
         <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p| %>
             <div>
               <small><%= p %></small>
             </div>
         <% end %></div>
       <hr>
-      <div id="graph_sidebar_info">
-        <div class='nano has-scrollbar'>
-          <div class='nano-content content'></div>
+      <div>
+        <% perc = current_user.total_completed_ratio.percent.to_i.to_s %>
+        <div class="row">
+          <div class='col-md-12'>
+            <div class='text-center'><%= perc %>% Degree Completion</div>
+            <%= progress_bar_tag perc %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="graph_sidebar_info" class="graph-sidebar-body">
+      <div class='nano has-scrollbar'>
+        <div class='nano-content content'>
+          <div class="center-info-box light_greytext">
+            <div>
+                <span class="glyphicon glyphicon-map-marker glyphicon-xl"></span>
+            </div>
+            <br>
+            <div>
+              <i>Click on any elements on the graph to show details</i>
+            </div>
+          </div>
         </div>
       </div>
     </div>

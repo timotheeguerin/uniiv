@@ -21,6 +21,7 @@ class GraphController < ApplicationController
       redirect_to user_education_path, :alert => t('programs.zero.selected')
     end
     @fullwidth=true
+    @footer = false
   end
 
   def user_data

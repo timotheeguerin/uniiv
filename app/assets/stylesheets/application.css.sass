@@ -12,15 +12,15 @@
   margin-left: auto
   margin-right: auto
 
-body
+html, body
   height: 100%
+
+body
+  padding-top: $header_height
 
 .body_container
   min-height: 100%
   position: relative
-
-html, body
-  height: 100%
 
 form
   margin: 0
@@ -78,10 +78,12 @@ form
   border: none
 
 .wrapper
-  padding-top: 50px
-  min-height: 100%
-  height: auto !important
-  height: 100%
+  @include min-height-viewport
+
+  > .container-fluid
+    height: 100%
+    > .row
+      height: 100%
 
 footer
   height: $page_footer_height
@@ -140,16 +142,26 @@ a:hover
 .no-text-indent
   text-indent: 0px
 
-.graph
-  background-color: $palette_grey_lightest
-  border: 1px solid $palette_grey_medium_dark
-  border-radius: $page_border_radius
-  height: 500px
-
 .graphsidebar, #canvas-container
   height: 100%
-  padding-top: 15px
-  padding-bottom: 15px
+
+.graphsidebar
+  border-left: 1px solid $palette_grey_medium_light
+  $graph_sidebar_header_height: 160px
+  padding: 0
+
+  > *
+    padding: 0 15px
+
+  .graph-sidebar-header
+    height: $graph_sidebar_header_height
+    overflow: hidden
+    border-bottom: 1px solid $palette_grey_medium_light
+  .graph-sidebar-body
+    height: calc(100% - #{$graph_sidebar_header_height})
+
+    .content
+      padding: 0 0.5rem
 
 .graphnavigation
   position: absolute
@@ -544,6 +556,12 @@ $hover-img-height: 100px
   .course-text
     display: inline-block
 
-
 .subject-course-list-courses-container
   min-height: 25rem
+
+.center-info-box
+  position: relative
+  top: 50%
+  width: 100%
+  text-align: center
+  @include transform(translateY(-50%))

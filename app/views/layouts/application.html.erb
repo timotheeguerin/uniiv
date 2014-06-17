@@ -36,9 +36,11 @@
     <div class="<%= container %>">
       <%= yield %>
     </div>
-    <div class="push"></div>
+    <% unless defined?(@footer) and not @footer %>
+        <div class="push"></div>
+    <% end %>
   </div>
-  <%= render :partial => 'layouts/footer' %>
+  <%= render :partial => 'layouts/footer' unless defined?(@footer) and not @footer %>
 </div>
 <div class=''>
   <%= render :partial => 'layouts/confirmation_modal' %>

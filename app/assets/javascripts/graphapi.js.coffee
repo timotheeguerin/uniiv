@@ -2,14 +2,8 @@
 #=require graph/element/GraphElement
 #=require graph/element/ContainerElement
 
-resizeCanvasContainer = () ->
-  newheight = $(window).height() - 75;
-  $("#canvas-container").parent().height(newheight);
-  $("#canvas-container").parent().parent().height(newheight);
-
 
 $(document).ready ->
-  resizeCanvasContainer()
   canvas_container = $("#canvas-container")
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info .content")
@@ -63,7 +57,6 @@ $(document).ready ->
       e.preventDefault()
 
     $(window).resize () ->
-      resizeCanvasContainer()
       graph.resize()
     $(document).on 'formAjaxComplete', '#graph_sidebar_info', (evt, data) ->
       if data.url?
