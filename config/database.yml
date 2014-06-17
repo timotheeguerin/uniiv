@@ -47,7 +47,7 @@ production:
   encoding: utf8
   database: uniiv_production
   pool: 5
-  username: <%= ENV['UNIIV_DEV_PROD_USERNAME'] %>
-  password: <%= ENV['UNIIV_DEV_PROD_PASSWORD'] %>
+  username: <%= ENV['UNIIV_PROD_DB_USERNAME'] %>
+  password: <%= ENV['UNIIV_PROD_DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
   host: <%= ENV['UNIIV_PROD_DB_HOST'] %>

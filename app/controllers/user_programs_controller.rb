@@ -46,7 +46,8 @@ class UserProgramsController < ApplicationController
               else
                 raise ActiveRecord::RecordNotFound
               end
-    current_user.main_course_scenario.programs.delete(version)
+
+    current_user.main_course_scenario.programs.destroy(version)
 
     redirect_to user_education_selection_path, :notice => t('program.remove.success')
   end
