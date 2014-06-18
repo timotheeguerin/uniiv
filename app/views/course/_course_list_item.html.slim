@@ -1,12 +1,10 @@
 .row.course-list-item
-  .col-md-10
-    .course-status.text-md.vertical-align
-      - if current_user.has_completed_course?(course)
-        span class='glyphicon glyphicon-ok-circle greentext' title='You have completed this course' rel='tooltip'
-      - elsif current_scenario.is_taking_course?(course)
-        span class='glyphicon glyphicon-screenshot yellowtext' title='You are taking this course' rel='tooltip'
-    .course-text.vertical-align
-      = link_to course.get_detail_name, course_path(course)
-  .col-md-2
-    .vertical-align
-      = user_course_buttons(course)
+  .course-status.text-md.vertical-align
+    - if current_user.has_completed_course?(course)
+      span class='glyphicon glyphicon-ok-circle greentext' title='You have completed this course' rel='tooltip'
+    - elsif current_scenario.is_taking_course?(course)
+      span class='glyphicon glyphicon-screenshot yellowtext' title='You are taking this course' rel='tooltip'
+  .course-text.vertical-align
+    = link_to course.get_detail_name, course_path(course)
+  .course-buttons
+    = user_course_buttons(course)

@@ -29,7 +29,7 @@ $(document).ready ->
         type = name.split('_', 2)[0]
         if type == 'c'
           sidebar_loader.show()
-          loadCourse(name, '/course/' + id + '/graph/embed')
+          loadCourse(name, '/course/' + id)
       graph.onGraphClick (graph) ->     #When we click on a node it load information on the side
         array = graph.id.split('_', 2)
         type = array[0]
@@ -49,12 +49,13 @@ $(document).ready ->
           return true
         when "course"
           node_id = 'c_' + $(this).attr('data-id')
-          loadCourse(node_id, url + '/graph/embed')
+          loadCourse(node_id, url)
         else
           load_sidebar(url)
 
       graph.update()
       e.preventDefault()
+      e.stopImmediatePropagation()
 
     $(window).resize () ->
       graph.resize()
@@ -79,7 +80,7 @@ $(document).ready ->
     load_sidebar(url)
 
   loadProgram = (program_id) ->
-    url = "/program/#{program_id}/graph/embed"
+    url = "/program/#{program_id}"
     load_sidebar(url)
 
   loadGroup = (group_id) ->
@@ -98,7 +99,7 @@ $(document).ready ->
       sidebar_info.show()
       console.log(sidebar_info.parent())
       sidebar_info.parent().nanoScroller()
-      $(document).trigger('ajaxloadhtml', [sidebar_info])
+      $(document).trigger('content-changed', [sidebar_info])
 
 
 class Ressources

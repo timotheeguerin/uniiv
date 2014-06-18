@@ -1,7 +1,5 @@
 Uniiv::Application.routes.draw do
 
-  get "version/new"
-  get "version/list"
   get 'scenario/new'
   get 'static_page/uniiv'
   get 'static_page/story'
@@ -16,7 +14,6 @@ Uniiv::Application.routes.draw do
   get 'group/index'
   get 'group/graph_embed'
   get 'program/index'
-  get 'program/graph_embed'
   post 'user_programs/removeProgram'
 
   get 'user_emails/index'
@@ -98,8 +95,7 @@ Uniiv::Application.routes.draw do
   get 'program/search/autocomplete' => 'program#search_autocomplete', :as => :program_search_autocomplete
   get 'program/new' => 'program#new', :as => :program_new
   post 'program/new' => 'program#create', :as => :program_create
-  get 'program/:id', to: 'program#show', as: 'program'
-  get 'program/:id/graph/embed' => 'program#graph_embed'
+  get 'program/:id' => 'program#show', as: 'program'
 
 
   get 'program/:id/edit' => 'program#edit', :as => :program_edit
@@ -152,7 +148,6 @@ Uniiv::Application.routes.draw do
   get 'course/search/show' => 'course#search_list', :as => :search_course_list
   get 'course/:id', to: 'course#show', as: :course
   get 'course/:id/show' => 'course#show'
-  get 'course/:id/graph/embed' => 'course#graph_embed', :as => :course_graph_embed
   get 'course/:id/json' => 'course#json'
 
   #Course review controller

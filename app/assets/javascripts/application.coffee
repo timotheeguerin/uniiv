@@ -60,9 +60,11 @@ $(document).ready () ->
             container.replaceWith(data)
           , wait_time)
 
-  $(document).on 'ajaxloadhtml', (e, container) ->
+  $(document).on 'content-changed', (e, container) ->
     setupStarRatings()
     reload_scripts(container)
+    window.elementQuery.refresh()
+
 
   $('.search-ajax').each () ->
     input = $(this)

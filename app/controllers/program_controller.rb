@@ -2,14 +2,13 @@ class ProgramController < ApplicationController
   def show
     @program = Program::Program.find(params[:id])
     @program_version = @program.last_version
-    render 'program/version/show'
+    if request.xhr?
+      render :template => 'program/version/show', :layout => false
+    else
+      puts 'dawdaw'
+      render 'program/version/show'
+    end
   end
-
-  def graph_embed
-    @program = Program::Program.find(params[:id])
-    render :action => 'program/version/show', :layout => false
-  end
-
 
   def search_autocomplete
     programs = search.results

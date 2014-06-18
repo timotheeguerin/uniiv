@@ -543,20 +543,27 @@ $hover-img-height: 100px
   vertical-align: middle
   text-align: center
 
-.course-list-item
-  border-radius: $page_border_radius
-  border: 1px solid $palette_grey_medium_light
-  padding: 5px 10px
-  margin-top: 5px
-  margin-bottom: 5px
-  background-color: $palette_grey_lighter
+.course-list
+  border-left: 1px solid $palette_grey_medium_light
+  border-right: 1px solid $palette_grey_medium_light
+  .course-list-item
+    display: flex
+    align-items: center
+    border-top: 1px solid $palette_grey_medium_light
 
-  .course-status
-    width: 4rem
-    display: inline-block
+    padding: 5px 10px
+    background-color: $palette_grey_lightest
+    &:last-child
+      border-bottom: 1px solid $palette_grey_medium_light
+    .course-status, .course-buttons
+      flex: 0 0 3.5rem
 
-  .course-text
-    display: inline-block
+    .course-text
+      flex: 1 0 auto
+
+
+  .course-list-item:not([min-width~="500px"]) > .course-buttons
+    display: none
 
 .subject-course-list-courses-container
   min-height: 25rem

@@ -10,12 +10,10 @@ div
         = progress_bar_tag group.get_completion_ratio(current_scenario).percent.to_i
 
   - unless group.courses.empty?
-    hr
-    .container-fluid
       = render :partial => 'course/course_list', :locals => {:courses => group.courses}
 
   -unless group.subject_courses.empty?
-    = render :partial => 'group_subject_courses', :locals => {:subject_courses => group.subject_courses}
+    = render :partial => 'program/group/group_subject_courses', :locals => {:subject_courses => group.subject_courses}
   - unless group.subgroups.empty?
     hr
     .list-group
