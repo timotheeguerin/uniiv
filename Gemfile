@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2.rc1'
+gem 'rails', '4.1.2.rc2'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.3.16'
@@ -49,6 +49,7 @@ gem 'rails_admin'
 gem 'devise'
 
 gem 'cancan'
+
 gem 'i18n-active_record',
     :git => 'git://github.com/timcolonel/i18n-active_record.git',
     :require => 'i18n/active_record'
