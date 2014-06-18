@@ -144,22 +144,24 @@ a:hover
 
 .graphsidebar, #canvas-container
   height: 100%
+  @include min-height-viewport
 
 .graphsidebar
   border-left: 1px solid $palette_grey_medium_light
-  $graph_sidebar_header_height: 160px
+  display: flex
+  flex-direction: column
   padding: 0
-
   > *
     padding: 0 15px
 
   .graph-sidebar-header
-    height: $graph_sidebar_header_height
     overflow: hidden
     border-bottom: 1px solid $palette_grey_medium_light
   .graph-sidebar-body
-    height: calc(100% - #{$graph_sidebar_header_height})
-
+    flex: 1
+    display: flex
+    .nano
+      height: auto
     .content
       padding: 0 0.5rem
 
