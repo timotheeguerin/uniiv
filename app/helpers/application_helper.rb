@@ -28,6 +28,17 @@ module ApplicationHelper
   end
 
   def progress_bar_tag(values, options ={})
-    render :partial => 'partial/progress_bar_tag', :locals => {:values => [*values]}
+
+    types = %w(primary info success warning danger)
+    values = if values.is_a? Hash
+               values
+             else
+               hash = {}
+               [*values].each_with_index do |value, i|
+                 hash[value] = types[i%types.size]
+               end
+               hash
+             end
+    render :partial => 'partial/progress_bar_tag', :locals => {:values => values}
   end
 end

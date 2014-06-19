@@ -1,10 +1,10 @@
-<div class='row'>
-  <div class='col-md-9 graph'>
+<div class='row graph-container'>
+  <div class='graph-canvas'>
     <div id="canvas-container" data-url='<%= user_graph_data_path %>?semester=<%= @term.semester.id %>&year=<%= @term.year.to_s %>' data-semester='<%= @term.semester.id %>' data-year='<%= @term.year.to_s %>'>
     </div>
     <%= render :partial => 'graph/graph_navigation' %>
   </div>
-  <div class='col-md-3 graphsidebar'>
+  <div class='graphsidebar'>
     <div class="graph-sidebar-header">
       <div>
         <div class="row">
@@ -25,10 +25,10 @@
       </div>
       <hr>
       <div>
-        <% perc = current_user.total_completed_ratio.percent.to_i.to_s %>
+        <% perc = current_user.total_completed_ratio.percent %>
         <div class="row">
           <div class='col-md-12'>
-            <div class='text-center'><%= perc %>% Degree Completion</div>
+            <div class='text-center'><%= perc.to_i %>% Degree Completion</div>
             <%= progress_bar_tag perc %>
           </div>
         </div>

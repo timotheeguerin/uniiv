@@ -17,6 +17,7 @@ html, body
 
 body
   padding-top: $header_height
+  font-size: 13px
 
 .body_container
   min-height: 100%
@@ -142,28 +143,36 @@ a:hover
 .no-text-indent
   text-indent: 0px
 
-.graphsidebar, #canvas-container
-  height: 100%
-  @include min-height-viewport
-
-.graphsidebar
-  border-left: 1px solid $palette_grey_medium_light
+.graph-container
+  display: -webkit-flex
   display: flex
-  flex-direction: column
-  padding: 0
-  > *
-    padding: 0 15px
-
-  .graph-sidebar-header
-    overflow: hidden
-    border-bottom: 1px solid $palette_grey_medium_light
-  .graph-sidebar-body
-    flex: 1
+  align-content: stretch
+  height: 100%
+  .graph-canvas
+    flex: 1 0 auto
+    height: 100%
+    background-color: $palette_grey_lighter
+    #canvas-container
+      height: 100%
+  .graphsidebar
+    flex: 0 1 40rem
+    border-left: 1px solid $palette_grey_medium_light
     display: flex
-    .nano
-      height: auto
-    .content
-      padding: 0 0.5rem
+    flex-direction: column
+    padding: 0
+    > *
+      padding: 0 15px
+
+    .graph-sidebar-header
+      overflow: hidden
+      border-bottom: 1px solid $palette_grey_medium_light
+    .graph-sidebar-body
+      flex: 1
+      display: flex
+      .nano
+        height: auto
+      .content
+        padding: 0 0.5rem
 
 .graphnavigation
   position: absolute
@@ -272,8 +281,25 @@ li.invalid-time.dependency
   margin-left: 15px
   margin-right: 15px
 
-.program-title
+.program-top
   margin: 1rem 0
+  display: -webkit-flex
+  display: flex
+  -webkit-flex-wrap: wrap
+  flex-wrap: wrap
+  -webkit-align-items: center
+  align-items: center
+
+  .program-title
+    -webkit-flex: 1 0 auto
+    flex: 1 0 auto
+  .program-switch-version
+    -webkit-flex: 0 0 auto
+    flex: 0 0 auto
+
+  &:not([min-width~="500px"])
+    .program-title
+      width: 100%
 
 .program_list .row
   margin: 5px 0 5px
@@ -547,20 +573,23 @@ $hover-img-height: 100px
   border-left: 1px solid $palette_grey_medium_light
   border-right: 1px solid $palette_grey_medium_light
   .course-list-item
+    display: -webkit-flex
     display: flex
     align-items: center
     border-top: 1px solid $palette_grey_medium_light
 
-    padding: 5px 10px
+    padding: 0.8rem 0.2rem
+
     background-color: $palette_grey_lightest
     &:last-child
       border-bottom: 1px solid $palette_grey_medium_light
     .course-status, .course-buttons
-      flex: 0 0 3.5rem
+      -webkit-flex: 0 0 2.5rem
+      flex: 0 0 2.5rem
 
     .course-text
+      -webkit-flex: 1 0 auto
       flex: 1 0 auto
-
 
   .course-list-item:not([min-width~="500px"]) > .course-buttons
     display: none

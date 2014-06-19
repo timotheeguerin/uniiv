@@ -85,5 +85,7 @@ module Utils
     def to_s
       @ratio.to_s
     end
+
+    alias_attribute :to_percent, :percent
   end
 end
