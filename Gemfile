@@ -33,7 +33,7 @@ group :doc do
 end
 
 
-group :development do
+group :development, :development_server do
   # Use Capistrano for deployment
   gem 'capistrano', '~> 3.2', require: false
   gem 'capistrano-rvm'

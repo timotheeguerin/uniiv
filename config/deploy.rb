@@ -56,3 +56,21 @@ namespace :deploy do
     end
   end
 end
+
+namespace :solr do
+  task :start do
+    on roles(:app) do
+      within "#{deploy_to}/current" do
+        execute :rake, 'sunspot:solr:start'
+      end
+    end
+  end
+
+  task :stop do
+    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:stop"
+  end
+
+  task :reindex do
+    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:solr:reindex"
+  end
+end
