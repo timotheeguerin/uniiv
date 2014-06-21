@@ -32,6 +32,18 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
+group :development do
+  # Use Capistrano for deployment
+  gem 'capistrano', '~> 3.2', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails', '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano3-puma', require: false
+end
+
+gem 'puma'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -56,11 +68,6 @@ gem 'i18n-active_record',
 gem 'bootstrap-sass'
 
 gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
-
-
-
-gem 'thin'
-#gem 'puundma'
 
 
 group :development do
