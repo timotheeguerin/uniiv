@@ -26,8 +26,7 @@ set :repo_url, 'git@github.com:timcolonel/uniiv.git'
 # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
+set :linked_dirs, %w{tmp/pids tmp/sockets log}
 set :linked_files, %w{config/local/local_env.yml}
 
 # Default value for default_env is {}
