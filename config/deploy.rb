@@ -58,27 +58,12 @@ namespace :deploy do
 end
 
 namespace :solr do
-  task :start do
-    on roles(:app) do
-      within "#{deploy_to}/current" do
-        execute :rake, 'sunspot:solr:start'
-      end
-    end
-  end
-
-  task :stop do
-    on roles(:app) do
-      within "#{deploy_to}/current" do
-        execute :rake, 'sunspot:solr:stop'
-      end
-    end
-  end
-
-
   task :reindex do
     on roles(:app) do
       within "#{deploy_to}/current" do
-        execute :rake, 'sunspot:solr:reindex'
+        with :rails_env => fetch(:rails_env, 'production') do
+          rake 'sunspot:solr:reindex'
+        end
       end
     end
   end
