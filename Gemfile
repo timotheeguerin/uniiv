@@ -33,7 +33,7 @@ group :doc do
 end
 
 
-group :development, :development_server do
+group :development do
   # Use Capistrano for deployment
   gem 'capistrano', '~> 3.2', require: false
   gem 'capistrano-rvm'
@@ -77,7 +77,7 @@ end
 
 gem 'sunspot_rails'
 
-gem 'sunspot_solr', :group => :development
+gem 'sunspot_solr', :group => [:development, :development_server]
 
 gem 'progress_bar'
 
