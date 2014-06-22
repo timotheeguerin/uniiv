@@ -31,12 +31,11 @@ rake db:sync_local #Not working currently use mysql workbench to export main dev
 [Javascript tools](https://github.com/timcolonel/uniiv/wiki/Javascript)
 
 
-#Production
-Extra step to do in production
+#Server
+Use capistrano
 
-Precompile assets
-```bash
-rake assets:precompile RAILS_ENV=production
-```
+One time step:
+* Install nginx
+* [Install solr](https://github.com/timcolonel/uniiv/wiki/Installing-solr)
 
-Install solr server(The solr developement server is included in the gem already)
+
