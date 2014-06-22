@@ -242,6 +242,14 @@ Uniiv::Application.routes.draw do
   post 'user/switch' => 'switch_user#switch'
   post 'user/switch/back' => 'switch_user#switch_back', :as => :switch_user_back
 
+
+  #Issues
+  get 'issues/new' => 'issue#new', :as => :issue_new
+  post 'issues/new' => 'issue#create'
+  get 'issues/:id' => 'issue#show', :as => :issue
+
+  #Rich text
+  get 'richcontent/markdown' => 'rich_content#markdown', :as => :rich_content_markdown
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 

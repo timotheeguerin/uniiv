@@ -183,6 +183,9 @@ $(document).ready ->
         , 2000)
     , 800)
 
+  setup_rich_content_editor()
+
+
 #Submit a form using ajax
 submitFormAjax = () ->
   form = $(this)
@@ -242,3 +245,16 @@ get_input_id = (input)->
   form.find('input[type=hidden]').each () ->
     input_id += '_' + $(this).attr('name') + '_' + $(this).attr('value')
   return input_id + '_' + input.attr('name')
+
+
+setup_rich_content_editor = () ->
+  $(".rich-content").each () ->
+    item = $(this)
+    item.markdown({
+      onPreview: (e) ->
+        originalContent = e.getContent()
+        $.get(item.data('content-url'), {text: originalContent}
+        ).success (data) ->
+          e.setPreview(data)
+        return window.loading_animation()
+    })

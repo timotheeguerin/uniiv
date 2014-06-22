@@ -77,7 +77,7 @@ end
 
 gem 'sunspot_rails'
 
-gem 'sunspot_solr', :group => [:development, :development_server]
+gem 'sunspot_solr', '2.1.0', :group => :development
 
 gem 'progress_bar'
 
@@ -99,3 +99,5 @@ gem 'safe_yaml'
 gem 'slim'
 
 gem 'tzinfo-data'
+
+gem 'github-markdown'

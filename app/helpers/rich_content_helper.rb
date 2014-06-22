@@ -1,0 +1,2 @@
+module RichContentHelper
+end

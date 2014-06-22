@@ -160,4 +160,6 @@ class ApplicationController < ActionController::Base
     session.delete(:real_current_user_id)
     @real_current_user = nil
   end
+
+
 end

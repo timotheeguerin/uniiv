@@ -186,7 +186,7 @@ jQuery.fn.resetRotation = () ->
     transform: "rotate(" + 0 + "deg)"
 
 
-loading_animation = () ->
+window.loading_animation = () ->
   return '<div class="spinner">
                       <div class="bounce1"></div>
                       <div class="bounce2"></div>

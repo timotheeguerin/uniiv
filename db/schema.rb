@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610181327) do
+ActiveRecord::Schema.define(version: 20140622123314) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
     t.integer  "code"
     t.text     "description"
     t.integer  "hours"
-    t.float    "credit"
+    t.float    "credit",          limit: 24
     t.integer  "prerequisite_id"
     t.integer  "corequisite_id"
     t.datetime "created_at"
@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20140610181327) do
     t.integer  "part"
   end
 
-  add_index "course_courses", ["corequisite_id"], name: "index_course_courses_on_corequisite_id", using: :btree
-  add_index "course_courses", ["prerequisite_id"], name: "index_course_courses_on_prerequisite_id", using: :btree
-  add_index "course_courses", ["subject_id"], name: "index_course_courses_on_subject_id", using: :btree
+  add_index "course_courses", ["corequisite_id"], name: "index_courses_on_corequisite_id", using: :btree
+  add_index "course_courses", ["prerequisite_id"], name: "index_courses_on_prerequisite_id", using: :btree
+  add_index "course_courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
 
   create_table "course_courses_program_groups", id: false, force: true do |t|
     t.integer "group_id"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
     t.integer "university_year_id"
   end
 
-  add_index "course_courses_university_years", ["course_id"], name: "index_course_courses_university_years_on_course_id", using: :btree
+  add_index "course_courses_university_years", ["course_id"], name: "index_course_courses_university_years_on_course_course_id", using: :btree
   add_index "course_courses_university_years", ["university_year_id"], name: "index_course_courses_university_years_on_university_year_id", using: :btree
 
   create_table "course_exprs", force: true do |t|
@@ -100,13 +100,13 @@ ActiveRecord::Schema.define(version: 20140610181327) do
 
   create_table "course_grading_system_entities", force: true do |t|
     t.string   "name"
-    t.float    "value"
+    t.float    "value",             limit: 24
     t.boolean  "pass"
+    t.boolean  "pass_core"
     t.integer  "grading_system_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "pass_core"
-    t.float    "min_score"
+    t.float    "min_score",         limit: 24
   end
 
   add_index "course_grading_system_entities", ["grading_system_id"], name: "index_course_grading_system_entities_on_grading_system_id", using: :btree
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
   create_table "course_ratings", force: true do |t|
     t.integer  "criteria_id"
     t.integer  "review_id"
-    t.float    "score"
+    t.float    "score",       limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
 
   create_table "fgc_grades", force: true do |t|
     t.string   "name"
-    t.float    "value"
+    t.float    "value",      limit: 24
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -261,7 +261,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
   end
 
   create_table "fgc_percents", force: true do |t|
-    t.float    "value"
+    t.float    "value",      limit: 24
     t.integer  "group_id"
     t.integer  "scheme_id"
     t.datetime "created_at"
@@ -285,6 +285,17 @@ ActiveRecord::Schema.define(version: 20140610181327) do
   end
 
   add_index "fgc_schemes", ["prediction_id"], name: "index_fgc_schemes_on_prediction_id", using: :btree
+
+  create_table "issue_issues", force: true do |t|
+    t.string   "title"
+    t.integer  "reporter_id"
+    t.integer  "assignee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "issue_issues", ["assignee_id"], name: "index_issue_issues_on_assignee_id", using: :btree
+  add_index "issue_issues", ["reporter_id"], name: "index_issue_issues_on_reporter_id", using: :btree
 
   create_table "program_group_restriction_types", force: true do |t|
     t.string   "name"
@@ -356,6 +367,17 @@ ActiveRecord::Schema.define(version: 20140610181327) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "rich_contents", force: true do |t|
+    t.text     "text"
+    t.integer  "format"
+    t.integer  "contentable_id"
+    t.string   "contentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rich_contents", ["contentable_id", "contentable_type"], name: "index_rich_contents_on_contentable_id_and_contentable_type", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -461,7 +483,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
     t.datetime "updated_at"
     t.integer  "university_id"
     t.integer  "faculty_id"
-    t.integer  "advanced_standing_credits"
+    t.integer  "advanced_standing_credits", default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -478,7 +500,7 @@ ActiveRecord::Schema.define(version: 20140610181327) do
   create_table "users_courses_recommendations", force: true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
-    t.float    "score"
+    t.float    "score",      limit: 24
     t.integer  "type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
