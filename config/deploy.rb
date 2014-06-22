@@ -27,7 +27,7 @@ set :repo_url, 'git@github.com:timcolonel/uniiv.git'
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{tmp/pids tmp/sockets log}
-set :linked_files, %w{config/local/local_env.yml}
+set :linked_files, %w{config/local/local_env.yml config/secrets.yml}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
