@@ -1,4 +1,11 @@
-
-h1=@issue.title
-hr
-== @issue.content.to_html
+.issue
+  .issue-header
+    .issue-title
+      h1=@issue.title
+    .issue-edit
+      .btn.btn-default.btn-sm
+        = t('edit')
+      .btn.btn-success.btn-sm
+        = t('issue.new')
+  hr
+  == @issue.content.to_html

@@ -244,9 +244,13 @@ Uniiv::Application.routes.draw do
 
 
   #Issues
-  get 'issues/new' => 'issue#new', :as => :issue_new
-  post 'issues/new' => 'issue#create'
-  get 'issues/:id' => 'issue#show', :as => :issue
+  get 'issues' => 'issue#index', :as => :issue_issues
+  get 'issues/new' => 'issue#new', :as => :issue_issue_new
+  post 'issues' => 'issue#create'
+  get 'issues/:id' => 'issue#show', :as => :issue_issue
+  get 'issues/:id/edit' => 'issue#edit', :as => :issue_edit
+  patch 'issues/:id' => 'issue#update'
+
 
   #Rich text
   get 'richcontent/markdown' => 'rich_content#markdown', :as => :rich_content_markdown

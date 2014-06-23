@@ -20,3 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 en:
   title: 'Title'
+  edit: 'Edit'
+  issue:
+    new: 'New issue'

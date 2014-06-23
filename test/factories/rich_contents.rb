@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :rich_content do
-    text "MyText"
-    format 1
+    text 'Some rich content **text**'
+    format :markdown
     contentable nil
   end
 end

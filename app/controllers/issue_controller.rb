@@ -10,6 +10,7 @@ class IssueController < ApplicationController
   end
 
   def new
+    authorize! :create, Issue::Issue
     @issue = Issue::Issue.new
     @issue.build_content
   end
@@ -18,10 +19,27 @@ class IssueController < ApplicationController
     authorize! :create, Issue::Issue
     @issue = Issue::Issue.create(issue_params)
     if @issue.valid?
-      redirect_to issue_path(@issue)
+      redirect_to issue_issue_path(@issue)
     else
       flash[:alert] = @issue.errors.full_messages
       render :new
+    end
+  end
+
+  def edit
+    @issue = Issue::Issue.find(params[:id])
+    authorize! :update, Issue::Issue
+  end
+
+  def update
+    @issue = Issue::Issue.find(params[:id])
+    authorize! :update, Issue::Issue
+    @issue.assign_attributes(issue_params)
+    if @issue.save
+      redirect_to issue_issue_path(@issue)
+    else
+      flash[:alert] = @issue.errors.full_messages
+      render :edit
     end
   end
 

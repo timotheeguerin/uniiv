@@ -68,3 +68,15 @@ namespace :solr do
     end
   end
 end
+
+namespace :rake do
+  task :invoke do
+    on roles(:app) do
+      within "#{deploy_to}/current" do
+        with :rails_env => fetch(:rails_env, 'production') do
+          rake ENV['task']
+        end
+      end
+    end
+  end
+end
