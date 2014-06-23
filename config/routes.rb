@@ -248,7 +248,7 @@ Uniiv::Application.routes.draw do
   get 'issues/new' => 'issue#new', :as => :issue_issue_new
   post 'issues' => 'issue#create'
   get 'issues/:id' => 'issue#show', :as => :issue_issue
-  get 'issues/:id/edit' => 'issue#edit', :as => :issue_edit
+  get 'issues/:id/edit' => 'issue#edit', :as => :issue_issue_edit
   patch 'issues/:id' => 'issue#update'
 
 
