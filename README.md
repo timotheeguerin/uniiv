@@ -32,10 +32,16 @@ rake db:sync_local #Not working currently use mysql workbench to export main dev
 
 
 #Server
-Use capistrano
 
-One time step:
+## One time step:
 * Install nginx
 * [Install solr](https://github.com/timcolonel/uniiv/wiki/Installing-solr)
 
+
+## Deploy
+Use capistrano, require to have ssh access to the server user deploy
+```bash
+cap <environment> deploy #Deploy new version 
+cap <environment> solr:reindex #Reindex
+```
 
