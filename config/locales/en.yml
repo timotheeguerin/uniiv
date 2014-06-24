@@ -21,5 +21,13 @@
 en:
   title: 'Title'
   edit: 'Edit'
+  delete: 'Delete'
+  confirm:
+    default: 'Are you sure?'
+    delete: 'Are you sure?'
   issue:
     new: 'New issue'
+
+  comment:
+    new:  'New comment'
+    new_for: 'New comment for %{issue}'

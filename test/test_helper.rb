@@ -43,4 +43,15 @@ class ActionController::TestCase
   def set_current_scenario(scenario)
     @controller.send(:current_scenario=, scenario)
   end
+
+  def bypass_rescue
+    @controller.extend(BypassRescue)
+  end
+end
+
+
+module BypassRescue
+  def rescue_with_handler(exception)
+    raise exception
+  end
 end

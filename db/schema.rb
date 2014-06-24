@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622123314) do
+ActiveRecord::Schema.define(version: 20140624184844) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20140622123314) do
 
   create_table "course_reviews", force: true do |t|
     t.integer  "user_id"
-    t.text     "comment"
+    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "course_id"
@@ -285,6 +285,16 @@ ActiveRecord::Schema.define(version: 20140622123314) do
   end
 
   add_index "fgc_schemes", ["prediction_id"], name: "index_fgc_schemes_on_prediction_id", using: :btree
+
+  create_table "issue_comments", force: true do |t|
+    t.integer  "issue_id"
+    t.integer  "commenter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "issue_comments", ["commenter_id"], name: "index_issue_comments_on_commenter_id", using: :btree
+  add_index "issue_comments", ["issue_id"], name: "index_issue_comments_on_issue_id", using: :btree
 
   create_table "issue_issues", force: true do |t|
     t.string   "title"

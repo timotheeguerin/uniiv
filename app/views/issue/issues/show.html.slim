@@ -1,0 +1,15 @@
+.issue
+  .issue-header
+    .issue-title
+      h1= @issue.title
+    .issue-edit
+      = link_to t('edit'), edit_issue_path(@issue), class: 'btn btn-default btn-sm'
+      = link_to t('issue.new'), new_issue_path, class: 'btn btn-success btn-sm'
+      - if can? :destroy, @issue
+        = button_to t('delete'), issue_path(@issue), method: :delete, class: 'btn btn-danger btn-sm needconfirmation', 'data-confirm-dialog' => t('confirm.delete')
+  hr
+  == @issue.content.to_html
+
+  hr
+
+  = render 'issue/comments/list', issue: @issue

@@ -244,12 +244,18 @@ Uniiv::Application.routes.draw do
 
 
   #Issues
-  get 'issues' => 'issue#index', :as => :issue_issues
-  get 'issues/new' => 'issue#new', :as => :issue_issue_new
-  post 'issues' => 'issue#create'
-  get 'issues/:id' => 'issue#show', :as => :issue_issue
-  get 'issues/:id/edit' => 'issue#edit', :as => :issue_issue_edit
-  patch 'issues/:id' => 'issue#update'
+  # get 'issues' => 'issues#index', :as => :issue_issues
+  # get 'issues/new' => 'issues#new', :as => :issue_issue_new
+  # post 'issues' => 'issues#create'
+  # get 'issues/:id' => 'issues#show', :as => :issue_issue
+  # get 'issues/:id/edit' => 'issues#edit', :as => :issue_issue_edit
+  # patch 'issues/:id' => 'issues#update'
+
+  scope module: :issue do
+    resources :issues do
+      resources :comments
+    end
+  end
 
 
   #Rich text

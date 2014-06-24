@@ -1,9 +1,0 @@
-.issue
-  .issue-header
-    .issue-title
-      h1=@issue.title
-    .issue-edit
-      = link_to t('edit'), issue_issue_edit_path(@issue), :class=>'btn btn-default btn-sm'
-      = link_to t('issue.new'), issue_issue_new_path, :class=>'btn btn-success btn-sm'
-  hr
-  == @issue.content.to_html

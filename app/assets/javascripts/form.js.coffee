@@ -6,9 +6,10 @@ $(document).ready ->
   $(document).on 'change', 'select.submit-onselect', () ->
     $(this).closest('form').submit()
 
-  $(document).on 'click', 'button.needconfirmation, input[type=submit].needconfirmation', (event) ->
+  $(document).on 'click', '.needconfirmation', (event) ->
     event.preventDefault()
     button = $(this)
+
     form = button.closest('form')
     modale = $('#confirmation_modal').clone().appendTo('body')
     modale.find('.modal-body').html(button.data('confirm-dialog'))
@@ -16,7 +17,12 @@ $(document).ready ->
 
     modale.on 'click', '.btn[data-confirmation]', () ->
       if $(this).data('confirmation') == 'continue'
-        form.submit()
+        if form?
+          form.submit()
+        else if button.is 'a'
+          console.log('FRFR')
+          window.location.href = button.attr('href')
+
       modale.modal('hide')
       setTimeout(()->
         modale.remove()

@@ -1,8 +1,7 @@
-class IssueController < ApplicationController
+class Issue::IssuesController < ApplicationController
   def index
 
   end
-
 
   def show
     @issue = Issue::Issue.find(params[:id])
@@ -19,7 +18,7 @@ class IssueController < ApplicationController
     authorize! :create, Issue::Issue
     @issue = Issue::Issue.create(issue_params)
     if @issue.valid?
-      redirect_to issue_issue_path(@issue)
+      redirect_to issue_path(@issue)
     else
       flash[:alert] = @issue.errors.full_messages
       render :new
@@ -36,15 +35,21 @@ class IssueController < ApplicationController
     authorize! :update, Issue::Issue
     @issue.assign_attributes(issue_params)
     if @issue.save
-      redirect_to issue_issue_path(@issue)
+      redirect_to issue_path(@issue)
     else
       flash[:alert] = @issue.errors.full_messages
       render :edit
     end
   end
 
+  def destroy
+    @issue = Issue::Issue.find(params[:id])
+    authorize! :destroy, Issue::Issue
+    @issue.destroy
+    redirect_to issues_path
+  end
 
   def issue_params
-    params.require(:issue_issue).permit(:title, :content_attributes => [:id, :text, :format]).merge(reporter_id: current_user.id)
+    params.require(:issue).permit(:title, :content_attributes => [:id, :text, :format]).merge(reporter_id: current_user.id)
   end
 end

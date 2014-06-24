@@ -1,0 +1,5 @@
+- issue.comments.each do |comment|
+  = 'comment'
+  = render 'issue/comments/show', comment: comment
+
+= render 'issue/comments/form', comment: issue.build_new_comment
