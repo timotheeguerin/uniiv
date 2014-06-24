@@ -7,8 +7,8 @@
       = link_to t('issue.new'), new_issue_path, class: 'btn btn-success btn-sm'
       - if can? :destroy, @issue
         = button_to t('delete'), issue_path(@issue), method: :delete, class: 'btn btn-danger btn-sm needconfirmation', 'data-confirm-dialog' => t('confirm.delete')
-  hr
-  == @issue.content.to_html
+  .issue-content
+    == @issue.content.to_html
 
   hr
 

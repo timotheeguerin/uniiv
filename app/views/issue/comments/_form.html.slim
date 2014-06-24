@@ -1,7 +1,8 @@
-= form_for [comment.issue, comment] do |f|
-  .form-group
-    = f.fields_for :content do |content_f|
-      = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
-      = content_f.hidden_field :format, :value => :markdown
+.new-comment
+  = form_for [comment.issue, comment] do |f|
+    .form-group
+      = f.fields_for :content do |content_f|
+        = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
+        = content_f.hidden_field :format, :value => :markdown
 
-  = f.submit :class => 'btn btn-success'
+    = f.submit :class => 'btn btn-success'

@@ -1,10 +1,11 @@
-= form_for @issue do |f|
-  .form-group
-    = f.text_field :title, :class => 'form-control', :placeholder => t('title')
+.new-issue
+  = form_for @issue do |f|
+    .form-group
+      = f.text_field :title, :class => 'form-control', :placeholder => t('title')
 
-  .form-group
-    = f.fields_for :content do |content_f|
-      = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
-      = content_f.hidden_field :format, :value => :markdown
+    .form-group
+      = f.fields_for :content do |content_f|
+        = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
+        = content_f.hidden_field :format, :value => :markdown
 
-  = f.submit :class => 'btn btn-success'
+    = f.submit :class => 'btn btn-success'

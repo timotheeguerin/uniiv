@@ -1,2 +1,5 @@
 .comment
-  == @issue.content.to_html
+  .comment-header
+    = t('comment.by', :user => comment.commenter)
+  .comment-content
+    == comment.content.to_html

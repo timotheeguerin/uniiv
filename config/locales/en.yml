@@ -31,3 +31,4 @@ en:
   comment:
     new:  'New comment'
     new_for: 'New comment for %{issue}'
+    by: '%{user} commented'

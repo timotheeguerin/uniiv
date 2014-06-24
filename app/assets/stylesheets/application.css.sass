@@ -599,8 +599,13 @@ $hover-img-height: 100px
   text-align: center
   @include transform(translateY(-50%))
 
-textarea.rich-content
-  height: 40rem
+.new-issue
+  textarea.rich-content
+    height: 40rem
+
+.new-comment
+  textarea.rich-content
+    height: 10rem
 
 .issue
   .issue-header
@@ -615,3 +620,26 @@ textarea.rich-content
       .btn
         display: inline-block
         margin: 0 0.5rem
+
+  .issue-content
+    padding: 1rem
+    margin: 1rem 0
+    background-color: $palette_grey_lightest
+    border: 1px solid $palette_grey_medium_light
+
+  .comment
+    margin: 1rem 0
+    border: 1px solid $palette_grey_medium_light
+    > *
+      padding: 1rem
+
+    .comment-header
+      background-color: $palette_grey_lighter
+      border-bottom: 1px solid $palette_grey_medium_light
+      font-style: italic
+    .comment-content
+      background-color: $palette_grey_lightest
+      padding-top: 2rem
+
+  .new-comment
+    margin-top: 3rem
