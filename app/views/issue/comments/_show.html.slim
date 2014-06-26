@@ -1,5 +1,8 @@
 .comment
   .comment-header
-    = t('comment.by', :user => comment.commenter)
+    .comment-title
+      = t('comment.by', :user => comment.commenter)
+    .comment-edit
+      a.glyphicon.glyphicon-pencil.edit-comment data-url=edit_issue_comment_path(comment.issue, comment, embed_edit: true)
   .comment-content
     == comment.content.to_html

@@ -22,6 +22,7 @@ en:
   title: 'Title'
   edit: 'Edit'
   delete: 'Delete'
+  cancel: 'Cancel'
   confirm:
     default: 'Are you sure?'
     delete: 'Are you sure?'
@@ -37,4 +38,5 @@ en:
   comment:
     new:  'New comment'
     new_for: 'New comment for %{issue}'
+    edit_for: 'Edit comment for %{issue}'
     by: '%{user} commented'

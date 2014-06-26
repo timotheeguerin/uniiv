@@ -252,9 +252,11 @@ get_input_id = (input)->
     input_id += '_' + $(this).attr('name') + '_' + $(this).attr('value')
   return input_id + '_' + input.attr('name')
 
-
-setup_rich_content_editor = () ->
-  $(".rich-content").each () ->
+$(document).on 'content-changed', () ->
+  setup_rich_content_editor($(this))
+setup_rich_content_editor = (container) ->
+  container ?= $(document)
+  container.find(".rich-content").each () ->
     item = $(this)
     item.markdown({
       onPreview: (e) ->

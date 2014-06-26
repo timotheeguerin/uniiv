@@ -31,6 +31,31 @@ class Issue::CommentsController < ApplicationController
   end
 
   def edit
+    @comment = @issue.comments.find(params[:id])
+    authorize! :update, @comment
+
+    if params[:embed_edit]
+      render :partial => 'form', locals: {comment: @comment}
+    end
+  end
+
+  def update
+    @comment = @issue.comments.find(params[:id])
+    authorize! :update, @comment
+    @comment.assign_attributes(comment_params)
+    if @comment.save
+      redirect_to issue_path(@issue)
+    else
+      flash[:alert] = @comment.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @comment = @issue.comments.find(params[:id])
+    authorize! :destroy, @comment
+    @comment.destroy
+    redirect_to issue_path(@issue)
   end
 
   private
