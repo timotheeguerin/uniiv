@@ -625,7 +625,6 @@ $hover-img-height: 100px
         display: inline-block
         margin: 0 0.5rem
 
-
   .comment, .issue-content
     margin: 1rem 0
     border: 1px solid $palette_grey_medium_light
@@ -640,15 +639,17 @@ $hover-img-height: 100px
 
     > .issue-content-header
       float: none
+      padding: 0
+      display: flex
+      align-items: stretch
+
+      //Override .close class from boostrap
       font-size: 1em
       font-weight: normal
       opacity: 1
       color: white
-      line-height: 100%
+      line-height: normal
       text-shadow: none
-      padding: 0
-      display: flex
-      align-items: stretch
 
       &.open
         background-color: $palette_yellow_medium
@@ -674,12 +675,11 @@ $hover-img-height: 100px
         flex: 0 0 5rem
         width: 5rem
         cursor: pointer
-
         font-size: 2rem
+        &:hover
+          color: white
       > .issue-content-title
         flex: 1 0 auto
-
-
 
     .comment-content, .issue-content-content
       background-color: $palette_grey_lightest

@@ -49,6 +49,18 @@ class Issue::IssuesController < ApplicationController
     redirect_to issues_path
   end
 
+  def change_status
+    @issue = Issue::Issue.find(params[:id])
+    @issue.status = params[:status]
+    if @issue.save
+      flash[:notice] = t('issue.status.change.success', status: @issue.status)
+      redirect_to issue_path(@issue)
+    else
+      flash[:alert] = @issue.errors.full_messages
+      redirect_to issue_path(@issue)
+    end
+  end
+
   def issue_params
     params.require(:issue).permit(:title, :content_attributes => [:id, :text, :format]).merge(reporter_id: current_user.id)
   end

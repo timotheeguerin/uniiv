@@ -29,6 +29,11 @@ en:
     new: 'New issue'
     created:
       by: '%{user} created'
+    status:
+      change:
+        success: 'Issue is now %{status}'
+        open: 'Reopen this issue'
+        close: 'Close this issue'
   comment:
     new:  'New comment'
     new_for: 'New comment for %{issue}'

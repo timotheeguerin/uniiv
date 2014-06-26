@@ -17,4 +17,8 @@ class Issue::Issue < ActiveRecord::Base
     comment.build_content
     comment
   end
+
+  def status_inverse
+     open? ? :close : :open
+  end
 end

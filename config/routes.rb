@@ -255,6 +255,7 @@ Uniiv::Application.routes.draw do
     resources :issues do
       resources :comments
     end
+    get 'issue/:id/change_status' => 'issues#change_status', :as => :change_issue_status
   end
 
 
