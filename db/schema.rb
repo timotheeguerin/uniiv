@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624184844) do
+ActiveRecord::Schema.define(version: 20140625174306) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20140624184844) do
 
   create_table "course_reviews", force: true do |t|
     t.integer  "user_id"
-    t.text     "comments"
+    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "course_id"
@@ -302,6 +302,7 @@ ActiveRecord::Schema.define(version: 20140624184844) do
     t.integer  "assignee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",      default: 0
   end
 
   add_index "issue_issues", ["assignee_id"], name: "index_issue_issues_on_assignee_id", using: :btree

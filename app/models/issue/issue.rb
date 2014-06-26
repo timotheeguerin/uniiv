@@ -3,6 +3,7 @@ class Issue::Issue < ActiveRecord::Base
   belongs_to :reporter, :class_name => User
   belongs_to :assignee, :class_name => User
   has_many :comments, :class_name => Issue::Comment, :dependent => :destroy
+  enum status: [:open, :close]
 
   validates_presence_of :reporter_id
   validates_presence_of :title

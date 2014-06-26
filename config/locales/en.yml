@@ -27,7 +27,8 @@ en:
     delete: 'Are you sure?'
   issue:
     new: 'New issue'
-
+    created:
+      by: '%{user} created'
   comment:
     new:  'New comment'
     new_for: 'New comment for %{issue}'

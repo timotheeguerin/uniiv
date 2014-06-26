@@ -8,7 +8,13 @@
       - if can? :destroy, @issue
         = button_to t('delete'), issue_path(@issue), method: :delete, class: 'btn btn-danger btn-sm needconfirmation', 'data-confirm-dialog' => t('confirm.delete')
   .issue-content
-    == @issue.content.to_html
+    .issue-content-header.close
+      .issue-status
+        = get_issue_status_icon(@issue)
+      .issue-content-title
+        = t('issue.created.by', :user => @issue.reporter)
+    .issue-content-content
+      == @issue.content.to_html
 
   hr
 
