@@ -18,7 +18,6 @@
     font-size: 1em
     font-weight: normal
     opacity: 1
-    color: white
     line-height: normal
     text-shadow: none
   .issue-header
@@ -53,6 +52,7 @@
       display: flex
       align-items: stretch
       &.open
+        color: white
         background-color: $palette_yellow_medium
         > .issue-status
           border-right: 1px solid $palette_yellow_darker
@@ -61,6 +61,7 @@
           &:active
             background-color: $palette_yellow_darkest
       &.close
+        color: white
         background-color: $palette_green_medium
         > .issue-status
           border-right: 1px solid $palette_green_darker
