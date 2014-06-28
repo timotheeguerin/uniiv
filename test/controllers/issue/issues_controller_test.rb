@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class Issue::IssuesControllerTest < ActionController::TestCase
+
+  def setup
+    bypass_rescue
+  end
+
   test 'should get index' do
     get :index
     assert_response :success
@@ -47,7 +52,7 @@ class Issue::IssuesControllerTest < ActionController::TestCase
 
   test 'should not be able to update issues without permission' do
     issue = create(:issue_issue, :reporter => @user)
-    bypass_rescue
+
     new_issue = {:title => 'Some new title', :content_attributes => {:text => 'Some new text', :format => :markdown}}
     assert_raise CanCan::AccessDenied do
       get :destroy, id: issue.id, :issue => new_issue
@@ -67,11 +72,20 @@ class Issue::IssuesControllerTest < ActionController::TestCase
 
   test 'should not be able to destroy issues without permission' do
     issue = create(:issue_issue, :reporter => @user)
-    bypass_rescue
     assert_no_difference 'Issue::Issue.count' do
       assert_raise CanCan::AccessDenied do
         get :destroy, id: issue.id
       end
     end
+  end
+
+  test 'should change issue status' do
+    @ability.can :change_status, Issue::Issue
+    issue = create(:issue_issue, status: :open)
+    new_status = :close
+    get :change_status, id: issue.id, status: new_status
+    assert_response :redirect
+    issue.reload
+    assert_equal new_status.to_s, issue.status
   end
 end

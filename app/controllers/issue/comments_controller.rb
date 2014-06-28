@@ -6,12 +6,6 @@ class Issue::CommentsController < ApplicationController
     @issue = Issue::Issue.find(params[:issue_id])
   end
 
-  def index
-  end
-
-  def show
-  end
-
   def new
     authorize! :comment, @issue
     @comment = Issue::Comment.new
