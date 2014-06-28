@@ -64,4 +64,23 @@ class Issue::CommentsControllerTest < ActionController::TestCase
     comment.reload
     assert_not_equal edited_comment[:content_attributes][:text], comment.content.text
   end
+
+  test 'should destroy comment' do
+    @ability.can :destroy, Issue::Comment
+    comment = create(:issue_comment)
+    assert_difference 'Issue::Comment.count', -1 do
+      get :destroy, issue_id: comment.issue.id, id: comment.id
+      assert_response :redirect
+    end
+  end
+
+  test 'should not destroy comment without permission' do
+    comment = create(:issue_comment)
+    assert_no_difference 'Issue::Comment.count' do
+      assert_raise CanCan::AccessDenied do
+        get :destroy, issue_id: comment.issue.id, id: comment.id
+        assert_response :redirect
+      end
+    end
+  end
 end

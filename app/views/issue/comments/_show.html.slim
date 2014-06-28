@@ -4,5 +4,8 @@
       = t('comment.by', :user => comment.commenter)
     .comment-edit
       a.glyphicon.glyphicon-pencil.edit-comment data-url=edit_issue_comment_path(comment.issue, comment, embed_edit: true)
+      - if can? :destroy, comment
+        = form_tag  issue_comment_path(comment.issue, comment), method: :delete do
+          a.glyphicon.glyphicon-remove.needconfirmation data-confirm-dialog=t('confirm.delete')
   .comment-content
     == comment.content.to_html
