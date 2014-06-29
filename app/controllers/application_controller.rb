@@ -161,5 +161,14 @@ class ApplicationController < ActionController::Base
     @real_current_user = nil
   end
 
+  def object_id(object)
+    "#{object.class}.#{object.id}"
+  end
 
+  def from_object_id(string)
+    class_name, id = string.split('.')
+    clazz = class_name.safe_constantize
+    return nil if clazz.nil?
+    clazz.find_by_id(id)
+  end
 end

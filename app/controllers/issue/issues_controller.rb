@@ -69,13 +69,19 @@ class Issue::IssuesController < ApplicationController
     IssueSearcher.search_items(params).each do |item|
       suggestion = {}
       suggestion[:value] = item.to_s
-      suggestion[:data] = item.id
+      suggestion[:data] = object_id(item)
       suggestions << suggestion
     end
     render :json => json.to_json
   end
 
+  private
   def issue_params
     params.require(:issue).permit(:title, :assignee_id, content_attributes: [:text, :format]).merge(reporter_id: current_user.id)
+  end
+
+  def parse_items
+    return [] unless params.key?(:items)
+    params[:items].split(',').map { |x| from_object_id(x) }
   end
 end
