@@ -35,6 +35,10 @@ en:
         success: 'Issue is now %{status}'
         open: 'Reopen this issue'
         close: 'Close this issue'
+    assignee:
+      select: 'Choose your advisor'
+    items:
+      select: 'Select programs, courses linked to this issue'
   comment:
     new:  'New comment'
     new_for: 'New comment for %{issue}'

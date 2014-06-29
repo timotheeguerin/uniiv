@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2.rc2'
+gem 'rails', '4.1.2'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.3.16'
@@ -32,7 +32,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano', '~> 3.2', require: false
@@ -44,18 +43,6 @@ end
 
 gem 'puma'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 gem 'rails_admin'
 
 gem 'devise'
@@ -65,7 +52,6 @@ gem 'cancan'
 gem 'i18n-active_record',
     :git => 'git://github.com/timcolonel/i18n-active_record.git',
     :require => 'i18n/active_record'
-gem 'bootstrap-sass'
 
 gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
 
@@ -74,9 +60,7 @@ group :development do
   gem 'rails-erd'
 end
 
-
 gem 'sunspot_rails'
-
 gem 'sunspot_solr', '2.1.0', :group => :development
 
 gem 'progress_bar'
@@ -85,14 +69,9 @@ gem 'mechanize'
 
 #Testing
 gem 'minitest'
-
 gem 'mocha'
-
 gem 'minitest-reporters'
-
 gem 'factory_girl_rails'
-
-gem 'animate-rails'
 
 gem 'safe_yaml'
 
@@ -104,4 +83,6 @@ gem 'github-markdown'
 
 
 # Style
+gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'animate-rails'

@@ -61,7 +61,21 @@ class Issue::IssuesController < ApplicationController
     end
   end
 
+  def autocomplete_items
+    json = {}
+    json[:query] = params[:q]
+    suggestions = []
+    json[:suggestions] = suggestions
+    IssueSearcher.search_items(params).each do |item|
+      suggestion = {}
+      suggestion[:value] = item.to_s
+      suggestion[:data] = item.id
+      suggestions << suggestion
+    end
+    render :json => json.to_json
+  end
+
   def issue_params
-    params.require(:issue).permit(:title, :content_attributes => [:id, :text, :format]).merge(reporter_id: current_user.id)
+    params.require(:issue).permit(:title, :assignee_id, content_attributes: [:text, :format]).merge(reporter_id: current_user.id)
   end
 end

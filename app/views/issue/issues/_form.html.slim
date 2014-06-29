@@ -7,5 +7,12 @@
       = f.fields_for :content do |content_f|
         = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
         = content_f.hidden_field :format, :value => :markdown
+    .form-group
+      = f.select :assignee_id, [], {:include_blank => t('issue.items.select')}, :class=>'selectize',
+            'data-url' => autocomplete_issue_items_path, 'data-max-items' => 5
+    .form-group
+      .row
+        .col-md-6
+          = f.select :assignee_id, [], {:include_blank => t('issue.assignee.select')}, :class=>'selectize', 'data-url' => autocomplete_user_path(role: :advisor)
 
     = f.submit :class => 'btn btn-success'

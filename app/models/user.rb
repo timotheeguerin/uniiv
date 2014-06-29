@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   # @param roles: list of roles names in an array
   scope :only_with_roles, -> (roles) { without_roles(Role.where.not(:name => roles).pluck(:name)) }
 
+  scope :advisors, -> (roles) { where(roles: {name: :advisor}) }
+
   #Validations
   validates :advanced_standing_credits, :presence => true
 
@@ -59,7 +61,6 @@ class User < ActiveRecord::Base
     ratio = Utils::Ratio.zero
     self.main_course_scenario.programs.size
     self.main_course_scenario.programs.each do |p|
-      puts 'oijoij'
       ratio += p.get_completion_ratio(main_course_scenario)
     end
     ratio
@@ -192,6 +193,8 @@ class User < ActiveRecord::Base
     text :emails do
       emails.map { |email| email.email }
     end
+
+    integer :role_ids, multiple: true, references: Role
   end
 
   alias :can_take_course? :requirements_completed?

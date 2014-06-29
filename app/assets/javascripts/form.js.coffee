@@ -114,7 +114,10 @@ $(document).ready ->
           '<div>' + result + '</div>'
       )
     }
+    maxItem = container.data('max-items')
+    maxItem ?= 1
     container.selectize {
+      maxItems: maxItem,
       valueField: 'data',
       labelField: 'value',
       searchField: 'value',

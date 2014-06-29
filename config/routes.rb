@@ -145,6 +145,7 @@ Uniiv::Application.routes.draw do
   #Course controller
   get 'course/search/data' => 'course#search_json', :as => :search_course_json
   get 'course/search/autocomplete' => 'course#search_autocomplete', :as => :search_course_autocomplete
+  get 'course/search/autocomplete' => 'course#search_autocomplete', :as => :course_autocomplete
   get 'course/search/show' => 'course#search_list', :as => :search_course_list
   get 'course/:id', to: 'course#show', as: :course
   get 'course/:id/show' => 'course#show'
@@ -243,6 +244,10 @@ Uniiv::Application.routes.draw do
   post 'user/switch/back' => 'switch_user#switch_back', :as => :switch_user_back
 
 
+  #User controller
+  scope module: :user do
+    get 'user/autocomplete' => 'users#autocomplete', :as => :autocomplete_user
+  end
   #Issues
   # get 'issues' => 'issues#index', :as => :issue_issues
   # get 'issues/new' => 'issues#new', :as => :issue_issue_new
@@ -255,7 +260,8 @@ Uniiv::Application.routes.draw do
     resources :issues do
       resources :comments
     end
-    get 'issue/:id/change_status' => 'issues#change_status', :as => :change_issue_status
+    get 'issues/:id/change_status' => 'issues#change_status', :as => :change_issue_status
+    get 'issues/items/autocomplete' => 'issues#autocomplete_items', :as => :autocomplete_issue_items
   end
 
 

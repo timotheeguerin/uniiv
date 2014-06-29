@@ -23,6 +23,7 @@ module Uniiv
 
     config.assets.paths << "#{Rails.root}/app/assets/test"
     config.autoload_paths << "#{Rails.root}/lib/"
+    config.autoload_paths << "#{Rails.root}/app/searcher/"
     silence_warnings do
       OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE unless Rails.env.production?
     end
