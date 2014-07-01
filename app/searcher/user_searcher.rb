@@ -6,6 +6,7 @@ class UserSearcher
         role = Role.find_by_name(params[:role])
         with :role_ids, role.id
       end
+      with :type, params[:type] if params.key?(:type)
     end
     search.results
   end

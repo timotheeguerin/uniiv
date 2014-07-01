@@ -195,6 +195,15 @@ class User < ActiveRecord::Base
     end
 
     integer :role_ids, multiple: true, references: Role
+    string :type
+  end
+
+  def advisor?
+    is_a? User::Advisor
+  end
+
+  def student?
+    is_a? User::Student
   end
 
   alias :can_take_course? :requirements_completed?

@@ -248,6 +248,10 @@ Uniiv::Application.routes.draw do
   scope module: :user do
     get 'user/autocomplete' => 'users#autocomplete', :as => :autocomplete_user
   end
+
+  namespace :user do
+    resources :advisor_students
+  end
   #Issues
   # get 'issues' => 'issues#index', :as => :issue_issues
   # get 'issues/new' => 'issues#new', :as => :issue_issue_new

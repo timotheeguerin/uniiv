@@ -3,6 +3,7 @@ class Issue::Issue < ActiveRecord::Base
   belongs_to :reporter, :class_name => User
   belongs_to :assignee, :class_name => User
   has_many :comments, :class_name => Issue::Comment, :dependent => :destroy
+  has_many :related_items, class_name: Issue::RelatedItem, dependent: :destroy
   enum status: [:open, :close]
 
   validates_presence_of :reporter_id
@@ -19,6 +20,6 @@ class Issue::Issue < ActiveRecord::Base
   end
 
   def status_inverse
-     open? ? :close : :open
+    open? ? :close : :open
   end
 end

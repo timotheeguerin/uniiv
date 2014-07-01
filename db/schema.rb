@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625174306) do
+ActiveRecord::Schema.define(version: 20140701184607) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -308,6 +308,17 @@ ActiveRecord::Schema.define(version: 20140625174306) do
   add_index "issue_issues", ["assignee_id"], name: "index_issue_issues_on_assignee_id", using: :btree
   add_index "issue_issues", ["reporter_id"], name: "index_issue_issues_on_reporter_id", using: :btree
 
+  create_table "issue_related_items", force: true do |t|
+    t.integer  "issue_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "issue_related_items", ["issue_id"], name: "index_issue_related_items_on_issue_id", using: :btree
+  add_index "issue_related_items", ["item_id", "item_type"], name: "index_issue_related_items_on_item_id_and_item_type", using: :btree
+
   create_table "program_group_restriction_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -437,6 +448,17 @@ ActiveRecord::Schema.define(version: 20140625174306) do
     t.datetime "updated_at"
   end
 
+  create_table "user_advisor_students", force: true do |t|
+    t.integer  "advisor_id"
+    t.integer  "student_id"
+    t.boolean  "validated",  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_advisor_students", ["advisor_id"], name: "index_user_advisor_students_on_advisor_id", using: :btree
+  add_index "user_advisor_students", ["student_id"], name: "index_user_advisor_students_on_student_id", using: :btree
+
   create_table "user_completed_courses", force: true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
@@ -495,6 +517,9 @@ ActiveRecord::Schema.define(version: 20140625174306) do
     t.integer  "university_id"
     t.integer  "faculty_id"
     t.integer  "advanced_standing_credits", default: 0
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -1,0 +1,18 @@
+= form_for advisor_student do |f|
+  .from-group
+    - if current_user.advisor?
+      = f.hidden_field :advisor_id, value: current_user.id
+      = f.hidden_field :validated, value: true
+    - else
+      = f.label :advisor_id, t('advisor_student.advisor.select')
+      = f.select :advisor_id, [], {}, :class=>'selectize',
+                            'data-url' => autocomplete_user_path(type: 'User::Advisor')
+
+    - if current_user.student?
+      = f.hidden_field :student_id, value: current_user.id
+    - else
+      = f.label :student_id, t('advisor_student.student.select')
+      = f.select :student_id, [], {}, :class=>'selectize',
+                         'data-url' => autocomplete_user_path(type: 'User::Student')
+  br
+  = f.submit value: 'Request', class: 'btn btn-success'

@@ -69,7 +69,7 @@ class Issue::IssuesController < ApplicationController
     IssueSearcher.search_items(params).each do |item|
       suggestion = {}
       suggestion[:value] = item.to_s
-      suggestion[:data] = object_id(item)
+      suggestion[:data] = element_id(item)
       suggestions << suggestion
     end
     render :json => json.to_json
@@ -82,6 +82,6 @@ class Issue::IssuesController < ApplicationController
 
   def parse_items
     return [] unless params.key?(:items)
-    params[:items].split(',').map { |x| from_object_id(x) }
+    params[:items].split(',').map { |x| from_element_id(x) }
   end
 end

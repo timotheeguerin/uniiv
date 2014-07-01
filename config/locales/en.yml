@@ -44,3 +44,10 @@ en:
     new_for: 'New comment for %{issue}'
     edit_for: 'Edit comment for %{issue}'
     by: '%{user} commented'
+  advisor_student:
+    advisor:
+      new: 'Request your advisor'
+      select: 'Choose an advisor'
+    student:
+      new: 'Add a new student to your whitelist'
+      select: 'Choose a student'

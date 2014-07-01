@@ -161,11 +161,11 @@ class ApplicationController < ActionController::Base
     @real_current_user = nil
   end
 
-  def object_id(object)
+  def element_id(object)
     "#{object.class}.#{object.id}"
   end
 
-  def from_object_id(string)
+  def from_element_id(string)
     class_name, id = string.split('.')
     clazz = class_name.safe_constantize
     return nil if clazz.nil?
