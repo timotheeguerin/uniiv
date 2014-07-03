@@ -1,0 +1,31 @@
+@import 'variables'
+
+.registration-container
+  font-size: 2rem
+  background-color: $palette_grey_darkest
+  color: $palette_grey_lighter
+  height: 100%
+
+  h1
+    font-size: 3rem
+  h4
+    font-style: i
+    font-size: 1.5rem
+  hr
+    border-color: $palette_grey_darker
+  input:not([type='submit'])
+    width: 100%
+
+    padding: 1rem
+    display: block
+    background: #1E2024
+    border: none
+
+    font-weight: 200
+    border-radius: .2rem
+  .form-group
+    margin: 2rem auto
+
+  input:-webkit-autofill
+    -webkit-box-shadow: 0 0 0 1000px #1E2024 inset
+    color: $palette_grey_lighter !important

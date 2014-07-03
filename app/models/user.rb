@@ -32,6 +32,9 @@ class User < ActiveRecord::Base
 
   #Validations
   validates :advanced_standing_credits, :presence => true
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :type
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

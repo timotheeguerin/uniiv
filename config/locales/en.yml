@@ -23,6 +23,10 @@ en:
   edit: 'Edit'
   delete: 'Delete'
   cancel: 'Cancel'
+
+  signup:
+    title: 'Join uniiv'
+    subtitle: 'Guiding you through your education'
   confirm:
     default: 'Are you sure?'
     delete: 'Are you sure?'

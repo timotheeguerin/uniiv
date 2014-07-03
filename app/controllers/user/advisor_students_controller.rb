@@ -1,4 +1,10 @@
 class User::AdvisorStudentsController < ApplicationController
+
+  def index
+    authorize! :view, User::AdvisorStudent
+
+  end
+
   def new
     @advisor_student = User::AdvisorStudent.new
   end

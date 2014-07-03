@@ -1,0 +1,32 @@
+div.registration-container.sign-up-container.row
+  .container
+    .row
+      div class='col-md-8 col-md-offset-2'
+        h1 = t('signup.title')
+        h4 = t('signup.subtitle')
+        hr
+
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          .errors
+            = devise_error_messages!
+
+          .form-group
+            .row
+              .col-md-6
+                = f.text_field :first_name, :autofocus => true, :placeholder => 'First name'
+              .col-md-6
+                = f.text_field :last_name, :autofocus => true, :placeholder => 'Last name'
+          .form-group
+            = f.email_field :email, :placeholder => 'Email'
+
+          .form-group
+            = f.password_field :password, :placeholder => 'Password'
+
+          div class='form-group'
+            = f.password_field :password_confirmation, :placeholder => 'Repeat your password'
+
+          .pull-right
+            = f.submit('Sign Up', :class => 'btn btn-success')
+          = hidden__field_tag :redirect, params[:redirect] if params[:redirect]
+
+        = render 'devise/shared/links'

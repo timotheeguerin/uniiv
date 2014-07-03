@@ -1,17 +1,19 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
+    @fullwidth= true
     super
   end
 
   def create
-    user = build_resource(params[:user].permit(:email, :password, :password_confirmation))
+    user = build_resource(resource_params)
     user_email = UserEmail.new
     user_email.email = resource.email
     user_email.primary = true
     user_email.validated = false
     user.emails << user_email
 
-    user_role = Role.find_by_name('user')
+    user.type = User::Student.to_s
+    user_role = Role.find_by_name(:user)
 
     user.roles << user_role
 
@@ -24,7 +26,8 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in(resource_name, resource)
       respond_with resource, :location => after_sign_up_path_for(resource)
     else
-      render :action => 'new'
+      @fullwidth = true
+      render :new
     end
   end
 
@@ -58,7 +61,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def resource_params
-    params.require(:user).permit(:email, :password, :password_confirmation) # And whatever other params you need
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
 end

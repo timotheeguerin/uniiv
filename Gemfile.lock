@@ -44,7 +44,7 @@ GEM
       rails
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (2.0.1.20140626)
+    autoprefixer-rails (2.1.0.20140628)
       execjs
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
@@ -65,7 +65,7 @@ GEM
     capistrano-rvm (0.1.1)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (0.6.0)
+    capistrano3-puma (0.6.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
     choice (0.1.6)
