@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701184607) do
+ActiveRecord::Schema.define(version: 20140705194226) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -451,7 +451,7 @@ ActiveRecord::Schema.define(version: 20140701184607) do
   create_table "user_advisor_students", force: true do |t|
     t.integer  "advisor_id"
     t.integer  "student_id"
-    t.boolean  "validated",  default: false
+    t.integer  "status",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

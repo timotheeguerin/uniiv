@@ -209,5 +209,9 @@ class User < ActiveRecord::Base
     is_a? User::Student
   end
 
+  def destroy_advisor_student
+    raise NotImplementedError
+  end
+
   alias :can_take_course? :requirements_completed?
 end

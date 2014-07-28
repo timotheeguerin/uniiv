@@ -27,6 +27,9 @@ en:
   signup:
     title: 'Join uniiv'
     subtitle: 'Guiding you through your education'
+  signin:
+    remember_me: 'Remember me'
+
   confirm:
     default: 'Are you sure?'
     delete: 'Are you sure?'
@@ -49,9 +52,20 @@ en:
     edit_for: 'Edit comment for %{issue}'
     by: '%{user} commented'
   advisor_student:
+    uniq:
+      error: 'You already have added th'
     advisor:
       new: 'Request your advisor'
       select: 'Choose an advisor'
+      index: 'Your students'
+      empty: 'No student'
     student:
       new: 'Add a new student to your whitelist'
       select: 'Choose a student'
+      index: 'Your advisors'
+      empty: 'No advisor'
+    status:
+      requested: 'Requested'
+      validated: 'Validated'
+      removed: 'Removed'
+      blacklisted: 'Blacklisted'

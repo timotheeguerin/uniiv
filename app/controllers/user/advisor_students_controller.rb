@@ -2,7 +2,14 @@ class User::AdvisorStudentsController < ApplicationController
 
   def index
     authorize! :view, User::AdvisorStudent
-
+    if current_user.student?
+      @advisors = current_user.advisor_students
+      render :index_student
+    elsif current_user.advisor?
+      @filter = get_filter
+      @students = current_user.advisor_students.where(status: User::AdvisorStudent.statuses[@filter])
+      render :index_advisor
+    end
   end
 
   def new
@@ -11,7 +18,7 @@ class User::AdvisorStudentsController < ApplicationController
 
   def create
     @advisor_student = User::AdvisorStudent.new(advisor_student_params)
-    @advisor_student.validated = true if current_user.advisor?
+    @advisor_student.status = :validated if current_user.advisor?
     if @advisor_student.save
       redirect_to user_advisor_students_path
     else
@@ -31,7 +38,7 @@ class User::AdvisorStudentsController < ApplicationController
   def destroy
     @advisor_student = User::AdvisorStudent.find(params[:id])
     authorize! :destroy, @advisor_student
-    @advisor_student.destroy
+    current_user.destroy_advisor_student(@advisor_student)
     redirect_to user_advisor_students_path
   end
 
@@ -45,5 +52,13 @@ class User::AdvisorStudentsController < ApplicationController
 
   def advisor_student_params
     params.require(:user_advisor_student).permit(:advisor_id, :student_id)
+  end
+
+  def get_filter
+    if params[:filter]
+      params[:filter].to_sym
+    else
+      :requested
+    end
   end
 end

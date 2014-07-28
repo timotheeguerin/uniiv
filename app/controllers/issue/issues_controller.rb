@@ -10,6 +10,7 @@ class Issue::IssuesController < ApplicationController
 
   def new
     authorize! :create, Issue::Issue
+    redirect_to new_user_advisor_student_path current_user.student? and current_user.has_an_advisor?
     @issue = Issue::Issue.new
     @issue.build_content
   end

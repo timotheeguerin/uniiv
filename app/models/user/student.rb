@@ -6,4 +6,14 @@ class User::Student < User
   def has_an_advisor?
     advisors.any?
   end
+
+  def remove_advisor(advisor)
+    advisor_student = advisor_students.find_by_advisor_id(advisor.id)
+    destroy_advisor_student(advisor_student)
+  end
+
+  def destroy_advisor_student(advisor_student)
+    advisor_student.removed!
+    advisor_student.save
+  end
 end

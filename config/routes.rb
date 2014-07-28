@@ -43,10 +43,12 @@ Uniiv::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => {registrations: 'registrations', passwords: 'passwords'}
+  devise_for :users, :controllers => {registrations: 'registration/registrations',
+                                      passwords: 'registration/passwords',
+                                      sessions: 'registration/sessions'}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  #User setttings
+  #User settings
   post 'user_emails/new' => 'user_emails#new', :as => :user_email_new
   post 'user_emails/set_as_default' => 'user_emails#set_as_default', :as => :user_email_set_as_default
   post 'user_emails/remove' => 'user_emails#remove', :as => :user_email_remove

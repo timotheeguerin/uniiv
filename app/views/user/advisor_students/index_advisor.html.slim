@@ -1,0 +1,34 @@
+.advisor-student-container.container
+  .row
+    .panel.panel-default
+      .panel-heading
+        h1 = t('advisor_student.advisor.index')
+      .list-group
+        .list-group-item.advisor-students-tabs
+          a.tab href=user_advisor_students_path(filter: :requested) class="#{active_tab?(:requested, @filter)}"
+            = t('advisor_student.status.requested')
+          a.tab href=user_advisor_students_path(filter: :validated) class="#{active_tab?(:validated, @filter)}"
+            = t('advisor_student.status.validated')
+          a.tab href=user_advisor_students_path(filter: :removed) class="#{active_tab?(:removed, @filter)}"
+            = t('advisor_student.status.removed')
+          a.tab href=user_advisor_students_path(filter: :blacklisted) class="#{active_tab?(:blacklisted, @filter)}"
+            = t('advisor_student.status.blacklisted')
+
+        - if @students.empty?
+          .list-group-item.no-advisor-student.text-lg
+            div
+              span.glyphicon.glyphicon-list-alt
+            div
+              = t('advisor_student.advisor.empty')
+        - else
+          - @students.order(:status).each do |advisor|
+            .list-group-item.advisor-row
+              .advisor-name
+                = advisor.student
+              .advisor-buttons
+                = button_to user_advisor_student_path(advisor), method: :delete, class: 'btn btn-danger btn-sm needconfirmation',
+                    'data-confirm-dialog' => t('confirm.delete') do
+                  span.glyphicon.glyphicon-remove
+
+        .list-group-item
+          = render 'form', advisor_student: User::AdvisorStudent.new

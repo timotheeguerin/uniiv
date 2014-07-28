@@ -1,6 +1,6 @@
 .notification-box
   - if notice
-    div class="alert alert-info alert-dismissable"
+    div class="alert alert-info auto-hide alert-dismissable"
       button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
       = raw(notice)
   - if alert

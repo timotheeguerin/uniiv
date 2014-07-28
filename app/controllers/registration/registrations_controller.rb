@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class Registration::RegistrationsController < Devise::RegistrationsController
   def new
     @fullwidth= true
     super

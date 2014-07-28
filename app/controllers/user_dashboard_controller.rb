@@ -5,7 +5,7 @@ class UserDashboardController < ApplicationController
     @university = current_user.university
     @faculty = current_user.faculty
     @programs = current_user.main_course_scenario.programs
-
+    @fullwidth = true
     if current_scenario.programs.empty?
       redirect_to user_education_selection_path
     end

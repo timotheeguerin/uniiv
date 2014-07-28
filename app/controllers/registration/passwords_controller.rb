@@ -1,4 +1,4 @@
-class PasswordsController < Devise::PasswordsController
+class Registration::PasswordsController < Devise::PasswordsController
   def new
     @fullwidth = true
     super

@@ -1,5 +1,5 @@
 <% if current_user.completed_courses.size > 0 %>
-    <hr style='width:100%;'>
+    <hr>
     <div><h2>Completed Courses</h2></div>
     <div class='row'>
       <% current_user.completed_courses.order(:advanced_standing => :desc).each do |c| %>

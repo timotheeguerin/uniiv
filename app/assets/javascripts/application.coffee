@@ -132,6 +132,16 @@ $(document).ready () ->
       container.slideDown(200)
       $(this).find('span').first().rotate(180)
 
+  $('.notification-box').each () ->
+    increase = 3000
+    timer = increase
+    $(this).find('.alert.auto-hide').each () ->
+      alert_item = $(this)
+      setTimeout(()->
+        alert_item.slideUp()
+      ,timer)
+      time += increase
+
   showonhover(document)
 
 setupStarRatings = () ->
