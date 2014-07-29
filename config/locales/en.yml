@@ -69,3 +69,7 @@ en:
       validated: 'Validated'
       removed: 'Removed'
       blacklisted: 'Blacklisted'
+  advisor:
+    dashboard: 'Advisor dashboard'
+    link:
+      issues: 'Issues'

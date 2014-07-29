@@ -1,0 +1,18 @@
+.row.advisor-dashboard
+  .container
+    h1=t('advisor.dashboard')
+
+    .row.choice-menu.text-lg.dark_greytext
+      a.btn-lg-choice.col-md-6 href=''
+        .glyphicon.glyphicon-th-list
+        div = t('advisor.dashboard.link.issues')
+
+      a.btn-lg-choice.col-md-6 href=''
+        .glyphicon.glyphicon-user
+        div = t('advisor.dashboard.link.switch_user')
+
+    .row
+      - @issues.each do |issue|
+        .col-md-2.issue-box
+           .issue-reporter = issue.reporter
+           .issue-title = issue.title

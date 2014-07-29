@@ -41,7 +41,7 @@ group :development do
   gem 'capistrano3-puma', require: false
 end
 
-gem 'puma'
+gem 'puma', '2.8.2'
 
 gem 'rails_admin'
 

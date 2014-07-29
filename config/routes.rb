@@ -249,6 +249,7 @@ Uniiv::Application.routes.draw do
   #User controller
   scope module: :user do
     get 'user/autocomplete' => 'users#autocomplete', :as => :autocomplete_user
+    get 'advisor/dashboard' => 'advisor_dashboard#index', as: :advisor_dashboard
   end
 
   namespace :user do

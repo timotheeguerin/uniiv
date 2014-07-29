@@ -4,6 +4,7 @@ class User::AdvisorStudent < ActiveRecord::Base
 
   validates_uniqueness_of :student_id, scope: :advisor_id
 
+
   ##
   # Status of the mapping
   # Values:
