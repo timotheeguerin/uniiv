@@ -50,6 +50,15 @@ class User::AdvisorStudentsController < ApplicationController
     redirect_to user_advisor_students_path
   end
 
+  def update_status
+    new_status = params[:status]
+    @advisor_student = User::AdvisorStudent.find(params[:id])
+    authorize! new_status, @advisor_student
+    @advisor_student.status = new_status
+    @advisor_student.save
+    redirect_to user_advisor_students_path
+  end
+
   def advisor_student_params
     params.require(:user_advisor_student).permit(:advisor_id, :student_id)
   end

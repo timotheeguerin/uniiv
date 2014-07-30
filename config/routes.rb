@@ -254,6 +254,7 @@ Uniiv::Application.routes.draw do
 
   namespace :user do
     resources :advisor_students
+    patch 'advisor/students/:id/update/status' => 'advisor_students#update_status', as: :update_status_advisor_student
   end
   #Issues
   # get 'issues' => 'issues#index', :as => :issue_issues

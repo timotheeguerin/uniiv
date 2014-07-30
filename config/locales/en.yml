@@ -69,6 +69,10 @@ en:
       validated: 'Validated'
       removed: 'Removed'
       blacklisted: 'Blacklisted'
+      request: 'Request'
+      validate: 'Validate'
+      remove: 'Remove'
+      blacklist: 'Blacklist'
   advisor:
     dashboard: 'Advisor dashboard'
     link:

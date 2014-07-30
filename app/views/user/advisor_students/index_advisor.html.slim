@@ -7,12 +7,16 @@
         .list-group-item.advisor-students-tabs
           a.tab href=user_advisor_students_path(filter: :requested) class="#{active_tab?(:requested, @filter)}"
             = t('advisor_student.status.requested')
+            = " (#{current_user.advisor_students.requested.size})"
           a.tab href=user_advisor_students_path(filter: :validated) class="#{active_tab?(:validated, @filter)}"
             = t('advisor_student.status.validated')
+            = " (#{current_user.advisor_students.validated.size})"
           a.tab href=user_advisor_students_path(filter: :removed) class="#{active_tab?(:removed, @filter)}"
             = t('advisor_student.status.removed')
+            = " (#{current_user.advisor_students.removed.size})"
           a.tab href=user_advisor_students_path(filter: :blacklisted) class="#{active_tab?(:blacklisted, @filter)}"
             = t('advisor_student.status.blacklisted')
+            = " (#{current_user.advisor_students.blacklisted.size})"
 
         - if @students.empty?
           .list-group-item.no-advisor-student.text-lg
@@ -21,14 +25,11 @@
             div
               = t('advisor_student.advisor.empty')
         - else
-          - @students.order(:status).each do |advisor|
+          - @students.order(:status).each do |student|
             .list-group-item.advisor-row
               .advisor-name
-                = advisor.student
+                = student.student
               .advisor-buttons
-                = button_to user_advisor_student_path(advisor), method: :delete, class: 'btn btn-danger btn-sm needconfirmation',
-                    'data-confirm-dialog' => t('confirm.delete') do
-                  span.glyphicon.glyphicon-remove
-
+                = render 'advisor_student_buttons', advisor_student: student
         .list-group-item
           = render 'form', advisor_student: User::AdvisorStudent.new
