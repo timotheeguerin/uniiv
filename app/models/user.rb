@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   has_many :fgc_predictions, :class_name => Fgc::Prediction
 
+  has_many :reported_issues, class_name: Issue::Issue, foreign_key: :reporter_id
+
   # Get the users without any of the given roles
   # @param roles: list of roles names in an array
   scope :without_roles, -> (roles) { joins(:roles).where.not(:roles => {:name => roles}) }

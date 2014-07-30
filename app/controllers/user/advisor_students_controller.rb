@@ -63,6 +63,7 @@ class User::AdvisorStudentsController < ApplicationController
     params.require(:user_advisor_student).permit(:advisor_id, :student_id)
   end
 
+
   def get_filter
     if params[:filter]
       params[:filter].to_sym

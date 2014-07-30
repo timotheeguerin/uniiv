@@ -39,6 +39,7 @@ class Ability
     if user.role? :user
       can :read, :all # allow alpha tester to read everything
       can :edit, user
+      can :create, Issue::Issue
     end
 
     if user.role? :advisor

@@ -1,10 +1,10 @@
-- if advisor_student.status != :validated
+- unless advisor_student.validated?
   = button_to user_update_status_advisor_student_path(advisor_student, status: :validated), method: :patch,
     class: 'btn btn-success btn-sm ', rel: 'tooltip', title: t('advisor_student.status.validate')do
     span.glyphicon.glyphicon-ok
 
 
-- if advisor_student.status != :removed
+- unless advisor_student.removed?
   = button_to user_update_status_advisor_student_path(advisor_student, status: :removed), method: :patch,
     class: 'btn btn-danger btn-sm needconfirmation',
     rel: 'tooltip',
@@ -13,7 +13,7 @@
     span.glyphicon.glyphicon-remove
 
 
-- if advisor_student.status != :removed
+- unless advisor_student.blacklisted?
   = button_to user_update_status_advisor_student_path(advisor_student, status: :blacklisted), method: :patch,
     class: 'btn btn-danger btn-sm needconfirmation',
     rel: 'tooltip',

@@ -13,6 +13,7 @@
     .form-group
       .row
         .col-md-6
-          = f.select :assignee_id, [], {:include_blank => t('issue.assignee.select')}, :class=>'selectize', 'data-url' => autocomplete_user_path(role: :advisor)
+          = f.select :assignee_id, [], {:include_blank => t('issue.assignee.select')}, :class=>'selectize',
+              'data-url' => autocomplete_user_path(type: :advisor, student_id: current_user.id)
 
     = f.submit :class => 'btn btn-success'

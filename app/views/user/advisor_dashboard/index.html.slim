@@ -11,8 +11,12 @@
         .glyphicon.glyphicon-user
         div = t('advisor.dashboard.link.switch_user')
 
-    .row
-      - @issues.each do |issue|
-        .col-md-2.issue-box
-           .issue-reporter = issue.reporter
-           .issue-title = issue.title
+    .row.issue-list
+      - @reporters.each do |reporter|
+        .col-md-3.issue-box
+          - issues = reporter.reported_issues.where(assignee_id: current_user.id).to_a
+          .issue-reporter
+            = reporter
+            = " (#{issues.size})"
+          - issues.each do |issue|
+            .issue-title = issue.title

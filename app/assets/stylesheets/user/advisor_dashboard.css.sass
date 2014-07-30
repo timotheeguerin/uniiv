@@ -4,3 +4,26 @@
   height: 100%
   background-color: $palette_grey_lightest
 
+  .issue-list
+    margin-top: 2rem
+    .issue-box
+      background-color: white
+      box-shadow: 1px 1px 5px 0px $palette_grey_medium_light
+      padding: 0
+      margin: 1rem
+
+      .issue-reporter
+        border-bottom: 1px solid $palette_grey_medium_dark
+        font-weight: bold
+        padding: 1rem
+        &:hover
+          cursor: pointer
+
+      .issue-title
+        padding: 1rem
+
+        &:hover
+          cursor: pointer
+          background-color: $palette_grey_medium_light
+        &:not(:last-child)
+          border-bottom: 1px solid $palette_grey_lighter
