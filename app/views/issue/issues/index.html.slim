@@ -1,0 +1,13 @@
+h1 Issues
+
+.row
+  .col-md-3
+    = render 'filters', url: issues_path, filters: @filters
+  .col-md-8
+    .list-group-item.advisor-students-tabs
+      a.tab
+        = t('opened')
+      a.tab
+        = t('closed')
+
+    = render 'list', issues: Issue::Issue.all

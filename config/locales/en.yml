@@ -38,6 +38,7 @@ en:
     created:
       by: '%{user} created'
     status:
+      label: 'Status'
       change:
         success: 'Issue is now %{status}'
         open: 'Reopen this issue'
@@ -46,6 +47,10 @@ en:
       select: 'Choose your advisor'
     items:
       select: 'Select programs, courses linked to this issue'
+    reported:
+      by: 'Reported by'
+    assigned:
+      to: 'Assigned to'
   comment:
     new:  'New comment'
     new_for: 'New comment for %{issue}'
@@ -77,3 +82,7 @@ en:
     dashboard: 'Advisor dashboard'
     link:
       issues: 'Issues'
+  open: Open
+  close: Closed
+  opened: Open
+  closed: Closed

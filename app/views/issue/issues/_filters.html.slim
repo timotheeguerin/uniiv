@@ -1,0 +1,23 @@
+= form_tag url, method: :get do
+  .list-group
+    .list-group-item
+      div
+        label = t('issue.status.label')
+      .btn-group.btn-group-block
+        - Issue::Issue.statuses.each do |status, _|
+          - active = (status == filters[:status].to_s)
+          label class="btn btn-default btn-sm #{'active' if active}"
+            = radio_button_tag :status, status, active, class: 'hidden'
+            = t(status)
+
+    .list-group-item
+      label = t('issue.reported.by')
+      = select_tag :reported_id, [], :class=>'selectize',
+                                  'data-url' => autocomplete_user_path()
+    .list-group-item
+      label = t('issue.assigned.to')
+      = select_tag :reported_id, [], :class=>'selectize',
+                                          'data-url' => autocomplete_user_path(type: 'User::Advisor')
+
+    .list-group-item
+      button.btn.btn-success.btn-block = t('filter')

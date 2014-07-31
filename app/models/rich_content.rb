@@ -15,4 +15,8 @@ class RichContent < ActiveRecord::Base
 
     config[format.to_sym].to_html(text ? text : '')
   end
+
+  def to_s
+    to_html
+  end
 end

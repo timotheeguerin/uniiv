@@ -1,6 +1,7 @@
 class Issue::IssuesController < ApplicationController
   def index
-
+    @filters = params.clone
+    @filters[:status] ||= :open
   end
 
   def show
