@@ -12,12 +12,14 @@
 
     .list-group-item
       label = t('issue.reported.by')
-      = select_tag :reported_id, [], :class=>'selectize',
-                                  'data-url' => autocomplete_user_path()
+      = select_tag :reporter_id, options_from_collection_for_select(User.where(id: filters[:reporter_id]), :id, :to_s),
+                    :class=>'selectize', :disabled => (filters[:lock_reporter]),
+                    'data-url' => autocomplete_user_path
     .list-group-item
       label = t('issue.assigned.to')
-      = select_tag :reported_id, [], :class=>'selectize',
-                                          'data-url' => autocomplete_user_path(type: 'User::Advisor')
+      = select_tag :assignee_id, options_from_collection_for_select(User.where(id: filters[:assignee_id]), :id, :to_s),
+                    :class=>'selectize', :disabled => (filters[:lock_assignee]),
+                    'data-url' => autocomplete_user_path(type: 'User::Advisor')
 
     .list-group-item
       button.btn.btn-success.btn-block = t('filter')

@@ -147,6 +147,7 @@ $(document).ready ->
           form.find('button,input[type="submit"]').prop('disabled', false)
     }
 
+
   $(document).on 'keyup', 'form input.percentage', ()->
     checkvalid($(this))
 

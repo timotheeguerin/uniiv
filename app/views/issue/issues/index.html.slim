@@ -2,7 +2,7 @@ h1 Issues
 
 .row
   .col-md-3
-    = render 'filters',filters: @filters
+    = render 'issue/issues/filters',filters: @filters
   .col-md-8
     .list-group-item.advisor-students-tabs
       a.tab
@@ -10,4 +10,4 @@ h1 Issues
       a.tab
         = t('closed')
 
-    = render 'list', issues: @issues
+    = render 'issue/issues/list', issues: @issues

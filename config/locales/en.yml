@@ -79,9 +79,11 @@ en:
       remove: 'Remove'
       blacklist: 'Blacklist'
   advisor:
-    dashboard: 'Advisor dashboard'
-    link:
-      issues: 'Issues'
+    dashboard:
+      title: 'Advisor dashboard'
+      link:
+        issues: 'Issues'
+        switch_user: 'Switch user'
   open: Open
   close: Closed
   opened: Open

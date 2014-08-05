@@ -1,6 +1,6 @@
 .row.advisor-dashboard
   .container
-    h1=t('advisor.dashboard')
+    h1=t('advisor.dashboard.title')
 
     .row.choice-menu.text-lg.dark_greytext
       a.btn-lg-choice.col-md-6 href=''
@@ -15,8 +15,9 @@
       - @reporters.each do |reporter|
         .col-md-3.issue-box
           - issues = reporter.reported_issues.where(assignee_id: current_user.id).to_a
-          .issue-reporter
+          a.issue-reporter href=advisor_student_issues_path(id: current_user.id, student_id: reporter.id)
             = reporter
             = " (#{issues.size})"
           - issues.each do |issue|
-            .issue-title = issue.title
+            a.issue-title href=issue_path(issue)
+              = issue.title

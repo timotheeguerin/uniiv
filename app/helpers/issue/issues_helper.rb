@@ -1,4 +1,5 @@
 module Issue::IssuesHelper
+
   def get_issue_status_icon(issue)
     icon = case issue.status
              when 'open'
