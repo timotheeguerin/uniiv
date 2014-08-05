@@ -22,4 +22,13 @@ class Issue::Issue < ActiveRecord::Base
   def status_inverse
     open? ? :close : :open
   end
+
+  searchable do
+    text :title
+    integer :status do
+      Issue::Issue.statuses[status]
+    end
+    integer :reporter_id
+    integer :assignee_id
+  end
 end

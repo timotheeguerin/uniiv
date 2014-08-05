@@ -2,6 +2,7 @@ class Issue::IssuesController < ApplicationController
   def index
     @filters = params.clone
     @filters[:status] ||= :open
+    @issues = IssueSearcher.search(@filters)
   end
 
   def show

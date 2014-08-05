@@ -1,9 +1,9 @@
-= form_tag url, method: :get do
+= form_tag '', method: :get do
   .list-group
     .list-group-item
       div
         label = t('issue.status.label')
-      .btn-group.btn-group-block
+      .btn-group.btn-group-block data-toggle='buttons'
         - Issue::Issue.statuses.each do |status, _|
           - active = (status == filters[:status].to_s)
           label class="btn btn-default btn-sm #{'active' if active}"
