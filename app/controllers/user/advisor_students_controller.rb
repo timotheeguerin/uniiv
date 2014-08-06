@@ -53,7 +53,7 @@ class User::AdvisorStudentsController < ApplicationController
   def update_status
     new_status = params[:status]
     @advisor_student = User::AdvisorStudent.find(params[:id])
-    authorize! new_status, @advisor_student
+    authorize! :update_status, @advisor_student
     @advisor_student.status = new_status
     @advisor_student.save
     redirect_to user_advisor_students_path
