@@ -4,7 +4,7 @@ class User::Advisor < User
   has_many :assigned_issues, class_name: Issue::Issue, foreign_key: :assignee_id
 
   def student_with_most_issues
-    User::Student.joins(:advisor_students).group('id').having('count(*) > 0').order('count(*) desc')
+    User::Student.joins(:advisor_students).joins(:issues).where(issue_issues: {assignee_id: id}).group('id').having('count(*) > 0').order('count(*) desc')
   end
 
   def remove_student(student)
