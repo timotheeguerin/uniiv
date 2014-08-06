@@ -37,7 +37,8 @@ class Ability
     end
 
     if user.role? :user
-      can :read, :all # allow alpha tester to read everything
+      can :read, :all # allow user to read everything
+      can :view, :all
       can :edit, user
       can :create, Issue::Issue
     end

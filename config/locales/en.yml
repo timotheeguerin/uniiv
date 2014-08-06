@@ -83,6 +83,7 @@ en:
       title: 'Advisor dashboard'
       link:
         issues: 'Issues'
+        advisor_student: 'Manage students'
         switch_user: 'Switch user'
   open: Open
   close: Closed

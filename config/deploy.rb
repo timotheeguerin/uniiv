@@ -55,6 +55,10 @@ namespace :deploy do
       # end
     end
   end
+
+  task :setup do
+
+  end
 end
 
 namespace :solr do
