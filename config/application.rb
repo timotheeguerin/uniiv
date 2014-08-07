@@ -38,6 +38,8 @@ module Uniiv
         puts 'WARNING: Local db env file local not found!'
     end
 
+    config.sass.preferred_syntax = :sass
+
     config.generators do |g|
       g.template_engine :slim
       g.test_framework  :test_unit, :fixture => false

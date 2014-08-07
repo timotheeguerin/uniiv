@@ -1,0 +1,16 @@
+h1=t('invites.title')
+
+.invites-list.list-group
+  - @invites.each do |invite|
+    .invite-item.list-group-item
+      .invite-status
+        .text-lg = invite.left
+        .text-md = t('invites.item.count')
+      .invite-content
+        .invite-title = invite.message
+        .invite-details
+          div
+            == t('invites.item.details.key', key:  invite.key)
+          div
+            == t('invites.item.details.category', category: invite.category)
+      .invite-buttons

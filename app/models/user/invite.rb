@@ -15,6 +15,10 @@ class User::Invite < ActiveRecord::Base
     self.used -= n
   end
 
+  def left
+    amount - used
+  end
+
   # Increment the used count and save
   # Warning: This save the model to the database automatically
   def use!(n=1)

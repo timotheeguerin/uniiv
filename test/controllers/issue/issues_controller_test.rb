@@ -11,7 +11,13 @@ class Issue::IssuesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get new' do
+  test 'should redirect if user does not have an advisor' do
+    @ability.can :create, Issue::Issue
+    get :new
+    assert_response :redirect
+  end
+  test 'should get new if user has an advisor' do
+    create(:user_advisor_student, student: @user)
     @ability.can :create, Issue::Issue
     get :new
     assert_response :success

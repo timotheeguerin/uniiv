@@ -5,7 +5,7 @@ class User::Student < User
 
   #Return if the student already requested an advisor
   def has_an_advisor?
-    advisors.any?
+    advisor_students.any?
   end
 
   def remove_advisor(advisor)

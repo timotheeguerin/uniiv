@@ -28,7 +28,7 @@ class ActionController::TestCase
   teardown :teardown_uniiv
 
   def setup_uniiv
-    @user = create(:user)
+    @user = create(:student)
     sign_in @user
     @ability = Object.new
     @ability.extend(CanCan::Ability)

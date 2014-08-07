@@ -4,19 +4,14 @@ class User::CourseControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   test 'Should show take course' do
-    @user = create(:user)
     course = create(:course_course)
     @ability.can :edit, @user
-    sign_in @user
     get :take_show, :course_id => course.id
-    sign_out @user
   end
 
   test 'Should take the course' do
-    scenario = create(:course_scenario)
-    @user = scenario.user
+    scenario = create(:course_scenario, user: @user)
     @ability.can :edit, @user
-    sign_in @user
 
     set_current_scenario(scenario)
 
@@ -27,22 +22,16 @@ class User::CourseControllerTest < ActionController::TestCase
         :user_taking_course => {:semester_id => semester.id, :year => 2014}
     assert_response :redirect
     assert scenario.plan_to_take_course?(course), 'User should be taking the course'
-    sign_out @user
   end
 
   test 'Should show completed course' do
-    @user = create(:user)
     course = create(:course_course)
     @ability.can :edit, @user
-    sign_in @user
     get :complete_show, :course_id => course.id
-    sign_out @user
   end
 
   test 'Should complete course' do
-    @user = create(:user)
     @ability.can :edit, @user
-    sign_in @user
 
     course = create(:course_course)
     semester = create(:course_semester)
@@ -52,7 +41,6 @@ class User::CourseControllerTest < ActionController::TestCase
         :user_completed_course => {:semester_id => semester.id, :year => 2014, :grade_id => grade.id}
     assert_response :redirect
     assert @user.has_completed_course?(course), 'User should have completed the course'
-    sign_out @user
   end
 
   test 'Should complete currently taking course' do

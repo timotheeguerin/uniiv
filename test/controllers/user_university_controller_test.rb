@@ -4,12 +4,9 @@ class UserUniversityControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   test 'should get edit' do
-    user = create(:user)
-    sign_in user
-    @ability.can :edit, user
+    @ability.can :edit, @user
     get :edit
     assert_response :success
-    sign_out user
   end
 
   test 'should update university' do

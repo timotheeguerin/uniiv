@@ -101,3 +101,10 @@ en:
       permission: 'You do not have permission to sign in as %{user}'
     back:
       success: 'Switched back to your account successfully'
+  invites:
+    title: 'Invites'
+    item:
+      count: 'Invites'
+      details:
+        key: 'Key: <i>%{key}</i>'
+        category: 'Type: <i>%{category}</i>'

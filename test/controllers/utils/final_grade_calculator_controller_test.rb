@@ -5,16 +5,12 @@ class Utils::FinalGradeCalculatorControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   test 'should get index' do
-    @user = create(:user)
-    sign_in @user
     @ability.can :read, :fgc
     get :index
     assert_response :success
   end
 
   test 'should get show' do
-    @user = create(:user)
-    sign_in @user
     @ability.can :read, :fgc
     course = create(:course_course)
     assert_difference '@user.fgc_predictions.size' do
@@ -26,8 +22,6 @@ class Utils::FinalGradeCalculatorControllerTest < ActionController::TestCase
   end
 
   test 'should create a grade' do
-    @user = create(:user)
-    sign_in @user
     @ability.can :read, :fgc
     prediction = create(:fgc_prediction, :user => @user)
     assert_difference 'prediction.groups.size' do
@@ -38,8 +32,6 @@ class Utils::FinalGradeCalculatorControllerTest < ActionController::TestCase
   end
 
   test 'should edit a grade value' do
-    @user = create(:user)
-    sign_in @user
     @ability.can :read, :fgc
     prediction = create(:fgc_prediction, :user => @user)
     grade = create(:fgc_grade, :prediction => prediction)
@@ -53,8 +45,6 @@ class Utils::FinalGradeCalculatorControllerTest < ActionController::TestCase
   end
 
   test 'should edit a grade name' do
-    @user = create(:user)
-    sign_in @user
     @ability.can :read, :fgc
     prediction = create(:fgc_prediction, :user => @user)
     grade = create(:fgc_grade, :prediction => prediction)

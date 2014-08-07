@@ -5,9 +5,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_scenario, :current_scenario=, :current_term, :sign_in_as_other?, :real_current_user
   alias_method :devise_current_user, :current_user
 
+  # Rescue unauthorized access
+  # If user is not signed in redirect to the sign_up page
+  # Otherwise redirect to the user home
   rescue_from CanCan::AccessDenied do |exception|
     if user_signed_in?
-      redirect_to main_app.root_url, :alert => exception.message
+      redirect_to user_home_path(current_user), :alert => exception.message
     else
       redirect_to main_app.new_user_session_path(:redirect => request.env['PATH_INFO'])
     end
@@ -16,12 +19,24 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_in_path_for(ressource)
-    get_redirect_path(user_education_path)
+  def after_sign_in_path_for(user)
+    get_redirect_path(user_home_path(user))
   end
 
-  def after_sign_up_path_for(ressource)
-    get_redirect_path(user_education_path)
+  def after_sign_up_path_for(user)
+    get_redirect_path(user_home_path(user))
+  end
+
+  def user_home_path(user)
+    if user.nil?
+      root_path
+    elsif user.student?
+      user_education_path
+    elsif user.advisor?
+      advisor_dashboard_path
+    else
+      root_path
+    end
   end
 
   def current_scenario
