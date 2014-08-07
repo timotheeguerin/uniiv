@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705194226) do
+ActiveRecord::Schema.define(version: 20140807133215) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -487,6 +487,16 @@ ActiveRecord::Schema.define(version: 20140705194226) do
 
   add_index "user_emails", ["university_id"], name: "index_user_emails_on_university_id", using: :btree
   add_index "user_emails", ["user_id"], name: "index_user_emails_on_user_id", using: :btree
+
+  create_table "user_invites", force: true do |t|
+    t.string   "key"
+    t.integer  "amount",     default: 1
+    t.integer  "used",       default: 0
+    t.string   "category"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_taking_courses", force: true do |t|
     t.integer  "course_scenario_id"

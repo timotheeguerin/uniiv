@@ -27,6 +27,10 @@ en:
   signup:
     title: 'Join uniiv'
     subtitle: 'Guiding you through your education'
+    invite_key:
+      notice: 'Using inviting key <i>%{key}</i>'
+      error:
+        not_found: "Error invite key <i>%{key}</i> given doesn't exist!"
   signin:
     remember_me: 'Remember me'
 
@@ -89,3 +93,11 @@ en:
   close: Closed
   opened: Open
   closed: Closed
+  switch_user:
+    title: 'Take control of another user'
+    success: 'Switched to %{user} successfully'
+    select: 'Select the user'
+    error:
+      permission: 'You do not have permission to sign in as %{user}'
+    back:
+      success: 'Switched back to your account successfully'

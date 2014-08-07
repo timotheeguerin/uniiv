@@ -7,10 +7,10 @@ class SwitchUserController < ApplicationController
     user = User.find(params[:user_id])
     begin
       sign_in_as(user)
-      flash[:notice] = t('switch_user.success', user.to_s)
+      flash[:notice] = t('switch_user.success', user: user.to_s)
       redirect_to root_path
     rescue CanCan::AccessDenied
-      flash[:alert] = t('switch_user.permission.error')
+      flash[:alert] = t('switch_user.error.permission', user: user.to_s)
     end
   end
 

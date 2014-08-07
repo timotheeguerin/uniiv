@@ -1,30 +1,21 @@
 class Registration::RegistrationsController < Devise::RegistrationsController
   def new
-    @fullwidth= true
+    setup_new
     super
   end
 
   def create
     user = build_resource(resource_params)
-    user_email = UserEmail.new
-    user_email.email = resource.email
-    user_email.primary = true
-    user_email.validated = false
-    user.emails << user_email
+    build_email(user)
 
     user.type = User::Student.to_s
-    user_role = Role.find_by_name(:user)
-
-    user.roles << user_role
-
-    scenario = Course::Scenario.new
-    scenario.main = true
-    user.main_course_scenario = scenario
-
-
-    if resource.save
-      sign_in(resource_name, resource)
-      respond_with resource, :location => after_sign_up_path_for(resource)
+    user.add_role(:user)
+    user.reset
+    invite = handle_invite(user)
+    if user.save
+      invite.save
+      sign_in(resource_name, user)
+      respond_with resource, :location => after_sign_up_path_for(user)
     else
       @fullwidth = true
       render :new
@@ -60,8 +51,47 @@ class Registration::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path, :notice => 'Account removed with succces!'
   end
 
+
   def resource_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
+  private
+
+  def build_email(user)
+    user_email = UserEmail.new
+    user_email.email = resource.email
+    user_email.primary = true
+    user_email.validated = false
+    user.emails << user_email
+  end
+
+  def handle_invite(user)
+    invite = User::Invite.find_by_key(params[:invite_key])
+    return nil if invite.nil?
+    invite.use
+    unless invite.valid?
+      user.errors += invite.errors
+      return nil
+    end
+    case invite.category
+      when 'User::Advisor'
+        user.type = 'User::Advisor'
+      else
+        return nil
+    end
+    invite
+  end
+
+  def setup_new
+    @fullwidth = true
+    if params[:invite_key]
+      invite = User::Invite.find_by_key(params[:invite_key])
+      if invite.nil?
+        flash[:alert] = t('signup.invite_key.error.not_found', key: params[:invite_key])
+      else
+        flash[:info] = t('signup.invite_key.notice', key: invite.message)
+      end
+    end
+  end
 end

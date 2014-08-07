@@ -215,5 +215,17 @@ class User < ActiveRecord::Base
     raise NotImplementedError
   end
 
+  def add_role(role_name)
+    roles << Role.find_by_name(role_name)
+  end
+
+  # Check if the role exist otherwise add it
+  def check_role(role_name)
+    role = Role.find_by_name(role_name)
+    unless roles.include?(role)
+      roles << role
+    end
+  end
+
   alias :can_take_course? :requirements_completed?
 end
