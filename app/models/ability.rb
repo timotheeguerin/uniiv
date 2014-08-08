@@ -50,6 +50,7 @@ class Ability
       can :sign_in_as, User.only_with_roles([:user])
       can :validate, user.advisor_students
       can :update_status, user.advisor_students
+      can :view, :advisor_dashboard
     end
 
     if user.role? :admin

@@ -73,7 +73,12 @@ namespace :solr do
   end
 end
 
-namespace :rake do
+namespace :task do
+
+  # Run a rake task
+  # $ cap staging rake:invoke task=<rake_task>
+  # e.g.
+  # $ cap staging rake:invoke task=rake db:migrate
   task :invoke do
     on roles(:app) do
       within "#{deploy_to}/current" do
