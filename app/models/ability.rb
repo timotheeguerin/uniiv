@@ -41,6 +41,8 @@ class Ability
       can :view, :all
       can :edit, user
       can :create, Issue::Issue
+
+      cannot :view, User::Invite
     end
 
     if user.role? :advisor

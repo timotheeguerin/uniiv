@@ -12,8 +12,8 @@ class Registration::RegistrationsController < Devise::RegistrationsController
     user.add_role(:user)
     user.reset
     invite = handle_invite(user)
-    if user.save
-      invite.save
+    if invite != false and user.save
+      invite.save if invite
       sign_in(resource_name, user)
       respond_with resource, :location => after_sign_up_path_for(user)
     else
@@ -71,8 +71,10 @@ class Registration::RegistrationsController < Devise::RegistrationsController
     return nil if invite.nil?
     invite.use
     unless invite.valid?
-      user.errors += invite.errors
-      return nil
+      invite.errors.full_messages.each do |error|
+        user.errors[:base] << error
+      end
+      return false
     end
     case invite.category
       when 'User::Advisor'
