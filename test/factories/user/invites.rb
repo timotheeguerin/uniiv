@@ -2,9 +2,10 @@
 
 FactoryGirl.define do
   factory :user_invite, :class => 'User::Invite' do
-    key "MyString"
-    amount 1
+    message 'Super message'
+    key 'My super key'
+    amount 10
     used 1
-    type ""
+    category 'User::Advisor'
   end
 end

@@ -1,8 +1,16 @@
 # User invites
 class User::Invite < ActiveRecord::Base
 
+  validates_presence_of :message, :amount, :key, :used, :category
+
   validate do
     errors.add(:used, 'All invite have been used with this key!') if used > amount
+  end
+
+  before_validation :update_key, on: :create
+
+  def update_key
+    self.key = SecureRandom.hex(8)
   end
 
   # Increment the used count

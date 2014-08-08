@@ -34,6 +34,7 @@ class ActionController::TestCase
     @ability.extend(CanCan::Ability)
     @controller.stubs(:current_ability).returns(@ability)
     @request.env['HTTP_REFERER'] = '/back'
+    bypass_rescue
   end
 
   def teardown_uniiv
@@ -44,6 +45,8 @@ class ActionController::TestCase
     @controller.send(:current_scenario=, scenario)
   end
 
+  # By pass controller resuce
+  # More importantly cancan unauthorized access
   def bypass_rescue
     @controller.extend(BypassRescue)
   end

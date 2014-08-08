@@ -15,7 +15,7 @@ class Program::VersionController < ApplicationController
   end
 
   def new
-    authorize! :new, Program::Version
+    authorize! :create, Program::Version
     @program = Program::Program.find(params[:program_id])
     @program_version = Program::Version.new
   end
@@ -40,7 +40,7 @@ class Program::VersionController < ApplicationController
 
   def edit
     @program_version = Program::Version.find(params[:id])
-    authorize! :edit, @program_version
+    authorize! :update, @program_version
   end
 
   def update

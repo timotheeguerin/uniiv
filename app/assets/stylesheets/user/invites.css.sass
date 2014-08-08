@@ -1,7 +1,16 @@
+.invites-header
+  display: flex
+  align-items: center
+  .invites-title
+    flex: 1 0 auto
+  .invite-buttons
+    flex: 0 1 auto
+
 .invites-list
   .invite-item
     display: flex
     padding: 1rem 0
+
     .invite-status
       flex: 0 1 8rem
       font-weight: bold
@@ -12,8 +21,12 @@
       .invite-title
         font-size: 1.3rem
         font-weight: bold
-
-      .invite-details
-
+    .invite-link
+      flex: 0 0 30rem
+      align-self: center
+      .input-group .btn
+        height: 34px
     .invite-buttons
-      flex: 0 1 4rem
+      padding-right: 1rem
+      text-align: right
+      flex: 0 1 10rem

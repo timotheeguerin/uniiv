@@ -139,8 +139,14 @@ $(document).ready () ->
       alert_item = $(this)
       setTimeout(()->
         alert_item.slideUp()
-      ,timer)
+      , timer)
       time += increase
+
+  $(document).find('.copy-clipboard').each () ->
+    client = new ZeroClipboard($(this)[0])
+    client.on "ready", (readyEvent) ->
+      client.on "aftercopy", (event) ->
+        console.log 'Copied text to clipboard'
 
   showonhover(document)
 
@@ -198,7 +204,7 @@ jQuery.fn.resetRotation = () ->
 
 window.loading_animation = () ->
   return '<div class="spinner">
-                      <div class="bounce1"></div>
-                      <div class="bounce2"></div>
-                      <div class="bounce3"></div>
-                    </div>'
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>'

@@ -1,4 +1,8 @@
-h1=t('invites.title')
+.invites-header
+  .invites-title
+    h1=t('invites.title')
+  .invite-buttons
+    = link_to 'New invite', new_user_invite_path, class: 'btn btn-success'
 
 .invites-list.list-group
   - @invites.each do |invite|
@@ -13,4 +17,13 @@ h1=t('invites.title')
             == t('invites.item.details.key', key:  invite.key)
           div
             == t('invites.item.details.category', category: invite.category)
+      .invite-link
+        .input-group
+          = text_field_tag :invite_key, user_invite_signup_link(invite), class: 'form-control'
+          span.input-group-btn
+            .btn.btn-default.copy-clipboard title='Copy' rel='tooltip' data-clipboard-text=user_invite_signup_link(invite)
+              span.glyphicon.glyphicon-save
       .invite-buttons
+        = button_to user_invite_path(invite), method: :delete, class: 'btn btn-danger needconfirmation',
+            'data-confirm-dialog' => t('confirm.delete') do
+          span.glyphicon.glyphicon-remove

@@ -102,9 +102,18 @@ en:
     back:
       success: 'Switched back to your account successfully'
   invites:
+    new:
+      title: 'New invite'
+    label:
+      category:
+        help: 'Enter invitation type (e.g. "User::Advisor" for an advisor)'
     title: 'Invites'
     item:
       count: 'Invites'
       details:
         key: 'Key: <i>%{key}</i>'
         category: 'Type: <i>%{category}</i>'
+    create:
+      success: 'Invite created successfully!'
+    destroy:
+      success: 'Invite removed successfully!'

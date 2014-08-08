@@ -2,14 +2,15 @@ require 'test_helper'
 
 class Program::VersionControllerTest < ActionController::TestCase
   include Devise::TestHelpers
-  test 'should not get new' do
+  test 'should not get new without permission' do
     program = create(:program_program)
-    get :new, :program_id => program.id
-    assert_response :redirect
+    assert_raise CanCan::AccessDenied do
+      get :new, :program_id => program.id
+    end
   end
 
   test 'should get new' do
-    @ability.can :new, Program::Version
+    @ability.can :create, Program::Version
     program = create(:program_program)
 
     get :new, :program_id => program.id
@@ -40,14 +41,14 @@ class Program::VersionControllerTest < ActionController::TestCase
   end
 
   test 'should get edit' do
-    @ability.can :edit, Program::Version
+    @ability.can :update, Program::Version
     version = create(:program_version)
     get :edit, :id => version.id
     assert_response :success
   end
 
   test 'should update' do
-    @ability.can :edit, Program::Version
+    @ability.can :update, Program::Version
     version = create(:program_version)
     get :update, :id => version.id, :program_version => {:start_year => 2014, :end_year => 2015}
     assert_response :redirect
