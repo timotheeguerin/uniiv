@@ -16,8 +16,6 @@ Uniiv::Application.routes.draw do
   get 'program/index'
   post 'user_programs/removeProgram'
 
-  get 'user_emails/index'
-
   get 'graph/index'
   get 'test/index'
 
@@ -49,9 +47,9 @@ Uniiv::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   #User settings
-  post 'user_emails/new' => 'user_emails#new', :as => :user_email_new
-  post 'user_emails/set_as_default' => 'user_emails#set_as_default', :as => :user_email_set_as_default
-  post 'user_emails/remove' => 'user_emails#remove', :as => :user_email_remove
+  post 'user/emails/new' => 'user/emails#create', :as => :user_email_new
+  post 'user/emails/set_as_default' => 'user/emails#set_as_default', :as => :user_email_set_as_default
+  post 'user/emails/remove' => 'user/emails#remove', :as => :user_email_remove
 
   #User university controller
   get 'user/university/show' => 'user_university#show', :as => :user_university_show

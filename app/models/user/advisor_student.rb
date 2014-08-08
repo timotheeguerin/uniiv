@@ -14,4 +14,11 @@ class User::AdvisorStudent < ActiveRecord::Base
   #   removed:
   enum status: [:requested, :validated, :blacklisted, :removed]
 
+  after_save :reindex
+  after_destroy :reindex
+
+  def reindex
+    advisor.index unless advisor.nil?
+    student.index unless student.nil?
+  end
 end

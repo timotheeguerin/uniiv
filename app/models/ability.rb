@@ -43,6 +43,7 @@ class Ability
       can :create, Issue::Issue
 
       cannot :view, User::Invite
+      cannot :view, :advisor_dashboard
     end
 
     if user.role? :advisor

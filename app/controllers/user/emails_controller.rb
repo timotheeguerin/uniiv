@@ -1,4 +1,4 @@
-class UserEmailsController < ApplicationController
+class User::EmailsController < ApplicationController
 
   before_action :setup
 
@@ -10,10 +10,10 @@ class UserEmailsController < ApplicationController
 
   end
 
-  def new
+  def create
     email = UserEmail.new
     email.user = current_user
-    email.email = params['email']
+    email.email = params[:email]
     if email.save
       flash[:notice] = t('useremail.add')
     else
