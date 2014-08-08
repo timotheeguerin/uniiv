@@ -38,7 +38,7 @@ class User::EmailsControllerTest < ActionController::TestCase
     assert user_email.primary
   end
 
-   test 'should not remove without permission' do
+  test 'should not remove without permission' do
     assert_raise CanCan::AccessDenied do
       user_email = create(:user_email)
       get :remove, email: user_email.id
@@ -46,11 +46,10 @@ class User::EmailsControllerTest < ActionController::TestCase
   end
   test 'should remove email' do
     @ability.can :edit, @user
-    assert_difference 'UserEmail.size', -1 do
-      user_email = create(:user_email)
+    user_email = create(:user_email)
+    assert_difference 'UserEmail.count', -1 do
       get :remove, email: user_email.id
       assert_response :redirect
-      @user.reload
     end
   end
 end

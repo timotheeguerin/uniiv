@@ -29,13 +29,13 @@ class ApplicationController < ActionController::Base
 
   def user_home_path(user)
     if user.nil?
-      root_path
+      main_app.root_path
     elsif user.student?
-      user_education_path
+      main_app.user_education_path
     elsif user.advisor?
-      advisor_dashboard_path
+      main_app.advisor_dashboard_path
     else
-      root_path
+      main_app.root_path
     end
   end
 

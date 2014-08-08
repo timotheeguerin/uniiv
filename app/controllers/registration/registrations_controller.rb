@@ -79,6 +79,7 @@ class Registration::RegistrationsController < Devise::RegistrationsController
     case invite.category
       when 'User::Advisor'
         user.type = 'User::Advisor'
+        user.add_role(:advisor)
       else
         return nil
     end
