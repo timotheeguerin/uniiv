@@ -1,120 +1,103 @@
-<div class='container-fluid nopadding-left' style='padding: 9px'>
-  <div class='row'>
-    <div class="col-md-6">
-      <div class="container-fluid">
-        <div class='col-md-6 col-md-offset-2'>
-          <div class='text-center'>
-            <Strong>Name</Strong>
-          </div>
-          <div class='text-center text-xs'>
-            <i>Midterm</i>
-          </div>
-        </div>
-        <div class='col-md-3'>
-          <div class='text-center'>
-            <Strong>Grade(%)</Strong>
-          </div>
-          <div class='text-center text-xs'>
-            <i>78</i>
-          </div>
-        </div>
+<div>
+  <div class='fgc-heading'>
+    <div class='fgc-heading-grades'>
+      <div class="grade-buttons">
 
       </div>
+      <div class='grade-name'>
+        <div class='text-center'>
+          <Strong>Name</Strong>
+        </div>
+        <div class='text-center text-xs'>
+          <i>e.g.  Midterm</i>
+        </div>
+      </div>
+      <div class='grade-value'>
+        <div class='text-center'>
+          <Strong>Grade(%)</Strong>
+        </div>
+        <div class='text-center text-xs'>
+          <i>78</i>
+        </div>
+      </div>
+
     </div>
-    <div class="col-md-6">
-      <div class="container-fluid">
-        <div class="row">
-          <div class='col-md-3'>
-            <div class='text-center'>
-              <Strong>Weight(%)</Strong>
-            </div>
-            <div class='text-center text-xs'>
-              <i>15</i>
+    <div class="fgc-heading-weights">
+      <div class='group-weight'>
+        <div class='text-center'>
+          <Strong>Weight(%)</Strong>
+        </div>
+        <div class='text-center text-xs'>
+          <i>15</i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='fgc-heading'>
+    <div class='fgc-heading-grades'>
+    </div>
+    <div class="fgc-heading-weights">
+      <% prediction.schemes.each do |scheme| %>
+          <div class='group-weight text-center'>
+            <div class='scheme_percent_wrong' data-scheme='<%= scheme.id %>'>
+              <span class='glyphicon glyphicon-warning-sign redtext' title="This scheme percent doesn't sums to 100%" rel='tooltip'></span>
             </div>
           </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
-  <div class='row'>
-    <div class='col-md-6 col-md-offset-6'>
-      <div class='container-fluid nopadding-left'>
-        <div class='row' style="margin-bottom: 10px">
-          <% prediction.schemes.each do |scheme| %>
-              <div class='col-md-1 text-center'>
-                <div class='scheme_percent_wrong' data-scheme='<%= scheme.id %>'>
-                  <span class='glyphicon glyphicon-warning-sign redtext' title="This scheme percent doesn't sums to 100%" rel='tooltip'></span>
-                </div>
-              </div>
-          <% end %>
-        </div>
-      </div>
+  <div class='fgc-heading'>
+    <div class='fgc-heading-grades'>
     </div>
-  </div>
-  <div class='row'>
-    <div class='col-md-6 col-md-offset-6'>
-      <div class='container-fluid'>
-        <div class='row scheme_list'>
-          <% prediction.schemes.each_with_index do |scheme, i| %>
-              <div class='col-md-3 text-center'>
-                <div class="scheme" data-id='<%= scheme.id %>'>
-                  <% if prediction.schemes.size > 1 %>
-                      <div class='tooglecontent' data-mode='slide'>
-                        <div class='item default'>
-                          <strong><%= i + 1 %></strong>
-                        </div>
-                        <div class='item active'>
-                          <%= form_tag(utils_fgc_remove_scheme_path) do %>
-                              <%= hidden_field_tag :scheme, scheme.id %>
-                              <button class='btn btn-danger btn-sm' title="<%= t('fgc.remove_scheme') %>" rel='tooltip'>
-                                <span class='glyphicon glyphicon-remove'></span>
-                              </button>
-                          <% end %>
-                        </div>
-                      </div>
-                  <% else %>
+    <div class="fgc-heading-weights scheme_list">
+      <% prediction.schemes.each_with_index do |scheme, i| %>
+          <div class='group-weight text-center'>
+            <div class="scheme" data-id='<%= scheme.id %>'>
+              <% if prediction.schemes.size > 1 %>
+                  <div class='tooglecontent' data-mode='slide'>
+                    <div class='item default'>
                       <strong><%= i + 1 %></strong>
-                  <% end %>
-                </div>
-
-              </div>
-          <% end %>
-          <div class='col-md-1'>
-            <div>
-              <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary btn-sm ',
-                            :title => t('fgc.create_scheme.info'), :rel => 'tooltip', :disabled => !prediction.can_add_more_schemes? do %>
-                  <span class='glyphicon glyphicon-plus'></span>
+                    </div>
+                    <div class='item active'>
+                      <%= form_tag(utils_fgc_remove_scheme_path) do %>
+                          <%= hidden_field_tag :scheme, scheme.id %>
+                          <button class='btn btn-danger btn-sm' title="<%= t('fgc.remove_scheme') %>" rel='tooltip'>
+                            <span class='glyphicon glyphicon-remove'></span>
+                          </button>
+                      <% end %>
+                    </div>
+                  </div>
+              <% else %>
+                  <strong><%= i + 1 %></strong>
               <% end %>
             </div>
+
           </div>
-        </div>
+      <% end %>
+      <div class='group-weight'>
+        <%= button_to utils_fgc_create_scheme_path, :class => 'btn btn-primary btn-sm ',
+                      :title => t('fgc.create_scheme.info'), :rel => 'tooltip', :disabled => !prediction.can_add_more_schemes? do %>
+            <span class='glyphicon glyphicon-plus'></span>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
-<div class='well well-sm'>
-  <div class='container-fluid nopadding-left'>
-    <div class='row'>
-      <div class='col-md-6'>
-        <div class='container-fluid'>
-          <div class='row'>
-            <div class='col-md-4 col-md-offset-2'>
-              <strong>Final</strong>
-            </div>
-          </div>
-        </div>
+  <br>
+
+  <div class='group well well-sm'>
+    <div class='group-grades'>
+      <div class="grade-buttons">
       </div>
-      <div class='col-md-6'>
-        <div class='container-fluid'>
-          <div class='row'>
-            <% prediction.schemes.each do |scheme| %>
-                <div class='col-md-3 final_percent text-center' data-scheme='<%= scheme.id %>'>
-                  <span></span>
-                </div>
-            <% end %>
-          </div>
-        </div>
+      <div class='grade-name'>
+        <strong>Final</strong>
       </div>
+    </div>
+    <div class='group-weights'>
+      <% prediction.schemes.each do |scheme| %>
+          <div class='group-weight final_percent text-center' data-scheme='<%= scheme.id %>'>
+            <span></span>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -122,48 +105,39 @@
 <div>
   <% prediction.groups.each do |group| %>
       <div class='group  well well-sm'>
-        <div class='container-fluid nopadding-left'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <% group.grades.each_with_index do |grade, i| %>
-                  <div class='grade container-fluid'>
-                    <div class='row'>
-                      <div class='col-md-2' style="padding: 0">
-                        <%= render :partial => 'grade_buttons', :locals => {:group => group, :grade => grade, :index =>i } %>
-                      </div>
-                      <div class='col-md-6'>
-                        <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
-                            <%= text_field_tag :name, grade.name, :placeholder => 'Name (e.g. Midterm)', :class => 'submitonedit form-control' %>
-                            <%= hidden_field_tag :grade, grade.id %>
-                        <% end %>
+        <div class='group-grades'>
+          <% group.grades.each_with_index do |grade, i| %>
+              <div class='grade'>
+                <div class='grade-buttons'>
+                  <%= render :partial => 'grade_buttons', :locals => {:group => group, :grade => grade, :index => i} %>
+                </div>
+                <div class='grade-name'>
+                  <%= form_tag(utils_fgc_edit_grade_name_path, :class => 'useajax') do %>
+                      <%= text_field_tag :name, grade.name, :placeholder => 'Name (e.g. Midterm)', :class => 'submitonedit form-control' %>
+                      <%= hidden_field_tag :grade, grade.id %>
+                  <% end %>
 
-                      </div>
-                      <div class='col-md-3 grade_value'>
-                        <%= form_tag(utils_fgc_edit_grade_value_path, :class => 'useajax') do %>
-                            <%= text_field_tag :value, grade.value.prettify, :placeholder => 'Grade', :class => 'submitonedit form-control percentage', 'data-field' => 'grade' %>
-                            <%= hidden_field_tag :grade, grade.id %>
-                        <% end %>
-                      </div>
-
-                    </div>
-                  </div>
-              <% end %>
-            </div>
-            <div class='col-md-5'>
-              <div class='container-fluid'>
-                <div class='row group_scheme_list'>
-                  <% prediction.schemes.each do |scheme| %>
-                      <% percent = group.scheme_percent(scheme) %>
-                      <div class='col-md-3 scheme' data-scheme='<%= scheme.id %>'>
-                        <%= form_tag(utils_fgc_edit_group_percent_path, :class => 'useajax') do %>
-                            <%= hidden_field_tag :percent, percent.id %>
-                            <%= text_field_tag :value, percent.value.prettify, :placeholder => 'Percent', :class => 'submitonedit form-control percentage', 'data-field' => 'percent' %>
-                        <% end %>
-                      </div>
+                </div>
+                <div class='grade-value grade_value'>
+                  <%= form_tag(utils_fgc_edit_grade_value_path, :class => 'useajax') do %>
+                      <%= text_field_tag :value, grade.value.prettify, :placeholder => 'Grade', :class => 'submitonedit form-control percentage', 'data-field' => 'grade' %>
+                      <%= hidden_field_tag :grade, grade.id %>
                   <% end %>
                 </div>
               </div>
-            </div>
+          <% end %>
+        </div>
+        <div class='group-weights'>
+          <div class='group_scheme_list'>
+            <% prediction.schemes.each do |scheme| %>
+                <% percent = group.scheme_percent(scheme) %>
+                <div class='group-weight scheme' data-scheme='<%= scheme.id %>'>
+                  <%= form_tag(utils_fgc_edit_group_percent_path, :class => 'useajax') do %>
+                      <%= hidden_field_tag :percent, percent.id %>
+                      <%= text_field_tag :value, percent.value.prettify, :placeholder => 'Percent', :class => 'submitonedit form-control percentage', 'data-field' => 'percent' %>
+                  <% end %>
+                </div>
+            <% end %>
           </div>
         </div>
       </div>
