@@ -621,3 +621,27 @@ $hover-img-height: 100px
   .btn:first-child:nth-last-child(5),
   .btn:first-child:nth-last-child(5) ~ .btn
     width: 20%
+
+.shadow-box
+  background-color: white
+  box-shadow: 1px 1px 5px 0px $palette_grey_medium_light
+  padding: 1rem
+  margin: 1rem
+
+.shadow-box-list
+  background-color: white
+  box-shadow: 1px 1px 5px 0px $palette_grey_medium_light
+  padding: 0
+  margin: 1rem
+
+  .shadow-box-list-header
+    display: block
+    border-bottom: 1px solid $palette_grey_medium_dark
+    font-weight: bold
+    padding: 1rem
+
+  .shadow-box-list-item
+    display: block
+    padding: 1rem
+    &:not(:last-child)
+      border-bottom: 1px solid $palette_grey_lighter

@@ -38,6 +38,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   end
 
   def show
+    @fullwidth = true
   end
 
   #Call when the user want to have a single grade(Midterm)
