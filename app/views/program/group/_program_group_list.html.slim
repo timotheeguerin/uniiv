@@ -1,0 +1,4 @@
+.list-group.row-container
+  - groups.each do |group|
+    .row.list-group-item
+      = render :partial => 'program/group/show', locals: {group: group}

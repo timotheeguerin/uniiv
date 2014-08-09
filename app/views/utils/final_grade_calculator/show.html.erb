@@ -8,17 +8,7 @@
         <span>Calculate the grade you need to get at your final to achieve your goal</span>
       </div>
       <div class='col-md-5'>
-        <div class='shadow-box course-card link' data-href="<%= course_path(@prediction.course) %>">
-          <div class='course-card-info'>
-            <div>
-              <strong><%= @prediction.course %></strong>
-            </div>
-            <span><%= @prediction.course.name %></span>
-          </div>
-          <div class='course-card-buttons'>
-            <%= user_course_buttons(@prediction.course) %>
-          </div>
-        </div>
+        <%= course_card(@prediction.course) %>
       </div>
     </div>
     <hr>

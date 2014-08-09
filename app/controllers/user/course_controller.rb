@@ -28,16 +28,12 @@ class User::CourseController < ApplicationController
     @user_taking_course.course_scenario = current_scenario
 
     if @user_taking_course.save
-      puts 'SAVED: ' + current_scenario.plan_to_take_course?(@course).to_s
-      puts current_scenario.taking_courses.to_a.to_s
-      puts @course.id
-      if params[:graph_embed]
+      if request.xhr?
         return_json('course.course_taking.added', :url => course_graph_embed_path(@course))
       else
         _redirect_to :back
       end
     else
-      puts 'NOT SAVED!'
       _render 'take_show'
     end
   end
@@ -65,7 +61,7 @@ class User::CourseController < ApplicationController
     @user_completed_course.user = current_user
     @grades = current_user.university.grading_system.entities
     if @user_completed_course.save
-      redirect_or_json(:message => 'course.completed', :destination => course_path(@course))
+      redirect_or_json(:message => 'course.completed')
     else
       render_or_json :view => 'complete', :success => false
     end

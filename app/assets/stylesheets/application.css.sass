@@ -575,7 +575,7 @@ $hover-img-height: 100px
     align-items: center
     border-top: 1px solid $palette_grey_medium_light
 
-    padding: 0.8rem 0.8zrem
+    padding: 0.8rem 0.8rem
 
     background-color: $palette_grey_lightest
     &:last-child
@@ -648,7 +648,10 @@ a.shadow-box:hover, .shadow-box.link:hover
 .course-card
   display: flex
 
+  &:not([min-width~="400px"])
+    min-height: 86px
+
   .course-card-info
-    flex: 1 0 auto
+    flex: 1 1 auto
   .course-card-buttons
     flex: 0 0 10rem

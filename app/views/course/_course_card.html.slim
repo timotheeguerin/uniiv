@@ -1,0 +1,7 @@
+.shadow-box.course-card.link data-href=course_path(course)
+  .course-card-info
+    div
+      strong= course
+    span.ellipsis= course.name
+  .course-card-buttons
+    = user_course_buttons(course)

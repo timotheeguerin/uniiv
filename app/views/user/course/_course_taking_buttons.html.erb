@@ -1,6 +1,6 @@
 <div class='course-buttons-container pull-right'>
   <div class='btn-group'>
-    <a href='<%= user_complete_course_path(course) %>' class='btn btn-success ajaxmodal' rel='tooltip' data-toggle='tooltip' title='Mark Completed'>
+    <a href='<%= user_complete_course_path(course.course.id) %>' class='btn btn-success ajaxmodal' rel='tooltip' data-toggle='tooltip' title='Mark Completed'>
       <span class='whitetext glyphicon glyphicon-ok-sign'></span>
     </a>
     <a type='button' href='<%= course_path(course.course.id) %>' class='tooltipdestroy btn btn-info' rel='tooltip' title='<%= course.course.name %>'>
