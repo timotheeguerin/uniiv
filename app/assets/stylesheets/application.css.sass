@@ -309,9 +309,6 @@ li.invalid-time.dependency
 .program_list .progress
   margin: 4px 0 4px
 
-.course-buttons-container
-  width: 180px
-
 //*******************************************
 // Jquery automplete styling
 //*******************************************
@@ -574,22 +571,20 @@ $hover-img-height: 100px
   border-left: 1px solid $palette_grey_medium_light
   border-right: 1px solid $palette_grey_medium_light
   .course-list-item
-    display: -webkit-flex
     display: flex
     align-items: center
     border-top: 1px solid $palette_grey_medium_light
 
-    padding: 0.8rem 0.2rem
+    padding: 0.8rem 0.8zrem
 
     background-color: $palette_grey_lightest
     &:last-child
       border-bottom: 1px solid $palette_grey_medium_light
-    .course-status, .course-buttons
-      -webkit-flex: 0 0 2.5rem
+    .course-status
       flex: 0 0 2.5rem
-
+    .course-buttons
+      flex: 0 0 10rem
     .course-text
-      -webkit-flex: 1 0 auto
       flex: 1 0 auto
 
   .course-list-item:not([min-width~="500px"]) > .course-buttons
@@ -628,6 +623,10 @@ $hover-img-height: 100px
   padding: 1rem
   margin: 1rem
 
+a.shadow-box:hover, .shadow-box.link:hover
+  background-color: $palette_grey_lighter
+  cursor: pointer
+
 .shadow-box-list
   background-color: white
   box-shadow: 1px 1px 5px 0px $palette_grey_medium_light
@@ -645,3 +644,11 @@ $hover-img-height: 100px
     padding: 1rem
     &:not(:last-child)
       border-bottom: 1px solid $palette_grey_lighter
+
+.course-card
+  display: flex
+
+  .course-card-info
+    flex: 1 0 auto
+  .course-card-buttons
+    flex: 0 0 10rem

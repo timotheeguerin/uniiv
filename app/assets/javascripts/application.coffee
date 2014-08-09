@@ -148,6 +148,9 @@ $(document).ready () ->
       client.on "aftercopy", (event) ->
         console.log 'Copied text to clipboard'
 
+  $(document).on 'click', '.link', () ->
+    document.location = $(this).data('href')
+
   showonhover(document)
 
 setupStarRatings = () ->

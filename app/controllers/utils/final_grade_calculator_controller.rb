@@ -26,6 +26,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
         paginate :page => 1, :per_page => 10
       end.results
     end
+    @fullwidth = true
   end
 
   def search

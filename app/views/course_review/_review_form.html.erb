@@ -1,38 +1,40 @@
 <div>
   <%= form_for @review, :url => path do |f| %>
-    <% if @review.errors.any? %>
-      <div id="errorExplanation">
-        <h2><%= pluralize(@review.errors.count, 'error') %> prohibited
-          this post from being saved:</h2>
-        <ul>
-          <% @review.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-        <script type="text/javascript">$("img").attr("title", "");</script>
-      </div>
-    <% end %>
-
-    <% @review.ratings.each do |rating| %>
-      <%= f.fields_for :ratings, rating do |r| %>
-        <div>
-          <%= rating.score %>
-          <%= r.label rating.criteria.name %>
-          <%= r.hidden_field :score, :class => 'star-rating' %>
-          <%= r.hidden_field :criteria_id %>
-        </div>
+      <% if @review.errors.any? %>
+          <div id="errorExplanation">
+            <h2><%= pluralize(@review.errors.count, 'error') %> prohibited
+              this post from being saved:</h2>
+            <ul>
+              <% @review.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+            <script type="text/javascript">$("img").attr("title", "");</script>
+          </div>
       <% end %>
-    <% end %>
-    <div>
-      <%= f.label :comments %>
-      <br>
-      <%= f.text_area :comments, :style => "display:block;margin-left:auto;margin-right:auto;width:97%;resize:none;", :rows => "5", :maxlength => "300" %>
-    </div>
-    <div>
-      <div>
-        <button style="visibility:hidden;">l</button><%= f.submit t("review.submit"), :style => "float:right;" %></div>
-    </div>
+
+      <% @review.ratings.each do |rating| %>
+          <%= f.fields_for :ratings, rating do |r| %>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= rating.score %>
+                  <%= r.label rating.criteria.name %>
+                </div>
+                <div class="col-md-6">
+                  <%= r.hidden_field :score, :class => 'star-rating' %>
+                  <%= r.hidden_field :criteria_id %>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+      <hr>
+      <div class="form-group">
+        <%= f.label :comment %>
+        <br>
+        <%= f.text_area :comment, class: 'form-control', :rows => "5", :maxlength => "300" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit t('review.submit'), class: 'btn btn-success' %>
+      </div>
   <% end %>
 </div>
-
-<script type="text/javascript">$("img").attr("title", "");</script>

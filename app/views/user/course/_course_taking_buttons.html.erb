@@ -1,48 +1,15 @@
-<% id ="taking_carousel_#{course.id}_#{SecureRandom.uuid}" %>
-<% default_item ||= 'buttons' %>
 <div class='course-buttons-container pull-right'>
-  <div id='<%= id %>' class='carousel slide' data-ride="carousel" data-interval="false">
-    <div class="carousel-inner">
-      <div class="item
-        <% if default_item == 'buttons' %>
-        active
-        <% end %>
-        ">
-        <div>
-          <div class='btn-group'>
-            <a class='btn btn-success' href="#<%= id %>" rel='tooltip' title='Complete' data-slide="next">
-              <span class='glyphicon glyphicon-ok-sign whitetext'></span>
-            </a>
-            <a type='button' href='<%= course_path(course.course.id) %>' class='tooltipdestroy btn btn-info' rel='tooltip' title='<%= course.course.name %>'>
-              <span class='whitetext glyphicon glyphicon-info-sign'></span>
-            </a>
-            <%= group_button_to user_untake_course_path,
-                                :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => '.course_taking_container',
-                                :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
-                <span class='glyphicon glyphicon-remove-sign'></span>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class='item
-        <% if default_item == 'complete_form' %>
-        active
-        <% end %>
-        '>
-        <div class='container-fluid pull-left'>
-          <div class='row'>
-            <div class='col-md-3'>
-              <a class='btn btn-success pull-left' href="#<%= id %>" rel='tooltip' title='Back' data-slide="prev">
-                <span class='glyphicon glyphicon-chevron-left whitetext'></span>
-              </a>
-            </div>
-            <div class='col-md-9'>
-              <%= complete_course_inline_form(course, :delete_parent => '.course_taking_container',
-                                              :reload => '#user_course_completed_container', :useajax => useajax) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class='btn-group'>
+    <a href='<%= user_complete_course_path(course) %>' class='btn btn-success ajaxmodal' rel='tooltip' data-toggle='tooltip' title='Mark Completed'>
+      <span class='whitetext glyphicon glyphicon-ok-sign'></span>
+    </a>
+    <a type='button' href='<%= course_path(course.course.id) %>' class='tooltipdestroy btn btn-info' rel='tooltip' title='<%= course.course.name %>'>
+      <span class='whitetext glyphicon glyphicon-info-sign'></span>
+    </a>
+    <%= group_button_to user_untake_course_path,
+                        :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => '.course_taking_container',
+                        :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
+        <span class='glyphicon glyphicon-remove-sign'></span>
+    <% end %>
   </div>
 </div>
