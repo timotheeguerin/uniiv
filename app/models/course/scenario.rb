@@ -110,10 +110,10 @@ class Course::Scenario < ActiveRecord::Base
     user_taking_course.semester = term.semester
     user_taking_course.year = term.year
     if user_taking_course.save
-      true
+      user_taking_course
     else
       self.errors.add(:taking_courses, user_taking_course.errors.full_messages)
-      false
+      nil
     end
   end
 

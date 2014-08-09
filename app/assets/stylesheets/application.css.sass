@@ -235,15 +235,15 @@ ul.sortable li.placeholder
 ul.sortable li.placeholder:before
   position: absolute
 
-.drag_box
+.course-drag-box
   min-height: 25px
   border-radius: 5px
 
-.draggable_box
+.sortable:not(.no-drop)
   border: 1px dashed #dfdfdf
   background-color: $palette_grey_medium_light
 
-.undraggable_box
+.sortable.no-drop
   border: 1px solid #dfdfdf
   background-color: #f5f5f5
 

@@ -4,10 +4,7 @@ class UserTakingCourse < ActiveRecord::Base
   belongs_to :semester, :class_name => Course::Semester
 
   validates_uniqueness_of :course_id, :scope => [:course_scenario]
-  validates :course_id, :presence => true
-  validates :course_scenario_id, :presence => true
-  validates :semester, :presence => true
-  validates :year, :presence => true
+  validates_presence_of :course_id, :course_scenario_id, :semester, :year
 
   validate :validate_course_not_completed
 

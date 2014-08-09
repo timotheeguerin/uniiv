@@ -1,0 +1,3 @@
+ul class='sortable course-drag-box #{'no-drop' if no_drop}' data-group='course' data-update-url=update_path data-params=params
+  - courses.each do |course|
+    = course_list_item(course, details: details)

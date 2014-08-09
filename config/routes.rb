@@ -170,12 +170,9 @@ Uniiv::Application.routes.draw do
   scope :module => 'user' do
 
     #Course taking controller
-    get 'user/course/add' => 'course_planner#add_course', :as => :user_add_course
-    post 'user/course/add' => 'course_planner#handle_add_course', :as => :handle_user_add_course
-    get 'user/course/sort' => 'course_planner#sort_course', :as => :user_sort_course
-
-
-    post 'user/course/take/update' => 'course_planner#update_course_taking', :as => :update_course_taking
+    get 'user/course/sort' => 'course_planner#index', :as => :user_sort_course
+    post 'user/course/take' => 'course_planner#take_course', :as => :take_course_planner
+    post 'user/courses/remove' => 'course_planner#untake_course', :as => :untake_course_planner
 
     #User course controller
     post 'user/course/untake' => 'course#remove', :as => :user_untake_course

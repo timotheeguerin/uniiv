@@ -18,24 +18,12 @@
       <div id='course_sorter'>
         <div id='message_container'></div>
         <label><%= t('advancedstanding.courses') %></label>
-
-        <div>
-          <ul class='sortable connected draggable_box drag_box sortable_noindent'
-              data-group='course'
-              data-params=''
-              data-update-url='<%= user_advanced_standings_create_path %>'>
-            <% @courses.each do |course| %>
-                <li>
-                  <div data-course-id='<%= course.course.id %>'><h5><%= course.course.to_s %></h5></div>
-                </li>
-            <% end %>
-          </ul>
-        </div>
+        <%= user_courses_dnd_zone(@courses, user_advanced_standings_create_path) %>
       </div>
     </div>
     <div class='col-md-4'>
       <div class='text-center'>
-        <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
+        <ul class='sortable no-drag course-drag-box bin'
             data-type='delete'
             data-group='course'
             data-update-url='<%= user_advanced_standings_remove_path %>'
@@ -57,7 +45,7 @@
       </div>
       <div>
         <ul id='search-output-container'
-            class='sortable no-drop draggable_box drag_box sortable_noindent'
+            class='sortable no-drop course-drag-box'
             data-group='course'
         >
         </ul>

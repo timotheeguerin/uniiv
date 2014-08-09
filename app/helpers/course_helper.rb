@@ -41,9 +41,18 @@ module CourseHelper
 
   end
 
-  def course_list_item(course)
-    invalid_time = (not course.is_time_valid?)
-    render 'course/sort_course_list_item', :course => course, :invalid_time => invalid_time
+  def user_courses_dnd_zone(courses, path, params: '', no_drop: false, details: true)
+    render 'user/course/course_dnd_zone', update_path: path, courses: courses, params: params, no_drop: no_drop, details: details
+  end
+
+  def course_list_item(course, details: true)
+
+    invalid_time = if course.is_a? UserTakingCourse
+                     !course.is_time_valid?
+                   else
+                     false
+                   end
+    render 'course/sort_course_list_item', :course => course, :invalid_time => invalid_time, details: details
   end
 
   def course_status_icon(course)
@@ -51,13 +60,13 @@ module CourseHelper
     content = ''
     case state
       when CourseState::COMPLETED
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ok-circle bluetext', :title => t('course.completed'), 'rel'=> 'tooltip', 'data-placement'=>'left'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ok-circle bluetext', :title => t('course.completed'), 'rel' => 'tooltip', 'data-placement' => 'left'
       when CourseState::TAKING
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-time yellowtext', :title => t('course.taking'), 'rel'=> 'tooltip', 'data-placement'=>'left'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-time yellowtext', :title => t('course.taking'), 'rel' => 'tooltip', 'data-placement' => 'left'
       when CourseState::AVAILABLE
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-thumbs-up greentext', :title => t('course.available'), 'rel'=> 'tooltip', 'data-placement'=>'left'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-thumbs-up greentext', :title => t('course.available'), 'rel' => 'tooltip', 'data-placement' => 'left'
       when CourseState::UNAVAILABLE
-        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ban-circle redtext', :title => t('course.unavailable'), 'rel'=> 'tooltip', 'data-placement'=>'left'
+        content = content_tag 'span', '', :class => 'glyphicon glyphicon-ban-circle redtext', :title => t('course.unavailable'), 'rel' => 'tooltip', 'data-placement' => 'left'
     end
     content
   end

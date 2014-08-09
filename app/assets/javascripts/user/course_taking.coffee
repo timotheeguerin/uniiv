@@ -56,7 +56,7 @@ handleSortable = (element) ->
     group: group
     drop: drop
     itemSelector: 'li:not(.notsortable)'
-    onMousedown: ($item, _super,  event) ->
+    onMousedown: ($item, _super, event) ->
       cancel = false
       if event.target.nodeName == 'INPUT' or event.target.nodeName == 'SELECT'
         cancel = true
@@ -136,7 +136,6 @@ handleSortable = (element) ->
 
         checkDependencies(course_id, remove)
         loading_anim.remove()
-
       ).error (error) ->
         console.log(error)
   })
