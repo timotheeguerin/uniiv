@@ -42,9 +42,13 @@ class Ability
       can :edit, user
 
       cannot :view, User::Invite
-      can [:index, :create], Issue::Issue
-      can [:read, :show, :update, :destroy], Issue::Issue, reporter_id: user.id
+      can [:index], Issue::Issue
+      can [:create, :read, :show, :update, :destroy], Issue::Issue, reporter_id: user.id
+      can [:create, :read, :show, :update, :destroy], Issue::Issue, assignee_id: user.id
       can :change_status, Issue::Issue, assignee_id: user.id
+
+      can :manage, Issue::Comment, issue: {reporter_id: user.id}
+      can :manage, Issue::Comment, issue: {assignee_id: user.id}
     end
 
     if user.role? :advisor

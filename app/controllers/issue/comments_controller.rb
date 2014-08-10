@@ -1,20 +1,12 @@
 class Issue::CommentsController < ApplicationController
-
-  before_action :setup
-
-  def setup
-    @issue = Issue::Issue.find(params[:issue_id])
-  end
+  load_and_authorize_resource :issue, class: 'Issue::Issue'
+  load_and_authorize_resource :through => :issue
 
   def new
-    authorize! :comment, @issue
-    @comment = Issue::Comment.new
-    @comment.issue = @issue
     @comment.build_content
   end
 
   def create
-    authorize! :comment, @issue
     @comment = Issue::Comment.new(comment_params)
     if @comment.save
       redirect_to issue_path(@issue)
@@ -25,17 +17,12 @@ class Issue::CommentsController < ApplicationController
   end
 
   def edit
-    @comment = @issue.comments.find(params[:id])
-    authorize! :update, @comment
-
     if params[:embed_edit]
       render :partial => 'form', locals: {comment: @comment}
     end
   end
 
   def update
-    @comment = @issue.comments.find(params[:id])
-    authorize! :update, @comment
     @comment.assign_attributes(comment_params)
     if @comment.save
       redirect_to issue_path(@issue)
@@ -46,8 +33,6 @@ class Issue::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @issue.comments.find(params[:id])
-    authorize! :destroy, @comment
     @comment.destroy
     redirect_to issue_path(@issue)
   end

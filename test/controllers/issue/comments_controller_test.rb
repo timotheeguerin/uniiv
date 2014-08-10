@@ -3,11 +3,17 @@ require 'test_helper'
 class Issue::CommentsControllerTest < ActionController::TestCase
 
   def setup
-    bypass_rescue
+    @ability.can :show, Issue::Issue
   end
 
+  test 'should not get new without permission' do
+    issue = create(:issue_issue)
+    assert_raise CanCan::AccessDenied do
+      get :new, issue_id: issue.id
+    end
+  end
   test 'should get new' do
-    @ability.can :comment, Issue::Issue
+    @ability.can :create, Issue::Comment
     issue = create(:issue_issue)
     get :new, issue_id: issue.id
     assert_response :success
@@ -15,17 +21,15 @@ class Issue::CommentsControllerTest < ActionController::TestCase
 
   test 'should get permission error when trying to create issue' do
     issue = create(:issue_issue)
-    new_comment = {content: {text: 'My new comment', format: :markdown}}
     assert_no_difference 'issue.comments.size' do
       assert_raise CanCan::AccessDenied do
-        get :create, issue_id: issue.id, comment: new_comment
-        issue.reload
+        get :create, issue_id: issue.id, comment: {content: {text: 'My new comment', format: :markdown}}
       end
     end
   end
 
   test 'should create comment' do
-    @ability.can :comment, Issue::Issue
+    @ability.can :create, Issue::Comment
     issue = create(:issue_issue)
     new_comment = {content_attributes: {text: 'My new comment', format: :markdown}}
     assert_difference 'issue.comments.size' do
