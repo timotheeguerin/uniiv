@@ -148,8 +148,14 @@ $(document).ready () ->
       client.on "aftercopy", (event) ->
         console.log 'Copied text to clipboard'
 
-  $(document).on 'click', '.link', () ->
-    document.location = $(this).data('href')
+  $(document).on 'click', '.link :not(a, button, .link)', () ->
+    link = $(this).closest('.link')
+    if $(event.target).closest('a, button, .link')[0] == link[0]
+      console.log('working')
+      document.location = link.data('href')
+
+
+
 
   showonhover(document)
 

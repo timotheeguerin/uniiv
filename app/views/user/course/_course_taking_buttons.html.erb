@@ -7,7 +7,7 @@
       <span class='whitetext glyphicon glyphicon-info-sign'></span>
     </a>
     <%= group_button_to user_untake_course_path,
-                        :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => '.course_taking_container',
+                        :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => delete_parent,
                         :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
         <span class='glyphicon glyphicon-remove-sign'></span>
     <% end %>

@@ -2,4 +2,4 @@
   .row
     - slice.each do |completed_course|
       .col-md-4
-        = course_card(completed_course.course)
+        = course_card(completed_course.course, useajax: true)

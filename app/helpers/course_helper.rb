@@ -75,8 +75,8 @@ module CourseHelper
     content
   end
 
-  def course_card(course)
-    render 'course/course_card', course: course
+  def course_card(course, useajax: false)
+    render 'course/course_card', course: course, useajax: useajax
   end
 
 end

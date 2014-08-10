@@ -198,6 +198,7 @@ $(document).ready ->
 
 #Submit a form using ajax
 submitFormAjax = () ->
+  console.log('submit ajax')
   form = $(this)
   submit_button = form.find('button, input[type="submit"]')
   submit_button.prop('disabled', true)

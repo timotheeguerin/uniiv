@@ -4,4 +4,4 @@
       strong= course
     span.ellipsis= course.name
   .course-card-buttons
-    = user_course_buttons(course)
+    = user_course_buttons(course, useajax, delete_parent: '.course-card')

@@ -1,17 +1,15 @@
 module User::CourseHelper
 
-  def user_course_buttons(course, useajax = false)
+  def user_course_buttons(course, useajax = false, delete_parent: '')
     if user_signed_in?
       if current_user.has_completed_course?(course)
         user_course_completed = current_user.completed_courses.where(:course_id => course.id).first
-        render :partial => 'user/course/course_completed_buttons', :locals => {:course => user_course_completed, :useajax => useajax}
+        render 'user/course/course_completed_buttons', course: user_course_completed, useajax: useajax, delete_parent: delete_parent
       elsif current_scenario.plan_to_take_course?(course)
-        puts course.id
         user_course_taking = current_scenario.taking_courses.where(:course_id => course.id).first
-        puts user_course_taking
-        render :partial => 'user/course/course_taking_buttons', :locals => {:course => user_course_taking, :useajax => useajax}
+        render 'user/course/course_taking_buttons', course: user_course_taking, useajax: useajax, delete_parent: delete_parent
       else
-        render :partial => 'user/course/course_default_buttons', :locals => {:course => course, :useajax => useajax}
+        render 'user/course/course_default_buttons', course: course, useajax: useajax, delete_parent: delete_parent
       end
     else
 

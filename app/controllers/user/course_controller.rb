@@ -73,7 +73,7 @@ class User::CourseController < ApplicationController
     current_scenario.untake_course(@course)
 
     if request.xhr?
-      return_json('course.untake', :url => course_graph_embed_path(@course))
+      return_json('course.untake', :url => course_path(@course))
     else
       _redirect_to :back
     end
