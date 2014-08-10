@@ -24,6 +24,7 @@ class Issue::Issue < ActiveRecord::Base
   end
 
   searchable do
+    integer :id
     text :title
     integer :status do
       Issue::Issue.statuses[status]

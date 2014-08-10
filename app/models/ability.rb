@@ -40,15 +40,19 @@ class Ability
       can :read, :all # allow user to read everything
       can :view, :all
       can :edit, user
-      can :create, Issue::Issue
 
       cannot :view, User::Invite
+      can [:index, :create], Issue::Issue
+      can [:read, :show, :update, :destroy], Issue::Issue, reporter_id: user.id
+      can :change_status, Issue::Issue, assignee_id: user.id
     end
 
     if user.role? :advisor
       can :sign_in_as, User.only_with_roles([:user])
       can :validate, user.advisor_students
       can :update_status, user.advisor_students
+
+
     else
       cannot :view, :advisor_dashboard
     end

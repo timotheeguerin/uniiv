@@ -1,24 +1,22 @@
 class Issue::IssuesController < ApplicationController
+  load_and_authorize_resource
   def index
     @filters = params.clone
     @filters[:status] ||= :open
+    @filters[:authorized_ids] = @issues.ids
     @issues = IssueSearcher.search(@filters)
   end
 
   def show
-    @issue = Issue::Issue.find(params[:id])
-    authorize! :view, @issue
   end
 
   def new
-    authorize! :create, Issue::Issue
     redirect_to new_user_advisor_student_path if current_user.student? and not current_user.has_an_advisor?
     @issue = Issue::Issue.new
     @issue.build_content
   end
 
   def create
-    authorize! :create, Issue::Issue
     @issue = Issue::Issue.create(issue_params)
     if @issue.valid?
       redirect_to issue_path(@issue)
@@ -29,13 +27,9 @@ class Issue::IssuesController < ApplicationController
   end
 
   def edit
-    @issue = Issue::Issue.find(params[:id])
-    authorize! :update, Issue::Issue
   end
 
   def update
-    @issue = Issue::Issue.find(params[:id])
-    authorize! :update, Issue::Issue
     @issue.assign_attributes(issue_params)
     if @issue.save
       redirect_to issue_path(@issue)

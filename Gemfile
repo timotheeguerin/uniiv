@@ -47,7 +47,7 @@ gem 'rails_admin'
 
 gem 'devise'
 
-gem 'cancan'
+gem 'cancancan'
 
 gem 'i18n-active_record',
     :git => 'git://github.com/timcolonel/i18n-active_record.git',

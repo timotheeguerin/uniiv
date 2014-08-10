@@ -2,13 +2,22 @@ require 'test_helper'
 
 class Issue::IssuesControllerTest < ActionController::TestCase
 
-  def setup
-    bypass_rescue
+  test 'should not get index without permission' do
+    assert_raise CanCan::AccessDenied do
+      get :index
+    end
   end
 
   test 'should get index' do
+    @ability.can :index, Issue::Issue
     get :index
     assert_response :success
+  end
+
+  test 'should not get new without permission' do
+    assert_raise CanCan::AccessDenied do
+      get :new
+    end
   end
 
   test 'should redirect if user does not have an advisor' do
@@ -16,6 +25,7 @@ class Issue::IssuesControllerTest < ActionController::TestCase
     get :new
     assert_response :redirect
   end
+
   test 'should get new if user has an advisor' do
     create(:user_advisor_student, student: @user)
     @ability.can :create, Issue::Issue
@@ -23,19 +33,39 @@ class Issue::IssuesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should not create without permission' do
+    assert_raise CanCan::AccessDenied do
+      get :create, issue: {title: 'Some title', content_attributes: {text: 'Some text', format: :markdown}}
+    end
+  end
   test 'should create issues' do
     @ability.can :create, Issue::Issue
     assert_difference 'Issue::Issue.count' do
-      get :create, :issue => {:title => 'Some title', :content_attributes => {:text => 'Some text', :format => :markdown}}
+      get :create, issue: {title: 'Some title', content_attributes: {text: 'Some text', format: :markdown}}
       assert_response :redirect
     end
   end
 
+
+  test 'should not get show without permission' do
+    issue = create(:issue_issue, :reporter => @user)
+    assert_raise CanCan::AccessDenied do
+      get :show, id: issue.id
+    end
+  end
+
   test 'should get show' do
-    @ability.can :view, Issue::Issue
+    @ability.can :show, Issue::Issue
     issue = create(:issue_issue, :reporter => @user)
     get :show, :id => issue
     assert_response :success
+  end
+
+  test 'should not get edit without permission' do
+    issue = create(:issue_issue, :reporter => @user)
+    assert_raise CanCan::AccessDenied do
+      get :edit, id: issue.id
+    end
   end
 
   test 'should get edit' do
@@ -65,6 +95,13 @@ class Issue::IssuesControllerTest < ActionController::TestCase
     end
     issue.reload
     assert_not_equal new_issue[:title], issue.title
+  end
+
+  test 'should not destroy without permission' do
+    issue = create(:issue_issue, :reporter => @user)
+    assert_raise CanCan::AccessDenied do
+      get :destroy, id: issue.id
+    end
   end
 
   test 'should destroy issues' do
