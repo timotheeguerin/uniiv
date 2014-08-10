@@ -4,10 +4,10 @@ class IssueSearcher
   def self.search(filters)
     search = Issue::Issue.search do
       fulltext filters[:q]
-      with :status, Issue::Issue.statuses[filters[:status].to_s] if filters[:status]
-      with :reporter_id, filters[:reporter_id]
-      with :assignee_id, filters[:assignee_id]
-      with :id, filters[:authorized_ids]
+      with :status, Issue::Issue.statuses[filters[:status].to_s] unless filters[:status].blank?
+      with :reporter_id, filters[:reporter_id] unless filters[:reporter_id].blank?
+      with :assignee_id, filters[:assignee_id] unless filters[:assignee_id].blank?
+      with :id, filters[:authorized_ids] unless filters[:authorized_ids].blank?
     end
 
     search.results

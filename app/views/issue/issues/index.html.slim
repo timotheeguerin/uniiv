@@ -4,10 +4,10 @@ h1 Issues
   .col-md-3
     = render 'issue/issues/filters',filters: @filters
   .col-md-8
-    .list-group-item.advisor-students-tabs
-      a.tab
-        = t('opened')
-      a.tab
-        = t('closed')
-
-    = render 'issue/issues/list', issues: @issues
+    - if @issues.any?
+      = render 'issue/issues/list', issues: @issues
+    - else
+      br
+      .text-lg.text-center
+        div.glyphicon.glyphicon-list
+        div No issues

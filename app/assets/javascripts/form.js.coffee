@@ -100,7 +100,7 @@ $(document).ready ->
           form.find('button,input[type="submit"]').prop('disabled', false)
     })
 
-  $('select.selectize').each () ->
+  $('select.selectize, input.selectize').each () ->
     container = $(this)
     form = container.closest('form')
     renderOptions = {
@@ -117,15 +117,17 @@ $(document).ready ->
     maxItem = container.data('max-items')
     maxItem ?= 1
     container.selectize {
+      delimiter: ',',
       maxItems: maxItem,
       valueField: 'data',
       labelField: 'value',
       searchField: 'value',
+      preload: true,
       create: false,
       render: renderOptions,
+      onItemAdd: (value, $item) ->
+        console.log(value + ', ' + $item)
       load: (query, callback) ->
-        if (!query.length)
-          return callback()
         $.ajax({
           url: container.data('url'),
           data: {q: query}

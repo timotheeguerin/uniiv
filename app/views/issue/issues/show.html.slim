@@ -18,4 +18,8 @@
       == @issue.content.to_html
   hr
 
+  div Related items
+  - @issue.related_items.each do |item|
+    = link_to item, item.to_s
+
   = render 'issue/comments/list', issue: @issue

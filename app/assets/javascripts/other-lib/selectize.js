@@ -3031,15 +3031,24 @@
             if (!value.length) return;
 
             values = value.split(settings.delimiter);
+            var real_values = []
             for (i = 0, n = values.length; i < n; i++) {
                 option = {};
-                option[field_label] = values[i];
-                option[field_value] = values[i];
-
-                settings_element.options[values[i]] = option;
+                if (values[i].indexOf('=>') == -1) {
+                    option[field_label] = values[i];
+                    option[field_value] = values[i];
+                    settings_element.options[values[i]] = option;
+                    real_values.push(values[i])
+                }
+                else {
+                    var array = values[i].split('=>')
+                    option[field_label] = array[1];
+                    option[field_value] = array[0];
+                    settings_element.options[option[field_value]] = option;
+                    real_values.push(option[field_value])
+                }
             }
-
-            settings_element.items = values;
+            settings_element.items = real_values;
         };
 
         /**

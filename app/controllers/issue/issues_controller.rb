@@ -1,5 +1,6 @@
 class Issue::IssuesController < ApplicationController
   load_and_authorize_resource
+
   def index
     @filters = params.clone
     @filters[:status] ||= :open
@@ -74,7 +75,7 @@ class Issue::IssuesController < ApplicationController
 
   private
   def issue_params
-    params.require(:issue).permit(:title, :assignee_id, content_attributes: [:text, :format]).merge(reporter_id: current_user.id)
+    params.require(:issue).permit(:title, :assignee_id, :related_items_str, content_attributes: [:text, :format]).merge(reporter_id: current_user.id)
   end
 
   def parse_items

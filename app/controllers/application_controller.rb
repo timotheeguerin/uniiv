@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_scenario, :current_scenario=, :current_term, :sign_in_as_other?, :real_current_user
+  helper_method :current_scenario, :current_scenario=, :current_term, :sign_in_as_other?, :real_current_user, :element_id, :from_element_id
   alias_method :devise_current_user, :current_user
 
   # Rescue unauthorized access
@@ -178,14 +178,11 @@ class ApplicationController < ActionController::Base
   end
 
   def element_id(object)
-    "#{object.class}.#{object.id}"
+    Utils.element_id(object)
   end
 
   def from_element_id(string)
-    class_name, id = string.split('.')
-    clazz = class_name.safe_constantize
-    return nil if clazz.nil?
-    clazz.find_by_id(id)
+    Utils.from_element_id(string)
   end
 
   # Return current user

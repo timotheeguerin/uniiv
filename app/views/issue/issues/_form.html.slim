@@ -8,12 +8,14 @@
         = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
         = content_f.hidden_field :format, :value => :markdown
     .form-group
-      = f.select :assignee_id, [], {:include_blank => t('issue.items.select')}, :class=>'selectize',
+      = f.text_field :related_items_str, :class=>'selectize',:placeholder => t('issue.items.select'),
+            :value => @issue.related_items.map{|x| "#{element_id(x.item)}=>#{x.item}"}.join(','),
             'data-url' => autocomplete_issue_items_path, 'data-max-items' => 5
     .form-group
       .row
         .col-md-6
-          = f.select :assignee_id, [], {:include_blank => t('issue.assignee.select')}, :class=>'selectize',
+          = f.select :assignee_id, options_from_collection_for_select(User.where(id: @issue.assignee_id), :id, :to_s, selected: @issue.assignee_id),
+              {:include_blank => t('issue.assignee.select')}, :class=>'selectize',
               'data-url' => autocomplete_user_path(type: :advisor, student_id: current_user.id)
 
     = f.submit :class => 'btn btn-success'
