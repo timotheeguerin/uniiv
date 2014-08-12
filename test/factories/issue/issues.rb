@@ -6,8 +6,7 @@ FactoryGirl.define do
     association :reporter, :factory => :user
     association :assignee, :factory => :user
     status :open
-    after(:create) do |object|
-      create(:rich_content, :contentable => object)
-    end
+    association :content, :factory => :rich_content
+
   end
 end

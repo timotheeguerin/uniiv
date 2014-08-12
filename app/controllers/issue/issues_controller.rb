@@ -5,7 +5,7 @@ class Issue::IssuesController < ApplicationController
     @filters = params.clone
     @filters[:status] ||= :open
     @filters[:authorized_ids] = @issues.ids
-    @issues = IssueSearcher.search(@filters)
+    @issues = IssueSearcher.search(@filters) unless @issues.empty?
   end
 
   def show
@@ -13,13 +13,11 @@ class Issue::IssuesController < ApplicationController
 
   def new
     redirect_to new_user_advisor_student_path if current_user.student? and not current_user.has_an_advisor?
-    @issue = Issue::Issue.new
     @issue.build_content
   end
 
   def create
-    @issue = Issue::Issue.create(issue_params)
-    if @issue.valid?
+    if @issue.save
       redirect_to issue_path(@issue)
     else
       flash[:alert] = @issue.errors.full_messages
@@ -41,14 +39,14 @@ class Issue::IssuesController < ApplicationController
   end
 
   def destroy
-    @issue = Issue::Issue.find(params[:id])
-    authorize! :destroy, Issue::Issue
+    # @issue = Issue::Issue.find(params[:id])
+    # authorize! :destroy, Issue::Issue
     @issue.destroy
     redirect_to issues_path
   end
 
   def change_status
-    @issue = Issue::Issue.find(params[:id])
+    # @issue = Issue::Issue.find(params[:id])
     @issue.status = params[:status]
     if @issue.save
       flash[:notice] = t('issue.status.change.success', status: @issue.status)

@@ -490,13 +490,15 @@ $hover-img-height: 100px
       border-right: 1px solid $palette_grey_lighter
 
 .explore-menu, .choice-menu
+  @extend .row
   width: 100%
+  border-top: 1px solid $palette_grey_medium_light
+  &:last-child
+    border-bottom: 1px solid $palette_grey_medium_light
   a.explore-choice, a.btn-lg-choice
     display: block
     float: left
     box-sizing: border-box
-    border-bottom: 1px solid $palette_grey_medium_light
-    border-top: 1px solid $palette_grey_medium_light
     text-align: center
     padding: 2rem
     height: 12rem

@@ -20,6 +20,6 @@ FactoryGirl.define do
     type 'User::Student'
   end
   factory :advisor, parent: :user, class: 'User::Advisor' do
-    type 'User::Advsior'
+    type 'User::Advisor'
   end
 end

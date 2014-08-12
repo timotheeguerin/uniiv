@@ -28,8 +28,7 @@ class ActionController::TestCase
   teardown :teardown_uniiv
 
   def setup_uniiv
-    @user = create(:student)
-    sign_in @user
+    new_user(:student)
     @ability = Object.new
     @ability.extend(CanCan::Ability)
     @controller.stubs(:current_ability).returns(@ability)
@@ -49,6 +48,12 @@ class ActionController::TestCase
   # More importantly cancan unauthorized access
   def bypass_rescue
     @controller.extend(BypassRescue)
+  end
+
+  def new_user(type)
+    sign_out @user unless @user.nil?
+    @user = create(type)
+    sign_in @user
   end
 end
 

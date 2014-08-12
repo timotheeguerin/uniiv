@@ -4,6 +4,9 @@ h1 Issues
   .col-md-3
     = render 'issue/issues/filters',filters: @filters
   .col-md-8
+    a.btn.btn-success.pull-right href=new_issue_path
+      =t('issue.new')
+    br
     - if @issues.any?
       = render 'issue/issues/list', issues: @issues
     - else

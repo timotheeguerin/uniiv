@@ -12,6 +12,7 @@ class Issue::CommentsControllerTest < ActionController::TestCase
       get :new, issue_id: issue.id
     end
   end
+
   test 'should get new' do
     @ability.can :create, Issue::Comment
     issue = create(:issue_issue)
@@ -63,7 +64,7 @@ class Issue::CommentsControllerTest < ActionController::TestCase
     issue = comment.issue
     edited_comment = {content_attributes: {text: 'My edited comment', format: :markdown}}
     assert_raise CanCan::AccessDenied do
-      get :update, :issue_id => issue.id, id: comment.id, comment: edited_comment
+      get :update, issue_id: issue.id, id: comment.id, comment: edited_comment
     end
     comment.reload
     assert_not_equal edited_comment[:content_attributes][:text], comment.content.text

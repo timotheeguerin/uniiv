@@ -5,14 +5,14 @@
         h1 = t('advisor_student.student.index')
 
       .list-group
-        - if @advisors.empty?
+        - if @advisor_students.empty?
           .list-group-item
             div
               span.glyphicon.glyphicon-list-alt
             div
               = t('advisor_student.student.empty')
         - else
-          - @advisors.each do |advisor|
+          - @advisor_students.each do |advisor|
             .list-group-item.advisor-row
               .advisor-name
                 = advisor.advisor

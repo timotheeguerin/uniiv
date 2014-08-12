@@ -3,12 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_scenario, :current_scenario=, :current_term, :sign_in_as_other?, :real_current_user, :element_id, :from_element_id
-  alias_method :devise_current_user, :current_user
 
   # Rescue unauthorized access
   # If user is not signed in redirect to the sign_up page
   # Otherwise redirect to the user home
   rescue_from CanCan::AccessDenied do |exception|
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     if user_signed_in?
       redirect_to user_home_path(current_user), :alert => exception.message
     else
@@ -185,9 +185,4 @@ class ApplicationController < ActionController::Base
     Utils.from_element_id(string)
   end
 
-  # Return current user
-  # @return [User] current user
-  def current_user
-    devise_current_user
-  end
 end

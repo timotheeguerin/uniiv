@@ -7,7 +7,6 @@ class Issue::CommentsController < ApplicationController
   end
 
   def create
-    @comment = Issue::Comment.new(comment_params)
     if @comment.save
       redirect_to issue_path(@issue)
     else
@@ -42,5 +41,10 @@ class Issue::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content_attributes => [:id, :text, :format])
     .merge(commenter_id: current_user.id, issue_id: @issue.id)
+  end
+
+  def _
+    @comment = Issue::Comment.new
+    @issue = Issue::Issue.new
   end
 end

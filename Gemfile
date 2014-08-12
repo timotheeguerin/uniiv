@@ -50,10 +50,10 @@ gem 'devise'
 gem 'cancancan'
 
 gem 'i18n-active_record',
-    :git => 'git://github.com/timcolonel/i18n-active_record.git',
-    :require => 'i18n/active_record'
+    github: 'timcolonel/i18n-active_record',
+    require: 'i18n/active_record'
 
-gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
+gem 'ruby-graphviz', github: 'timcolonel/Ruby-Graphviz'
 
 
 group :development do

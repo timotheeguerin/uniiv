@@ -42,20 +42,24 @@ class Ability
       can :edit, user
 
       cannot :view, User::Invite
-      can [:index], Issue::Issue
-      can [:create, :read, :show, :update, :destroy], Issue::Issue, reporter_id: user.id
-      can [:create, :read, :show, :update, :destroy], Issue::Issue, assignee_id: user.id
+
+      # Issue::Issue
+      cannot :read, [Issue::Issue, User::AdvisorStudent]
+      can [:create, :read, :update, :destroy], Issue::Issue, reporter_id: user.id
+      can [:create, :read, :update, :destroy], Issue::Issue, assignee_id: user.id
       can :change_status, Issue::Issue, assignee_id: user.id
 
       can :manage, Issue::Comment, issue: {reporter_id: user.id}
       can :manage, Issue::Comment, issue: {assignee_id: user.id}
+
+      can [:read, :create, :update, :destroy], User::AdvisorStudent, student_id: user.id
     end
 
     if user.role? :advisor
       can :sign_in_as, User.only_with_roles([:user])
       can :validate, user.advisor_students
       can :update_status, user.advisor_students
-
+      can :manage, User::AdvisorStudent, advisor_id: user.id
 
     else
       cannot :view, :advisor_dashboard

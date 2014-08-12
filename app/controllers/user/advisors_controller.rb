@@ -6,6 +6,7 @@ class User::AdvisorsController < ApplicationController
     render 'issue/issues/index'
   end
 
+  # All issues of the advisor with the given student
   def student_issues
     setup_filters
     @filters[:reporter_id] = params[:student_id]

@@ -18,14 +18,14 @@
             = t('advisor_student.status.blacklisted')
             = " (#{current_user.advisor_students.blacklisted.size})"
 
-        - if @students.empty?
+        - if @advisor_students.empty?
           .list-group-item.no-advisor-student.text-lg
             div
               span.glyphicon.glyphicon-list-alt
             div
               = t('advisor_student.advisor.empty')
         - else
-          - @students.order(:status).each do |student|
+          - @advisor_students.order(:status).each do |student|
             .list-group-item.advisor-row
               .advisor-name
                 = student.student
