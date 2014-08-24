@@ -5,7 +5,6 @@ class ProgramController < ApplicationController
     if request.xhr?
       render :template => 'program/version/show', :layout => false
     else
-      puts 'dawdaw'
       render 'program/version/show'
     end
   end
@@ -72,6 +71,8 @@ class ProgramController < ApplicationController
     redirect_to :back
   end
 
+  private
+
   def program_params
     params.require(:program_program).permit(:name, :type_id, :faculty_id)
   end
@@ -79,6 +80,5 @@ class ProgramController < ApplicationController
   def search
     s = Utils::Search.from_params(params)
     Program::Program.search_program(s)
-    s
   end
 end

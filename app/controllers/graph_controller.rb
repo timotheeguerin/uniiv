@@ -1,5 +1,4 @@
 class GraphController < ApplicationController
-  include GraphHelper
   before_action :setup
 
   def setup
@@ -68,8 +67,6 @@ class GraphController < ApplicationController
     prg_graph = Graph::Graph.new(program.program.name)
     program.groups.each do |group|
       dot_graph = generate_graph_from_group(group, style)
-      puts '------------------------------------'
-      puts dot_graph.output
       nodes = nodes.merge(dot_graph.nodes)
       graph = generate_graph_from_dot(dot_graph.output, nodes, group.get_requirement_level)
       unless graph.dimension.x == 0 and graph.dimension.y == 0

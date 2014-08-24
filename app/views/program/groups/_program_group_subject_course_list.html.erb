@@ -7,11 +7,12 @@
           </div>
           <div class='col-md-2'>
             <div class='btn-group pull-right'>
-              <a class='btn btn-danger' href="<%= group_subject_course_list_edit_path(subject_course) %>">
+              <a class='btn btn-danger' href="<%= edit_subject_course_list_path(id: subject_course) %>">
                 <span class='glyphicon glyphicon-pencil'></span>
               </a>
-              <%= group_button_to group_subject_course_list_delete_path, :class => 'btn btn-danger', :useajax => true, :name => 'id',
-                                  :value => subject_course.id, :delete_parent => '.subject_courses_element' do %>
+
+              <%= group_button_to subject_course_list_path(subject_course), method: :delete, class: 'btn btn-danger', useajax: true,
+                                  delete_parent: '.subject_courses_element' do %>
                   <span class='glyphicon glyphicon-remove-sign'></span>
               <% end %>
             </div>
@@ -20,7 +21,7 @@
       </div>
   <% end %>
   <div class='list-group-item'>
-    <a class='btn btn-primary form-control' href="<%= group_subject_course_list_new_path(:group => group) %>">
+    <a class='btn btn-primary form-control' href="<%= new_subject_course_list_path(group_id: group.id) %>">
       Add new
     </a>
   </div>

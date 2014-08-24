@@ -1,0 +1,17 @@
+div
+  = form_for @subject_course_list do |f|
+    .form-group
+      = f.label :subject
+      = f.text_field :subject, class: 'form-control'
+    .form-group
+      = f.label :level
+      = f.text_field :level, class: 'form-control'
+    .form-group
+      = f.label :operation
+      div
+        = f.select :operation, options_for_select(Course::SubjectCourseListOperation.to_a), class: 'selectpicker'
+
+    = f.hidden_field :group_id
+    .form-group
+      = submit_tag :save, class: 'btn btn-default'
+      = submit_tag 'Save and edit', name: :saveandedit, class: 'btn btn-default'

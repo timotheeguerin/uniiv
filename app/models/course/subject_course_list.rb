@@ -1,3 +1,4 @@
+# List of courses by subject
 class Course::SubjectCourseList < ActiveRecord::Base
   belongs_to :subject, :class_name => Course::Subject
   belongs_to :group, :class_name => Program::Group

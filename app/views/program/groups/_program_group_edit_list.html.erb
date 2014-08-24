@@ -1,23 +1,22 @@
 <div class='list-group row-container'>
 
   <div class="row list-group-item">
-    <%= render :partial => 'program/group/new_group_link_form', :locals => {:parent => parent} %>
+    <%= render 'program/groups/new_group_link_form', parent: parent %>
   </div>
   <% groups.each do |group| %>
       <div class="row list-group-item">
         <div class='col-md-10'>
-          <%= render :partial => 'program_group/show', :locals => {:group => group} %>
+          <%= render 'program/groups/show', group: group %>
         </div>
         <div class='col-md-2'>
           <div class='btn-group' style="color: white">
             <div style="display: inline-block">
-              <a href="<%= program_group_edit_path(group) %>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
+              <a href="<%= edit_program_group_path(group) %>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
                 <span class="glyphicon glyphicon-pencil"></span>
               </a>
             </div>
             <div style="display: inline-block">
-              <%= form_tag program_group_delete_path do %>
-                  <%= hidden_field_tag :id, group.id %>
+              <%= form_tag program_group_path(group), method: 'delete' do %>
                   <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
                     <span class="glyphicon glyphicon-remove-sign"></span>
                   </button>
@@ -30,7 +29,7 @@
 
   <% if groups.size > 1 %>
       <div class="row list-group-item">
-        <%= render :partial => 'program/group/new_group_link_form', :locals => {:parent => parent} %>
+        <%= render :partial => 'program/groups/new_group_link_form', :locals => {:parent => parent} %>
       </div>
   <% end %>
 </div>

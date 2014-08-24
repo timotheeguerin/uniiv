@@ -15,10 +15,10 @@ module ApplicationHelper
     params.except!(:name, :value, :useajax, :delete_parent, :redirect_to, :method)
     content = capture(&block)
     params[:form]= id
-    render :partial => 'partial/group_button_to', :locals => {
-        :url => url, :content => content,
-        :form_params => form_params, :name => name, :value => value,
-        :params => params, :redirect_to_path => redirect_to_path
+    render partial: 'partial/group_button_to', locals: {
+        url: url, content: content,
+        form_params: form_params, name: name, value: value,
+        params: params, redirect_to_path: redirect_to_path
     }
   end
 

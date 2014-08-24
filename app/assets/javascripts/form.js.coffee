@@ -200,15 +200,16 @@ $(document).ready ->
 
 #Submit a form using ajax
 submitFormAjax = () ->
-  console.log('submit ajax')
   form = $(this)
+  inputs = form.serializeObject()
   submit_button = form.find('button, input[type="submit"]')
   submit_button.prop('disabled', true)
+  method = (inputs['_method'] or form.attr('method'))
   $.ajax({
-    url: $(this).attr('action'),
-    type: $(this).attr('method'),
+    url: form.attr('action'),
+    type: method,
     dataType: 'json',
-    data: $(this).serialize(),
+    data: form.serialize(),
   }).success((data) ->
     if data.message
       ajaxPopupPush(data.message)

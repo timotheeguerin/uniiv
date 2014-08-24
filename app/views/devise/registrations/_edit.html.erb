@@ -4,7 +4,7 @@
   </div>
 
   <div class='panel-body text-right'>
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'form-horizontal'}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name.to_sym), html: {method: :put, class: 'form-horizontal'}) do |f| %>
         <div class="form-group">
           <div class="col-md-5">
             <label>New password</label>

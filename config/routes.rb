@@ -118,23 +118,22 @@ Uniiv::Application.routes.draw do
   post 'program/group/restriction/delete' => 'program/group_restriction#delete', :as => :program_group_restriction_delete
 
 
-  #Group controller
-  get 'program/group/new' => 'program/group#new', :as => :program_group_new
-  get 'program/group/:id' => 'program/group#show', as: 'group'
-  #get 'program/group/:id/graph/embed' => 'program/group#graph_embed'
-  post 'program/group/new' => 'program/group#create', :as => :program_group_create
-  get 'program/group/:id/edit' => 'program/group#edit', :as => :program_group_edit
-  patch 'program/group/:id/edit' => 'program/group#update', :as => :program_group_update
-  post 'program/group/delete', to: 'program/group#delete', :as => :program_group_delete
+  # #Group controller
+  # get 'program/group/new' => 'program/group#new', :as => :program_group_new
+  # get 'program/group/:id' => 'program/group#show', as: 'group'
+  # #get 'program/group/:id/graph/embed' => 'program/group#graph_embed'
+  # post 'program/group/new' => 'program/group#create', :as => :program_group_create
+  # get 'program/group/:id/edit' => 'program/group#edit', :as => :program_group_edit
+  # patch 'program/group/:id/edit' => 'program/group#update', :as => :program_group_update
+  # post 'program/group/delete', to: 'program/group#delete', :as => :program_group_delete
 
+  namespace :program do
+    resources :groups
+  end
   #Group subject course list controller
-  get 'program/group/subject_course_list/new' => 'group_subject_course_list#new', :as => :group_subject_course_list_new
-  post 'program/group/subject_course_list/new' => 'group_subject_course_list#create', :as => :group_subject_course_list_create
-  get 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#edit', :as => :group_subject_course_list_edit
-  post 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#update', :as => :group_subject_course_list_update
-  post 'program/group/subject_course_list/delete' => 'group_subject_course_list#delete', :as => :group_subject_course_list_delete
-  get 'program/group/subject_course_list/:id' => 'group_subject_course_list#show', :as => :group_subject_course_list
-  get 'program/group/subject_course_list/:id/list-courses' => 'group_subject_course_list#list_courses', :as => :group_subject_course_list_courses
+  scope path: 'program/group', module: 'course' do
+    resources :subject_course_lists
+  end
 
   #Graph controller
   get 'mygraph' => 'graph#show', :as => :user_graph
@@ -254,13 +253,6 @@ Uniiv::Application.routes.draw do
     resources :invites
     patch 'advisor/students/:id/update/status' => 'advisor_students#update_status', as: :update_status_advisor_student
   end
-  #Issues
-  # get 'issues' => 'issues#index', :as => :issue_issues
-  # get 'issues/new' => 'issues#new', :as => :issue_issue_new
-  # post 'issues' => 'issues#create'
-  # get 'issues/:id' => 'issues#show', :as => :issue_issue
-  # get 'issues/:id/edit' => 'issues#edit', :as => :issue_issue_edit
-  # patch 'issues/:id' => 'issues#update'
 
   scope module: :issue do
     resources :issues do

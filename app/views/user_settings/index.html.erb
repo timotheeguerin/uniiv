@@ -11,8 +11,8 @@
       </a>
     </div>
     <br>
-    <%= render :partial => 'user_emails/show' %>
-    <%= render :partial => 'devise/registrations/edit', :locals => {:resource => current_user, :resource_name => 'user'} %>
+    <%= render 'user_emails/show' %>
+    <%= render 'devise/registrations/edit', :resource => current_user, :resource_name => 'user' %>
 
     <hr>
     <div>

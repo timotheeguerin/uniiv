@@ -2,7 +2,7 @@ div
   .container-fluid
     .row
       .col-md-8
-        h4 = link_to group.name, group_path(group)
+        h4 = link_to group.name, program_group_path(group)
         - group.restrictions.each do |restriction|
           div = t("group.#{restriction.type.to_s}", :value => restriction.value)
 
@@ -13,10 +13,10 @@ div
       = render :partial => 'course/course_list', :locals => {:courses => group.courses}
 
   -unless group.subject_courses.empty?
-    = render :partial => 'program/group/group_subject_courses', :locals => {:subject_courses => group.subject_courses}
+    = render :partial => 'program/groups/group_subject_courses', :locals => {:subject_courses => group.subject_courses}
   - unless group.subgroups.empty?
     hr
     .list-group
       -group.subgroups.each do |subgroup|
         div class="list-group-item"
-          = render :partial => 'program/group/show', :locals => {:group => subgroup}
+          = render :partial => 'program/groups/show', :locals => {:group => subgroup}

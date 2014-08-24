@@ -9,4 +9,4 @@
 
 = progress_bar_tag @program_version.get_completion_ratio(current_scenario).to_percent
 
-= render :partial => 'program/group/program_group_list', :locals => {:groups => @program_version.groups, :parent => @program_version}
+= render :partial => 'program/groups/program_group_list', :locals => {:groups => @program_version.groups, :parent => @program_version}
