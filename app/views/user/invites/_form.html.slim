@@ -1,0 +1,13 @@
+= form_for invite do |f|
+  .form-group
+    = f.label :message
+    = f.text_field :message, class: 'form-control'
+  .form-group
+    = f.label :category
+    = t('invites.label.category.help')
+    = f.text_field :category, class: 'form-control'
+  .form-group
+    = f.label :amount
+    = f.text_field :amount, class: 'form-control'
+  .form-group
+    = f.submit class: 'btn btn-success'

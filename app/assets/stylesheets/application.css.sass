@@ -1,0 +1,659 @@
+//
+//= require_self
+//= require_tree .
+//= require animate
+
+@import 'variables'
+@import 'mixins'
+@import 'bootstrap-sprockets'
+@import "bootstrap"
+
+.raty-star-div
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+html
+  font-size: 13px
+
+html, body
+  height: 100%
+
+body
+  padding-top: $header_height
+
+.body_container
+  min-height: 100%
+  position: relative
+
+form
+  margin: 0
+
+.navbar
+  background-color: $palette_green_medium
+  font-weight: bold
+
+.navbar-inverse .navbar-nav > li > a
+  color: white
+
+.navbar-nav > li
+  float: left
+  > a
+    display: block
+    padding-left: 15px
+    padding-right: 15px
+
+  &:hover
+    background-color: $palette_green_darker
+    color: $palette_grey_medium_light
+    > a
+      background-color: $palette_green_darker
+      color: $palette_grey_medium_light
+
+  &.open
+    background-color: $palette_green_darkest
+    > a
+      background: transparent !important
+
+  > ul.dropdown-menu
+    background-color: $palette_green_medium
+    color: white
+    font-weight: bold
+    border: none
+    width: 100%
+    margin: 0
+    > li
+      margin: 0
+      &:hover
+        background-color: $palette_green_darker
+        color: $palette_grey_medium_light
+
+      a
+        padding: 1rem
+        display: block
+        color: white
+        &:hover
+          background-color: inherit
+
+      &.divider
+        background-color: $palette_green_darker
+
+.navbar-inverse
+  border: none
+
+.wrapper
+  @include min-height-viewport
+
+footer
+  height: $page_footer_height
+  .footer-element
+    height: 36px
+    line-height: 36px
+    vertical-align: center
+
+.notification-box
+  .alert
+    margin: 0
+    color: white
+    font-weight: bold
+    border-radius: 0
+    border: 0
+    &.alert-danger
+      background-color: $palette_orange_darker
+    &.alert-info
+      background-color: $palette_blue_darker
+
+.form-inline select
+  height: 28px
+  padding-top: 3
+
+.course-buttons-container select, .course-buttons-container input, .course-buttons-container label.btn
+  height: 28px
+  padding-top: 3
+
+.course-buttons-container [class^='col-']
+  padding-left: 0
+  padding-right: 0
+
+*:not(glyphicon)
+  font-family: 'Open Sans', sans-serif
+
+h1, h2, h3, h4, h5, h6
+  font-family: 'Lato', sans-serif
+
+.inline
+  display: inline-block
+
+a:not(.btn)
+  color: inherit
+  text-decoration: inherit
+
+a:hover
+  color: $palette_grey_darker
+
+.btn-blank
+  border: none
+  background-color: transparent
+
+.vertical-align
+  display: table-cell
+  vertical-align: middle
+
+.text-indent
+  text-indent: 15px
+
+.no-text-indent
+  text-indent: 0px
+
+.graph-container
+  display: -webkit-flex
+  display: flex
+  align-content: stretch
+  height: 100%
+  .graph-canvas
+    flex: 1 0 auto
+    height: 100%
+    background-color: $palette_grey_lighter
+    #canvas-container
+      height: 100%
+  .graphsidebar
+    flex: 0 1 40rem
+    border-left: 1px solid $palette_grey_medium_light
+    display: flex
+    flex-direction: column
+    padding: 0
+    > *
+      padding: 0 15px
+
+    .graph-sidebar-header
+      overflow: hidden
+      border-bottom: 1px solid $palette_grey_medium_light
+    .graph-sidebar-body
+      flex: 1
+      display: flex
+      .nano
+        height: auto
+      .content
+        padding: 0 0.5rem
+
+.graphnavigation
+  position: absolute
+  bottom: 15px
+  width: 100%
+
+.course_taking, .course_completed, .course_available, .course_unavailable
+  font-weight: bold
+
+.course_taking
+  color: $palette_yellow_medium !important
+
+.course_completed
+  color: $palette_blue_medium !important
+
+.course_unavailable
+  color: $palette_orange_medium !important
+
+.course_available
+  color: $palette_green_medium !important
+
+body.dragging, body.dragging *
+  @include grabbing-cursor
+
+.dragged
+  position: absolute
+  opacity: 0.5
+  z-index: 2000
+
+ul.sortable
+  text-indent: 0px
+  padding-left: 0px
+
+ul.sortable h5
+  margin-left: 8px
+
+ul.sortable li
+  display: block
+  margin: 5px
+  padding: 5px
+  border: 1px solid #CCC
+  background-color: $palette_grey_lightest
+  @include grab-cursor
+  h5
+    color: $palette_grey_darker
+    font-weight: bold
+
+ul.sortable li.highlight
+  box-shadow: 0 0 5px $palette_blue_lightest
+  border: 1px solid $palette_blue_lightest
+
+ul.sortable li.placeholder
+  height: 50px
+  position: relative
+  border: 1px dashed #dfdfdf
+  background: transparent
+
+ul.sortable li.placeholder:before
+  position: absolute
+
+.course-drag-box
+  min-height: 25px
+  border-radius: 5px
+
+.sortable:not(.no-drop)
+  border: 1px dashed #dfdfdf
+  background-color: $palette_grey_medium_light
+
+.sortable.no-drop
+  border: 1px solid #dfdfdf
+  background-color: #f5f5f5
+
+.bin
+  padding: 20px
+
+li.invalid-time
+  background-color: $palette_orange_lightest !important
+  color: white
+
+div.dependencies li
+  color: #555555 !important
+  font-size: 9pt
+
+li.dependency.notsortable
+  border: 1px solid transparent
+  background-color: rgba(0, 0, 0, 0)
+
+li.invalid-time.dependency
+  background-color: rgba(0, 0, 0, 0)
+  border: 1px solid transparent
+
+.popup_ajax
+  position: fixed
+  padding: 10px
+  top: 55px
+  right: 10px
+  border-radius: 5px
+  max-width: 350px
+  background-color: $palette_blue_lighter
+  color: white
+  cursor: pointer
+  z-index: 1000
+
+//Remove the extra width made with rows
+.row-container
+  margin-left: 15px
+  margin-right: 15px
+
+.program-top
+  margin: 1rem 0
+  display: -webkit-flex
+  display: flex
+  -webkit-flex-wrap: wrap
+  flex-wrap: wrap
+  -webkit-align-items: center
+  align-items: center
+
+  .program-title
+    -webkit-flex: 1 0 auto
+    flex: 1 0 auto
+  .program-switch-version
+    -webkit-flex: 0 0 auto
+    flex: 0 0 auto
+
+  &:not([min-width~="500px"])
+    .program-title
+      width: 100%
+
+.program_list .row
+  margin: 5px 0 5px
+
+.program_list .progress
+  margin: 4px 0 4px
+
+//*******************************************
+// Jquery automplete styling
+//*******************************************
+.autocomplete-suggestions
+  @extend .dropdown-menu
+
+.autocomplete-suggestion
+  cursor: hand
+  padding: 2px 5px
+  white-space: nowrap
+  overflow: hidden
+
+.autocomplete-selected
+  background: #F0F0F0
+
+.tooglecontent .item.active, .showonhover
+  display: none
+
+.nopadding-left
+  padding-left: 0
+
+.fgcaffix
+  width: 100px
+
+.fgcaffix.affix
+  top: 60px
+
+span.glyphicon.glyphicon-xs, .text-xs
+  font-size: 1.1rem
+
+span.glyphicon.glyphicon-sm, .text-sm
+  font-size: 16
+
+span.glyphicon.glyphicon-md, .text-md
+  font-size: 20
+
+span.glyphicon.glyphicon-lg, .text-lg
+  font-size: 36
+
+span.glyphicon.glyphicon-xl, .text-xl
+  font-size: 72
+
+span.glyphicon.glyphicon-xxl, .text-xxl
+  font-size: 144
+
+span.glyphicon.glyphicon-xxxl, .text-xxxl
+  font-size: 288
+
+textarea.transcript_textarea
+  resize: none
+  height: 200px
+
+.homepage-presentation .row [class^='col-']
+  padding-top: 30px
+  padding-bottom: 30px
+
+.homepage-presentation .row:not(:last-child)
+  border-bottom: 1px solid #eee
+
+.homepage-presentation .row [class^='col-']:not(:last-child)
+  border-right: 1px solid #eee
+
+.row.education_selection_row
+  height: 50
+
+.marketing-section
+  position: relative
+  padding-top: 80px
+  padding-bottom: 80px
+  border-bottom: 1px solid #e5e5e5
+
+.ellipsis
+  overflow: hidden
+  text-overflow: ellipsis
+
+$hover-img-height: 100px
+
+.marketing-section img
+  width: 100%
+
+.hover-tile-outer
+  cursor: pointer
+
+  .hover-tile-container
+    display: block
+    position: relative
+    overflow: hidden
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
+
+  .hover-tile-container:hover > .hover-tile
+    @include transform(translate(0, -100%))
+
+  .hover-tile
+    position: absolute
+    @include transition(all, .2s ease-in-out)
+    background: inherit
+    color: white
+    padding: 20 20 30 20px
+    width: 100%
+
+  .hover-tile-visible
+    color: transparentize(white, .3)
+    font-size: 2em
+    font-weight: 200
+    text-align: center
+
+  .hover-tile-hidden
+    background: transparentize(black, .5)
+    h4
+      margin-bottom: .5em
+
+    p
+      color: transparentize(white, .3)
+
+.contactForm
+  font-size: 30px
+
+  input, textarea
+    width: 100%
+    margin: 1rem auto
+    padding: 1rem
+    display: block
+    background: #1E2024
+    border: none
+
+    font-weight: 200
+    border-radius: .2rem
+
+  textarea
+    resize: vertical
+    height: 7em
+
+  input[type="submit"]
+    background-color: $palette_blue_lighter
+    font-weight: bold
+
+.explore-section
+  padding: 40px 0
+  border-bottom: 1px solid #eee
+
+  h3
+    font-variant: small-caps
+
+  .display-container
+    border: 1px solid #f1f1f1
+    background: #f9f9f9
+    padding: 5px
+    .display-element
+      margin: 5px 0
+      height: 20px
+
+.explore-section:nth-child(even)
+  background: #f9f9f9
+  .display-container
+    background: white
+
+.filter-element
+  margin: 5px 0
+
+.course_result
+  margin: 5px 0
+  padding: 10px 0
+  border: 1px solid #f1f1f1
+  background: white
+  .row.course_title
+    font-size: 20px
+    .text-right
+      font-weight: bold
+
+  .row.course_description
+    display: none
+    border-top: 1px solid $palette_grey_lighter
+    margin-top: 10px
+    padding-top: 10px
+    text-align: justify
+    text-justify: inter-word
+
+    [class^='col-']:not(:last-child)
+      border-right: 1px solid $palette_grey_lighter
+
+.explore-menu, .choice-menu
+  @extend .row
+  width: 100%
+  border-top: 1px solid $palette_grey_medium_light
+  &:last-child
+    border-bottom: 1px solid $palette_grey_medium_light
+  a.explore-choice, a.btn-lg-choice
+    display: block
+    float: left
+    box-sizing: border-box
+    text-align: center
+    padding: 2rem
+    height: 12rem
+    &:hover
+      background: transparentize($palette_grey_darker, .95)
+
+    &:not(:last-child)
+      border-right: 1px solid $palette_grey_medium_light
+
+  a.btn-lg-half-choice
+    height: 6rem
+
+.spinner
+  margin: 4rem auto 0
+  width: 70px
+  text-align: center
+  > div
+    width: 18px
+    height: 18px
+    background-color: $palette_grey_medium_dark
+
+    border-radius: 100%
+    display: inline-block
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out
+    animation: bouncedelay 1.4s infinite ease-in-out
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both
+    animation-fill-mode: both
+
+  .bounce1
+    -webkit-animation-delay: -0.32s
+    animation-delay: -0.32s
+
+  .bounce2
+    -webkit-animation-delay: -0.16s
+    animation-delay: -0.16s
+
+@-webkit-keyframes bouncedelay
+  0%, 80%, 100%
+    -webkit-transform: scale(0.0)
+
+  40%
+    -webkit-transform: scale(1.0)
+
+@keyframes bouncedelay
+  0%, 80%, 100%
+    transform: scale(0.0)
+    -webkit-transform: scale(0.0)
+
+  40%
+    transform: scale(1.0)
+    -webkit-transform: scale(1.0)
+
+//***************************************************************************
+//        PROGRESS BAR
+//****************************************************************************
+.progress
+  position: relative
+
+.progress .progress-bar
+  position: relative
+  overflow: hidden
+
+.progress span
+  position: absolute
+  display: block
+  width: 100%
+  vertical-align: middle
+  text-align: center
+
+.course-list
+  border-left: 1px solid $palette_grey_medium_light
+  border-right: 1px solid $palette_grey_medium_light
+  .course-list-item
+    display: flex
+    align-items: center
+    border-top: 1px solid $palette_grey_medium_light
+
+    padding: 0.8rem 0.8rem
+
+    background-color: $palette_grey_lightest
+    &:last-child
+      border-bottom: 1px solid $palette_grey_medium_light
+    .course-status
+      flex: 0 0 2.5rem
+    .course-buttons
+      flex: 0 0 10rem
+    .course-text
+      flex: 1 0 auto
+
+  .course-list-item:not([min-width~="500px"]) > .course-buttons
+    display: none
+
+.subject-course-list-courses-container
+  min-height: 25rem
+
+.center-info-box
+  position: relative
+  top: 50%
+  width: 100%
+  text-align: center
+  @include transform(translateY(-50%))
+
+.btn-group.btn-group-block
+  width: 100%
+  .btn:first-child:nth-last-child(1)
+    width: 100%
+  .btn:first-child:nth-last-child(2),
+  .btn:first-child:nth-last-child(2) ~ .btn
+    width: 50%
+  .btn:first-child:nth-last-child(3),
+  .btn:first-child:nth-last-child(3) ~ .btn
+    width: 33.3%
+  .btn:first-child:nth-last-child(4),
+  .btn:first-child:nth-last-child(4) ~ .btn
+    width: 25%
+  .btn:first-child:nth-last-child(5),
+  .btn:first-child:nth-last-child(5) ~ .btn
+    width: 20%
+
+.shadow-box
+  background-color: white
+  box-shadow: 1px 1px 5px 0px $palette_grey_medium_light
+  padding: 1rem
+  margin: 1rem
+
+a.shadow-box:hover, .shadow-box.link:hover
+  background-color: $palette_grey_lighter
+  cursor: pointer
+
+.shadow-box-list
+  background-color: white
+  box-shadow: 1px 1px 5px 0px $palette_grey_medium_light
+  padding: 0
+  margin: 1rem
+
+  .shadow-box-list-header
+    display: block
+    border-bottom: 1px solid $palette_grey_medium_dark
+    font-weight: bold
+    padding: 1rem
+
+  .shadow-box-list-item
+    display: block
+    padding: 1rem
+    &:not(:last-child)
+      border-bottom: 1px solid $palette_grey_lighter
+
+.course-card
+  display: flex
+
+  &:not([min-width~="400px"])
+    min-height: 86px
+
+  .course-card-info
+    flex: 1 1 auto
+  .course-card-buttons
+    flex: 0 0 10rem

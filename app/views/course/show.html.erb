@@ -1,68 +1,69 @@
 <div class='row' style="margin-top: 10px">
-  <div class='col-md-8 col-md-offset-2'>
-    <div class='row'>
-      <div class='col-md-8'>
-        <h3 class='<%= get_course_css_class(@course) %> underline_link'>
-          <%= link_to (@course.subject.to_s + ' ' + @course.code.to_s), course_path(@course) %>
-        </h3>
-      </div>
-      <div class='col-md-4'>
-        <% if user_signed_in? %>
-            <%= user_course_buttons(@course) %>
-        <% end %>
-      </div>
-    </div>
-
-    <% if current_user.is_taking_course?(@course) %>
-        <% c = current_scenario.get_by_course(@course) %>
-        <% unless c.semester.nil? or c.year.nil? %>
-            <p><%= t('course.inprogress.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></p>
-        <% end %>
-    <% end %>
-
-    <p><%= @course.name %></p>
-
-    <p><%= @course.hours %> Hours, <%= @course.credit %> Credits</p>
-
-    <p><%= @course.description %></p>
-
-    <p>Prerequisites:
-      <% if @course.prerequisite.nil? %>
-          None.
-      <% else %>
-          <%= raw(get_expr_html(@course.prerequisite)) %>
-      <% end %>
-    </p>
-
-    <p>Corequisites:
-      <% if @course.corequisite.nil? %>
-          None.
-      <% else %>
-          <%= raw(get_expr_html(@course.corequisite)) %>
-      <% end %>
-    </p>
-
-
-    <% reviews = @course.reviews %>
-    <% if reviews.size > 0 %>
-        <hr>
-        <h2>Reviews (<%= reviews.size %>)</h2>
-        <% reviews.each do |r| %>
-            <div>
-              <p><%= r.user.email.split('@')[0] %></p>
-
-              <p><%= r.comment %></p>
-
-              <div class='row'>
-                <% r.ratings.each do |s| %>
-                    <div class='col-md-4'>
-                      <label><%= s.criteria.name %>: </label>
-                      <span class='badge'><%= s.score %></span>
-                    </div>
-                <% end %>
-              </div>
-            </div>
-        <% end %>
+  <div class='col-md-8'>
+    <h3 class='<%= get_course_css_class(@course) %> underline_link'>
+      <%= link_to @course.get_short_name, course_path(@course) %>
+    </h3>
+  </div>
+  <div class='col-md-4'>
+    <% if user_signed_in? %>
+        <%= user_course_buttons(@course) %>
     <% end %>
   </div>
 </div>
+
+<% if current_user.is_taking_course?(@course) %>
+    <% c = current_scenario.get_by_course(@course) %>
+    <% unless c.semester.nil? or c.year.nil? %>
+        <p><%= t('course.inprogress.label') %> <%= c.semester.to_s.capitalize %> <%= c.year %></p>
+    <% end %>
+<% end %>
+
+<p><%= @course.name %></p>
+
+<p><%= @course.hours %> Hours, <%= @course.credit %> Credits</p>
+
+<p><%= @course.description %></p>
+
+<p>Prerequisites:
+  <% if @course.prerequisite.nil? %>
+      None.
+  <% else %>
+      <%= raw(get_expr_html(@course.prerequisite)) %>
+  <% end %>
+</p>
+
+<p>Corequisites:
+  <% if @course.corequisite.nil? %>
+      None.
+  <% else %>
+      <%= raw(get_expr_html(@course.corequisite)) %>
+  <% end %>
+</p>
+
+<div>
+  <div class='text-xxl text-center' style="margin-top: 20px">
+    <%= raw(course_status_icon(@course)) %>
+  </div>
+</div>
+
+<% reviews = @course.reviews %>
+<% if reviews.size > 0 %>
+    <hr>
+    <h2>Reviews (<%= reviews.size %>)</h2>
+    <% reviews.each do |r| %>
+        <div>
+          <p><%= r.user.email.split('@')[0] %></p>
+
+          <p><%= r.comment %></p>
+
+          <div class='row'>
+            <% r.ratings.each do |s| %>
+                <div class='col-md-4'>
+                  <label><%= s.criteria.name %>: </label>
+                  <span class='badge'><%= s.score %></span>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+<% end %>

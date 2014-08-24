@@ -1,11 +1,12 @@
 class ProgramController < ApplicationController
   def show
     @program = Program::Program.find(params[:id])
-  end
-
-  def graph_embed
-    @program = Program::Program.find(params[:id])
-    render :layout => false
+    @program_version = @program.last_version
+    if request.xhr?
+      render :template => 'program/version/show', :layout => false
+    else
+      render 'program/version/show'
+    end
   end
 
   def search_autocomplete
@@ -30,7 +31,7 @@ class ProgramController < ApplicationController
 
   def create
     authorize! :create, Program::Program
-    @program = Program::Program.new(program_params)
+    @program = Program::Program.create(program_params)
 
     if @program.save
       if params[:saveandedit]
@@ -70,6 +71,8 @@ class ProgramController < ApplicationController
     redirect_to :back
   end
 
+  private
+
   def program_params
     params.require(:program_program).permit(:name, :type_id, :faculty_id)
   end
@@ -77,6 +80,5 @@ class ProgramController < ApplicationController
   def search
     s = Utils::Search.from_params(params)
     Program::Program.search_program(s)
-    s
   end
 end

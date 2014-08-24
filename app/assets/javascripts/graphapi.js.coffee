@@ -2,14 +2,8 @@
 #=require graph/element/GraphElement
 #=require graph/element/ContainerElement
 
-resizeCanvasContainer = () ->
-  newheight = $(window).height() - 75;
-  $("#canvas-container").parent().height(newheight);
-  $("#canvas-container").parent().parent().height(newheight);
-
 
 $(document).ready ->
-  resizeCanvasContainer()
   canvas_container = $("#canvas-container")
   sidebar_loader = $("#sidebar_loader")
   sidebar_info = $("#graph_sidebar_info .content")
@@ -35,12 +29,13 @@ $(document).ready ->
         type = name.split('_', 2)[0]
         if type == 'c'
           sidebar_loader.show()
-          loadCourse(name, '/course/' + id + '/graph/embed')
+          loadCourse(name, '/course/' + id)
       graph.onGraphClick (graph) ->     #When we click on a node it load information on the side
         array = graph.id.split('_', 2)
         type = array[0]
         id = array[1]
         sidebar_loader.show()
+
         if type == 'p'
           loadProgram(id)
         else if type == 'g'
@@ -49,25 +44,22 @@ $(document).ready ->
     sidebar_info.on 'click', 'a', (e) ->
       url = $(this).attr('href')
       type = $(this).attr('data-type')
-      console.log('type:' + type)
       switch type
         when  "ext" #load the link normaly
           return true
         when "course"
           node_id = 'c_' + $(this).attr('data-id')
-          loadCourse(node_id, url + '/graph/embed')
+          loadCourse(node_id, url)
         else
-          console.log('load link')
           load_sidebar(url)
 
       graph.update()
       e.preventDefault()
+      e.stopImmediatePropagation()
 
     $(window).resize () ->
-      resizeCanvasContainer()
       graph.resize()
     $(document).on 'formAjaxComplete', '#graph_sidebar_info', (evt, data) ->
-      console.log('reiuhroehs: ' + JSON.stringify(data))
       if data.url?
         load_sidebar(data.url)
       else
@@ -88,11 +80,11 @@ $(document).ready ->
     load_sidebar(url)
 
   loadProgram = (program_id) ->
-    url = '/program/' + program_id + '/graph/embed'
+    url = "/program/#{program_id}"
     load_sidebar(url)
 
-  loadGroup = (program_id) ->
-    url = '/group/' + program_id + '/graph/embed'
+  loadGroup = (group_id) ->
+    url = "/program/group/#{group_id}"
     load_sidebar(url)
 
   load_sidebar = (url) ->
@@ -105,8 +97,9 @@ $(document).ready ->
       sidebar_info.html(data)
       sidebar_loader.hide()
       sidebar_info.show()
+      console.log(sidebar_info.parent())
       sidebar_info.parent().nanoScroller()
-      $(document).trigger('ajaxloadhtml', [sidebar_info])
+      $(document).trigger('content-changed', [sidebar_info])
 
 
 class Ressources
@@ -114,24 +107,31 @@ class Ressources
   @style: {}
 
   @loadImageFromJson: (data) ->
-    for k0, v0 of data.style #for all the class in the style
-      for k, v of v0
-        if(v.background? && v.background.image? && v.background.image.src?)
-          @addImage(v.background.image.src)
+    for k, v of data.style #for all the class in the style
+      @load_image_from_hash(v)
+
+  @load_image_from_hash: (hash) ->
+    if(hash.background? and hash.background.image? and hash.background.image.src?)
+      @addImage(hash.background.image.src)
+    for k, v of hash
+      if k != 'background' and v instanceof Object
+        @load_image_from_hash(v)
+
 
   @addImage: (src) ->
     if(!@images[src]?)
       image = new Image()
-      image.src = src
+      image.src = assets_path(src)
       @images[src] = image
 
   #Call the given function when all images are loaded
   @onLoadImage: (callback) ->
     loadedImages = 0
-    numImages = 0
+    numImages = Object.keys(@images).length
     #get num of sources
-    for src, image of @images
-      numImages += 1
+    if numImages == 0
+      callback()
+      return
 
     for src, image of @images
       image.onload = ()   ->
@@ -216,7 +216,6 @@ class CanGraph
 
 
       @container.add(group)
-    console.log('t:' + totalWidth)
     @setupNodesListener()
 
     totalWidth = @viewport.canvasSize.x if totalWidth < @viewport.canvasSize.x
@@ -306,7 +305,6 @@ class Graph
     @load(data)
 
   load: (data) ->
-    console.log(JSON.stringify(data.dimension))
     container_group = new Kinetic.Group(
       x: 0
       y: 0

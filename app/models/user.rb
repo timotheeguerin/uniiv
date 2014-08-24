@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :emails, :class_name => UserEmail, :dependent => :destroy
 
+  has_one :primary_email, -> { where :primary => true }, :class_name => UserEmail
   has_and_belongs_to_many :roles
 
   #has_many :taking_courses, :class_name => UserTakingCourse
@@ -19,8 +20,23 @@ class User < ActiveRecord::Base
 
   has_many :fgc_predictions, :class_name => Fgc::Prediction
 
+  has_many :reported_issues, class_name: Issue::Issue, foreign_key: :reporter_id
+
+  # Get the users without any of the given roles
+  # @param roles: list of roles names in an array
+  scope :without_roles, -> (roles) { joins(:roles).where.not(:roles => {:name => roles}) }
+
+  # Get the users that only have roles in the given list
+  # @param roles: list of roles names in an array
+  scope :only_with_roles, -> (roles) { without_roles(Role.where.not(:name => roles).pluck(:name)) }
+
+  scope :advisors, -> (roles) { where(roles: {name: :advisor}) }
+
   #Validations
   validates :advanced_standing_credits, :presence => true
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :type
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -31,7 +47,7 @@ class User < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if (email = conditions[:email])
-      User.includes(:emails).where('user_emails.email = ?', email).first
+      User.joins(:emails).where('user_emails.email = ?', email).first
     else
       where(conditions).first
     end
@@ -48,6 +64,7 @@ class User < ActiveRecord::Base
 
   def total_completed_ratio
     ratio = Utils::Ratio.zero
+    self.main_course_scenario.programs.size
     self.main_course_scenario.programs.each do |p|
       ratio += p.get_completion_ratio(main_course_scenario)
     end
@@ -64,6 +81,14 @@ class User < ActiveRecord::Base
 
   def is_taking_course?(course)
     main_course_scenario.taking_courses.where(:course_id => course.id).size > 0
+  end
+
+  def taking_program?(program)
+    main_course_scenario.programs.where(:id => program.version.ids).size > 0
+  end
+
+  def taking_program_version?(program)
+    main_course_scenario.programs.include?(program)
   end
 
   def has_completed_or_taking_course?(course)
@@ -104,7 +129,6 @@ class User < ActiveRecord::Base
     course.requirements_completed_after_taking?(self, true)
   end
 
-
   def get_recommended_courses
 
   end
@@ -140,6 +164,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def uncomplete_course(course)
+    user_completed_course = completed_courses.where(:course_id => course).first
+    user_completed_course.destroy unless user_completed_course.nil?
+  end
+
   #Will reset everything the user is taking
   def reset
     course_scenarios.destroy_all
@@ -163,6 +192,39 @@ class User < ActiveRecord::Base
 
   def to_s
     email
+  end
+
+  searchable do
+    text :emails do
+      emails.map { |email| email.email }
+    end
+
+    integer :role_ids, multiple: true, references: Role
+    string :type
+  end
+
+  def advisor?
+    is_a? User::Advisor
+  end
+
+  def student?
+    is_a? User::Student
+  end
+
+  def destroy_advisor_student
+    raise NotImplementedError
+  end
+
+  def add_role(role_name)
+    roles << Role.find_by_name(role_name)
+  end
+
+  # Check if the role exist otherwise add it
+  def check_role(role_name)
+    role = Role.find_by_name(role_name)
+    unless roles.include?(role)
+      roles << role
+    end
   end
 
   alias :can_take_course? :requirements_completed?

@@ -1,0 +1,44 @@
+@import variables
+
+@mixin linear-gradient($from, $to)
+  background-color: $to
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to))
+  background-image: -webkit-linear-gradient($from, $to)
+  background-image: -moz-linear-gradient($from, $to)
+  background-image: -o-linear-gradient($from, $to)
+  background-image: -ms-linear-gradient($from, $to)
+  background-image: linear-gradient($from, $to)
+  background-repeat: repeat-x
+  -webkit-background-size: 100% 100%
+  -moz-background-size: 100% 100%
+  -o-background-size: 100% 100%
+  background-size: 100% 100%
+
+@mixin grab-cursor
+  cursor: grab
+  cursor: -moz-grab
+  cursor: -webkit-grab
+  cursor: -o-grab
+
+@mixin grabbing-cursor
+  cursor: grabbing
+  cursor: -moz-grabbing
+  cursor: -webkit-grabbing
+  cursor: -o-grabbing
+
+@mixin transition($args...)
+  -webkit-transition: $args
+  -moz-transition: $args
+  -ms-transition: $args
+  -o-transition: $args
+  transition: $args
+
+@mixin transform($args...)
+  -webkit-transform: $args
+  -moz-transform: $args
+  -ms-transform: $args
+  -o-transform: $args
+  transform: $args
+
+@mixin min-height-viewport
+  min-height: calc(100vh - #{$header_height})

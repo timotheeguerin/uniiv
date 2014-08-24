@@ -13,7 +13,7 @@ load_tooltip_popover = (container) ->
       $(this).clone().removeClass('progress-center').addClass('progress-back-text').appendTo(progress)
 
 $(document).ready () ->
-  load_tooltip_popover()
+  load_tooltip_popover($(document))
 
 
 

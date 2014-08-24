@@ -11,7 +11,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       @prediction.user = current_user
       @prediction.course = Course::Course.find(params[:id])
       scheme = Fgc::Scheme.new
-      scheme.final_percent = 0
       @prediction.schemes << scheme
       @prediction.save
 
@@ -27,6 +26,7 @@ class Utils::FinalGradeCalculatorController < ApplicationController
         paginate :page => 1, :per_page => 10
       end.results
     end
+    @fullwidth = true
   end
 
   def search
@@ -39,12 +39,15 @@ class Utils::FinalGradeCalculatorController < ApplicationController
   end
 
   def show
+    @fullwidth = true
   end
 
   #Call when the user want to have a single grade(Midterm)
   def create_grade
     group = create
-    group.save
+    unless group.save
+      flash[:alert] = group.errors.full_messages
+    end
     _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
 
@@ -95,7 +98,21 @@ class Utils::FinalGradeCalculatorController < ApplicationController
 
   def add_grade_to_group
     group = Fgc::Group.find(params[:group])
-    group.grades << Fgc::Grade.new
+    grade = Fgc::Grade.new
+    last_name = group.grades.last.name
+    last_name ||= ''
+
+    match = last_name.scan(/(\d+)/)[0]
+    if match.nil? or match.size == 0
+      grade.name = "#{last_name} 2"
+    else
+      count = match[-1].to_i
+      count ||= 0
+      grade.name = last_name.gsub(/(\d+)/, (count+1).to_s)
+    end
+
+
+    group.grades << grade
     group.save
     _redirect_to utils_fgc_course_path(@prediction.course_id)
   end
@@ -139,12 +156,6 @@ class Utils::FinalGradeCalculatorController < ApplicationController
       group.destroy
     end
     return_json('Group removed successfully')
-  end
-
-  def edit_final_percent
-    @scheme = Fgc::Scheme.find(params[:scheme])
-    @scheme.final_percent = params[:percent]
-    @scheme.save
   end
 
   #When the user created a new grading scheme(ex: midterm 0%)

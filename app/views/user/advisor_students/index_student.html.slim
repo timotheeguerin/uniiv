@@ -1,0 +1,25 @@
+.advisor-student-container.container
+  .row
+    .panel.panel-default
+      .panel-heading
+        h1 = t('advisor_student.student.index')
+
+      .list-group
+        - if @advisor_students.empty?
+          .list-group-item
+            div
+              span.glyphicon.glyphicon-list-alt
+            div
+              = t('advisor_student.student.empty')
+        - else
+          - @advisor_students.each do |advisor|
+            .list-group-item.advisor-row
+              .advisor-name
+                = advisor.advisor
+              .advisor-buttons
+                = button_to user_advisor_student_path(advisor), method: :delete, class: 'btn btn-danger btn-sm needconfirmation',
+                  'data-confirm-dialog' => t('confirm.delete') do
+                  span.glyphicon.glyphicon-remove
+
+        .list-group-item
+          = render 'form', advisor_student: User::AdvisorStudent.new

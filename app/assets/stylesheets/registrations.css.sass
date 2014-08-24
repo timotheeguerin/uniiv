@@ -1,0 +1,40 @@
+@import 'variables'
+
+.registration-wrapper
+  font-size: 2rem
+  background-color: $palette_grey_lighter
+  color:  $palette_grey_darkest
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
+  > .registration-container
+    flex: 0 0 60rem
+    margin-bottom: 5rem
+  h1
+    font-size: 3rem
+    margin: 0
+  h4
+    font-style: i
+    font-size: 1.5rem
+    margin: 0
+  hr
+    //border-color: $palette_grey_darker
+  input:not([type='submit']):not([type=checkbox])
+    width: 100%
+
+    padding: 1rem
+    display: block
+    background: $palette_grey_medium_light
+    border: none
+
+    font-weight: 200
+    border-radius: .2rem
+  .form-group
+    margin: 2rem auto
+
+  a
+    color: $palette_blue_lightest
+    &:hover
+      color:  $palette_grey_medium_dark

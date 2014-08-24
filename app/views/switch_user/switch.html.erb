@@ -1,0 +1,12 @@
+<h1><%= t('switch_user.title') %></h1>
+<%= form_tag switch_user_path, :class => 'form-inline' do %>
+    <div class="form-group" style="width:85%">
+      <select name="user_id" class="selectize disablesubmit" data-url="<%= search_user_path %>"
+              data-update-element='#version_id_container'>
+        <option value=""> <%= t('switch_user.select') %></option>
+      </select>
+    </div>
+    <div class="form-group" style="width:10%">
+      <%= submit_tag('Switch', :class => 'btn btn-primary text-right', :disabled => true) %>
+    </div>
+<% end %>

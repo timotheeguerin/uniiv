@@ -1,0 +1,26 @@
+.row.lightest_grey_bg.min-full-height
+  .container
+    h1 Final grade calculator
+    span Calculate the grade you need to get at your final to achieve your goal
+    hr
+    div class='container'
+      div class='row'
+        div class='col-md-8'
+          div
+            h3 Course in progress
+          div
+            - current_scenario.taking_courses.limit(10).each do |course|
+              .shadow-box.elipsis
+                = link_to course.course.get_detail_name, utils_fgc_course_path(course.course)
+        .col-md-4
+          label Select the course
+          = form_tag(utils_fgc_path, method: 'get') do
+            div class='form-group'
+              div class='input-group'
+                = text_field_tag(:q, params[:q], options = {class: 'form-control search-ajax', 'data-search-output' => '#course_list_container',
+                                                                        'data-search-url' => utils_fgc_search_path, :autocomplete => 'off'})
+                span class="input-group-btn"
+                  = submit_tag('Search', class: 'btn btn-primary')
+          #course_list_container
+            = render 'course_link_list', courses: @courses
+

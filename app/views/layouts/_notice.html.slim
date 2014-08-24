@@ -1,0 +1,13 @@
+.notification-box
+  - if flash[:notice]
+    div class="alert alert-info auto-hide alert-dismissable"
+      button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+      = raw(flash[:notice])
+  - if flash[:info]
+    div class="alert alert-info alert-dismissable"
+      button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+      = raw(flash[:info])
+  - if flash[:alert]
+    div class="alert alert-danger alert-dismissable"
+      button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+      = raw(flash[:alert])

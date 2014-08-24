@@ -1,0 +1,5 @@
+- courses.each_slice(3) do |slice|
+  .row
+    - slice.each do |completed_course|
+      .col-md-4
+        = course_card(completed_course.course, useajax: true)

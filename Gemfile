@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.4'
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '0.3.11'
+gem 'mysql2', '0.3.16'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -32,46 +32,36 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development do
+  # Use Capistrano for deployment
+  gem 'capistrano', '~> 3.2', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails', '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano3-puma', require: false
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'puma', '2.8.2'
 
 gem 'rails_admin'
 
 gem 'devise'
 
-gem 'cancan'
+gem 'cancancan'
+
 gem 'i18n-active_record',
-    :git => 'git://github.com/timcolonel/i18n-active_record.git',
-    :require => 'i18n/active_record'
-gem 'bootstrap-sass'
-gem 'json'
+    github: 'timcolonel/i18n-active_record',
+    require: 'i18n/active_record'
 
-gem 'ruby-graphviz', :github => 'timcolonel/Ruby-Graphviz'
-
-
-gem 'thin'
-#gem 'puundma'
+gem 'ruby-graphviz', github: 'timcolonel/Ruby-Graphviz'
 
 
 group :development do
   gem 'rails-erd'
 end
 
-gem 'squeel'
-
-
 gem 'sunspot_rails'
-
-gem 'sunspot_solr', :group => :development
+gem 'sunspot_solr', '2.1.0', :group => :development
 
 gem 'progress_bar'
 
@@ -79,11 +69,20 @@ gem 'mechanize'
 
 #Testing
 gem 'minitest'
-
 gem 'mocha'
-
 gem 'minitest-reporters'
-
 gem 'factory_girl_rails'
 
+gem 'safe_yaml'
+
+gem 'slim'
+
+gem 'tzinfo-data'
+
+gem 'github-markdown'
+
+
+# Style
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem 'animate-rails'

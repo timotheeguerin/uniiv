@@ -1,12 +1,13 @@
 <%= form_tag(user_university_update_path) do %>
     <div class='form-group'>
       <div class="input-group">
-        <%= text_field_tag('university_id', '', :class => 'form-control autocomplete disablesubmit', 'data-url' => university_search_autocomplete_path,
-                           'data-input-data' => 'true', :placeholder => t('select.university')) %>
+
+        <select name="university_id" class="selectize disablesubmit" data-url="<%= university_search_autocomplete_path %>">
+          <option value=""> <%= t('select.university') %></option>
+        </select>
 
         <span class="input-group-btn">
-           <% needconfirmation = '' %>
-          <% needconfirmation = 'needconfirmation' unless current_user.faculty.nil? %>
+          <% needconfirmation =  current_user.faculty.nil? ? '' : 'needconfirmation' %>
             <%= submit_tag('Choose', :class => "btn btn-primary #{needconfirmation}", :disabled => true, 'data-confirm-dialog' => t('user.university.edit.confirmation')) %>
         </span>
       </div>

@@ -40,4 +40,8 @@ class Program::GroupRestriction < ActiveRecord::Base
       Utils::Ratio.from_value(count.to_f, goal.to_f)
     end
   end
+
+  def new_copy
+    self.dup
+  end
 end

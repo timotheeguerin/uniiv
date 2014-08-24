@@ -1,44 +1,19 @@
 <h1>Auto load a course from url</h1>
-<% unless @course.nil? %>
+<% unless @result.nil? %>
     You have just added the following course:
     <br>
-    <table class="table table-striped">
-      <tr>
-        <td>Name:</td>
-        <td> <%= @course.name %></td>
-      </tr>
-      <tr>
-        <td>Subject:</td>
-        <td> <%= @course.subject %></td>
-      </tr>
-      <tr>
-        <td>Code:</td>
-        <td><%= @course.code %></td>
-      </tr>
-      <tr>
-        <td>Description:</td>
-        <td><%= @course.description %></td>
-      </tr>
-      <tr>
-        <td>Hours:</td>
-        <td><%= @course.hours %></td>
-      </tr>
-      <tr>
-        <td>Credit:</td>
-        <td><%= @course.credit %></td>
-      </tr>
-    </table>
+    <%= render :partial => 'show_diff', :locals => {:result => @result} %>
 
-    <%= link_to 'View', course_path(@course), :class => 'btn btn-default' %>
-    <%= link_to 'Edit', rails_admin.edit_path(:model_name => Course::Course, :id => @course.id), :class => 'btn btn-danger' %>
-
+    <%= link_to 'View', course_path(@result[:course]), :class => 'btn btn-default' %>
+    <%= link_to 'Edit', rails_admin.edit_path(:model_name => Course::Course, :id => @result[:course].id), :class => 'btn btn-danger' %>
     <hr>
 
     Add an other course
 <% end %>
 
 <%= form_tag(admin_utils_course_load_all_path) do %>
-    <%= submit_tag 'Load all courses', :class => 'btn btn-default', :title => 'Warning: Take time..', :rel => 'tooltip' %>
+    <%= submit_tag 'Load all courses', :class => 'btn btn-danger needconfirmation',
+                   'data-confirmation-dialog' => 'Warning: This take some time and will freeze the server in development until complete', :rel => 'tooltip' %>
 <% end %>
 <%= form_tag(admin_utils_course_load_create_path) do %>
     <div class="form-group">

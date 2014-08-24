@@ -1,0 +1,2 @@
+module Issue::CommentsHelper
+end

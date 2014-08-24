@@ -12,33 +12,18 @@
 <div id='top' class="body_container">
   <%= render :partial => 'layouts/navigation' %>
   <div class="wrapper">
-    <% if notice or alert %>
-        <div class="container text-center">
-          <% if notice %>
-              <div class="row">
-                <div class="alert alert-info alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(notice) %>
-                </div>
-              </div>
-          <% end %>
-          <% if alert %>
-              <div class="row">
-                <div class="alert alert-danger alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= raw(alert) %>
-                </div>
-              </div>
-          <% end %>
-        </div>
-    <% end %>
+    <%= render 'layouts/notice' %>
     <!--Check if we need to use the fullscreen width or just the default size(For example the graph) -->
     <% container = 'container' %>
     <% container = 'container-fluid' if defined?(@fullwidth) and @fullwidth %>
     <div class="<%= container %>">
       <%= yield %>
     </div>
-    <div class="push"></div>
+    <% unless defined?(@footer) and not @footer %>
+        <div class="push"></div>
+    <% end %>
   </div>
-  <%= render :partial => 'layouts/footer' %>
+  <%= render :partial => 'layouts/footer' unless defined?(@footer) and not @footer %>
 </div>
 <div class=''>
   <%= render :partial => 'layouts/confirmation_modal' %>

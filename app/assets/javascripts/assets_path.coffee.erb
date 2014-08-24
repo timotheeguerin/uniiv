@@ -1,0 +1,14 @@
+#This page add an helper for javascript so you dont need to make erb file when need to access asset path
+
+<%
+assets = {}
+%w(fonts images).each do |dir|
+    Dir.chdir("#{Rails.root}/app/assets/#{dir}/") do
+      Dir['**/*.*'].each do |f|
+        assets[f] = asset_path(f)
+      end
+    end
+end
+%>
+window.assets_path = (name) ->
+        <%= assets.to_json %>[name]

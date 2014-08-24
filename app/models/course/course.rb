@@ -6,20 +6,21 @@ class Course::Course < ActiveRecord::Base
 
   has_many :reviews, :class_name => Course::Review, :dependent => :destroy
 
-  has_and_belongs_to_many :restricted_years, :class_name => UniversityYear
+  has_and_belongs_to_many :restricted_years, :class_name => 'UniversityYear'
   has_many :scenario_taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_id', :dependent => :destroy
   has_many :user_completed_courses, :class_name => UserCompletedCourse, :foreign_key => 'course_id', :dependent => :destroy
   has_many :users, :class_name => User, :through => :user_completed_courses
   has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
 
-  has_and_belongs_to_many :program_groups, :class_name => Program::Group
+  #Program group having the course
+  has_and_belongs_to_many :program_groups, :class_name => 'Program::Group'
 
 
   #Admin
   has_one :admin_course_requirement_filled, :class_name => Admin::CourseRequirementFilled
 
   #Validations
-  validates_uniqueness_of :code, scope: :subject
+  validates_uniqueness_of :code, scope: [:subject, :part]
   validates :subject_id, :presence => true
   validates :name, :presence => true
   validates :code, :presence => true
@@ -63,7 +64,12 @@ class Course::Course < ActiveRecord::Base
   end
 
   def get_short_name
-    subject.to_s + ' ' + code.to_s
+    ext = if part
+            "D#{part}"
+          else
+            ''
+          end
+    "#{subject} #{code}#{ext}"
   end
 
   def get_detail_name
@@ -79,9 +85,9 @@ class Course::Course < ActiveRecord::Base
     unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
     end
-    nextterm = nil
-    nextterm = term.next unless term.nil?
-    unless  corequisite.nil? or corequisite.requirements_completed?(scenario, nextterm)
+    next_term = nil
+    next_term = term.next unless term.nil?
+    unless  corequisite.nil? or corequisite.requirements_completed?(scenario, next_term)
       return false
     end
     true
@@ -177,7 +183,7 @@ class Course::Course < ActiveRecord::Base
   end
 
   def already_exist?
-    Course::Course.where(:subject_id => subject_id, :code => code).size > 0
+    Course::Course.where(:subject_id => subject_id, :code => code, :part => part).size > 0
   end
 
   #Get the course from the string of format SUBJECT CODE(e.g. MATH 222)
@@ -189,9 +195,3 @@ class Course::Course < ActiveRecord::Base
   end
 end
 
-class CourseState
-  COMPLETED = 'completed'
-  TAKING = 'taking'
-  AVAILABLE = 'available'
-  UNAVAILABLE = 'unavailable'
-end

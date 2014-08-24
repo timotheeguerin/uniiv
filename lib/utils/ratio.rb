@@ -27,9 +27,9 @@ module Utils
     end
 
     def +(other)
-      output = Utils::Ratio.empty
+      output = Utils::Ratio.zero
       if other.is_a? Utils::Ratio
-        output.ratio = (value+other.value)/(@coefficient+other.coefficient)
+        output.ratio = (value+other.value)/(@coefficient+other.coefficient) unless @coefficient == 0 and other.coefficient == 0
         output.coefficient = @coefficient + other.coefficient
       end
       output
@@ -85,5 +85,7 @@ module Utils
     def to_s
       @ratio.to_s
     end
+
+    alias_attribute :to_percent, :percent
   end
 end

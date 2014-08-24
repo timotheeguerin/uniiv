@@ -3,9 +3,13 @@ $(document).ready ->
     width: 'auto'
   });
 
-  $(document).on 'click', 'button.needconfirmation, input[type=submit].needconfirmation', (event) ->
+  $(document).on 'change', 'select.submit-onselect', () ->
+    $(this).closest('form').submit()
+
+  $(document).on 'click', '.needconfirmation', (event) ->
     event.preventDefault()
     button = $(this)
+
     form = button.closest('form')
     modale = $('#confirmation_modal').clone().appendTo('body')
     modale.find('.modal-body').html(button.data('confirm-dialog'))
@@ -13,7 +17,12 @@ $(document).ready ->
 
     modale.on 'click', '.btn[data-confirmation]', () ->
       if $(this).data('confirmation') == 'continue'
-        form.submit()
+        if form?
+          form.submit()
+        else if button.is 'a'
+          console.log('FRFR')
+          window.location.href = button.attr('href')
+
       modale.modal('hide')
       setTimeout(()->
         modale.remove()
@@ -91,6 +100,56 @@ $(document).ready ->
           form.find('button,input[type="submit"]').prop('disabled', false)
     })
 
+  $('select.selectize, input.selectize').each () ->
+    container = $(this)
+    form = container.closest('form')
+    renderOptions = {
+      option: ((item, escape) ->
+        if typeof(item.value) == "string"
+          '<div>' + item.value + '</div>'
+        else
+          result = '<div>' + item.value.title + '</div>'
+          result += '<div>' + item.value.subtitle + '</div>' if item.value.subtitle
+          result += '<div>' + item.value.description + '</div>' if item.value.description
+          '<div>' + result + '</div>'
+      )
+    }
+    maxItem = container.data('max-items')
+    maxItem ?= 1
+    container.selectize {
+      delimiter: ',',
+      maxItems: maxItem,
+      valueField: 'data',
+      labelField: 'value',
+      searchField: 'value',
+      preload: true,
+      create: false,
+      render: renderOptions,
+      onItemAdd: (value, $item) ->
+        console.log(value + ', ' + $item)
+      load: (query, callback) ->
+        $.ajax({
+          url: container.data('url'),
+          data: {q: query}
+          type: 'GET',
+          error: () ->
+            callback()
+          success: (data) ->
+            callback(data['suggestions'])
+        })
+      onChange: (id) ->
+        if container.data('update-element')
+          element = $(container.data('update-element'))
+          params = {}
+          params[element.data('param-name')] = id if element.data('param-name')
+          $.get(element.data('url'), params).success (data) ->
+            element.html(data)
+            reload_scripts(element)
+        if container.hasClass('disablesubmit')
+          form.find('button,input[type="submit"]').prop('disabled', false)
+    }
+
+
   $(document).on 'keyup', 'form input.percentage', ()->
     checkvalid($(this))
 
@@ -98,6 +157,14 @@ $(document).ready ->
   typingTimer = {}
   saveTimer = {}
   savesigns = {}
+  oldValues = {}
+
+  $(document).on 'focus', 'form input.submitonedit', () ->
+    input = $(this)
+    form = input.closest('form')
+    input_id = get_input_id(input)
+    oldValues[input_id] = input.val()
+
   $(document).on 'keyup', 'form input.submitonedit', () ->
     input = $(this)
     form = input.closest('form')
@@ -112,6 +179,9 @@ $(document).ready ->
     typingTimer[input_id] = setTimeout(()->
       typingTimer[input_id] = null
       if checkvalid(input)
+        #dont submit if the input content has not changed
+        return if oldValues[input_id] == input.val()
+        oldValues[input_id] = input.val()
         input.closest('form').submit()
         success_sign = $('<div data-original-title="Saved!" rel="tooltip"><span class="glyphicon glyphicon-ok greentext"></span></div>').appendTo('body')
         success_sign.css('position', 'absolute')
@@ -123,18 +193,23 @@ $(document).ready ->
         saveTimer[input_id] = setTimeout(()->
           success_sign.remove()
         , 2000)
-    , 2000)
+    , 800)
+
+  setup_rich_content_editor()
+
 
 #Submit a form using ajax
 submitFormAjax = () ->
   form = $(this)
+  inputs = form.serializeObject()
   submit_button = form.find('button, input[type="submit"]')
   submit_button.prop('disabled', true)
+  method = (inputs['_method'] or form.attr('method'))
   $.ajax({
-    url: $(this).attr('action'),
-    type: $(this).attr('method'),
+    url: form.attr('action'),
+    type: method,
     dataType: 'json',
-    data: $(this).serialize(),
+    data: form.serialize(),
   }).success((data) ->
     if data.message
       ajaxPopupPush(data.message)
@@ -151,7 +226,6 @@ submitFormAjax = () ->
     submit_button.prop('disabled', false) unless form.data('unique-submission') #Renable form for submition
     form.off()
     $(form).trigger('formAjaxComplete', data)
-
   )
   return false
 
@@ -185,3 +259,18 @@ get_input_id = (input)->
   form.find('input[type=hidden]').each () ->
     input_id += '_' + $(this).attr('name') + '_' + $(this).attr('value')
   return input_id + '_' + input.attr('name')
+
+$(document).on 'content-changed', () ->
+  setup_rich_content_editor($(this))
+setup_rich_content_editor = (container) ->
+  container ?= $(document)
+  container.find(".rich-content").each () ->
+    item = $(this)
+    item.markdown({
+      onPreview: (e) ->
+        originalContent = e.getContent()
+        $.get(item.data('content-url'), {text: originalContent}
+        ).success (data) ->
+          e.setPreview(data)
+        return window.loading_animation()
+    })

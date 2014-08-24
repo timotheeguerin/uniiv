@@ -1,0 +1,15 @@
+<div class='course-buttons-container pull-right'>
+  <div class='btn-group'>
+    <a href='<%= user_complete_course_path(course.course.id) %>' class='btn btn-success ajaxmodal' rel='tooltip' data-toggle='tooltip' title='Mark Completed'>
+      <span class='whitetext glyphicon glyphicon-ok-sign'></span>
+    </a>
+    <a type='button' href='<%= course_path(course.course.id) %>' class='tooltipdestroy btn btn-info' rel='tooltip' title='<%= course.course.name %>'>
+      <span class='whitetext glyphicon glyphicon-info-sign'></span>
+    </a>
+    <%= group_button_to user_untake_course_path,
+                        :name => :course_id, :value => course.course.id, :useajax => useajax, :delete_parent => delete_parent,
+                        :class => 'btn btn-danger', :rel => 'tooltip', :title => 'Remove', :redirect_to => request.env['PATH_INFO'] do %>
+        <span class='glyphicon glyphicon-remove-sign'></span>
+    <% end %>
+  </div>
+</div>

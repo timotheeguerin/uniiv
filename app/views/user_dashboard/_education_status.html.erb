@@ -2,9 +2,9 @@
 <div class="row">
   <div class='col-md-12'>
     <div class='progress' style="margin-top: 3rem; height: 5rem">
-      <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= 50 %>%;z-index: 11'
-           rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= perc.to_s + "% complete" %>'>
-        <span class="progress-center text-md" style="line-height:5rem">60% Complete</span>
+      <div class='progress-bar' role='progress-bar' aria-valuenow='<%= perc %>' aria-valuemin='0' aria-valuemax='100' style='width:<%= perc %>%;z-index: 11'
+           rel='tooltip' data-placement='bottom' data-toggle='tooltip' title='<%= "#{perc}% complete" %>'>
+        <span class="progress-center text-md" style="line-height:5rem"><%= perc %>% Complete</span>
       </div>
 
     </div>
@@ -12,9 +12,9 @@
 </div>
 
 <div class='program_list' style="margin-bottom: 5rem">
-  <% current_scenario.programs.order('type_id ASC, name ASC').each do |p| %>
+  <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC,  program_programs.name ASC').each do |p| %>
       <div class='row'>
-        <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
+        <div class='text-indent col-md-8'><span><%= link_to p, program_version_path(p) %></span></div>
         <div class='text-indent col-md-2'>
           <div class='progress'>
             <% perc= (p.get_completion_ratio(current_scenario).percent).to_i %>

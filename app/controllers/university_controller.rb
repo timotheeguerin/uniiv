@@ -14,6 +14,7 @@ class UniversityController < ApplicationController
     render :json => json.to_json
   end
 
+  private
   def search
     limit = params[:limit]
     search = University.search do

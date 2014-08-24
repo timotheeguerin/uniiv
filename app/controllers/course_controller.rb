@@ -7,11 +7,7 @@ class CourseController < ApplicationController
 
   def show
     @course = Course::Course.find(params[:id])
-  end
-
-  def graph_embed
-    @course = Course::Course.find(params[:id])
-    render :layout => false
+    render :layout => false if request.xhr?
   end
 
   def json

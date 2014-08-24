@@ -8,19 +8,22 @@ namespace :db do
     args << config['database']
   end
 
-  task :sync_local do
+  task :sync_local, :database do |t, args|
+    args.with_defaults(:database => 'development')
     config = Rails.application.config.database_configuration
 
     abort 'Missing Main developement db config' if config['development_main'].blank?
 
-    dev = config['development']
+    dev = config[args[:database]]
     live = config['development_main']
 
     #Clean the database
-    Rake.application.invoke_task('db:drop')
-    Rake.application.invoke_task('db:create')
-    Rake.application.invoke_task('db:migrate')
-    Rake.application.invoke_task('db:test:prepare')
+    if args[:database] == 'development'
+      Rake.application.invoke_task('db:drop')
+      Rake.application.invoke_task('db:create')
+      Rake.application.invoke_task('db:migrate')
+      Rake.application.invoke_task('db:test:prepare')
+    end
 
     abort 'Dev db is not mysql' unless dev['adapter'] =~ /mysql/
     abort 'Live db is not mysql' unless live['adapter'] =~ /mysql/
@@ -41,9 +44,9 @@ namespace :db do
     abort "Missing Database config #{args[:database]}" if config[args[:database]].blank?
     database = config[args[:database]]
 
-    cmd = "mysqldump --opt #{command_args(database)} > #{args[:file]}"
+    cmd = "mysqldump --opt #{command_args(database)} > sqlbackups/#{args[:file]}"
     system `#{cmd}`
-    puts "Backup in #{args[:file]}"
+    puts "Backup in sqlbackups/#{args[:file]}"
   end
   task :restore, :file do |t, args|
     args.with_defaults(:file => 'backup.sql', :database => 'development')

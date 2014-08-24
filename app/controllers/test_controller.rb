@@ -3,6 +3,22 @@ class TestController < ApplicationController
     authorize! :test, :all
   end
 
+
+  def migrate_program_version
+    Program::Program.all.each do |program|
+      version = Program::Version.new
+      version.program = program
+      version.id = program.id
+      version.start_year=2010
+      version.end_year=2014
+      version.save
+      Program::Group.where(:groupparent_id => program, :groupparent_type => 'Program::ProgramVersion').each do |group|
+        group.groupparent = version
+        group.save
+      end
+    end
+  end
+
   def set_group_restricions
     Program::GroupRestriction.destroy_all
     Program::Group.all.each do |group|

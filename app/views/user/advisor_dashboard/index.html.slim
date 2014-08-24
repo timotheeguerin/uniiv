@@ -1,0 +1,27 @@
+.row.advisor-dashboard
+  .container
+    h1=t('advisor.dashboard.title')
+    div
+      .choice-menu.text-lg.dark_greytext
+        a.btn-lg-choice.col-md-4 href=advisor_issues_path(current_user)
+          .glyphicon.glyphicon-th-list
+          div = t('advisor.dashboard.link.issues')
+
+        a.btn-lg-choice.col-md-4 href=user_advisor_students_path
+          .glyphicon.glyphicon-user
+          div = t('advisor.dashboard.link.advisor_student')
+
+        a.btn-lg-choice.col-md-4 href=switch_user_path
+          .glyphicon.glyphicon-retweet
+          div = t('advisor.dashboard.link.switch_user')
+
+    .row.issue-list
+      - @reporters.each do |reporter|
+        .col-md-3.issue-box
+          - issues = reporter.reported_issues.where(assignee_id: current_user.id)
+          a.issue-reporter href=advisor_student_issues_path(id: current_user.id, student_id: reporter.id)
+            = reporter
+            = " (#{issues.size})"
+          - issues.limit(2).each do |issue|
+            a.issue-title href=issue_path(issue)
+              = issue.title

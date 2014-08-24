@@ -2,25 +2,26 @@ class Program::Group < ActiveRecord::Base
 
   belongs_to :groupparent, :polymorphic => true
 
-  has_many :subgroups, :class_name => Program::Group, :as => :groupparent
+  has_many :subgroups, :class_name => Program::Group, :as => :groupparent, :dependent => :destroy
 
   #List of courses to complete
-  has_and_belongs_to_many :list_courses, -> { uniq }, :class_name => Course::Course
+  has_and_belongs_to_many :courses, -> { uniq }, :class_name => 'Course::Course'
 
   #List of the subject_courses
-  has_many :subject_courses, :class_name => Course::SubjectCourseList
+  has_many :subject_courses, :class_name => Course::SubjectCourseList, :dependent => :destroy
 
   has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
 
   #Complete a number of programs
-  has_and_belongs_to_many :programs, -> { uniq }, :class_name => Program::Program
+  has_and_belongs_to_many :programs, -> { uniq }, :class_name => 'Program::Program'
 
   validates_presence_of :groupparent_id
+  validates_presence_of :name
 
-  def courses
-    result = list_courses
+  def all_courses
+    result = courses
     subject_courses.each do |subject_course|
-      result += subject_course.courses
+      result = result | subject_course.courses
     end
     result
   end
@@ -40,7 +41,7 @@ class Program::Group < ActiveRecord::Base
   def parent_program
     if groupparent.nil?
       nil
-    elsif groupparent.instance_of?(Program::Program)
+    elsif groupparent.is_a?(Program::Version)
       groupparent
     else
       groupparent.parent_program
@@ -108,14 +109,12 @@ class Program::Group < ActiveRecord::Base
 
   def get_completion_ratio(scenario, term = nil)
     if restrictions.size == 0
-      puts 'Epty: '
       Utils::Ratio.empty
     else
 
       ratio = Utils::Ratio.zero
       restrictions.each do |restriction|
         ratio += restriction.get_completition_ratio(scenario, term)
-        puts 'READ res: ' + restriction.type.to_s
       end
       puts 'GR: ' + ratio.to_s
       ratio
@@ -173,9 +172,19 @@ class Program::Group < ActiveRecord::Base
     'g_' + id.to_s
   end
 
+  def new_copy
+    group = self.dup
+    group.subgroups = self.subgroups.map(&:new_copy)
+    group.list_courses = self.list_courses
+    group.subject_courses = self.subject_courses.map(&:new_copy)
+    group.restrictions = self.restrictions.map(&:new_copy)
+    group.programs = self.programs
+    group
+  end
+
   searchable do
     text :program do
-      parent_program.name unless parent_program.nil?
+      parent_program.program.name unless parent_program.nil?
     end
     text :name
   end

@@ -1,8 +1,6 @@
 Uniiv::Application.routes.draw do
 
   get 'scenario/new'
-  get 'course_taking/new'
-  get 'course_taking/new_graph_embed'
   get 'static_page/uniiv'
   get 'static_page/story'
   get 'static_page/team'
@@ -13,13 +11,10 @@ Uniiv::Application.routes.draw do
   get 'static_page/privacy'
   get 'static_page/termsofuse'
   get 'user_settings/index'
-  get 'program_group/index'
-  get 'program_group/graph_embed'
+  get 'group/index'
+  get 'group/graph_embed'
   get 'program/index'
-  get 'program/graph_embed'
   post 'user_programs/removeProgram'
-
-  get 'user_emails/index'
 
   get 'graph/index'
   get 'test/index'
@@ -46,13 +41,15 @@ Uniiv::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users, :controllers => {registrations: 'registration/registrations',
+                                      passwords: 'registration/passwords',
+                                      sessions: 'registration/sessions'}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  #User setttings
-  post 'user_emails/new' => 'user_emails#new', :as => :user_email_new
-  post 'user_emails/set_as_default' => 'user_emails#set_as_default', :as => :user_email_set_as_default
-  post 'user_emails/remove' => 'user_emails#remove', :as => :user_email_remove
+  #User settings
+  post 'user/emails/new' => 'user/emails#create', :as => :user_email_new
+  post 'user/emails/set_as_default' => 'user/emails#set_as_default', :as => :user_email_set_as_default
+  post 'user/emails/remove' => 'user/emails#remove', :as => :user_email_remove
 
   #User university controller
   get 'user/university/show' => 'user_university#show', :as => :user_university_show
@@ -70,6 +67,7 @@ Uniiv::Application.routes.draw do
   #User faculty controller
   get 'user/program/show' => 'user_programs#show', :as => :user_programs_show
   get 'user/program/new' => 'user_programs#new', :as => :user_programs_new
+  get 'user/program/selectversion' => 'user_programs#select_version', :as => :user_program_select_version
   post 'user/program/new' => 'user_programs#create', :as => :user_programs_create
   post 'user/program/delete' => 'user_programs#delete', :as => :user_programs_delete
 
@@ -97,34 +95,45 @@ Uniiv::Application.routes.draw do
   get 'program/search/autocomplete' => 'program#search_autocomplete', :as => :program_search_autocomplete
   get 'program/new' => 'program#new', :as => :program_new
   post 'program/new' => 'program#create', :as => :program_create
-  get 'program/:id', to: 'program#show', as: 'program'
-  get 'program/:id/graph/embed' => 'program#graph_embed'
+  get 'program/:id' => 'program#show', as: 'program'
+
 
   get 'program/:id/edit' => 'program#edit', :as => :program_edit
   patch 'program:id/edit' => 'program#update', :as => :program_update
   post 'program/delete' => 'program#delete', :as => :program_delete
 
+  #Program version controller
+  get 'program/:program_id/version/new' => 'program/version#new', :as => :program_version_new
+  post 'program/:program_id/version/new' => 'program/version#create'
+  get 'program/:program_id/version/list' => 'program/version#list', :as => :program_version_list
+  get 'program/version/change-version' => 'program/version#change_version', :as => :program_version_change
+  get 'program/version/:id' => 'program/version#show', :as => :program_version
+  get 'program/version/:id/edit' => 'program/version#edit', :as => :program_version_edit
+  patch 'program/version/:id/edit' => 'program/version#update'
+  delete 'program/version/delete' => 'program/version#delete', :as => :program_version_delete
+
   #Group restricion
-  get 'program/group/restriction/create' => 'program/group_restriction#list', :as => :program_group_restriction_list
-  post 'program/group/restriction/create' => 'program/group_restriction#create', :as => :program_group_restriction_create
+  get 'program/group/restriction/new' => 'program/group_restriction#list', :as => :program_group_restriction_list
+  post 'program/group/restriction/new' => 'program/group_restriction#create', :as => :program_group_restriction_create
   post 'program/group/restriction/delete' => 'program/group_restriction#delete', :as => :program_group_restriction_delete
 
 
-  #Group controller
-  get 'program/group/new' => 'program_group#new', :as => :program_group_new
-  get 'program/group/:id' => 'program_group#show', as: 'group'
-  get 'program/group/:id/graph/embed' => 'program_group#graph_embed'
-  post 'program/group/new' => 'program_group#create', :as => :program_group_create
-  get 'program/group/:id/edit' => 'program_group#edit', :as => :program_group_edit
-  patch 'program/group/:id/edit' => 'program_group#update', :as => :program_group_update
-  post 'program/group/delete', to: 'program_group#delete', :as => :program_group_delete
+  # #Group controller
+  # get 'program/group/new' => 'program/group#new', :as => :program_group_new
+  # get 'program/group/:id' => 'program/group#show', as: 'group'
+  # #get 'program/group/:id/graph/embed' => 'program/group#graph_embed'
+  # post 'program/group/new' => 'program/group#create', :as => :program_group_create
+  # get 'program/group/:id/edit' => 'program/group#edit', :as => :program_group_edit
+  # patch 'program/group/:id/edit' => 'program/group#update', :as => :program_group_update
+  # post 'program/group/delete', to: 'program/group#delete', :as => :program_group_delete
 
+  namespace :program do
+    resources :groups
+  end
   #Group subject course list controller
-  get 'program/group/subject_course_list/new' => 'group_subject_course_list#new', :as => :group_subject_course_list_new
-  post 'program/group/subject_course_list/new' => 'group_subject_course_list#create', :as => :group_subject_course_list_create
-  get 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#edit', :as => :group_subject_course_list_edit
-  post 'program/group/subject_course_list/:id/edit' => 'group_subject_course_list#update', :as => :group_subject_course_list_update
-  post 'program/group/subject_course_list/delete' => 'group_subject_course_list#delete', :as => :group_subject_course_list_delete
+  scope path: 'program/group', module: 'course' do
+    resources :subject_course_lists
+  end
 
   #Graph controller
   get 'mygraph' => 'graph#show', :as => :user_graph
@@ -135,10 +144,10 @@ Uniiv::Application.routes.draw do
   #Course controller
   get 'course/search/data' => 'course#search_json', :as => :search_course_json
   get 'course/search/autocomplete' => 'course#search_autocomplete', :as => :search_course_autocomplete
+  get 'course/search/autocomplete' => 'course#search_autocomplete', :as => :course_autocomplete
   get 'course/search/show' => 'course#search_list', :as => :search_course_list
   get 'course/:id', to: 'course#show', as: :course
   get 'course/:id/show' => 'course#show'
-  get 'course/:id/graph/embed' => 'course#graph_embed', :as => :course_graph_embed
   get 'course/:id/json' => 'course#json'
 
   #Course review controller
@@ -158,21 +167,23 @@ Uniiv::Application.routes.draw do
 
   #User course controller
   scope :module => 'user' do
-    get 'user/course/add' => 'course_taking#add_course', :as => :user_add_course
-    post 'user/course/add' => 'course_taking#handle_add_course', :as => :handle_user_add_course
-    get 'user/course/sort' => 'course_taking#sort_course', :as => :user_sort_course
-    get 'course/:id/take' => 'course_taking#new', :as => :user_take_course
-    post 'course/:id/take' => 'course_taking#create', :as => 'user_take_course_create'
-    get 'course/:id/take/graph/embed' => 'course_taking#new_graph_embed', :as => 'user_take_course_graph_embed'
-    post 'course/:id/take/graph/embed' => 'course_taking#create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
-    post 'course/untake' => 'course_taking#remove', :as => :user_remove_course_form
-    post 'course/:id/untake' => 'course_taking#remove', :as => :user_remove_course
-    post 'course/:id/untake/graph/embed' => 'course_taking#remove', :as => 'user_remove_course_ge', :defaults => {:graph_embed => true}
-    get 'course/:id/complete' => 'course_taking#complete', :as => 'user_complete_course'
-    get 'course/:id/complete/graph/embed' => 'course_taking#complete', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
-    post 'course/:id/complete' => 'course_taking#create_complete', :as => :user_mark_complete_course
-    post 'course/:id/complete/graph/embed' => 'course_taking#create_complete', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
-    post 'user/course/take/update' => 'course_taking#update_course_taking', :as => :update_course_taking
+
+    #Course taking controller
+    get 'user/course/sort' => 'course_planner#index', :as => :user_sort_course
+    post 'user/course/take' => 'course_planner#take_course', :as => :take_course_planner
+    post 'user/courses/remove' => 'course_planner#untake_course', :as => :untake_course_planner
+
+    #User course controller
+    post 'user/course/untake' => 'course#remove', :as => :user_untake_course
+    get 'course/:course_id/complete' => 'course#complete_show', :as => :user_complete_course
+    get 'course/:course_id/complete/graph/embed' => 'course#complete_show', :as => 'user_complete_course_ge', :defaults => {:graph_embed => true}
+    post 'course/:course_id/complete' => 'course#complete_create', :as => :user_mark_complete_course
+    post 'course/:course_id/complete/graph/embed' => 'course#complete_create', :as => 'user_mark_complete_course_ge', :defaults => {:graph_embed => true}
+    get 'course/:course_id/take' => 'course#take_show', :as => :user_take_course
+    get 'course/:course_id/take/graph/embed' => 'course#take_show', :as => 'user_take_course_graph_embed', :defaults => {:graph_embed => true}
+    post 'course/:course_id/take' => 'course#take_create', :as => 'user_take_course_create'
+    post 'course/:course_id/take/graph/embed' => 'course#take_create', :as => 'user_take_course_create_graph_embed', :defaults => {:graph_embed => true}
+
 
     #User advanced standing controller
     get 'user/advanced-standings' => 'advanced_standing#index', :as => :user_advanced_standings
@@ -221,6 +232,39 @@ Uniiv::Application.routes.draw do
   get 'mtmrelationship/search/autocomplete' => 'manytomany_relationship#search_autocomplete', :as => :manytomany_relationship_search_autocomplete
 
 
+  #Switch user controller
+  get 'user' => 'switch_user#index', :as => :switch_user_index
+  get 'user/switch' => 'switch_user#select_switch', :as => :switch_user
+  get 'user/search' => 'switch_user#search', :as => :search_user
+  post 'user/switch' => 'switch_user#switch'
+  post 'user/switch/back' => 'switch_user#switch_back', :as => :switch_user_back
+
+
+  #User controller
+  scope module: :user do
+    get 'user/autocomplete' => 'users#autocomplete', :as => :autocomplete_user
+    get 'advisor/dashboard' => 'advisor_dashboard#index', as: :advisor_dashboard
+    get 'advisor/:id/issues' => 'advisors#issues', as: :advisor_issues
+    get 'advisor/:id/student/:student_id/issues' => 'advisors#student_issues', as: :advisor_student_issues
+  end
+
+  namespace :user do
+    resources :advisor_students
+    resources :invites
+    patch 'advisor/students/:id/update/status' => 'advisor_students#update_status', as: :update_status_advisor_student
+  end
+
+  scope module: :issue do
+    resources :issues do
+      resources :comments
+    end
+    get 'issues/:id/change_status' => 'issues#change_status', :as => :change_issue_status
+    get 'issues/items/autocomplete' => 'issues#autocomplete_items', :as => :autocomplete_issue_items
+  end
+
+
+  #Rich text
+  get 'richcontent/markdown' => 'rich_content#markdown', :as => :rich_content_markdown
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 

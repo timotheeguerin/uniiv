@@ -1,0 +1,6 @@
+hr
+h2 Completed Courses
+- if current_user.completed_courses.any?
+  = render 'user_dashboard/course_list', courses: current_user.completed_courses.order(:advanced_standing => :desc)
+- else
+  .text-lg.text-center No course completed!

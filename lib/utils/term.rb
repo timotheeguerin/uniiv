@@ -64,8 +64,8 @@ module Utils
 
     def self.last_allowed
       term = now
-      Term.year += 6
-      Term
+      term.year += 6
+      term
     end
 
     def ==(comparison_object)
@@ -74,6 +74,10 @@ module Utils
 
     def to_s
       "#{semester.to_s.capitalize} #{year}"
+    end
+
+    def to_param
+      {semester_id: semester.id, year: year}.to_param
     end
   end
 

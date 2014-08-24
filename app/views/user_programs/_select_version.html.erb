@@ -1,0 +1,6 @@
+<% versions ||= [] %>
+<% clazz = 'selectpicker form-control' %>
+<% clazz += ' hidden' if versions.empty? %>
+
+<%= select_tag 'version_id', options_from_collection_for_select(versions, 'id', 'to_academic_year'),
+               :class => clazz %>

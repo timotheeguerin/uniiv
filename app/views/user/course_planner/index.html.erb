@@ -1,0 +1,60 @@
+<div class='row'>
+  <h1>Course Manager</h1>
+  <h5>Rearrange your courses by clicking and dragging.</h5>
+  <hr>
+</div>
+<div class='row'>
+  <div class='col-md-8'>
+    <div id='course_sorter'>
+      <div id='message_container'></div>
+      <% unless @previous_courses.size == 0 %>
+          <div><h4> <%= t('course.before_current_term') %></h4></div>
+          <%= user_courses_dnd_zone(@previous_courses, take_course_planner_path, no_drop: true) %>
+      <% end %>
+      <% @years.each do |year, terms| %>
+          <div>
+            <div class='text-center'><h3><%= terms.keys.first.year %> - <%= terms.keys.last.year %></h3></div>
+            <div>
+              <% terms.each do |term, courses| %>
+                  <label><%= term.semester.to_s.capitalize %>  <%= term.year %></label>
+                  <%= user_courses_dnd_zone(courses, take_course_planner_path, params: term.to_param) %>
+              <% end %>
+            </div>
+            <hr>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='col-md-4'>
+    <div>
+      <label><%= t('suggestions') %></label>
+
+      <div class="sortable_list_container">
+        <%= user_courses_dnd_zone(current_scenario.get_courses_in_programs(:only_not_taking => true, :only_not_completed => true)[0..3], take_course_planner_path, no_drop: true, details: false) %>
+      </div>
+    </div>
+    <div class='text-center'>
+      <ul class='sortable no-drag draggable_box drag_box sortable_noindent bin'
+          data-type='delete'
+          data-group='course'
+          data-update-url='<%= untake_course_planner_path(:remove => true) %>'>
+        <span>Drag a course here to remove</span>
+        <br>
+        <span class='glyphicon glyphicon-trash'></span>
+      </ul>
+    </div>
+    <div class="sortable_list_container">
+      <div class='form-group'>
+        <label>Search for a course</label>
+        <input type="text" placeholder="Course"
+               id='search_new_course'
+               class="form-control search-ajax"
+               data-search-output='#search-output-container'
+               data-search-url='<%= search_course_list_path(only_not_taking: true, only_not_completed: true, need_reload: true) %>'/>
+      </div>
+      <ul id='search-output-container' class='sortable no-drop course-drag-box' data-group='course'>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>

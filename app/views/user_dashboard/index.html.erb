@@ -1,72 +1,92 @@
-
-
-<div class="row" style="margin-top: 20px">
-  <div class="choice-menu" >
-    <a href='<%= upload_transcript_path %>' class="btn-lg-choice col-md-3">
-      <div class="h3">
-        <div>
-          <span class='glyphicon glyphicon-cloud-upload glyphicon-lg lightest_bluetext'></span>
-        </div>
-        <div>
-          Upload your transcript
-        </div>
-      </div>
-    </a>
-    <a href='<%= user_graph_path %>' class="btn-lg-choice col-md-3">
-      <div class="h3">
-        <div>
-          <span class='glyphicon glyphicon-random glyphicon-lg light_redtext'></span>
-        </div>
-        <div>
-          View your path
-        </div>
-      </div>
-    </a>
-    <a href='<%= user_sort_course_path %>' class="btn-lg-choice col-md-3">
-      <div class="h3">
-        <div>
-          <span class='glyphicon glyphicon-road glyphicon-lg light_yellowtext'></span>
-        </div>
-        <div>
-          Plan your curriculum
-        </div>
-      </div>
-    </a>
-    <a href='<%= user_education_selection_path %>' class="btn-lg-choice col-md-3">
-      <div class="h3">
-        <div>
-          <span class='glyphicon glyphicon-edit glyphicon-lg greytext'></span>
-        </div>
-        <div>
+<div class="row transcript-wrapper lightest_grey_bg">
+  <div class="container">
+    <div class="text-md dark_greytext" style="margin-top: 20px">
+      <div class="choice-menu">
+        <a href='' class="btn-lg-choice col-md-3">
+          <div>
+            <span class='glyphicon glyphicon-globe glyphicon-lg'></span>
+          </div>
+          <div>
+            Coming soon
+          </div>
+        </a>
+        <a href='<%= issues_path %>' class="btn-lg-choice col-md-3">
+          <div>
+            <span class='glyphicon glyphicon-list glyphicon-lg'></span>
+          </div>
+          <div>
+            Issues
+          </div>
+        </a>
+        <a href='<%= user_advisor_students_path %>' class="btn-lg-choice col-md-3">
+          <div>
+            <span class='glyphicon glyphicon-user glyphicon-lg'></span>
+          </div>
+          <div>
+            Advisors
+          </div>
+        </a>
+        <a href='<%= user_education_selection_path %>' class="btn-lg-choice col-md-3">
+          <div>
+            <span class='glyphicon glyphicon-edit glyphicon-lg'></span>
+          </div>
+          <div>
             Settings
-        </div>
+          </div>
+        </a>
       </div>
-    </a>
+      <div class="choice-menu">
+        <a href='<%= upload_transcript_path %>' class="btn-lg-choice col-md-4">
+          <div>
+            <span class='glyphicon glyphicon-cloud-upload glyphicon-lg'></span>
+          </div>
+          <div>
+            Upload your transcript
+          </div>
+        </a>
+        <a href='<%= user_graph_path %>' class="btn-lg-choice col-md-4">
+          <div>
+            <span class='glyphicon glyphicon-random glyphicon-lg'></span>
+          </div>
+          <div>
+            View your path
+          </div>
+        </a>
+        <a href='<%= user_graph_path %>' class="btn-lg-choice col-md-4">
+          <div>
+            <span class='glyphicon glyphicon-road glyphicon-lg'></span>
+          </div>
+          <div>
+            Plan your curriculum
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div id='user_education_status_container' data-url='<%= user_education_status_content_path %>'>
+      <%= render :partial => 'user_dashboard/education_status' %>
+    </div>
+    <% if current_user.completed_courses.empty? and current_scenario.taking_courses.empty? %>
+        <hr>
+        <div class='text-center'>
+          <a href="<%= upload_transcript_path if user_signed_in? %>" class="btn">
+            <div>
+              <span class='glyphicon glyphicon-cloud-upload glyphicon-xl lightest_bluetext'></span>
+            </div>
+            <div>
+              <h3>Upload your transcript</h3>
+            </div>
+          </a>
+        </div>
+    <% else %>
+        <div id='user_course_taking_container' data-url='<%= user_education_course_taking_content_path %>'>
+          <%= render :partial => 'user_dashboard/course_taking' %>
+        </div>
+        <div id='user_course_completed_container' data-url='<%= user_education_course_completed_content_path %>'>
+          <%= render :partial => 'user_dashboard/course_completed' %>
+        </div>
+
+    <% end %>
   </div>
 </div>
-
-
-<div id='user_education_status_container' data-url='<%= user_education_status_content_path %>'>
-  <%= render :partial => 'user_dashboard/education_status' %>
-</div>
-<% if current_user.completed_courses.empty? and current_scenario.taking_courses.empty? %>
-    <hr>
-    <div class='text-center'>
-      <a href="<%= upload_transcript_path if user_signed_in? %>" class="btn">
-        <div>
-          <span class='glyphicon glyphicon-cloud-upload glyphicon-xl lightest_bluetext'></span>
-        </div>
-        <div>
-          <h3>Upload your transcript</h3>
-        </div>
-      </a>
-    </div>
-<% else %>
-    <div id='user_course_taking_container' data-url='<%= user_education_course_taking_content_path %>'>
-      <%= render :partial => 'user_dashboard/course_taking' %>
-    </div>
-    <div id='user_course_completed_container' data-url='<%= user_education_course_completed_content_path %>'>
-      <%= render :partial => 'user_dashboard/course_completed' %>
-    </div>
-
-<% end %>

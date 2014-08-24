@@ -1,0 +1,53 @@
+<% if details %>
+    <li class='<%= 'invalid-time' if invalid_time %>'>
+      <div class='container-fluid' data-course-id='<%= course.course.id %>'>
+        <div class='row'>
+          <div class='col-md-9'>
+            <h5><%= course.course.to_s + ' - ' + course.course.name %></h5>
+          </div>
+          <div class='col-md-1 col-md-offset-2'>
+            <button class='rotatecontent btn btn-success' data-container='#dependencies_<%= course.course.id %>'>
+              <span class='glyphicon glyphicon-chevron-down'></span>
+            </button>
+          </div>
+        </div>
+        <div id='dependencies_<%= course.course.id %>' class='row dependencies' style='display: none'>
+          <div class='col-md-10 col-md-offset-1'>
+            <div>
+              <div><label><%= t('prerequisites') %>: </label></div>
+              <% if course.course.prerequisite.nil? %>
+                  <%= t('none') %>
+              <% else %>
+                  <div style="display: inline-block">
+                    <ul class='sortable no-drop duplicate' data-group='course'>
+                      <%= raw get_expr_html(course.course.prerequisite, 'course/course_expr_sortable') %>
+                    </ul>
+                  </div>
+              <% end %>
+            </div>
+            <div>
+              <div><label><%= t('corequisites') %>: </label></div>
+              <% if course.course.corequisite.nil? %>
+                  <%= t('none') %>
+              <% else %>
+                  <div style="display: inline-block">
+                    <ul class='sortable no-drop duplicate' style="display: inline-block" data-group='course'>
+                      <%= raw get_expr_html(course.course.corequisite, 'course/course_expr_sortable') %>
+                    </ul>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+          <div class='col-md-1'>
+            <a href='<%= course_path(course.course) %>' class='btn btn-info' target='_blank'><span class='whitetext glyphicon glyphicon-info-sign'></span></a>
+          </div>
+        </div>
+      </div>
+    </li>
+<% else %>
+    <li>
+      <div data-course-id='<%= course.id %>' data-need-reload=true>
+        <h5><%= course.to_s %></h5>
+      </div>
+    </li>
+<% end %>

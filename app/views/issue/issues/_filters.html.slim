@@ -1,0 +1,25 @@
+= form_tag '', method: :get do
+  .list-group
+    .list-group-item
+      div
+        label = t('issue.status.label')
+      .btn-group.btn-group-block data-toggle='buttons'
+        - Issue::Issue.statuses.each do |status, _|
+          - active = (status == filters[:status].to_s)
+          label class="btn btn-default btn-sm #{'active' if active}"
+            = radio_button_tag :status, status, active, class: 'hidden'
+            = t(status)
+
+    .list-group-item
+      label = t('issue.reported.by')
+      = select_tag :reporter_id, options_from_collection_for_select(User.where(id: filters[:reporter_id]), :id, :to_s, selected: filters[:reporter_id]),
+                    :class=>'selectize', :disabled => (filters[:lock_reporter]),
+                    'data-url' => autocomplete_user_path
+    .list-group-item
+      label = t('issue.assigned.to')
+      = select_tag :assignee_id, options_from_collection_for_select(User.where(id: filters[:assignee_id]), :id, :to_s, selected: filters[:assignee_id]),
+                    :class=>'selectize', :disabled => (filters[:lock_assignee]),
+                    'data-url' => autocomplete_user_path(type: 'User::Advisor')
+
+    .list-group-item
+      button.btn.btn-success.btn-block = t('filter')

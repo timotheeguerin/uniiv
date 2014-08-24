@@ -1,7 +1,4 @@
 class UserUniversityController < ApplicationController
-  def show
-    @current_university = current_user.university
-  end
 
   def edit
     authorize! :edit, current_user

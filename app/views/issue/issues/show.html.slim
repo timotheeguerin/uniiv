@@ -1,0 +1,26 @@
+.issue
+  .issue-header
+    .issue-title
+      h1= @issue.title
+    .issue-edit
+      - if can? :update, @issue
+        = link_to t('edit'), edit_issue_path(@issue), class: 'btn btn-default btn-sm'
+      = link_to t('issue.new'), new_issue_path, class: 'btn btn-success btn-sm'
+      - if can? :destroy, @issue
+        = button_to t('delete'), issue_path(@issue), method: :delete, class: 'btn btn-danger btn-sm needconfirmation', 'data-confirm-dialog' => t('confirm.delete')
+  .issue-content
+    .comment-header class="#{@issue.status}"
+      a.issue-status href="#{change_issue_status_path(@issue, :status => @issue.status_inverse)}" title="#{t("issue.status.change.#{@issue.status_inverse}")}" rel='tooltip'
+        = get_issue_status_icon(@issue)
+      .comment-title
+        = t('issue.created.by', :user => @issue.reporter)
+    .issue-content-content
+      == @issue.content.to_html
+  hr
+
+  h4 Related items
+  .related-items
+    - @issue.related_items.each do |item|
+      = link_to item.to_s, item.item,class: 'item shadow-box'
+
+  = render 'issue/comments/list', issue: @issue

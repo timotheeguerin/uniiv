@@ -19,8 +19,11 @@ module Uniiv
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    Dir["#{Rails.root}/lib/extension/*.rb"].each { |file| require file }
+
     config.assets.paths << "#{Rails.root}/app/assets/test"
-    config.autoload_paths << "#{Rails.root}/lib/" if Rails.env.development?
+    config.autoload_paths << "#{Rails.root}/lib/"
+    config.autoload_paths << "#{Rails.root}/app/searcher/"
     silence_warnings do
       OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE unless Rails.env.production?
     end
@@ -33,6 +36,13 @@ module Uniiv
     else
       #unless $0.end_with?('rake')
         puts 'WARNING: Local db env file local not found!'
+    end
+
+    config.sass.preferred_syntax = :sass
+
+    config.generators do |g|
+      g.template_engine :slim
+      g.test_framework  :test_unit, :fixture => false
     end
   end
 end

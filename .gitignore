@@ -11,8 +11,6 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
-/log/*.log
 /tmp
 
 #ignore rubymine
@@ -27,8 +25,12 @@ solr/default/
 solr/development/
 solr/pids/
 
+sqlbackups/
+
+
 #Local files that depend on the machine
 config/local/
+config/secrets.yml
 
 
-config/initializer/secret_token.rb
+public/assets/

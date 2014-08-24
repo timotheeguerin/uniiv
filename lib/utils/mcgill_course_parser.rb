@@ -1,42 +1,64 @@
 require 'open-uri'
 module Utils
   class McgillCourseParser
+    SubjectNotFound = Class.new(ActiveRecord::RecordNotFound)
+    CourseAlreadyAdded = Class.new(StandardError)
+    #Parse the course page of a mcgill course
+    #@param url Mcgill website url of the course
+    #@param update set to true to update a current course
+    def self.load_course_from_url(url, update=true)
+      hash = parse_page(url)
+      course = course_from_hash(hash)
 
-    def self.parse_course(url)
-      hash = Utils::McgillCourseParser.parse_page(url)
-      course = Course::Course.new
-      course.name = hash[:name]
-      course.subject = Course::Subject.find_by_name(hash[:subject])
-      course.code = hash[:code]
-      course.description = hash[:description]
-      course.hours = hash[:hours]
-      course.credit = hash[:credit]
-      if course.subject.nil?
-        return {:error => "Unknown subject `#{hash[:subject]}`, please add it first", :success => false, :unknown_subject => true, :subject => hash[:subject]}
-      end
+      fail SubjectNotFound, hash[:subject] if course.subject.nil?
+      course, old_course =update_course(course)
 
-      if course.already_exist?
-        return {:error => 'Already added', :success => false, :already_added => true}
-      end
-      unless course.save
-        return {:error => "#{course.errors.full_messages}", :success => false}
-      end
-      requirement = Admin::CourseRequirementFilled.find_by_course_id(course.id)
-      requirement.prerequisite_read=hash[:prerequisite].to_s
-      requirement.corequisite_read=hash[:corequisite].to_s
-      unless requirement.save
-        return {:error => "#{requirement.errors.full_messages}", :success => false}
-      end
-      return {:course => course, :success => true}
+      course.save!
+      requirement, old_requirement = update_course_requirement(course, hash)
+      requirement.save!
+
+      {:course => course, :old_course => old_course, :requirement => requirement, :old_requirement => old_requirement}
     end
 
+    def self.update_course(new_course)
+      courses = Course::Course.where(:subject => new_course.subject, :code => new_course.code).load
+      course = if new_course.part.nil?
+                 return new_course, nil if courses.size == 0
+                 courses.order(:part => :desc).first
+               elsif courses.where(:part => new_course.part).size > 0
+                 courses.where(:part => new_course.part).first
+               else
+                 courses.where(:part => nil).first
+               end
+      return new_course, course if course.nil?
+      old_course = course.dup
+      course.assign_attributes :name => new_course.name,
+                               :description => new_course.description,
+                               :hours => new_course.hours,
+                               :credit => new_course.credit,
+                               :part => new_course.part
+
+      return course, old_course
+    end
+
+    def self.update_course_requirement(course, hash)
+      requirement = Admin::CourseRequirementFilled.find_by_course_id(course.id)
+      old_requirement = requirement.dup
+      requirement.prerequisite_read=hash[:prerequisite].to_s
+      requirement.corequisite_read=hash[:corequisite].to_s
+      #Update the flag to manually reenter the requirement
+      requirement.corequisites= (old_requirement.prerequisites? and requirement.corequisite_read == old_requirement.prerequisite_read)
+      requirement.corequisites= (old_requirement.corequisites? and requirement.corequisite_read == old_requirement.corequisite_read)
+      return requirement, old_requirement
+    end
 
     def self.parse_title(title, hash)
       text = title.split('(', 2)[0]
       credit = title.split('(', 2)[1]
-      hash[:subject] = text.split(' ')[0]
-      hash[:code] = text.split(' ')[1]
-      hash[:name] = text.split(' ', 3)[2]
+      hash[:subject], hash[:code], hash[:name] = text.split(' ', 3)
+      if hash[:code].downcase.include?('d')
+        hash[:code], hash[:part] = hash[:code].split(/d/i)
+      end
       if credit.nil?
         hash[:credit]=0
       else
@@ -57,6 +79,18 @@ module Utils
       end
     end
 
+    def self.course_from_hash(hash)
+      course = Course::Course.new
+      course.name = hash[:name]
+      course.subject = Course::Subject.find_by_name(hash[:subject])
+      course.code = hash[:code]
+      course.part = hash[:part]
+      course.description = hash[:description]
+      course.hours = hash[:hours]
+      course.credit = hash[:credit]
+      course
+    end
+
     def self.parse_page(url)
       hash = {}
       page = Nokogiri::HTML(open(url))
@@ -75,7 +109,9 @@ module Utils
       hash
     end
 
-    def self.parse_all
+    #Parse all the mcgill courses
+    #@param update set to true to update a current course
+    def self.parse_all(update = true)
       page_nb = 0
       stats = {}
       stats[:parsed] = 0
@@ -84,28 +120,34 @@ module Utils
       stats[:errors] = []
       i = 0
       while true do
-        url = "http://www.mcgill.ca/study/2013-2014/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
+        year = '2014-2015'
+        url = "http://www.mcgill.ca/study/#{year}/courses/search/?filters=language%3Aen%20sm_level%3AUndergraduate&solrsort=sort_title%20asc&page=#{page_nb}"
         page = Nokogiri::HTML(open(url))
         results = page.css('dl.search-results')[0]
         if results.nil? #Last page
           break
         end
-
+        puts '--------------------------------------------------------------'
+        puts "\t\t\t PAGE #{page_nb}"
+        puts '--------------------------------------------------------------'
         results.css('dt').each do |dt|
           i+=1
           href = dt.css('a')[0]['href']
-          puts "#{i} Parsing #{href}"
-          result = parse_course(href)
-          if result[:success]
+          puts "##{i}\t #{href}"
+          begin
+            load_course_from_url(href, update)
             stats[:parsed] += 1
-          elsif result[:already_added]
+            puts "\t\t Course added"
+          rescue SubjectNotFound => e
+            stats[:unknown_subjects] << e.message
+            puts "\t\t Unknown subject #{e.message}"
+          rescue CourseAlreadyAdded
             stats[:already_added] += 1
-          elsif  result[:unknown_subject]
-            stats[:unknown_subjects] << result[:subject]
-          else
-            stats[:errors] << "#{href} => #{result[:error]}"
+            puts "\t\t Course already added"
+          rescue => e
+            stats[:errors] << "#{href} => #{e}"
+            puts "\t\t Error #{e}"
           end
-          puts href
         end
         page_nb +=1
       end

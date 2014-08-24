@@ -30,8 +30,7 @@ class UserCompletedCourse < ActiveRecord::Base
 
   #Remove this course if the user is taking it in any scenarios
   def remove_course_taking
-    c_id = course_id
-    UserTakingCourse.joins(:course_scenario).where { course_scenario.user.id == user_id && course_id==c_id }.readonly(false).destroy_all
+    UserTakingCourse.joins(:course_scenario).where(:course_scenarios => {:user_id => user_id}, :course_id=> course_id).readonly(false).destroy_all
   end
 
   def term

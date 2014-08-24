@@ -15,6 +15,8 @@
 #= require_tree .
 #= require jquery.raty
 #= require bootstrap
+#= require assets_path
+
 
 $(document).ready () ->
   new WOW().init();
@@ -35,13 +37,11 @@ $(document).ready () ->
     container = $(button.data('container'))
 
     params = button.data('params')
-    console.log(params)
     url = button.data('url')
     $.get(url, params).success (data) ->
       container.append(data)
       if button.data('increase-param')
         params[button.data('increase-param')] += 1
-        console.log(button.data('params')['start_count'])
         button.data('params', params)
 
 
@@ -55,15 +55,16 @@ $(document).ready () ->
         container.html(loading_animation)
         time = new Date().getTime()
         $.get(url).success (data) ->
-          wait_time = 1000-parseInt((new Date().getTime() - time))
-          console.log('time:' + wait_time)
-          setTimeout( () ->
+          wait_time = 1000 - parseInt((new Date().getTime() - time))
+          setTimeout(() ->
             container.replaceWith(data)
-          ,wait_time)
+          , wait_time)
 
-  $(document).on 'ajaxloadhtml', (e, container) ->
+  $(document).on 'content-changed', (e, container) ->
     setupStarRatings()
     reload_scripts(container)
+    window.elementQuery.refresh()
+
 
   $('.search-ajax').each () ->
     input = $(this)
@@ -84,8 +85,8 @@ $(document).ready () ->
           output.html(data)
           $(input).trigger('searchAjaxComplete', data)
         .error (xhr) ->
-            console.log('ER: ' + xhr.readyState + ", \tstatus: " + xhr.status + ', \turl: ' + send_url)
-            console.log('ER: ' + xhr.responseText)
+          console.log('ER: ' + xhr.readyState + ", \tstatus: " + xhr.status + ', \turl: ' + send_url)
+          console.log('ER: ' + xhr.responseText)
       , 500)
 
     input.keydown () ->
@@ -100,9 +101,16 @@ $(document).ready () ->
     $(this).find('.item.active').hide()
     $(this).find('.item.default').show()
 
+  $(document).on 'show', '.load-on-show', () ->
+    item = $(this)
+    return if item.data('load-once') and item.data('reloaded')
+    url = item.data('url')
+    item.html(loading_animation)
+    $.get(url).success((data) ->
+      item.html(data)
+    ).error (err) ->
 
-  showonhover();
-
+    item.data('reloaded', true)
 
   $(document).on 'click', '.toggledisplay .toggledisplay-btn', () ->
     btn = $(this)
@@ -120,8 +128,36 @@ $(document).ready () ->
       container.slideUp(200)
       $(this).find('span').first().resetRotation()
     else
+      container.hide().removeClass('hidden') if container.hasClass('hidden')
       container.slideDown(200)
       $(this).find('span').first().rotate(180)
+
+  $('.notification-box').each () ->
+    increase = 3000
+    timer = increase
+    $(this).find('.alert.auto-hide').each () ->
+      alert_item = $(this)
+      setTimeout(()->
+        alert_item.slideUp()
+      , timer)
+      time += increase
+
+  $(document).find('.copy-clipboard').each () ->
+    client = new ZeroClipboard($(this)[0])
+    client.on "ready", (readyEvent) ->
+      client.on "aftercopy", (event) ->
+        console.log 'Copied text to clipboard'
+
+  $(document).on 'click', '.link :not(a, button, .link)', () ->
+    link = $(this).closest('.link')
+    if $(event.target).closest('a, button, .link')[0] == link[0]
+      console.log('working')
+      document.location = link.data('href')
+
+
+
+
+  showonhover(document)
 
 setupStarRatings = () ->
   $('input.star-rating').each () ->
@@ -143,6 +179,7 @@ showonhover = (container)->
   container ?= document
   $(document).find('.showonhover').each () ->
     item = $(this)
+    console.log(item)
     container = $(this).closest($(this).data('hover-container'))
     container.mouseenter () ->
       item.show()
@@ -174,9 +211,9 @@ jQuery.fn.resetRotation = () ->
     transform: "rotate(" + 0 + "deg)"
 
 
-loading_animation = () ->
+window.loading_animation = () ->
   return '<div class="spinner">
-              <div class="bounce1"></div>
-              <div class="bounce2"></div>
-              <div class="bounce3"></div>
-            </div>'
+                          <div class="bounce1"></div>
+                          <div class="bounce2"></div>
+                          <div class="bounce3"></div>
+                        </div>'

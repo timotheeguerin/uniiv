@@ -1,0 +1,34 @@
+div class='row graph-container'
+  div class='graph-canvas'
+    div id="canvas-container" data-url=data_path data-semester=term.semester.id data-year=term.year
+    = render :partial => 'graph/graph_navigation'
+  .graphsidebar
+    .graph-sidebar-header
+      div
+        .row
+          .col-md-6
+            h4= current_user.university
+          .col-md-6.text-right
+            div= term.semester.name.capitalize + ' ' + term.year.to_s
+        .row
+          - current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p|
+            .col-md-6
+              small= p
+      hr
+      div
+        - perc = current_user.total_completed_ratio.percent
+        .row
+          .col-md-12
+            .text-center=  "#{perc.to_i}% Degree Completion"
+            = progress_bar_tag perc
+
+    #graph_sidebar_info.graph-sidebar-body
+      .nano.has-scrollbar
+        .nano-content.content
+          .center-info-box.greytext
+            div
+              span.glyphicon.glyphicon-map-marker.glyphicon-xl
+            br
+
+            div
+              i= 'Click on any elements on the graph to show details'

@@ -1,12 +1,16 @@
-<%= form_tag(user_programs_create_path) do %>
-    <div class='form-group'>
-      <div class='input-group'>
-
-        <%= text_field_tag 'program_id', nil, :class => 'form-control autocomplete disablesubmit', 'data-url' => program_search_autocomplete_path(:only_not_taking => true),
-                           'data-input-data' => 'true', :placeholder => t('select.programs') %>
-        <span class="input-group-btn">
-                <%= submit_tag('Choose', :class => 'btn btn-primary', :disabled=> true) %>
-            </span>
+<%= form_tag user_programs_create_path, :class => 'form-inline' do %>
+    <div class="form-group" style="width:65%">
+      <select name="program_id" class="selectize disablesubmit" data-url="<%= program_search_autocomplete_path(:only_not_taking => true) %>"
+              data-update-element='#version_id_container'>
+        <option value=""> <%= t('select.programs') %></option>
+      </select>
+    </div>
+    <div class="form-group" style="width:20%">
+      <div id='version_id_container' data-url="<%= user_program_select_version_path %>" data-param-name='program_id'>
+        <%= render :partial => 'user_programs/select_version', :locals => {:versions => []} %>
       </div>
+    </div>
+    <div class="form-group" style="width:10%">
+      <%= submit_tag('Choose', :class => 'btn btn-primary text-right', :disabled => true) %>
     </div>
 <% end %>

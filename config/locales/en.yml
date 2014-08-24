@@ -19,12 +19,101 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 en:
-  admin:
-    actions:
-      parse_course_expr:
-        title: "Parse Course Expression"
-        menu: "Parse Course Expression"
-        breadcrumb: "Parse Course Expression"
-        link: "Parse Course Expression"
-        bulk_link: "Parse Course Expression"
-        done: "Course Expression parsed"
+  title: 'Title'
+  edit: 'Edit'
+  delete: 'Delete'
+  cancel: 'Cancel'
+
+  signup:
+    title: 'Join uniiv'
+    subtitle: 'Guiding you through your education'
+    invite_key:
+      notice: 'Using inviting key <i>%{key}</i>'
+      error:
+        not_found: "Error invite key <i>%{key}</i> given doesn't exist!"
+  signin:
+    remember_me: 'Remember me'
+
+  confirm:
+    default: 'Are you sure?'
+    delete: 'Are you sure?'
+  issue:
+    new: 'New issue'
+    created:
+      by: '%{user} created'
+    status:
+      label: 'Status'
+      change:
+        success: 'Issue is now %{status}'
+        open: 'Reopen this issue'
+        close: 'Close this issue'
+    assignee:
+      select: 'Choose your advisor'
+    items:
+      select: 'Select programs, courses linked to this issue'
+    reported:
+      by: 'Reported by'
+    assigned:
+      to: 'Assigned to'
+  comment:
+    new:  'New comment'
+    new_for: 'New comment for %{issue}'
+    edit_for: 'Edit comment for %{issue}'
+    by: '%{user} commented'
+  advisor_student:
+    uniq:
+      error: 'You already have added th'
+    advisor:
+      new: 'Request your advisor'
+      select: 'Choose an advisor'
+      index: 'Your students'
+      empty: 'No student'
+    student:
+      new: 'Add a new student to your whitelist'
+      select: 'Choose a student'
+      index: 'Your advisors'
+      empty: 'No advisor'
+    status:
+      requested: 'Requested'
+      validated: 'Validated'
+      removed: 'Removed'
+      blacklisted: 'Blacklisted'
+      request: 'Request'
+      validate: 'Validate'
+      remove: 'Remove'
+      blacklist: 'Blacklist'
+  advisor:
+    dashboard:
+      title: 'Advisor dashboard'
+      link:
+        issues: 'Issues'
+        advisor_student: 'Manage students'
+        switch_user: 'Switch user'
+  open: Open
+  close: Closed
+  opened: Open
+  closed: Closed
+  switch_user:
+    title: 'Take control of another user'
+    success: 'Switched to %{user} successfully'
+    select: 'Select the user'
+    error:
+      permission: 'You do not have permission to sign in as %{user}'
+    back:
+      success: 'Switched back to your account successfully'
+  invites:
+    new:
+      title: 'New invite'
+    label:
+      category:
+        help: 'Enter invitation type (e.g. "User::Advisor" for an advisor)'
+    title: 'Invites'
+    item:
+      count: 'Invites'
+      details:
+        key: 'Key: <i>%{key}</i>'
+        category: 'Type: <i>%{category}</i>'
+    create:
+      success: 'Invite created successfully!'
+    destroy:
+      success: 'Invite removed successfully!'

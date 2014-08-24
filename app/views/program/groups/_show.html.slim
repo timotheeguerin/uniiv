@@ -1,0 +1,22 @@
+div
+  .container-fluid
+    .row
+      .col-md-8
+        h4 = link_to group.name, program_group_path(group)
+        - group.restrictions.each do |restriction|
+          div = t("group.#{restriction.type.to_s}", :value => restriction.value)
+
+      .col-md-4
+        = progress_bar_tag group.get_completion_ratio(current_scenario).percent.to_i
+
+  - unless group.courses.empty?
+      = render :partial => 'course/course_list', :locals => {:courses => group.courses}
+
+  -unless group.subject_courses.empty?
+    = render :partial => 'program/groups/group_subject_courses', :locals => {:subject_courses => group.subject_courses}
+  - unless group.subgroups.empty?
+    hr
+    .list-group
+      -group.subgroups.each do |subgroup|
+        div class="list-group-item"
+          = render :partial => 'program/groups/show', :locals => {:group => subgroup}

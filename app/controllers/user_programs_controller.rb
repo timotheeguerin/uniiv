@@ -1,7 +1,4 @@
 class UserProgramsController < ApplicationController
-  def show
-    @programs = current_user.main_course_scenario.programs
-  end
 
   def new
     authorize! :edit, current_user
@@ -11,33 +8,48 @@ class UserProgramsController < ApplicationController
     end
   end
 
+  def select_version
+    versions = []
+    if params.has_key?(:program_id)
+      program = Program::Program.find(params[:program_id])
+      versions = program.versions
+    end
+    render :partial => 'user_programs/select_version', :locals => {:versions => versions}
+  end
+
   def create
     authorize! :edit, current_user
-    if current_user.main_course_scenario.programs.size > 6
+    if current_user.main_course_scenario.reached_max_programs?
       redirect_to user_education_path, :alert => t('error.program.maximum')
     else
-      if params[:program_id].nil?
-        redirect_to user_programs_new_path, :alert => t('error.program.nil')
+      program = Program::Program.find(params[:program_id])
+      if params[:version_id].nil? or params[:version_id].blank?
+        version = program.versions.last
       else
-        program = Program::Program.find(params[:program_id])
-        if program.nil?
-          redirect_to user_programs_new_path, :alert => t('error.program.nil')
-        elsif current_user.main_course_scenario.programs.include? program
-          redirect_to user_programs_new_path, :alert => t('error.program.course_taking')
-        else
-          current_user.main_course_scenario.programs << program
-          current_user.save
-          redirect_to user_education_selection_path, :notice => t('program.add.success')
-        end
+        version = program.versions.find(params[:version_id])
       end
+
+      redirect_to user_programs_new_path, :alert => t('error.version.nil') if version.nil?
+      current_user.main_course_scenario.programs << version
+      current_user.save
+      redirect_to user_education_selection_path, :notice => t('program.add.success')
     end
   end
 
+
   def delete
     authorize! :edit, current_user
-    program = Program::Program.find(params[:program_id])
-    current_user.main_course_scenario.programs.delete(program)
+    version = if params.key?(:version_id)
+                Program::Version.find(params[:version_id])
+              elsif params.key?(:program_id)
+                Program::Program.find(params[:program_id]).versions.last
+              else
+                raise ActiveRecord::RecordNotFound
+              end
 
-    redirect_to user_education_path, :notice => t("program.remove.success")
+    current_user.main_course_scenario.programs.destroy(version)
+
+    redirect_to user_education_selection_path, :notice => t('program.remove.success')
   end
+
 end

@@ -1,0 +1,10 @@
+.new-comment
+  = form_for [comment.issue, comment] do |f|
+    .form-group
+      = f.fields_for :content do |content_f|
+        = content_f.text_area :text, :class => 'rich-content', 'data-content-url' => rich_content_markdown_path
+        = content_f.hidden_field :format, :value => :markdown
+
+    - if params[:embed_edit]
+      a.btn.btn-danger.btn-sm.cancel-edit = t('cancel')
+    = f.submit :class => "btn btn-success #{'btn-sm' if params[:embed_edit]}"

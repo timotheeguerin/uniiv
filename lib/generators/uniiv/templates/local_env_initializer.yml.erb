@@ -1,5 +1,13 @@
-RAILS_DB_USERNAME: <%= config[:username] %>
-RAILS_DB_PASSWORD: <%= config[:password] %>
+#Local machine sql sever login
+LOCAL_DB_USERNAME: <%= config[:local_username]  %>
+LOCAL_DB_PASSWORD: <%= config[:local_password]  %>
 
-RAILS_MAIN_DB_USERNAME: <%= config[:username_main] %>
-RAILS_MAIN_DB_PASSWORD: <%= config[:password_main] %>
+#Main uniiv dev server, use readonly account unless this is a development server
+UNIIV_DEV_DB_USERNAME: <%= config[:uniiv_dev_username]  %>
+UNIIV_DEV_DB_PASSWORD: <%= config[:uniiv_dev_password]  %>
+UNIIV_DEV_DB_HOST: <%= config[:uniiv_dev_host]  %>
+
+#Production sql server, use readonly account unless this is a production server
+UNIIV_PROD_DB_USERNAME: <%= config[:uniiv_prod_username]  %>
+UNIIV_PROD_DB_PASSWORD: <%= config[:uniiv_prod_password]  %>
+UNIIV_PROD_DB_HOST: <%= config[:uniiv_prod_host]  %>

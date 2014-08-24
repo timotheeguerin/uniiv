@@ -24,22 +24,41 @@
     <div class="navbar-header pull-right">
       <ul class='navbar-nav nav  navbar-right'>
         <% if user_signed_in? %>
-            <% if can? :access, :rails_admin %>
+            <li class="dropdown">
+              <a class="dropdown-toggle" type="button" id="user_dropdown_menu" data-toggle="dropdown">
+                <%= current_user.to_s %>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="user_dropdown_menu">
                 <li>
-                  <%= link_to rails_admin.dashboard_path do %>
-                      <span class='glyphicon glyphicon-wrench'></span> <span class="hidden-xs hidden-sm">Admin</span>
+                  <%= link_to user_settings_index_path do %>
+                      <span class='glyphicon glyphicon-user'></span> <span class="hidden-xs hidden-sm">Account</span>
                   <% end %>
                 </li>
-            <% end %>
-            <li>
-              <%= link_to user_settings_index_path do %>
-                  <span class='glyphicon glyphicon-user'></span> <span class="hidden-xs hidden-sm">Account</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                  <span class='glyphicon glyphicon-log-out'></span> <span class="hidden-xs hidden-sm">Log out</span>
-              <% end %>
+                <% if can? :access, :rails_admin %>
+                    <li>
+                      <%= link_to rails_admin.dashboard_path do %>
+                          <span class='glyphicon glyphicon-wrench'></span>
+                          <span class="hidden-xs hidden-sm">Admin</span>
+                      <% end %>
+                    </li>
+                <% end %>
+                <li role="presentation" class="divider"></li>
+                <% if sign_in_as_other? %>
+                    <li role="presentation">
+                      <%= link_to switch_user_back_path, :method => :post do %>
+                          <span class='glyphicon glyphicon-log-out'></span>
+                          <span class="hidden-xs hidden-sm">Sign back</span>
+                      <% end %>
+                    </li>
+                <% end %>
+                <li role="presentation">
+                  <%= link_to destroy_user_session_path, :method => :delete do %>
+                      <span class='glyphicon glyphicon-log-out'></span>
+                      <span class="hidden-xs hidden-sm">Log out</span>
+                  <% end %>
+                </li>
+
+              </ul>
             </li>
         <% else %>
             <li>
@@ -49,7 +68,7 @@
             </li>
             <li>
               <%= link_to new_user_registration_path do %>
-                  <span class='glyphicon glyphicon-user'></span> <span class="hidden-xs">Sign in</span>
+                  <span class='glyphicon glyphicon-user'></span> <span class="hidden-xs">Sign up</span>
               <% end %>
             </li>
         <% end %>
