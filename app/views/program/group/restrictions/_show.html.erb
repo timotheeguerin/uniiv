@@ -1,0 +1,21 @@
+<div class='list-group'>
+  <div id='requirement_list_container' data-url="<%= list_program_group_restrictions_path(group_id: group.id) %>">
+    <%= render 'program/group/restrictions/list', group: group %>
+  </div>
+  <div class='list-group-item'>
+    <%= form_for [group, Program::Group::Restriction.new], html: {class: 'useajax form-inline', 'data-reload' => '#requirement_list_container'} do |f| %>
+        <div class="form-group">
+          <%= f.label :type_id, value: 'Restriction type' %>
+          <%= f.select :type_id, options_from_collection_for_select(Program::Group::RestrictionType.all, 'id', 'to_s'), {},
+                         class: 'selectpicker' %>
+        </div>
+        <div class='form-group'>
+          <%= f.label :value %>
+          <%= f.text_field :value, class: 'form-control' %>
+        </div>
+        <div class='form-group'>
+          <%= f.submit('Add', class: 'btn btn-primary') %>
+        </div>
+    <% end %>
+  </div>
+</div>

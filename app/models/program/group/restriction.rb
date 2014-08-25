@@ -1,6 +1,6 @@
-class Program::GroupRestriction < ActiveRecord::Base
+class Program::Group::Restriction < ActiveRecord::Base
   belongs_to :group, :class_name => Program::Group
-  belongs_to :type, :class_name => Program::GroupRestrictionType
+  belongs_to :type, :class_name => Program::Group::RestrictionType
 
   validates_presence_of :group_id
   validates_presence_of :type_id
@@ -14,14 +14,11 @@ class Program::GroupRestriction < ActiveRecord::Base
   def get_completition_ratio(scenario, term = nil)
     case type.name
       when 'min_credit'
-        puts 'MIN CRREDI: ' + value.to_s
         compute_ratio(group.count_credit_completed_courses(scenario, term), value)
       when 'min_grp'
         return Utils::Ratio.full if value == 0
         ratios = group.get_subgroups_completed_ratio(scenario, term)
         ratio = ratios[0...value].inject { |sum, x| sum + x }
-        puts 'Ratios: ' + ratios.to_s
-        puts 'RATIO: ' + ratio.to_s
         compute_ratio(ratio.value, value*ratio.coefficient)
       else #Complete all
         count = group.count_completed_courses(scenario, term)

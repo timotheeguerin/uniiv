@@ -15,8 +15,8 @@
         </div>
         <div class='col-md-2'>
           <div class='btn-group pull-right'>
-            <%= group_button_to program_group_restriction_delete_path, :class => 'btn btn-danger', :useajax => true, :name => 'restriction',
-                                :value => restriction.id, :delete_parent => '.requirement_element' do %>
+            <%= group_button_to program_group_restriction_path(restriction.group, restriction), method: :delete, class: 'btn btn-danger', useajax: true, name: 'restriction',
+                                value: restriction.id, delete_parent: '.requirement_element' do %>
                 <span class='glyphicon glyphicon-remove-sign'></span>
             <% end %>
           </div>

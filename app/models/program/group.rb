@@ -8,15 +8,19 @@ class Program::Group < ActiveRecord::Base
   has_and_belongs_to_many :courses, -> { uniq }, :class_name => 'Course::Course'
 
   #List of the subject_courses
-  has_many :subject_courses, :class_name => Course::SubjectCourseList, :dependent => :destroy
+  has_many :subject_courses, class_name: Course::SubjectCourseList, :dependent => :destroy
 
-  has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
+  has_many :restrictions, class_name: Program::Group::Restriction, :dependent => :destroy
 
   #Complete a number of program
   has_and_belongs_to_many :programs, -> { uniq }, :class_name => 'Program::Program'
 
   validates_presence_of :parent_id
   validates_presence_of :name
+
+  def self.use_relative_model_naming?
+    true
+  end
 
   def all_courses
     result = courses

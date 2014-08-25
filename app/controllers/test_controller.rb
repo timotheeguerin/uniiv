@@ -20,9 +20,9 @@ class TestController < ApplicationController
   end
 
   def set_group_restricions
-    Program::GroupRestriction.destroy_all
+    Program::Restriction.destroy_all
     Program::Group.all.each do |group|
-      restriction = Program::GroupRestriction.new
+      restriction = Program::Restriction.new
       restriction.group = group
       restriction.value = group.value
       restriction.type = group.restriction

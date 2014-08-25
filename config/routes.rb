@@ -103,9 +103,9 @@ Uniiv::Application.routes.draw do
   delete 'program/version/delete' => 'program/version#delete', :as => :program_version_delete
 
   #Group restricion
-  get 'program/group/restriction/new' => 'program/group_restrictions#list', :as => :program_group_restriction_list
-  post 'program/group/restriction/new' => 'program/group_restrictions#create', :as => :program_group_restriction_create
-  post 'program/group/restriction/delete' => 'program/group_restrictions#delete', :as => :program_group_restriction_delete
+  # get 'program/group/restriction/new' => 'program/restrictions#list', :as => :program_group_restriction_list
+  # post 'program/group/restriction/new' => 'program/restrictions#create', :as => :program_group_restriction_create
+  # post 'program/group/restriction/delete' => 'program/restrictions#delete', :as => :program_group_restriction_delete
 
 
   namespace :program, path: '' do
@@ -115,7 +115,11 @@ Uniiv::Application.routes.draw do
   end
   namespace :program do
     resources :groups do
-      resources :group_restrictions
+      resources :restrictions, module: :group do
+        collection do
+          get 'list'
+        end
+      end
     end
   end
   #Group subject course list controller
