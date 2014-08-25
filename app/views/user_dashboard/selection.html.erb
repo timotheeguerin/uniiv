@@ -30,7 +30,7 @@
                 <div class='program_list'>
                   <% current_scenario.programs.joins(:program).order('program_programs.type_id ASC, program_programs.name ASC').each do |p| %>
                       <div class='row'>
-                        <div class='text-indent col-md-8'><span><%= link_to p, program_path(p) %></span></div>
+                        <div class='text-indent col-md-8'><span><%= link_to p, program_program_path(p) %></span></div>
                         <div class='text-indent col-md-2'>
                           <div class='progress'>
                             <% perc= p.get_completion_ratio(current_scenario).percent.to_i %>
@@ -42,7 +42,7 @@
                         <div class='col-md-2 text-right'>
                           <%= form_tag(user_programs_delete_path) do %>
                               <div class='btn-group'>
-                                <a class='btn btn-info' href='<%= program_path(p) %>' rel='tooltip' title='Information'>
+                                <a class='btn btn-info' href='<%= program_program_path(p) %>' rel='tooltip' title='Information'>
                                   <span class='whitetext glyphicon glyphicon-info-sign'></span>
                                 </a>
                                 <a class='btn btn-warning' href='<%= program_graph_path(p) %>' rel='tooltip' title='View Path'>

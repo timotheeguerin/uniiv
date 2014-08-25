@@ -1,0 +1,9 @@
+- if @program_version
+ = render 'program/version/show'
+- else
+  h1= @program
+
+  hr
+  .text-center.dark_greytext
+    span.glyphicon.glyphicon-list.glyphicon-xxl
+    div.text-xl Program is not yet available

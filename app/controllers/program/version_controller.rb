@@ -1,17 +1,12 @@
 class Program::VersionController < ApplicationController
 
-  before_action :setup
-
-  def setup
-  end
-
   def show
     authorize! :view, Program::Version
     @program_version = Program::Version.find(params[:id])
   end
 
   def change_version
-    redirect_to program_version_path(:id => params[:version_id])
+    redirect_to program_version_path(id: params[:version_id])
   end
 
   def new
@@ -32,7 +27,7 @@ class Program::VersionController < ApplicationController
     @program_version.assign_attributes(version_params)
     @program_version.program = @program
     if @program_version.save
-      redirect_to program_path(@program)
+      redirect_to program_program_path(@program)
     else
       render :new
     end
@@ -48,7 +43,7 @@ class Program::VersionController < ApplicationController
     authorize! :update, @program_version
     @program_version.assign_attributes(version_params)
     if @program_version.save
-      redirect_to program_path(@program_version.program)
+      redirect_to program_program_path(@program_version.program)
     else
       render :edit
     end

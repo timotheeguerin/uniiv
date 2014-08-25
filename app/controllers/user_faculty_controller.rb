@@ -13,7 +13,7 @@ class UserFacultyController < ApplicationController
     faculty = Faculty.find(params[:faculty_id])
     current_user.faculty = faculty
     current_user.reset
-    #Update the faculty requirement programs by removing the old ones and adding the new ones
+    #Update the faculty requirement program by removing the old ones and adding the new ones
     current_user.course_scenarios.each do |scenario|
       scenario.programs.joins(:program).where(:program_programs => {:type_id => ProgramsType.find_by_name('faculty')}).destroy_all
       scenario.programs << faculty.faculty_requirements.versions.last unless faculty.faculty_requirements.nil?

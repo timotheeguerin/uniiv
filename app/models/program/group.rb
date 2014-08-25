@@ -1,8 +1,8 @@
 class Program::Group < ActiveRecord::Base
 
-  belongs_to :groupparent, :polymorphic => true
+  belongs_to :parent, :polymorphic => true
 
-  has_many :subgroups, :class_name => Program::Group, :as => :groupparent, :dependent => :destroy
+  has_many :subgroups, :class_name => Program::Group, :as => :parent, :dependent => :destroy
 
   #List of courses to complete
   has_and_belongs_to_many :courses, -> { uniq }, :class_name => 'Course::Course'
@@ -12,10 +12,10 @@ class Program::Group < ActiveRecord::Base
 
   has_many :restrictions, :class_name => Program::GroupRestriction, :dependent => :destroy
 
-  #Complete a number of programs
+  #Complete a number of program
   has_and_belongs_to_many :programs, -> { uniq }, :class_name => 'Program::Program'
 
-  validates_presence_of :groupparent_id
+  validates_presence_of :parent_id
   validates_presence_of :name
 
   def all_courses
@@ -31,20 +31,20 @@ class Program::Group < ActiveRecord::Base
   end
 
   def type
-    if groupparent.nil?
+    if parent.nil?
       ''
     else
-      groupparent.type
+      parent.type
     end
   end
 
   def parent_program
-    if groupparent.nil?
+    if parent.nil?
       nil
-    elsif groupparent.is_a?(Program::Version)
-      groupparent
+    elsif parent.is_a?(Program::Version)
+      parent
     else
-      groupparent.parent_program
+      parent.parent_program
     end
   end
 

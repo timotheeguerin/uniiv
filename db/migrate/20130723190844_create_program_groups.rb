@@ -4,7 +4,7 @@ class CreateProgramGroups < ActiveRecord::Migration
       t.string :name
       t.references :restriction
       t.integer :value
-      t.references :groupparent, :polymorphic => true
+      t.references :parent, :polymorphic => true
 
       t.timestamps
     end

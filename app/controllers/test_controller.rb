@@ -12,8 +12,8 @@ class TestController < ApplicationController
       version.start_year=2010
       version.end_year=2014
       version.save
-      Program::Group.where(:groupparent_id => program, :groupparent_type => 'Program::ProgramVersion').each do |group|
-        group.groupparent = version
+      Program::Group.where(:parent_id => program, :parent_type => 'Program::ProgramVersion').each do |group|
+        group.parent = version
         group.save
       end
     end

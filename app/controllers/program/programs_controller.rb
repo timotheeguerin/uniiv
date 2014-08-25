@@ -1,11 +1,15 @@
-class ProgramController < ApplicationController
+class Program::ProgramsController < ApplicationController
+  load_and_authorize_resource
+
+  def index
+    @search = search
+    @fullwidth = true
+  end
+
   def show
-    @program = Program::Program.find(params[:id])
     @program_version = @program.last_version
     if request.xhr?
-      render :template => 'program/version/show', :layout => false
-    else
-      render 'program/version/show'
+      render layout: false
     end
   end
 
@@ -25,19 +29,15 @@ class ProgramController < ApplicationController
   end
 
   def new
-    authorize! :create, Program::Program
-    @program = Program::Program.new
   end
 
   def create
-    authorize! :create, Program::Program
-    @program = Program::Program.create(program_params)
 
     if @program.save
       if params[:saveandedit]
-        redirect_to program_edit_path(@program)
+        redirect_to edit_program_program_path(@program)
       else
-        redirect_to admin_utils_program_editor_path
+        redirect_to program_programs_path
       end
     else
       render :new
@@ -45,28 +45,22 @@ class ProgramController < ApplicationController
   end
 
   def edit
-    @program = Program::Program.find(params[:id])
-    authorize! :update, @program
   end
 
   def update
-    @program = Program::Program.find(params[:id])
-    authorize! :update, @program
     if @program.update(program_params)
       flash[:notice] = t('program.updated.success')
       if params[:saveandedit]
-        redirect_to program_edit_path(@program)
+        redirect_to edit_program_program_path(@program)
       else
-        redirect_to admin_utils_program_editor_path
+        redirect_to program_programs_path
       end
     else
       render :edit
     end
   end
 
-  def delete
-    @program = Program::Program.find(params[:id])
-    authorize! :delete, @program
+  def destroy
     @program.destroy
     redirect_to :back
   end
@@ -78,7 +72,10 @@ class ProgramController < ApplicationController
   end
 
   def search
-    s = Utils::Search.from_params(params)
-    Program::Program.search_program(s)
+    ProgramSearcher.new(params).search
+  end
+
+  def reload_program
+    @program = Program::Program.find(params[:id])
   end
 end

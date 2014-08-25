@@ -17,7 +17,7 @@ class GraphController < ApplicationController
     if current_user.university.nil?
       redirect_to user_education_path, :alert => t('university.notselected')
     elsif current_scenario.programs.size == 0
-      redirect_to user_education_path, :alert => t('programs.zero.selected')
+      redirect_to user_education_path, :alert => t('program.zero.selected')
     end
     @fullwidth=true
     @footer = false

@@ -7,7 +7,7 @@ class Faculty < ActiveRecord::Base
     name
   end
 
-  #Get the faculty programs by type
+  #Get the faculty program by type
   def programs_by_type
     types = {}
     programs.each do |program|

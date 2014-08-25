@@ -1,0 +1,26 @@
+.fullwidth-bg
+  .container
+    .flex-box
+      .box-details
+        h1 Programs
+      .box-buttons
+        -if can? :create, Program::Program
+        = link_to 'New program', new_program_program_path, class: 'btn btn-primary'
+    hr
+
+    = form_tag program_programs_path, method: 'get' do
+      .input-group
+        = text_field_tag :q, @search.query, class: 'form-control'
+        span.input-group-btn
+          = submit_tag :Search, class: 'btn btn-default'
+
+    - @search.results.each do |program|
+      .shadow-box.flex-box.link data-href=program_program_path(program)
+        .box-details= program
+        .box-buttons
+          - if can? :edit, program
+            a href=edit_program_program_path(program) class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit"
+              span class="glyphicon glyphicon-pencil"
+          - if can? :destroy, program
+            = button_to program_program_path(program), method: 'delete', class: 'btn btn-danger', rel: 'tooltip', title: 'Delete' do
+              span class="glyphicon glyphicon-remove-sign"

@@ -1,10 +1,10 @@
 <div class='list-group'>
   <div id='requirement_list_container' data-url="<%= program_group_restriction_list_path(:group => group.id) %>">
-<%= render :partial => 'program/group_restriction/list', :locals => {:group => group} %>
+<%= render 'program/group_restrictions/list', group: group %>
   </div>
   <div class='list-group-item'>
-    <%= form_tag program_group_restriction_create_path, :class => 'useajax form-inline', 'data-reload' => '#requirement_list_container' do %>
-        <%= hidden_field_tag :group, group.id %>
+    <%= program_group_re %>
+    <%= form_for [group, Program::GroupRestriction.new], class: 'useajax form-inline', 'data-reload' => '#requirement_list_container' do %>
         <div class="form-group">
           <%= label_tag :type, 'Restriction type' %>
           <%= select_tag :type, options_from_collection_for_select(Program::GroupRestrictionType.all, 'id', 'to_s'),

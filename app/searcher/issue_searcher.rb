@@ -1,4 +1,4 @@
-class IssueSearcher
+class IssueSearcher < ApplicationSearcher
 
   # Search for issues
   def self.search(filters)

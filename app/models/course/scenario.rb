@@ -6,7 +6,7 @@ class Course::Scenario < ActiveRecord::Base
   has_and_belongs_to_many :programs, -> { uniq }, :class_name => 'Program::Version'
 
   validate do
-    errors.add(:programs, t('error.program.maximum')) if reached_max_programs?
+    errors.add(:program, t('error.program.maximum')) if reached_max_programs?
   end
 
   def has_completed_course?(course, inc_advanced_standing = true, term = nil)
@@ -94,7 +94,7 @@ class Course::Scenario < ActiveRecord::Base
         :only_not_completed => false
     }
     options = options.reverse_merge(default_options)
-    options[:programs] ||= programs.map { |x| x.id }
+    options[:program] ||= programs.map { |x| x.id }
     Course::Course.search_course(options)
   end
 

@@ -9,6 +9,7 @@ module Utils
       @page = 1
       @params = {}
       @results = []
+      puts 'Deprecated Utils::Search'
     end
 
     def self.from_params(params)

@@ -137,7 +137,7 @@ class Course::Course < ActiveRecord::Base
         with(:user_ids, scenario.user.id) if params[:only_completed]
       end
       with(:program_group_ids, params[:program_groups]) if params[:program_groups]
-      with(:program_ids, params[:programs]) if params[:programs]
+      with(:program_ids, params[:program]) if params[:program]
     end
     search.results
   end
@@ -147,7 +147,7 @@ class Course::Course < ActiveRecord::Base
     text :subject do
       subject.name
     end
-    text :programs do
+    text :program do
       program_groups.map { |group| group.parent_program.to_s }
     end
     text :description

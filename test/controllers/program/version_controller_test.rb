@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class Program::VersionControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
   test 'should not get new without permission' do
     program = create(:program_program)
     assert_raise CanCan::AccessDenied do

@@ -1,6 +1,6 @@
 class Program::Version < ActiveRecord::Base
   belongs_to :program, :class_name => Program::Program
-  has_many :groups, :class_name => Program::Group, :as => :groupparent, :dependent => :destroy
+  has_many :groups, :class_name => Program::Group, :as => :parent, :dependent => :destroy
 
   validates_presence_of :program_id
 

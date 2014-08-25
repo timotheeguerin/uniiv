@@ -24,18 +24,6 @@ class Program::Program < ActiveRecord::Base
     versions.first
   end
 
-  def self.search_program(params)
-    university_id = params[:university_id]
-    faculty_id = params[:faculty_id]
-    search = Program::Program.search do
-      params.setup_search(self)
-      with :university_id, university_id unless university_id.nil?
-      with :faculty_id, faculty_id unless faculty_id.nil?
-    end
-    params.results = search.results
-    params.results
-  end
-
   searchable do
     integer :university_id do
       faculty.university_id

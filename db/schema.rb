@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807133215) do
+ActiveRecord::Schema.define(version: 20140824204857) do
 
   create_table "admin_course_requirement_filleds", force: true do |t|
     t.boolean  "prerequisites"
@@ -338,8 +338,8 @@ ActiveRecord::Schema.define(version: 20140807133215) do
 
   create_table "program_groups", force: true do |t|
     t.string   "name"
-    t.integer  "groupparent_id"
-    t.string   "groupparent_type"
+    t.integer  "parent_id"
+    t.string   "parent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "short_name"

@@ -6,11 +6,11 @@ class Program::GroupsController < ApplicationController
   end
 
   def new
-    @group.groupparent = find_parent
+    @group.parent = find_parent
   end
 
   def create
-    @group.groupparent = find_parent
+    @group.parent = find_parent
     if @group.save
       if params[:saveandedit]
         redirect_to edit_program_group_path(@group)
@@ -53,10 +53,10 @@ class Program::GroupsController < ApplicationController
   end
 
   def redirect_to_parent
-    if @group.groupparent.is_a? Program::Version
-      redirect_to program_edit_path(@group.groupparent)
-    elsif @group.groupparent.is_a? Program::Group
-      redirect_to edit_program_group_path(@group.groupparent)
+    if @group.parent.is_a? Program::Version
+      redirect_to edit_program_program_path(@group.parent)
+    elsif @group.parent.is_a? Program::Group
+      redirect_to edit_program_group_path(@group.parent)
     end
   end
 
@@ -68,5 +68,4 @@ class Program::GroupsController < ApplicationController
   def reload_group
     @group = Program::Group.find(params[:id])
   end
-
 end

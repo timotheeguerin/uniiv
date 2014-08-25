@@ -1,5 +1,5 @@
 <h2> Program information: </h2>
-<%= form_for(@program, :url => url, :html => {:role => 'form'}) do |f| %>
+<%= form_for(@program) do |f| %>
     <div class="form-group">
       <%= f.label :name, 'Name' %>
       <%= f.text_field :name, :class => 'form-control' %>

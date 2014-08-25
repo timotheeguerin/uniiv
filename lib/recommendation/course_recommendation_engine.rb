@@ -13,7 +13,7 @@ class CourseRecommendationEngine
     end
   end
 
-  #Compute the show of recommended courses using the programs of the users
+  #Compute the show of recommended courses using the program of the users
   def self.compute_program_recommendation(scenario)
     user = scenario.user
     courses_scores = {}

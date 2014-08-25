@@ -37,7 +37,6 @@ Uniiv::Application.routes.draw do
       get 'course/loader/load' => 'course_loader#new', :as => :course_load_new
       post 'course/loader/load' => 'course_loader#load', :as => :course_load_create
       post 'course/loader/load_all' => 'course_loader#load_all', :as => :course_load_all
-      get 'program/editor' => 'program_editor#index', :as => :program_editor
     end
   end
 
@@ -74,7 +73,7 @@ Uniiv::Application.routes.draw do
 
   #Explore controller
   get 'explore' => 'explore#index', :as => :explore
-  get 'explore/programs' => 'explore#programs', :as => :explore_programs
+  get 'explore/program' => 'explore#program', :as => :explore_programs
   get 'explore/courses' => 'explore#courses', :as => :explore_courses
   get 'explore/courses/next_page' => 'explore#courses_list', :as => :explore_courses_next_page
   get 'explore/subjects' => 'explore#subjects', :as => :explore_subjects
@@ -92,15 +91,6 @@ Uniiv::Application.routes.draw do
   get 'faculty/search/autocomplete' => 'faculty#search_autocomplete', :as => :faculty_search_autocomplete
 
   #Program controller
-  get 'program/search/autocomplete' => 'program#search_autocomplete', :as => :program_search_autocomplete
-  get 'program/new' => 'program#new', :as => :program_new
-  post 'program/new' => 'program#create', :as => :program_create
-  get 'program/:id' => 'program#show', as: 'program'
-
-
-  get 'program/:id/edit' => 'program#edit', :as => :program_edit
-  patch 'program:id/edit' => 'program#update', :as => :program_update
-  post 'program/delete' => 'program#delete', :as => :program_delete
 
   #Program version controller
   get 'program/:program_id/version/new' => 'program/version#new', :as => :program_version_new
@@ -113,22 +103,20 @@ Uniiv::Application.routes.draw do
   delete 'program/version/delete' => 'program/version#delete', :as => :program_version_delete
 
   #Group restricion
-  get 'program/group/restriction/new' => 'program/group_restriction#list', :as => :program_group_restriction_list
-  post 'program/group/restriction/new' => 'program/group_restriction#create', :as => :program_group_restriction_create
-  post 'program/group/restriction/delete' => 'program/group_restriction#delete', :as => :program_group_restriction_delete
+  get 'program/group/restriction/new' => 'program/group_restrictions#list', :as => :program_group_restriction_list
+  post 'program/group/restriction/new' => 'program/group_restrictions#create', :as => :program_group_restriction_create
+  post 'program/group/restriction/delete' => 'program/group_restrictions#delete', :as => :program_group_restriction_delete
 
 
-  # #Group controller
-  # get 'program/group/new' => 'program/group#new', :as => :program_group_new
-  # get 'program/group/:id' => 'program/group#show', as: 'group'
-  # #get 'program/group/:id/graph/embed' => 'program/group#graph_embed'
-  # post 'program/group/new' => 'program/group#create', :as => :program_group_create
-  # get 'program/group/:id/edit' => 'program/group#edit', :as => :program_group_edit
-  # patch 'program/group/:id/edit' => 'program/group#update', :as => :program_group_update
-  # post 'program/group/delete', to: 'program/group#delete', :as => :program_group_delete
-
+  namespace :program, path: '' do
+    # scope module: :program do
+    resources :programs
+    get 'search/autocomplete' => 'programs#search_autocomplete', as: :program_search_autocomplete
+  end
   namespace :program do
-    resources :groups
+    resources :groups do
+      resources :group_restrictions
+    end
   end
   #Group subject course list controller
   scope path: 'program/group', module: 'course' do

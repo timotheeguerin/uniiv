@@ -12,7 +12,7 @@ class UserDashboardControllerTest < ActionController::TestCase
     end
   end
 
-  test 'index should redirect if user does not have any programs' do
+  test 'index should redirect if user does not have any program' do
     @ability.can :view, @user
     get :index
     assert_response :redirect

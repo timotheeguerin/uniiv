@@ -1,4 +1,4 @@
-class UserSearcher
+class UserSearcher < ApplicationSearcher
   def self.search(params)
     return search_advisor(params) if params[:type] == 'advisor'
     search = User.search do

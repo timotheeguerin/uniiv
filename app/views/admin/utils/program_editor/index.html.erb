@@ -2,7 +2,7 @@
 Edit/Create programs
 
 <div class='whitetext'>
-  <%= link_to 'New program', program_new_path, :class => 'btn btn-primary' %>
+  <%= link_to 'New program', new_program_program_path, :class => 'btn btn-primary' %>
 </div>
 <hr>
 
@@ -18,17 +18,16 @@ Edit/Create programs
 <table class="table ">
   <% @search.results.each do |program| %>
       <tr>
-        <td><%= link_to program.to_s, program_path(program) %></td>
+        <td><%= link_to program.to_s, program_program_path(program) %></td>
         <td>
           <div class='btn-group' style="color: white">
             <div style="display: inline-block">
-              <a href="<%= program_edit_path(program) %>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
+              <a href="<%= edit_program_program_path(program) %>" class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Edit">
                 <span class="glyphicon glyphicon-pencil"></span>
               </a>
             </div>
             <div style="display: inline-block">
-              <%= form_tag program_delete_path, :class => "form-inline" do %>
-                  <%= hidden_field_tag :id, program.id %>
+              <%= form_tag program_program_path(program), method: 'delete' do %>
                   <button class='btn btn-danger' rel="tooltip" data-toggle="tooltip" title="Delete">
                     <span class="glyphicon glyphicon-remove-sign"></span>
                   </button>

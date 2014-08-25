@@ -2,7 +2,6 @@
   .program-title
     h1= @program_version.program
 
-
   .program-switch-version
     = form_tag program_version_change_path, :method => :get do
       = select_tag :version_id, options_from_collection_for_select(@program_version.program.versions, :id, :to_academic_year, @program_version.id), :class => 'selectpicker submit-onselect'
