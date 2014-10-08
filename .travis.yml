@@ -3,6 +3,7 @@ language: ruby
 before_script: 
   - curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=4.8.1 bash
   - mysql -e 'create database uniiv_test;'
+  - rails g uniiv:secret
   
 rvm:
   - '2.0.0'
