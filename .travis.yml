@@ -6,10 +6,12 @@ before_script:
   - bundle exec rails g uniiv:secret
   - RAILS_ENV=test bundle exec rake sunspot:solr:start
 
+after_script:
+  - RAILS_ENV=test bundle exec rake sunspot:solr:stop
+
 rvm:
   - '2.0.0'
   - '2.1.0'
-  - 'rbx-2'
 
 gemfile:
   - Gemfile

@@ -109,12 +109,6 @@ class Course::Course < ActiveRecord::Base
     end
   end
 
-  def as_json(options={})
-    hash = super(:except => [:created_at, :updated_at])
-    hash[:prerequisite] = prerequisite.as_json
-    hash[:corequisite] = corequisite.as_json
-    hash
-  end
 
   def count_requirements
     count = 0
@@ -161,15 +155,15 @@ class Course::Course < ActiveRecord::Base
     end
   end
 
-  #Compute the completxity to get to this course with all the prerequisite
+  #Compute the complexity to get to this course with all the prerequisite
   def get_complexity
     prerequisite.get_complexity
   end
 
   def list_dependencies(options = {})
     default_options = {
-        :inc_pre => true,
-        :inc_co => true
+        inc_pre: true,
+        inc_co: true
     }
     options = options.reverse_merge(default_options)
     courses = []
@@ -183,15 +177,16 @@ class Course::Course < ActiveRecord::Base
   end
 
   def already_exist?
-    Course::Course.where(:subject_id => subject_id, :code => code, :part => part).size > 0
+    Course::Course.where(subject_id: subject_id, code: code, part: part).any?
   end
 
-  #Get the course from the string of format SUBJECT CODE(e.g. MATH 222)
+  # Get the course from the string of format SUBJECT CODE(e.g. MATH 222)
   def self.find_by_string(str, university)
+    return nil unless str.match(/^[A-Z]+([[:space:]])\d+(d\d)?$/)
     array = str.split(/[[:space:]]/)
-    subject = Course::Subject.where(:name => array[0], :university_id => university.id).first
+    subject = Course::Subject.where(name: array[0], university_id: university.id).first
     code = array[1]
-    Course::Course.where(:subject_id => subject.id, :code => code).first
+    Course::Course.where(subject_id: subject.id, code: code).first
   end
 end
 

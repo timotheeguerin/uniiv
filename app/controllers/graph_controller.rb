@@ -15,9 +15,9 @@ class GraphController < ApplicationController
     authorize! :read, :graph
 
     if current_user.university.nil?
-      redirect_to user_education_path, :alert => t('university.notselected')
+      redirect_to user_education_path, alert: t('university.notselected')
     elsif current_scenario.programs.size == 0
-      redirect_to user_education_path, :alert => t('program.zero.selected')
+      redirect_to user_education_path, alert: t('program.zero.selected')
     end
     @fullwidth=true
     @footer = false
@@ -59,12 +59,10 @@ class GraphController < ApplicationController
 
   def get_program_graph(program, style = {})
     nodes = {}
-    margin = style[:margin]
-    padding = style[:padding]
-    margin ||= 30
-    padding ||= 15
+    margin = (style[:margin] || 30)
+    padding = (style[:padding] || 15)
 
-    prg_graph = Graph::Graph.new(program.program.name)
+    program_graph = Graph::Graph.new(program.program.name)
     program.groups.each do |group|
       dot_graph = generate_graph_from_group(group, style)
       nodes = nodes.merge(dot_graph.nodes)
@@ -73,18 +71,18 @@ class GraphController < ApplicationController
         graph.type = 'group'
         graph.add_padding(padding)
         graph.id = group.id_to_s
-        prg_graph.subgraphs << graph
+        program_graph.subgraphs << graph
       end
     end
+    program_graph.type = 'program'
     p = Graph::Packer.new
-    prg_graph.type = 'program'
-    p.pack_graph(prg_graph, margin)
-    prg_graph.add_padding(padding)
-    prg_graph.move(Graph::Point.new(0, padding))
-    prg_graph.dimension.y += padding
-    prg_graph.id = program.id_to_s
-    prg_graph.label = program.program.name
-    prg_graph
+    p.pack_graph(program_graph, margin)
+    program_graph.add_padding(padding)
+    program_graph.move(Graph::Point.new(0, padding))
+    program_graph.dimension.y += padding
+    program_graph.id = program.id_to_s
+    program_graph.label = program.program.name
+    program_graph
   end
 
   def generate_graph_from_group(group, style)
@@ -92,9 +90,9 @@ class GraphController < ApplicationController
     margin = style[:padding] unless style[:padding].nil?
     completed_percent = group.get_completion_ratio(current_scenario, @term).percent.round
     label = "#{group.name} (#{completed_percent}%)"
-    g = GraphViz.new(:G, :type => :digraph, :strict => true, :label => label, :fontsize => 20)
+    g = GraphViz.new(:G, type: :digraph, strict: true, label: label, fontsize: 20)
     dot_graph = Graph::DotGraph.new(g, current_scenario, @term)
-    content_graph = g.add_graph('cluster_' + group.name)
+    content_graph = g.add_graph("cluster_#{group.name}")
     content_graph[:label] = ''
     content_graph[:margin] = margin
     dot_graph.load_from_group(group, content_graph)

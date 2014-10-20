@@ -2,6 +2,6 @@
 FactoryGirl.define do
   factory :course_subject, :class => Course::Subject do
     university
-    name 'name'
+    name 'NAME'
   end
 end
