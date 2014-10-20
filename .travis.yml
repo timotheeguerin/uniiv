@@ -4,7 +4,7 @@ before_script:
   - curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=4.8.1 bash
   - mysql -e 'create database uniiv_test;'
   - bundle exec rails g uniiv:secret
-  - bundle exec rake sunspot:solr:start test
+  - RAILS_ENV=test bundle exec rake sunspot:solr:start
 
 rvm:
   - '2.0.0'
