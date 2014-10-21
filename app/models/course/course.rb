@@ -6,11 +6,11 @@ class Course::Course < ActiveRecord::Base
 
   has_many :reviews, :class_name => Course::Review, :dependent => :destroy
 
-  has_and_belongs_to_many :restricted_years, :class_name => 'UniversityYear'
-  has_many :scenario_taking_courses, :class_name => UserTakingCourse, :foreign_key => 'course_id', :dependent => :destroy
-  has_many :user_completed_courses, :class_name => UserCompletedCourse, :foreign_key => 'course_id', :dependent => :destroy
-  has_many :users, :class_name => User, :through => :user_completed_courses
-  has_many :course_scenarios, :through => :scenario_taking_courses, :class_name => Course::Scenario
+  has_and_belongs_to_many :restricted_years, class_name: 'UniversityYear'
+  has_many :scenario_taking_courses, class_name: UserTakingCourse, foreign_key: 'course_id', dependent: :destroy
+  has_many :user_completed_courses, class_name: UserCompletedCourse, foreign_key: 'course_id', dependent: :destroy
+  has_many :users, :class_name => User, through: :user_completed_courses
+  has_many :course_scenarios, through: :scenario_taking_courses, class_name: Course::Scenario
 
   #Program group having the course
   has_and_belongs_to_many :program_groups, :class_name => 'Program::Group'
@@ -30,8 +30,9 @@ class Course::Course < ActiveRecord::Base
 
   #Callbacks
   after_create :after_create
-
   after_update :check_requirements
+
+  delegate :university, to: :subject
 
 
   def after_create
@@ -55,8 +56,9 @@ class Course::Course < ActiveRecord::Base
     get_short_name
   end
 
+  # TODO move this
   def to_link
-    "<a href='#{course_path(:id => id)}' data-id='#{id}'>#{to_s}</a>"
+    "<a href='#{course_path(id: id)}' data-id='#{id}'>#{to_s}</a>"
   end
 
   def id_to_s
@@ -76,11 +78,12 @@ class Course::Course < ActiveRecord::Base
     "#{get_short_name}: #{name}"
   end
 
-  #Return the name for the DOT graph
+  # Return the name of the node for the DOT graph
   def get_dot_name
     subject.to_s + '\n' + code.to_s
   end
 
+  # Check if the requirement of a course are completed at the given term
   def requirements_completed?(scenario, term = nil)
     unless prerequisite.nil? or prerequisite.requirements_completed?(scenario, term)
       return false
@@ -93,11 +96,8 @@ class Course::Course < ActiveRecord::Base
     true
   end
 
-
-  alias :can_take? :requirements_completed?
-
+  # Get course state at the given semester
   def get_course_state(scenario, term = nil)
-    user = scenario.user
     if scenario.has_completed_course?(self, true, term)
       CourseState::COMPLETED
     elsif scenario.plan_to_take_course?(self)
@@ -109,7 +109,6 @@ class Course::Course < ActiveRecord::Base
     end
   end
 
-
   def count_requirements
     count = 0
     count += prerequisite.count_requirements unless prerequisite.nil?
@@ -117,23 +116,35 @@ class Course::Course < ActiveRecord::Base
     count
   end
 
-  delegate :university, :to => :subject
+  # Compute the complexity to get to this course with all the prerequisite
+  def get_complexity
+    prerequisite.get_complexity
+  end
 
-  def self.search_course(params)
-    scenario = params[:scenario]
-    search = Course::Course.search do
-      fulltext query if params[:q]
-      paginate(:page => 1, :per_page => params[:limit]) unless params[:limit].nil?
-      unless scenario.nil?
-        without(:course_scenario_ids, scenario.id) if params[:only_not_taking]
-        with(:course_scenario_ids, scenario.id) if params[:only_taking]
-        without(:user_ids, scenario.user.id) if params[:only_not_completed]
-        with(:user_ids, scenario.user.id) if params[:only_completed]
-      end
-      with(:program_group_ids, params[:program_groups]) if params[:program_groups]
-      with(:program_ids, params[:program]) if params[:program]
+  def list_dependencies(include_prerequisite: true, include_corequisite: true)
+    courses = []
+    if not prerequisite.nil? and include_prerequisite
+      courses += prerequisite.list_dependencies
     end
-    search.results
+    if corequisite.nil? and include_corequisite
+      courses += corequisite.list_dependencies
+    end
+    courses
+  end
+
+  # Check if the course already exist in the database
+  # i.e check if there is another course with the same subject and code(and part) as this one
+  def already_exist?
+    Course::Course.where(subject_id: subject_id, code: code, part: part).any?
+  end
+
+  # Get the course from the string of format SUBJECT CODE(e.g. MATH 222)
+  def self.find_by_string(str, university)
+    return nil unless str.match(/^[A-Z]+([[:space:]])\d+((d|D)\d)?$/)
+    array = str.split(/[[:space:]]/)
+    subject = Course::Subject.where(name: array[0], university_id: university.id).first
+    code = array[1]
+    Course::Course.where(subject_id: subject.id, code: code).first
   end
 
   #Sunspot indexing
@@ -155,38 +166,6 @@ class Course::Course < ActiveRecord::Base
     end
   end
 
-  #Compute the complexity to get to this course with all the prerequisite
-  def get_complexity
-    prerequisite.get_complexity
-  end
-
-  def list_dependencies(options = {})
-    default_options = {
-        inc_pre: true,
-        inc_co: true
-    }
-    options = options.reverse_merge(default_options)
-    courses = []
-    if not prerequisite.nil? and options[:inc_pre]
-      courses += prerequisite.list_dependencies
-    end
-    if corequisite.nil? and options[:inc_co]
-      courses += corequisite.list_dependencies
-    end
-    courses
-  end
-
-  def already_exist?
-    Course::Course.where(subject_id: subject_id, code: code, part: part).any?
-  end
-
-  # Get the course from the string of format SUBJECT CODE(e.g. MATH 222)
-  def self.find_by_string(str, university)
-    return nil unless str.match(/^[A-Z]+([[:space:]])\d+(d\d)?$/)
-    array = str.split(/[[:space:]]/)
-    subject = Course::Subject.where(name: array[0], university_id: university.id).first
-    code = array[1]
-    Course::Course.where(subject_id: subject.id, code: code).first
-  end
+  alias :can_take? :requirements_completed?
 end
 

@@ -22,6 +22,7 @@ class Course::CourseTest < ActiveSupport::TestCase
     subject = create(:course_subject)
     assert_nil Course::Course.find_by_string('MATH222', subject.university)
     assert_nil Course::Course.find_by_string('MATH 202d', subject.university)
+    assert_nil Course::Course.find_by_string('MATH 202D', subject.university)
     assert_nil Course::Course.find_by_string('MATH COMP', subject.university)
   end
 

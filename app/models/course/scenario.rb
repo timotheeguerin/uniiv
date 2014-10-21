@@ -84,18 +84,17 @@ class Course::Scenario < ActiveRecord::Base
 
   end
 
-  def get_courses_in_programs(options={})
-    courses = []
+  def get_courses_in_programs(filters={})
     default_options={
-        :scenario => self,
-        :only_taking => false,
-        :only_not_taking => false,
-        :only_completed => false,
-        :only_not_completed => false
+        scenario_id: self.id,
+        only_taking: false,
+        only_not_taking: false,
+        only_completed: false,
+        only_not_completed: false
     }
-    options = options.reverse_merge(default_options)
-    options[:program] ||= programs.map { |x| x.id }
-    Course::Course.search_course(options)
+    filters = filters.reverse_merge(default_options)
+    filters[:program] ||= programs.map { |x| x.id }
+    Course::CourseSearcher.search(filters)
   end
 
   #Take the given course at the given semester

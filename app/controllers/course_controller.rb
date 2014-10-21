@@ -58,7 +58,7 @@ class CourseController < ApplicationController
       with(:user_ids, current_user.id) if params[:only_completed]
     end
     if prerequisites
-      search.results.first.list_dependencies(:inc_co => false)
+      search.results.first.list_dependencies(include_corequisite: false)
     else
       search.results
     end
